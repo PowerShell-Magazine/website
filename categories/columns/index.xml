@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Columns on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/columns/</link>
+    <description>Recent content in Columns on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 23 Aug 2013 18:00:59 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/columns/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>#PSTip Dynamically hiding a function from the debugger in PowerShell ISE</title>
+      <link>https://psmag.github.io/2013/08/23/pstip-dynamically-hiding-a-function-from-the-debugger-in-powershell-ise/</link>
+      <pubDate>Fri, 23 Aug 2013 18:00:59 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/08/23/pstip-dynamically-hiding-a-function-from-the-debugger-in-powershell-ise/</guid>
+      <description>Note: This tip requires PowerShell 4.0 or above.
+In this great post, Tobias walked you through the process of hiding functions from the debugger.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Identifying DSC commands</title>
+      <link>https://psmag.github.io/2013/08/12/pstip-identifying-dsc-commands/</link>
+      <pubDate>Mon, 12 Aug 2013 18:00:25 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/08/12/pstip-identifying-dsc-commands/</guid>
+      <description>Note: This tip requires PowerShell 4.0 or above.
+Starting in Windows PowerShell 4.0 with the new Desired State Configuration (DSC) feature, we now have one more command type added to the list of command types: Configuration.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip CompareTo() method for comparing strings!</title>
+      <link>https://psmag.github.io/2012/10/24/pstip-different-method-to-compare-strings/</link>
+      <pubDate>Wed, 24 Oct 2012 18:00:41 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/10/24/pstip-different-method-to-compare-strings/</guid>
+      <description>There are certainly many methods to compare strings in PowerShell.
+Today, I will show you one of the methods that I recently came across — a less known method, maybe.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Another way to modify WMI instance properties</title>
+      <link>https://psmag.github.io/2012/09/04/pstip-another-way-to-modify-wmi-instance-properties/</link>
+      <pubDate>Tue, 04 Sep 2012 18:00:16 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/09/04/pstip-another-way-to-modify-wmi-instance-properties/</guid>
+      <description>In the previous tip we showed you how to modify WMI object properties using Get-WmiObject cmdlet and the Put method. Today I want to show you another streamlined way to do the same using the Set-WmiInstance cmdlet.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Getting WMI associated classes in PowerShell 3.0</title>
+      <link>https://psmag.github.io/2012/08/24/pstip-getting-wmi-associated-classes-in-powershell-3-0/</link>
+      <pubDate>Fri, 24 Aug 2012 18:00:42 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/08/24/pstip-getting-wmi-associated-classes-in-powershell-3-0/</guid>
+      <description>In Windows PowerShell 2.0, retrieving WMI associations and references required complex WMI queries. For example, if you wanted to get the IP address bound to a particular network adapter using WMI associations you would run:</description>
+    </item>
+    
+    <item>
+      <title>#PSTip How to convert .NET Framework objects into HTML</title>
+      <link>https://psmag.github.io/2012/08/23/pstip-how-to-convert-net-framework-objects-into-html/</link>
+      <pubDate>Thu, 23 Aug 2012 18:00:33 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/08/23/pstip-how-to-convert-net-framework-objects-into-html/</guid>
+      <description>The ConvertTo-Html cmdlet converts Microsoft .NET Framework objects into HTML that can be displayed in a Web browser. In the following example we pick up a few properties of process objects with name that contains the word ‘host’, sort the output by the ‘Handles’ property, convert it to HTML, and save it as HTML file in the user’s TEMP folder.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Getting system modules only</title>
+      <link>https://psmag.github.io/2012/08/22/pstip-getting-system-modules-only/</link>
+      <pubDate>Wed, 22 Aug 2012 18:00:31 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/08/22/pstip-getting-system-modules-only/</guid>
+      <description>When we use the Get-Module -ListAvailable command to list installed modules, we get a list of modules from two default module locations: one for the system and one for the current user.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Persistent file system drives</title>
+      <link>https://psmag.github.io/2012/08/16/pstip-persistent-file-system-drives/</link>
+      <pubDate>Thu, 16 Aug 2012 18:00:30 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/08/16/pstip-persistent-file-system-drives/</guid>
+      <description>In the previous tip we showed you how to get the next available drive letter using the Get-AvailableDriveLetter function when we want to create a new mapped network drive.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Get next available drive letter</title>
+      <link>https://psmag.github.io/2012/08/15/pstip-get-next-available-drive-letter/</link>
+      <pubDate>Wed, 15 Aug 2012 21:46:45 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/08/15/pstip-get-next-available-drive-letter/</guid>
+      <description>Mapping drives is a routine task for IT pros—you choose a free drive letter, ranging from A-Z, and then use it to map a drive to a specific path.</description>
+    </item>
+    
+  </channel>
+</rss>

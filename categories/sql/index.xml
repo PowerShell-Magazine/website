@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SQL on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/sql/</link>
+    <description>Recent content in SQL on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 May 2015 16:00:15 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/sql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Natively Query CSV Files using SQL Syntax in PowerShell</title>
+      <link>https://psmag.github.io/2015/05/12/natively-query-csv-files-using-sql-syntax-in-powershell/</link>
+      <pubDate>Tue, 12 May 2015 16:00:15 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/05/12/natively-query-csv-files-using-sql-syntax-in-powershell/</guid>
+      <description>Note: The previous version of this article relied on the 32-bit JET engine. It has been updated to use ACE, which works in both 64-bit and 32-bit environments.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Functions and SQL filtering, Part 4</title>
+      <link>https://psmag.github.io/2014/07/31/pstip-functions-and-sql-filtering-part-4/</link>
+      <pubDate>Thu, 31 Jul 2014 18:00:59 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/07/31/pstip-functions-and-sql-filtering-part-4/</guid>
+      <description>Note: This tip requires PowerShell 3.0 or later.
+Filtering information retrieved from SQL database should not be limited to text filters only.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Functions and SQL filtering, Part 3</title>
+      <link>https://psmag.github.io/2014/07/30/pstip-functions-and-sql-filtering-part-3/</link>
+      <pubDate>Wed, 30 Jul 2014 18:00:02 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/07/30/pstip-functions-and-sql-filtering-part-3/</guid>
+      <description>Note: This tip requires PowerShell 3.0 or later.
+Whenever we retrieve information from SQL database we are faced with the problem: are we happy with column names defined in database schema?</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Functions and SQL filtering, Part 2</title>
+      <link>https://psmag.github.io/2014/07/29/pstip-functions-and-sql-filtering-part-2/</link>
+      <pubDate>Tue, 29 Jul 2014 18:00:38 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/07/29/pstip-functions-and-sql-filtering-part-2/</guid>
+      <description>Note: This tip requires PowerShell 3.0 or later.
+Adding support for easy filtering on individual table columns is great, but the fact that user would have to use SQL wildcard syntax rather than wildcards that he is used to, makes it feel like a partial solution.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Functions and SQL filtering, Part 1</title>
+      <link>https://psmag.github.io/2014/07/28/pstip-functions-and-sql-filtering-part-1/</link>
+      <pubDate>Mon, 28 Jul 2014 18:00:54 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/07/28/pstip-functions-and-sql-filtering-part-1/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or later.
+This is the first tip in a series of SQL filtering tips.</description>
+    </item>
+    
+    <item>
+      <title>Using PowerShell to discover information about your Microsoft SQL Servers</title>
+      <link>https://psmag.github.io/2014/07/21/using-powershell-to-discover-information-about-your-microsoft-sql-servers/</link>
+      <pubDate>Mon, 21 Jul 2014 16:00:09 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/07/21/using-powershell-to-discover-information-about-your-microsoft-sql-servers/</guid>
+      <description>I’m an infrastructure guy who supports many different products at multiple datacenters in an enterprise environment. One of those products is Microsoft SQL Server which I’ve been supporting since version 6.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Deleting extended properties on database objects using SMO</title>
+      <link>https://psmag.github.io/2013/08/30/pstip-deleting-extended-properties/</link>
+      <pubDate>Fri, 30 Aug 2013 18:00:26 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/08/30/pstip-deleting-extended-properties/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+In earlier tips, we looked at how to add, read and update the extended properties of a SQL database.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Updating extended properties on database objects using SMO</title>
+      <link>https://psmag.github.io/2013/08/29/pstip-updating-extended-properties-on-database-objects-using-smo/</link>
+      <pubDate>Thu, 29 Aug 2013 18:00:53 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/08/29/pstip-updating-extended-properties-on-database-objects-using-smo/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+In an earlier tip, we saw how we can read extended properties to a database.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Reading extended properties on database objects using SMO</title>
+      <link>https://psmag.github.io/2013/08/28/pstip-reading-extended-properties-on-database-objects-using-smo/</link>
+      <pubDate>Wed, 28 Aug 2013 18:00:23 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/08/28/pstip-reading-extended-properties-on-database-objects-using-smo/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+Extended properties are an useful but, under utilized feature in SQL server. In an earlier tip, we saw that you can add extended properties to databases and other objects.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Creating extended properties on database objects using SMO</title>
+      <link>https://psmag.github.io/2013/08/27/pstip-creating-extended-properties-on-database-objects-using-smo/</link>
+      <pubDate>Tue, 27 Aug 2013 18:00:46 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/08/27/pstip-creating-extended-properties-on-database-objects-using-smo/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+You might have seen several articles on the web discussing about the SQL database extended properties from a self-documentation point of view.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Validate is a database is available on a SQL instance</title>
+      <link>https://psmag.github.io/2013/08/21/pstip-validate-is-a-database-is-available-on-a-sql-instance/</link>
+      <pubDate>Wed, 21 Aug 2013 18:00:37 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/08/21/pstip-validate-is-a-database-is-available-on-a-sql-instance/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+Sometimes we need to know if a particular DB is available on a given instance before going ahead and making any configuration changes.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Finding all roles a particular login is mapped to in all databases</title>
+      <link>https://psmag.github.io/2013/08/20/pstip-finding-all-roles-a-particular-login-is-mapped-to-in-all-databases/</link>
+      <pubDate>Tue, 20 Aug 2013 18:00:16 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/08/20/pstip-finding-all-roles-a-particular-login-is-mapped-to-in-all-databases/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+In a previous tip, we checked out how to get the names of all databases to which a login is mapped and the username for that login in each database.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Validate if a SQL login exists using PowerShell</title>
+      <link>https://psmag.github.io/2013/08/14/pstip-validate-if-a-sql-login-exists-using-powershell/</link>
+      <pubDate>Wed, 14 Aug 2013 18:00:03 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/08/14/pstip-validate-if-a-sql-login-exists-using-powershell/</guid>
+      <description>Note: This tip requires PowerShell 3.0 or above.
+Before performing tasks like adding roles to a SQL login, it is desired to validate the existence of SQL login.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Add a SQL login to database roles using SMO</title>
+      <link>https://psmag.github.io/2013/08/13/pstip-add-a-sql-login-to-database-roles-using-smo/</link>
+      <pubDate>Tue, 13 Aug 2013 18:00:54 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/08/13/pstip-add-a-sql-login-to-database-roles-using-smo/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+We can use SQL Server SMO object to add a SQL login to the database roles.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Retrieve all SQL instance names on local and remote computers</title>
+      <link>https://psmag.github.io/2013/08/06/pstip-retrieve-all-sql-instance-names-on-local-and-remote-computers/</link>
+      <pubDate>Tue, 06 Aug 2013 18:00:21 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/08/06/pstip-retrieve-all-sql-instance-names-on-local-and-remote-computers/</guid>
+      <description>I was looking at way to retrieve the SQL instance names on a remote computer without using SQL SMO. This is essential for me as I don’t always expect to have the SQL SMO DLLs on the computer where I run my scripts.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Drop all Active Connections of SQL Database</title>
+      <link>https://psmag.github.io/2013/08/02/pstip-drop-all-active-connections-of-sql-database/</link>
+      <pubDate>Fri, 02 Aug 2013 18:00:04 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/08/02/pstip-drop-all-active-connections-of-sql-database/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+In an earlier tip, we looked at how we can retrieve the active connection count for a SQL database.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Change database recovery model using SMO</title>
+      <link>https://psmag.github.io/2013/06/24/pstip-change-database-recovery-model-using-smo/</link>
+      <pubDate>Mon, 24 Jun 2013 18:00:42 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/06/24/pstip-change-database-recovery-model-using-smo/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+Database mirroring requires that the database be in Full recovery model as a prerequisite to configure mirroring.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Deleting a SQL mirroring endpoint with SMO and PowerShell</title>
+      <link>https://psmag.github.io/2013/06/11/pstip-deleting-a-sql-mirroring-endpoint-in-smo-and-powershell/</link>
+      <pubDate>Tue, 11 Jun 2013 18:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/06/11/pstip-deleting-a-sql-mirroring-endpoint-in-smo-and-powershell/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+In earlier tips, we looked at how we can get all SQL endpoints, check if a SQL endpoint exists or not, and creating SQL mirroring endpoints.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Creating a SQL TCP mirroring endpoint with SMO and PowerShell</title>
+      <link>https://psmag.github.io/2013/06/10/pstip-creating-a-sql-tcp-mirroring-endpoint-in-smo-and-powershell/</link>
+      <pubDate>Mon, 10 Jun 2013 18:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/06/10/pstip-creating-a-sql-tcp-mirroring-endpoint-in-smo-and-powershell/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+In today’s tip, we will see how we can use PowerShell and SMO to create a SQL TCP mirroring endpoint.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Check if a SQL endpoint exists or not</title>
+      <link>https://psmag.github.io/2013/06/04/pstip-check-if-a-sql-endpoint-exists-or-not/</link>
+      <pubDate>Tue, 04 Jun 2013 18:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/06/04/pstip-check-if-a-sql-endpoint-exists-or-not/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+Before we make an attempt at creating a new database mirroring endpoint, we need to verify if an endpoint with the given name and/or port already exists.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip List all endpoints in a SQL deployment</title>
+      <link>https://psmag.github.io/2013/06/03/pstip-list-all-endpoints-in-a-sql-deployment/</link>
+      <pubDate>Mon, 03 Jun 2013 18:22:15 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/06/03/pstip-list-all-endpoints-in-a-sql-deployment/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+When working with SQL Server database mirroring, it is desired to understand how to create and troubleshoot database endpoints.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Retrieving SQL database last backup dates using SMO</title>
+      <link>https://psmag.github.io/2013/05/31/pstip-retrieving-sql-database-last-backup-dates-using-smo/</link>
+      <pubDate>Fri, 31 May 2013 18:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/05/31/pstip-retrieving-sql-database-last-backup-dates-using-smo/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+For regular reporting and auditing purposes, it is always desired to capture the SQL last backup dates.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Adding local users to SQL Server Logins using SMO</title>
+      <link>https://psmag.github.io/2013/05/17/pstip-adding-local-users-to-sql-server-logins-using-smo/</link>
+      <pubDate>Fri, 17 May 2013 18:00:07 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/05/17/pstip-adding-local-users-to-sql-server-logins-using-smo/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+There was a question on StackOverflow about adding local users to SQL Server logins.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip List SQL database mirroring partner using SMO</title>
+      <link>https://psmag.github.io/2013/05/14/pstip-list-sql-database-mirroring-partner-using-smo/</link>
+      <pubDate>Tue, 14 May 2013 18:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/05/14/pstip-list-sql-database-mirroring-partner-using-smo/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+In an earlier tip, we looked at how to verify if a SQL database is mirrored.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Verify if a SQL database is mirrored or not</title>
+      <link>https://psmag.github.io/2013/05/10/pstip-verify-if-a-sql-database-is-mirrored-or-not/</link>
+      <pubDate>Fri, 10 May 2013 18:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/05/10/pstip-verify-if-a-sql-database-is-mirrored-or-not/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+When using SQL SMO to work with mirroring configuration, it is essential to verify if the database is mirrored, or not, before performing any other operations.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Failing over a mirrored SQL database using SMO</title>
+      <link>https://psmag.github.io/2013/04/29/pstip-failing-over-a-mirrored-sql-database-using-smo/</link>
+      <pubDate>Mon, 29 Apr 2013 06:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/04/29/pstip-failing-over-a-mirrored-sql-database-using-smo/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+After I configure SQL mirroring, I usually perform some checks to ensure that the overall mirroring configuration is working fine.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Enumerate all SQL Server instances in a network</title>
+      <link>https://psmag.github.io/2013/04/24/pstip-enumerate-all-sql-server-instances-in-a-network/</link>
+      <pubDate>Wed, 24 Apr 2013 18:00:08 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/04/24/pstip-enumerate-all-sql-server-instances-in-a-network/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+Ever thought about how you can list of all SQL Server instances on the local network?</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Changing SQL database AutoShrink property using SMO and PowerShell</title>
+      <link>https://psmag.github.io/2013/04/22/pstip-changing-sql-database-autoshrink-property-using-smo-and-powershell/</link>
+      <pubDate>Mon, 22 Apr 2013 18:00:18 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/04/22/pstip-changing-sql-database-autoshrink-property-using-smo-and-powershell/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+In today’s tip, we will see how we can use SQL SMO and PowerShell to change the AutoShrink property of a SQL database.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Restoring a SQL Database using SMO</title>
+      <link>https://psmag.github.io/2013/04/18/pstip-restoring-a-sql-database-using-smo/</link>
+      <pubDate>Thu, 18 Apr 2013 18:00:13 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/04/18/pstip-restoring-a-sql-database-using-smo/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+In a couple of earlier tips on using SMO, we looked at backing up a SQL database and transaction logs.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Backing up SQL transaction log using SMO</title>
+      <link>https://psmag.github.io/2013/04/16/pstip-backing-up-sql-transaction-log-using-smo/</link>
+      <pubDate>Tue, 16 Apr 2013 18:00:11 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/04/16/pstip-backing-up-sql-transaction-log-using-smo/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+In an earlier tip, we looked at how we can use SQL SMO to perform database backup.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Backing up a SQL database using SMO</title>
+      <link>https://psmag.github.io/2013/04/12/pstip-backing-up-a-sql-database-using-smo/</link>
+      <pubDate>Fri, 12 Apr 2013 18:00:26 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/04/12/pstip-backing-up-a-sql-database-using-smo/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+In today’s tip, we shall see how we can use SQL Management Objects (SMO) in PowerShell to perform a SQL database backup.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Change SQL Server MaxServerMemory configuration using SMO</title>
+      <link>https://psmag.github.io/2013/04/03/pstip-change-sql-server-maxservermemory-configuration-using-smo/</link>
+      <pubDate>Wed, 03 Apr 2013 18:00:17 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/04/03/pstip-change-sql-server-maxservermemory-configuration-using-smo/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+As database administrators, we might want to configure SQL MaxServerMemory setting to ensure the SQL service does not occupy all available physical memory.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Identifying SQL system objects using SMO</title>
+      <link>https://psmag.github.io/2013/03/28/pstip-identifying-sql-system-objects-using-smo/</link>
+      <pubDate>Thu, 28 Mar 2013 18:00:21 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/03/28/pstip-identifying-sql-system-objects-using-smo/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+A SQL Server instance, by default, deploys a few system databases such as Temp DB, MSDB, Master, and Model DB.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Generate T-SQL script to clone database tables using SMO</title>
+      <link>https://psmag.github.io/2013/03/27/pstip-generate-t-sql-script-to-clone-database-tables-using-smo/</link>
+      <pubDate>Wed, 27 Mar 2013 18:00:20 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/03/27/pstip-generate-t-sql-script-to-clone-database-tables-using-smo/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+In an earlier tip, we looked at how we can use SMO in PowerShell to generate T-SQL scripts for cloning databases.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Generate T-SQL script for cloning a SQL database</title>
+      <link>https://psmag.github.io/2013/03/19/pstip-generate-t-sql-script-for-cloning-a-sql-database/</link>
+      <pubDate>Tue, 19 Mar 2013 18:00:10 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/03/19/pstip-generate-t-sql-script-for-cloning-a-sql-database/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+As database administrator, you may want to create a database on development or test servers with similar settings as on the production server.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Change SQL Server default backup folder location</title>
+      <link>https://psmag.github.io/2013/03/14/pstip-change-sql-server-default-backup-folder-location/</link>
+      <pubDate>Thu, 14 Mar 2013 18:00:29 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/03/14/pstip-change-sql-server-default-backup-folder-location/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+If you have ever backed up a SQL Server database, you will know that the default backup location is set to the Program Files folder where SQL is installed.</description>
+    </item>
+    
+    <item>
+      <title>SQLite PowerShell Provider</title>
+      <link>https://psmag.github.io/2012/01/23/sqlite-powershell-provider/</link>
+      <pubDate>Mon, 23 Jan 2012 16:20:27 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/01/23/sqlite-powershell-provider/</guid>
+      <description>PowerShell MVP Jim Christopher has published a new project on codeplex – SQLite PowerShell Provider. The new provider enables you to use SQLite databases from your PowerShell session by mounting the database as a drive.</description>
+    </item>
+    
+  </channel>
+</rss>

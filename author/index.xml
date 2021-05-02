@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Authors on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/author/</link>
+    <description>Recent content in Authors on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://psmag.github.io/author/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Adam Bacon</title>
+      <link>https://psmag.github.io/author/adam-bacon/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/adam-bacon/</guid>
+      <description>I am a father of two beautiful girls and married to my lovely wife Kelly. I am 29 and very soon to be 30.</description>
+    </item>
+    
+    <item>
+      <title>Adam Driscoll</title>
+      <link>https://psmag.github.io/author/adam-driscoll/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/adam-driscoll/</guid>
+      <description>Adam Driscoll is a software developer at Quest Software, working primarily with virtualization and PowerShell. He is a blogger and an open source contributor.</description>
+    </item>
+    
+    <item>
+      <title>Alan Renouf</title>
+      <link>https://psmag.github.io/author/alan-renouf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/alan-renouf/</guid>
+      <description>Alan Renouf is a Senior Technical Marketing Architect with VMware with over 12 years working experience within IT solutions.
+Alan currently focuses on automation of VMware products with vSphere PowerCLI.</description>
+    </item>
+    
+    <item>
+      <title>Aleksandar Nikolic</title>
+      <link>https://psmag.github.io/author/aleksandar-nikolic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/aleksandar-nikolic/</guid>
+      <description>Aleksandar is a PowerShell MVP and a co-founder of PowerShell Magazine. He is a frequent speaker at the conferences and participates regularly in IT Pro user groups worldwide.</description>
+    </item>
+    
+    <item>
+      <title>Alex Pawlak</title>
+      <link>https://psmag.github.io/author/alex-pawlak/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/alex-pawlak/</guid>
+      <description>Alex Pawlak, 23. IT passionate with wide, general interests. Currently finishing BA in philosophy at Warsaw University and moving on to IT for engineering degree.</description>
+    </item>
+    
+    <item>
+      <title>Aman Dhally</title>
+      <link>https://psmag.github.io/author/aman-dhally/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/aman-dhally/</guid>
+      <description>Aman Dhally is a Network Analyst in a MNC and the founder of the New Delhi PowerShell users group. He has over 10 years of experience in the IT industry and works with PowerShell and SCOM.</description>
+    </item>
+    
+    <item>
+      <title>Andrea Fisher</title>
+      <link>https://psmag.github.io/author/andrea-fisher/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/andrea-fisher/</guid>
+      <description>Andrea Fisher is a life-long resident of sunny Florida, she has served as a systems engineer for almost ten years, covering everything from Active Directory to application virtualization.</description>
+    </item>
+    
+    <item>
+      <title>Bartek Bielawski</title>
+      <link>https://psmag.github.io/author/bartek-bielawski/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/bartek-bielawski/</guid>
+      <description>Bartek is a busy IT Admin working for an international company, Optiver. He loves PowerShell and automation. That love got him the honors of a Microsoft MVP.</description>
+    </item>
+    
+    <item>
+      <title>Ben Gelens</title>
+      <link>https://psmag.github.io/author/ben-gelens/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/ben-gelens/</guid>
+      <description>Ben Gelens is a PowerShell MVP and technical consultant at Inovativ in the Netherlands where he works as a member of the CloudOS team.</description>
+    </item>
+    
+    <item>
+      <title>Ben Ten</title>
+      <link>https://psmag.github.io/author/ben-ten/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/ben-ten/</guid>
+      <description>Ben Ten is the Vice President of Information Systems and Security Officer for a company in Illinois. He has over 13 years of experience doing Application &amp;amp; Web Development; Security Implementation, Consulting, &amp;amp; Training; Federal Regulation and Compliance oversight in relation to Information Technology (HIPAA, HITECH, PCI); and managing a team of developers and IT professionals.</description>
+    </item>
+    
+    <item>
+      <title>Boe Prox</title>
+      <link>https://psmag.github.io/author/boe-prox/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/boe-prox/</guid>
+      <description>Boe Prox is a Microsoft MVP in PowerShell and currently a System Administrator who has been in the IT field since 2003 and supporting a variety of different platforms.</description>
+    </item>
+    
+    <item>
+      <title>Carlos Perez</title>
+      <link>https://psmag.github.io/author/carlos-perez/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/carlos-perez/</guid>
+      <description>Carlos Perez works as the Director of Reverse Engineering at a security vendor. He is very active in security open source community contributing to projects like Metasploit, Kali Linux and his own tools in several languages.</description>
+    </item>
+    
+    <item>
+      <title>Chad Miller</title>
+      <link>https://psmag.github.io/author/chad-miller/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/chad-miller/</guid>
+      <description>Chad Miller is a Senior Manager of Database Administration at Raymond James Financial. Chad has worked with Microsoft SQL Server since 1999 and has been automating administration tasks using Windows Powershell since 2007.</description>
+    </item>
+    
+    <item>
+      <title>Chrissy LeMaire</title>
+      <link>https://psmag.github.io/author/chrissy-lemaire/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/chrissy-lemaire/</guid>
+      <description>Chrissy LeMaire is a Microsoft PowerShell MVP who has worked in IT for nearly 20 years, and currently serves as a Sr.</description>
+    </item>
+    
+    <item>
+      <title>Claus Nielsen</title>
+      <link>https://psmag.github.io/author/claus-nielsen/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/claus-nielsen/</guid>
+      <description>Claus Thude Nielsen work as a Senior Systems Administrator at a large pension fund in Copenhagen, Denmark. He is primarily responsible for the company’s Microsoft Platform including Windows,Exchange, SharePoint etc, but also built the company’s VMware ESX and Citrix platforms.</description>
+    </item>
+    
+    <item>
+      <title>Clint Bergman</title>
+      <link>https://psmag.github.io/author/clint-bergman/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/clint-bergman/</guid>
+      <description>Clint Bergman worked in the IT industry for the past 15 years doing desktop support, server, voice/data network, and systems administration.</description>
+    </item>
+    
+    <item>
+      <title>Daniel Scott-Raynsford</title>
+      <link>https://psmag.github.io/author/daniel-scott-raynsford/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/daniel-scott-raynsford/</guid>
+      <description>Blog: dscottraynsford.wordpress.com Twitter: @dscottraynsford GitHub: github.com/plagueho</description>
+    </item>
+    
+    <item>
+      <title>Daniel Soares</title>
+      <link>https://psmag.github.io/author/daniel-soares/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/daniel-soares/</guid>
+      <description>Daniel Soares is the Software Services Manager at Patrick Henry College in Virginia. He has worked in IT since 1983 and his current duties involve managing application development, database administration and the messaging infrastructure at the college.</description>
+    </item>
+    
+    <item>
+      <title>Darren Mar-Elia</title>
+      <link>https://psmag.github.io/author/darren-mar-elia/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/darren-mar-elia/</guid>
+      <description>Darren Mar-Elia is the CTO and Founder of SDM Software &amp;amp; GPOGUY.COm. Darren has over 25 years of IT and Software experience in the Microsoft technology area, including serving as a Director in Infrastructure at Charles Schwab, CTO of Windows Management Solutions at Quest Software, and Senior Director of Product Engineering at DesktopStandard.</description>
+    </item>
+    
+    <item>
+      <title>Dave Hull</title>
+      <link>https://psmag.github.io/author/dave-hull/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/dave-hull/</guid>
+      <description>Dave Hull has been working in IT and information security for over 20 years with most of the last decade focused on digital forensics and incident response.</description>
+    </item>
+    
+    <item>
+      <title>Dave Wyatt</title>
+      <link>https://psmag.github.io/author/dave-wyatt/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/dave-wyatt/</guid>
+      <description>Dave Wyatt is an IT Professional who has been in the industry for about 15 years. More recently, he&amp;rsquo;s become a husband, dad, PowerShell MVP, and member of the PowerShell.</description>
+    </item>
+    
+    <item>
+      <title>David Moravec</title>
+      <link>https://psmag.github.io/author/david-moravec/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/david-moravec/</guid>
+      <description>I am in IT industry for 15 years, last 10 years working mainly with Microsoft management technologies. I Work in one of the biggest international accounting companies as administrator responsible for System Center Configuration Manager.</description>
+    </item>
+    
+    <item>
+      <title>David O&#39;Brien</title>
+      <link>https://psmag.github.io/author/david-obrien/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/david-obrien/</guid>
+      <description>David O&amp;rsquo;Brien is a Microsoft MVP for Cloud and Datacenter Management, Senior DevOps Engineer and an avid private pilot. Also half-German, half-Scot, from Melbourne/Australia.</description>
+    </item>
+    
+    <item>
+      <title>Deepak Dhami</title>
+      <link>https://psmag.github.io/author/deepak-dhami/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/deepak-dhami/</guid>
+      <description>Deepak (aka DexterPOSH) is a PowerShell Enthusiast and an active member of PowerShell Bangalore and Hyderabad User Groups. He blogs at http://dexterposh.</description>
+    </item>
+    
+    <item>
+      <title>Dmitri Guslinsky</title>
+      <link>https://psmag.github.io/author/dmitri-guslinsky/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/dmitri-guslinsky/</guid>
+      <description>Dimitri is a Technical director in a media company, a gratudate in mechanical engineering for the airspace industry, a Microsoft MCP.</description>
+    </item>
+    
+    <item>
+      <title>Doug Finke</title>
+      <link>https://psmag.github.io/author/doug-finke/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/doug-finke/</guid>
+      <description>Doug Finke, author of “PowerShell for Developers”, a Microsoft Most Valuable Professional (MVP) for PowerShell and works at Start-Automating, a company specializing in all aspects of PowerShell development, including consulting, training and tool building.</description>
+    </item>
+    
+    <item>
+      <title>Emin Atac</title>
+      <link>https://psmag.github.io/author/emin-atac/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/emin-atac/</guid>
+      <description>Emin Atac is a system administrator who works in a European institution since 2002. He uses PowerShell on a daily basis to automate whenever possible all kind of desktop or server administration tasks from deployment to security compliance.</description>
+    </item>
+    
+    <item>
+      <title>Fabien Dibot</title>
+      <link>https://psmag.github.io/author/fabien-dibot/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/fabien-dibot/</guid>
+      <description>Fabien Dibot works as a system administrator for a French healthcare company, Vivalto Sante. He loves everything about automation and shares his knowledge on his blog (http://pwrshell.</description>
+    </item>
+    
+    <item>
+      <title>Frank Peter Schultze</title>
+      <link>https://psmag.github.io/author/frank-peter-schultze/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/frank-peter-schultze/</guid>
+      <description>Frank is a Senior IT Consultant with proven skills in designing, implementing, and optimizing Microsoft &amp;amp; Citrix Infrastructures (focus SBC, VDI, and Cloud Computing).</description>
+    </item>
+    
+    <item>
+      <title>Fredrik Wall</title>
+      <link>https://psmag.github.io/author/fredrik-wall/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/fredrik-wall/</guid>
+      <description>Fredrik Wall is a Senior Infrastructure Consultant at Mindgrape AB in Sweden. He mainly works with Windows clients, deployments and scripting.</description>
+    </item>
+    
+    <item>
+      <title>Gayathri Narayanan</title>
+      <link>https://psmag.github.io/author/gayathri-narayanan/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/gayathri-narayanan/</guid>
+      <description>Gayathri is lover of SharePoint technologies, friend of .NET, and a colleague of SQL and Oracle. She recently started writing about SharePoint.</description>
+    </item>
+    
+    <item>
+      <title>Hemanth C Damecharla</title>
+      <link>https://psmag.github.io/author/hemanth-c-damecharla/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/hemanth-c-damecharla/</guid>
+      <description>Hemanth is a SQL*Server DBA and a PowerShell enthusiast who loves to keep looking for new things to tinker around with.</description>
+    </item>
+    
+    <item>
+      <title>Ifiok Moses</title>
+      <link>https://psmag.github.io/author/ifiok-moses/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/ifiok-moses/</guid>
+      <description>I have over the past 10 years I have had experiences in Network and System Administration within and outside the US.</description>
+    </item>
+    
+    <item>
+      <title>Jaap Brasser</title>
+      <link>https://psmag.github.io/author/jaap-brasser/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/jaap-brasser/</guid>
+      <description>Jaap is a Senior System Engineer in the Financial Services industry. He focuses on Microsoft and related technologies and has a passion for PowerShell.</description>
+    </item>
+    
+    <item>
+      <title>Jakub Jareš</title>
+      <link>https://psmag.github.io/author/jakub-jare%C5%A1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/jakub-jare%C5%A1/</guid>
+      <description>Jakub Jareš is an IT professional with strong background in Windows desktop systems. He started with Powershell a few months ago, and couldn&amp;rsquo;t let go ever since.</description>
+    </item>
+    
+    <item>
+      <title>James O&#39;Neill</title>
+      <link>https://psmag.github.io/author/james-oneill/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/james-oneill/</guid>
+      <description>James O&amp;rsquo;Neill is best known in the PowerShell community for writing a library to manage the initial version of Hyper-V. He served 10 years at Microsoft, leaving in 2010, since when he has been working for a start-up company providing data management solutions to the Oil and Gas industry.</description>
+    </item>
+    
+    <item>
+      <title>Jan Egil Ring</title>
+      <link>https://psmag.github.io/author/jan-egil-ring/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/jan-egil-ring/</guid>
+      <description>Jan Egil works as a Lead Architect at Crayon, Norway.
+He mainly works with automation, and has a strong passion for PowerShell.</description>
+    </item>
+    
+    <item>
+      <title>Jason Helmick</title>
+      <link>https://psmag.github.io/author/jason-helmick/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/jason-helmick/</guid>
+      <description>Jason is the Director of PowerShell Technologies at Interface Technical Training and specializes in PowerShell and IIS. He and Mike Pfeiffer are the founders and hosts of the Arizona PowerShell User Group http://www.</description>
+    </item>
+    
+    <item>
+      <title>Jason Stangroome</title>
+      <link>https://psmag.github.io/author/jason-stangroome/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/jason-stangroome/</guid>
+      <description>Jason has been a developer on the Microsoft platform for over 15 years, with a regular tendency to cross in to the infrastructure space.</description>
+    </item>
+    
+    <item>
+      <title>Jason Yoder</title>
+      <link>https://psmag.github.io/author/jason-yoder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/jason-yoder/</guid>
+      <description>Jason is a Microsoft Certified Trainer and a PowerShell enthusiast. After teaching himself how to program in the 5th grade, Jason earned a bachelor degree in Computer Science.</description>
+    </item>
+    
+    <item>
+      <title>Jeff Truman</title>
+      <link>https://psmag.github.io/author/jeff-truman/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/jeff-truman/</guid>
+      <description>ScriptWarrior - AKA Jeff Truman Server Support Technician II / Automation Specialist at Raymond James Financial in St. Petersburg FL. I am a Father, Believer, Geek and Powershell Evangelist.</description>
+    </item>
+    
+    <item>
+      <title>Jim Britt</title>
+      <link>https://psmag.github.io/author/jim-britt/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/jim-britt/</guid>
+      <description>Jim Britt is currently a Senior Program Manager for the Windows Server System Center CAT Team at Microsoft. We support customer escalations, present on end to end solutions driven through those customer engagements, and leverage these insights to drive product DCRs and bugs back to the Product Teams within the Windows Server / System Center groups.</description>
+    </item>
+    
+    <item>
+      <title>Joe &#34;clymb3r&#34; Bialek</title>
+      <link>https://psmag.github.io/author/joe-clymb3r-bialek/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/joe-clymb3r-bialek/</guid>
+      <description>Joe is an expert at attacking Windows networks using PowerShell and has contributed numerous PowerShell scripts to the PowerSploit project in an effort to raise awareness of the PowerShell attack vector.</description>
+    </item>
+    
+    <item>
+      <title>Joel &#34;Jaykul&#34; Bennett</title>
+      <link>https://psmag.github.io/author/joel-jaykul-bennett/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/joel-jaykul-bennett/</guid>
+      <description>Joel Bennett has been writing software and blogging about it since high school, and has been working as a software developer at Xerox for 15 years.</description>
+    </item>
+    
+    <item>
+      <title>Joel Reed</title>
+      <link>https://psmag.github.io/author/joel-reed/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/joel-reed/</guid>
+      <description>Joel Reed is currently employed as a Systems Engineer at a large real estate and relocation services company. He has worked in IT since 1997.</description>
+    </item>
+    
+    <item>
+      <title>Jonathan Medd</title>
+      <link>https://psmag.github.io/author/jonathan-medd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/jonathan-medd/</guid>
+      <description>Jonathan Medd has been working with Windows Infrastructure products since 1997 and, more recently, virtualisation technologies from VMware. He is co-author of &amp;lsquo;VMware vSphere PowerCLI reference: Automating vSphere Administration&amp;rsquo;.</description>
+    </item>
+    
+    <item>
+      <title>Jonathan Tyler</title>
+      <link>https://psmag.github.io/author/jonathan-tyler/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/jonathan-tyler/</guid>
+      <description>Jonathan Tyler supports the Internet, Extranet, and Intranet portals for an international transportation products and services company. While working in this role, he has leveraged his Powershell knowledge to help automate routine tasks for these applications.</description>
+    </item>
+    
+    <item>
+      <title>Josh Atwell</title>
+      <link>https://psmag.github.io/author/josh-atwell/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/josh-atwell/</guid>
+      <description>Josh Atwell is a Systems Administrator focused on scripting and automation in large virtual environments. He is a huge lover of PowerShell, VMware&amp;rsquo;s PowerCLI, and all the fun ways they allow him to do more with less.</description>
+    </item>
+    
+    <item>
+      <title>Josh Miller</title>
+      <link>https://psmag.github.io/author/josh-miller/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/josh-miller/</guid>
+      <description>Josh Miller is the Operations Lead for Trintech&amp;rsquo;s Dataflow Services offering, this involves a mixture of time in Visual Studio, the PowerShell ISE, and on phone calls with clients.</description>
+    </item>
+    
+    <item>
+      <title>Josue Castillo</title>
+      <link>https://psmag.github.io/author/josue-castillo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/josue-castillo/</guid>
+      <description>Josue Castillo, born in Mexico, with over 6 years in the IT Industry. Specializing in Windows Server and Network Infrastructure. Currently a student studying as a Computational Systems Engineer and always looking forward for more knowledge.</description>
+    </item>
+    
+    <item>
+      <title>Jovan Popovic</title>
+      <link>https://psmag.github.io/author/jovan-popovic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/jovan-popovic/</guid>
+      <description>Jovan Popovic is working as a Program Manager in Microsoft Development Center Serbia on SQL Server/Azure SQL Database. Jovan was a Program Manager on several SQL Server features such as T-SQL language enhancements, JSON support, columnstore technology, temporal tables, in-memory OLTP, automatic plan regression correction, etc.</description>
+    </item>
+    
+    <item>
+      <title>Karl Mitschke</title>
+      <link>https://psmag.github.io/author/karl-mitschke/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/karl-mitschke/</guid>
+      <description>Karl Mitschke is a Systems Engineer for the State of Montana. His primary focus is Microsoft Exchange Server administration, with a strong emphasis on Windows PowerShell.</description>
+    </item>
+    
+    <item>
+      <title>Keith Hill</title>
+      <link>https://psmag.github.io/author/keith-hill/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/keith-hill/</guid>
+      <description>Keith Hill has been a software developer on Windows since 1992 using C, Objective C, C++ and C#. I am a veteran of many Microsoft PDC’s with eight under my belt (93,96,97,00,03, 05, 08, 10 and BUILD 2011).</description>
+    </item>
+    
+    <item>
+      <title>Kirk Munro</title>
+      <link>https://psmag.github.io/author/kirk-munro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/kirk-munro/</guid>
+      <description>Kirk Munro is a Technical Product Manager at Provance Technologies, where he is helping build the next generation of Provance&amp;rsquo;s flagship IT Asset Management product.</description>
+    </item>
+    
+    <item>
+      <title>Krishna Prasad K</title>
+      <link>https://psmag.github.io/author/krishna-prasad-k/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/krishna-prasad-k/</guid>
+      <description>Krishnaprasad works at Dell Inc. Bangalore in virtualization domain. Some of his publications are located at http://en.community.dell.com/members/krishnaprasad-k/. Got introduced to PowerShell recently and loves contributing to this community.</description>
+    </item>
+    
+    <item>
+      <title>Krunoslav Mihalic</title>
+      <link>https://psmag.github.io/author/krunoslav-mihalic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/krunoslav-mihalic/</guid>
+      <description>Krunoslav Mihalic has been working as a Premier Field Engineer in Microsoft delivering PowerShell workshops and helping Premier Support customers to automate day to day tasks and configure more reliable infrastructure.</description>
+    </item>
+    
+    <item>
+      <title>Lee Holmes</title>
+      <link>https://psmag.github.io/author/lee-holmes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/lee-holmes/</guid>
+      <description>Lee Holmes is a Principal Software Engineer on the Microsoft Windows PowerShell team, and he has been an authoritative source of information about Windows PowerShell since its earliest betas.</description>
+    </item>
+    
+    <item>
+      <title>Luc Dekens</title>
+      <link>https://psmag.github.io/author/luc-dekens/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/luc-dekens/</guid>
+      <description>Luc is a Systems Engineer for Eurocontrol, a European Organisation for the Security of Air Navigation. He has been in IT for more than 25 years.</description>
+    </item>
+    
+    <item>
+      <title>Manoj Ravikumar</title>
+      <link>https://psmag.github.io/author/manoj-ravikumar/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/manoj-ravikumar/</guid>
+      <description>Manoj Ravikumar Nair works with Microsoft Services Global Delivery as Consultant on Core-IO technologies. In his current role, he enables Microsoft Premier Customers to design, position, sell and deploy Microsoft Platforms and Infrastructure Solutions for customers by providing end to end consulting, He has delivered many technical webcasts/talks/Practice Accelerator Workshops in North America on Microsoft Windows Server and Client Technologies, Exchange Server, System Center Suite, Forefront UAG, PowerShell and Virtualization to educate, evangelize and create awareness on new Microsoft technologies and drive adoption.</description>
+    </item>
+    
+    <item>
+      <title>Matt Graeber</title>
+      <link>https://psmag.github.io/author/matt-graeber/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/matt-graeber/</guid>
+      <description>Matt is a malware reverse engineer, security professional, and PowerShell MVP who is always finding new ways to incorporate PowerShell into his workflow.</description>
+    </item>
+    
+    <item>
+      <title>Matt Hastings</title>
+      <link>https://psmag.github.io/author/matt-hastings/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/matt-hastings/</guid>
+      <description>Matt Hastings is a Consultant with Mandiant, a division of FireEye, Inc. Based in the Washington D.C area, Matt focuses on enterprise-wide incident response, high-tech crime investigations, penetration testing, strategic corporate security development, and security control assessments; working with the Federal government, defense industrial base, financial industry, Fortune 500 companies, and global organizations.</description>
+    </item>
+    
+    <item>
+      <title>Matt Johnson</title>
+      <link>https://psmag.github.io/author/matt-johnson/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/matt-johnson/</guid>
+      <description>Matt Johnson is a cyber-security subject matter expert for a Midwest-based energy company. He has over 10 years of experience with the Microsoft ecosystem and information security.</description>
+    </item>
+    
+    <item>
+      <title>Matthew Hitchcock</title>
+      <link>https://psmag.github.io/author/matthew-hitchcock/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/matthew-hitchcock/</guid>
+      <description>Matt is a 2 year PowerShell MVP with 15+ years Microsoft Platform experience. He is currently working as a Consultant at Microsoft, delivering projects on Azure, Office 365, Private Cloud and Enterprise Mobility.</description>
+    </item>
+    
+    <item>
+      <title>Mike Pfeiffer</title>
+      <link>https://psmag.github.io/author/mike-pfeiffer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/mike-pfeiffer/</guid>
+      <description>Mike Pfeiffer has been in the IT field for over 13 years, spending most of his time as an enterprise consultant focused on Active Directory and Exchange implementation and migration projects.</description>
+    </item>
+    
+    <item>
+      <title>Mike Robbins</title>
+      <link>https://psmag.github.io/author/mike-robbins/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/mike-robbins/</guid>
+      <description>Mike F Robbins is a Microsoft MVP on Windows PowerShell and a SAPIEN Technologies MVP. He is a co-author of Windows PowerShell TFM 4th Edition and is a contributing author of a chapter in the PowerShell Deep Dives book.</description>
+    </item>
+    
+    <item>
+      <title>Niklas Akerlund</title>
+      <link>https://psmag.github.io/author/niklas-akerlund/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/niklas-akerlund/</guid>
+      <description>Niklas Akerlund is a Product Manager Private Cloud at Lumagate. His focus is on virtualization solutions and System Center. He is a PowerShell enthusiast and try to explore and automate where it is possible.</description>
+    </item>
+    
+    <item>
+      <title>Paul Cunningham</title>
+      <link>https://psmag.github.io/author/paul-cunningham/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/paul-cunningham/</guid>
+      <description>Paul is a Microsoft Exchange Server specialist for one of Australia&amp;rsquo;s largest companies, and is the publisher of ExchangeServerPro.com. He is also an MCP, MCSA, MCSE, MCTS, and an MCITP for Exchange Server 2007/2010.</description>
+    </item>
+    
+    <item>
+      <title>Peter Kriegel</title>
+      <link>https://psmag.github.io/author/peter-kriegel/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/peter-kriegel/</guid>
+      <description>Working with Computers Since 1984. Programming Computers Since 1990 (C,C++ and Basic Languages). Computer Administrator since 2000 (MCSA 2000). Using VBScript,DOS Batches, Office VBA.</description>
+    </item>
+    
+    <item>
+      <title>Prasoon Karunan v</title>
+      <link>https://psmag.github.io/author/prasoon-karunan-v/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/prasoon-karunan-v/</guid>
+      <description>Prasoon Karunan V (a.k.a kvprasoon) is a Software Technologist at Philips focusing on Infrastructure automation with PowerShell and ansible. He was awarded as Powershell Community Hero 2019 and is a Senior Moderator @ PowerShell.</description>
+    </item>
+    
+    <item>
+      <title>Ravikanth C</title>
+      <link>https://psmag.github.io/author/ravikanth-c/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/ravikanth-c/</guid>
+      <description>Ravikanth is a Distinguished Member Technical Staff at Dell EMC working on Software-defined Storage and Hybrid Cloud architectures. He is a published author and an innovator with many granted patents and pending applications.</description>
+    </item>
+    
+    <item>
+      <title>Rob Reynolds</title>
+      <link>https://psmag.github.io/author/rob-reynolds/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/rob-reynolds/</guid>
+      <description>Rob Reynolds has been programming in .NET since the early days of 1.0. In his day job he drinks beer and tries to get creative at a digital marketing agency.</description>
+    </item>
+    
+    <item>
+      <title>Robert Robelo</title>
+      <link>https://psmag.github.io/author/robert-robelo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/robert-robelo/</guid>
+      <description>Robert Robelo is a PowerShell Magazine author!</description>
+    </item>
+    
+    <item>
+      <title>Ryan Kazanciyan</title>
+      <link>https://psmag.github.io/author/ryan-kazanciyan/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/ryan-kazanciyan/</guid>
+      <description>Ryan Kazanciyan is a Technical Director with Mandiant and has eleven years of experience in incident response, forensic analysis, and penetration testing.</description>
+    </item>
+    
+    <item>
+      <title>Scott Muc</title>
+      <link>https://psmag.github.io/author/scott-muc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/scott-muc/</guid>
+      <description>Scott Muc hails from Calgary, Canada and is currently a consultant working for ThoughtWorks. He has worked in IT since the popping of the bubble in 2001.</description>
+    </item>
+    
+    <item>
+      <title>Shay Levy</title>
+      <link>https://psmag.github.io/author/shay-levy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/shay-levy/</guid>
+      <description>Shay Levy is a Co-founder and editor of the PowerShell Magazine. He is a multiple-year recipient of the Microsoft MVP award, and a Microsoft Certified Trainer (MCT).</description>
+    </item>
+    
+    <item>
+      <title>Stefan Stranger</title>
+      <link>https://psmag.github.io/author/stefan-stranger/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/stefan-stranger/</guid>
+      <description>Stefan Stranger is Senior Premier Field Engineer at Microsoft and specialized in System Center Operations Manager and PowerShell. He loves to use PowerShell to automate and inspect systems he is working on.</description>
+    </item>
+    
+    <item>
+      <title>Steven Murawski</title>
+      <link>https://psmag.github.io/author/steven-murawski/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/steven-murawski/</guid>
+      <description>Steven is the Senior Windows System Engineer for Edgenet and a Microsoft MVP in PowerShell. In this role, he supports a dynamic infrastructure that pushes the boundaries of the Windows platform.</description>
+    </item>
+    
+    <item>
+      <title>Sumanth BR</title>
+      <link>https://psmag.github.io/author/sumanth-br/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/sumanth-br/</guid>
+      <description>Sumanth BR is a PowerShell Magazine author!</description>
+    </item>
+    
+    <item>
+      <title>Teresa Wilson (ScriptingWife)</title>
+      <link>https://psmag.github.io/author/teresa-wilson-scriptingwife/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/teresa-wilson-scriptingwife/</guid>
+      <description>Teresa Wilson was born and raised on a farm in rural Kentucky and later retired after working in the accounting field.</description>
+    </item>
+    
+    <item>
+      <title>Thiyagarajan Parthiban</title>
+      <link>https://psmag.github.io/author/thiyagarajan-parthiban/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/thiyagarajan-parthiban/</guid>
+      <description>Thiyagarajan Parthiban is a PowerShell Enthusiast and Microsoft Exchange Server is his main domain. He is the the founder of the Singapore Powershell User Group and he also blogs at myExchangeWorld.</description>
+    </item>
+    
+    <item>
+      <title>Tobias Weltner</title>
+      <link>https://psmag.github.io/author/tobias-weltner/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/tobias-weltner/</guid>
+      <description>Tobias is a long-term Microsoft’s MVP Award recipient located in Germany. He has written more than 130 IT books published by Microsoft Press and others and just released his “PowerShell 5 Windows Automation” hardcover and e-book with O’Reillys.</description>
+    </item>
+    
+    <item>
+      <title>Tome Tanasovski</title>
+      <link>https://psmag.github.io/author/tome-tanasovski/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/tome-tanasovski/</guid>
+      <description>Tome Tanasovski is a PowerShell Magazine author!</description>
+    </item>
+    
+    <item>
+      <title>Trevor Sullivan</title>
+      <link>https://psmag.github.io/author/trevor-sullivan/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/trevor-sullivan/</guid>
+      <description>Trevor is a pursuer of all types of knowledge, and is particularly passionate about technology and technical communities. He has been working primarily with Microsoft solutions since 2004.</description>
+    </item>
+    
+    <item>
+      <title>Vibha Garg</title>
+      <link>https://psmag.github.io/author/vibha-garg/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/vibha-garg/</guid>
+      <description>Vibha is a developer in the OpenManage development team at Dell. She works on the BIOS configuration tools for Windows Client OS and is a developer of the Dell SMBIOS PowerShell Provider.</description>
+    </item>
+    
+    <item>
+      <title>Vinith Menon</title>
+      <link>https://psmag.github.io/author/vinith-menon/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/vinith-menon/</guid>
+      <description>Vinith Menon is currently Part of Microsoft Business Unit at NetAPP and is into PowerShell Scripting consultant at NetAPP. He has been in the IT industry since 2007, and he has been working with Windows PowerShell since 2009.</description>
+    </item>
+    
+    <item>
+      <title>Will Schroeder</title>
+      <link>https://psmag.github.io/author/will-schroeder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/will-schroeder/</guid>
+      <description>Will Schroeder (@harmj0y) is a security researcher and pen-tester/red-teamer for the Adaptive Threat Division of Veris Group, and is one of the co-founders and active developers of the Veil-Framework.</description>
+    </item>
+    
+    <item>
+      <title>Will Steele</title>
+      <link>https://psmag.github.io/author/will-steele/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/author/will-steele/</guid>
+      <description>Will Steele live near Dallas, Texas with his wife and three kids. He works as a senior network analyst at a financial services provider managing a document imaging system with a heavy investment in Microsoft enterprise technologies.</description>
+    </item>
+    
+  </channel>
+</rss>

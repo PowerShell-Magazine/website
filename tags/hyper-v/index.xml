@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hyper-V on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/tags/hyper-v/</link>
+    <description>Recent content in Hyper-V on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 24 Oct 2016 13:14:34 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/tags/hyper-v/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>What is new in cHyper-V PowerShell DSC Resource Module?</title>
+      <link>https://psmag.github.io/2016/10/24/what-is-new-in-chyper-v-powershell-dsc-resource-module/</link>
+      <pubDate>Mon, 24 Oct 2016 13:14:34 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2016/10/24/what-is-new-in-chyper-v-powershell-dsc-resource-module/</guid>
+      <description>I just finished testing and publishing the cHyper-V PowerShell DSC resource module to the PowerShell Gallery. I took some time to make changes to this module–fix bugs and add new functionality.</description>
+    </item>
+    
+    <item>
+      <title>PowerShell DSC Resources to Configure Switch Embedded Teaming and NAT Switch in Windows Server 2016</title>
+      <link>https://psmag.github.io/2015/12/07/dsc-resource-to-configure-switch-embedded-teaming-in-windows-server-2016/</link>
+      <pubDate>Mon, 07 Dec 2015 17:00:28 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/12/07/dsc-resource-to-configure-switch-embedded-teaming-in-windows-server-2016/</guid>
+      <description>Earlier this year, I released a bunch of DSC resources packaged as cHyper-V resource module. The resources are focused on configuring Hyper-V networking.</description>
+    </item>
+    
+    <item>
+      <title>Using DSC to deploy Hyper-V converged virtual network – Creating a host team (Part 1)</title>
+      <link>https://psmag.github.io/2015/01/20/using-dsc-to-deploy-hyper-v-converged-virtual-network-creating-a-host-team-part-1/</link>
+      <pubDate>Tue, 20 Jan 2015 16:11:56 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/01/20/using-dsc-to-deploy-hyper-v-converged-virtual-network-creating-a-host-team-part-1/</guid>
+      <description>In yesterday’s article, I had introduced DSC resources that can be used to deploy a Hyper-V converged network. Starting today, we will see detailed walk-through for using each of these resources we published yesterday.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Configuring trunk mode in Hyper-V</title>
+      <link>https://psmag.github.io/2014/08/06/configuring-trunk-mode-in-hyper-v/</link>
+      <pubDate>Wed, 06 Aug 2014 18:00:29 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/08/06/configuring-trunk-mode-in-hyper-v/</guid>
+      <description>With the introduction of Hyper-V in Windows Server 2012, the Hyper-V Extensible Switch became available providing more functionality than previous versions.</description>
+    </item>
+    
+    <item>
+      <title>#PStip Enabling RSS inside Hyper-V guest OS</title>
+      <link>https://psmag.github.io/2014/04/17/pstip-enabling-rss-inside-hyper-v-guest-os/</link>
+      <pubDate>Thu, 17 Apr 2014 18:00:01 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/04/17/pstip-enabling-rss-inside-hyper-v-guest-os/</guid>
+      <description>Note: This tip requires PowerShell 3.0 or above.
+While reviewing results returned by the Best Practices Analyzer on a virtual machine, a warning about RSS (Receive Side Scaling) was raised.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Pause after UEFI boot failure when using Hyper-V Generation 2 virtual machines</title>
+      <link>https://psmag.github.io/2014/04/16/pstip-pause-after-uefi-boot-failure-when-using-hyper-v-generation-2-virtual-machines/</link>
+      <pubDate>Wed, 16 Apr 2014 18:00:44 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/04/16/pstip-pause-after-uefi-boot-failure-when-using-hyper-v-generation-2-virtual-machines/</guid>
+      <description>Hyper-V in Windows 8.1 and Windows Server 2012 R2 introduced Generation 2 virtual machines, which provides new feature and better performance.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Get currently available MAC address from Hyper-V MAC address pool</title>
+      <link>https://psmag.github.io/2014/03/12/pstip-get-currently-available-mac-address-from-hyper-v-mac-address-pool/</link>
+      <pubDate>Wed, 12 Mar 2014 18:00:15 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/03/12/pstip-get-currently-available-mac-address-from-hyper-v-mac-address-pool/</guid>
+      <description>I have written scripts to automate VM deployments across a farm of Hyper-V servers and I prefer using static MAC addresses for all my workload virtual machines.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Setting VM Bandwidth Management QoS in Hyper-V using PowerShell</title>
+      <link>https://psmag.github.io/2014/03/10/pstip-setting-vm-bandwidth-management-qos-in-hyper-v-using-powershell/</link>
+      <pubDate>Mon, 10 Mar 2014 18:00:10 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/03/10/pstip-setting-vm-bandwidth-management-qos-in-hyper-v-using-powershell/</guid>
+      <description>Note: This tip requires PowerShell 3.0 or above.
+The bandwidth utilized by a VM (QoS = Quality of Service ) can be controlled via special parameters of the virtual network card for a given VM.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Setting Hyper-V client settings</title>
+      <link>https://psmag.github.io/2014/03/03/pstip-setting-hyper-v-client-settings/</link>
+      <pubDate>Mon, 03 Mar 2014 19:00:33 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/03/03/pstip-setting-hyper-v-client-settings/</guid>
+      <description>Note: This tip requires PowerShell 3.0 or above.
+When working with Hyper-V in Windows Server 2012 or Windows 8 and higher, you can set various Hyper-V host settings via the Hyper-V Settings dialog.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip How to identify Hyper-V virtual machines</title>
+      <link>https://psmag.github.io/2014/02/28/pstip-how-to-identify-hyper-v-virtual-machines/</link>
+      <pubDate>Fri, 28 Feb 2014 19:00:02 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/02/28/pstip-how-to-identify-hyper-v-virtual-machines/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+There are several ways to test if a computer object is a virtual machine.</description>
+    </item>
+    
+    <item>
+      <title>Reporting Cluster Shared Volume (CSV) disk space utilization</title>
+      <link>https://psmag.github.io/2014/02/28/reporting-cluster-shared-volume-csv-disk-space-utilization/</link>
+      <pubDate>Fri, 28 Feb 2014 17:00:16 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/02/28/reporting-cluster-shared-volume-csv-disk-space-utilization/</guid>
+      <description>The Failover Cluster cmdlets can be used to get information about Cluster Shared Volumes (CSV). The Get-ClusterSharedVolume cmdlet when run on a cluster node, gives us the information about all the CSVs.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Hyper-V VM Connection Authorization</title>
+      <link>https://psmag.github.io/2014/02/27/pstip-hyper-v-vm-connection-authorization/</link>
+      <pubDate>Thu, 27 Feb 2014 19:00:37 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/02/27/pstip-hyper-v-vm-connection-authorization/</guid>
+      <description>Note: This tip requires PowerShell 3.0 or above.
+Virtual Machine Connection Authorization allows users to connect to virtual machines using the VMConnect interface in Hyper-V (and Hyper-V RSAT tools).</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Monitoring Cluster Shared Volume (CSV) availability</title>
+      <link>https://psmag.github.io/2014/02/26/pstip-monitoring-cluster-shared-volume-csv-availability/</link>
+      <pubDate>Wed, 26 Feb 2014 19:00:34 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/02/26/pstip-monitoring-cluster-shared-volume-csv-availability/</guid>
+      <description>Recently, I was troubleshooting an issue related to CSVs going offline randomly. In that process, I had to detect when a CSV goes offline and then analyse a few log files to find the root cause.</description>
+    </item>
+    
+    <item>
+      <title>Converting Hyper-V virtual machine disks from VHD to VHDX</title>
+      <link>https://psmag.github.io/2014/02/25/converting-hyper-v-virtual-machine-disks-from-vhd-to-vhdx/</link>
+      <pubDate>Tue, 25 Feb 2014 17:00:57 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/02/25/converting-hyper-v-virtual-machine-disks-from-vhd-to-vhdx/</guid>
+      <description>I’ve read recently a post by Hyper-V MVP Aidan Finn about a script he wrote to convert Hyper-V virtual machine VHDs to the new VHDX disk format.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Controlling traffic of a VM network adapter in Hyper-V</title>
+      <link>https://psmag.github.io/2014/02/24/pstip-controlling-traffic-of-a-vm-network-adapter-in-hyper-v/</link>
+      <pubDate>Mon, 24 Feb 2014 19:00:12 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/02/24/pstip-controlling-traffic-of-a-vm-network-adapter-in-hyper-v/</guid>
+      <description>Note: This tip requires PowerShell 3.0 or above.
+Using the Add-VMNetworkAdapterAcl cmdlet we can create ACLs (firewall-like rule) that applies to the traffic through a virtual machine network adapter.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip How to prevent a VM from becoming a Router</title>
+      <link>https://psmag.github.io/2014/02/22/pstip-how-to-prevent-a-vm-from-becoming-a-router/</link>
+      <pubDate>Sat, 22 Feb 2014 19:00:17 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/02/22/pstip-how-to-prevent-a-vm-from-becoming-a-router/</guid>
+      <description>Note: This tip requires PowerShell 3.0 or above.
+Similarly to the Hyper-V security feature discussed here, Hyper-V can also protect the environment from VMs pretending to act as Routers.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip How to prevent rogue DHCP servers in Hyper-V</title>
+      <link>https://psmag.github.io/2014/02/21/pstip-how-to-prevent-rouge-dhcp-servers-in-hyper-v/</link>
+      <pubDate>Fri, 21 Feb 2014 19:00:41 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/02/21/pstip-how-to-prevent-rouge-dhcp-servers-in-hyper-v/</guid>
+      <description>Note: This tip requires PowerShell 3.0 or above.
+In a DHCP environment, it is possible for a rogue DHCP server to respond to client DHCP requests and provide incorrect address and configuration information.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip VM Port mirroring in Hyper-V</title>
+      <link>https://psmag.github.io/2014/02/17/pstip-vm-port-mirroring-in-hyper-v/</link>
+      <pubDate>Mon, 17 Feb 2014 19:00:20 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/02/17/pstip-vm-port-mirroring-in-hyper-v/</guid>
+      <description>Note: This tip requires PowerShell 3.0 or above.
+In a physical switch environment, all traffic from selected ports can be duplicated and copied to a mirror port for capture and analysis, such as network diagnostic of a VM boot process or any network-related issues.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Copying folders using Copy-VMFile cmdlet in Windows Server 2012 R2 (Hyper-V)</title>
+      <link>https://psmag.github.io/2013/12/17/pstip-copying-folders-using-copy-vmfile-cmdlet-in-windows-server-2012-r2-hyper-v/</link>
+      <pubDate>Tue, 17 Dec 2013 19:00:20 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/12/17/pstip-copying-folders-using-copy-vmfile-cmdlet-in-windows-server-2012-r2-hyper-v/</guid>
+      <description>In an earlier article, I showed you how to use the Copy-VMFile cmdlet. However, if you have paid attention and really used it, you will know that it cannot be used to copy a folder completely with its contents in a recursive manner.</description>
+    </item>
+    
+    <item>
+      <title>Using Copy-VMFile cmdlet in Windows Server 2012 R2 Hyper-V</title>
+      <link>https://psmag.github.io/2013/12/16/using-copy-vmfile-cmdlet-in-windows-server-2012-r2-hyper-v/</link>
+      <pubDate>Mon, 16 Dec 2013 17:00:44 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/12/16/using-copy-vmfile-cmdlet-in-windows-server-2012-r2-hyper-v/</guid>
+      <description>With Windows Server 2012 R2, the Hyper-V product team introduced a new cmdlet called Copy-VMFile. This, as the name implies, help you copy a file into a Hyper-V Virtual Machine (VM).</description>
+    </item>
+    
+    <item>
+      <title>Connecting to Hyper-V virtual machines with PowerShell</title>
+      <link>https://psmag.github.io/2012/10/11/connecting-to-hyper-v-virtual-machines-with-powershell/</link>
+      <pubDate>Thu, 11 Oct 2012 18:00:30 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/10/11/connecting-to-hyper-v-virtual-machines-with-powershell/</guid>
+      <description>I’ve been using Windows 8 since its pre-release versions and one of the features I like most in it is – Hyper-V.</description>
+    </item>
+    
+  </channel>
+</rss>

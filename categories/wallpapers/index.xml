@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wallpapers on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/wallpapers/</link>
+    <description>Recent content in Wallpapers on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Sep 2012 18:00:28 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/wallpapers/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Windows 8 PowerShell Lock Screen</title>
+      <link>https://psmag.github.io/2012/09/28/windows-8-powershell-lock-screen/</link>
+      <pubDate>Fri, 28 Sep 2012 18:00:28 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/09/28/windows-8-powershell-lock-screen/</guid>
+      <description>This week I was busy preparing a PowerShell workshop I’m delivering next week and this is my first workshop on my new laptop with Windows 8 RTM installed on it.</description>
+    </item>
+    
+    <item>
+      <title>PowerShell Wallpapers</title>
+      <link>https://psmag.github.io/2011/09/23/powershell-wallpapers/</link>
+      <pubDate>Fri, 23 Sep 2011 10:10:23 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2011/09/23/powershell-wallpapers/</guid>
+      <description>Some PowerShell wallpapers I created over the years to decorate my desktop and wanted to share them with you. If you have some of your own that you want to share with the community, send them over and we’ll add them to this page.</description>
+    </item>
+    
+  </channel>
+</rss>

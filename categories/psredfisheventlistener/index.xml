@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PSRedfishEventListener on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/psredfisheventlistener/</link>
+    <description>Recent content in PSRedfishEventListener on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 13 Nov 2018 09:00:51 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/psredfisheventlistener/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Redfish Event Listener in PowerShell</title>
+      <link>https://psmag.github.io/2018/11/13/redfish-event-listener-in-powershell/</link>
+      <pubDate>Tue, 13 Nov 2018 09:00:51 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2018/11/13/redfish-event-listener-in-powershell/</guid>
+      <description>The Redfish specification supports event mechanism through which the target Redfish devices can send events from different components in the system to an event listener.</description>
+    </item>
+    
+  </channel>
+</rss>

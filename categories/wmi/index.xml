@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WMI on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/wmi/</link>
+    <description>Recent content in WMI on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 24 Nov 2014 17:00:41 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/wmi/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Using WMI SMTP Event Consumer DSC resource</title>
+      <link>https://psmag.github.io/2014/11/24/using-wmi-smtp-event-consumer-dsc-resource/</link>
+      <pubDate>Mon, 24 Nov 2014 17:00:41 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/24/using-wmi-smtp-event-consumer-dsc-resource/</guid>
+      <description>If you have not seen the earlier articles in this series, I had written about:
+ DSC resource for managing WMI permanent event filters, consumers, and bindings Troubleshooting WMI standard event consumer issues Using the WMI Commandline Event Consumer DSC resource Using WMI Active Script Event Consumer DSC Resource Using WMI Log File Event Consumer DSC resource Using WMI Event Log Event Consumer DSC resource  In today’s article, I will show you how the WMI SMTP event consumer DSC resource can be used.</description>
+    </item>
+    
+    <item>
+      <title>Using WMI Event Log Event Consumer DSC resource</title>
+      <link>https://psmag.github.io/2014/11/21/using-wmi-event-log-event-consumer-dsc-resource/</link>
+      <pubDate>Fri, 21 Nov 2014 17:00:47 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/21/using-wmi-event-log-event-consumer-dsc-resource/</guid>
+      <description>If you have not seen the earlier articles in this series, I had written about:
+ DSC resource for managing WMI permanent event filters, consumers, and bindings Troubleshooting WMI standard event consumer issues Using the WMI Commandline Event Consumer DSC resource Using WMI Active Script Event Consumer DSC Resource Using WMI Log File Event Consumer DSC resource  In today’s article, I will show you how the WMI Event Log Event Consumer DSC resource can be used.</description>
+    </item>
+    
+    <item>
+      <title>Using WMI Log File Event Consumer DSC resource</title>
+      <link>https://psmag.github.io/2014/11/20/using-wmi-log-file-event-consumer-dsc-resource/</link>
+      <pubDate>Fri, 21 Nov 2014 01:39:33 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/20/using-wmi-log-file-event-consumer-dsc-resource/</guid>
+      <description>If you have not seen the earlier articles in this series, I had written about:
+ DSC resource for managing WMI permanent event filters, consumers, and bindings Troubleshooting WMI standard event consumer issues Using the WMI Commandline Event Consumer DSC resource Using WMI Active Script Event Consumer DSC Resource  In today’s article, I will show you how the WMI Log File Event Consumer DSC resource can be used.</description>
+    </item>
+    
+    <item>
+      <title>Using WMI Active Script Event Consumer DSC resource</title>
+      <link>https://psmag.github.io/2014/11/19/using-wmi-active-script-event-consumer-dsc-resource/</link>
+      <pubDate>Wed, 19 Nov 2014 17:00:58 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/19/using-wmi-active-script-event-consumer-dsc-resource/</guid>
+      <description>In my previous article, I talked about using WMI Commandline Event Consumer DSC resource. In that article, I showed you how we can respond to a flash drive insertion event and create a backup copy of a local folder on the removal device.</description>
+    </item>
+    
+    <item>
+      <title>Using the WMI Commandline Event Consumer DSC resource</title>
+      <link>https://psmag.github.io/2014/11/18/using-the-wmi-commandline-event-consumer-dsc-resource/</link>
+      <pubDate>Tue, 18 Nov 2014 17:00:03 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/18/using-the-wmi-commandline-event-consumer-dsc-resource/</guid>
+      <description>In my earlier article, I promised a detailed walk-through of each DSC resource to manage the WMI permanent events. To start that series, I will show how to use the command line Event Consumer DSC resource.</description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting WMI standard event consumer issues</title>
+      <link>https://psmag.github.io/2014/11/13/troubleshooting-wmi-standard-event-consumer-issues/</link>
+      <pubDate>Thu, 13 Nov 2014 17:00:11 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/13/troubleshooting-wmi-standard-event-consumer-issues/</guid>
+      <description>While testing the DSC resource module I created for managing the WMI permanent event filters, consumers, and bindings, I came across a bunch of issues around the consumers not doing the expected job.</description>
+    </item>
+    
+    <item>
+      <title>DSC resource for managing WMI permanent event filters, consumers, and bindings</title>
+      <link>https://psmag.github.io/2014/11/12/dsc-resource-for-managing-wmi-permanent-event-filters-consumers-and-bindings/</link>
+      <pubDate>Wed, 12 Nov 2014 17:00:40 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/12/dsc-resource-for-managing-wmi-permanent-event-filters-consumers-and-bindings/</guid>
+      <description>I use WMI/CIM event functionality often in my orchestration scripts and WMI permanent events play a big role there. You can learn more about WMI permanent events by reading my book on WMI Query Language.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Select non-administrative shared folders using Win32_Share WMI class</title>
+      <link>https://psmag.github.io/2014/07/24/pstip-select-non-administrative-shared-folders-using-win32_share-wmi-class/</link>
+      <pubDate>Thu, 24 Jul 2014 18:00:04 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/07/24/pstip-select-non-administrative-shared-folders-using-win32_share-wmi-class/</guid>
+      <description>Note: This tip required PowerShell 3.0 or above
+The Win32_Share WMI class can be used to enumerate all shares on the local or remote system.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Mapping the CIM ValueMap and Values qualifiers</title>
+      <link>https://psmag.github.io/2014/04/23/pstip-mapping-the-cim-valuemap-and-value-qualifiers/</link>
+      <pubDate>Wed, 23 Apr 2014 18:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/04/23/pstip-mapping-the-cim-valuemap-and-value-qualifiers/</guid>
+      <description>Note: This tip requires PowerShell 3.0 or above.
+At PowerShell training I did earlier this week, an attendee asked me if there is a way to map a CIM class property’s ValueMap to the Values.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Pause after UEFI boot failure when using Hyper-V Generation 2 virtual machines</title>
+      <link>https://psmag.github.io/2014/04/16/pstip-pause-after-uefi-boot-failure-when-using-hyper-v-generation-2-virtual-machines/</link>
+      <pubDate>Wed, 16 Apr 2014 18:00:44 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/04/16/pstip-pause-after-uefi-boot-failure-when-using-hyper-v-generation-2-virtual-machines/</guid>
+      <description>Hyper-V in Windows 8.1 and Windows Server 2012 R2 introduced Generation 2 virtual machines, which provides new feature and better performance.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Get requests that are currently executing in a worker process</title>
+      <link>https://psmag.github.io/2014/03/18/pstip-get-requests-that-are-currently-executing-in-a-worker-process/</link>
+      <pubDate>Tue, 18 Mar 2014 18:00:18 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/03/18/pstip-get-requests-that-are-currently-executing-in-a-worker-process/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+IIS lets you view all worker processes of a server when you double click the Worker Process tile in IIS manager (inetmgr.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip How to disable DNS registration with PowerShell</title>
+      <link>https://psmag.github.io/2014/03/07/pstip-how-to-disable-dns-registration-with-powershell/</link>
+      <pubDate>Fri, 07 Mar 2014 19:00:58 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/03/07/pstip-how-to-disable-dns-registration-with-powershell/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+Today, a colleague in the network team asked if we could disable the default DNS registration flag (shown below) because our computers are not allowed to update DNS servers directly.</description>
+    </item>
+    
+    <item>
+      <title>WMI Query Language via PowerShell available on Kindle</title>
+      <link>https://psmag.github.io/2014/02/28/wmi-query-language-via-powershell-available-on-kindle/</link>
+      <pubDate>Fri, 28 Feb 2014 10:28:26 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/02/28/wmi-query-language-via-powershell-available-on-kindle/</guid>
+      <description>Back in 2011, I published a free book on learning WMI Query Language (WQL) via PowerShell. It was a huge success.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Converting .NET types to CIM types and vice versa</title>
+      <link>https://psmag.github.io/2013/12/06/pstip-converting-net-types-to-cim-types-and-vice-versa/</link>
+      <pubDate>Fri, 06 Dec 2013 19:00:18 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/12/06/pstip-converting-net-types-to-cim-types-and-vice-versa/</guid>
+      <description>Note: This tip requires PowerShell 3.0 or above.
+If you get a list of CIM class properties you’ll notice the CimType property.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Check if a folder is shared</title>
+      <link>https://psmag.github.io/2013/11/27/pstip-check-if-a-folder-is-shared/</link>
+      <pubDate>Wed, 27 Nov 2013 19:00:45 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/11/27/pstip-check-if-a-folder-is-shared/</guid>
+      <description>Note: This tip requires PowerShell 3.0 or above.
+The WMI class Win32_Share gives us the information about all network shares that exist on the local machine.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Convert a path to WMI compatible path</title>
+      <link>https://psmag.github.io/2013/11/26/pstip-convert-a-path-to-wmi-compatible-path/</link>
+      <pubDate>Tue, 26 Nov 2013 19:00:44 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/11/26/pstip-convert-a-path-to-wmi-compatible-path/</guid>
+      <description>Note: This tip requires PowerShell 3.0 or above.
+Some of the WMI queries require that we specify the folder path with an escaped path separator.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Get the size of a file on disk</title>
+      <link>https://psmag.github.io/2013/10/31/pstip-get-the-size-of-a-file-on-disk/</link>
+      <pubDate>Thu, 31 Oct 2013 18:00:22 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/10/31/pstip-get-the-size-of-a-file-on-disk/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+In an earlier post, I wrote about compressing / uncompressing files using WMI.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Compress and uncompress files and folders using WMI</title>
+      <link>https://psmag.github.io/2013/10/28/pstip-compress-and-uncompress-files-and-folders-using-wmi/</link>
+      <pubDate>Mon, 28 Oct 2013 18:00:55 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/10/28/pstip-compress-and-uncompress-files-and-folders-using-wmi/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+In WMI, the CIM_DataFile and CIM_Directory classes have some very useful methods we can use.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip List all WMI namespaces on a system</title>
+      <link>https://psmag.github.io/2013/10/18/pstip-list-all-wmi-namespaces-on-a-system/</link>
+      <pubDate>Fri, 18 Oct 2013 18:00:19 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/10/18/pstip-list-all-wmi-namespaces-on-a-system/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+In WMI, a namespace is a collection of classes. There are many WMI namespaces on a system and each namespace might contain more namespaces.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip View Policy Settings with RSOP WMI classes</title>
+      <link>https://psmag.github.io/2013/04/02/pstip-view-policy-settings-with-rsop-wmi-classes/</link>
+      <pubDate>Tue, 02 Apr 2013 16:15:05 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/04/02/pstip-view-policy-settings-with-rsop-wmi-classes/</guid>
+      <description>Note: This tip requires admin privileges (elevated shell)
+To get Resultant Set of Policy (RSOP) data we usually RSOP.mmc or the gpresult command line tool.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip List all WMI event classes</title>
+      <link>https://psmag.github.io/2013/01/15/pstip-list-all-wmi-event-classes/</link>
+      <pubDate>Tue, 15 Jan 2013 19:11:30 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/01/15/pstip-list-all-wmi-event-classes/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+If you are familiar with Windows Management Instrumentation (WMI), there are different types of WMI queries possible.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Resolving IP addresses with WMI</title>
+      <link>https://psmag.github.io/2013/01/07/pstip-resolving-ip-addresses-with-wmi/</link>
+      <pubDate>Mon, 07 Jan 2013 19:00:35 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/01/07/pstip-resolving-ip-addresses-with-wmi/</guid>
+      <description>When we need to resolve addresses, we usually use the System.Net.Dns .NET class methods. In addition to the .NET method, we can also use WMI class–Win32_PingStatus–to achieve this.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Monitor file growth using WMI</title>
+      <link>https://psmag.github.io/2013/01/03/pstip-monitor-file-growth-using-wmi/</link>
+      <pubDate>Thu, 03 Jan 2013 19:00:38 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/01/03/pstip-monitor-file-growth-using-wmi/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+When running long running scripts, we prefer to log the activities performed to a log file.</description>
+    </item>
+    
+    <item>
+      <title>Parsing remote machine local date and time with WMI</title>
+      <link>https://psmag.github.io/2012/04/20/parsing-remote-machine-local-date-and-time-with-wmi/</link>
+      <pubDate>Fri, 20 Apr 2012 18:00:50 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/04/20/parsing-remote-machine-local-date-and-time-with-wmi/</guid>
+      <description>The other day I was asked to check the local date and time on some workstations in our network. The reason for that was time skew, and as I was told, some workstations’ clock was 1 hour behind.</description>
+    </item>
+    
+  </channel>
+</rss>

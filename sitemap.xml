@@ -1,0 +1,5472 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://psmag.github.io/post/</loc>
+    <lastmod>2021-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/azure/</loc>
+    <lastmod>2021-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/azure/</loc>
+    <lastmod>2021-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/azure-resource-manager/</loc>
+    <lastmod>2021-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/azure-resource-manager/</loc>
+    <lastmod>2021-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/</loc>
+    <lastmod>2021-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2021/04/05/getting-started-with-arm/</loc>
+    <lastmod>2021-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/module-spotlight/</loc>
+    <lastmod>2021-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/modules/</loc>
+    <lastmod>2021-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/</loc>
+    <lastmod>2021-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/psarm/</loc>
+    <lastmod>2021-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/psarm/</loc>
+    <lastmod>2021-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/</loc>
+    <lastmod>2021-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2021/04/01/psarm-powershell-dsl-for-azure-resource-manager-introduction/</loc>
+    <lastmod>2021-04-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2020/03/23/powershell-wrapper-around-the-calendarific-api/</loc>
+    <lastmod>2020-03-23T14:54:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/conferences/</loc>
+    <lastmod>2020-03-12T10:43:51+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2020/03/12/powershell-and-devops-conference-asia-2020/</loc>
+    <lastmod>2020-03-12T10:43:51+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/psconf/</loc>
+    <lastmod>2020-03-12T10:43:51+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/psconfasia/</loc>
+    <lastmod>2020-03-12T10:43:51+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/debugging/</loc>
+    <lastmod>2020-02-10T15:30:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/debugging/</loc>
+    <lastmod>2020-02-10T15:30:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2020/02/10/the-case-of-unknown-custom-object-property/</loc>
+    <lastmod>2020-02-10T15:30:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/secretmanagement/</loc>
+    <lastmod>2020-02-07T05:49:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2020/02/07/secrets-management-in-powershell/</loc>
+    <lastmod>2020-02-07T05:49:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2020/01/30/powershell-conference-europe-2020/</loc>
+    <lastmod>2020-01-30T19:53:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/psconfeu/</loc>
+    <lastmod>2020-01-30T19:53:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/failovercluster/</loc>
+    <lastmod>2020-01-30T13:22:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2020/01/30/parsing-failover-cluster-validation-report-in-powershell/</loc>
+    <lastmod>2020-01-30T13:22:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/scripts/</loc>
+    <lastmod>2020-01-30T13:22:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/importexcel/</loc>
+    <lastmod>2019-09-09T04:00:30+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2019/09/09/weekly-module-spotlight-importexcel/</loc>
+    <lastmod>2019-09-09T04:00:30+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/polaris/</loc>
+    <lastmod>2019-09-03T05:41:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2019/09/03/weekly-module-spotlight-polaris/</loc>
+    <lastmod>2019-09-03T05:41:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/pshtml/</loc>
+    <lastmod>2019-08-21T04:00:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2019/08/21/weekly-module-spotlight-pshtml/</loc>
+    <lastmod>2019-08-21T04:00:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/devops/</loc>
+    <lastmod>2019-07-25T16:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/devops/</loc>
+    <lastmod>2019-07-25T16:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/pester/</loc>
+    <lastmod>2019-07-25T16:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/pester/</loc>
+    <lastmod>2019-07-25T16:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2019/07/25/pester-result-reporting-with-suggestions-and-xsl-support/</loc>
+    <lastmod>2019-07-25T16:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/podcast/</loc>
+    <lastmod>2019-07-15T16:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2019/07/15/podcast-a-vision-for-continuously-integrated-data-center/</loc>
+    <lastmod>2019-07-15T16:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/garuda/</loc>
+    <lastmod>2019-07-11T14:31:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2019/07/11/garuda-session-demo-from-psconfeu/</loc>
+    <lastmod>2019-07-11T14:31:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/community/</loc>
+    <lastmod>2019-07-10T14:21:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2019/07/10/inviting-women-in-tech-to-powershell-conference-asia/</loc>
+    <lastmod>2019-07-10T14:21:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2019/06/24/garuda-architecture-and-plan/</loc>
+    <lastmod>2019-06-24T04:01:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/pspublicapi/</loc>
+    <lastmod>2019-06-18T14:54:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2019/06/18/pspublicapi-module-for-listing-free-apis-for-use-in-software-and-web-development/</loc>
+    <lastmod>2019-06-18T14:54:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2019/06/17/distributed-and-flexible-operations-validation-framework-introduction/</loc>
+    <lastmod>2019-06-17T16:16:51+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2019/06/14/pstip-a-better-way-to-generate-http-query-strings-in-powershell/</loc>
+    <lastmod>2019-06-14T05:41:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/tips-and-tricks/</loc>
+    <lastmod>2019-06-14T05:41:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/tips-and-tricks/</loc>
+    <lastmod>2019-06-14T05:41:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2019/04/09/powershell-conference-asia-early-bird-ticket-sales/</loc>
+    <lastmod>2019-04-09T12:34:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/pswindowsadmincenter/</loc>
+    <lastmod>2019-02-19T14:42:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2019/02/19/pswindowsadmincenter-powershell-module-to-manage-connections-feeds-and-extensions/</loc>
+    <lastmod>2019-02-19T14:42:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2019/01/31/dsc-resource-module-to-install-and-configure-windows-admin-center/</loc>
+    <lastmod>2019-01-31T17:00:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/windowsadmincenterdsc/</loc>
+    <lastmod>2019-01-31T17:00:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2019/01/03/using-powershell-for-generating-dynamic-folders-in-royal-ts/</loc>
+    <lastmod>2019-01-03T11:00:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2018/12/31/powershell-conference-asia-2019-call-for-papers-2/</loc>
+    <lastmod>2019-01-01T03:32:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/psredfisheventlistener/</loc>
+    <lastmod>2018-11-13T09:00:51+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2018/11/13/redfish-event-listener-in-powershell/</loc>
+    <lastmod>2018-11-13T09:00:51+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/azure-devops/</loc>
+    <lastmod>2018-09-20T18:01:19+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/azure-devops/</loc>
+    <lastmod>2018-09-20T18:01:19+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2018/09/20/converting-a-powershell-project-to-use-azure-devops-pipelines/</loc>
+    <lastmod>2018-09-20T18:01:19+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/azure-automation/</loc>
+    <lastmod>2018-08-27T16:00:58+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2018/08/27/configuring-role-based-access-control-rbac-for-runbooks-in-azure-automation/</loc>
+    <lastmod>2018-08-27T16:00:58+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2018/08/14/powershell-conference-asia-2018-psconfasia/</loc>
+    <lastmod>2018-08-14T11:56:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/azure-sql/</loc>
+    <lastmod>2018-07-23T16:00:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/azure-sql/</loc>
+    <lastmod>2018-07-23T16:00:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2018/07/23/configuring-azure-environment-to-set-up-azure-sql-database-managed-instance-preview/</loc>
+    <lastmod>2018-07-23T16:00:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2018/04/03/psconfeu-agenda-as-a-powershell-drive-using-ships/</loc>
+    <lastmod>2018-04-03T16:24:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/ships/</loc>
+    <lastmod>2018-04-03T16:24:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/ships/</loc>
+    <lastmod>2018-04-03T16:24:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2018/02/09/powershell-conference-eu-2018/</loc>
+    <lastmod>2018-02-09T14:51:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/azure-devtest/</loc>
+    <lastmod>2018-01-22T17:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/azure-devtest/</loc>
+    <lastmod>2018-01-22T17:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2018/01/22/azure-devtest-labs-artifact-for-installing-powershell-core/</loc>
+    <lastmod>2018-01-22T17:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/feedback/</loc>
+    <lastmod>2018-01-08T17:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2018/01/08/powershell-user-voice-add-support-for-npm-type-version-specification-in-module-manifest-and-requires/</loc>
+    <lastmod>2018-01-08T17:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2018/01/05/psdsc-configuration-versioning-in-a-deployment-pipeline/</loc>
+    <lastmod>2018-01-05T17:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/powershell-dsc/</loc>
+    <lastmod>2018-01-05T17:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/powershell-dsc/</loc>
+    <lastmod>2018-01-05T17:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2018/01/04/using-networkadapterproperty-psdsc-resource-to-configure-network-adapter-advanced-properties/</loc>
+    <lastmod>2018-01-04T17:00:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2018/01/03/using-netqosdsc-psdsc-resource-module-to-configure-network-qos/</loc>
+    <lastmod>2018-01-03T17:00:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2018/01/02/hyper-v-server-powershell-drive-based-on-ships/</loc>
+    <lastmod>2018-01-02T17:00:29+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2017/12/21/failover-cluster-powershell-drive-based-on-ships/</loc>
+    <lastmod>2017-12-21T17:00:48+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2017/12/19/psdsc-failoverclusterdsc-deploy-a-storage-spaces-direct-cluster/</loc>
+    <lastmod>2017-12-19T17:00:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2017/11/20/containerizing-a-web-application/</loc>
+    <lastmod>2017-11-20T17:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/containers/</loc>
+    <lastmod>2017-11-20T17:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/containers/</loc>
+    <lastmod>2017-11-20T17:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/how-to/</loc>
+    <lastmod>2017-11-20T17:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/how-to/</loc>
+    <lastmod>2017-11-20T17:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2017/06/29/psremotely-authoring-workflow-part-1/</loc>
+    <lastmod>2017-06-29T16:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2017/06/28/infrastructure-blueprints-adding-pre-deployment-validations/</loc>
+    <lastmod>2017-06-28T16:00:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2017/06/27/discover-and-package-dependent-resource-modules-for-a-psdsc-configuration/</loc>
+    <lastmod>2017-06-27T16:00:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/cisco/</loc>
+    <lastmod>2017-05-29T16:00:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2017/05/29/cisco-ucs-custom-resource-for-the-windows-powershell-desired-state-configuration-dsc/</loc>
+    <lastmod>2017-05-29T16:00:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2017/05/24/psdsc-doing-it-right-configuration-vs-orchestration/</loc>
+    <lastmod>2017-05-24T16:00:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2017/05/23/psdsc-doing-it-right-resource-granularity/</loc>
+    <lastmod>2017-05-23T16:00:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2017/05/22/working-with-binary-files-in-powershell/</loc>
+    <lastmod>2017-05-22T16:00:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2017/05/15/infrastructure-blueprints-a-way-to-share-psdsc-configurations/</loc>
+    <lastmod>2017-05-15T16:00:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2017/04/07/psremotely-framework-to-enable-remote-operations-validation/</loc>
+    <lastmod>2017-04-07T16:00:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/news/</loc>
+    <lastmod>2017-02-02T22:43:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/news/</loc>
+    <lastmod>2017-02-02T22:43:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2017/02/02/powershell-conference-eu-2017-speakers-and-sessions/</loc>
+    <lastmod>2017-02-02T22:43:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/10/31/pstip-tab-complete-properties/</loc>
+    <lastmod>2016-10-31T16:00:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/hyper-v/</loc>
+    <lastmod>2016-10-24T13:14:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/hyper-v/</loc>
+    <lastmod>2016-10-24T13:14:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/10/24/what-is-new-in-chyper-v-powershell-dsc-resource-module/</loc>
+    <lastmod>2016-10-24T13:14:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/08/22/azure-devtest-labs-artifact-for-installing-powershell-on-linux/</loc>
+    <lastmod>2016-08-22T16:00:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/linux/</loc>
+    <lastmod>2016-08-22T16:00:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/powershell-linux/</loc>
+    <lastmod>2016-08-22T16:00:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/08/18/open-source-powershell-on-windows-linux-and-osx/</loc>
+    <lastmod>2016-08-18T15:25:48+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/08/15/announcing-regisrations-powershell-conference-asia-2016-singapore/</loc>
+    <lastmod>2016-08-15T16:00:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/08/10/isesteroids-2-6-with-new-version-of-pssharper-released/</loc>
+    <lastmod>2016-08-10T20:54:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/08/03/windows-10-anniversary-update-brings-remoting-support-for-bits/</loc>
+    <lastmod>2016-08-03T16:05:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/08/02/pstip-new-powershell-commands-in-windows-10-anniversary-update/</loc>
+    <lastmod>2016-08-02T16:00:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/azure-automation/</loc>
+    <lastmod>2016-07-11T16:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/07/11/triggering-azure-automation-runbooks-from-microsoft-oms-alerts/</loc>
+    <lastmod>2016-07-11T16:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/07/06/pstip-download-and-install-sysinternals-suite-for-nano-server/</loc>
+    <lastmod>2016-07-06T16:00:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/06/08/build-your-visual-studio-code-development-environment-using-powershell-dsc/</loc>
+    <lastmod>2016-06-08T16:00:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/powershell/</loc>
+    <lastmod>2016-06-08T16:00:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/vs-code/</loc>
+    <lastmod>2016-06-08T16:00:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/vs-code/</loc>
+    <lastmod>2016-06-08T16:00:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/05/13/devops-infrastructure-as-code-and-powershell-dsc-infrastructure-blueprints/</loc>
+    <lastmod>2016-05-13T16:00:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/05/13/from-psconfeu-2016-session-recordings/</loc>
+    <lastmod>2016-05-13T15:43:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/05/12/from-psconfeu-2016-a-conversation-with-jeffrey-snover/</loc>
+    <lastmod>2016-05-12T16:00:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/interviews/</loc>
+    <lastmod>2016-05-12T16:00:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/interviews/</loc>
+    <lastmod>2016-05-12T16:00:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/05/11/pstip-convert-powershell-data-file-to-an-object/</loc>
+    <lastmod>2016-05-11T18:00:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/05/06/powershell-location-bookmark-for-easy-and-faster-navigation/</loc>
+    <lastmod>2016-05-06T16:00:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/04/29/comparing-commands-between-powershell-versions/</loc>
+    <lastmod>2016-04-29T15:59:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/04/22/survey-powershell-dsc-composite-resources/</loc>
+    <lastmod>2016-04-22T13:41:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/03/10/decoding-powershell-build-numbers/</loc>
+    <lastmod>2016-03-10T17:09:11+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/02/10/how-to-add-a-new-functionality-to-the-visual-studio-code-powershell-extension/</loc>
+    <lastmod>2016-02-10T19:59:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/01/12/powershell-conference-europe-speakers-and-sessions/</loc>
+    <lastmod>2016-01-12T12:28:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/articles/</loc>
+    <lastmod>2016-01-05T17:00:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2016/01/05/devops-infrastructure-as-code-and-powershell-dsc-the-introduction/</loc>
+    <lastmod>2016-01-05T17:00:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/12/07/dsc-resource-to-configure-switch-embedded-teaming-in-windows-server-2016/</loc>
+    <lastmod>2015-12-07T17:00:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/12/03/pester-explained-describe-context-and-it-blocks/</loc>
+    <lastmod>2015-12-03T17:00:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/12/02/pester-explained-should/</loc>
+    <lastmod>2015-12-02T17:00:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/12/01/pester-explained-introduction-and-assertions/</loc>
+    <lastmod>2015-12-01T17:00:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/package-management/</loc>
+    <lastmod>2015-11-30T17:00:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/package-management/</loc>
+    <lastmod>2015-11-30T17:00:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/11/30/the-case-of-potentially-broken-packagemanagement-for-windows-10-insiders-2/</loc>
+    <lastmod>2015-11-30T17:00:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/11/26/deploy-custom-azure-automation-integration-modules-using-arm-templates/</loc>
+    <lastmod>2015-11-26T17:00:06+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/11/23/powershell-tools-for-the-advanced-use-cases-part-3/</loc>
+    <lastmod>2015-11-23T17:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/11/18/powershell-extension-for-visualstudio-code-connect2015/</loc>
+    <lastmod>2015-11-18T16:11:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/11/02/powershell-tools-for-the-advanced-use-cases-part-2/</loc>
+    <lastmod>2015-11-02T17:00:35+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/11/02/powershell-conference-eu-2016-registration-starts-now/</loc>
+    <lastmod>2015-11-02T07:30:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/10/20/psconfasia-an-interview-with-powershell-expert-janaka-rangama/</loc>
+    <lastmod>2015-10-20T16:00:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/10/19/psconfasia-an-interview-with-powershell-expert-emerald-tabirao/</loc>
+    <lastmod>2015-10-19T16:00:19+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/10/16/psconfasia-an-interview-with-powershell-expert-milton-goh/</loc>
+    <lastmod>2015-10-16T16:00:29+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/10/15/psconfasia-an-interview-with-powershell-expert-ryan-yates/</loc>
+    <lastmod>2015-10-15T16:00:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/10/14/psconfasia-an-interview-with-powershell-expert-gayathri-narayanan/</loc>
+    <lastmod>2015-10-14T16:00:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/10/13/psconfasia-an-interview-with-powershell-expert-jason-brown/</loc>
+    <lastmod>2015-10-13T16:00:48+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/azure-powershell/</loc>
+    <lastmod>2015-10-13T14:43:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/azure-powershell/</loc>
+    <lastmod>2015-10-13T14:43:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/10/13/azure-powershell-1-0-preview-installation-on-down-level-powershell-systems-using-packagemanagement-cmdlets/</loc>
+    <lastmod>2015-10-13T14:43:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/10/12/powershell-tools-for-the-advanced-use-cases-part-1/</loc>
+    <lastmod>2015-10-12T16:30:17+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/10/12/psconfasia-an-interview-with-powershell-expert-girish-prakash-2/</loc>
+    <lastmod>2015-10-12T16:00:48+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/10/09/psconfasia-an-interview-with-powershell-expert-jaap-brasser/</loc>
+    <lastmod>2015-10-09T16:00:10+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/10/08/psconfasia-an-interview-with-powershell-expert-deepak-dhami/</loc>
+    <lastmod>2015-10-08T16:00:17+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/10/07/psconfasia-an-interview-with-powershell-expert-narayanan-lakshmanan/</loc>
+    <lastmod>2015-10-07T16:00:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/10/06/psconfasia-an-interview-with-powershell-expert-benjamin-hodge/</loc>
+    <lastmod>2015-10-06T16:00:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/10/05/psconfasia-an-interview-with-powershell-expert-ferdinand-rios/</loc>
+    <lastmod>2015-10-05T16:00:36+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/09/23/summary-from-powershell-summit-europe-2015/</loc>
+    <lastmod>2015-09-23T16:00:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/azure-pack/</loc>
+    <lastmod>2015-09-22T16:58:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/azure-pack/</loc>
+    <lastmod>2015-09-22T16:58:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/09/22/part-4-journey-to-a-windows-azure-pack-vm-role-dsc-resource-the-dsc-resource/</loc>
+    <lastmod>2015-09-22T16:58:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/service-management-automation/</loc>
+    <lastmod>2015-09-14T16:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/service-management-automation/</loc>
+    <lastmod>2015-09-14T16:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/09/14/why-you-should-install-wmf-5-0-production-preview-on-your-sma-runbook-workers/</loc>
+    <lastmod>2015-09-14T16:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/09/07/pstip-using-powershell-runspaces-to-find-unassigned-ipv4-addresses/</loc>
+    <lastmod>2015-09-07T15:58:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/09/04/pstip-validate-active-directory-credentials/</loc>
+    <lastmod>2015-09-04T16:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/09/01/journey-to-a-windows-azure-pack-vm-role-dsc-resource-inside-the-module/</loc>
+    <lastmod>2015-09-01T16:00:58+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/08/07/journey-to-a-windows-azure-pack-vm-role-dsc-resource-powershell-module-usage/</loc>
+    <lastmod>2015-08-07T16:00:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/07/28/journey-to-a-windows-azure-pack-vm-role-dsc-resource/</loc>
+    <lastmod>2015-07-28T16:00:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/git/</loc>
+    <lastmod>2015-07-27T17:52:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/git/</loc>
+    <lastmod>2015-07-27T17:52:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/07/27/git-for-it-professionals-life-cycle-of-repository-files-2/</loc>
+    <lastmod>2015-07-27T17:52:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/07/15/git-for-it-professionals-working-with-repositories/</loc>
+    <lastmod>2015-07-15T16:00:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/07/13/git-for-it-professionals-getting-started-2/</loc>
+    <lastmod>2015-07-13T16:00:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/linux/</loc>
+    <lastmod>2015-07-10T16:00:17+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/07/10/powershell-dsc-for-linux-pull-server/</loc>
+    <lastmod>2015-07-10T16:00:17+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/07/08/powershell-dsc-for-linux-resources/</loc>
+    <lastmod>2015-07-08T16:00:58+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/07/07/eliminating-redundant-code-by-writing-reusable-dsc-configurations/</loc>
+    <lastmod>2015-07-07T16:00:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/07/06/powershell-dsc-for-linux-installation/</loc>
+    <lastmod>2015-07-06T16:00:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/07/02/creating-a-simple-dsc-resource/</loc>
+    <lastmod>2015-07-02T17:19:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/06/30/powershell-conference-asia-2015-get-here-travel-tips/</loc>
+    <lastmod>2015-06-30T17:45:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/06/29/how-to-use-wds-to-pxe-boot-a-nano-server-vhd-with-powershell-2/</loc>
+    <lastmod>2015-06-29T18:58:10+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/06/22/pstip-find-variables-in-a-script/</loc>
+    <lastmod>2015-06-22T18:00:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/06/17/powershell-conference-asia-2015-update-registration-is-open/</loc>
+    <lastmod>2015-06-17T16:28:36+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/06/11/pstip-convert-docx-to-pdf-using-word-application/</loc>
+    <lastmod>2015-06-11T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/06/10/pstip-determine-compression-ratio-of-compressed-files/</loc>
+    <lastmod>2015-06-10T18:00:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/06/09/pstip-compress-files-and-folders-with-system-io-compression-filesystem-class/</loc>
+    <lastmod>2015-06-09T18:00:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/06/08/pstip-use-shell-application-to-determine-which-folder-is-open-in-file-explorer/</loc>
+    <lastmod>2015-06-08T18:00:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/06/05/pstip-get-last-login-date-for-local-account/</loc>
+    <lastmod>2015-06-05T18:00:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/06/04/pstip-access-remote-registry-using-powershell/</loc>
+    <lastmod>2015-06-04T21:28:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/06/04/pester-triangulation-and-reusing-test-cases/</loc>
+    <lastmod>2015-06-04T16:00:19+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/06/02/coding-defensively-against-enums/</loc>
+    <lastmod>2015-06-02T16:00:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/05/29/pstip-validate-if-an-active-directory-organizational-unit-exists-or-not/</loc>
+    <lastmod>2015-05-29T18:00:08+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/05/14/powershell-dsc-for-linux-released/</loc>
+    <lastmod>2015-05-14T22:29:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/05/13/introducing-dns-policies-in-windows-server-2016-technical-preview-2/</loc>
+    <lastmod>2015-05-13T16:00:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/05/12/natively-query-csv-files-using-sql-syntax-in-powershell/</loc>
+    <lastmod>2015-05-12T16:00:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/sql/</loc>
+    <lastmod>2015-05-12T16:00:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/sql/</loc>
+    <lastmod>2015-05-12T16:00:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/azure-dns/</loc>
+    <lastmod>2015-05-11T16:00:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/azure-dns/</loc>
+    <lastmod>2015-05-11T16:00:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/05/11/manage-your-public-dns-zones-with-azure-dns/</loc>
+    <lastmod>2015-05-11T16:00:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/04/16/pstip-connect-to-azure-virtual-machines-without-being-prompted-for-credentials/</loc>
+    <lastmod>2015-04-16T16:00:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/04/16/fasten-your-seat-belts-and-start-contributing-to-the-dsc-powershell-resource-repository/</loc>
+    <lastmod>2015-04-16T11:57:51+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/04/15/pstip-change-a-drive-letter-using-win32_volume-class/</loc>
+    <lastmod>2015-04-15T16:00:29+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/04/14/pstip-save-untitled-tabs-in-powershell-ise-to-clipboard/</loc>
+    <lastmod>2015-04-14T16:00:21+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/04/13/pstip-use-shell-application-to-display-extended-file-attributes/</loc>
+    <lastmod>2015-04-13T18:00:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/04/10/pstip-retrieve-scheduled-tasks-using-schedule-service-comobject/</loc>
+    <lastmod>2015-04-10T18:00:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/04/09/pstip-use-windows-forms-to-generate-gui-messagebox/</loc>
+    <lastmod>2015-04-09T18:00:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/04/09/compataware/</loc>
+    <lastmod>2015-04-09T15:45:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/04/08/user-account-control-and-admin-approval-mode-the-impact-on-powershell/</loc>
+    <lastmod>2015-04-08T16:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/04/06/powershell-conference-asia-2015-call-for-speakers-and-sponsors/</loc>
+    <lastmod>2015-04-06T16:38:10+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/royal-ts/</loc>
+    <lastmod>2015-03-24T16:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/royal-ts/</loc>
+    <lastmod>2015-03-24T16:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/03/24/royal-ts-v3-with-a-powershell-module-released/</loc>
+    <lastmod>2015-03-24T16:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/omi/</loc>
+    <lastmod>2015-03-23T16:00:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/omi/</loc>
+    <lastmod>2015-03-23T16:00:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/03/23/omi-with-wsman-over-https-done-right/</loc>
+    <lastmod>2015-03-23T16:00:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/03/14/rapid-powershell-development-with-isesteroids/</loc>
+    <lastmod>2015-03-14T13:51:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/03/10/how-powershell-saved-the-day-jan-egil-ring/</loc>
+    <lastmod>2015-03-10T16:00:36+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/03/09/improvements-to-dsc-v1/</loc>
+    <lastmod>2015-03-09T16:00:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/02/27/working-with-powershell-dsc-for-linux-part-5/</loc>
+    <lastmod>2015-02-27T17:00:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/02/26/working-with-powershell-dsc-for-linux-part-4/</loc>
+    <lastmod>2015-02-26T17:00:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/02/25/working-with-powershell-dsc-for-linux-part-3/</loc>
+    <lastmod>2015-02-25T17:00:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/02/23/working-with-powershell-dsc-for-linux-part-2/</loc>
+    <lastmod>2015-02-23T17:00:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/02/21/working-with-powershell-dsc-for-linux-part-1/</loc>
+    <lastmod>2015-02-22T00:15:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/02/20/mixed-refresh-mode-support-for-dsc-partial-configurations/</loc>
+    <lastmod>2015-02-20T19:00:42+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/02/19/dsc-local-configuration-manager-refresh-modes-in-wmf-5-0/</loc>
+    <lastmod>2015-02-19T15:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/02/18/windows-management-framework-5-0-february-preview-available/</loc>
+    <lastmod>2015-02-19T02:23:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/01/23/using-dsc-to-deploy-hyper-v-converged-virtual-network-assigning-ip-addresses-to-vm-adapters-final-part/</loc>
+    <lastmod>2015-01-23T17:00:06+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/01/22/using-dsc-to-deploy-hyper-v-converged-virtual-network-configuring-host-vm-adapters-part-3/</loc>
+    <lastmod>2015-01-22T17:00:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/01/21/using-dsc-to-deploy-hyper-v-converged-virtual-network-creating-a-converged-virtual-switch-part-2/</loc>
+    <lastmod>2015-01-21T17:00:23+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/01/20/using-dsc-to-deploy-hyper-v-converged-virtual-network-creating-a-host-team-part-1/</loc>
+    <lastmod>2015-01-20T16:11:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/01/19/announcing-dsc-resources-to-deploy-hyper-v-converged-virtual-network/</loc>
+    <lastmod>2015-01-19T15:30:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/oneget/</loc>
+    <lastmod>2015-01-14T17:00:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/oneget/</loc>
+    <lastmod>2015-01-14T17:00:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/01/14/powershell-oneget-gist-as-a-package/</loc>
+    <lastmod>2015-01-14T17:00:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/01/13/boost-your-productivity-with-pester-snippets/</loc>
+    <lastmod>2015-01-13T17:00:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/conferences/</loc>
+    <lastmod>2015-01-13T15:00:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/01/13/powershell-community-conference-in-germany/</loc>
+    <lastmod>2015-01-13T15:00:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/01/08/powershell-cmdlets-to-manage-azure-key-vault/</loc>
+    <lastmod>2015-01-09T04:12:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2015/01/08/introducing-the-royal-ts-powershell-module/</loc>
+    <lastmod>2015-01-08T20:02:36+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/12/24/using-azure-resource-management-rest-api-in-powershell/</loc>
+    <lastmod>2014-12-24T17:00:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/12/22/holiday-present-from-powershell-magazine-dsc-resource-module-to-install-and-configure-azure-recovery-services-agent/</loc>
+    <lastmod>2014-12-22T17:03:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/12/18/holiday-gift-from-windows-powershell-team-dsc-resource-kit-wave-9/</loc>
+    <lastmod>2014-12-18T19:34:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/12/15/exploring-and-installing-dsc-resources-published-in-powershell-gallery/</loc>
+    <lastmod>2014-12-15T17:00:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/12/12/microsoft-monitoring-agent-dsc-resource-updated-to-enable-ad-and-management-groups-configuration/</loc>
+    <lastmod>2014-12-12T17:00:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/12/08/pstip-editing-remote-file-in-powershell-ise/</loc>
+    <lastmod>2014-12-08T19:49:08+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/isesteroids/</loc>
+    <lastmod>2014-12-05T13:35:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/isesteroids/</loc>
+    <lastmod>2014-12-05T13:35:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/12/05/isesteroids-rc/</loc>
+    <lastmod>2014-12-05T13:35:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/12/01/a-json-primer-for-administrators/</loc>
+    <lastmod>2014-12-01T17:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/json/</loc>
+    <lastmod>2014-12-01T17:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/json/</loc>
+    <lastmod>2014-12-01T17:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/11/26/dsc-resource-module-for-microsoft-monitoring-agent-install-and-configuration-for-azure-operational-insights/</loc>
+    <lastmod>2014-11-26T17:00:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/11/24/using-wmi-smtp-event-consumer-dsc-resource/</loc>
+    <lastmod>2014-11-24T17:00:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/wmi/</loc>
+    <lastmod>2014-11-24T17:00:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/wmi/</loc>
+    <lastmod>2014-11-24T17:00:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/11/21/using-wmi-event-log-event-consumer-dsc-resource/</loc>
+    <lastmod>2014-11-21T17:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/11/20/using-wmi-log-file-event-consumer-dsc-resource/</loc>
+    <lastmod>2014-11-21T01:39:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/11/19/using-wmi-active-script-event-consumer-dsc-resource/</loc>
+    <lastmod>2014-11-19T17:00:58+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/11/18/dsc-changes-in-windows-management-framework-5-0-preview-november-2014-release/</loc>
+    <lastmod>2014-11-19T03:58:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/powershelll-dsc/</loc>
+    <lastmod>2014-11-18T17:00:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/11/18/using-the-wmi-commandline-event-consumer-dsc-resource/</loc>
+    <lastmod>2014-11-18T17:00:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/11/17/powershell-ise-add-on-to-manage-wmi-permanent-event-filters-consumers-and-bindings/</loc>
+    <lastmod>2014-11-17T17:00:21+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/11/13/troubleshooting-wmi-standard-event-consumer-issues/</loc>
+    <lastmod>2014-11-13T17:00:11+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/11/12/dsc-resource-for-managing-wmi-permanent-event-filters-consumers-and-bindings/</loc>
+    <lastmod>2014-11-12T17:00:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/11/04/ise-snippets-for-dsc-resource-functions/</loc>
+    <lastmod>2014-11-04T17:43:52+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/10/28/azure-powershell-tools-0-8-10-is-available/</loc>
+    <lastmod>2014-10-29T02:05:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/community/</loc>
+    <lastmod>2014-10-28T15:00:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/10/28/the-power-of-community/</loc>
+    <lastmod>2014-10-28T15:00:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/10/27/powershell-risk-assessment-with-isesteroids-2-0/</loc>
+    <lastmod>2014-10-27T11:34:35+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/10/22/foreach-and-where-magic-methods/</loc>
+    <lastmod>2014-10-22T16:00:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/language/</loc>
+    <lastmod>2014-10-22T16:00:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/language/</loc>
+    <lastmod>2014-10-22T16:00:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/10/15/dsc-resource-for-mounting-and-dismounting-iso-images/</loc>
+    <lastmod>2014-10-15T16:00:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/10/07/dsc-composite-resource-for-auto-administrator-logon/</loc>
+    <lastmod>2014-10-07T16:00:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/10/06/class-defined-dsc-resources-in-windows-management-framework-5-0-preview/</loc>
+    <lastmod>2014-10-06T16:00:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/10/03/building-netcat-with-powershell/</loc>
+    <lastmod>2014-10-03T16:00:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/10/02/partial-dsc-configurations-in-windows-management-framework-wmf-5-0/</loc>
+    <lastmod>2014-10-02T16:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/09/30/pester-mock-and-testdrive/</loc>
+    <lastmod>2014-09-30T10:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/09/29/installing-wmf-5-0-preview-september-2014-using-dsc-xwindowsupdate-and-xpendingreboot-resources/</loc>
+    <lastmod>2014-09-29T16:13:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/09/26/inter-node-dependency-and-cross-computer-synchronization-with-dsc/</loc>
+    <lastmod>2014-09-26T16:00:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/09/25/powershell-magazine-completes-3-years/</loc>
+    <lastmod>2014-09-25T17:34:06+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/09/25/easily-defining-enums-structs-and-win32-functions-in-memory/</loc>
+    <lastmod>2014-09-25T16:00:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/infosec/</loc>
+    <lastmod>2014-09-25T16:00:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/infosec/</loc>
+    <lastmod>2014-09-25T16:00:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/security/</loc>
+    <lastmod>2014-09-25T16:00:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/security/</loc>
+    <lastmod>2014-09-25T16:00:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/09/12/new-features-introduced-in-windows-management-framework-5-0-preview-september-2014/</loc>
+    <lastmod>2014-09-12T16:00:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/09/10/microsoft-azure-powershell-0-8-8-is-available/</loc>
+    <lastmod>2014-09-10T21:25:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/09/09/using-the-convertfrom-string-cmdlet-to-parse-structured-text/</loc>
+    <lastmod>2014-09-09T23:29:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/09/09/book-announcing-windows-powershell-desired-state-configuration-revealed/</loc>
+    <lastmod>2014-09-09T09:43:29+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/09/05/windows-management-framework-5-0-september-2014-preview-is-available-for-download/</loc>
+    <lastmod>2014-09-05T05:15:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/09/02/omi-and-networkswitch-module/</loc>
+    <lastmod>2014-09-02T16:00:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/09/01/new-feature-in-pester-3-0-code-coverage-metrics/</loc>
+    <lastmod>2014-09-01T16:00:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/08/26/pstip-replacing-special-characters/</loc>
+    <lastmod>2014-08-26T18:00:48+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/08/21/dsc-resource-kit-wave-6-is-here/</loc>
+    <lastmod>2014-08-21T09:14:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/dell/</loc>
+    <lastmod>2014-08-19T16:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/dell/</loc>
+    <lastmod>2014-08-19T16:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/08/19/managing-pcie-ssd-devices-in-vmware-esxi-by-using-powercli-cmdlets/</loc>
+    <lastmod>2014-08-19T16:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/vmware/</loc>
+    <lastmod>2014-08-19T16:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/vmware/</loc>
+    <lastmod>2014-08-19T16:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/08/19/azure-powershell-tools-0-8-7-is-available/</loc>
+    <lastmod>2014-08-19T06:14:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/08/18/bartek-bielawski-joins-powershell-magazine-editorial-board/</loc>
+    <lastmod>2014-08-18T14:53:19+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/08/15/pstip-taking-control-of-verbose-and-debug-output-part-5/</loc>
+    <lastmod>2014-08-15T18:00:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/08/14/pstip-taking-control-of-verbose-and-debug-output-part-4/</loc>
+    <lastmod>2014-08-14T18:00:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/08/13/running-commands-as-another-user-using-dsc-script-resource/</loc>
+    <lastmod>2014-08-13T18:42:42+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/08/13/pstip-taking-control-of-verbose-and-debug-output-part-3/</loc>
+    <lastmod>2014-08-13T18:00:11+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/08/12/pstip-taking-control-of-verbose-and-debug-output-part-2/</loc>
+    <lastmod>2014-08-12T18:00:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/08/11/pstip-taking-control-of-verbose-and-debug-output-part-1/</loc>
+    <lastmod>2014-08-11T21:37:21+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/08/08/pstip-generating-a-self-signed-certificate/</loc>
+    <lastmod>2014-08-08T18:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/08/07/bootstrapping-dsc-configuration-using-azure-vm-dsc-extension/</loc>
+    <lastmod>2014-08-07T16:00:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/08/06/configuring-trunk-mode-in-hyper-v/</loc>
+    <lastmod>2014-08-06T18:00:29+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/08/05/understanding-azure-vm-dsc-extension/</loc>
+    <lastmod>2014-08-05T17:04:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/08/05/azure-powershell-tools-version-0-8-6-is-available/</loc>
+    <lastmod>2014-08-05T07:00:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/31/pstip-functions-and-sql-filtering-part-4/</loc>
+    <lastmod>2014-07-31T18:00:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/30/pstip-functions-and-sql-filtering-part-3/</loc>
+    <lastmod>2014-07-30T18:00:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/30/cross-domain-configuration-management-with-dsc/</loc>
+    <lastmod>2014-07-30T16:00:51+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/29/pstip-functions-and-sql-filtering-part-2/</loc>
+    <lastmod>2014-07-29T18:00:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/29/bootstrapping-lcm-meta-configuration-in-a-azure-vm/</loc>
+    <lastmod>2014-07-29T16:53:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/28/pstip-functions-and-sql-filtering-part-1/</loc>
+    <lastmod>2014-07-28T18:00:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/28/testing-the-effectiveness-of-get-random/</loc>
+    <lastmod>2014-07-28T16:00:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/25/pstip-show-friendly-gpo-names-with-get-adorganizationalunit/</loc>
+    <lastmod>2014-07-25T18:00:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/25/how-braces-and-semicolons-became-a-part-of-my-life/</loc>
+    <lastmod>2014-07-25T16:00:19+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/learning-powershell/</loc>
+    <lastmod>2014-07-25T16:00:19+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/learning-powershell/</loc>
+    <lastmod>2014-07-25T16:00:19+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/24/pstip-select-non-administrative-shared-folders-using-win32_share-wmi-class/</loc>
+    <lastmod>2014-07-24T18:00:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/exchange/</loc>
+    <lastmod>2014-07-24T16:00:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/exchange/</loc>
+    <lastmod>2014-07-24T16:00:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/24/using-powershell-to-troubleshoot-the-exchange-mailbox-creation-process/</loc>
+    <lastmod>2014-07-24T16:00:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014-07-23-pstip-enumerating-mapped-network-drives-using-wscript-network/</loc>
+    <lastmod>2014-07-23T18:00:24+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/23/how-ive-started-loving-powershell/</loc>
+    <lastmod>2014-07-23T16:00:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/22/pstip-rename-a-local-or-a-mapped-drive-using-shell-application/</loc>
+    <lastmod>2014-07-22T18:00:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/22/automating-deployments-in-configuration-manager-with-powershell/</loc>
+    <lastmod>2014-07-22T16:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/sccm/</loc>
+    <lastmod>2014-07-22T16:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/sccm/</loc>
+    <lastmod>2014-07-22T16:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/21/pstip-create-mapped-network-drive-using-wscript-network/</loc>
+    <lastmod>2014-07-21T18:00:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/21/using-powershell-to-discover-information-about-your-microsoft-sql-servers/</loc>
+    <lastmod>2014-07-21T16:00:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/kansa/</loc>
+    <lastmod>2014-07-18T16:00:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/kansa/</loc>
+    <lastmod>2014-07-18T16:00:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/18/kansa-a-powershell-based-incident-response-framework/</loc>
+    <lastmod>2014-07-18T16:00:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/18/dsc-resource-kit-wave-5-is-available/</loc>
+    <lastmod>2014-07-18T07:38:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/17/live-incident-response-with-powershell/</loc>
+    <lastmod>2014-07-17T16:00:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/16/investigating-powershell-attacks/</loc>
+    <lastmod>2014-07-16T16:00:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/modules/</loc>
+    <lastmod>2014-07-15T16:05:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/15/posh-shodan-module-for-the-shodan-service/</loc>
+    <lastmod>2014-07-15T16:05:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/poshshodan/</loc>
+    <lastmod>2014-07-15T16:05:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/poshshodan/</loc>
+    <lastmod>2014-07-15T16:05:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/14/pstip-automatically-persist-history/</loc>
+    <lastmod>2014-07-14T18:00:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/veil-powerview/</loc>
+    <lastmod>2014-07-14T16:00:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/veil-powerview/</loc>
+    <lastmod>2014-07-14T16:00:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/14/veil-powerview/</loc>
+    <lastmod>2014-07-14T16:00:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/11/introduction-to-the-poshsec-framework/</loc>
+    <lastmod>2014-07-11T16:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/poshsec/</loc>
+    <lastmod>2014-07-11T16:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/poshsec/</loc>
+    <lastmod>2014-07-11T16:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/10/pstip-quick-objects-using-convertfrom-csv/</loc>
+    <lastmod>2014-07-10T18:00:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/10/introduction-to-poshsec/</loc>
+    <lastmod>2014-07-10T16:00:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/09/pstip-decoding-an-html-encoded-string/</loc>
+    <lastmod>2014-07-09T18:00:21+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/09/owning-networks-and-evading-incident-response-with-powershell/</loc>
+    <lastmod>2014-07-09T16:00:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/08/pstip-converting-to-the-local-time/</loc>
+    <lastmod>2014-07-08T18:00:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/powersploit/</loc>
+    <lastmod>2014-07-08T16:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/powersploit/</loc>
+    <lastmod>2014-07-08T16:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/08/powersploit/</loc>
+    <lastmod>2014-07-08T16:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/07/pstip-finding-if-a-system-has-powershell-4-0-or-later/</loc>
+    <lastmod>2014-07-07T18:00:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/07/security-in-a-changing-world/</loc>
+    <lastmod>2014-07-07T16:00:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/03/pstip-finding-keyboard-keys/</loc>
+    <lastmod>2014-07-03T18:00:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/posh-ssh/</loc>
+    <lastmod>2014-07-03T17:15:48+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/posh-ssh/</loc>
+    <lastmod>2014-07-03T17:15:48+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/03/posh-ssh-open-source-ssh-powershell-module/</loc>
+    <lastmod>2014-07-03T17:15:48+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/02/pstip-using-xpath-in-powershell-part-6/</loc>
+    <lastmod>2014-07-02T18:00:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/xml/</loc>
+    <lastmod>2014-07-02T18:00:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/xml/</loc>
+    <lastmod>2014-07-02T18:00:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/07/01/pstip-using-xpath-in-powershell-part-5/</loc>
+    <lastmod>2014-07-01T18:00:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/06/30/pstip-using-xpath-in-powershell-part-4/</loc>
+    <lastmod>2014-06-30T18:00:24+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/06/27/pstip-how-to-properly-validate-guid-parameter/</loc>
+    <lastmod>2014-06-27T18:00:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/06/26/pstip-using-xpath-in-powershell-part-3/</loc>
+    <lastmod>2014-06-26T18:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/06/25/pstip-using-xpath-in-powershell-part-2/</loc>
+    <lastmod>2014-06-25T18:00:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/06/24/pstip-using-xpath-in-powershell-part-1/</loc>
+    <lastmod>2014-06-24T18:00:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/06/23/dynamic-parameters-in-c-cmdlets/</loc>
+    <lastmod>2014-06-23T16:00:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/pscmdlet/</loc>
+    <lastmod>2014-06-23T16:00:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/pscmdlet/</loc>
+    <lastmod>2014-06-23T16:00:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/06/20/pstip-be-cautious-with-profile-customizations-and-powershell-workflow/</loc>
+    <lastmod>2014-06-20T18:00:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/05/29/dynamic-parameters-in-powershell/</loc>
+    <lastmod>2014-05-29T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/05/29/pstip-test-if-a-url-is-absolute-or-not/</loc>
+    <lastmod>2014-05-29T16:17:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/05/28/pstip-filtering-a-collection-using-comparison-operators/</loc>
+    <lastmod>2014-05-28T18:00:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/05/21/installing-and-configuring-dsc-for-linux/</loc>
+    <lastmod>2014-05-21T16:00:29+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/05/19/microsoft-announced-the-ctp-release-of-windows-powershell-desired-state-configuration-for-linux/</loc>
+    <lastmod>2014-05-20T02:52:52+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/05/14/powershell-module-management-as-a-native-feature-is-here/</loc>
+    <lastmod>2014-05-15T03:24:19+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/05/12/dell-business-client-bios-configuration-powershell-provider/</loc>
+    <lastmod>2014-05-12T16:00:52+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/05/02/copy-dsc-resources-to-azure-vms-using-custom-script-extension/</loc>
+    <lastmod>2014-05-02T17:30:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/30/understanding-azure-custom-script-extension/</loc>
+    <lastmod>2014-04-30T16:00:29+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/24/windows-powershell-4-0-and-other-quick-reference-guides/</loc>
+    <lastmod>2014-04-24T09:14:51+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/24/microsoft-azure-automation/</loc>
+    <lastmod>2014-04-24T08:54:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/23/pstip-mapping-the-cim-valuemap-and-value-qualifiers/</loc>
+    <lastmod>2014-04-23T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/18/automatic-remote-desktop-connection/</loc>
+    <lastmod>2014-04-18T16:00:23+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/18/script-browser-for-windows-powershell-ise/</loc>
+    <lastmod>2014-04-18T11:36:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/17/pstip-enabling-rss-inside-hyper-v-guest-os/</loc>
+    <lastmod>2014-04-17T18:00:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/16/pstip-pause-after-uefi-boot-failure-when-using-hyper-v-generation-2-virtual-machines/</loc>
+    <lastmod>2014-04-16T18:00:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/15/pstip-how-to-identify-memory-limited-servers-using-powershell/</loc>
+    <lastmod>2014-04-15T18:00:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/15/introduction-to-service-management-automation/</loc>
+    <lastmod>2014-04-15T16:00:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/14/desired-state-configuration-changesfixes-in-wmf-5-0-preview/</loc>
+    <lastmod>2014-04-14T16:00:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/10/pstip-listing-all-blobs-in-a-public-azure-storage-container/</loc>
+    <lastmod>2014-04-10T18:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/09/pstip-replacing-invalid-xml-characters/</loc>
+    <lastmod>2014-04-09T18:00:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/08/basics-of-writing-a-powershell-module-with-c-part-2-debugging/</loc>
+    <lastmod>2014-04-08T18:31:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/07/using-the-windows-live-apis-from-powershell/</loc>
+    <lastmod>2014-04-07T16:00:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/03/windows-management-framework-5-0-preview-is-here/</loc>
+    <lastmod>2014-04-03T15:37:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/03/is-native-windows-powershell-support-coming-to-visual-studio/</loc>
+    <lastmod>2014-04-03T09:40:19+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/powershell/</loc>
+    <lastmod>2014-04-03T09:40:19+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/visual-studio/</loc>
+    <lastmod>2014-04-03T09:40:19+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/02/pushing-desired-state-configuration-to-an-azure-vm/</loc>
+    <lastmod>2014-04-02T16:00:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/04/01/desired-state-configuration-and-the-remoting-myth/</loc>
+    <lastmod>2014-04-01T16:06:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/31/powershell-remoting-with-azure-windows-vms/</loc>
+    <lastmod>2014-03-31T16:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/28/isesteroids-a-revolutionary-powershell-ise-add-on/</loc>
+    <lastmod>2014-03-28T17:14:58+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/27/testing-your-powershell-scripts-with-pester-assertions-and-more/</loc>
+    <lastmod>2014-03-27T16:34:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/26/pstip-explore-teched-na-2014-sessions-with-powershell/</loc>
+    <lastmod>2014-03-26T18:00:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/25/pstip-create-your-own-dsc-resource-snippets-in-powershell-ise/</loc>
+    <lastmod>2014-03-25T20:04:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/24/pstip-how-to-remove-the-folders-group-from-my-computer-in-windows-8/</loc>
+    <lastmod>2014-03-24T18:00:08+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/24/set-keyboard-layouts-available-on-logon-screen-in-windows-8-1/</loc>
+    <lastmod>2014-03-24T16:00:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/demo/</loc>
+    <lastmod>2014-03-21T18:00:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/demo/</loc>
+    <lastmod>2014-03-21T18:00:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/21/powershell-demo-extravaganza-lego-mindstorms-robot-part-1/</loc>
+    <lastmod>2014-03-21T18:00:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/21/writing-help-for-custom-dsc-resources/</loc>
+    <lastmod>2014-03-21T17:00:23+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/20/deploying-azure-virtual-machines-from-vm-depot-using-powershell/</loc>
+    <lastmod>2014-03-20T18:36:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/kemp/</loc>
+    <lastmod>2014-03-20T18:36:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/kemp/</loc>
+    <lastmod>2014-03-20T18:36:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/19/how-to-view-and-restore-hidden-windows-updates-with-powershell/</loc>
+    <lastmod>2014-03-19T18:00:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/19/the-story-of-powershell-bangalore-user-group-psbug/</loc>
+    <lastmod>2014-03-19T16:00:48+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/18/pstip-get-requests-that-are-currently-executing-in-a-worker-process/</loc>
+    <lastmod>2014-03-18T18:00:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/18/writing-a-powershell-module-in-c-part-1-the-basics/</loc>
+    <lastmod>2014-03-18T16:00:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/18/announcing-powershell-module-for-managing-kemp-loadmaster-appliances/</loc>
+    <lastmod>2014-03-18T15:37:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/17/pstip-reading-file-content-as-a-byte-array/</loc>
+    <lastmod>2014-03-17T18:00:17+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/17/the-story-of-the-microsoft-technology-user-group-in-norway/</loc>
+    <lastmod>2014-03-17T16:00:10+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/12/pstip-get-currently-available-mac-address-from-hyper-v-mac-address-pool/</loc>
+    <lastmod>2014-03-12T18:00:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/12/get-started-with-pester-powershell-unit-testing-framework/</loc>
+    <lastmod>2014-03-12T17:38:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/11/pstip-identifying-read-only-domain-controllers/</loc>
+    <lastmod>2014-03-11T18:00:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/active-directory/</loc>
+    <lastmod>2014-03-11T18:00:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/active-directory/</loc>
+    <lastmod>2014-03-11T18:00:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/10/pstip-setting-vm-bandwidth-management-qos-in-hyper-v-using-powershell/</loc>
+    <lastmod>2014-03-10T18:00:10+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/07/pstip-how-to-disable-dns-registration-with-powershell/</loc>
+    <lastmod>2014-03-07T19:00:58+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/06/pstip-github-powershell-syntax-highlighting-in-markdown/</loc>
+    <lastmod>2014-03-06T19:00:42+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/06/accidental-sabotage-beware-of-credssp/</loc>
+    <lastmod>2014-03-06T17:00:30+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/05/pstip-installing-and-setting-up-aws-powershell-tools/</loc>
+    <lastmod>2014-03-05T19:00:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/aws/</loc>
+    <lastmod>2014-03-05T19:00:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/aws/</loc>
+    <lastmod>2014-03-05T19:00:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/05/is-desired-state-configuration-dsc-everything-i-need/</loc>
+    <lastmod>2014-03-05T17:00:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/04/pstip-restarting-powershell-as-an-administrator/</loc>
+    <lastmod>2014-03-04T19:00:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/04/jan-egil-ring-joins-powershell-magazine/</loc>
+    <lastmod>2014-03-04T18:38:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/03/03/pstip-setting-hyper-v-client-settings/</loc>
+    <lastmod>2014-03-03T19:00:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/28/pstip-how-to-identify-hyper-v-virtual-machines/</loc>
+    <lastmod>2014-02-28T19:00:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/28/reporting-cluster-shared-volume-csv-disk-space-utilization/</loc>
+    <lastmod>2014-02-28T17:00:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/28/wmi-query-language-via-powershell-available-on-kindle/</loc>
+    <lastmod>2014-02-28T10:28:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/27/pstip-hyper-v-vm-connection-authorization/</loc>
+    <lastmod>2014-02-27T19:00:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/27/using-powershell-and-web-platform-installer-to-install-azure-powershell-cmdlets/</loc>
+    <lastmod>2014-02-27T17:00:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/26/pstip-monitoring-cluster-shared-volume-csv-availability/</loc>
+    <lastmod>2014-02-26T19:00:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/26/current-path-affects-cmdlets/</loc>
+    <lastmod>2014-02-26T17:00:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/25/pstip-editing-your-hosts-file/</loc>
+    <lastmod>2014-02-25T19:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/25/converting-hyper-v-virtual-machine-disks-from-vhd-to-vhdx/</loc>
+    <lastmod>2014-02-25T17:00:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/24/pstip-controlling-traffic-of-a-vm-network-adapter-in-hyper-v/</loc>
+    <lastmod>2014-02-24T19:00:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/24/the-story-of-powershell-user-group-sweden/</loc>
+    <lastmod>2014-02-24T17:00:08+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/22/pstip-how-to-prevent-a-vm-from-becoming-a-router/</loc>
+    <lastmod>2014-02-22T19:00:17+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/21/pstip-how-to-prevent-rouge-dhcp-servers-in-hyper-v/</loc>
+    <lastmod>2014-02-21T19:00:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/20/pstip-how-to-get-the-number-of-iis-current-client-connections/</loc>
+    <lastmod>2014-02-20T19:00:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/19/another-important-milestone-powershell-magazine-has-published-500-posts/</loc>
+    <lastmod>2014-02-19T20:00:51+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/19/pstip-how-to-enable-web-deploy-automatic-backups-using-powershell/</loc>
+    <lastmod>2014-02-19T19:00:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/18/pstip-comparing-datetime-with-a-given-precision/</loc>
+    <lastmod>2014-02-18T19:00:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/17/pstip-vm-port-mirroring-in-hyper-v/</loc>
+    <lastmod>2014-02-17T19:00:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/15/announcing-powershell-saturday-india/</loc>
+    <lastmod>2014-02-15T09:50:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/09/desired-state-configuration-dsc-resource-kit-wave-2/</loc>
+    <lastmod>2014-02-09T09:11:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/07/pstip-test-if-a-download-can-be-suspended-and-resumed/</loc>
+    <lastmod>2014-02-07T19:00:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/02/06/pstip-setting-keyboard-layout-in-windows-8-and-server-2012/</loc>
+    <lastmod>2014-02-06T19:00:23+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/01/17/pstip-using-start-bitstransfer-and-waiting-for-download-to-complete/</loc>
+    <lastmod>2014-01-17T19:00:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/01/16/managing-kemp-loadmaster-using-rest-api-and-powershell/</loc>
+    <lastmod>2014-01-16T17:00:21+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/01/13/announcing-powershell-information-server-psis/</loc>
+    <lastmod>2014-01-14T04:01:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2014/01/03/pstip-validating-version-numbers-without-regex/</loc>
+    <lastmod>2014-01-03T19:00:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/12/30/are-you-still-thinking-about-getting-started-with-powershell/</loc>
+    <lastmod>2013-12-30T17:00:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/12/27/desired-state-configuration-dsc-resource-kit-wave-1/</loc>
+    <lastmod>2013-12-27T13:19:17+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/12/26/pstip-extending-type-data/</loc>
+    <lastmod>2013-12-26T19:00:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/12/23/simplifying-data-manipulation-in-powershell-with-lambda-functions/</loc>
+    <lastmod>2013-12-23T17:00:29+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/12/20/using-powershell-switch-vs-boolean-parameters-in-sma-runbooks/</loc>
+    <lastmod>2013-12-20T17:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/12/19/pstip-overriding-the-tostring-method-part-ii/</loc>
+    <lastmod>2013-12-19T19:00:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/12/18/pstip-overriding-the-tostring-method/</loc>
+    <lastmod>2013-12-18T19:00:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/12/17/powershell-magazine-day/</loc>
+    <lastmod>2013-12-17T20:24:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/12/17/pstip-copying-folders-using-copy-vmfile-cmdlet-in-windows-server-2012-r2-hyper-v/</loc>
+    <lastmod>2013-12-17T19:00:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/12/17/powershell-certificate-pinning/</loc>
+    <lastmod>2013-12-17T17:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/12/16/using-copy-vmfile-cmdlet-in-windows-server-2012-r2-hyper-v/</loc>
+    <lastmod>2013-12-16T17:00:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/12/11/be-smart-with-windows-azure-pack-and-sma/</loc>
+    <lastmod>2013-12-11T19:00:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/12/09/secure-parameter-validation-in-powershell/</loc>
+    <lastmod>2013-12-09T17:00:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/12/06/pstip-converting-net-types-to-cim-types-and-vice-versa/</loc>
+    <lastmod>2013-12-06T19:00:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/11/27/pstip-check-if-a-folder-is-shared/</loc>
+    <lastmod>2013-11-27T19:00:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/11/26/pstip-convert-a-path-to-wmi-compatible-path/</loc>
+    <lastmod>2013-11-26T19:00:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/11/26/identifying-active-directory-built-in-groups-with-powershell/</loc>
+    <lastmod>2013-11-26T17:00:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/11/13/pstip-clear-clipboard-content/</loc>
+    <lastmod>2013-11-13T19:00:08+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/11/12/pstip-ejecting-and-closing-cdrom-drive-the-powershell-way/</loc>
+    <lastmod>2013-11-12T19:00:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/11/12/hp-scripting-tools-for-windows-powershell/</loc>
+    <lastmod>2013-11-12T14:31:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/hpe/</loc>
+    <lastmod>2013-11-12T14:31:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/hpe/</loc>
+    <lastmod>2013-11-12T14:31:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/11/05/pstip-how-to-combine-trace-log-entries-from-all-sharepoint-farm-servers-using-powershell/</loc>
+    <lastmod>2013-11-05T19:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/sharepoint/</loc>
+    <lastmod>2013-11-05T19:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/sharepoint/</loc>
+    <lastmod>2013-11-05T19:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/11/05/powertips-monthly-powershell-reference-library/</loc>
+    <lastmod>2013-11-05T07:35:23+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/10/31/pstip-get-the-size-of-a-file-on-disk/</loc>
+    <lastmod>2013-10-31T18:00:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/10/30/pstip-working-with-special-folders/</loc>
+    <lastmod>2013-10-30T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/10/28/pstip-compress-and-uncompress-files-and-folders-using-wmi/</loc>
+    <lastmod>2013-10-28T18:00:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/10/25/windows-management-framework-4-0-is-now-available/</loc>
+    <lastmod>2013-10-25T13:11:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/10/22/pstip-azure-cmdlets-and-proxy-authentication/</loc>
+    <lastmod>2013-10-22T18:00:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/10/21/pstip-windows-8-1-winx-menu-powershell-in-command-prompt-out/</loc>
+    <lastmod>2013-10-21T18:00:06+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/10/18/pstip-list-all-wmi-namespaces-on-a-system/</loc>
+    <lastmod>2013-10-18T18:00:19+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/10/09/pstip-exploring-dsc-resources/</loc>
+    <lastmod>2013-10-09T18:00:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/10/08/pstip-parsing-exchange-size-strings/</loc>
+    <lastmod>2013-10-08T18:00:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/09/27/pstip-offer-delayed-restart-with-abort-functionality/</loc>
+    <lastmod>2013-09-27T18:00:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/09/27/connect-suggestion-dsc-archive-resource-needs-the-credential-attribute/</loc>
+    <lastmod>2013-09-27T16:00:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/09/26/using-the-credential-attribute-of-dsc-file-resource/</loc>
+    <lastmod>2013-09-26T14:12:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/09/18/announcing-kemp-technologies-as-a-technology-partner/</loc>
+    <lastmod>2013-09-18T12:27:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/09/13/pstip-preview-the-members-of-a-dynamic-distribution-group/</loc>
+    <lastmod>2013-09-13T18:00:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/09/13/pc-monitor-remotely-monitor-and-manage-your-critical-systems/</loc>
+    <lastmod>2013-09-13T16:00:30+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/09/12/pstip-how-to-create-a-dynamic-distribution-group/</loc>
+    <lastmod>2013-09-12T18:00:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/09/11/pstip-how-to-prevent-script-execution-for-non-admin-users/</loc>
+    <lastmod>2013-09-11T18:00:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/09/10/pstip-how-to-find-which-mailboxes-are-over-quota-limits/</loc>
+    <lastmod>2013-09-10T18:00:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/09/10/announcing-psreadline-a-bash-inspiried-readline-implementation-for-powershell/</loc>
+    <lastmod>2013-09-10T06:38:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/psreadline/</loc>
+    <lastmod>2013-09-10T06:38:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/psreadline/</loc>
+    <lastmod>2013-09-10T06:38:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/09/09/pstip-how-to-configure-storage-quotas-for-a-mailbox-using-powershell/</loc>
+    <lastmod>2013-09-09T18:00:51+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/09/03/pstip-tabify-your-script/</loc>
+    <lastmod>2013-09-03T18:00:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/09/02/copying-powershell-modules-and-custom-dsc-resources-using-dsc/</loc>
+    <lastmod>2013-09-02T16:00:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/30/pstip-deleting-extended-properties/</loc>
+    <lastmod>2013-08-30T18:00:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/30/dell-announced-the-availability-of-vworkspace-powershell-module-beta/</loc>
+    <lastmod>2013-08-30T14:42:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/vworkspace/</loc>
+    <lastmod>2013-08-30T14:42:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/29/pstip-updating-extended-properties-on-database-objects-using-smo/</loc>
+    <lastmod>2013-08-29T18:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/29/why-powershell/</loc>
+    <lastmod>2013-08-29T07:39:10+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/28/pstip-reading-extended-properties-on-database-objects-using-smo/</loc>
+    <lastmod>2013-08-28T18:00:23+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/27/pstip-creating-extended-properties-on-database-objects-using-smo/</loc>
+    <lastmod>2013-08-27T18:00:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/27/sapien-technologies-announces-the-availability-of-powerregex-community-preview/</loc>
+    <lastmod>2013-08-27T10:24:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/26/pstip-create-an-empty-folderfile-using-desired-state-configuration-file-resource/</loc>
+    <lastmod>2013-08-26T18:00:06+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/26/custom-dsc-resource-for-managing-hosts-file-entries/</loc>
+    <lastmod>2013-08-26T16:00:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/23/pstip-dynamically-hiding-a-function-from-the-debugger-in-powershell-ise/</loc>
+    <lastmod>2013-08-23T18:00:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/columns/</loc>
+    <lastmod>2013-08-23T18:00:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/22/pstip-tab-completion-in-powershell-3-0/</loc>
+    <lastmod>2013-08-22T18:00:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/21/pstip-validate-is-a-database-is-available-on-a-sql-instance/</loc>
+    <lastmod>2013-08-21T18:00:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/20/pstip-finding-all-roles-a-particular-login-is-mapped-to-in-all-databases/</loc>
+    <lastmod>2013-08-20T18:00:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/20/powershell-module-for-lync-online-is-available/</loc>
+    <lastmod>2013-08-20T11:15:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/19/pstip-finding-all-databases-to-which-a-login-is-mapped/</loc>
+    <lastmod>2013-08-19T18:00:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/19/mastering-everyday-xml-tasks-in-powershell/</loc>
+    <lastmod>2013-08-19T16:00:48+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/18/psharp-makes-powershell-ise-better/</loc>
+    <lastmod>2013-08-18T16:00:58+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/16/pstip-get-the-fully-qualified-path-of-the-system-directory/</loc>
+    <lastmod>2013-08-16T18:00:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/15/pstip-validate-if-a-user-exists-in-active-directory/</loc>
+    <lastmod>2013-08-15T18:00:23+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/14/pstip-validate-if-a-sql-login-exists-using-powershell/</loc>
+    <lastmod>2013-08-14T18:00:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/13/pstip-add-a-sql-login-to-database-roles-using-smo/</loc>
+    <lastmod>2013-08-13T18:00:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/13/announcing-poshtools-visual-studio-extension-for-powershell-scripting/</loc>
+    <lastmod>2013-08-13T15:49:17+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/12/pstip-identifying-dsc-commands/</loc>
+    <lastmod>2013-08-12T18:00:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/09/pstip-initializing-multiple-variables-at-once/</loc>
+    <lastmod>2013-08-09T18:00:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/08/pstip-multiple-variable-assignments/</loc>
+    <lastmod>2013-08-08T18:00:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/07/pstip-swapping-the-value-of-two-variables/</loc>
+    <lastmod>2013-08-07T18:00:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/06/pstip-retrieve-all-sql-instance-names-on-local-and-remote-computers/</loc>
+    <lastmod>2013-08-06T18:00:21+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/05/pstip-reset-your-ise-runspace/</loc>
+    <lastmod>2013-08-05T18:00:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/02/pstip-drop-all-active-connections-of-sql-database/</loc>
+    <lastmod>2013-08-02T18:00:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/08/01/pstip-get-active-database-connections-of-a-sql-database/</loc>
+    <lastmod>2013-08-01T18:00:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/29/pstip-hiding-parameters-from-tab-completion/</loc>
+    <lastmod>2013-07-29T18:00:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/24/pstip-how-to-convert-words-to-title-case/</loc>
+    <lastmod>2013-07-24T18:00:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/23/new-version-of-the-windows-azure-powershell-2/</loc>
+    <lastmod>2013-07-23T13:22:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/21/powershell-deep-dives-book/</loc>
+    <lastmod>2013-07-21T18:00:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/21/advanced-tools-scripting-with-powershell-3-0-2/</loc>
+    <lastmod>2013-07-21T10:38:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/19/querying-performance-counters-from-powershell/</loc>
+    <lastmod>2013-07-19T16:00:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/18/pstip-how-to-switch-off-display-with-powershell/</loc>
+    <lastmod>2013-07-18T18:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/17/pstip-get-the-path-to-x86-special-folders/</loc>
+    <lastmod>2013-07-17T18:02:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/15/pstip-how-to-enable-event-logs-using-windows-powershell/</loc>
+    <lastmod>2013-07-15T18:00:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/15/preparing-for-a-powershell-interview/</loc>
+    <lastmod>2013-07-15T16:00:29+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/15/tobias-weltner-joins-powershell-magazine/</loc>
+    <lastmod>2013-07-15T14:41:24+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/12/pstip-how-to-add-thousands-separators-to-a-number/</loc>
+    <lastmod>2013-07-12T18:00:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/11/pstip-using-tab-completion-against-the-command-history/</loc>
+    <lastmod>2013-07-11T18:00:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/10/pstip-a-faster-way-to-open-specific-event-logs/</loc>
+    <lastmod>2013-07-10T18:00:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/09/pstip-how-to-check-if-a-datetime-string-is-in-a-specific-pattern/</loc>
+    <lastmod>2013-07-09T18:00:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/08/pstip-converting-a-string-to-a-system-datetime-object/</loc>
+    <lastmod>2013-07-08T18:00:24+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/05/pstip-powershell-4-filtering-a-collection-by-using-a-method-syntax/</loc>
+    <lastmod>2013-07-05T18:00:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/05/imperative-versus-declarative-syntax-in-powershell/</loc>
+    <lastmod>2013-07-05T16:00:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/04/pstip-inserting-characters-at-a-specified-string-index-position/</loc>
+    <lastmod>2013-07-04T18:00:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/03/pstip-invoking-methods-by-using-dynamic-method-names/</loc>
+    <lastmod>2013-07-03T18:00:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/02/pstip-disabling-multiple-ad-user-accounts/</loc>
+    <lastmod>2013-07-02T18:00:05+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/01/pstip-using-the-system-windows-forms-openfiledialog-class/</loc>
+    <lastmod>2013-07-01T18:00:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/07/01/getting-started-with-powershell-3-0/</loc>
+    <lastmod>2013-07-01T07:12:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/28/pstip-using-the-system-windows-forms-folderbrowserdialog-class/</loc>
+    <lastmod>2013-06-28T20:00:58+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/27/pstip-get-a-list-of-all-com-objects-available/</loc>
+    <lastmod>2013-06-27T18:00:11+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/26/windows-management-framework-4-0-preview-download-is-available/</loc>
+    <lastmod>2013-06-27T02:44:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/26/pstip-query-msdn-from-powershell/</loc>
+    <lastmod>2013-06-26T18:00:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/25/pstip-how-to-start-an-elevated-powershell-from-windows-explorer/</loc>
+    <lastmod>2013-06-25T18:00:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/25/new-features-in-windows-powershell-4-0/</loc>
+    <lastmod>2013-06-25T07:25:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/24/pstip-change-database-recovery-model-using-smo/</loc>
+    <lastmod>2013-06-24T18:00:42+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/20/an-example-when-using-write-host-makes-sense/</loc>
+    <lastmod>2013-06-20T16:00:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/19/pstip-deleting-expired-certificates-from-the-personal-certificate-store/</loc>
+    <lastmod>2013-06-19T18:00:17+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/17/pstip-use-excel-to-view-html-output/</loc>
+    <lastmod>2013-06-17T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/17/working-with-non-native-powershell-encoding-ebcdic/</loc>
+    <lastmod>2013-06-17T16:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/12/desired-state-configuration-in-windows-server-2012-r2-online-hands-on-lab/</loc>
+    <lastmod>2013-06-12T09:08:24+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/11/pstip-deleting-a-sql-mirroring-endpoint-in-smo-and-powershell/</loc>
+    <lastmod>2013-06-11T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/10/pstip-creating-a-sql-tcp-mirroring-endpoint-in-smo-and-powershell/</loc>
+    <lastmod>2013-06-10T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/06/pstip-refresh-the-psmodulepath-environment-variable-without-re-opening-console/</loc>
+    <lastmod>2013-06-06T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/05/pstip-provide-capslock-status-in-read-host-prompt/</loc>
+    <lastmod>2013-06-05T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/04/pstip-check-if-a-sql-endpoint-exists-or-not/</loc>
+    <lastmod>2013-06-04T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/03/pstip-list-all-endpoints-in-a-sql-deployment/</loc>
+    <lastmod>2013-06-03T18:22:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/03/powershell-magazine-teams-up-again-with-the-techmentor-conference/</loc>
+    <lastmod>2013-06-03T16:00:52+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/06/01/teched-north-america-2013-sessions-you-dont-want-to-miss/</loc>
+    <lastmod>2013-06-01T13:43:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/31/pstip-retrieving-sql-database-last-backup-dates-using-smo/</loc>
+    <lastmod>2013-05-31T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/30/pstip-getting-sharepoint-2010-health-analyzer-alerts-report-by-email/</loc>
+    <lastmod>2013-05-30T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/brainteaser/</loc>
+    <lastmod>2013-05-27T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/brainteaser/</loc>
+    <lastmod>2013-05-27T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/27/converting-to-size-units-our-solution-and-the-winner/</loc>
+    <lastmod>2013-05-27T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/24/pstip-find-all-groups-with-same-group-members-in-active-directory/</loc>
+    <lastmod>2013-05-24T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/23/pstip-retrieve-group-membership-of-an-active-directory-group-recursively/</loc>
+    <lastmod>2013-05-23T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/22/pstip-verify-local-sam-store-account-credentials/</loc>
+    <lastmod>2013-05-22T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/21/pstip-verify-active-directory-account-credentials-using-system-directoryservices-directoryentry/</loc>
+    <lastmod>2013-05-21T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/20/converting-to-size-units-kb-mbgbtb-and-pb-without-using-powershell-multipliers/</loc>
+    <lastmod>2013-05-20T18:42:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/17/pstip-adding-local-users-to-sql-server-logins-using-smo/</loc>
+    <lastmod>2013-05-17T18:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/16/get-to-know-powershell-3-0-with-jeffery-hicks/</loc>
+    <lastmod>2013-05-16T08:14:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/14/pstip-list-sql-database-mirroring-partner-using-smo/</loc>
+    <lastmod>2013-05-14T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/13/pstip-detecting-if-the-console-is-in-interactive-mode/</loc>
+    <lastmod>2013-05-13T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/13/measuring-powershell-scripts/</loc>
+    <lastmod>2013-05-13T16:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/10/pstip-verify-if-a-sql-database-is-mirrored-or-not/</loc>
+    <lastmod>2013-05-10T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/09/pstip-working-with-the-windows-forms-screen-class/</loc>
+    <lastmod>2013-05-09T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/08/pstip-validatepattern-friendlier-error-messages/</loc>
+    <lastmod>2013-05-08T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/08/powershell-summit-2013-session-recordings/</loc>
+    <lastmod>2013-05-08T13:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/07/pstip-validate-your-custom-objects/</loc>
+    <lastmod>2013-05-07T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/05/06/pstip-list-all-ad-attributes-currently-in-use-for-ad-users/</loc>
+    <lastmod>2013-05-06T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/30/powershell-summit-2013-build-your-demo-environment-or-a-test-lab-with-windows-powershell/</loc>
+    <lastmod>2013-04-30T20:45:10+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/30/pstip-extending-the-default-output-property-set-for-active-directory-objects/</loc>
+    <lastmod>2013-04-30T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/29/creating-and-configuring-a-sharepoint-2013-search-service-application/</loc>
+    <lastmod>2013-04-29T16:37:24+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/29/pstip-failing-over-a-mirrored-sql-database-using-smo/</loc>
+    <lastmod>2013-04-29T06:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/26/pstip-enumerate-time-zones-that-support-day-light-savings/</loc>
+    <lastmod>2013-04-26T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/26/new-powershell-book-powershell-3-0-advanced-administration-handbook/</loc>
+    <lastmod>2013-04-26T15:01:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/25/pstip-list-all-active-directory-constructed-attributes/</loc>
+    <lastmod>2013-04-25T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/24/pstip-enumerate-all-sql-server-instances-in-a-network/</loc>
+    <lastmod>2013-04-24T18:00:08+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/23/pstip-get-the-ad-site-name-of-a-computer/</loc>
+    <lastmod>2013-04-23T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/22/pstip-changing-sql-database-autoshrink-property-using-smo-and-powershell/</loc>
+    <lastmod>2013-04-22T18:00:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/19/pstip-powershell-command-line-switches-shortcuts/</loc>
+    <lastmod>2013-04-19T18:00:11+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/18/pstip-restoring-a-sql-database-using-smo/</loc>
+    <lastmod>2013-04-18T18:00:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/17/pstip-count-the-number-of-mailboxes-per-department/</loc>
+    <lastmod>2013-04-17T18:00:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/16/pstip-backing-up-sql-transaction-log-using-smo/</loc>
+    <lastmod>2013-04-16T18:00:11+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/15/pstip-managing-remote-sessions/</loc>
+    <lastmod>2013-04-15T18:00:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/14/2013-powershell-scripting-games/</loc>
+    <lastmod>2013-04-14T13:32:35+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/12/pstip-backing-up-a-sql-database-using-smo/</loc>
+    <lastmod>2013-04-12T18:00:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/11/pstip-discovering-active-directory-fsmo-role-holders-using-powershell/</loc>
+    <lastmod>2013-04-11T18:00:08+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/10/pstip-wait-for-a-service-to-reach-a-specified-status/</loc>
+    <lastmod>2013-04-10T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/10/powergui-script-editor-gets-full-support-for-powershell-3-0/</loc>
+    <lastmod>2013-04-10T15:38:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/09/heads-up-microsoft-script-explorer-reaches-the-end-of-the-road/</loc>
+    <lastmod>2013-04-09T12:15:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/08/pstip-refreshing-service-objects/</loc>
+    <lastmod>2013-04-08T18:00:24+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/04/pstip-detecting-wi-fi-adapters/</loc>
+    <lastmod>2013-04-04T18:00:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/03/channel-9s-mms-2013-rss-feed-is-more-fun-with-powershell/</loc>
+    <lastmod>2013-04-03T19:59:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/03/pstip-list-all-fixed-disk-drives-visible-to-sql-server-instance/</loc>
+    <lastmod>2013-04-03T18:00:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/03/pstip-change-sql-server-maxservermemory-configuration-using-smo/</loc>
+    <lastmod>2013-04-03T18:00:17+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/02/write-a-pstip-and-win-a-copy-of-packts-oracle-database-and-powershell-how-to-ebook/</loc>
+    <lastmod>2013-04-02T17:00:10+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/02/pstip-view-policy-settings-with-rsop-wmi-classes/</loc>
+    <lastmod>2013-04-02T16:15:05+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/04/01/free-powershell-3-0-ebook-in-brazilian-portuguese/</loc>
+    <lastmod>2013-04-01T19:22:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/03/29/pstip-detecting-if-a-certain-process-is-elevated/</loc>
+    <lastmod>2013-03-29T18:00:17+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/03/28/pstip-identifying-sql-system-objects-using-smo/</loc>
+    <lastmod>2013-03-28T18:00:21+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/03/27/pstip-generate-t-sql-script-to-clone-database-tables-using-smo/</loc>
+    <lastmod>2013-03-27T18:00:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/03/25/pstip-fixing-the-output-of-convertto-html/</loc>
+    <lastmod>2013-03-25T18:00:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/03/22/pstip-enhancements-to-implicit-remoting-in-powershell-3-0/</loc>
+    <lastmod>2013-03-22T18:00:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/03/20/pstip-working-with-excel-constants/</loc>
+    <lastmod>2013-03-20T18:00:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/03/20/the-windows-powershell-3-0-sdk-sample-pack/</loc>
+    <lastmod>2013-03-20T12:01:42+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/03/19/pstip-generate-t-sql-script-for-cloning-a-sql-database/</loc>
+    <lastmod>2013-03-19T18:00:10+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/03/18/pstip-get-a-list-of-geographical-locations/</loc>
+    <lastmod>2013-03-18T18:00:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/03/15/pstip-getting-enum-values-in-powershell-3-0/</loc>
+    <lastmod>2013-03-15T18:00:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/03/14/pstip-change-sql-server-default-backup-folder-location/</loc>
+    <lastmod>2013-03-14T18:00:29+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/03/13/pstip-how-to-configure-international-settings-in-powershell-3-0/</loc>
+    <lastmod>2013-03-13T18:00:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/03/11/pstip-set-windows-firewall-status-in-windows-server-2012-and-windows-8/</loc>
+    <lastmod>2013-03-11T18:00:08+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/03/08/pstip-how-to-determine-if-a-file-is-32bit-or-64bit/</loc>
+    <lastmod>2013-03-08T19:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/03/07/pstip-finding-the-drive-letter-of-a-mounted-disk-image/</loc>
+    <lastmod>2013-03-07T19:00:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/03/06/pstip-decoding-winrm-error-messages/</loc>
+    <lastmod>2013-03-06T19:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/03/05/pstip-automatic-refresh-of-hyper-v-vm-objects/</loc>
+    <lastmod>2013-03-05T19:00:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/03/04/pstip-invoking-methods-with-new-object/</loc>
+    <lastmod>2013-03-04T19:00:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/21/pstip-enabling-remote-desktop-access-firewall-rules-in-windows-8-and-windows-server-2012/</loc>
+    <lastmod>2013-02-21T19:00:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/20/pstip-get-windows-firewall-rule-status-in-windows-8-and-server-2012/</loc>
+    <lastmod>2013-02-20T19:00:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/20/powershell-magazine-is-a-silver-media-partner-for-techmentor-orlando/</loc>
+    <lastmod>2013-02-20T16:44:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/19/pstip-adding-firewall-rules-in-windows-8-and-server-2012/</loc>
+    <lastmod>2013-02-19T19:00:30+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/18/pstip-handling-negative-timespan-objects/</loc>
+    <lastmod>2013-02-18T19:01:51+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/15/pstip-validating-active-directory-user-credentials/</loc>
+    <lastmod>2013-02-15T19:01:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/15/new-version-of-the-windows-azure-powershell/</loc>
+    <lastmod>2013-02-15T17:03:35+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/14/pstip-quickly-load-microsoft-kb-articles/</loc>
+    <lastmod>2013-02-14T23:28:36+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/13/pstip-streaming-results-from-background-jobs-in-powershell-3-0/</loc>
+    <lastmod>2013-02-13T19:01:35+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/12/pstip-prompt-until-satisfied/</loc>
+    <lastmod>2013-02-12T19:13:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/powercli/</loc>
+    <lastmod>2013-02-12T13:49:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/powercli/</loc>
+    <lastmod>2013-02-12T13:49:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/12/powercli-5-1-release-2-is-released/</loc>
+    <lastmod>2013-02-12T13:49:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/11/pstip-get-credential-at-the-command-line/</loc>
+    <lastmod>2013-02-11T19:20:21+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/08/pstip-using-cim-cmdlets-to-find-the-user-group-membership/</loc>
+    <lastmod>2013-02-08T19:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/07/pstip-index-into-scalar-in-powershell-3-0/</loc>
+    <lastmod>2013-02-07T19:01:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/07/windows-powershell-for-sharepoint-2013-a-learning-roadmap/</loc>
+    <lastmod>2013-02-07T10:41:42+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/06/pstip-validate-if-proxy-credentials-are-required/</loc>
+    <lastmod>2013-02-06T19:01:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/05/pstip-argument-disambiguation-in-powershell-3-0/</loc>
+    <lastmod>2013-02-05T20:25:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/04/pstip-to-infinity-and-beyond/</loc>
+    <lastmod>2013-02-04T19:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/04/creating-powershell-custom-objects/</loc>
+    <lastmod>2013-02-04T17:00:21+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/02/01/pstip-one-way-to-change-a-file-extension/</loc>
+    <lastmod>2013-02-01T19:00:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/31/pstip-retrieve-a-redirected-url-powershell-3-0-way/</loc>
+    <lastmod>2013-01-31T19:01:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/29/pstip-retrieve-a-redirected-url/</loc>
+    <lastmod>2013-01-29T19:01:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/29/the-complete-list-of-powershell-ise-3-0-keyboard-shortcuts/</loc>
+    <lastmod>2013-01-29T17:00:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/28/pstip-transposing-lines-in-powershell-ise/</loc>
+    <lastmod>2013-01-28T19:01:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/25/pstip-validate-if-a-folder-exists/</loc>
+    <lastmod>2013-01-25T19:00:17+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/24/pstip-hide-users-from-welcome-screen/</loc>
+    <lastmod>2013-01-24T19:00:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/23/pstip-passing-local-variables-to-a-remote-session-in-powershell-3-0/</loc>
+    <lastmod>2013-01-23T19:01:58+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/22/pstip-how-do-i-determine-if-my-script-is-running-in-a-rdp-session/</loc>
+    <lastmod>2013-01-22T19:00:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/21/pstip-count-occurrences-of-a-word-using-a-hash-table/</loc>
+    <lastmod>2013-01-21T19:00:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/18/pstip-get-a-random-item-from-an-enumeration/</loc>
+    <lastmod>2013-01-18T19:01:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/17/pstip-get-the-count-of-items-in-an-enumeration/</loc>
+    <lastmod>2013-01-17T19:01:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/16/pstip-check-if-the-path-is-relative-or-absolute/</loc>
+    <lastmod>2013-01-16T19:00:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/15/pstip-list-all-wmi-event-classes/</loc>
+    <lastmod>2013-01-15T19:11:30+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/15/windows-powershell-2013-technology-of-the-year-award-winner/</loc>
+    <lastmod>2013-01-15T13:48:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/14/pstip-use-custom-regions-to-fold-code-in-powershell-ise-3-0/</loc>
+    <lastmod>2013-01-14T19:00:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/11/windows-powershell-3-0-language-specification-available-for-download/</loc>
+    <lastmod>2013-01-11T09:20:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/10/pstip-how-can-i-determine-if-im-in-debugging-mode/</loc>
+    <lastmod>2013-01-10T19:00:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/09/powershell-conference-in-germany/</loc>
+    <lastmod>2013-01-09T09:18:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/08/pstip-resolving-an-ip-address-to-host-name-and-vice-versa-using-net/</loc>
+    <lastmod>2013-01-08T19:00:23+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/07/pstip-resolving-ip-addresses-with-wmi/</loc>
+    <lastmod>2013-01-07T19:00:35+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/04/pstip-how-can-i-tell-if-im-in-a-remote-powershell-session/</loc>
+    <lastmod>2013-01-04T19:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/03/pstip-monitor-file-growth-using-wmi/</loc>
+    <lastmod>2013-01-03T19:00:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/02/pstip-working-with-iso-files/</loc>
+    <lastmod>2013-01-02T19:00:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/02/calling-native-commands-from-powershell/</loc>
+    <lastmod>2013-01-02T17:00:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2013/01/01/pstip-how-to-clear-the-error-variable/</loc>
+    <lastmod>2013-01-01T19:00:11+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/31/pstip-list-all-cmdlets-that-accept-a-specific-object-type-as-input/</loc>
+    <lastmod>2012-12-31T19:00:10+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/28/pstip-the-easy-way-to-get-allowed-values/</loc>
+    <lastmod>2012-12-28T19:00:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/27/pstip-most-frequently-used-verb-values/</loc>
+    <lastmod>2012-12-27T19:00:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/27/preparing-data-for-the-report/</loc>
+    <lastmod>2012-12-27T17:00:06+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/26/pstip-explore-all-possible-verb-values-for-registered-file-extensions/</loc>
+    <lastmod>2012-12-26T19:00:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/26/how-to-strong-name-partially-signed-assemblies/</loc>
+    <lastmod>2012-12-26T17:00:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/pscx/</loc>
+    <lastmod>2012-12-26T17:00:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/pscx/</loc>
+    <lastmod>2012-12-26T17:00:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/25/pstip-keeping-your-help-files-up-to-date/</loc>
+    <lastmod>2012-12-25T19:00:06+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/24/pstip-working-with-a-uniform-resource-identifier-uri-in-powershell/</loc>
+    <lastmod>2012-12-24T19:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/21/pscxtip-getting-details-about-a-commands-parameters/</loc>
+    <lastmod>2012-12-21T19:00:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/20/pscxtip-manipulating-file-attributes/</loc>
+    <lastmod>2012-12-20T19:00:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/20/improving-the-output-of-update-help/</loc>
+    <lastmod>2012-12-20T17:00:48+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/19/pscxtip-testing-xml-for-well-formedness-and-validity-against-a-schema/</loc>
+    <lastmod>2012-12-19T19:00:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/18/pscxtip-formatting-xml-for-better-readability/</loc>
+    <lastmod>2012-12-18T19:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/17/pscxtip-how-to-determine-the-byte-order-mark-of-a-text-file/</loc>
+    <lastmod>2012-12-17T19:00:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/13/pstip-print-a-word-document-using-start-process-cmdlet/</loc>
+    <lastmod>2012-12-13T19:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/12/pstip-explore-values-that-can-be-used-with-start-processs-verb-parameter/</loc>
+    <lastmod>2012-12-12T19:00:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/11/pstip-getting-information-about-a-collection-object-not-its-elements/</loc>
+    <lastmod>2012-12-11T19:25:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/09/pstip-excluding-wmi-system-properties/</loc>
+    <lastmod>2012-12-09T10:57:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/08/brain-teaser-one-way-to-solve-it/</loc>
+    <lastmod>2012-12-08T17:00:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/06/pstip-use-push-location-to-save-your-current-location/</loc>
+    <lastmod>2012-12-06T19:00:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/06/handle-log-files-with-powershell-3-0/</loc>
+    <lastmod>2012-12-06T19:00:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/04/pstip-generate-a-zero-byte-temporary-file-on-disk/</loc>
+    <lastmod>2012-12-04T19:00:42+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/04/skipping-empty-csv-objects/</loc>
+    <lastmod>2012-12-04T18:00:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/04/get-the-last-modified-date-and-time/</loc>
+    <lastmod>2012-12-04T17:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/12/03/pstip-enumerating-available-time-zones/</loc>
+    <lastmod>2012-12-03T19:00:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/30/powershell-magazine-has-a-new-home/</loc>
+    <lastmod>2012-11-30T16:14:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/tabexpansion2/</loc>
+    <lastmod>2012-11-29T17:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/tabexpansion2/</loc>
+    <lastmod>2012-11-29T17:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/29/using-custom-argument-completers-in-powershell-3-0/</loc>
+    <lastmod>2012-11-29T17:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/28/pstip-how-to-quickly-open-output-file/</loc>
+    <lastmod>2012-11-28T21:00:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/27/pstip-where-are-my-about-help-topics-for-powershell-workflows-and-scheduled-jobs/</loc>
+    <lastmod>2012-11-27T19:00:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/27/output-only-the-palindromic-words/</loc>
+    <lastmod>2012-11-27T18:45:23+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/27/better-restart-computer-cmdlet-in-powershell-3-0/</loc>
+    <lastmod>2012-11-27T17:00:11+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/26/pstip-duplicating-folder-structures/</loc>
+    <lastmod>2012-11-26T19:00:58+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/23/pstip-create-an-empty-folder-structure/</loc>
+    <lastmod>2012-11-23T19:00:52+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/22/pstip-create-a-file-of-the-specified-size/</loc>
+    <lastmod>2012-11-22T19:00:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/21/pstip-foreach-object-gotcha/</loc>
+    <lastmod>2012-11-21T19:00:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/20/pstip-powershell-and-the-pre-configured-user-agent-strings/</loc>
+    <lastmod>2012-11-20T23:23:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/19/pstip-capture-console-screen/</loc>
+    <lastmod>2012-11-19T19:00:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/19/find-a-list-of-all-ip-addresses-assigned-to-the-local-system/</loc>
+    <lastmod>2012-11-19T18:20:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/16/pstip-identifying-the-name-of-the-powershell-host/</loc>
+    <lastmod>2012-11-16T19:00:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/15/pstip-find-powershell-host-process-name/</loc>
+    <lastmod>2012-11-15T19:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/14/pstip-how-to-get-the-email-address-of-the-currently-logged-on-user/</loc>
+    <lastmod>2012-11-14T19:00:05+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/14/powershell-workflows/</loc>
+    <lastmod>2012-11-14T17:43:51+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/13/pstip-get-the-contents-of-a-file-in-one-string/</loc>
+    <lastmod>2012-11-13T19:00:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/12/pstip-a-difference-between-the-replace-operator-and-string-replace-method/</loc>
+    <lastmod>2012-11-12T19:00:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/12/assign-a-list-of-processes-to-a-variable-and-output-it-to-the-console/</loc>
+    <lastmod>2012-11-12T17:01:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/09/pstip-start-powershell-as-a-different-user-with-elevated-privileges/</loc>
+    <lastmod>2012-11-09T18:51:29+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/08/pstip-get-all-wmi-classes-with-methods/</loc>
+    <lastmod>2012-11-08T19:00:35+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/07/pstip-grouping-objects/</loc>
+    <lastmod>2012-11-07T19:00:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/07/client-and-patch-management-using-the-updateservices-module/</loc>
+    <lastmod>2012-11-07T13:19:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/07/learn-windows-powershell-3-in-a-month-of-lunches/</loc>
+    <lastmod>2012-11-07T08:44:29+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/post/2012-11-06-pstip-send-the-last-command-executed-to-clipboard/</loc>
+    <lastmod>2012-11-06T19:00:42+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/05/pstip-using-unc-paths-when-working-with-powershell-providers/</loc>
+    <lastmod>2012-11-05T19:00:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/05/convert-a-string-to-a-character-array-2/</loc>
+    <lastmod>2012-11-05T17:00:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/02/pstip-access-web-from-powershell-console/</loc>
+    <lastmod>2012-11-02T18:00:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/11/01/pstip-how-to-automatically-dot-source-all-scripts-in-a-folder/</loc>
+    <lastmod>2012-11-01T18:00:36+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/31/pstip-new-powershell-drive-psdrive/</loc>
+    <lastmod>2012-10-31T18:00:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/30/pstip-storing-of-credentials/</loc>
+    <lastmod>2012-10-30T18:00:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/30/new-version-of-powershell-help-files/</loc>
+    <lastmod>2012-10-30T11:01:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/29/pstip-script-sharing-using-dropbox-2/</loc>
+    <lastmod>2012-10-29T18:00:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/29/cim-cmdlets-cheat-sheet-from-the-wmi-team/</loc>
+    <lastmod>2012-10-29T08:13:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/27/multi-server-management-with-windows-powershell/</loc>
+    <lastmod>2012-10-27T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/26/pstip-ignoring-errors/</loc>
+    <lastmod>2012-10-26T18:00:51+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/25/pstip-sending-emails-using-your-gmail-account/</loc>
+    <lastmod>2012-10-25T18:00:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/24/pstip-different-method-to-compare-strings/</loc>
+    <lastmod>2012-10-24T18:00:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/pstip/</loc>
+    <lastmod>2012-10-24T18:00:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/23/pstip-set-strictmode-why-should-you-care/</loc>
+    <lastmod>2012-10-23T18:00:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/23/powershell-plus-is-free/</loc>
+    <lastmod>2012-10-23T12:26:24+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/22/pstip-quickly-generate-a-password/</loc>
+    <lastmod>2012-10-22T18:00:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/20/two-new-powershell-modules-related-to-storage-spaces/</loc>
+    <lastmod>2012-10-20T13:19:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/19/pstip-how-to-speed-up-the-test-connection-command/</loc>
+    <lastmod>2012-10-19T18:00:35+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/18/pstip-get-system-power-information/</loc>
+    <lastmod>2012-10-18T18:00:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/17/pstip-wait-for-executable-to-finish/</loc>
+    <lastmod>2012-10-17T18:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/16/converting-numbers-to-binary-and-back/</loc>
+    <lastmod>2012-10-16T18:00:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/16/using-skydrive-to-sync-your-windowspowershell-folder/</loc>
+    <lastmod>2012-10-16T16:00:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/15/pstip-get-your-reboot-history/</loc>
+    <lastmod>2012-10-15T18:00:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/12/pstip-converting-numbers-to-hex/</loc>
+    <lastmod>2012-10-12T18:00:11+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/11/connecting-to-hyper-v-virtual-machines-with-powershell/</loc>
+    <lastmod>2012-10-11T18:00:30+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/09/manipulating-wildcards/</loc>
+    <lastmod>2012-10-09T18:00:52+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/08/pstip-how-to-remove-the-first-line-from-a-text-file/</loc>
+    <lastmod>2012-10-08T23:07:51+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/05/pstip-get-old-files-based-on-lastwritetime/</loc>
+    <lastmod>2012-10-05T18:00:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/05/windows-powershell-cookbook-3rd-edition/</loc>
+    <lastmod>2012-10-05T15:03:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/05/new-book-microsoft-powershell-3-0-first-look/</loc>
+    <lastmod>2012-10-05T15:02:24+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/04/pstip-working-with-datetime-objects-in-powershell-using-system-datetime/</loc>
+    <lastmod>2012-10-04T18:00:36+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/03/pstip-find-all-powershell-profiles-from-profile/</loc>
+    <lastmod>2012-10-03T18:00:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/02/pstip-displaying-all-possible-combinations-of-a-flagged-enumeration/</loc>
+    <lastmod>2012-10-02T18:00:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/10/01/pstip-creating-flagged-enumerations-in-powershell/</loc>
+    <lastmod>2012-10-01T14:28:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/wallpapers/</loc>
+    <lastmod>2012-09-28T18:00:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/wallpapers/</loc>
+    <lastmod>2012-09-28T18:00:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/28/windows-8-powershell-lock-screen/</loc>
+    <lastmod>2012-09-28T18:00:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/27/cmdlet-discovery-and-module-auto-loading/</loc>
+    <lastmod>2012-09-27T18:00:36+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/26/pstip-how-do-you-tell-which-version-of-a-modules-help-files-you-have-installed/</loc>
+    <lastmod>2012-09-26T18:00:35+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/25/for-which-system-modules-have-you-downloaded-updatable-help-files/</loc>
+    <lastmod>2012-09-25T18:07:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/25/managing-active-directory-using-a-jumphost-and-remoting/</loc>
+    <lastmod>2012-09-25T13:32:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/24/pstip-advanced-object-formatting/</loc>
+    <lastmod>2012-09-24T18:00:29+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/21/pstip-list-all-cmdlets-with-a-specified-parameter-the-powershell-3-0-way/</loc>
+    <lastmod>2012-09-21T18:00:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/20/pstip-whats-the-difference-between-ctest-txt-ctest-txt-and-test-txt/</loc>
+    <lastmod>2012-09-20T18:00:58+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/19/pstip-how-to-improve-the-display-of-enumerated-items/</loc>
+    <lastmod>2012-09-19T18:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/18/pstip-resolve-ip-address-or-a-host-name-using-net-framework/</loc>
+    <lastmod>2012-09-18T18:00:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/17/pstip-get-powershell-magazines-daily-tips-right-from-your-console/</loc>
+    <lastmod>2012-09-17T18:00:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/13/pstip-a-quick-list-of-strings/</loc>
+    <lastmod>2012-09-13T18:00:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/13/happy-birthday-powershell-magazine/</loc>
+    <lastmod>2012-09-13T13:00:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/12/pstip-how-to-find-path-to-your-documents-folder/</loc>
+    <lastmod>2012-09-12T22:21:10+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/11/pstip-test-files-and-folders-for-last-write-time-the-powershell-3-0-way/</loc>
+    <lastmod>2012-09-11T18:00:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/10/pstip-preview-powershell-script-files-in-windows-explorer-preview-pane/</loc>
+    <lastmod>2012-09-10T18:00:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/disclaimer/</loc>
+    <lastmod>2012-09-10T04:16:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/07/pstip-how-to-expand-environment-variable-contained-in-a-text-file/</loc>
+    <lastmod>2012-09-07T18:00:08+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/06/pstip-get-all-writeable-properties-of-a-wmi-class/</loc>
+    <lastmod>2012-09-06T18:00:11+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/05/pstip-optimizing-wmi-object-retrieval/</loc>
+    <lastmod>2012-09-05T18:00:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/05/powershell-3-0-is-available-for-downlevel-systems/</loc>
+    <lastmod>2012-09-05T06:41:48+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/04/pstip-another-way-to-modify-wmi-instance-properties/</loc>
+    <lastmod>2012-09-04T18:00:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/03/pstip-modifying-wmi-object-properties-using-get-wmiobject-cmdlet/</loc>
+    <lastmod>2012-09-03T18:00:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/09/01/new-powershell-community-website/</loc>
+    <lastmod>2012-09-01T18:00:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/31/pstip-another-way-to-get-a-function-definiton/</loc>
+    <lastmod>2012-08-31T18:00:51+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/30/pstip-getting-the-content-of-an-object/</loc>
+    <lastmod>2012-08-30T18:00:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/30/poshstats-for-hyper-v-3-0/</loc>
+    <lastmod>2012-08-30T16:00:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/29/pstip-adding-extended-types-the-powershell-3-0-way/</loc>
+    <lastmod>2012-08-29T18:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/28/pstip-starting-and-stopping-services-on-remote-computers/</loc>
+    <lastmod>2012-08-28T18:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/28/bartek-bielawskis-favorite-powershell-tips-and-tricks/</loc>
+    <lastmod>2012-08-28T16:00:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/27/pstip-how-to-get-only-files-the-powershell-3-0-way/</loc>
+    <lastmod>2012-08-27T19:08:24+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/26/pstip-a-hidden-gem-of-the-test-connection-cmdlet/</loc>
+    <lastmod>2012-08-26T10:02:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/24/pstip-getting-wmi-associated-classes-in-powershell-3-0/</loc>
+    <lastmod>2012-08-24T18:00:42+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/23/pstip-how-to-convert-net-framework-objects-into-html/</loc>
+    <lastmod>2012-08-23T18:00:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/22/pstip-getting-system-modules-only/</loc>
+    <lastmod>2012-08-22T18:00:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/21/pstip-how-to-create-a-share-in-windows-server-2012/</loc>
+    <lastmod>2012-08-21T18:00:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/20/pstip-selectingcopying-the-current-line-in-powershell-ise/</loc>
+    <lastmod>2012-08-20T18:00:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/18/powershell-2-0-help-on-windows-phone/</loc>
+    <lastmod>2012-08-18T11:28:48+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/17/pstip-how-to-get-non-running-automatic-services/</loc>
+    <lastmod>2012-08-17T18:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/16/pstip-persistent-file-system-drives/</loc>
+    <lastmod>2012-08-16T18:00:30+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/15/pstip-get-next-available-drive-letter/</loc>
+    <lastmod>2012-08-15T21:46:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/02/announcing-microsoft-all-in-one-script-framework/</loc>
+    <lastmod>2012-08-02T11:23:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/08/01/jeffrey-snover-on-runas-radio/</loc>
+    <lastmod>2012-08-01T11:12:29+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/07/24/jaap-brassers-favorite-powershell-tips-and-tricks/</loc>
+    <lastmod>2012-07-24T12:00:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/07/03/configuration-manager-powershell-sdk/</loc>
+    <lastmod>2012-07-03T19:32:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/06/28/workflow-documentation-now-live-on-technet/</loc>
+    <lastmod>2012-06-28T10:08:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/06/27/mike-f-robbinss-favorite-powershell-tips-tricks/</loc>
+    <lastmod>2012-06-27T18:00:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/06/27/windows-powershell-3-0-and-server-manager-quick-reference-guides-updated/</loc>
+    <lastmod>2012-06-27T13:36:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/06/20/boe-prox-favorite-powershell-tips-tricks/</loc>
+    <lastmod>2012-06-20T18:00:52+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/06/15/alan-renoufs-favorite-powershell-tips-and-tricks/</loc>
+    <lastmod>2012-06-15T18:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/06/14/powershell-videos-from-teched-north-america-2012/</loc>
+    <lastmod>2012-06-14T11:27:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/06/13/will-steeles-favorite-powershell-tips-and-tricks/</loc>
+    <lastmod>2012-06-13T18:00:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/06/11/adam-driscolls-favorite-powershell-tips-tricks/</loc>
+    <lastmod>2012-06-11T18:00:30+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/06/09/windows-powershell-3-0-and-server-manager-quick-reference-guides/</loc>
+    <lastmod>2012-06-09T04:24:53+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/06/07/jonathan-medds-favorite-powershell-tips-tricks/</loc>
+    <lastmod>2012-06-07T18:00:30+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/06/07/interacting-with-teched-na-2012-schedule-using-powershell-v3/</loc>
+    <lastmod>2012-06-07T06:44:21+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/odata/</loc>
+    <lastmod>2012-06-07T06:44:21+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/showui/</loc>
+    <lastmod>2012-06-07T06:44:21+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/showui/</loc>
+    <lastmod>2012-06-07T06:44:21+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/06/06/visualize-your-data-using-powershell-introducing-seeshell/</loc>
+    <lastmod>2012-06-06T16:41:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/06/05/claus-nielsens-favorite-powershell-tips-tricks/</loc>
+    <lastmod>2012-06-05T18:00:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/06/05/microsoft-powershell-3-0-first-look/</loc>
+    <lastmod>2012-06-05T17:00:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/06/04/windows-management-framework-3-0-rc-is-available-for-download/</loc>
+    <lastmod>2012-06-04T09:09:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/06/03/jan-egil-rings-favorite-powershell-tips-tricks/</loc>
+    <lastmod>2012-06-03T18:00:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/05/31/luc-dekens-favorite-powershell-tips-tricks/</loc>
+    <lastmod>2012-05-31T18:00:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/05/31/powershell-for-developers/</loc>
+    <lastmod>2012-05-31T17:00:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/05/29/keith-hills-favorite-powershell-tips-tricks/</loc>
+    <lastmod>2012-05-29T18:00:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/05/21/master-powershell-with-dr-tobias-weltner/</loc>
+    <lastmod>2012-05-21T18:00:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/05/20/primalscript-2012-and-powershell-studio-2012/</loc>
+    <lastmod>2012-05-20T16:49:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/05/14/formatting-changes-for-system-center-operations-manager-2012-in-update-rollup-1/</loc>
+    <lastmod>2012-05-14T18:00:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/system-center/</loc>
+    <lastmod>2012-05-14T18:00:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/system-center/</loc>
+    <lastmod>2012-05-14T18:00:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/group-policy/</loc>
+    <lastmod>2012-05-14T18:00:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/group-policy/</loc>
+    <lastmod>2012-05-14T18:00:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/05/14/managing-group-policy-with-powershell/</loc>
+    <lastmod>2012-05-14T18:00:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/05/10/powershell-detective/</loc>
+    <lastmod>2012-05-10T18:00:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/05/10/windows-powershell-3-0-step-by-step/</loc>
+    <lastmod>2012-05-10T06:50:51+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/05/09/interview-with-darren-mar-elia-from-mms-2012/</loc>
+    <lastmod>2012-05-09T14:30:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/05/05/day-3-from-the-powershell-deep-dive-at-tec-2012/</loc>
+    <lastmod>2012-05-05T12:25:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/05/03/day-2-from-the-powershell-deep-dive-at-tec-2012/</loc>
+    <lastmod>2012-05-03T04:07:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/05/02/getting-powershelled-in-10-minutes/</loc>
+    <lastmod>2012-05-02T18:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/05/02/office-365-helper-script-examples/</loc>
+    <lastmod>2012-05-02T12:48:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/05/01/day-1-from-the-powershell-deep-dive-at-tec-2012/</loc>
+    <lastmod>2012-05-01T15:44:05+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/04/30/powershell-community-extensions/</loc>
+    <lastmod>2012-04-30T18:00:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/04/29/windows-server-2012-beta-virtual-labs/</loc>
+    <lastmod>2012-04-29T18:00:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/remoting/</loc>
+    <lastmod>2012-04-28T18:00:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/remoting/</loc>
+    <lastmod>2012-04-28T18:00:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/04/28/secrets-of-powershell-remoting/</loc>
+    <lastmod>2012-04-28T18:00:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/04/27/interview-with-jeffrey-snover-from-mms-2012/</loc>
+    <lastmod>2012-04-27T20:58:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/04/27/a-day-in-the-life-of-a-poshoholic-creating-and-using-type-accelerators-and-namespaces-the-easy-way/</loc>
+    <lastmod>2012-04-27T18:00:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/04/25/building-advanced-user-interfaces-with-showui/</loc>
+    <lastmod>2012-04-25T18:00:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/office-365/</loc>
+    <lastmod>2012-04-23T18:00:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/office-365/</loc>
+    <lastmod>2012-04-23T18:00:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/04/23/provisioning-and-licensing-office-365-accounts-with-powershell/</loc>
+    <lastmod>2012-04-23T18:00:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/04/20/parsing-remote-machine-local-date-and-time-with-wmi/</loc>
+    <lastmod>2012-04-20T18:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/04/18/project-chargeback-reports/</loc>
+    <lastmod>2012-04-18T18:00:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/04/16/automating-configuration-manager-with-windows-powershell/</loc>
+    <lastmod>2012-04-16T18:00:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/configuration-manager/</loc>
+    <lastmod>2012-04-16T18:00:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/configuration-manager/</loc>
+    <lastmod>2012-04-16T18:00:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/03/28/powershell-the-great-problem-solver/</loc>
+    <lastmod>2012-03-28T18:00:58+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/03/22/my-10-best-practices-leading-to-the-scripting-games-2012-part-ii/</loc>
+    <lastmod>2012-03-22T18:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/scripting-games/</loc>
+    <lastmod>2012-03-22T18:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/scripting-games/</loc>
+    <lastmod>2012-03-22T18:00:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/03/21/an-interview-with-microsofts-scripting-guy-ed-wilson-at-teched-na-2011/</loc>
+    <lastmod>2012-03-21T18:00:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/03/20/my-10-best-practices-leading-to-the-scripting-games-2012-part-i/</loc>
+    <lastmod>2012-03-20T18:00:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/03/19/an-interview-with-powershell-mvp-hal-rottenberg-at-teched-na-2011/</loc>
+    <lastmod>2012-03-19T18:00:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/03/13/microsoft-script-explorer-for-windows-powershell/</loc>
+    <lastmod>2012-03-13T12:57:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/03/07/old-habits-die-hard/</loc>
+    <lastmod>2012-03-07T19:00:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/03/07/windows-powershell-for-the-busy-admin/</loc>
+    <lastmod>2012-03-07T16:42:05+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/03/01/powershell-3-0-beta-is-out/</loc>
+    <lastmod>2012-03-01T18:09:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/chocolatey/</loc>
+    <lastmod>2012-02-20T19:00:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/02/20/chocolatey-and-powershell-revolutionize-windows-part-ii/</loc>
+    <lastmod>2012-02-20T19:00:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/02/15/chocolatey-and-powershell-revolutionize-windows-part-i/</loc>
+    <lastmod>2012-02-15T19:00:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/02/13/pimp-your-profile-2/</loc>
+    <lastmod>2012-02-13T19:00:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/02/02/data-ontap-powershell-toolkit-1-7/</loc>
+    <lastmod>2012-02-02T15:21:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/netapp/</loc>
+    <lastmod>2012-02-02T15:21:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/01/30/the-2012-powershell-scripting-games/</loc>
+    <lastmod>2012-01-30T09:29:23+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/01/29/power-essentials-become-a-powershell-wiz-too/</loc>
+    <lastmod>2012-01-29T16:10:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/01/29/windows-powershell-sessions-from-nordic-infrastructure-conference-2012-available/</loc>
+    <lastmod>2012-01-29T14:29:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/01/27/its-time-for-another-powershell-deep-dive/</loc>
+    <lastmod>2012-01-27T19:30:29+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/01/24/powerwf-and-powerse-2-7/</loc>
+    <lastmod>2012-01-25T00:26:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/01/23/sqlite-powershell-provider/</loc>
+    <lastmod>2012-01-23T16:20:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/01/16/why-did-i-start-learning-powershell/</loc>
+    <lastmod>2012-01-16T19:00:21+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/post/2012-01-12-find-an-unused-drive-letter/</loc>
+    <lastmod>2012-01-12T19:00:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/01/11/how-i-started-to-love-powershell/</loc>
+    <lastmod>2012-01-11T19:00:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/01/09/my-inspiration/</loc>
+    <lastmod>2012-01-09T19:00:42+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2012/01/01/announcing-the-winners-of-the-powershell-story-series/</loc>
+    <lastmod>2012-01-01T15:00:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/30/how-i-met-your-powershell/</loc>
+    <lastmod>2011-12-30T19:00:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/28/my-powershell-story/</loc>
+    <lastmod>2011-12-28T19:00:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/27/powershell-linux-to-windows-integration-encoding-problem/</loc>
+    <lastmod>2011-12-27T19:00:36+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/26/helping-admins-getting-started-with-powershell/</loc>
+    <lastmod>2011-12-26T19:00:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/23/how-i-learned-to-love-the-powershell/</loc>
+    <lastmod>2011-12-23T19:00:52+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/23/getting-started-with-windows-powershell-workflows/</loc>
+    <lastmod>2011-12-23T14:23:52+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/workflows/</loc>
+    <lastmod>2011-12-23T14:23:52+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/workflows/</loc>
+    <lastmod>2011-12-23T14:23:52+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/22/an-interview-with-powershell-mvp-thomas-lee-at-teched-na-2011/</loc>
+    <lastmod>2011-12-22T19:00:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/21/knowledge-get-powershell/</loc>
+    <lastmod>2011-12-21T19:00:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/21/free-netcmdlets-workstation-license/</loc>
+    <lastmod>2011-12-21T09:51:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/20/5-essential-powershell-skills-for-exchange-server-administrators/</loc>
+    <lastmod>2011-12-20T19:00:23+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/19/get-powershell-create-blog-write-book/</loc>
+    <lastmod>2011-12-19T19:00:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/16/powershell-limit-none/</loc>
+    <lastmod>2011-12-16T19:00:06+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/15/an-interview-with-powershell-mvp-don-jones-at-teched-na-2011/</loc>
+    <lastmod>2011-12-15T15:00:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/14/how-powershell-made-my-life-easier/</loc>
+    <lastmod>2011-12-14T19:00:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/12/powershell-and-i/</loc>
+    <lastmod>2011-12-12T19:00:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/10/windows-powershell-at-microsoft-virtual-techdays-online-event/</loc>
+    <lastmod>2011-12-10T19:00:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/09/my-powershell-journey/</loc>
+    <lastmod>2011-12-09T19:00:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/08/wsman-wmi-and-cim-at-the-uk-powershell-user-group/</loc>
+    <lastmod>2011-12-08T10:55:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/07/teaching-an-old-dog-new-tricks-liveedu-and-windows-powershell/</loc>
+    <lastmod>2011-12-07T19:00:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/07/webcast-enterprise-exchange-management-with-powershell/</loc>
+    <lastmod>2011-12-07T08:33:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/05/scriptwarriors-first-powershell-experiences/</loc>
+    <lastmod>2011-12-05T20:00:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/03/windows-management-framework-3-0-community-technology-preview-ctp-2-is-here/</loc>
+    <lastmod>2011-12-03T12:19:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/12/01/how-the-scripting-wife-got-started/</loc>
+    <lastmod>2011-12-01T20:00:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/call-for-authors/</loc>
+    <lastmod>2011-11-28T23:25:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/11/29/call-for-writers-share-your-experiences-and-help-new-users/</loc>
+    <lastmod>2011-11-28T23:25:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/11/22/managing-scheduled-tasks-in-your-environment-part-ii/</loc>
+    <lastmod>2011-11-22T10:21:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/scheduled-tasks/</loc>
+    <lastmod>2011-11-22T10:21:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/11/21/managing-scheduled-tasks-in-your-environment-part-i/</loc>
+    <lastmod>2011-11-21T10:01:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/11/18/an-interview-with-powershell-expert-peter-monadjemi/</loc>
+    <lastmod>2011-11-18T08:08:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/11/17/an-interview-with-powershell-expert-brandon-shell/</loc>
+    <lastmod>2011-11-17T06:03:05+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/11/16/an-interview-with-powershell-expert-james-brundage/</loc>
+    <lastmod>2011-11-16T06:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/11/15/advanced-script-profiling/</loc>
+    <lastmod>2011-11-15T07:27:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/performance/</loc>
+    <lastmod>2011-11-15T07:27:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/performance/</loc>
+    <lastmod>2011-11-15T07:27:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/11/15/an-interview-with-powershell-expert-craig-martin/</loc>
+    <lastmod>2011-11-15T05:56:24+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/11/14/an-interview-with-powershell-expert-marc-van-orsouw/</loc>
+    <lastmod>2011-11-14T16:13:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/11/11/an-interview-with-powershell-expert-bartek-bielawski/</loc>
+    <lastmod>2011-11-11T16:07:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/11/10/an-interview-with-powershell-expert-james-oneill/</loc>
+    <lastmod>2011-11-10T12:30:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/11/08/an-interview-with-powershell-expert-bruce-payette/</loc>
+    <lastmod>2011-11-08T09:10:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/11/08/an-interview-with-powershell-expert-kirk-munro/</loc>
+    <lastmod>2011-11-08T08:54:48+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/11/07/an-interview-with-powershell-expert-thomas-lee/</loc>
+    <lastmod>2011-11-07T13:53:23+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/11/03/an-interview-with-powershell-expert-jan-egil-ring/</loc>
+    <lastmod>2011-11-03T14:42:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/11/03/an-interview-with-powershell-expert-jason-shirk/</loc>
+    <lastmod>2011-11-03T12:52:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/11/02/an-interview-with-powershell-expert-jeff-hicks/</loc>
+    <lastmod>2011-11-02T09:47:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/11/01/an-interview-with-powershell-expert-jeff-truman/</loc>
+    <lastmod>2011-11-01T10:08:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/10/31/an-interview-with-powershell-expert-tobias-weltner/</loc>
+    <lastmod>2011-10-31T13:46:28+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/10/28/an-interview-with-powershell-expert-kenneth-hansen/</loc>
+    <lastmod>2011-10-28T12:12:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/10/24/an-interview-with-powershell-expert-dmitry-sotnikov/</loc>
+    <lastmod>2011-10-24T16:38:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/10/04/an-overview-of-windows-powershell-features-in-windows-server-8-developer-preview/</loc>
+    <lastmod>2011-10-03T21:40:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/tags/powershell-ise/</loc>
+    <lastmod>2011-09-28T13:29:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/categories/powershell-ise/</loc>
+    <lastmod>2011-09-28T13:29:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/28/powershell-v3-ise-and-ise-scripting-model-changes-improvements/</loc>
+    <lastmod>2011-09-28T13:29:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/25/do-you-have-any-questions-for-jeffrey-snover/</loc>
+    <lastmod>2011-09-25T13:13:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/24/powershell-vnext-web-service-entities/</loc>
+    <lastmod>2011-09-24T12:40:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/23/powershell-wallpapers/</loc>
+    <lastmod>2011-09-23T10:10:23+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/22/rally-the-orphan-processes/</loc>
+    <lastmod>2011-09-22T13:34:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/22/cmdlet-help-editor-was-released-on-codeplex/</loc>
+    <lastmod>2011-09-22T10:09:52+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/20/windows-management-framework-3-0-community-technology-preview-ctp-1-is-here/</loc>
+    <lastmod>2011-09-20T09:24:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/15/how-to-find-out-whats-new-in-powershell-vnext/</loc>
+    <lastmod>2011-09-14T19:49:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/14/custom-errors/</loc>
+    <lastmod>2011-09-14T07:44:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/14/powershell-plus-v4-1-has-been-released/</loc>
+    <lastmod>2011-09-13T23:12:19+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/13/enums-numeric-values/</loc>
+    <lastmod>2011-09-13T05:27:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/13/private-variable/</loc>
+    <lastmod>2011-09-13T05:16:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/13/format-elements/</loc>
+    <lastmod>2011-09-13T05:08:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/13/reverse-text-line/</loc>
+    <lastmod>2011-09-13T03:28:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/13/powershell-magazine-at-the-build-conference/</loc>
+    <lastmod>2011-09-12T18:52:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/12/announcing-the-launch-of-powershell-magazine-website/</loc>
+    <lastmod>2011-09-12T17:48:05+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/11/finding-old-files/</loc>
+    <lastmod>2011-09-11T14:11:52+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/10/news-poshoholic-moved-from-quest-to-devfarm/</loc>
+    <lastmod>2011-09-10T16:02:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/feedback/</loc>
+    <lastmod>2011-09-03T12:51:08+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/write-for-us/</loc>
+    <lastmod>2011-09-03T12:51:08+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/03/powershell-deep-dive-session-abstracts/</loc>
+    <lastmod>2011-09-03T11:22:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/2011/09/03/powershell-version-3-unveiled-at-microsoft-build-conference/</loc>
+    <lastmod>2011-09-03T11:22:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/about/</loc>
+    <lastmod>2011-08-05T16:51:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/404/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/adam-bacon/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/adam-driscoll/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/alan-renouf/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/aleksandar-nikolic/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/alex-pawlak/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/aman-dhally/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/andrea-fisher/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/bartek-bielawski/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/ben-gelens/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/ben-ten/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/boe-prox/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/carlos-perez/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/chad-miller/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/chrissy-lemaire/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/claus-nielsen/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/clint-bergman/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/contact/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/daniel-scott-raynsford/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/daniel-soares/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/darren-mar-elia/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/dave-hull/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/dave-wyatt/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/david-moravec/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/david-obrien/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/deepak-dhami/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/dmitri-guslinsky/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/doug-finke/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/emin-atac/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/fabien-dibot/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/frank-peter-schultze/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/fredrik-wall/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/gayathri-narayanan/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/hemanth-c-damecharla/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/homepage/list/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/homepage/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/ifiok-moses/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/jaap-brasser/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/jakub-jare%C5%A1/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/james-oneill/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/jan-egil-ring/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/jason-helmick/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/jason-stangroome/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/jason-yoder/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/jeff-truman/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/jim-britt/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/joe-clymb3r-bialek/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/joel-jaykul-bennett/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/joel-reed/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/jonathan-medd/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/jonathan-tyler/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/josh-atwell/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/josh-miller/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/josue-castillo/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/jovan-popovic/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/karl-mitschke/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/keith-hill/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/kirk-munro/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/krishna-prasad-k/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/krunoslav-mihalic/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/lee-holmes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/luc-dekens/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/manoj-ravikumar/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/matt-graeber/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/matt-hastings/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/matt-johnson/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/matthew-hitchcock/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/mike-pfeiffer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/mike-robbins/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/niklas-akerlund/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/paul-cunningham/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/peter-kriegel/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/prasoon-karunan-v/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/ravikanth-c/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/rob-reynolds/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/robert-robelo/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/ryan-kazanciyan/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/scott-muc/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/search/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/shay-levy/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/stefan-stranger/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/steven-murawski/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/sumanth-br/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/teresa-wilson-scriptingwife/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/thiyagarajan-parthiban/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/tobias-weltner/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/tome-tanasovski/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/trevor-sullivan/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/vibha-garg/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/vinith-menon/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/will-schroeder/</loc>
+  </url>
+  
+  <url>
+    <loc>https://psmag.github.io/author/will-steele/</loc>
+  </url>
+  
+</urlset>

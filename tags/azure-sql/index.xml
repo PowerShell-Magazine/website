@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Azure SQL on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/tags/azure-sql/</link>
+    <description>Recent content in Azure SQL on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 23 Jul 2018 16:00:34 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/tags/azure-sql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Configuring Azure environment to set up Azure SQL Database Managed Instance (preview)</title>
+      <link>https://psmag.github.io/2018/07/23/configuring-azure-environment-to-set-up-azure-sql-database-managed-instance-preview/</link>
+      <pubDate>Mon, 23 Jul 2018 16:00:34 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2018/07/23/configuring-azure-environment-to-set-up-azure-sql-database-managed-instance-preview/</guid>
+      <description>Azure SQL Database Managed Instance (preview) is a new database service in Azure. This is a fully-managed latest version of SQL Server database engine hosted in Azure and managed by Azure and SQL Server teams.</description>
+    </item>
+    
+  </channel>
+</rss>

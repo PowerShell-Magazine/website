@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PSWindowsAdminCenter on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/pswindowsadmincenter/</link>
+    <description>Recent content in PSWindowsAdminCenter on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 19 Feb 2019 14:42:53 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/pswindowsadmincenter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PSWindowsAdminCenter: PowerShell Module to Manage Connections, Feeds, and Extensions</title>
+      <link>https://psmag.github.io/2019/02/19/pswindowsadmincenter-powershell-module-to-manage-connections-feeds-and-extensions/</link>
+      <pubDate>Tue, 19 Feb 2019 14:42:53 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/02/19/pswindowsadmincenter-powershell-module-to-manage-connections-feeds-and-extensions/</guid>
+      <description>I had published a PowerShell DSC resource module, last month, called WindowsAdminCenterDsc that uses the PowerShell module that was made available with Windows Admin Center version 1812.</description>
+    </item>
+    
+  </channel>
+</rss>

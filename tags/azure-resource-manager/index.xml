@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Azure Resource Manager on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/tags/azure-resource-manager/</link>
+    <description>Recent content in Azure Resource Manager on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 05 Apr 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/tags/azure-resource-manager/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Getting Started with PSArm</title>
+      <link>https://psmag.github.io/2021/04/05/getting-started-with-arm/</link>
+      <pubDate>Mon, 05 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2021/04/05/getting-started-with-arm/</guid>
+      <description>In the first part of this series, you learned about PSArm &amp;ndash; a PowerShell embedded DSL &amp;ndash; that you can use to declaratively define your Azure infrastructure and generate an ARM template.</description>
+    </item>
+    
+    <item>
+      <title>PSArm - PowerShell DSL For Azure Resource Manager - Introduction</title>
+      <link>https://psmag.github.io/2021/04/01/psarm-powershell-dsl-for-azure-resource-manager-introduction/</link>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2021/04/01/psarm-powershell-dsl-for-azure-resource-manager-introduction/</guid>
+      <description>Those who worked on Azure Resource Manager (ARM) templates understand that complexity of writing and making sure the template works as expected becomes very complicated as the complexity of a deployment grows.</description>
+    </item>
+    
+    <item>
+      <title>Deploy Custom Azure Automation Integration Modules Using ARM Templates</title>
+      <link>https://psmag.github.io/2015/11/26/deploy-custom-azure-automation-integration-modules-using-arm-templates/</link>
+      <pubDate>Thu, 26 Nov 2015 17:00:06 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/11/26/deploy-custom-azure-automation-integration-modules-using-arm-templates/</guid>
+      <description>Update: Earlier generic linked template for deploying modules was removed and it was breaking my ARM template. I published two linked templates in my ARMSeries repo that can be used to deploy modules to Azure Automation accounts.</description>
+    </item>
+    
+  </channel>
+</rss>

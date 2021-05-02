@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Garuda on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/garuda/</link>
+    <description>Recent content in Garuda on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 11 Jul 2019 14:31:47 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/garuda/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Garuda – Session Demo From #PSConfEU</title>
+      <link>https://psmag.github.io/2019/07/11/garuda-session-demo-from-psconfeu/</link>
+      <pubDate>Thu, 11 Jul 2019 14:31:47 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/07/11/garuda-session-demo-from-psconfeu/</guid>
+      <description>In the earlier parts of this series, I introduced you to the concepts and design of Garuda framework. I demonstrated a proof-of-concept version of this at PowerShell Conference Europe.</description>
+    </item>
+    
+    <item>
+      <title>Garuda – Architecture and Plan</title>
+      <link>https://psmag.github.io/2019/06/24/garuda-architecture-and-plan/</link>
+      <pubDate>Mon, 24 Jun 2019 04:01:55 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/06/24/garuda-architecture-and-plan/</guid>
+      <description>In the first part of this series, I mentioned the reasoning behind starting development of a new framework for operations validation.</description>
+    </item>
+    
+    <item>
+      <title>Distributed and Flexible Operations Validation Framework – Introduction</title>
+      <link>https://psmag.github.io/2019/06/17/distributed-and-flexible-operations-validation-framework-introduction/</link>
+      <pubDate>Mon, 17 Jun 2019 16:16:51 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/06/17/distributed-and-flexible-operations-validation-framework-introduction/</guid>
+      <description>Operations validation using PowerShell and Pester has been one of my favorite topics and I have both personal and professional interest in this area.</description>
+    </item>
+    
+  </channel>
+</rss>

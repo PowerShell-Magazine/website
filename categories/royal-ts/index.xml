@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Royal TS on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/royal-ts/</link>
+    <description>Recent content in Royal TS on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 24 Mar 2015 16:00:47 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/royal-ts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Royal TS V3 (with a PowerShell module) released</title>
+      <link>https://psmag.github.io/2015/03/24/royal-ts-v3-with-a-powershell-module-released/</link>
+      <pubDate>Tue, 24 Mar 2015 16:00:47 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/03/24/royal-ts-v3-with-a-powershell-module-released/</guid>
+      <description>Back in January 2015, I wrote an introduction to the new PowerShell module in Royal TS V3, which back then was available as a beta version.</description>
+    </item>
+    
+    <item>
+      <title>Introducing the Royal TS PowerShell module</title>
+      <link>https://psmag.github.io/2015/01/08/introducing-the-royal-ts-powershell-module/</link>
+      <pubDate>Thu, 08 Jan 2015 20:02:36 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/01/08/introducing-the-royal-ts-powershell-module/</guid>
+      <description>Royal TS is one of many applications on the market for managing Remote Desktop connections. There are also many other features in Royal TS and you can read more about them on their website.</description>
+    </item>
+    
+  </channel>
+</rss>

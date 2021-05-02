@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Service Management Automation on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/service-management-automation/</link>
+    <description>Recent content in Service Management Automation on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 14 Sep 2015 16:00:47 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/service-management-automation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Why you should install WMF 5.0 Production Preview on your SMA runbook workers</title>
+      <link>https://psmag.github.io/2015/09/14/why-you-should-install-wmf-5-0-production-preview-on-your-sma-runbook-workers/</link>
+      <pubDate>Mon, 14 Sep 2015 16:00:47 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/09/14/why-you-should-install-wmf-5-0-production-preview-on-your-sma-runbook-workers/</guid>
+      <description>Although it is not officially supported yet, here is why you should install WMF 5.0 Production Preview on your runbook workers right now!</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Be cautious with profile customizations and PowerShell Workflow</title>
+      <link>https://psmag.github.io/2014/06/20/pstip-be-cautious-with-profile-customizations-and-powershell-workflow/</link>
+      <pubDate>Fri, 20 Jun 2014 18:00:49 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/06/20/pstip-be-cautious-with-profile-customizations-and-powershell-workflow/</guid>
+      <description>When working with Windows PowerShell Workflow, there are things to be aware of which can break workflow from working. One such thing is customizations made in the PowerShell profile.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Service Management Automation</title>
+      <link>https://psmag.github.io/2014/04/15/introduction-to-service-management-automation/</link>
+      <pubDate>Tue, 15 Apr 2014 16:00:39 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/04/15/introduction-to-service-management-automation/</guid>
+      <description>Service Management Automation (SMA) is a new component in System Center for process automation.
+Before looking into the technical details, let’s have a look at what practical use cases there are for an automation product like SMA:</description>
+    </item>
+    
+    <item>
+      <title>Using PowerShell Switch vs. Boolean Parameters in SMA Runbooks</title>
+      <link>https://psmag.github.io/2013/12/20/using-powershell-switch-vs-boolean-parameters-in-sma-runbooks/</link>
+      <pubDate>Fri, 20 Dec 2013 17:00:50 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/12/20/using-powershell-switch-vs-boolean-parameters-in-sma-runbooks/</guid>
+      <description>Hey Readers. In this article, I wanted to take the opportunity to talk about a scenario that may be “edge case” but a case just the same within the constructs of leveraging switch parameters in PowerShell workflow.</description>
+    </item>
+    
+  </channel>
+</rss>

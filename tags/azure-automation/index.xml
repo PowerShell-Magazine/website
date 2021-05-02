@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Azure Automation on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/tags/azure-automation/</link>
+    <description>Recent content in Azure Automation on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 27 Aug 2018 16:00:58 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/tags/azure-automation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Configuring role-based access control (RBAC) for runbooks in Azure Automation</title>
+      <link>https://psmag.github.io/2018/08/27/configuring-role-based-access-control-rbac-for-runbooks-in-azure-automation/</link>
+      <pubDate>Mon, 27 Aug 2018 16:00:58 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2018/08/27/configuring-role-based-access-control-rbac-for-runbooks-in-azure-automation/</guid>
+      <description>When setting up runbooks in Azure Automation to invoke automation of a process through PowerShell or Python runbooks, the ability to assign permissions per runbook for user types such as power users is something we missed in the early days of Azure Automation.</description>
+    </item>
+    
+    <item>
+      <title>Triggering Azure Automation runbooks from Microsoft OMS Alerts</title>
+      <link>https://psmag.github.io/2016/07/11/triggering-azure-automation-runbooks-from-microsoft-oms-alerts/</link>
+      <pubDate>Mon, 11 Jul 2016 16:00:53 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2016/07/11/triggering-azure-automation-runbooks-from-microsoft-oms-alerts/</guid>
+      <description>Microsoft Operations Management Suite (OMS) is an IT management solution for the era of the cloud.
+OMS extends System Center IT management to the cloud, enabling greater control, visibility and security across your hybrid cloud.</description>
+    </item>
+    
+    <item>
+      <title>Deploy Custom Azure Automation Integration Modules Using ARM Templates</title>
+      <link>https://psmag.github.io/2015/11/26/deploy-custom-azure-automation-integration-modules-using-arm-templates/</link>
+      <pubDate>Thu, 26 Nov 2015 17:00:06 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/11/26/deploy-custom-azure-automation-integration-modules-using-arm-templates/</guid>
+      <description>Update: Earlier generic linked template for deploying modules was removed and it was breaking my ARM template. I published two linked templates in my ARMSeries repo that can be used to deploy modules to Azure Automation accounts.</description>
+    </item>
+    
+    <item>
+      <title>Microsoft Azure Automation</title>
+      <link>https://psmag.github.io/2014/04/24/microsoft-azure-automation/</link>
+      <pubDate>Thu, 24 Apr 2014 08:54:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/04/24/microsoft-azure-automation/</guid>
+      <description>Microsoft launched a new service to simplify public, private, and hybrid clouds management. Using the Microsoft Azure Automation preview you can automate the creation, deployment, monitoring, and maintenance of resources in your Microsoft Azure environment using runbooks, which under the hood are Windows PowerShell workflows.</description>
+    </item>
+    
+  </channel>
+</rss>

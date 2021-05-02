@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PowerShelll DSC on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/powershelll-dsc/</link>
+    <description>Recent content in PowerShelll DSC on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 18 Nov 2014 17:00:03 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/powershelll-dsc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Using the WMI Commandline Event Consumer DSC resource</title>
+      <link>https://psmag.github.io/2014/11/18/using-the-wmi-commandline-event-consumer-dsc-resource/</link>
+      <pubDate>Tue, 18 Nov 2014 17:00:03 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/18/using-the-wmi-commandline-event-consumer-dsc-resource/</guid>
+      <description>In my earlier article, I promised a detailed walk-through of each DSC resource to manage the WMI permanent events. To start that series, I will show how to use the command line Event Consumer DSC resource.</description>
+    </item>
+    
+  </channel>
+</rss>

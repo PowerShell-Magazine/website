@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PSPublicAPI on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/pspublicapi/</link>
+    <description>Recent content in PSPublicAPI on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 18 Jun 2019 14:54:14 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/pspublicapi/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PSPublicAPI – Module For Listing Free APIs For Use in Software and Web Development</title>
+      <link>https://psmag.github.io/2019/06/18/pspublicapi-module-for-listing-free-apis-for-use-in-software-and-web-development/</link>
+      <pubDate>Tue, 18 Jun 2019 14:54:14 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/06/18/pspublicapi-module-for-listing-free-apis-for-use-in-software-and-web-development/</guid>
+      <description>The Public APIs repository on GitHub has a list of free APIs that you can use in software and web development.</description>
+    </item>
+    
+  </channel>
+</rss>

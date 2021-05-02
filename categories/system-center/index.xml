@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>System Center on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/system-center/</link>
+    <description>Recent content in System Center on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 14 May 2012 18:00:18 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/system-center/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Formatting changes for System Center Operations Manager 2012 in Update Rollup 1</title>
+      <link>https://psmag.github.io/2012/05/14/formatting-changes-for-system-center-operations-manager-2012-in-update-rollup-1/</link>
+      <pubDate>Mon, 14 May 2012 18:00:18 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/05/14/formatting-changes-for-system-center-operations-manager-2012-in-update-rollup-1/</guid>
+      <description>On the 7th of May 2012 we released our first Update Rollup 1 (UR1) for System Center 2012. In addition to earlier released fixes for Virtual Machine Manager (VMM) and App Controller (AC), the update rollup now includes fixes for System Center Operations Manager (OM).</description>
+    </item>
+    
+  </channel>
+</rss>

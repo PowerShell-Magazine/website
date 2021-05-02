@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Community on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/community/</link>
+    <description>Recent content in Community on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Jul 2019 14:21:18 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/community/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Inviting Women In Tech to PowerShell Conference Asia</title>
+      <link>https://psmag.github.io/2019/07/10/inviting-women-in-tech-to-powershell-conference-asia/</link>
+      <pubDate>Wed, 10 Jul 2019 14:21:18 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/07/10/inviting-women-in-tech-to-powershell-conference-asia/</guid>
+      <description>I have been talking to several automation engineers (for a vacant position) and realized there are many women who have been doing some great work in the area of infrastructure automation.</description>
+    </item>
+    
+    <item>
+      <title>The Power of Community</title>
+      <link>https://psmag.github.io/2014/10/28/the-power-of-community/</link>
+      <pubDate>Tue, 28 Oct 2014 15:00:45 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/10/28/the-power-of-community/</guid>
+      <description>Since the early days of Windows PowerShell, the community around the product has grown to a large and active user base.</description>
+    </item>
+    
+    <item>
+      <title>The story of PowerShell Bangalore User Group (PSBUG)</title>
+      <link>https://psmag.github.io/2014/03/19/the-story-of-powershell-bangalore-user-group-psbug/</link>
+      <pubDate>Wed, 19 Mar 2014 16:00:48 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/03/19/the-story-of-powershell-bangalore-user-group-psbug/</guid>
+      <description>After Fredrik and Jan, I had to write this. I founded the PowerShell Bangalore User Group (PSBUG) which is the first PowerShell User Group in India.</description>
+    </item>
+    
+    <item>
+      <title>The story of the Microsoft Technology User Group in Norway</title>
+      <link>https://psmag.github.io/2014/03/17/the-story-of-the-microsoft-technology-user-group-in-norway/</link>
+      <pubDate>Mon, 17 Mar 2014 16:00:10 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/03/17/the-story-of-the-microsoft-technology-user-group-in-norway/</guid>
+      <description>The Microsoft Technology User Group (MTUG) in Norway was started in March 2010 where we had Bruce Payette speaking at the first user group event at the Microsoft office in Oslo.</description>
+    </item>
+    
+    <item>
+      <title>The story of PowerShell User Group Sweden</title>
+      <link>https://psmag.github.io/2014/02/24/the-story-of-powershell-user-group-sweden/</link>
+      <pubDate>Mon, 24 Feb 2014 17:00:08 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/02/24/the-story-of-powershell-user-group-sweden/</guid>
+      <description>My name is Fredrik Wall and I’m a co-founder/co-leader of the PowerShell User Group Sweden. We have almost 530 members in our Facebook group and some more members who do not want to be on Facebook.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Active Directory on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/active-directory/</link>
+    <description>Recent content in Active Directory on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 11 Mar 2014 18:00:59 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/active-directory/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>#PSTip Identifying read-only domain controllers</title>
+      <link>https://psmag.github.io/2014/03/11/pstip-identifying-read-only-domain-controllers/</link>
+      <pubDate>Tue, 11 Mar 2014 18:00:59 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/03/11/pstip-identifying-read-only-domain-controllers/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+When you get a list of domain controllers using the AD module, one of the propertieseach DC has is the IsReadOnly property.</description>
+    </item>
+    
+    <item>
+      <title>Identifying Active Directory built-in groups with PowerShell</title>
+      <link>https://psmag.github.io/2013/11/26/identifying-active-directory-built-in-groups-with-powershell/</link>
+      <pubDate>Tue, 26 Nov 2013 17:00:26 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/11/26/identifying-active-directory-built-in-groups-with-powershell/</guid>
+      <description>Built-in groups are predefined security groups, defined with domain local scope, that are created automatically when you create an Active Directory domain.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Find all groups with same group members in Active Directory</title>
+      <link>https://psmag.github.io/2013/05/24/pstip-find-all-groups-with-same-group-members-in-active-directory/</link>
+      <pubDate>Fri, 24 May 2013 18:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/05/24/pstip-find-all-groups-with-same-group-members-in-active-directory/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+Today I was asked if there was a way to find out which groups have the same group members.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Retrieve group membership of an Active Directory group recursively</title>
+      <link>https://psmag.github.io/2013/05/23/pstip-retrieve-group-membership-of-an-active-directory-group-recursively/</link>
+      <pubDate>Thu, 23 May 2013 18:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/05/23/pstip-retrieve-group-membership-of-an-active-directory-group-recursively/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+When you need to manage Active Directory, the Active Directory PowerShell module is the first admin choice as it provides many cmdlets for administering and interfacing with various AD objects.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Verify Active Directory account credentials using System.DirectoryServices.DirectoryEntry</title>
+      <link>https://psmag.github.io/2013/05/21/pstip-verify-active-directory-account-credentials-using-system-directoryservices-directoryentry/</link>
+      <pubDate>Tue, 21 May 2013 18:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/05/21/pstip-verify-active-directory-account-credentials-using-system-directoryservices-directoryentry/</guid>
+      <description>The System.DirectoryServices.AccountManagement namespace provides a nice way of testing if a set of Active Directory credentials are correct (also discussed in PSTip Validating Active Directory user credentials ).</description>
+    </item>
+    
+    <item>
+      <title>#PSTip List all AD attributes currently in use for AD users</title>
+      <link>https://psmag.github.io/2013/05/06/pstip-list-all-ad-attributes-currently-in-use-for-ad-users/</link>
+      <pubDate>Mon, 06 May 2013 18:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/05/06/pstip-list-all-ad-attributes-currently-in-use-for-ad-users/</guid>
+      <description>This question was asked on the forums recently, is it possible to list all the Active Directory attributes that are currently in use for Active Directory users.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Extending the default output property set for Active Directory objects</title>
+      <link>https://psmag.github.io/2013/04/30/pstip-extending-the-default-output-property-set-for-active-directory-objects/</link>
+      <pubDate>Tue, 30 Apr 2013 18:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/04/30/pstip-extending-the-default-output-property-set-for-active-directory-objects/</guid>
+      <description>Note: This tip requires PowerShell 3.0 or above.
+When you get user objects from Active Directory using the [Active Directory module cmdlets][1], you get a ‘thin’ output object that includes just a few properties.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip List all Active Directory constructed attributes</title>
+      <link>https://psmag.github.io/2013/04/25/pstip-list-all-active-directory-constructed-attributes/</link>
+      <pubDate>Thu, 25 Apr 2013 18:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/04/25/pstip-list-all-active-directory-constructed-attributes/</guid>
+      <description>Active Directory has a special kind of attributes called Constructed attributes. Constructed attributes are not “real” attributes, they are not stored in the directory.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Get the AD site name of a computer</title>
+      <link>https://psmag.github.io/2013/04/23/pstip-get-the-ad-site-name-of-a-computer/</link>
+      <pubDate>Tue, 23 Apr 2013 18:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/04/23/pstip-get-the-ad-site-name-of-a-computer/</guid>
+      <description>There are a few ways to get the site a computer is a member of. In .NET we can use the ActiveDirectorySite class.</description>
+    </item>
+    
+    <item>
+      <title>Managing Active Directory using a jumphost and remoting</title>
+      <link>https://psmag.github.io/2012/09/25/managing-active-directory-using-a-jumphost-and-remoting/</link>
+      <pubDate>Tue, 25 Sep 2012 13:32:57 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/09/25/managing-active-directory-using-a-jumphost-and-remoting/</guid>
+      <description>I’ve stumbled upon a question someone posted in the Minasi forum, about having to create a script for some managers to connect to AD and make some changes on their subordinates.</description>
+    </item>
+    
+  </channel>
+</rss>

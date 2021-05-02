@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NetApp on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/tags/netapp/</link>
+    <description>Recent content in NetApp on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Feb 2012 15:21:27 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/tags/netapp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Data ONTAP PowerShell Toolkit 1.7</title>
+      <link>https://psmag.github.io/2012/02/02/data-ontap-powershell-toolkit-1-7/</link>
+      <pubDate>Thu, 02 Feb 2012 15:21:27 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/02/02/data-ontap-powershell-toolkit-1-7/</guid>
+      <description>The Data ONTAP PowerShell Toolkit 1.7 was released! This latest offering of the very popular PowerShell module for managing NetApp storage systems features over 900 cmdlets.</description>
+    </item>
+    
+  </channel>
+</rss>

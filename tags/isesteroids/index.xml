@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ISESteroids on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/tags/isesteroids/</link>
+    <description>Recent content in ISESteroids on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 05 Dec 2014 13:35:12 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/tags/isesteroids/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ISESteroids RC</title>
+      <link>https://psmag.github.io/2014/12/05/isesteroids-rc/</link>
+      <pubDate>Fri, 05 Dec 2014 13:35:12 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/12/05/isesteroids-rc/</guid>
+      <description>ISESteroids originally started as a simple add-on to add professional editor capabilities to the built-in PowerShell ISE editor. Meanwhile, it evolved to a slick high-end PowerShell script editor.</description>
+    </item>
+    
+    <item>
+      <title>PowerShell Risk Assessment with ISESteroids 2.0</title>
+      <link>https://psmag.github.io/2014/10/27/powershell-risk-assessment-with-isesteroids-2-0/</link>
+      <pubDate>Mon, 27 Oct 2014 11:34:35 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/10/27/powershell-risk-assessment-with-isesteroids-2-0/</guid>
+      <description>Sharing scripts and downloading sample code becomes common place. But how do you know a script is safe? You would have to read (and understand) it line by line, and carefully check that the script indeed does what it claims to do, before you run it.</description>
+    </item>
+    
+    <item>
+      <title>ISESteroids – A Revolutionary PowerShell ISE Add-On</title>
+      <link>https://psmag.github.io/2014/03/28/isesteroids-a-revolutionary-powershell-ise-add-on/</link>
+      <pubDate>Fri, 28 Mar 2014 17:14:58 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/03/28/isesteroids-a-revolutionary-powershell-ise-add-on/</guid>
+      <description>If you love the built-in ISE editor that ships with PowerShell 3.0 and 4.0, but you were missing some professional editor capabilities, then ISESteroids add them for you.</description>
+    </item>
+    
+  </channel>
+</rss>

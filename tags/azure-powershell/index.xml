@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Azure PowerShell on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/tags/azure-powershell/</link>
+    <description>Recent content in Azure PowerShell on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 13 Oct 2015 14:43:07 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/tags/azure-powershell/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Azure PowerShell 1.0 Preview Installation on Down-level PowerShell Systems Using PackageManagement Cmdlets</title>
+      <link>https://psmag.github.io/2015/10/13/azure-powershell-1-0-preview-installation-on-down-level-powershell-systems-using-packagemanagement-cmdlets/</link>
+      <pubDate>Tue, 13 Oct 2015 14:43:07 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/10/13/azure-powershell-1-0-preview-installation-on-down-level-powershell-systems-using-packagemanagement-cmdlets/</guid>
+      <description>If you have not seen this yet, Azure PowerShell 1.0 is in preview. If you have been using Azure Resource Manager cmdlets, there is a breaking change between 0.</description>
+    </item>
+    
+  </channel>
+</rss>

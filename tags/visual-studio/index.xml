@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Visual Studio on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/tags/visual-studio/</link>
+    <description>Recent content in Visual Studio on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 03 Apr 2014 09:40:19 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/tags/visual-studio/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Is native Windows PowerShell support coming to Visual Studio?</title>
+      <link>https://psmag.github.io/2014/04/03/is-native-windows-powershell-support-coming-to-visual-studio/</link>
+      <pubDate>Thu, 03 Apr 2014 09:40:19 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/04/03/is-native-windows-powershell-support-coming-to-visual-studio/</guid>
+      <description>Not completely yet. But, the Visual Studio 2013 Update 2 RC release seems to be a step in that direction. This update includes PowerShell syntax highlighting in the Visual Studio Editor.</description>
+    </item>
+    
+  </channel>
+</rss>

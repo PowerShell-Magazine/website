@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Azure on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/tags/azure/</link>
+    <description>Recent content in Azure on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 05 Apr 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/tags/azure/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Getting Started with PSArm</title>
+      <link>https://psmag.github.io/2021/04/05/getting-started-with-arm/</link>
+      <pubDate>Mon, 05 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2021/04/05/getting-started-with-arm/</guid>
+      <description>In the first part of this series, you learned about PSArm &amp;ndash; a PowerShell embedded DSL &amp;ndash; that you can use to declaratively define your Azure infrastructure and generate an ARM template.</description>
+    </item>
+    
+    <item>
+      <title>PSArm - PowerShell DSL For Azure Resource Manager - Introduction</title>
+      <link>https://psmag.github.io/2021/04/01/psarm-powershell-dsl-for-azure-resource-manager-introduction/</link>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2021/04/01/psarm-powershell-dsl-for-azure-resource-manager-introduction/</guid>
+      <description>Those who worked on Azure Resource Manager (ARM) templates understand that complexity of writing and making sure the template works as expected becomes very complicated as the complexity of a deployment grows.</description>
+    </item>
+    
+    <item>
+      <title>Converting a PowerShell Project to use Azure DevOps Pipelines</title>
+      <link>https://psmag.github.io/2018/09/20/converting-a-powershell-project-to-use-azure-devops-pipelines/</link>
+      <pubDate>Thu, 20 Sep 2018 18:01:19 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2018/09/20/converting-a-powershell-project-to-use-azure-devops-pipelines/</guid>
+      <description>Introduction Continuous Integration (CI) is the process of integrating code into a source code repository several times a day. Each time code is pushed into the repository an automated process runs to build and verify the code continues to work.</description>
+    </item>
+    
+    <item>
+      <title>Configuring role-based access control (RBAC) for runbooks in Azure Automation</title>
+      <link>https://psmag.github.io/2018/08/27/configuring-role-based-access-control-rbac-for-runbooks-in-azure-automation/</link>
+      <pubDate>Mon, 27 Aug 2018 16:00:58 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2018/08/27/configuring-role-based-access-control-rbac-for-runbooks-in-azure-automation/</guid>
+      <description>When setting up runbooks in Azure Automation to invoke automation of a process through PowerShell or Python runbooks, the ability to assign permissions per runbook for user types such as power users is something we missed in the early days of Azure Automation.</description>
+    </item>
+    
+    <item>
+      <title>Configuring Azure environment to set up Azure SQL Database Managed Instance (preview)</title>
+      <link>https://psmag.github.io/2018/07/23/configuring-azure-environment-to-set-up-azure-sql-database-managed-instance-preview/</link>
+      <pubDate>Mon, 23 Jul 2018 16:00:34 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2018/07/23/configuring-azure-environment-to-set-up-azure-sql-database-managed-instance-preview/</guid>
+      <description>Azure SQL Database Managed Instance (preview) is a new database service in Azure. This is a fully-managed latest version of SQL Server database engine hosted in Azure and managed by Azure and SQL Server teams.</description>
+    </item>
+    
+    <item>
+      <title>Azure DevTest Labs Artifact for installing PowerShell Core</title>
+      <link>https://psmag.github.io/2018/01/22/azure-devtest-labs-artifact-for-installing-powershell-core/</link>
+      <pubDate>Mon, 22 Jan 2018 17:00:50 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2018/01/22/azure-devtest-labs-artifact-for-installing-powershell-core/</guid>
+      <description>Unless you were living under a rock, PowerShell Core general availability isn’t any breaking news.
+ PowerShell Core is a cross-platform (Windows, Linux, and macOS) automation and configuration tool/framework that works well with your existing tools and is optimized for dealing with structured data (e.</description>
+    </item>
+    
+    <item>
+      <title>Azure DevTest Labs Artifact for Installing PowerShell on Linux</title>
+      <link>https://psmag.github.io/2016/08/22/azure-devtest-labs-artifact-for-installing-powershell-on-linux/</link>
+      <pubDate>Mon, 22 Aug 2016 16:00:59 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2016/08/22/azure-devtest-labs-artifact-for-installing-powershell-on-linux/</guid>
+      <description>Update: The PowerShell on Linux artifact is now available in official Azure DTL artifact repository.
+Bartek and Ben have written a great introduction article on open source PowerShell.</description>
+    </item>
+    
+    <item>
+      <title>Triggering Azure Automation runbooks from Microsoft OMS Alerts</title>
+      <link>https://psmag.github.io/2016/07/11/triggering-azure-automation-runbooks-from-microsoft-oms-alerts/</link>
+      <pubDate>Mon, 11 Jul 2016 16:00:53 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2016/07/11/triggering-azure-automation-runbooks-from-microsoft-oms-alerts/</guid>
+      <description>Microsoft Operations Management Suite (OMS) is an IT management solution for the era of the cloud.
+OMS extends System Center IT management to the cloud, enabling greater control, visibility and security across your hybrid cloud.</description>
+    </item>
+    
+    <item>
+      <title>Deploy Custom Azure Automation Integration Modules Using ARM Templates</title>
+      <link>https://psmag.github.io/2015/11/26/deploy-custom-azure-automation-integration-modules-using-arm-templates/</link>
+      <pubDate>Thu, 26 Nov 2015 17:00:06 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/11/26/deploy-custom-azure-automation-integration-modules-using-arm-templates/</guid>
+      <description>Update: Earlier generic linked template for deploying modules was removed and it was breaking my ARM template. I published two linked templates in my ARMSeries repo that can be used to deploy modules to Azure Automation accounts.</description>
+    </item>
+    
+    <item>
+      <title>Azure PowerShell 1.0 Preview Installation on Down-level PowerShell Systems Using PackageManagement Cmdlets</title>
+      <link>https://psmag.github.io/2015/10/13/azure-powershell-1-0-preview-installation-on-down-level-powershell-systems-using-packagemanagement-cmdlets/</link>
+      <pubDate>Tue, 13 Oct 2015 14:43:07 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/10/13/azure-powershell-1-0-preview-installation-on-down-level-powershell-systems-using-packagemanagement-cmdlets/</guid>
+      <description>If you have not seen this yet, Azure PowerShell 1.0 is in preview. If you have been using Azure Resource Manager cmdlets, there is a breaking change between 0.</description>
+    </item>
+    
+    <item>
+      <title>Manage your public DNS zones with Azure DNS</title>
+      <link>https://psmag.github.io/2015/05/11/manage-your-public-dns-zones-with-azure-dns/</link>
+      <pubDate>Mon, 11 May 2015 16:00:40 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/05/11/manage-your-public-dns-zones-with-azure-dns/</guid>
+      <description>On May 4 2015, Microsoft has released a public preview of a new Microsoft Azure feature – Azure DNS.
+Azure DNS is a hosting service for DNS domains, providing name resolution using Microsoft Azure infrastructure.</description>
+    </item>
+    
+    <item>
+      <title>PowerShell cmdlets to manage Azure Key Vault</title>
+      <link>https://psmag.github.io/2015/01/08/powershell-cmdlets-to-manage-azure-key-vault/</link>
+      <pubDate>Fri, 09 Jan 2015 04:12:34 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/01/08/powershell-cmdlets-to-manage-azure-key-vault/</guid>
+      <description>Microsoft announced a public preview of Azure Key Vault. Azure Key Vault is a cloud-hosted HSM-backed service for managing cryptographic keys and other secrets used in your cloud applications.</description>
+    </item>
+    
+    <item>
+      <title>Using Azure Resource Management REST API in PowerShell</title>
+      <link>https://psmag.github.io/2014/12/24/using-azure-resource-management-rest-api-in-powershell/</link>
+      <pubDate>Wed, 24 Dec 2014 17:00:16 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/12/24/using-azure-resource-management-rest-api-in-powershell/</guid>
+      <description>The Azure Resource Manager PowerShell module has a subset of functionality that the resource management REST API offers.
+Specifically, the ARM PowerShell module does not include cmdlets to get the resource provider information.</description>
+    </item>
+    
+    <item>
+      <title>Microsoft Monitoring Agent DSC resource updated to enable AD and management groups configuration</title>
+      <link>https://psmag.github.io/2014/12/12/microsoft-monitoring-agent-dsc-resource-updated-to-enable-ad-and-management-groups-configuration/</link>
+      <pubDate>Fri, 12 Dec 2014 17:00:14 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/12/12/microsoft-monitoring-agent-dsc-resource-updated-to-enable-ad-and-management-groups-configuration/</guid>
+      <description>A couple of weeks ago, I had announced a custom DSC resource module to install and configure Microsoft Monitoring Agent that is required to configure Azure Operational Insights.</description>
+    </item>
+    
+    <item>
+      <title>DSC resource module for Microsoft Monitoring Agent install and configuration of Azure Operational Insights</title>
+      <link>https://psmag.github.io/2014/11/26/dsc-resource-module-for-microsoft-monitoring-agent-install-and-configuration-for-azure-operational-insights/</link>
+      <pubDate>Wed, 26 Nov 2014 17:00:49 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/26/dsc-resource-module-for-microsoft-monitoring-agent-install-and-configuration-for-azure-operational-insights/</guid>
+      <description>Microsoft Monitoring Agent (MMA) is used to connect target systems to System Center Operations Manager or directly to Azure Operational Insights.</description>
+    </item>
+    
+    <item>
+      <title>Azure PowerShell Tools 0.8.10 is available</title>
+      <link>https://psmag.github.io/2014/10/28/azure-powershell-tools-0-8-10-is-available/</link>
+      <pubDate>Wed, 29 Oct 2014 02:05:26 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/10/28/azure-powershell-tools-0-8-10-is-available/</guid>
+      <description>If you have missed it, Scott Gu announced major set of updates to Azure services. At a high level, these changes include,</description>
+    </item>
+    
+    <item>
+      <title>Microsoft Azure PowerShell 0.8.8 is available</title>
+      <link>https://psmag.github.io/2014/09/10/microsoft-azure-powershell-0-8-8-is-available/</link>
+      <pubDate>Wed, 10 Sep 2014 21:25:16 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/09/10/microsoft-azure-powershell-0-8-8-is-available/</guid>
+      <description>Just a few hours ago, Azure team released Microsoft Azure PowerShell 0.8.8. The new release has a lot of improvements and added a support for today’s Azure update–Role-Based Access Control in Azure Preview Portal.</description>
+    </item>
+    
+    <item>
+      <title>Azure PowerShell Tools 0.8.7 is available</title>
+      <link>https://psmag.github.io/2014/08/19/azure-powershell-tools-0-8-7-is-available/</link>
+      <pubDate>Tue, 19 Aug 2014 06:14:09 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/08/19/azure-powershell-tools-0-8-7-is-available/</guid>
+      <description>Just a few hours ago, Azure PowerShell Tools version 0.8.7 was released. This release includes enhancements to the existing cmdlets.</description>
+    </item>
+    
+    <item>
+      <title>Bootstrapping DSC configuration using Azure VM DSC extension</title>
+      <link>https://psmag.github.io/2014/08/07/bootstrapping-dsc-configuration-using-azure-vm-dsc-extension/</link>
+      <pubDate>Thu, 07 Aug 2014 16:00:46 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/08/07/bootstrapping-dsc-configuration-using-azure-vm-dsc-extension/</guid>
+      <description>In one of the earlier articles, I demonstrated how we can use the Azure VM custom script extension to bootstrap DSC LCM meta-configuration after creating a new VM.</description>
+    </item>
+    
+    <item>
+      <title>Understanding Azure VM DSC Extension</title>
+      <link>https://psmag.github.io/2014/08/05/understanding-azure-vm-dsc-extension/</link>
+      <pubDate>Tue, 05 Aug 2014 17:04:31 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/08/05/understanding-azure-vm-dsc-extension/</guid>
+      <description>The Azure team released the Azure PowerShell Tools version 0.8.6 that includes cmdlets for working with a new Azure VM extension called DSC extension.</description>
+    </item>
+    
+    <item>
+      <title>Azure PowerShell Tools version 0.8.6 is available</title>
+      <link>https://psmag.github.io/2014/08/05/azure-powershell-tools-version-0-8-6-is-available/</link>
+      <pubDate>Tue, 05 Aug 2014 07:00:20 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/08/05/azure-powershell-tools-version-0-8-6-is-available/</guid>
+      <description>The Azure PowerShell Tools are updated very often. But, this 0.8.6 release, is special and has many features that I was looking forward to.</description>
+    </item>
+    
+    <item>
+      <title>Bootstrapping LCM meta-configuration in a Azure VM</title>
+      <link>https://psmag.github.io/2014/07/29/bootstrapping-lcm-meta-configuration-in-a-azure-vm/</link>
+      <pubDate>Tue, 29 Jul 2014 16:53:15 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/07/29/bootstrapping-lcm-meta-configuration-in-a-azure-vm/</guid>
+      <description>I have been a very active user of DSC both in the lab and on all my Azure VMs. One of the things I always do is to configure my Azure VMs to get configuration from a pull service hosted in my Azure subscription.</description>
+    </item>
+    
+    <item>
+      <title>Installing and configuring DSC for Linux</title>
+      <link>https://psmag.github.io/2014/05/21/installing-and-configuring-dsc-for-linux/</link>
+      <pubDate>Wed, 21 May 2014 16:00:29 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/05/21/installing-and-configuring-dsc-for-linux/</guid>
+      <description>[Update 1: 5/23/2014] Added pre-requisite install commands for Oracle Linux
+I am sure you are aware of the Microsoft’s announcement of the CTP release of DSC for Linux.</description>
+    </item>
+    
+    <item>
+      <title>Copy DSC resources to Azure VMs using Custom Script Extension</title>
+      <link>https://psmag.github.io/2014/05/02/copy-dsc-resources-to-azure-vms-using-custom-script-extension/</link>
+      <pubDate>Fri, 02 May 2014 17:30:43 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/05/02/copy-dsc-resources-to-azure-vms-using-custom-script-extension/</guid>
+      <description>In an earlier article, I showed you how to use the Custom Script Extension. The examples that I had there were too trivial and were intended to explain how the Custom Script Extension works.</description>
+    </item>
+    
+    <item>
+      <title>Understanding Azure Custom Script Extension</title>
+      <link>https://psmag.github.io/2014/04/30/understanding-azure-custom-script-extension/</link>
+      <pubDate>Wed, 30 Apr 2014 16:00:29 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/04/30/understanding-azure-custom-script-extension/</guid>
+      <description>At Build 2014 conference, Microsoft launched the Azure VM Custom Script Extension. This is a very useful and straightforward extension. However, understanding it in detail helps make better use of it.</description>
+    </item>
+    
+    <item>
+      <title>Microsoft Azure Automation</title>
+      <link>https://psmag.github.io/2014/04/24/microsoft-azure-automation/</link>
+      <pubDate>Thu, 24 Apr 2014 08:54:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/04/24/microsoft-azure-automation/</guid>
+      <description>Microsoft launched a new service to simplify public, private, and hybrid clouds management. Using the Microsoft Azure Automation preview you can automate the creation, deployment, monitoring, and maintenance of resources in your Microsoft Azure environment using runbooks, which under the hood are Windows PowerShell workflows.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Listing all blobs in a public Azure storage container</title>
+      <link>https://psmag.github.io/2014/04/10/pstip-listing-all-blobs-in-a-public-azure-storage-container/</link>
+      <pubDate>Thu, 10 Apr 2014 18:00:53 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/04/10/pstip-listing-all-blobs-in-a-public-azure-storage-container/</guid>
+      <description>In the earlier article, I showed you how to deploy a Azure VM from VM depot. The VM depot has a public storage container where all the VHDs are stored as blobs.</description>
+    </item>
+    
+    <item>
+      <title>Pushing DSC configuration to an Azure VM</title>
+      <link>https://psmag.github.io/2014/04/02/pushing-desired-state-configuration-to-an-azure-vm/</link>
+      <pubDate>Wed, 02 Apr 2014 16:00:04 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/04/02/pushing-desired-state-configuration-to-an-azure-vm/</guid>
+      <description>I had described in an earlier article that Desired State Configuration requires WinRM listeners for pushing the configuration to target systems.</description>
+    </item>
+    
+    <item>
+      <title>PowerShell Remoting with Azure Windows VMs</title>
+      <link>https://psmag.github.io/2014/03/31/powershell-remoting-with-azure-windows-vms/</link>
+      <pubDate>Mon, 31 Mar 2014 16:00:07 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/03/31/powershell-remoting-with-azure-windows-vms/</guid>
+      <description>These days, for all my demos at various events, I have been using Azure VMs extensively. If you have worked on creating these VMs using Azure PowerShell cmdlets, you will notice that they create a PowerShell remoting endpoint for a VM.</description>
+    </item>
+    
+    <item>
+      <title>Deploying Azure Virtual Machines from VM Depot using PowerShell</title>
+      <link>https://psmag.github.io/2014/03/20/deploying-azure-virtual-machines-from-vm-depot-using-powershell/</link>
+      <pubDate>Thu, 20 Mar 2014 18:36:57 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/03/20/deploying-azure-virtual-machines-from-vm-depot-using-powershell/</guid>
+      <description>VM Depot is a community-driven catalog of open source virtual machine images. Azure management portal can be used to copy these VM images into “My images” of your Azure subscription.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Azure cmdlets and proxy authentication</title>
+      <link>https://psmag.github.io/2013/10/22/pstip-azure-cmdlets-and-proxy-authentication/</link>
+      <pubDate>Tue, 22 Oct 2013 18:00:32 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/10/22/pstip-azure-cmdlets-and-proxy-authentication/</guid>
+      <description>Note: This tip requires PowerShell 2.0 or above.
+A few days ago, I was working on setting up Kemp Azure VLM.</description>
+    </item>
+    
+  </channel>
+</rss>

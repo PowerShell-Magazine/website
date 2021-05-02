@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OneGet on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/tags/oneget/</link>
+    <description>Recent content in OneGet on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 14 Jan 2015 17:00:39 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/tags/oneget/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PowerShell OneGet: Gist-As-A-Package</title>
+      <link>https://psmag.github.io/2015/01/14/powershell-oneget-gist-as-a-package/</link>
+      <pubDate>Wed, 14 Jan 2015 17:00:39 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/01/14/powershell-oneget-gist-as-a-package/</guid>
+      <description>This article will cover a new powerful feature delivered in the PowerShell 5.0 November Preview. This feature is OneGet. OneGet is a unified package manager for package management systems.</description>
+    </item>
+    
+  </channel>
+</rss>

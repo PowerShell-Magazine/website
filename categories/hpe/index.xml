@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HPE on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/hpe/</link>
+    <description>Recent content in HPE on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 Nov 2013 14:31:07 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/hpe/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>HP Scripting Tools for Windows PowerShell</title>
+      <link>https://psmag.github.io/2013/11/12/hp-scripting-tools-for-windows-powershell/</link>
+      <pubDate>Tue, 12 Nov 2013 14:31:07 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/11/12/hp-scripting-tools-for-windows-powershell/</guid>
+      <description>HP has released a PowerShell module HPiLOCmdlets, designed to help IT experts to configure and manage HP iLO 3 and iLO 4 using Windows PowerShell.</description>
+    </item>
+    
+  </channel>
+</rss>

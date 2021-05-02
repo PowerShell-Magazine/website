@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PowerShell DSC on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/tags/powershell-dsc/</link>
+    <description>Recent content in PowerShell DSC on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 05 Jan 2018 17:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/tags/powershell-dsc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>#PSDSC Configuration Versioning in a Deployment Pipeline</title>
+      <link>https://psmag.github.io/2018/01/05/psdsc-configuration-versioning-in-a-deployment-pipeline/</link>
+      <pubDate>Fri, 05 Jan 2018 17:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2018/01/05/psdsc-configuration-versioning-in-a-deployment-pipeline/</guid>
+      <description>When we talk about applications or software deployed in the infrastructure, we simply refer to the version of the application or software running in the infrastructure.</description>
+    </item>
+    
+    <item>
+      <title>Using NetworkAdapterProperty #PSDSC Resource to Configure Network Adapter Advanced Properties</title>
+      <link>https://psmag.github.io/2018/01/04/using-networkadapterproperty-psdsc-resource-to-configure-network-adapter-advanced-properties/</link>
+      <pubDate>Thu, 04 Jan 2018 17:00:33 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2018/01/04/using-networkadapterproperty-psdsc-resource-to-configure-network-adapter-advanced-properties/</guid>
+      <description>At times we need to set the physical adapter advanced properties such as VLAN ID. This can be done using the Set-NetAdapterAdvancedProperty cmdlet.</description>
+    </item>
+    
+    <item>
+      <title>Using NetQoSDSC #PSDSC Resource Module to Configure Network QoS</title>
+      <link>https://psmag.github.io/2018/01/03/using-netqosdsc-psdsc-resource-module-to-configure-network-qos/</link>
+      <pubDate>Wed, 03 Jan 2018 17:00:22 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2018/01/03/using-netqosdsc-psdsc-resource-module-to-configure-network-qos/</guid>
+      <description>As a part of larger hyper-converged infrastructure (based on S2D) configuration automation using PowerShell DSC, I have written quite a few new DSC resource modules.</description>
+    </item>
+    
+    <item>
+      <title>#PSDSC FailoverClusterDSC – Deploy a Storage Spaces Direct Cluster</title>
+      <link>https://psmag.github.io/2017/12/19/psdsc-failoverclusterdsc-deploy-a-storage-spaces-direct-cluster/</link>
+      <pubDate>Tue, 19 Dec 2017 17:00:56 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2017/12/19/psdsc-failoverclusterdsc-deploy-a-storage-spaces-direct-cluster/</guid>
+      <description>I have been working on the FailoverClusterDsc resource module and finally had the chance to add some examples and make the repository public.</description>
+    </item>
+    
+    <item>
+      <title>Infrastructure Blueprints – Adding Pre-deployment Validations</title>
+      <link>https://psmag.github.io/2017/06/28/infrastructure-blueprints-adding-pre-deployment-validations/</link>
+      <pubDate>Wed, 28 Jun 2017 16:00:22 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2017/06/28/infrastructure-blueprints-adding-pre-deployment-validations/</guid>
+      <description>In one of my earlier articles here, I wrote about the Infrastructure Blueprints project. Over the weekend, I published an update this project.</description>
+    </item>
+    
+    <item>
+      <title>Discover and Package Dependent Resource Modules for a #PSDSC Configuration</title>
+      <link>https://psmag.github.io/2017/06/27/discover-and-package-dependent-resource-modules-for-a-psdsc-configuration/</link>
+      <pubDate>Tue, 27 Jun 2017 16:00:45 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2017/06/27/discover-and-package-dependent-resource-modules-for-a-psdsc-configuration/</guid>
+      <description>If you have ever used the Publish-AzureRmVMDscConfiguration cmdlet in the Azure PowerShell tools, you may know already that this command discovers module dependencies for a configuration and packages all dependencies along with the configuration as a zip archive.</description>
+    </item>
+    
+    <item>
+      <title>Cisco UCS Custom Resource for the Windows PowerShell Desired State Configuration (DSC)</title>
+      <link>https://psmag.github.io/2017/05/29/cisco-ucs-custom-resource-for-the-windows-powershell-desired-state-configuration-dsc/</link>
+      <pubDate>Mon, 29 May 2017 16:00:59 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2017/05/29/cisco-ucs-custom-resource-for-the-windows-powershell-desired-state-configuration-dsc/</guid>
+      <description>The Cisco UCS PowerTool Suite is a set of PowerShell modules for Cisco UCS Manager, Cisco IMC (C-Series stand-alone servers) and Cisco UCS Central that helps in configuration and management of Cisco UCS domains and solutions.</description>
+    </item>
+    
+    <item>
+      <title>#PSDSC Doing It Right – Configuration vs Orchestration</title>
+      <link>https://psmag.github.io/2017/05/24/psdsc-doing-it-right-configuration-vs-orchestration/</link>
+      <pubDate>Wed, 24 May 2017 16:00:49 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2017/05/24/psdsc-doing-it-right-configuration-vs-orchestration/</guid>
+      <description>In the last part of this series, we looked at why resource granularity is important. In this part, we will see the difference between configuration items and orchestration steps.</description>
+    </item>
+    
+    <item>
+      <title>#PSDSC Doing It Right – Resource Granularity</title>
+      <link>https://psmag.github.io/2017/05/23/psdsc-doing-it-right-resource-granularity/</link>
+      <pubDate>Tue, 23 May 2017 16:00:02 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2017/05/23/psdsc-doing-it-right-resource-granularity/</guid>
+      <description>This is the first article in the #PSDSC Doing It Right series. This series of articles will introduce you to some of the best practices we have learned through some real-world implementations of PowerShell DSC-based configuration management.</description>
+    </item>
+    
+    <item>
+      <title>Infrastructure Blueprints – An Easier and Better Way to Share #PSDSC Configurations</title>
+      <link>https://psmag.github.io/2017/05/15/infrastructure-blueprints-a-way-to-share-psdsc-configurations/</link>
+      <pubDate>Mon, 15 May 2017 16:00:20 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2017/05/15/infrastructure-blueprints-a-way-to-share-psdsc-configurations/</guid>
+      <description>A while ago, I wrote an article to introduce Infrastructure Blueprints. Today’s post is about a more refined version of that project.</description>
+    </item>
+    
+    <item>
+      <title>What is new in cHyper-V PowerShell DSC Resource Module?</title>
+      <link>https://psmag.github.io/2016/10/24/what-is-new-in-chyper-v-powershell-dsc-resource-module/</link>
+      <pubDate>Mon, 24 Oct 2016 13:14:34 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2016/10/24/what-is-new-in-chyper-v-powershell-dsc-resource-module/</guid>
+      <description>I just finished testing and publishing the cHyper-V PowerShell DSC resource module to the PowerShell Gallery. I took some time to make changes to this module–fix bugs and add new functionality.</description>
+    </item>
+    
+    <item>
+      <title>Build Your Visual Studio Code Development Environment Using PowerShell DSC</title>
+      <link>https://psmag.github.io/2016/06/08/build-your-visual-studio-code-development-environment-using-powershell-dsc/</link>
+      <pubDate>Wed, 08 Jun 2016 16:00:57 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2016/06/08/build-your-visual-studio-code-development-environment-using-powershell-dsc/</guid>
+      <description>I keep re-building my lab machines and in the process I rebuild my development virtual machines. One of the items that gets reinstalled all the time is Visual Studio Code editor.</description>
+    </item>
+    
+    <item>
+      <title>DevOps, Infrastructure as Code, and PowerShell DSC: Infrastructure Blueprints</title>
+      <link>https://psmag.github.io/2016/05/13/devops-infrastructure-as-code-and-powershell-dsc-infrastructure-blueprints/</link>
+      <pubDate>Fri, 13 May 2016 16:00:34 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2016/05/13/devops-infrastructure-as-code-and-powershell-dsc-infrastructure-blueprints/</guid>
+      <description>This part of the series is long due after the first post on DevOps, Infrastructure as Code, and PowerShell DSC. Thanks to PowerShell Conference Europe, I was able to complete what I wanted to publish on GitHub as an example for this article.</description>
+    </item>
+    
+    <item>
+      <title>Survey: PowerShell DSC Composite Resources</title>
+      <link>https://psmag.github.io/2016/04/22/survey-powershell-dsc-composite-resources/</link>
+      <pubDate>Fri, 22 Apr 2016 13:41:28 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2016/04/22/survey-powershell-dsc-composite-resources/</guid>
+      <description>While at the PowerShell Conference EU, we had some very good discussions around PowerShell and PowerShell DSC. A few questions came up about DSC composite resources and how they are being used.</description>
+    </item>
+    
+    <item>
+      <title>DevOps, Infrastructure as Code, and PowerShell DSC: The Introduction</title>
+      <link>https://psmag.github.io/2016/01/05/devops-infrastructure-as-code-and-powershell-dsc-the-introduction/</link>
+      <pubDate>Tue, 05 Jan 2016 17:00:14 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2016/01/05/devops-infrastructure-as-code-and-powershell-dsc-the-introduction/</guid>
+      <description>DevOps is the new cool thing (at least in the Windows world) everyone is talking about and the IT professionals (some of us at least) just give a blank stare every time the DevOps discussion comes up.</description>
+    </item>
+    
+    <item>
+      <title>PowerShell DSC Resources to Configure Switch Embedded Teaming and NAT Switch in Windows Server 2016</title>
+      <link>https://psmag.github.io/2015/12/07/dsc-resource-to-configure-switch-embedded-teaming-in-windows-server-2016/</link>
+      <pubDate>Mon, 07 Dec 2015 17:00:28 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/12/07/dsc-resource-to-configure-switch-embedded-teaming-in-windows-server-2016/</guid>
+      <description>Earlier this year, I released a bunch of DSC resources packaged as cHyper-V resource module. The resources are focused on configuring Hyper-V networking.</description>
+    </item>
+    
+    <item>
+      <title>Part 4 – Journey to a Windows Azure Pack VM Role DSC Resource: The DSC resource</title>
+      <link>https://psmag.github.io/2015/09/22/part-4-journey-to-a-windows-azure-pack-vm-role-dsc-resource-the-dsc-resource/</link>
+      <pubDate>Tue, 22 Sep 2015 16:58:15 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/09/22/part-4-journey-to-a-windows-azure-pack-vm-role-dsc-resource-the-dsc-resource/</guid>
+      <description>In this series:
+Part 1 – Journey to a Windows Azure Pack VM Role DSC Resource: Introduction
+Part 2 – Journey to a Windows Azure Pack VM Role DSC Resource: PowerShell module usage</description>
+    </item>
+    
+    <item>
+      <title>Journey to a Windows Azure Pack VM Role DSC Resource: Inside the module</title>
+      <link>https://psmag.github.io/2015/09/01/journey-to-a-windows-azure-pack-vm-role-dsc-resource-inside-the-module/</link>
+      <pubDate>Tue, 01 Sep 2015 16:00:58 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/09/01/journey-to-a-windows-azure-pack-vm-role-dsc-resource-inside-the-module/</guid>
+      <description>In this series,
+Part 1 – Journey to a Windows Azure Pack VM Role DSC Resource: Introduction
+Part 2 – Journey to a Windows Azure Pack VM Role DSC Resource: PowerShell module usage</description>
+    </item>
+    
+    <item>
+      <title>Journey to a Windows Azure Pack VM Role DSC Resource: PowerShell Module Usage</title>
+      <link>https://psmag.github.io/2015/08/07/journey-to-a-windows-azure-pack-vm-role-dsc-resource-powershell-module-usage/</link>
+      <pubDate>Fri, 07 Aug 2015 16:00:20 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/08/07/journey-to-a-windows-azure-pack-vm-role-dsc-resource-powershell-module-usage/</guid>
+      <description>In this series,
+Part 1 - Journey to a Windows Azure Pack VM Role DSC Resource: Introduction
+Part 2 - Journey to a Windows Azure Pack VM Role DSC Resource: PowerShell module usage (this article)</description>
+    </item>
+    
+    <item>
+      <title>Journey to a Windows Azure Pack VM Role DSC Resource: Introduction</title>
+      <link>https://psmag.github.io/2015/07/28/journey-to-a-windows-azure-pack-vm-role-dsc-resource/</link>
+      <pubDate>Tue, 28 Jul 2015 16:00:13 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/07/28/journey-to-a-windows-azure-pack-vm-role-dsc-resource/</guid>
+      <description>In this series,
+Part 1 – Journey to a Windows Azure Pack VM Role DSC Resource: Introduction (this article)
+Part 2 – Journey to a Windows Azure Pack VM Role DSC Resource: PowerShell module usage</description>
+    </item>
+    
+    <item>
+      <title>PowerShell DSC for Linux: Pull Server</title>
+      <link>https://psmag.github.io/2015/07/10/powershell-dsc-for-linux-pull-server/</link>
+      <pubDate>Fri, 10 Jul 2015 16:00:17 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/07/10/powershell-dsc-for-linux-pull-server/</guid>
+      <description>Initial release of PowerShell DSC for Linux had one big gap: it supported only pushing the configuration to the node. And even though this mode is good enough for demos or basic proof of concept, it doesn’t seem like a proper solution for production environment.</description>
+    </item>
+    
+    <item>
+      <title>PowerShell DSC for Linux: Resources</title>
+      <link>https://psmag.github.io/2015/07/08/powershell-dsc-for-linux-resources/</link>
+      <pubDate>Wed, 08 Jul 2015 16:00:58 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/07/08/powershell-dsc-for-linux-resources/</guid>
+      <description>New version of PowerShell DSC for Linux doubled the number of resources available. Initial batch in CTP covered basics: nxUser to create and manage users, nxGroup to define groups and manage group members, nxFile to create and modify files, nxService to start, stop, enable, and disable daemons, and nxScript to cover anything that couldn’t be done with other resources.</description>
+    </item>
+    
+    <item>
+      <title>Eliminating Redundant Code by Writing Reusable DSC Configurations</title>
+      <link>https://psmag.github.io/2015/07/07/eliminating-redundant-code-by-writing-reusable-dsc-configurations/</link>
+      <pubDate>Tue, 07 Jul 2015 16:00:16 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/07/07/eliminating-redundant-code-by-writing-reusable-dsc-configurations/</guid>
+      <description>Both PowerShell and DSC (Desired State Configuration) are designed for efficiency through automation. If you’re not careful though, you’ll find yourself bringing the bad habit of repeating yourself performing the same task over and over again from the GUI to PowerShell and DSC by writing the same or similar code over and over.</description>
+    </item>
+    
+    <item>
+      <title>PowerShell DSC for Linux: Installation</title>
+      <link>https://psmag.github.io/2015/07/06/powershell-dsc-for-linux-installation/</link>
+      <pubDate>Mon, 06 Jul 2015 16:00:44 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/07/06/powershell-dsc-for-linux-installation/</guid>
+      <description>First version of PowerShell DSC for Linux is released. We announced that and promised to come back to that subject. It’s time to fulfil that promise.</description>
+    </item>
+    
+    <item>
+      <title>Creating a Simple DSC Resource</title>
+      <link>https://psmag.github.io/2015/07/02/creating-a-simple-dsc-resource/</link>
+      <pubDate>Thu, 02 Jul 2015 17:19:33 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/07/02/creating-a-simple-dsc-resource/</guid>
+      <description>In this article, we will look at how to get started creating a very simple DSC resource.
+Creating DSC resource is, by many, considered an advanced topic in PowerShell.</description>
+    </item>
+    
+    <item>
+      <title>How to use WDS to PXE Boot a Nano Server VHD with PowerShell</title>
+      <link>https://psmag.github.io/2015/06/29/how-to-use-wds-to-pxe-boot-a-nano-server-vhd-with-powershell-2/</link>
+      <pubDate>Mon, 29 Jun 2015 18:58:10 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/06/29/how-to-use-wds-to-pxe-boot-a-nano-server-vhd-with-powershell-2/</guid>
+      <description>The goal of this article is to provide a more detailed step by step way of achieving what was recently presented in How to use WDS to PXE Boot a Nano Server VHD post on Nano Server team blog.</description>
+    </item>
+    
+    <item>
+      <title>PowerShell DSC for Linux released!</title>
+      <link>https://psmag.github.io/2015/05/14/powershell-dsc-for-linux-released/</link>
+      <pubDate>Thu, 14 May 2015 22:29:50 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/05/14/powershell-dsc-for-linux-released/</guid>
+      <description>The day that people who love both PowerShell DSC and xplat solutions where looking for had finally arrived. Last week the first version of PowerShell DSC for Linux was released.</description>
+    </item>
+    
+    <item>
+      <title>Fasten your seat belts and start contributing to the DSC PowerShell resource repository!</title>
+      <link>https://psmag.github.io/2015/04/16/fasten-your-seat-belts-and-start-contributing-to-the-dsc-powershell-resource-repository/</link>
+      <pubDate>Thu, 16 Apr 2015 11:57:51 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/04/16/fasten-your-seat-belts-and-start-contributing-to-the-dsc-powershell-resource-repository/</guid>
+      <description>The DSC resource development team at Microsoft released ten waves of DSC resource kit that has almost 180 resources. There are resources for System Center products, Azure Pack, Microsoft Exchange, and many more.</description>
+    </item>
+    
+    <item>
+      <title>Improvements to DSC v1</title>
+      <link>https://psmag.github.io/2015/03/09/improvements-to-dsc-v1/</link>
+      <pubDate>Mon, 09 Mar 2015 16:00:15 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/03/09/improvements-to-dsc-v1/</guid>
+      <description>KB3000850, the November 2014 update rollup for Windows RT 8.1, Windows 8.1, and Windows Server 2012 R2, has brought several enhancements and fixes to the first version of DSC (initially released as a part of Windows PowerShell 4.</description>
+    </item>
+    
+    <item>
+      <title>Working with PowerShell DSC for Linux, part 5</title>
+      <link>https://psmag.github.io/2015/02/27/working-with-powershell-dsc-for-linux-part-5/</link>
+      <pubDate>Fri, 27 Feb 2015 17:00:20 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/02/27/working-with-powershell-dsc-for-linux-part-5/</guid>
+      <description>Managing Linux can become a challenge if you don’t have some way of distributing credentials. There are several options: joining Active Directory domain and using shared credentials for both Linux and Windows, using other LDAP implementation to authenticate or distribute users/groups using Configuration Management tools.</description>
+    </item>
+    
+    <item>
+      <title>Working with PowerShell DSC for Linux, part 4</title>
+      <link>https://psmag.github.io/2015/02/26/working-with-powershell-dsc-for-linux-part-4/</link>
+      <pubDate>Thu, 26 Feb 2015 17:00:57 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/02/26/working-with-powershell-dsc-for-linux-part-4/</guid>
+      <description>CTP of Linux DSC that was released last year has only five resources: nxService, nxFile, nxUser, nxGroup, and nxScript. Things like package management, network configuration, firewall settings, jobs scheduled in crontab don’t have coverage in resources.</description>
+    </item>
+    
+    <item>
+      <title>Working with PowerShell DSC for Linux, part 3</title>
+      <link>https://psmag.github.io/2015/02/25/working-with-powershell-dsc-for-linux-part-3/</link>
+      <pubDate>Wed, 25 Feb 2015 17:00:54 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/02/25/working-with-powershell-dsc-for-linux-part-3/</guid>
+      <description>Linux is a system that stores configuration in text files. As a result, nxFile should be considered one of two most powerful resources offered in the CTP release.</description>
+    </item>
+    
+    <item>
+      <title>Working with PowerShell DSC for Linux, part 2</title>
+      <link>https://psmag.github.io/2015/02/23/working-with-powershell-dsc-for-linux-part-2/</link>
+      <pubDate>Mon, 23 Feb 2015 17:00:34 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/02/23/working-with-powershell-dsc-for-linux-part-2/</guid>
+      <description>PowerShell DSC for Linux caught my attention immediately after it was announced. Being able to control configuration of Linux box with pure PowerShell code is huge for anybody who is interested in cross-platform solutions build in PowerShell.</description>
+    </item>
+    
+    <item>
+      <title>Working with PowerShell DSC for Linux, part 1</title>
+      <link>https://psmag.github.io/2015/02/21/working-with-powershell-dsc-for-linux-part-1/</link>
+      <pubDate>Sun, 22 Feb 2015 00:15:33 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/02/21/working-with-powershell-dsc-for-linux-part-1/</guid>
+      <description>In the first part of this series, we covered the basis–how to get Desired State Configuration to do what the name promises: keep desired state consistent.</description>
+    </item>
+    
+    <item>
+      <title>Mixed refresh mode support for DSC partial configurations</title>
+      <link>https://psmag.github.io/2015/02/20/mixed-refresh-mode-support-for-dsc-partial-configurations/</link>
+      <pubDate>Fri, 20 Feb 2015 19:00:42 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/02/20/mixed-refresh-mode-support-for-dsc-partial-configurations/</guid>
+      <description>Partial configurations in DSC allow department-level delegation of target system configuration. This is an important step in enabling collaboration in the enterprise configuration management context.</description>
+    </item>
+    
+    <item>
+      <title>DSC Local Configuration Manager Refresh Modes in WMF 5.0</title>
+      <link>https://psmag.github.io/2015/02/19/dsc-local-configuration-manager-refresh-modes-in-wmf-5-0/</link>
+      <pubDate>Thu, 19 Feb 2015 15:00:47 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/02/19/dsc-local-configuration-manager-refresh-modes-in-wmf-5-0/</guid>
+      <description>In the WMF 5.0 Preview February release, a new DSC RefreshMode setting is added to the LCM meta-configuration. If you have worked with first release of DSC or any of the earlier WMF 5.</description>
+    </item>
+    
+    <item>
+      <title>Using DSC to deploy Hyper-V converged virtual network – Assigning IP addresses to VM Adapters (Final Part)</title>
+      <link>https://psmag.github.io/2015/01/23/using-dsc-to-deploy-hyper-v-converged-virtual-network-assigning-ip-addresses-to-vm-adapters-final-part/</link>
+      <pubDate>Fri, 23 Jan 2015 17:00:06 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/01/23/using-dsc-to-deploy-hyper-v-converged-virtual-network-assigning-ip-addresses-to-vm-adapters-final-part/</guid>
+      <description>In an earlier article, I had introduced DSC resources that can be used to deploy a Hyper-V converged virtual network. In this series of articles, we will build the converged network configuration for what is shown below.</description>
+    </item>
+    
+    <item>
+      <title>Using DSC to deploy Hyper-V converged virtual network – Configuring Host VM Adapters (Part 3)</title>
+      <link>https://psmag.github.io/2015/01/22/using-dsc-to-deploy-hyper-v-converged-virtual-network-configuring-host-vm-adapters-part-3/</link>
+      <pubDate>Thu, 22 Jan 2015 17:00:54 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/01/22/using-dsc-to-deploy-hyper-v-converged-virtual-network-configuring-host-vm-adapters-part-3/</guid>
+      <description>In an earlier article, I had introduced DSC resources that can be used to deploy a Hyper-V converged virtual network. In this series of articles, we will build the converged network configuration for what is shown below.</description>
+    </item>
+    
+    <item>
+      <title>Using DSC to deploy Hyper-V converged virtual network – Creating a converged virtual switch (Part 2)</title>
+      <link>https://psmag.github.io/2015/01/21/using-dsc-to-deploy-hyper-v-converged-virtual-network-creating-a-converged-virtual-switch-part-2/</link>
+      <pubDate>Wed, 21 Jan 2015 17:00:23 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/01/21/using-dsc-to-deploy-hyper-v-converged-virtual-network-creating-a-converged-virtual-switch-part-2/</guid>
+      <description>In an earlier article, I had introduced DSC resources that can be used to deploy a Hyper-V converged virtual network. In this series of articles, we will build the converged network configuration for what is shown below.</description>
+    </item>
+    
+    <item>
+      <title>Using DSC to deploy Hyper-V converged virtual network – Creating a host team (Part 1)</title>
+      <link>https://psmag.github.io/2015/01/20/using-dsc-to-deploy-hyper-v-converged-virtual-network-creating-a-host-team-part-1/</link>
+      <pubDate>Tue, 20 Jan 2015 16:11:56 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/01/20/using-dsc-to-deploy-hyper-v-converged-virtual-network-creating-a-host-team-part-1/</guid>
+      <description>In yesterday’s article, I had introduced DSC resources that can be used to deploy a Hyper-V converged network. Starting today, we will see detailed walk-through for using each of these resources we published yesterday.</description>
+    </item>
+    
+    <item>
+      <title>Announcing DSC resources to deploy Hyper-V converged virtual network</title>
+      <link>https://psmag.github.io/2015/01/19/announcing-dsc-resources-to-deploy-hyper-v-converged-virtual-network/</link>
+      <pubDate>Mon, 19 Jan 2015 15:30:43 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/01/19/announcing-dsc-resources-to-deploy-hyper-v-converged-virtual-network/</guid>
+      <description>The converged virtual network within Hyper-V deployments is a common configuration. There are multiple ways to deploy the converged network configuration.</description>
+    </item>
+    
+    <item>
+      <title>Holiday present from PowerShell Magazine – DSC resource module to install and configure Azure Recovery Services Agent</title>
+      <link>https://psmag.github.io/2014/12/22/holiday-present-from-powershell-magazine-dsc-resource-module-to-install-and-configure-azure-recovery-services-agent/</link>
+      <pubDate>Mon, 22 Dec 2014 17:03:43 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/12/22/holiday-present-from-powershell-magazine-dsc-resource-module-to-install-and-configure-azure-recovery-services-agent/</guid>
+      <description>Ok, this is not as big as the PowerShell team’s holiday gift but something that has been very useful to me.</description>
+    </item>
+    
+    <item>
+      <title>Holiday gift from Windows PowerShell team – DSC Resource Kit Wave 9</title>
+      <link>https://psmag.github.io/2014/12/18/holiday-gift-from-windows-powershell-team-dsc-resource-kit-wave-9/</link>
+      <pubDate>Thu, 18 Dec 2014 19:34:27 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/12/18/holiday-gift-from-windows-powershell-team-dsc-resource-kit-wave-9/</guid>
+      <description>Windows PowerShell team just released a new wave of DSC resources taking the overall DSC resource count to 172! This is a great accomplishment within a single year!</description>
+    </item>
+    
+    <item>
+      <title>Exploring and installing DSC resources published in PowerShell Gallery</title>
+      <link>https://psmag.github.io/2014/12/15/exploring-and-installing-dsc-resources-published-in-powershell-gallery/</link>
+      <pubDate>Mon, 15 Dec 2014 17:00:39 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/12/15/exploring-and-installing-dsc-resources-published-in-powershell-gallery/</guid>
+      <description>Note: This article applies to Windows Management Framework (WMF) 5.0 Preview release only.
+Windows PowerShell team made a formal announcement of PowerShell Gallery availability (limited preview) last month.</description>
+    </item>
+    
+    <item>
+      <title>Microsoft Monitoring Agent DSC resource updated to enable AD and management groups configuration</title>
+      <link>https://psmag.github.io/2014/12/12/microsoft-monitoring-agent-dsc-resource-updated-to-enable-ad-and-management-groups-configuration/</link>
+      <pubDate>Fri, 12 Dec 2014 17:00:14 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/12/12/microsoft-monitoring-agent-dsc-resource-updated-to-enable-ad-and-management-groups-configuration/</guid>
+      <description>A couple of weeks ago, I had announced a custom DSC resource module to install and configure Microsoft Monitoring Agent that is required to configure Azure Operational Insights.</description>
+    </item>
+    
+    <item>
+      <title>DSC resource module for Microsoft Monitoring Agent install and configuration of Azure Operational Insights</title>
+      <link>https://psmag.github.io/2014/11/26/dsc-resource-module-for-microsoft-monitoring-agent-install-and-configuration-for-azure-operational-insights/</link>
+      <pubDate>Wed, 26 Nov 2014 17:00:49 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/26/dsc-resource-module-for-microsoft-monitoring-agent-install-and-configuration-for-azure-operational-insights/</guid>
+      <description>Microsoft Monitoring Agent (MMA) is used to connect target systems to System Center Operations Manager or directly to Azure Operational Insights.</description>
+    </item>
+    
+    <item>
+      <title>Using WMI SMTP Event Consumer DSC resource</title>
+      <link>https://psmag.github.io/2014/11/24/using-wmi-smtp-event-consumer-dsc-resource/</link>
+      <pubDate>Mon, 24 Nov 2014 17:00:41 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/24/using-wmi-smtp-event-consumer-dsc-resource/</guid>
+      <description>If you have not seen the earlier articles in this series, I had written about:
+ DSC resource for managing WMI permanent event filters, consumers, and bindings Troubleshooting WMI standard event consumer issues Using the WMI Commandline Event Consumer DSC resource Using WMI Active Script Event Consumer DSC Resource Using WMI Log File Event Consumer DSC resource Using WMI Event Log Event Consumer DSC resource  In today’s article, I will show you how the WMI SMTP event consumer DSC resource can be used.</description>
+    </item>
+    
+    <item>
+      <title>Using WMI Event Log Event Consumer DSC resource</title>
+      <link>https://psmag.github.io/2014/11/21/using-wmi-event-log-event-consumer-dsc-resource/</link>
+      <pubDate>Fri, 21 Nov 2014 17:00:47 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/21/using-wmi-event-log-event-consumer-dsc-resource/</guid>
+      <description>If you have not seen the earlier articles in this series, I had written about:
+ DSC resource for managing WMI permanent event filters, consumers, and bindings Troubleshooting WMI standard event consumer issues Using the WMI Commandline Event Consumer DSC resource Using WMI Active Script Event Consumer DSC Resource Using WMI Log File Event Consumer DSC resource  In today’s article, I will show you how the WMI Event Log Event Consumer DSC resource can be used.</description>
+    </item>
+    
+    <item>
+      <title>Using WMI Log File Event Consumer DSC resource</title>
+      <link>https://psmag.github.io/2014/11/20/using-wmi-log-file-event-consumer-dsc-resource/</link>
+      <pubDate>Fri, 21 Nov 2014 01:39:33 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/20/using-wmi-log-file-event-consumer-dsc-resource/</guid>
+      <description>If you have not seen the earlier articles in this series, I had written about:
+ DSC resource for managing WMI permanent event filters, consumers, and bindings Troubleshooting WMI standard event consumer issues Using the WMI Commandline Event Consumer DSC resource Using WMI Active Script Event Consumer DSC Resource  In today’s article, I will show you how the WMI Log File Event Consumer DSC resource can be used.</description>
+    </item>
+    
+    <item>
+      <title>Using WMI Active Script Event Consumer DSC resource</title>
+      <link>https://psmag.github.io/2014/11/19/using-wmi-active-script-event-consumer-dsc-resource/</link>
+      <pubDate>Wed, 19 Nov 2014 17:00:58 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/19/using-wmi-active-script-event-consumer-dsc-resource/</guid>
+      <description>In my previous article, I talked about using WMI Commandline Event Consumer DSC resource. In that article, I showed you how we can respond to a flash drive insertion event and create a backup copy of a local folder on the removal device.</description>
+    </item>
+    
+    <item>
+      <title>DSC changes in Windows Management Framework 5.0 Preview November 2014 release</title>
+      <link>https://psmag.github.io/2014/11/18/dsc-changes-in-windows-management-framework-5-0-preview-november-2014-release/</link>
+      <pubDate>Wed, 19 Nov 2014 03:58:53 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/18/dsc-changes-in-windows-management-framework-5-0-preview-november-2014-release/</guid>
+      <description>If you’ve missed Windows PowerShell team’s announcement, WMF 5.0 Preview November 2014 release is out.
+This Windows Management Framework (WMF) preview includes everything from WMF 5.</description>
+    </item>
+    
+    <item>
+      <title>Using the WMI Commandline Event Consumer DSC resource</title>
+      <link>https://psmag.github.io/2014/11/18/using-the-wmi-commandline-event-consumer-dsc-resource/</link>
+      <pubDate>Tue, 18 Nov 2014 17:00:03 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/18/using-the-wmi-commandline-event-consumer-dsc-resource/</guid>
+      <description>In my earlier article, I promised a detailed walk-through of each DSC resource to manage the WMI permanent events. To start that series, I will show how to use the command line Event Consumer DSC resource.</description>
+    </item>
+    
+    <item>
+      <title>PowerShell ISE add-on to manage WMI permanent event filters, consumers, and bindings</title>
+      <link>https://psmag.github.io/2014/11/17/powershell-ise-add-on-to-manage-wmi-permanent-event-filters-consumers-and-bindings/</link>
+      <pubDate>Mon, 17 Nov 2014 17:00:21 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/17/powershell-ise-add-on-to-manage-wmi-permanent-event-filters-consumers-and-bindings/</guid>
+      <description>When I am working with Windows PowerShell, PowerShell ISE is my second home. I prefer to do everything within PowerShell ISE and not move away from it to other tools.</description>
+    </item>
+    
+    <item>
+      <title>DSC resource for managing WMI permanent event filters, consumers, and bindings</title>
+      <link>https://psmag.github.io/2014/11/12/dsc-resource-for-managing-wmi-permanent-event-filters-consumers-and-bindings/</link>
+      <pubDate>Wed, 12 Nov 2014 17:00:40 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/12/dsc-resource-for-managing-wmi-permanent-event-filters-consumers-and-bindings/</guid>
+      <description>I use WMI/CIM event functionality often in my orchestration scripts and WMI permanent events play a big role there. You can learn more about WMI permanent events by reading my book on WMI Query Language.</description>
+    </item>
+    
+    <item>
+      <title>ISE Snippets for DSC Resource functions</title>
+      <link>https://psmag.github.io/2014/11/04/ise-snippets-for-dsc-resource-functions/</link>
+      <pubDate>Tue, 04 Nov 2014 17:43:52 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/11/04/ise-snippets-for-dsc-resource-functions/</guid>
+      <description>PowerShell ISE 4.0 includes a couple of snippets for DSC including the DSC Resource Provider (Simple). This, in fact, is too simple.</description>
+    </item>
+    
+    <item>
+      <title>DSC Resource for Mounting and Dismounting ISO images</title>
+      <link>https://psmag.github.io/2014/10/15/dsc-resource-for-mounting-and-dismounting-iso-images/</link>
+      <pubDate>Wed, 15 Oct 2014 16:00:32 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/10/15/dsc-resource-for-mounting-and-dismounting-iso-images/</guid>
+      <description>Note: This DSC resource works only on Windows Server 2102 and above or Windows 8 and above. Also, this article assumes that you understanding DSC custom resource development.</description>
+    </item>
+    
+    <item>
+      <title>DSC composite resource for auto administrator logon</title>
+      <link>https://psmag.github.io/2014/10/07/dsc-composite-resource-for-auto-administrator-logon/</link>
+      <pubDate>Tue, 07 Oct 2014 16:00:34 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/10/07/dsc-composite-resource-for-auto-administrator-logon/</guid>
+      <description>For my lab setup, I sometimes need to enable auto administrator logon during OS and application deployment. I use DSC for most part of this automation and what is better than a DSC resource for this?</description>
+    </item>
+    
+    <item>
+      <title>Class-defined DSC resources in Windows Management Framework 5.0 Preview</title>
+      <link>https://psmag.github.io/2014/10/06/class-defined-dsc-resources-in-windows-management-framework-5-0-preview/</link>
+      <pubDate>Mon, 06 Oct 2014 16:00:16 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/10/06/class-defined-dsc-resources-in-windows-management-framework-5-0-preview/</guid>
+      <description>By now, it should be no surprise that WMF 5.0 Preview added support for defining classes and user-defined data types. This is done using the formal syntax and semantics that you find in an object-oriented programming language.</description>
+    </item>
+    
+    <item>
+      <title>Partial DSC Configurations in Windows Management Framework (WMF) 5.0</title>
+      <link>https://psmag.github.io/2014/10/02/partial-dsc-configurations-in-windows-management-framework-wmf-5-0/</link>
+      <pubDate>Thu, 02 Oct 2014 16:00:07 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/10/02/partial-dsc-configurations-in-windows-management-framework-wmf-5-0/</guid>
+      <description>Windows Management Framework (WMF) 5.0 September 2014 Preview brought in many changes to Desired State Configuration (DSC). A couple of important changes include cross-computer synchronization and partial configurations.</description>
+    </item>
+    
+    <item>
+      <title>Installing WMF 5.0 Preview September 2014 using DSC xWindowsUpdate resource</title>
+      <link>https://psmag.github.io/2014/09/29/installing-wmf-5-0-preview-september-2014-using-dsc-xwindowsupdate-and-xpendingreboot-resources/</link>
+      <pubDate>Mon, 29 Sep 2014 16:13:27 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/09/29/installing-wmf-5-0-preview-september-2014-using-dsc-xwindowsupdate-and-xpendingreboot-resources/</guid>
+      <description>If you have missed the announcement, Powershell team released wave 7 of the DSC Resource Kit just before the weekend.</description>
+    </item>
+    
+    <item>
+      <title>Inter-node dependency and cross-computer synchronization with DSC</title>
+      <link>https://psmag.github.io/2014/09/26/inter-node-dependency-and-cross-computer-synchronization-with-dsc/</link>
+      <pubDate>Fri, 26 Sep 2014 16:00:18 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/09/26/inter-node-dependency-and-cross-computer-synchronization-with-dsc/</guid>
+      <description>I had earlier ranted about why DSC is not an orchestrator and that I posted a connect suggestion to add inter-node dependency in DSC.</description>
+    </item>
+    
+    <item>
+      <title>New features introduced in Windows Management Framework 5.0 Preview September 2014</title>
+      <link>https://psmag.github.io/2014/09/12/new-features-introduced-in-windows-management-framework-5-0-preview-september-2014/</link>
+      <pubDate>Fri, 12 Sep 2014 16:00:26 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/09/12/new-features-introduced-in-windows-management-framework-5-0-preview-september-2014/</guid>
+      <description>Windows Management Framework 5.0 Preview September 2014 was released on September 4.
+An overview of new features added since the May 2014 Preview is listed in the announcement on the Windows PowerShell Team blog, while additional details are available in the release notes.</description>
+    </item>
+    
+    <item>
+      <title>Book: Announcing Windows PowerShell Desired State Configuration Revealed</title>
+      <link>https://psmag.github.io/2014/09/09/book-announcing-windows-powershell-desired-state-configuration-revealed/</link>
+      <pubDate>Tue, 09 Sep 2014 09:43:29 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/09/09/book-announcing-windows-powershell-desired-state-configuration-revealed/</guid>
+      <description>If you have followed my posts here and/or heard me speaking in the last 6 to 8 months, I have been mostly focusing on Desired State Configuration.</description>
+    </item>
+    
+    <item>
+      <title>DSC Resource Kit Wave 6 is here!</title>
+      <link>https://psmag.github.io/2014/08/21/dsc-resource-kit-wave-6-is-here/</link>
+      <pubDate>Thu, 21 Aug 2014 09:14:18 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/08/21/dsc-resource-kit-wave-6-is-here/</guid>
+      <description>Windows PowerShell team published a new wave of DSC Resource Kit. It is Wave 6!
+This wave contains four new resources:</description>
+    </item>
+    
+    <item>
+      <title>Running commands as another user using DSC script resource</title>
+      <link>https://psmag.github.io/2014/08/13/running-commands-as-another-user-using-dsc-script-resource/</link>
+      <pubDate>Wed, 13 Aug 2014 18:42:42 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/08/13/running-commands-as-another-user-using-dsc-script-resource/</guid>
+      <description>A while ago, I received an email from a reader who wanted to run a few Exchange PowerShell cmdlets using DSC.</description>
+    </item>
+    
+    <item>
+      <title>Bootstrapping DSC configuration using Azure VM DSC extension</title>
+      <link>https://psmag.github.io/2014/08/07/bootstrapping-dsc-configuration-using-azure-vm-dsc-extension/</link>
+      <pubDate>Thu, 07 Aug 2014 16:00:46 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/08/07/bootstrapping-dsc-configuration-using-azure-vm-dsc-extension/</guid>
+      <description>In one of the earlier articles, I demonstrated how we can use the Azure VM custom script extension to bootstrap DSC LCM meta-configuration after creating a new VM.</description>
+    </item>
+    
+    <item>
+      <title>Understanding Azure VM DSC Extension</title>
+      <link>https://psmag.github.io/2014/08/05/understanding-azure-vm-dsc-extension/</link>
+      <pubDate>Tue, 05 Aug 2014 17:04:31 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/08/05/understanding-azure-vm-dsc-extension/</guid>
+      <description>The Azure team released the Azure PowerShell Tools version 0.8.6 that includes cmdlets for working with a new Azure VM extension called DSC extension.</description>
+    </item>
+    
+    <item>
+      <title>Cross-domain configuration management with DSC</title>
+      <link>https://psmag.github.io/2014/07/30/cross-domain-configuration-management-with-dsc/</link>
+      <pubDate>Wed, 30 Jul 2014 16:00:51 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/07/30/cross-domain-configuration-management-with-dsc/</guid>
+      <description>Most of the DSC examples we have seen so far here or elsewhere focused on single domain scenarios. However, in a real-world deployment, we have mixed domains and even a few systems that are probably in a workgroup configuration.</description>
+    </item>
+    
+    <item>
+      <title>Bootstrapping LCM meta-configuration in a Azure VM</title>
+      <link>https://psmag.github.io/2014/07/29/bootstrapping-lcm-meta-configuration-in-a-azure-vm/</link>
+      <pubDate>Tue, 29 Jul 2014 16:53:15 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/07/29/bootstrapping-lcm-meta-configuration-in-a-azure-vm/</guid>
+      <description>I have been a very active user of DSC both in the lab and on all my Azure VMs. One of the things I always do is to configure my Azure VMs to get configuration from a pull service hosted in my Azure subscription.</description>
+    </item>
+    
+    <item>
+      <title>DSC Resource Kit Wave 5 is available</title>
+      <link>https://psmag.github.io/2014/07/18/dsc-resource-kit-wave-5-is-available/</link>
+      <pubDate>Fri, 18 Jul 2014 07:38:49 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/07/18/dsc-resource-kit-wave-5-is-available/</guid>
+      <description>Windows PowerShell team released DSC Resource Kit Wave 5.
+This wave has added the following
+ xWordPress: This module contains two resources, xIISWordPressSite and xWordPressSite, as well as example configurations under Samples, which show end-to-end deployment of the common WordPress site.</description>
+    </item>
+    
+    <item>
+      <title>Installing and configuring DSC for Linux</title>
+      <link>https://psmag.github.io/2014/05/21/installing-and-configuring-dsc-for-linux/</link>
+      <pubDate>Wed, 21 May 2014 16:00:29 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/05/21/installing-and-configuring-dsc-for-linux/</guid>
+      <description>[Update 1: 5/23/2014] Added pre-requisite install commands for Oracle Linux
+I am sure you are aware of the Microsoft’s announcement of the CTP release of DSC for Linux.</description>
+    </item>
+    
+    <item>
+      <title>Microsoft announced the CTP release of Windows PowerShell Desired State Configuration for Linux</title>
+      <link>https://psmag.github.io/2014/05/19/microsoft-announced-the-ctp-release-of-windows-powershell-desired-state-configuration-for-linux/</link>
+      <pubDate>Tue, 20 May 2014 02:52:52 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/05/19/microsoft-announced-the-ctp-release-of-windows-powershell-desired-state-configuration-for-linux/</guid>
+      <description>When I was speaking at DevOpsDays India and demonstrating Windows PowerShel DSC (6 months ago), several people in the room had a laugh as I’d mentioned Microsoft and OpenSource.</description>
+    </item>
+    
+    <item>
+      <title>Copy DSC resources to Azure VMs using Custom Script Extension</title>
+      <link>https://psmag.github.io/2014/05/02/copy-dsc-resources-to-azure-vms-using-custom-script-extension/</link>
+      <pubDate>Fri, 02 May 2014 17:30:43 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/05/02/copy-dsc-resources-to-azure-vms-using-custom-script-extension/</guid>
+      <description>In an earlier article, I showed you how to use the Custom Script Extension. The examples that I had there were too trivial and were intended to explain how the Custom Script Extension works.</description>
+    </item>
+    
+    <item>
+      <title>Desired State Configuration changes/fixes in WMF 5.0 Preview</title>
+      <link>https://psmag.github.io/2014/04/14/desired-state-configuration-changesfixes-in-wmf-5-0-preview/</link>
+      <pubDate>Mon, 14 Apr 2014 16:00:28 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/04/14/desired-state-configuration-changesfixes-in-wmf-5-0-preview/</guid>
+      <description>If you were under a rock and just came out, here is a bit of news for you. Microsoft released Windows Management Framework 5.</description>
+    </item>
+    
+    <item>
+      <title>Pushing DSC configuration to an Azure VM</title>
+      <link>https://psmag.github.io/2014/04/02/pushing-desired-state-configuration-to-an-azure-vm/</link>
+      <pubDate>Wed, 02 Apr 2014 16:00:04 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/04/02/pushing-desired-state-configuration-to-an-azure-vm/</guid>
+      <description>I had described in an earlier article that Desired State Configuration requires WinRM listeners for pushing the configuration to target systems.</description>
+    </item>
+    
+    <item>
+      <title>Desired State Configuration and the remoting myth</title>
+      <link>https://psmag.github.io/2014/04/01/desired-state-configuration-and-the-remoting-myth/</link>
+      <pubDate>Tue, 01 Apr 2014 16:06:26 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/04/01/desired-state-configuration-and-the-remoting-myth/</guid>
+      <description>Windows PowerShell Desired State Configuration feature depends on PowerShell remoting. This is what we have been hearing and reading in the WMF 4.</description>
+    </item>
+    
+    <item>
+      <title>Writing help for custom DSC resources</title>
+      <link>https://psmag.github.io/2014/03/21/writing-help-for-custom-dsc-resources/</link>
+      <pubDate>Fri, 21 Mar 2014 17:00:23 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/03/21/writing-help-for-custom-dsc-resources/</guid>
+      <description>Desired State Configuration is the hottest thing out there and everyone is writing custom DSC resources for almost everything. One of the most important aspects of writing custom DSC resources is to write help content on how to use these custom resources.</description>
+    </item>
+    
+    <item>
+      <title>Is Desired State Configuration (DSC) everything I need?</title>
+      <link>https://psmag.github.io/2014/03/05/is-desired-state-configuration-dsc-everything-i-need/</link>
+      <pubDate>Wed, 05 Mar 2014 17:00:40 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/03/05/is-desired-state-configuration-dsc-everything-i-need/</guid>
+      <description>My answer is no! At least, not everything I need right now. A few days ago, I tweeted some of my thoughts.</description>
+    </item>
+    
+    <item>
+      <title>Desired State Configuration (DSC) Resource Kit Wave-2</title>
+      <link>https://psmag.github.io/2014/02/09/desired-state-configuration-dsc-resource-kit-wave-2/</link>
+      <pubDate>Sun, 09 Feb 2014 09:11:26 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/02/09/desired-state-configuration-dsc-resource-kit-wave-2/</guid>
+      <description>Around Christmas time last year, PowerShell team released the wave 1 of DSC resource kit. This had good number of custom resources to manage Hyper-V virtual machines, IIS websites, and so on.</description>
+    </item>
+    
+    <item>
+      <title>Desired State Configuration (DSC) Resource Kit Wave-1</title>
+      <link>https://psmag.github.io/2013/12/27/desired-state-configuration-dsc-resource-kit-wave-1/</link>
+      <pubDate>Fri, 27 Dec 2013 13:19:17 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/12/27/desired-state-configuration-dsc-resource-kit-wave-1/</guid>
+      <description>Are you looking at writing your own DSC resources? Have you been following our DSC articles? DSC is the exciting new feature in Windows PowerShell 4.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Exploring DSC resources</title>
+      <link>https://psmag.github.io/2013/10/09/pstip-exploring-dsc-resources/</link>
+      <pubDate>Wed, 09 Oct 2013 18:00:26 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/10/09/pstip-exploring-dsc-resources/</guid>
+      <description>Note: This tip requires PowerShell 4.0 or above.
+In Windows Server 2012 R2 RTM build, Microsoft added a cmdlet called Get-DSCResource.</description>
+    </item>
+    
+    <item>
+      <title>Connect suggestion: DSC Archive resource needs the Credential attribute</title>
+      <link>https://psmag.github.io/2013/09/27/connect-suggestion-dsc-archive-resource-needs-the-credential-attribute/</link>
+      <pubDate>Fri, 27 Sep 2013 16:00:12 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/09/27/connect-suggestion-dsc-archive-resource-needs-the-credential-attribute/</guid>
+      <description>In an earlier article, I showed you copying DSC resources and PowerShell modules to remote computers. In that article, I showed a method to authorize remote computers to access the UNC path.</description>
+    </item>
+    
+    <item>
+      <title>Using the Credential attribute of DSC File Resource</title>
+      <link>https://psmag.github.io/2013/09/26/using-the-credential-attribute-of-dsc-file-resource/</link>
+      <pubDate>Thu, 26 Sep 2013 14:12:50 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/09/26/using-the-credential-attribute-of-dsc-file-resource/</guid>
+      <description>In an article about copying DSC custom resources to remote systems, I talked about setting computer account permissions. Many of us, including me, may not always want to do that given the number of computers to be managed or various other security concerns.</description>
+    </item>
+    
+    <item>
+      <title>Copying PowerShell modules and custom DSC resources using DSC</title>
+      <link>https://psmag.github.io/2013/09/02/copying-powershell-modules-and-custom-dsc-resources-using-dsc/</link>
+      <pubDate>Mon, 02 Sep 2013 16:00:54 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/09/02/copying-powershell-modules-and-custom-dsc-resources-using-dsc/</guid>
+      <description>In an earlier article, I showed you a custom DSC resource I built for managing hosts file entries, but I did not tell you that the custom DSC resource must exist on the remote system at a predefined path.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Create an empty folder/file using Desired State Configuration File resource</title>
+      <link>https://psmag.github.io/2013/08/26/pstip-create-an-empty-folderfile-using-desired-state-configuration-file-resource/</link>
+      <pubDate>Mon, 26 Aug 2013 18:00:06 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/08/26/pstip-create-an-empty-folderfile-using-desired-state-configuration-file-resource/</guid>
+      <description>Note: This tip requires PowerShell 4.0 and Windows Server 2012 R2 or Windows 8.1.
+When using the File resource in DSC, a confusing aspect to beginners is how to create an empty folder.</description>
+    </item>
+    
+    <item>
+      <title>Custom DSC resource for managing hosts file entries</title>
+      <link>https://psmag.github.io/2013/08/26/custom-dsc-resource-for-managing-hosts-file-entries/</link>
+      <pubDate>Mon, 26 Aug 2013 16:00:56 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/08/26/custom-dsc-resource-for-managing-hosts-file-entries/</guid>
+      <description>Desired State Configuration is a new feature added to PowerShell 4.0 and Windows Server 2012 R2. DSC is a platform for deployment and management of configuration data.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip Identifying DSC commands</title>
+      <link>https://psmag.github.io/2013/08/12/pstip-identifying-dsc-commands/</link>
+      <pubDate>Mon, 12 Aug 2013 18:00:25 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/08/12/pstip-identifying-dsc-commands/</guid>
+      <description>Note: This tip requires PowerShell 4.0 or above.
+Starting in Windows PowerShell 4.0 with the new Desired State Configuration (DSC) feature, we now have one more command type added to the list of command types: Configuration.</description>
+    </item>
+    
+    <item>
+      <title>Imperative versus declarative syntax in PowerShell</title>
+      <link>https://psmag.github.io/2013/07/05/imperative-versus-declarative-syntax-in-powershell/</link>
+      <pubDate>Fri, 05 Jul 2013 16:00:03 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/07/05/imperative-versus-declarative-syntax-in-powershell/</guid>
+      <description>The big news, for the PowerShell enthusiasts, from TechEd NA 2013 was the Desired State Configuration (DSC) feature announcement. DSC can be used to streamline configuration changes in a datacenter environment and in a consistent manner.</description>
+    </item>
+    
+    <item>
+      <title>Desired State Configuration in Windows Server 2012 R2 – Online hands on lab</title>
+      <link>https://psmag.github.io/2013/06/12/desired-state-configuration-in-windows-server-2012-r2-online-hands-on-lab/</link>
+      <pubDate>Wed, 12 Jun 2013 09:08:24 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/06/12/desired-state-configuration-in-windows-server-2012-r2-online-hands-on-lab/</guid>
+      <description>I am sure you all must have already looked at the Desired State Configuration (DSC) feature announcement by Jeffrey Snover and Kenneth Hansen at TechEd 2013.</description>
+    </item>
+    
+  </channel>
+</rss>

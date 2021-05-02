@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ImportExcel on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/importexcel/</link>
+    <description>Recent content in ImportExcel on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 09 Sep 2019 04:00:30 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/importexcel/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Weekly Module Spotlight: ImportExcel</title>
+      <link>https://psmag.github.io/2019/09/09/weekly-module-spotlight-importexcel/</link>
+      <pubDate>Mon, 09 Sep 2019 04:00:30 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/09/09/weekly-module-spotlight-importexcel/</guid>
+      <description>In my previous job, I worked at a customer site that had multiple Windows and Unix Servers. One of the every day tasks was to report the disk space utilization from these servers.</description>
+    </item>
+    
+  </channel>
+</rss>

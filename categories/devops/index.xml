@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DevOps on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/devops/</link>
+    <description>Recent content in DevOps on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 25 Jul 2019 16:00:07 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/devops/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Pester Result Reporting With Suggestions And XSL Support</title>
+      <link>https://psmag.github.io/2019/07/25/pester-result-reporting-with-suggestions-and-xsl-support/</link>
+      <pubDate>Thu, 25 Jul 2019 16:00:07 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/07/25/pester-result-reporting-with-suggestions-and-xsl-support/</guid>
+      <description>I believe there is no introduction required for pester in PowerShell community. If you have never heard of Pester, this is the place to go first.</description>
+    </item>
+    
+    <item>
+      <title>Podcast – A vision for Continuously Integrated Data Center</title>
+      <link>https://psmag.github.io/2019/07/15/podcast-a-vision-for-continuously-integrated-data-center/</link>
+      <pubDate>Mon, 15 Jul 2019 16:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/07/15/podcast-a-vision-for-continuously-integrated-data-center/</guid>
+      <description>I was recently featured on the Latest Shiny Podcast (@l8istsh9y) hosted by Rob Hirschfeld and Stephen Spector. I came across their podcast a while ago and listened to their last two episodes.</description>
+    </item>
+    
+    <item>
+      <title>Garuda – Session Demo From #PSConfEU</title>
+      <link>https://psmag.github.io/2019/07/11/garuda-session-demo-from-psconfeu/</link>
+      <pubDate>Thu, 11 Jul 2019 14:31:47 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/07/11/garuda-session-demo-from-psconfeu/</guid>
+      <description>In the earlier parts of this series, I introduced you to the concepts and design of Garuda framework. I demonstrated a proof-of-concept version of this at PowerShell Conference Europe.</description>
+    </item>
+    
+    <item>
+      <title>Garuda – Architecture and Plan</title>
+      <link>https://psmag.github.io/2019/06/24/garuda-architecture-and-plan/</link>
+      <pubDate>Mon, 24 Jun 2019 04:01:55 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/06/24/garuda-architecture-and-plan/</guid>
+      <description>In the first part of this series, I mentioned the reasoning behind starting development of a new framework for operations validation.</description>
+    </item>
+    
+    <item>
+      <title>Distributed and Flexible Operations Validation Framework – Introduction</title>
+      <link>https://psmag.github.io/2019/06/17/distributed-and-flexible-operations-validation-framework-introduction/</link>
+      <pubDate>Mon, 17 Jun 2019 16:16:51 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/06/17/distributed-and-flexible-operations-validation-framework-introduction/</guid>
+      <description>Operations validation using PowerShell and Pester has been one of my favorite topics and I have both personal and professional interest in this area.</description>
+    </item>
+    
+    <item>
+      <title>Converting a PowerShell Project to use Azure DevOps Pipelines</title>
+      <link>https://psmag.github.io/2018/09/20/converting-a-powershell-project-to-use-azure-devops-pipelines/</link>
+      <pubDate>Thu, 20 Sep 2018 18:01:19 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2018/09/20/converting-a-powershell-project-to-use-azure-devops-pipelines/</guid>
+      <description>Introduction Continuous Integration (CI) is the process of integrating code into a source code repository several times a day. Each time code is pushed into the repository an automated process runs to build and verify the code continues to work.</description>
+    </item>
+    
+    <item>
+      <title>#PSDSC Configuration Versioning in a Deployment Pipeline</title>
+      <link>https://psmag.github.io/2018/01/05/psdsc-configuration-versioning-in-a-deployment-pipeline/</link>
+      <pubDate>Fri, 05 Jan 2018 17:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2018/01/05/psdsc-configuration-versioning-in-a-deployment-pipeline/</guid>
+      <description>When we talk about applications or software deployed in the infrastructure, we simply refer to the version of the application or software running in the infrastructure.</description>
+    </item>
+    
+    <item>
+      <title>PSRemotely – Authoring workflow (Part 1)</title>
+      <link>https://psmag.github.io/2017/06/29/psremotely-authoring-workflow-part-1/</link>
+      <pubDate>Thu, 29 Jun 2017 16:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2017/06/29/psremotely-authoring-workflow-part-1/</guid>
+      <description>Introduction After setting up the context in the previous post, it is time to look at how the authoring workflow looks like when using Pester for writing operations validation tests, to begin with, and then leveraging PSRemotely DSL to target it to the remote nodes.</description>
+    </item>
+    
+    <item>
+      <title>Infrastructure Blueprints – Adding Pre-deployment Validations</title>
+      <link>https://psmag.github.io/2017/06/28/infrastructure-blueprints-adding-pre-deployment-validations/</link>
+      <pubDate>Wed, 28 Jun 2017 16:00:22 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2017/06/28/infrastructure-blueprints-adding-pre-deployment-validations/</guid>
+      <description>In one of my earlier articles here, I wrote about the Infrastructure Blueprints project. Over the weekend, I published an update this project.</description>
+    </item>
+    
+    <item>
+      <title>#PSDSC Doing It Right – Configuration vs Orchestration</title>
+      <link>https://psmag.github.io/2017/05/24/psdsc-doing-it-right-configuration-vs-orchestration/</link>
+      <pubDate>Wed, 24 May 2017 16:00:49 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2017/05/24/psdsc-doing-it-right-configuration-vs-orchestration/</guid>
+      <description>In the last part of this series, we looked at why resource granularity is important. In this part, we will see the difference between configuration items and orchestration steps.</description>
+    </item>
+    
+    <item>
+      <title>#PSDSC Doing It Right – Resource Granularity</title>
+      <link>https://psmag.github.io/2017/05/23/psdsc-doing-it-right-resource-granularity/</link>
+      <pubDate>Tue, 23 May 2017 16:00:02 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2017/05/23/psdsc-doing-it-right-resource-granularity/</guid>
+      <description>This is the first article in the #PSDSC Doing It Right series. This series of articles will introduce you to some of the best practices we have learned through some real-world implementations of PowerShell DSC-based configuration management.</description>
+    </item>
+    
+    <item>
+      <title>Infrastructure Blueprints – An Easier and Better Way to Share #PSDSC Configurations</title>
+      <link>https://psmag.github.io/2017/05/15/infrastructure-blueprints-a-way-to-share-psdsc-configurations/</link>
+      <pubDate>Mon, 15 May 2017 16:00:20 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2017/05/15/infrastructure-blueprints-a-way-to-share-psdsc-configurations/</guid>
+      <description>A while ago, I wrote an article to introduce Infrastructure Blueprints. Today’s post is about a more refined version of that project.</description>
+    </item>
+    
+    <item>
+      <title>PSRemotely – Framework to Enable Remote Operations Validation</title>
+      <link>https://psmag.github.io/2017/04/07/psremotely-framework-to-enable-remote-operations-validation/</link>
+      <pubDate>Fri, 07 Apr 2017 16:00:40 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2017/04/07/psremotely-framework-to-enable-remote-operations-validation/</guid>
+      <description>Before we get started with what is PSRemotely, here is some background.
+As part of my work in an engineering team, I am tasked with writing scripts which will validate the underlying infrastructure before the automation (using PowerShell DSC) kicks in to deploy the solution.</description>
+    </item>
+    
+    <item>
+      <title>DevOps, Infrastructure as Code, and PowerShell DSC: Infrastructure Blueprints</title>
+      <link>https://psmag.github.io/2016/05/13/devops-infrastructure-as-code-and-powershell-dsc-infrastructure-blueprints/</link>
+      <pubDate>Fri, 13 May 2016 16:00:34 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2016/05/13/devops-infrastructure-as-code-and-powershell-dsc-infrastructure-blueprints/</guid>
+      <description>This part of the series is long due after the first post on DevOps, Infrastructure as Code, and PowerShell DSC. Thanks to PowerShell Conference Europe, I was able to complete what I wanted to publish on GitHub as an example for this article.</description>
+    </item>
+    
+    <item>
+      <title>DevOps, Infrastructure as Code, and PowerShell DSC: The Introduction</title>
+      <link>https://psmag.github.io/2016/01/05/devops-infrastructure-as-code-and-powershell-dsc-the-introduction/</link>
+      <pubDate>Tue, 05 Jan 2016 17:00:14 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2016/01/05/devops-infrastructure-as-code-and-powershell-dsc-the-introduction/</guid>
+      <description>DevOps is the new cool thing (at least in the Windows world) everyone is talking about and the IT professionals (some of us at least) just give a blank stare every time the DevOps discussion comes up.</description>
+    </item>
+    
+    <item>
+      <title>Pester Explained: Describe, Context, and It Blocks</title>
+      <link>https://psmag.github.io/2015/12/03/pester-explained-describe-context-and-it-blocks/</link>
+      <pubDate>Thu, 03 Dec 2015 17:00:12 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/12/03/pester-explained-describe-context-and-it-blocks/</guid>
+      <description>This article is a part of a larger series on Pester.
+Last time, we looked at how assertions work in theory, and how they are implemented in Pester.</description>
+    </item>
+    
+    <item>
+      <title>Pester Explained: Should</title>
+      <link>https://psmag.github.io/2015/12/02/pester-explained-should/</link>
+      <pubDate>Wed, 02 Dec 2015 17:00:32 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/12/02/pester-explained-should/</guid>
+      <description>This article is a part of a larger series on Pester.
+Last time we looked at the theory of assertions and what mechanisms they use to fail our tests.</description>
+    </item>
+    
+    <item>
+      <title>Pester Explained: Introduction and Assertions</title>
+      <link>https://psmag.github.io/2015/12/01/pester-explained-introduction-and-assertions/</link>
+      <pubDate>Tue, 01 Dec 2015 17:00:41 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/12/01/pester-explained-introduction-and-assertions/</guid>
+      <description>This article is a part of a larger series on Pester.
+I always found the word framework intimidating. It’s probably because my first encounter with the word was in .</description>
+    </item>
+    
+    <item>
+      <title>PowerShell Tools For The Advanced Use Cases – part 3</title>
+      <link>https://psmag.github.io/2015/11/23/powershell-tools-for-the-advanced-use-cases-part-3/</link>
+      <pubDate>Mon, 23 Nov 2015 17:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/11/23/powershell-tools-for-the-advanced-use-cases-part-3/</guid>
+      <description>Posts in this series  PowerShell Tools for the Advanced Use Cases, part 1 PowerShell tools for the advanced use cases – part 2 PowerShell tools for the advanced use cases – part 3 (this article)  I am currently on board flight Qantas 423 from Sydney to Melbourne, the last hop on this very long way back home from the Midwest Management Summit in Minneapolis/Minnesota USA.</description>
+    </item>
+    
+    <item>
+      <title>PowerShell tools for the advanced use cases – part 2</title>
+      <link>https://psmag.github.io/2015/11/02/powershell-tools-for-the-advanced-use-cases-part-2/</link>
+      <pubDate>Mon, 02 Nov 2015 17:00:35 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/11/02/powershell-tools-for-the-advanced-use-cases-part-2/</guid>
+      <description>Posts in this series  PowerShell Tools for the Advanced Use Cases, part 1 PowerShell tools for the advanced use cases – part 2 (this article) PowerShell tools for the advanced use cases – part 3  Testing In all teams that follow a “DevOps” mindset there is also the concept of CI (Continuous Integration) or even CD (Continuous Deployment).</description>
+    </item>
+    
+    <item>
+      <title>PowerShell Tools for the Advanced Use Cases, part 1</title>
+      <link>https://psmag.github.io/2015/10/12/powershell-tools-for-the-advanced-use-cases-part-1/</link>
+      <pubDate>Mon, 12 Oct 2015 16:30:17 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/10/12/powershell-tools-for-the-advanced-use-cases-part-1/</guid>
+      <description>Posts in this series  PowerShell Tools for the Advanced Use Cases, part 1 (this article) PowerShell tools for the advanced use cases – part 2 PowerShell tools for the advanced use cases – part 3  In the world of DevOps it’s all about automation–automated installation of applications, automated configuration of applications, all automated.</description>
+    </item>
+    
+    <item>
+      <title>Git for IT Professionals: Life Cycle of Repository Files</title>
+      <link>https://psmag.github.io/2015/07/27/git-for-it-professionals-life-cycle-of-repository-files-2/</link>
+      <pubDate>Mon, 27 Jul 2015 17:52:57 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/07/27/git-for-it-professionals-life-cycle-of-repository-files-2/</guid>
+      <description>In this series so far,
+Part 1 - Git for IT Professionals: Getting Started
+Part 2 – Git for IT Professionals: Working with Repositories</description>
+    </item>
+    
+    <item>
+      <title>Git for IT Professionals: Working with Repositories</title>
+      <link>https://psmag.github.io/2015/07/15/git-for-it-professionals-working-with-repositories/</link>
+      <pubDate>Wed, 15 Jul 2015 16:00:31 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/07/15/git-for-it-professionals-working-with-repositories/</guid>
+      <description>In this series so far:
+Part 1 – Git for IT Professionals: Getting Started
+Part 2 – Git for IT Professionals: Working with Repositories (this article)</description>
+    </item>
+    
+    <item>
+      <title>Git for IT Professionals: Getting Started</title>
+      <link>https://psmag.github.io/2015/07/13/git-for-it-professionals-getting-started-2/</link>
+      <pubDate>Mon, 13 Jul 2015 16:00:32 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/07/13/git-for-it-professionals-getting-started-2/</guid>
+      <description>In this series so far:
+Part 1 – Git for IT Professionals: Getting Started (this article)
+Part 2 – Git for IT Professionals: Working with Repositories</description>
+    </item>
+    
+    <item>
+      <title>Pester Mock and TestDrive</title>
+      <link>https://psmag.github.io/2014/09/30/pester-mock-and-testdrive/</link>
+      <pubDate>Tue, 30 Sep 2014 10:00:07 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/09/30/pester-mock-and-testdrive/</guid>
+      <description>In this part of Pester basics series, I will cover the most powerful tool from the whole framework, the Mock function.</description>
+    </item>
+    
+    <item>
+      <title>New feature in Pester 3.0:  Code Coverage metrics</title>
+      <link>https://psmag.github.io/2014/09/01/new-feature-in-pester-3-0-code-coverage-metrics/</link>
+      <pubDate>Mon, 01 Sep 2014 16:00:26 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/09/01/new-feature-in-pester-3-0-code-coverage-metrics/</guid>
+      <description>Introduction I have a confession to make… I don’t actually practice TDD or BDD yet. I see the value of having unit tests, but I’ve been writing scripts for so many years now–most of that time without automated tests–that it’s been difficult to change my habits and get into that 30-second micro cycle of “Red-Green-Refactor”.</description>
+    </item>
+    
+    <item>
+      <title>Testing your PowerShell scripts with Pester: Assertions and more</title>
+      <link>https://psmag.github.io/2014/03/27/testing-your-powershell-scripts-with-pester-assertions-and-more/</link>
+      <pubDate>Thu, 27 Mar 2014 16:34:18 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/03/27/testing-your-powershell-scripts-with-pester-assertions-and-more/</guid>
+      <description>This is part two of Pester series of articles. In this article you will learn about the Context keyword, how to use all the assertions available in Pester and a bit about best practices.</description>
+    </item>
+    
+    <item>
+      <title>Get started with Pester (PowerShell unit testing framework)</title>
+      <link>https://psmag.github.io/2014/03/12/get-started-with-pester-powershell-unit-testing-framework/</link>
+      <pubDate>Wed, 12 Mar 2014 17:38:47 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/03/12/get-started-with-pester-powershell-unit-testing-framework/</guid>
+      <description>Some time ago I stumbled upon the Pester framework that promised I would be able to test my scripts. This seemed to be super-useful for my day-to-day scripting, but unfortunately the learning curve was a bit steeper than I thought it would be.</description>
+    </item>
+    
+  </channel>
+</rss>

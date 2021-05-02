@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chocolatey on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/tags/chocolatey/</link>
+    <description>Recent content in Chocolatey on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Feb 2012 19:00:27 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/tags/chocolatey/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Chocolatey and PowerShell – Revolutionize Windows, Part II</title>
+      <link>https://psmag.github.io/2012/02/20/chocolatey-and-powershell-revolutionize-windows-part-ii/</link>
+      <pubDate>Mon, 20 Feb 2012 19:00:27 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/02/20/chocolatey-and-powershell-revolutionize-windows-part-ii/</guid>
+      <description>In the first installment we covered installing both a tool and an application. If the possibilities of Chocolatey have not yet started to solidify for you, hopefully this next segment will.</description>
+    </item>
+    
+    <item>
+      <title>Chocolatey and PowerShell – Revolutionize Windows, Part I</title>
+      <link>https://psmag.github.io/2012/02/15/chocolatey-and-powershell-revolutionize-windows-part-i/</link>
+      <pubDate>Wed, 15 Feb 2012 19:00:41 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/02/15/chocolatey-and-powershell-revolutionize-windows-part-i/</guid>
+      <description>Ten years ago we did things a certain way. Five years ago we thought the things we did ten years ago were antiquated.</description>
+    </item>
+    
+  </channel>
+</rss>

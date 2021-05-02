@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Modules on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/tags/modules/</link>
+    <description>Recent content in Modules on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 05 Apr 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/tags/modules/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Getting Started with PSArm</title>
+      <link>https://psmag.github.io/2021/04/05/getting-started-with-arm/</link>
+      <pubDate>Mon, 05 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2021/04/05/getting-started-with-arm/</guid>
+      <description>In the first part of this series, you learned about PSArm &amp;ndash; a PowerShell embedded DSL &amp;ndash; that you can use to declaratively define your Azure infrastructure and generate an ARM template.</description>
+    </item>
+    
+    <item>
+      <title>PSArm - PowerShell DSL For Azure Resource Manager - Introduction</title>
+      <link>https://psmag.github.io/2021/04/01/psarm-powershell-dsl-for-azure-resource-manager-introduction/</link>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2021/04/01/psarm-powershell-dsl-for-azure-resource-manager-introduction/</guid>
+      <description>Those who worked on Azure Resource Manager (ARM) templates understand that complexity of writing and making sure the template works as expected becomes very complicated as the complexity of a deployment grows.</description>
+    </item>
+    
+    <item>
+      <title>PowerShell wrapper around the Calendarific API</title>
+      <link>https://psmag.github.io/2020/03/23/powershell-wrapper-around-the-calendarific-api/</link>
+      <pubDate>Mon, 23 Mar 2020 14:54:02 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2020/03/23/powershell-wrapper-around-the-calendarific-api/</guid>
+      <description>Calendarific offers a webservice for listing holidays from different countries. They also have an API that can be used by developers to implement this holiday queries in the their own applications.</description>
+    </item>
+    
+    <item>
+      <title>Secrets Management in PowerShell</title>
+      <link>https://psmag.github.io/2020/02/07/secrets-management-in-powershell/</link>
+      <pubDate>Fri, 07 Feb 2020 05:49:39 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2020/02/07/secrets-management-in-powershell/</guid>
+      <description>In any method of automation secrets management is a very critical part. You wouldn&amp;rsquo;t want to store the plain-text credentials needed for your automation to carry on the orchestration tasks.</description>
+    </item>
+    
+    <item>
+      <title>Weekly Module Spotlight: ImportExcel</title>
+      <link>https://psmag.github.io/2019/09/09/weekly-module-spotlight-importexcel/</link>
+      <pubDate>Mon, 09 Sep 2019 04:00:30 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/09/09/weekly-module-spotlight-importexcel/</guid>
+      <description>In my previous job, I worked at a customer site that had multiple Windows and Unix Servers. One of the every day tasks was to report the disk space utilization from these servers.</description>
+    </item>
+    
+    <item>
+      <title>Weekly Module Spotlight: Polaris</title>
+      <link>https://psmag.github.io/2019/09/03/weekly-module-spotlight-polaris/</link>
+      <pubDate>Tue, 03 Sep 2019 05:41:44 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/09/03/weekly-module-spotlight-polaris/</guid>
+      <description>I create HTTP REST APIs a lot in my proof-of-concept work and I generally use the .NET HTTPListener class for this purpose.</description>
+    </item>
+    
+    <item>
+      <title>Weekly Module Spotlight: PSHTML</title>
+      <link>https://psmag.github.io/2019/08/21/weekly-module-spotlight-pshtml/</link>
+      <pubDate>Wed, 21 Aug 2019 04:00:12 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/08/21/weekly-module-spotlight-pshtml/</guid>
+      <description>Ever wanted to generate HTML documents dynamically? Until now, you had to statically code the HTML tags in the PowerShell scripts and ensure you open and close all needed HTML elements.</description>
+    </item>
+    
+    <item>
+      <title>Garuda – Session Demo From #PSConfEU</title>
+      <link>https://psmag.github.io/2019/07/11/garuda-session-demo-from-psconfeu/</link>
+      <pubDate>Thu, 11 Jul 2019 14:31:47 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/07/11/garuda-session-demo-from-psconfeu/</guid>
+      <description>In the earlier parts of this series, I introduced you to the concepts and design of Garuda framework. I demonstrated a proof-of-concept version of this at PowerShell Conference Europe.</description>
+    </item>
+    
+    <item>
+      <title>PSPublicAPI – Module For Listing Free APIs For Use in Software and Web Development</title>
+      <link>https://psmag.github.io/2019/06/18/pspublicapi-module-for-listing-free-apis-for-use-in-software-and-web-development/</link>
+      <pubDate>Tue, 18 Jun 2019 14:54:14 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/06/18/pspublicapi-module-for-listing-free-apis-for-use-in-software-and-web-development/</guid>
+      <description>The Public APIs repository on GitHub has a list of free APIs that you can use in software and web development.</description>
+    </item>
+    
+    <item>
+      <title>Distributed and Flexible Operations Validation Framework – Introduction</title>
+      <link>https://psmag.github.io/2019/06/17/distributed-and-flexible-operations-validation-framework-introduction/</link>
+      <pubDate>Mon, 17 Jun 2019 16:16:51 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/06/17/distributed-and-flexible-operations-validation-framework-introduction/</guid>
+      <description>Operations validation using PowerShell and Pester has been one of my favorite topics and I have both personal and professional interest in this area.</description>
+    </item>
+    
+    <item>
+      <title>PSWindowsAdminCenter: PowerShell Module to Manage Connections, Feeds, and Extensions</title>
+      <link>https://psmag.github.io/2019/02/19/pswindowsadmincenter-powershell-module-to-manage-connections-feeds-and-extensions/</link>
+      <pubDate>Tue, 19 Feb 2019 14:42:53 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/02/19/pswindowsadmincenter-powershell-module-to-manage-connections-feeds-and-extensions/</guid>
+      <description>I had published a PowerShell DSC resource module, last month, called WindowsAdminCenterDsc that uses the PowerShell module that was made available with Windows Admin Center version 1812.</description>
+    </item>
+    
+    <item>
+      <title>PowerShell DSC Resource Module to Install and Configure Windows Admin Center</title>
+      <link>https://psmag.github.io/2019/01/31/dsc-resource-module-to-install-and-configure-windows-admin-center/</link>
+      <pubDate>Thu, 31 Jan 2019 17:00:15 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2019/01/31/dsc-resource-module-to-install-and-configure-windows-admin-center/</guid>
+      <description>Windows Admin Center (WAC) is the new web-based management application for managing Windows Servers, Failover Clusters, Hyper-Converged Infrastructure (HCI) clusters, and Windows 10 PCs.</description>
+    </item>
+    
+    <item>
+      <title>Redfish Event Listener in PowerShell</title>
+      <link>https://psmag.github.io/2018/11/13/redfish-event-listener-in-powershell/</link>
+      <pubDate>Tue, 13 Nov 2018 09:00:51 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2018/11/13/redfish-event-listener-in-powershell/</guid>
+      <description>The Redfish specification supports event mechanism through which the target Redfish devices can send events from different components in the system to an event listener.</description>
+    </item>
+    
+    <item>
+      <title>#PSConfEU Agenda as a PowerShell Drive using #SHiPS</title>
+      <link>https://psmag.github.io/2018/04/03/psconfeu-agenda-as-a-powershell-drive-using-ships/</link>
+      <pubDate>Tue, 03 Apr 2018 16:24:41 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2018/04/03/psconfeu-agenda-as-a-powershell-drive-using-ships/</guid>
+      <description>The SHiPS module has several use cases with structured data. I have written a few proof-of-concept modules using SHiPS to understand how it works and try out different design patterns.</description>
+    </item>
+    
+    <item>
+      <title>PowerShell UserVoice: Add Support for NPM Type Version Specification in Module Manifest and #Requires</title>
+      <link>https://psmag.github.io/2018/01/08/powershell-user-voice-add-support-for-npm-type-version-specification-in-module-manifest-and-requires/</link>
+      <pubDate>Mon, 08 Jan 2018 17:00:53 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2018/01/08/powershell-user-voice-add-support-for-npm-type-version-specification-in-module-manifest-and-requires/</guid>
+      <description>If you have ever used Node.js, the packages.json file is used to specify the module dependencies. Here is an example:</description>
+    </item>
+    
+    <item>
+      <title>Using NetworkAdapterProperty #PSDSC Resource to Configure Network Adapter Advanced Properties</title>
+      <link>https://psmag.github.io/2018/01/04/using-networkadapterproperty-psdsc-resource-to-configure-network-adapter-advanced-properties/</link>
+      <pubDate>Thu, 04 Jan 2018 17:00:33 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2018/01/04/using-networkadapterproperty-psdsc-resource-to-configure-network-adapter-advanced-properties/</guid>
+      <description>At times we need to set the physical adapter advanced properties such as VLAN ID. This can be done using the Set-NetAdapterAdvancedProperty cmdlet.</description>
+    </item>
+    
+    <item>
+      <title>Using NetQoSDSC #PSDSC Resource Module to Configure Network QoS</title>
+      <link>https://psmag.github.io/2018/01/03/using-netqosdsc-psdsc-resource-module-to-configure-network-qos/</link>
+      <pubDate>Wed, 03 Jan 2018 17:00:22 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2018/01/03/using-netqosdsc-psdsc-resource-module-to-configure-network-qos/</guid>
+      <description>As a part of larger hyper-converged infrastructure (based on S2D) configuration automation using PowerShell DSC, I have written quite a few new DSC resource modules.</description>
+    </item>
+    
+    <item>
+      <title>Hyper-V Server PowerShell Drive based on #SHiPS</title>
+      <link>https://psmag.github.io/2018/01/02/hyper-v-server-powershell-drive-based-on-ships/</link>
+      <pubDate>Tue, 02 Jan 2018 17:00:29 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2018/01/02/hyper-v-server-powershell-drive-based-on-ships/</guid>
+      <description>In an earlier article, I had written about a PowerShell provider for Failover Clusters written using the SHiPS provider framework. I have been experimenting with this a bit and made a few more providers.</description>
+    </item>
+    
+    <item>
+      <title>Failover Cluster PowerShell Drive based on #SHiPS</title>
+      <link>https://psmag.github.io/2017/12/21/failover-cluster-powershell-drive-based-on-ships/</link>
+      <pubDate>Thu, 21 Dec 2017 17:00:48 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2017/12/21/failover-cluster-powershell-drive-based-on-ships/</guid>
+      <description>Simple Hierarchy in PowerShell (SHiPS) is a module that simplifies implementing PowerShell providers. If you are new to PowerShell providers, a PowerShell provider allows any data store to be exposed like a file system as if it were a mounted drive.</description>
+    </item>
+    
+    <item>
+      <title>#PSDSC FailoverClusterDSC – Deploy a Storage Spaces Direct Cluster</title>
+      <link>https://psmag.github.io/2017/12/19/psdsc-failoverclusterdsc-deploy-a-storage-spaces-direct-cluster/</link>
+      <pubDate>Tue, 19 Dec 2017 17:00:56 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2017/12/19/psdsc-failoverclusterdsc-deploy-a-storage-spaces-direct-cluster/</guid>
+      <description>I have been working on the FailoverClusterDsc resource module and finally had the chance to add some examples and make the repository public.</description>
+    </item>
+    
+    <item>
+      <title>PSRemotely – Authoring workflow (Part 1)</title>
+      <link>https://psmag.github.io/2017/06/29/psremotely-authoring-workflow-part-1/</link>
+      <pubDate>Thu, 29 Jun 2017 16:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2017/06/29/psremotely-authoring-workflow-part-1/</guid>
+      <description>Introduction After setting up the context in the previous post, it is time to look at how the authoring workflow looks like when using Pester for writing operations validation tests, to begin with, and then leveraging PSRemotely DSL to target it to the remote nodes.</description>
+    </item>
+    
+    <item>
+      <title>PSRemotely – Framework to Enable Remote Operations Validation</title>
+      <link>https://psmag.github.io/2017/04/07/psremotely-framework-to-enable-remote-operations-validation/</link>
+      <pubDate>Fri, 07 Apr 2017 16:00:40 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2017/04/07/psremotely-framework-to-enable-remote-operations-validation/</guid>
+      <description>Before we get started with what is PSRemotely, here is some background.
+As part of my work in an engineering team, I am tasked with writing scripts which will validate the underlying infrastructure before the automation (using PowerShell DSC) kicks in to deploy the solution.</description>
+    </item>
+    
+    <item>
+      <title>What is new in cHyper-V PowerShell DSC Resource Module?</title>
+      <link>https://psmag.github.io/2016/10/24/what-is-new-in-chyper-v-powershell-dsc-resource-module/</link>
+      <pubDate>Mon, 24 Oct 2016 13:14:34 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2016/10/24/what-is-new-in-chyper-v-powershell-dsc-resource-module/</guid>
+      <description>I just finished testing and publishing the cHyper-V PowerShell DSC resource module to the PowerShell Gallery. I took some time to make changes to this module–fix bugs and add new functionality.</description>
+    </item>
+    
+    <item>
+      <title>PowerShell Location Bookmark for Easy and Faster Navigation</title>
+      <link>https://psmag.github.io/2016/05/06/powershell-location-bookmark-for-easy-and-faster-navigation/</link>
+      <pubDate>Fri, 06 May 2016 16:00:16 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2016/05/06/powershell-location-bookmark-for-easy-and-faster-navigation/</guid>
+      <description>I work at the command line most of the time and sometimes I find moving to certain folders very tedious and requires lot of typing (even with tab-completion).</description>
+    </item>
+    
+    <item>
+      <title>Royal TS V3 (with a PowerShell module) released</title>
+      <link>https://psmag.github.io/2015/03/24/royal-ts-v3-with-a-powershell-module-released/</link>
+      <pubDate>Tue, 24 Mar 2015 16:00:47 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/03/24/royal-ts-v3-with-a-powershell-module-released/</guid>
+      <description>Back in January 2015, I wrote an introduction to the new PowerShell module in Royal TS V3, which back then was available as a beta version.</description>
+    </item>
+    
+    <item>
+      <title>Rapid PowerShell Development with ISESteroids</title>
+      <link>https://psmag.github.io/2015/03/14/rapid-powershell-development-with-isesteroids/</link>
+      <pubDate>Sat, 14 Mar 2015 13:51:20 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/03/14/rapid-powershell-development-with-isesteroids/</guid>
+      <description>Should you frequently experience de-ja-vus while writing PowerShell code – &amp;ldquo;didn’t I type in this [function|loop|statement|you name it] before?&amp;rdquo;, &amp;ldquo;how did this darn syntax for [you name it] work again?</description>
+    </item>
+    
+    <item>
+      <title>Introducing the Royal TS PowerShell module</title>
+      <link>https://psmag.github.io/2015/01/08/introducing-the-royal-ts-powershell-module/</link>
+      <pubDate>Thu, 08 Jan 2015 20:02:36 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2015/01/08/introducing-the-royal-ts-powershell-module/</guid>
+      <description>Royal TS is one of many applications on the market for managing Remote Desktop connections. There are also many other features in Royal TS and you can read more about them on their website.</description>
+    </item>
+    
+    <item>
+      <title>ISESteroids RC</title>
+      <link>https://psmag.github.io/2014/12/05/isesteroids-rc/</link>
+      <pubDate>Fri, 05 Dec 2014 13:35:12 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/12/05/isesteroids-rc/</guid>
+      <description>ISESteroids originally started as a simple add-on to add professional editor capabilities to the built-in PowerShell ISE editor. Meanwhile, it evolved to a slick high-end PowerShell script editor.</description>
+    </item>
+    
+    <item>
+      <title>PowerShell Risk Assessment with ISESteroids 2.0</title>
+      <link>https://psmag.github.io/2014/10/27/powershell-risk-assessment-with-isesteroids-2-0/</link>
+      <pubDate>Mon, 27 Oct 2014 11:34:35 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/10/27/powershell-risk-assessment-with-isesteroids-2-0/</guid>
+      <description>Sharing scripts and downloading sample code becomes common place. But how do you know a script is safe? You would have to read (and understand) it line by line, and carefully check that the script indeed does what it claims to do, before you run it.</description>
+    </item>
+    
+    <item>
+      <title>Kansa: A PowerShell-based incident response framework</title>
+      <link>https://psmag.github.io/2014/07/18/kansa-a-powershell-based-incident-response-framework/</link>
+      <pubDate>Fri, 18 Jul 2014 16:00:57 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/07/18/kansa-a-powershell-based-incident-response-framework/</guid>
+      <description>Known unknowns and unknown unknowns If you follow information security, you know that information systems are constantly under attack and often fall victim to adversaries looking to make a quick buck, gain competitive advantage through theft of intellectual property or embarrass a target that they find politically or ideologically offensive.</description>
+    </item>
+    
+    <item>
+      <title>Posh-Shodan module for the Shodan service</title>
+      <link>https://psmag.github.io/2014/07/15/posh-shodan-module-for-the-shodan-service/</link>
+      <pubDate>Tue, 15 Jul 2014 16:05:09 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/07/15/posh-shodan-module-for-the-shodan-service/</guid>
+      <description>What is Shodan? Shodan is a search engine that lets one find hosts on the internet using a variety of filters.</description>
+    </item>
+    
+    <item>
+      <title>Veil-PowerView</title>
+      <link>https://psmag.github.io/2014/07/14/veil-powerview/</link>
+      <pubDate>Mon, 14 Jul 2014 16:00:33 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/07/14/veil-powerview/</guid>
+      <description>I was led to PowerShell in the past few years as it began to rise to prominence in the information security community.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to the PoshSec Framework</title>
+      <link>https://psmag.github.io/2014/07/11/introduction-to-the-poshsec-framework/</link>
+      <pubDate>Fri, 11 Jul 2014 16:00:50 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/07/11/introduction-to-the-poshsec-framework/</guid>
+      <description>In March of 2013 I had the desire to create an open source Security Information and Event Management system, also known as a SIEM.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to PoshSec</title>
+      <link>https://psmag.github.io/2014/07/10/introduction-to-poshsec/</link>
+      <pubDate>Thu, 10 Jul 2014 16:00:16 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/07/10/introduction-to-poshsec/</guid>
+      <description>Security has always been a passion of mine. It was a few short years ago that I was sitting down having a friendly chat with Will Steele.</description>
+    </item>
+    
+    <item>
+      <title>PowerSploit</title>
+      <link>https://psmag.github.io/2014/07/08/powersploit/</link>
+      <pubDate>Tue, 08 Jul 2014 16:00:53 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/07/08/powersploit/</guid>
+      <description>PowerSploit is an offensive security framework for penetration testers and reverse engineers. It was born out of the realization that PowerShell was the ideal post-exploitation utility in Windows due to its ability to perform a wide range of administrative and low-level tasks all without the need to drop malicious executables to disk, thus, evading antivirus products with ease.</description>
+    </item>
+    
+    <item>
+      <title>Posh-SSH: Open Source SSH PowerShell Module</title>
+      <link>https://psmag.github.io/2014/07/03/posh-ssh-open-source-ssh-powershell-module/</link>
+      <pubDate>Thu, 03 Jul 2014 17:15:48 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/07/03/posh-ssh-open-source-ssh-powershell-module/</guid>
+      <description>What Posh-SSH is a PowerShell 3.0 or newer module for automating tasks against system using the SSH protocol. The module supports only a subset of the capabilities that the different SSH RFCs http://en.</description>
+    </item>
+    
+    <item>
+      <title>Basics of Writing a PowerShell Module with C#, Part 2: Debugging</title>
+      <link>https://psmag.github.io/2014/04/08/basics-of-writing-a-powershell-module-with-c-part-2-debugging/</link>
+      <pubDate>Tue, 08 Apr 2014 18:31:25 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/04/08/basics-of-writing-a-powershell-module-with-c-part-2-debugging/</guid>
+      <description>In this second part of the series on writing PowerShell modules in C#, we will cover how to enable basic debugging features in our module.</description>
+    </item>
+    
+    <item>
+      <title>ISESteroids – A Revolutionary PowerShell ISE Add-On</title>
+      <link>https://psmag.github.io/2014/03/28/isesteroids-a-revolutionary-powershell-ise-add-on/</link>
+      <pubDate>Fri, 28 Mar 2014 17:14:58 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/03/28/isesteroids-a-revolutionary-powershell-ise-add-on/</guid>
+      <description>If you love the built-in ISE editor that ships with PowerShell 3.0 and 4.0, but you were missing some professional editor capabilities, then ISESteroids add them for you.</description>
+    </item>
+    
+    <item>
+      <title>Writing a PowerShell module in C#, Part 1: The basics</title>
+      <link>https://psmag.github.io/2014/03/18/writing-a-powershell-module-in-c-part-1-the-basics/</link>
+      <pubDate>Tue, 18 Mar 2014 16:00:28 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/03/18/writing-a-powershell-module-in-c-part-1-the-basics/</guid>
+      <description>In this series we will cover the basics of building a Windows PowerShell binary module using C#. In the first part of the series we will build a module with just one cmdlet called Get-Salutation that will resemble the traditional “Hello World” example.</description>
+    </item>
+    
+    <item>
+      <title>HP Scripting Tools for Windows PowerShell</title>
+      <link>https://psmag.github.io/2013/11/12/hp-scripting-tools-for-windows-powershell/</link>
+      <pubDate>Tue, 12 Nov 2013 14:31:07 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/11/12/hp-scripting-tools-for-windows-powershell/</guid>
+      <description>HP has released a PowerShell module HPiLOCmdlets, designed to help IT experts to configure and manage HP iLO 3 and iLO 4 using Windows PowerShell.</description>
+    </item>
+    
+    <item>
+      <title>Announcing PSReadLine – A bash-inspired readline implementation for PowerShell</title>
+      <link>https://psmag.github.io/2013/09/10/announcing-psreadline-a-bash-inspiried-readline-implementation-for-powershell/</link>
+      <pubDate>Tue, 10 Sep 2013 06:38:02 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/09/10/announcing-psreadline-a-bash-inspiried-readline-implementation-for-powershell/</guid>
+      <description>Jason Shirk is back! He just announced the release of his new PowerShell project PSReadLine. In PowerShell 3.0, a hook was added to replace the command line editing experience in the console and Jason wrote a new module to take advantage of this hook.</description>
+    </item>
+    
+    <item>
+      <title>Dell announced the availability of vWorkspace PowerShell module beta</title>
+      <link>https://psmag.github.io/2013/08/30/dell-announced-the-availability-of-vworkspace-powershell-module-beta/</link>
+      <pubDate>Fri, 30 Aug 2013 14:42:38 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/08/30/dell-announced-the-availability-of-vworkspace-powershell-module-beta/</guid>
+      <description>Dell announced the availability of beta version of PowerShell module for Dell vWorkspace. As per the announcement, the features included in this beta release are:</description>
+    </item>
+    
+    <item>
+      <title>Custom DSC resource for managing hosts file entries</title>
+      <link>https://psmag.github.io/2013/08/26/custom-dsc-resource-for-managing-hosts-file-entries/</link>
+      <pubDate>Mon, 26 Aug 2013 16:00:56 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/08/26/custom-dsc-resource-for-managing-hosts-file-entries/</guid>
+      <description>Desired State Configuration is a new feature added to PowerShell 4.0 and Windows Server 2012 R2. DSC is a platform for deployment and management of configuration data.</description>
+    </item>
+    
+    <item>
+      <title>How to strong name partially signed assemblies</title>
+      <link>https://psmag.github.io/2012/12/26/how-to-strong-name-partially-signed-assemblies/</link>
+      <pubDate>Wed, 26 Dec 2012 17:00:31 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/12/26/how-to-strong-name-partially-signed-assemblies/</guid>
+      <description>When developing software based on .NET it is quite common to strong name your assemblies especially if you’re a library vendor providing your libraries to other people.</description>
+    </item>
+    
+    <item>
+      <title>Using custom argument completers in PowerShell 3.0</title>
+      <link>https://psmag.github.io/2012/11/29/using-custom-argument-completers-in-powershell-3-0/</link>
+      <pubDate>Thu, 29 Nov 2012 17:00:50 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/11/29/using-custom-argument-completers-in-powershell-3-0/</guid>
+      <description>Custom argument completers is a new feature in PowerShell 3.0 which makes it possible to define your own argument values for parameters.</description>
+    </item>
+    
+    <item>
+      <title>Client and patch management using the UpdateServices module</title>
+      <link>https://psmag.github.io/2012/11/07/client-and-patch-management-using-the-updateservices-module/</link>
+      <pubDate>Wed, 07 Nov 2012 13:19:22 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/11/07/client-and-patch-management-using-the-updateservices-module/</guid>
+      <description>With the release of Windows Server 2012 into the world, automating and managing Windows Server Update Services (WSUS) with PowerShell has become a little easier with the inclusion of the UpdateServices module.</description>
+    </item>
+    
+    <item>
+      <title>Interacting with TechEd NA 2012 Schedule using PowerShell v3</title>
+      <link>https://psmag.github.io/2012/06/07/interacting-with-teched-na-2012-schedule-using-powershell-v3/</link>
+      <pubDate>Thu, 07 Jun 2012 06:44:21 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/06/07/interacting-with-teched-na-2012-schedule-using-powershell-v3/</guid>
+      <description>The techniques used in this article are covered in deeper detail in Doug Finke’s book “Windows PowerShell for Developers” . Microsoft TechEd NA 2012 is just around corner.</description>
+    </item>
+    
+    <item>
+      <title>PowerShell Community Extensions</title>
+      <link>https://psmag.github.io/2012/04/30/powershell-community-extensions/</link>
+      <pubDate>Mon, 30 Apr 2012 18:00:25 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/04/30/powershell-community-extensions/</guid>
+      <description>I started the PowerShell Community Extensions (PSCX) project to fill in some of the gaps in the set of built-in Windows PowerShell commands.</description>
+    </item>
+    
+    <item>
+      <title>Building Advanced User Interfaces with ShowUI</title>
+      <link>https://psmag.github.io/2012/04/25/building-advanced-user-interfaces-with-showui/</link>
+      <pubDate>Wed, 25 Apr 2012 18:00:41 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/04/25/building-advanced-user-interfaces-with-showui/</guid>
+      <description>I’ve blogged a lot of quick demos with ShowUI (and its predecessors) in the last few years, but as things ramp up with ShowUI and it starts getting more attention at the enterprise level, a lot of the questions that we’ve been getting on the ShowUI forums focus on the professional touches that make a user interface feel like an application, and the challenges of pulling together different controls into a single user interface in a reusable way.</description>
+    </item>
+    
+  </channel>
+</rss>

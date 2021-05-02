@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Remoting on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/tags/remoting/</link>
+    <description>Recent content in Remoting on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 28 Apr 2012 18:00:38 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/tags/remoting/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Secrets of PowerShell Remoting</title>
+      <link>https://psmag.github.io/2012/04/28/secrets-of-powershell-remoting/</link>
+      <pubDate>Sat, 28 Apr 2012 18:00:38 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/04/28/secrets-of-powershell-remoting/</guid>
+      <description>This free guide covers all of the hidden details, configuration tricks, and difficult scenarios involved with Windows PowerShell Remoting. Learn the secret and undocumented tricks to Windows PowerShell Remoting!</description>
+    </item>
+    
+  </channel>
+</rss>

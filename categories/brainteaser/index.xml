@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Brainteaser on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/brainteaser/</link>
+    <description>Recent content in Brainteaser on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 27 May 2013 18:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/brainteaser/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Converting to size units – our solution and the winner</title>
+      <link>https://psmag.github.io/2013/05/27/converting-to-size-units-our-solution-and-the-winner/</link>
+      <pubDate>Mon, 27 May 2013 18:00:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/05/27/converting-to-size-units-our-solution-and-the-winner/</guid>
+      <description>The task was to convert a number to the size units without using the built-in multipliers. Thank you all for taking the time to participate in this teaser.</description>
+    </item>
+    
+    <item>
+      <title>Converting to size units (KB, MB,GB,TB, and PB) without using PowerShell multipliers</title>
+      <link>https://psmag.github.io/2013/05/20/converting-to-size-units-kb-mbgbtb-and-pb-without-using-powershell-multipliers/</link>
+      <pubDate>Mon, 20 May 2013 18:42:56 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2013/05/20/converting-to-size-units-kb-mbgbtb-and-pb-without-using-powershell-multipliers/</guid>
+      <description>Hello everyone! After some time, here is the brand new brain teaser. We hope you will like the challenge. 🙂</description>
+    </item>
+    
+    <item>
+      <title>Brain teaser – one way to solve it</title>
+      <link>https://psmag.github.io/2012/12/08/brain-teaser-one-way-to-solve-it/</link>
+      <pubDate>Sat, 08 Dec 2012 17:00:33 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/12/08/brain-teaser-one-way-to-solve-it/</guid>
+      <description>This is the command I had initially in mind when writing the last modified time teaser:
+ls $pshome\powershell.exe|date  I also had this one, which is shorter:</description>
+    </item>
+    
+    <item>
+      <title>Get the last modified date and time</title>
+      <link>https://psmag.github.io/2012/12/04/get-the-last-modified-date-and-time/</link>
+      <pubDate>Tue, 04 Dec 2012 17:00:50 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/12/04/get-the-last-modified-date-and-time/</guid>
+      <description>Before we dive into this week’s teaser we would like to announce the winner of last week’s challenge. Ioan Corcodel, congratulations!</description>
+    </item>
+    
+    <item>
+      <title>Output only the palindromic words</title>
+      <link>https://psmag.github.io/2012/11/27/output-only-the-palindromic-words/</link>
+      <pubDate>Tue, 27 Nov 2012 18:45:23 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/11/27/output-only-the-palindromic-words/</guid>
+      <description>Hello everyone! The Brain Teaser series continues.
+First, we would like to announce the winner of the previous brain teaser. We got a number of very interesting and creative solutions.</description>
+    </item>
+    
+    <item>
+      <title>Find a list of all IP addresses assigned to the local system</title>
+      <link>https://psmag.github.io/2012/11/19/find-a-list-of-all-ip-addresses-assigned-to-the-local-system/</link>
+      <pubDate>Mon, 19 Nov 2012 18:20:38 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/11/19/find-a-list-of-all-ip-addresses-assigned-to-the-local-system/</guid>
+      <description>Hello everyone! The Brain Teaser series continues.
+First, we would like to announce the winner of the previous brain teaser. We got a few answers in which many of them have a command length of 8.</description>
+    </item>
+    
+    <item>
+      <title>#PSTip A difference between the –replace operator and String.Replace method</title>
+      <link>https://psmag.github.io/2012/11/12/pstip-a-difference-between-the-replace-operator-and-string-replace-method/</link>
+      <pubDate>Mon, 12 Nov 2012 19:00:25 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/11/12/pstip-a-difference-between-the-replace-operator-and-string-replace-method/</guid>
+      <description>The -replace operator takes a regular expression (regex) replacement rule as input and replaces every match with the replacement string. The operator itself is used as shown in the following schema: &amp;lt;input string&amp;gt; -replace &amp;lt;replacement rule&amp;gt;,&amp;lt;replacement string&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>Assign a list of processes to a variable and output it to the console</title>
+      <link>https://psmag.github.io/2012/11/12/assign-a-list-of-processes-to-a-variable-and-output-it-to-the-console/</link>
+      <pubDate>Mon, 12 Nov 2012 17:01:01 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/11/12/assign-a-list-of-processes-to-a-variable-and-output-it-to-the-console/</guid>
+      <description>Hello everyone! The Brain Teaser series continues.
+First, we need to announce the winner of the previous brain teaser. We got a lot of answers, but only three of them fulfilled all requirements ( the answers that use -split operator, the Split() method, or regex return the String objects, not System.</description>
+    </item>
+    
+    <item>
+      <title>Convert a string to a character array</title>
+      <link>https://psmag.github.io/2012/11/05/convert-a-string-to-a-character-array-2/</link>
+      <pubDate>Mon, 05 Nov 2012 17:00:32 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2012/11/05/convert-a-string-to-a-character-array-2/</guid>
+      <description>Hello everyone! We are back with a series of Brain Teasers. In the next 3 weeks we will publish one teaser per week.</description>
+    </item>
+    
+    <item>
+      <title>Find an unused drive letter</title>
+      <link>https://psmag.github.io/post/2012-01-12-find-an-unused-drive-letter/</link>
+      <pubDate>Thu, 12 Jan 2012 19:00:15 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/post/2012-01-12-find-an-unused-drive-letter/</guid>
+      <description>Problem Your task is to write the shortest code to find one of the unused drive letters (excluding a,b and c).</description>
+    </item>
+    
+    <item>
+      <title>Enum’s numeric values</title>
+      <link>https://psmag.github.io/2011/09/13/enums-numeric-values/</link>
+      <pubDate>Tue, 13 Sep 2011 05:27:39 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2011/09/13/enums-numeric-values/</guid>
+      <description>Problem Without any loop statements or pipelines, get the numeric values of an Enum (such as IO.FileAttributes) in 1 statement.</description>
+    </item>
+    
+    <item>
+      <title>Private variable</title>
+      <link>https://psmag.github.io/2011/09/13/private-variable/</link>
+      <pubDate>Tue, 13 Sep 2011 05:16:32 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2011/09/13/private-variable/</guid>
+      <description>Problem Attain the value of a private variable declared in a child scope from that scope’s own child scope.</description>
+    </item>
+    
+    <item>
+      <title>Format elements</title>
+      <link>https://psmag.github.io/2011/09/13/format-elements/</link>
+      <pubDate>Tue, 13 Sep 2011 05:08:41 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2011/09/13/format-elements/</guid>
+      <description>Problem Given an Array of at least 2 elements, return a new Array of formatted elements without using array indices, pipelines or loop statements.</description>
+    </item>
+    
+    <item>
+      <title>Reverse text line</title>
+      <link>https://psmag.github.io/2011/09/13/reverse-text-line/</link>
+      <pubDate>Tue, 13 Sep 2011 03:28:00 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2011/09/13/reverse-text-line/</guid>
+      <description>Problem Reverse a line of text without the use of Array&amp;rsquo;s Reverse method, Array indices, Array notation, pipelines or loop statements.</description>
+    </item>
+    
+  </channel>
+</rss>

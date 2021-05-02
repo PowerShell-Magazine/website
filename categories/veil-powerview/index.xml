@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Veil-PowerView on PowerShell Magazine | For the most powerful community</title>
+    <link>https://psmag.github.io/categories/veil-powerview/</link>
+    <description>Recent content in Veil-PowerView on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 14 Jul 2014 16:00:33 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmag.github.io/categories/veil-powerview/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Veil-PowerView</title>
+      <link>https://psmag.github.io/2014/07/14/veil-powerview/</link>
+      <pubDate>Mon, 14 Jul 2014 16:00:33 +0000</pubDate>
+      
+      <guid>https://psmag.github.io/2014/07/14/veil-powerview/</guid>
+      <description>I was led to PowerShell in the past few years as it began to rise to prominence in the information security community.</description>
+    </item>
+    
+  </channel>
+</rss>
