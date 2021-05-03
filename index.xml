@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Announcing PowerShell Magazine author toolkit v1.0</title>
+      <link>https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/</link>
+      <pubDate>Mon, 03 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/</guid>
+      <description>We just announced moving PowerShell Magazine from WordPress platform to a statically generated GitHub pages based platform. We use Hugo to compile markdown content to HTML and host that on GitHub pages.</description>
+    </item>
+    
+    <item>
       <title>The all new PowerShell Magazine is here and more to come!</title>
       <link>https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/</link>
       <pubDate>Mon, 03 May 2021 00:00:00 +0000</pubDate>

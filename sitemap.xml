@@ -3,12 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/</loc>
+    <lastmod>2021-05-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://powershellmagazine.com/post/</loc>
     <lastmod>2021-05-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://powershellmagazine.com/categories/</loc>
+    <lastmod>2021-05-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/categories/module-spotlight/</loc>
+    <lastmod>2021-05-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/tags/modules/</loc>
     <lastmod>2021-05-03T00:00:00+00:00</lastmod>
   </url>
   
@@ -24,6 +39,16 @@
   
   <url>
     <loc>https://powershellmagazine.com/</loc>
+    <lastmod>2021-05-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/tags/psmagauthorkit/</loc>
+    <lastmod>2021-05-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/categories/psmagauthorkit/</loc>
     <lastmod>2021-05-03T00:00:00+00:00</lastmod>
   </url>
   
@@ -59,16 +84,6 @@
   
   <url>
     <loc>https://powershellmagazine.com/2021/04/05/getting-started-with-arm/</loc>
-    <lastmod>2021-04-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://powershellmagazine.com/categories/module-spotlight/</loc>
-    <lastmod>2021-04-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://powershellmagazine.com/tags/modules/</loc>
     <lastmod>2021-04-05T00:00:00+00:00</lastmod>
   </url>
   
