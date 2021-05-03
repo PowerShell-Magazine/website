@@ -6,10 +6,19 @@
     <description>Recent content in Categories on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 03 May 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://powershellmagazine.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>News</title>
+      <link>https://powershellmagazine.com/categories/news/</link>
+      <pubDate>Mon, 03 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://powershellmagazine.com/categories/news/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Azure</title>
@@ -287,15 +296,6 @@
       <pubDate>Mon, 20 Nov 2017 17:00:50 +0000</pubDate>
       
       <guid>https://powershellmagazine.com/categories/how-to/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>News</title>
-      <link>https://powershellmagazine.com/categories/news/</link>
-      <pubDate>Thu, 02 Feb 2017 22:43:28 +0000</pubDate>
-      
-      <guid>https://powershellmagazine.com/categories/news/</guid>
       <description></description>
     </item>
     
