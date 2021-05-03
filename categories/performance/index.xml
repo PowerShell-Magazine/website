@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Performance on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/performance/</link>
+    <link>https://powershellmagazine.com/categories/performance/</link>
     <description>Recent content in Performance on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 15 Nov 2011 07:27:15 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/performance/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/performance/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Advanced Script Profiling</title>
-      <link>https://psmag.github.io/2011/11/15/advanced-script-profiling/</link>
+      <link>https://powershellmagazine.com/2011/11/15/advanced-script-profiling/</link>
       <pubDate>Tue, 15 Nov 2011 07:27:15 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/15/advanced-script-profiling/</guid>
+      <guid>https://powershellmagazine.com/2011/11/15/advanced-script-profiling/</guid>
       <description>Introducing Measure-Block Sometimes things just don’t work as expected. When scripts get really complicated, performance bottlenecks can be hard to find.</description>
     </item>
     

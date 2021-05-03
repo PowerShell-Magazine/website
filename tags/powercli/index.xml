@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PowerCLI on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/powercli/</link>
+    <link>https://powershellmagazine.com/tags/powercli/</link>
     <description>Recent content in PowerCLI on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 12 Feb 2013 13:49:16 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/powercli/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/powercli/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>PowerCLI 5.1 Release 2 is released</title>
-      <link>https://psmag.github.io/2013/02/12/powercli-5-1-release-2-is-released/</link>
+      <link>https://powershellmagazine.com/2013/02/12/powercli-5-1-release-2-is-released/</link>
       <pubDate>Tue, 12 Feb 2013 13:49:16 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/02/12/powercli-5-1-release-2-is-released/</guid>
+      <guid>https://powershellmagazine.com/2013/02/12/powercli-5-1-release-2-is-released/</guid>
       <description>PowerCLI 5.1 Release 2 has now been released and can be downloaded here. Other than bug fixes and new enhancements, the new release supports PowerShell 3.</description>
     </item>
     
     <item>
       <title>Project Chargeback Reports</title>
-      <link>https://psmag.github.io/2012/04/18/project-chargeback-reports/</link>
+      <link>https://powershellmagazine.com/2012/04/18/project-chargeback-reports/</link>
       <pubDate>Wed, 18 Apr 2012 18:00:50 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/04/18/project-chargeback-reports/</guid>
+      <guid>https://powershellmagazine.com/2012/04/18/project-chargeback-reports/</guid>
       <description>The following is a typical scenario that you are bound to see in your environment. Your organization has several projects running, and each of these projects uses a number of virtual machines in your VMware vSphere environment.</description>
     </item>
     

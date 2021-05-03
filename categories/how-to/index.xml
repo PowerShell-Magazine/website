@@ -2,660 +2,660 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>How To on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/how-to/</link>
+    <link>https://powershellmagazine.com/categories/how-to/</link>
     <description>Recent content in How To on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 20 Nov 2017 17:00:50 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/how-to/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/how-to/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Containerizing a web application</title>
-      <link>https://psmag.github.io/2017/11/20/containerizing-a-web-application/</link>
+      <link>https://powershellmagazine.com/2017/11/20/containerizing-a-web-application/</link>
       <pubDate>Mon, 20 Nov 2017 17:00:50 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2017/11/20/containerizing-a-web-application/</guid>
+      <guid>https://powershellmagazine.com/2017/11/20/containerizing-a-web-application/</guid>
       <description>In this article, we will look at different options for containerizing a web application.
 We will go through the following deployment scenarios, going from traditional options to cloud services and containers:</description>
     </item>
     
     <item>
       <title>Working with binary files in PowerShell</title>
-      <link>https://psmag.github.io/2017/05/22/working-with-binary-files-in-powershell/</link>
+      <link>https://powershellmagazine.com/2017/05/22/working-with-binary-files-in-powershell/</link>
       <pubDate>Mon, 22 May 2017 16:00:45 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2017/05/22/working-with-binary-files-in-powershell/</guid>
+      <guid>https://powershellmagazine.com/2017/05/22/working-with-binary-files-in-powershell/</guid>
       <description>This article is co-authored by Jan Egil Ring and Ø__yvind Kallstad
 In this article, we will look at how binary files can be interpreted in PowerShell by looking at a real world challenge as an example.</description>
     </item>
     
     <item>
       <title>Comparing commands between PowerShell versions</title>
-      <link>https://psmag.github.io/2016/04/29/comparing-commands-between-powershell-versions/</link>
+      <link>https://powershellmagazine.com/2016/04/29/comparing-commands-between-powershell-versions/</link>
       <pubDate>Fri, 29 Apr 2016 15:59:28 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/04/29/comparing-commands-between-powershell-versions/</guid>
+      <guid>https://powershellmagazine.com/2016/04/29/comparing-commands-between-powershell-versions/</guid>
       <description>In the article Decoding PowerShell build numbers, I stated the need to have some form of reference to what the various PowerShell build numbers means:</description>
     </item>
     
     <item>
       <title>Decoding PowerShell build numbers</title>
-      <link>https://psmag.github.io/2016/03/10/decoding-powershell-build-numbers/</link>
+      <link>https://powershellmagazine.com/2016/03/10/decoding-powershell-build-numbers/</link>
       <pubDate>Thu, 10 Mar 2016 17:09:11 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/03/10/decoding-powershell-build-numbers/</guid>
+      <guid>https://powershellmagazine.com/2016/03/10/decoding-powershell-build-numbers/</guid>
       <description>There are several ways to determine what version of Windows PowerShell you are running on a computer. The most common technique is to use the $PSVersionTable automatic variable:</description>
     </item>
     
     <item>
       <title>How to add a new functionality to the Visual Studio Code PowerShell extension</title>
-      <link>https://psmag.github.io/2016/02/10/how-to-add-a-new-functionality-to-the-visual-studio-code-powershell-extension/</link>
+      <link>https://powershellmagazine.com/2016/02/10/how-to-add-a-new-functionality-to-the-visual-studio-code-powershell-extension/</link>
       <pubDate>Wed, 10 Feb 2016 19:59:38 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/02/10/how-to-add-a-new-functionality-to-the-visual-studio-code-powershell-extension/</guid>
+      <guid>https://powershellmagazine.com/2016/02/10/how-to-add-a-new-functionality-to-the-visual-studio-code-powershell-extension/</guid>
       <description>Visual Studio Code is a free code editor redefined and optimized for building and debugging modern web and cloud applications.</description>
     </item>
     
     <item>
       <title>PowerShell Tools For The Advanced Use Cases – part 3</title>
-      <link>https://psmag.github.io/2015/11/23/powershell-tools-for-the-advanced-use-cases-part-3/</link>
+      <link>https://powershellmagazine.com/2015/11/23/powershell-tools-for-the-advanced-use-cases-part-3/</link>
       <pubDate>Mon, 23 Nov 2015 17:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/11/23/powershell-tools-for-the-advanced-use-cases-part-3/</guid>
+      <guid>https://powershellmagazine.com/2015/11/23/powershell-tools-for-the-advanced-use-cases-part-3/</guid>
       <description>Posts in this series  PowerShell Tools for the Advanced Use Cases, part 1 PowerShell tools for the advanced use cases – part 2 PowerShell tools for the advanced use cases – part 3 (this article)  I am currently on board flight Qantas 423 from Sydney to Melbourne, the last hop on this very long way back home from the Midwest Management Summit in Minneapolis/Minnesota USA.</description>
     </item>
     
     <item>
       <title>PowerShell tools for the advanced use cases – part 2</title>
-      <link>https://psmag.github.io/2015/11/02/powershell-tools-for-the-advanced-use-cases-part-2/</link>
+      <link>https://powershellmagazine.com/2015/11/02/powershell-tools-for-the-advanced-use-cases-part-2/</link>
       <pubDate>Mon, 02 Nov 2015 17:00:35 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/11/02/powershell-tools-for-the-advanced-use-cases-part-2/</guid>
+      <guid>https://powershellmagazine.com/2015/11/02/powershell-tools-for-the-advanced-use-cases-part-2/</guid>
       <description>Posts in this series  PowerShell Tools for the Advanced Use Cases, part 1 PowerShell tools for the advanced use cases – part 2 (this article) PowerShell tools for the advanced use cases – part 3  Testing In all teams that follow a “DevOps” mindset there is also the concept of CI (Continuous Integration) or even CD (Continuous Deployment).</description>
     </item>
     
     <item>
       <title>PowerShell Tools for the Advanced Use Cases, part 1</title>
-      <link>https://psmag.github.io/2015/10/12/powershell-tools-for-the-advanced-use-cases-part-1/</link>
+      <link>https://powershellmagazine.com/2015/10/12/powershell-tools-for-the-advanced-use-cases-part-1/</link>
       <pubDate>Mon, 12 Oct 2015 16:30:17 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/10/12/powershell-tools-for-the-advanced-use-cases-part-1/</guid>
+      <guid>https://powershellmagazine.com/2015/10/12/powershell-tools-for-the-advanced-use-cases-part-1/</guid>
       <description>Posts in this series  PowerShell Tools for the Advanced Use Cases, part 1 (this article) PowerShell tools for the advanced use cases – part 2 PowerShell tools for the advanced use cases – part 3  In the world of DevOps it’s all about automation–automated installation of applications, automated configuration of applications, all automated.</description>
     </item>
     
     <item>
       <title>How to use WDS to PXE Boot a Nano Server VHD with PowerShell</title>
-      <link>https://psmag.github.io/2015/06/29/how-to-use-wds-to-pxe-boot-a-nano-server-vhd-with-powershell-2/</link>
+      <link>https://powershellmagazine.com/2015/06/29/how-to-use-wds-to-pxe-boot-a-nano-server-vhd-with-powershell-2/</link>
       <pubDate>Mon, 29 Jun 2015 18:58:10 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/06/29/how-to-use-wds-to-pxe-boot-a-nano-server-vhd-with-powershell-2/</guid>
+      <guid>https://powershellmagazine.com/2015/06/29/how-to-use-wds-to-pxe-boot-a-nano-server-vhd-with-powershell-2/</guid>
       <description>The goal of this article is to provide a more detailed step by step way of achieving what was recently presented in How to use WDS to PXE Boot a Nano Server VHD post on Nano Server team blog.</description>
     </item>
     
     <item>
       <title>Coding defensively against enums</title>
-      <link>https://psmag.github.io/2015/06/02/coding-defensively-against-enums/</link>
+      <link>https://powershellmagazine.com/2015/06/02/coding-defensively-against-enums/</link>
       <pubDate>Tue, 02 Jun 2015 16:00:54 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/06/02/coding-defensively-against-enums/</guid>
+      <guid>https://powershellmagazine.com/2015/06/02/coding-defensively-against-enums/</guid>
       <description>Today I will show how to defensively script against enums and how to test invalid enum values.
 What is an enum?</description>
     </item>
     
     <item>
       <title>Natively Query CSV Files using SQL Syntax in PowerShell</title>
-      <link>https://psmag.github.io/2015/05/12/natively-query-csv-files-using-sql-syntax-in-powershell/</link>
+      <link>https://powershellmagazine.com/2015/05/12/natively-query-csv-files-using-sql-syntax-in-powershell/</link>
       <pubDate>Tue, 12 May 2015 16:00:15 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/05/12/natively-query-csv-files-using-sql-syntax-in-powershell/</guid>
+      <guid>https://powershellmagazine.com/2015/05/12/natively-query-csv-files-using-sql-syntax-in-powershell/</guid>
       <description>Note: The previous version of this article relied on the 32-bit JET engine. It has been updated to use ACE, which works in both 64-bit and 32-bit environments.</description>
     </item>
     
     <item>
       <title>CompatAware: Scripting against different PowerShell versions</title>
-      <link>https://psmag.github.io/2015/04/09/compataware/</link>
+      <link>https://powershellmagazine.com/2015/04/09/compataware/</link>
       <pubDate>Thu, 09 Apr 2015 15:45:32 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/04/09/compataware/</guid>
+      <guid>https://powershellmagazine.com/2015/04/09/compataware/</guid>
       <description>You may remember “DLL Hell” from the old days. A very similar beast lives in our PowerShell ecosystem, too.
 Take 5 different PowerShell versions, all with different supported cmdlets, language elements, and parameters, and blend this with hundreds of available modules – out comes a truly high-proof cocktail, and it becomes evident that it’s far from trivial to safely develop code for a given platform.</description>
     </item>
     
     <item>
       <title>User Account Control and Admin Approval Mode – The impact on PowerShell</title>
-      <link>https://psmag.github.io/2015/04/08/user-account-control-and-admin-approval-mode-the-impact-on-powershell/</link>
+      <link>https://powershellmagazine.com/2015/04/08/user-account-control-and-admin-approval-mode-the-impact-on-powershell/</link>
       <pubDate>Wed, 08 Apr 2015 16:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/04/08/user-account-control-and-admin-approval-mode-the-impact-on-powershell/</guid>
+      <guid>https://powershellmagazine.com/2015/04/08/user-account-control-and-admin-approval-mode-the-impact-on-powershell/</guid>
       <description>In modern days Windows operating systems, User Account Control (UAC) is enabled by default. There are some considerations when using PowerShell and running a script in elevated or non-elevated context.</description>
     </item>
     
     <item>
       <title>How PowerShell saved the day – Jan Egil Ring</title>
-      <link>https://psmag.github.io/2015/03/10/how-powershell-saved-the-day-jan-egil-ring/</link>
+      <link>https://powershellmagazine.com/2015/03/10/how-powershell-saved-the-day-jan-egil-ring/</link>
       <pubDate>Tue, 10 Mar 2015 16:00:36 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/03/10/how-powershell-saved-the-day-jan-egil-ring/</guid>
+      <guid>https://powershellmagazine.com/2015/03/10/how-powershell-saved-the-day-jan-egil-ring/</guid>
       <description>We’re now kicking off a new series on PowerShell Magazine called “How PowerShell saved the day”, where the intent is to share success stories where PowerShell was a major factor when solving a problem.</description>
     </item>
     
     <item>
       <title>A JSON primer for administrators</title>
-      <link>https://psmag.github.io/2014/12/01/a-json-primer-for-administrators/</link>
+      <link>https://powershellmagazine.com/2014/12/01/a-json-primer-for-administrators/</link>
       <pubDate>Mon, 01 Dec 2014 17:00:47 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/12/01/a-json-primer-for-administrators/</guid>
+      <guid>https://powershellmagazine.com/2014/12/01/a-json-primer-for-administrators/</guid>
       <description>JavaScript Object Notation ([JSON][1]) is quickly becoming the most used data-interchange format. XML enjoyed the top spot for a long time but slowly people have been moving towards JSON.</description>
     </item>
     
     <item>
       <title>ForEach and Where magic methods</title>
-      <link>https://psmag.github.io/2014/10/22/foreach-and-where-magic-methods/</link>
+      <link>https://powershellmagazine.com/2014/10/22/foreach-and-where-magic-methods/</link>
       <pubDate>Wed, 22 Oct 2014 16:00:38 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/10/22/foreach-and-where-magic-methods/</guid>
+      <guid>https://powershellmagazine.com/2014/10/22/foreach-and-where-magic-methods/</guid>
       <description>ForEach and Where are two frequently used concepts that have been available in PowerShell since version 1 came out in 2006.</description>
     </item>
     
     <item>
       <title></title>
-      <link>https://psmag.github.io/2014/10/03/building-netcat-with-powershell/</link>
+      <link>https://powershellmagazine.com/2014/10/03/building-netcat-with-powershell/</link>
       <pubDate>Fri, 03 Oct 2014 16:00:43 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/10/03/building-netcat-with-powershell/</guid>
+      <guid>https://powershellmagazine.com/2014/10/03/building-netcat-with-powershell/</guid>
       <description>I have been a long time Windows user and a PowerShell fan since it was introduced. I have always been aware of the range of useful tools regularly available to Unix/Linux users, but recently I started a new job where everything is built on Linux and Windows is barely mentioned.</description>
     </item>
     
     <item>
       <title>Easily Defining Enums, Structs, and Win32 Functions in Memory</title>
-      <link>https://psmag.github.io/2014/09/25/easily-defining-enums-structs-and-win32-functions-in-memory/</link>
+      <link>https://powershellmagazine.com/2014/09/25/easily-defining-enums-structs-and-win32-functions-in-memory/</link>
       <pubDate>Thu, 25 Sep 2014 16:00:46 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/09/25/easily-defining-enums-structs-and-win32-functions-in-memory/</guid>
+      <guid>https://powershellmagazine.com/2014/09/25/easily-defining-enums-structs-and-win32-functions-in-memory/</guid>
       <description>In the past, I’ve spoken extensively on how to use reflection to define enums, structs, and Win32 functions in PowerShell and the merits of doing so.</description>
     </item>
     
     <item>
       <title>Using the ConvertFrom-String cmdlet to parse structured text</title>
-      <link>https://psmag.github.io/2014/09/09/using-the-convertfrom-string-cmdlet-to-parse-structured-text/</link>
+      <link>https://powershellmagazine.com/2014/09/09/using-the-convertfrom-string-cmdlet-to-parse-structured-text/</link>
       <pubDate>Tue, 09 Sep 2014 23:29:25 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/09/09/using-the-convertfrom-string-cmdlet-to-parse-structured-text/</guid>
+      <guid>https://powershellmagazine.com/2014/09/09/using-the-convertfrom-string-cmdlet-to-parse-structured-text/</guid>
       <description>One of PowerShell strengths has always been string manipulation. PowerShell has very good support for regular expressions–using both cmdlets and operators.</description>
     </item>
     
     <item>
       <title>Testing the effectiveness of Get-Random</title>
-      <link>https://psmag.github.io/2014/07/28/testing-the-effectiveness-of-get-random/</link>
+      <link>https://powershellmagazine.com/2014/07/28/testing-the-effectiveness-of-get-random/</link>
       <pubDate>Mon, 28 Jul 2014 16:00:39 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/28/testing-the-effectiveness-of-get-random/</guid>
+      <guid>https://powershellmagazine.com/2014/07/28/testing-the-effectiveness-of-get-random/</guid>
       <description>An ongoing argument I’ve seen in the PowerShell community is regarding the effectiveness of random numbers generated by the Get-Random cmdlet.</description>
     </item>
     
     <item>
       <title>Using PowerShell to troubleshoot the Exchange mailbox creation process</title>
-      <link>https://psmag.github.io/2014/07/24/using-powershell-to-troubleshoot-the-exchange-mailbox-creation-process/</link>
+      <link>https://powershellmagazine.com/2014/07/24/using-powershell-to-troubleshoot-the-exchange-mailbox-creation-process/</link>
       <pubDate>Thu, 24 Jul 2014 16:00:55 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/24/using-powershell-to-troubleshoot-the-exchange-mailbox-creation-process/</guid>
+      <guid>https://powershellmagazine.com/2014/07/24/using-powershell-to-troubleshoot-the-exchange-mailbox-creation-process/</guid>
       <description>I’ve been recently tasked by the team responsible for user account management to investigate why a user mailbox wasn’t created along with its Active Directory account.</description>
     </item>
     
     <item>
       <title>Automating deployments in Configuration Manager with PowerShell</title>
-      <link>https://psmag.github.io/2014/07/22/automating-deployments-in-configuration-manager-with-powershell/</link>
+      <link>https://powershellmagazine.com/2014/07/22/automating-deployments-in-configuration-manager-with-powershell/</link>
       <pubDate>Tue, 22 Jul 2014 16:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/22/automating-deployments-in-configuration-manager-with-powershell/</guid>
+      <guid>https://powershellmagazine.com/2014/07/22/automating-deployments-in-configuration-manager-with-powershell/</guid>
       <description>Introduction First of all, thanks to PowerShell magazine for giving me this great honour to post an article here.
 There have been a few articles about Configuration Manager in PowerShell Magazine–one by PowerShell MVP Trevor Sullivan is especially worth reading.</description>
     </item>
     
     <item>
       <title>Using PowerShell to discover information about your Microsoft SQL Servers</title>
-      <link>https://psmag.github.io/2014/07/21/using-powershell-to-discover-information-about-your-microsoft-sql-servers/</link>
+      <link>https://powershellmagazine.com/2014/07/21/using-powershell-to-discover-information-about-your-microsoft-sql-servers/</link>
       <pubDate>Mon, 21 Jul 2014 16:00:09 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/21/using-powershell-to-discover-information-about-your-microsoft-sql-servers/</guid>
+      <guid>https://powershellmagazine.com/2014/07/21/using-powershell-to-discover-information-about-your-microsoft-sql-servers/</guid>
       <description>I’m an infrastructure guy who supports many different products at multiple datacenters in an enterprise environment. One of those products is Microsoft SQL Server which I’ve been supporting since version 6.</description>
     </item>
     
     <item>
       <title>Dynamic Parameters in C# Cmdlets</title>
-      <link>https://psmag.github.io/2014/06/23/dynamic-parameters-in-c-cmdlets/</link>
+      <link>https://powershellmagazine.com/2014/06/23/dynamic-parameters-in-c-cmdlets/</link>
       <pubDate>Mon, 23 Jun 2014 16:00:39 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/06/23/dynamic-parameters-in-c-cmdlets/</guid>
+      <guid>https://powershellmagazine.com/2014/06/23/dynamic-parameters-in-c-cmdlets/</guid>
       <description>In my last article I wrote, I covered how to create dynamic parameters in a PowerShell cmdlet. If you haven’t read that article, please read that one before continuing with this one as I reference it several times in this article.</description>
     </item>
     
     <item>
       <title>Dynamic Parameters in PowerShell</title>
-      <link>https://psmag.github.io/2014/05/29/dynamic-parameters-in-powershell/</link>
+      <link>https://powershellmagazine.com/2014/05/29/dynamic-parameters-in-powershell/</link>
       <pubDate>Thu, 29 May 2014 18:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/05/29/dynamic-parameters-in-powershell/</guid>
+      <guid>https://powershellmagazine.com/2014/05/29/dynamic-parameters-in-powershell/</guid>
       <description>Has there ever been a time when you wanted to call a function or cmdlet with specific parameters that were based on conditional criteria that is provided?</description>
     </item>
     
     <item>
       <title>Automatic Remote Desktop Connection</title>
-      <link>https://psmag.github.io/2014/04/18/automatic-remote-desktop-connection/</link>
+      <link>https://powershellmagazine.com/2014/04/18/automatic-remote-desktop-connection/</link>
       <pubDate>Fri, 18 Apr 2014 16:00:23 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/04/18/automatic-remote-desktop-connection/</guid>
+      <guid>https://powershellmagazine.com/2014/04/18/automatic-remote-desktop-connection/</guid>
       <description>Note: This tip requires PowerShell 2.0 or above.
 As a PowerShell user, you probably have a PowerShell console or the ISE editor on standby.</description>
     </item>
     
     <item>
       <title>Basics of Writing a PowerShell Module with C#, Part 2: Debugging</title>
-      <link>https://psmag.github.io/2014/04/08/basics-of-writing-a-powershell-module-with-c-part-2-debugging/</link>
+      <link>https://powershellmagazine.com/2014/04/08/basics-of-writing-a-powershell-module-with-c-part-2-debugging/</link>
       <pubDate>Tue, 08 Apr 2014 18:31:25 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/04/08/basics-of-writing-a-powershell-module-with-c-part-2-debugging/</guid>
+      <guid>https://powershellmagazine.com/2014/04/08/basics-of-writing-a-powershell-module-with-c-part-2-debugging/</guid>
       <description>In this second part of the series on writing PowerShell modules in C#, we will cover how to enable basic debugging features in our module.</description>
     </item>
     
     <item>
       <title>Using the Windows Live APIs from PowerShell</title>
-      <link>https://psmag.github.io/2014/04/07/using-the-windows-live-apis-from-powershell/</link>
+      <link>https://powershellmagazine.com/2014/04/07/using-the-windows-live-apis-from-powershell/</link>
       <pubDate>Mon, 07 Apr 2014 16:00:40 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/04/07/using-the-windows-live-apis-from-powershell/</guid>
+      <guid>https://powershellmagazine.com/2014/04/07/using-the-windows-live-apis-from-powershell/</guid>
       <description>Microsoft has recently unveiled a REST API for OneNote Live, and since PowerShell has had cmdlets for working with REST services since V3 was introduced it seems like a good opportunity to look at the Live APIs and how they can be called from PowerShell.</description>
     </item>
     
     <item>
       <title>PowerShell Remoting with Azure Windows VMs</title>
-      <link>https://psmag.github.io/2014/03/31/powershell-remoting-with-azure-windows-vms/</link>
+      <link>https://powershellmagazine.com/2014/03/31/powershell-remoting-with-azure-windows-vms/</link>
       <pubDate>Mon, 31 Mar 2014 16:00:07 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/03/31/powershell-remoting-with-azure-windows-vms/</guid>
+      <guid>https://powershellmagazine.com/2014/03/31/powershell-remoting-with-azure-windows-vms/</guid>
       <description>These days, for all my demos at various events, I have been using Azure VMs extensively. If you have worked on creating these VMs using Azure PowerShell cmdlets, you will notice that they create a PowerShell remoting endpoint for a VM.</description>
     </item>
     
     <item>
       <title>Set keyboard layouts available on logon screen in Windows 8.1</title>
-      <link>https://psmag.github.io/2014/03/24/set-keyboard-layouts-available-on-logon-screen-in-windows-8-1/</link>
+      <link>https://powershellmagazine.com/2014/03/24/set-keyboard-layouts-available-on-logon-screen-in-windows-8-1/</link>
       <pubDate>Mon, 24 Mar 2014 16:00:02 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/03/24/set-keyboard-layouts-available-on-logon-screen-in-windows-8-1/</guid>
+      <guid>https://powershellmagazine.com/2014/03/24/set-keyboard-layouts-available-on-logon-screen-in-windows-8-1/</guid>
       <description>While we worked on Windows 8.1 deployment, we were required to make multiple keyboard layouts available on the Windows logon screen.</description>
     </item>
     
     <item>
       <title>Deploying Azure Virtual Machines from VM Depot using PowerShell</title>
-      <link>https://psmag.github.io/2014/03/20/deploying-azure-virtual-machines-from-vm-depot-using-powershell/</link>
+      <link>https://powershellmagazine.com/2014/03/20/deploying-azure-virtual-machines-from-vm-depot-using-powershell/</link>
       <pubDate>Thu, 20 Mar 2014 18:36:57 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/03/20/deploying-azure-virtual-machines-from-vm-depot-using-powershell/</guid>
+      <guid>https://powershellmagazine.com/2014/03/20/deploying-azure-virtual-machines-from-vm-depot-using-powershell/</guid>
       <description>VM Depot is a community-driven catalog of open source virtual machine images. Azure management portal can be used to copy these VM images into “My images” of your Azure subscription.</description>
     </item>
     
     <item>
       <title>How to view and restore hidden Windows Updates with PowerShell</title>
-      <link>https://psmag.github.io/2014/03/19/how-to-view-and-restore-hidden-windows-updates-with-powershell/</link>
+      <link>https://powershellmagazine.com/2014/03/19/how-to-view-and-restore-hidden-windows-updates-with-powershell/</link>
       <pubDate>Wed, 19 Mar 2014 18:00:44 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/03/19/how-to-view-and-restore-hidden-windows-updates-with-powershell/</guid>
+      <guid>https://powershellmagazine.com/2014/03/19/how-to-view-and-restore-hidden-windows-updates-with-powershell/</guid>
       <description>When you visit Windows Update, you can hide an update to avoid being prompted to install it again at next scan.</description>
     </item>
     
     <item>
       <title>Writing a PowerShell module in C#, Part 1: The basics</title>
-      <link>https://psmag.github.io/2014/03/18/writing-a-powershell-module-in-c-part-1-the-basics/</link>
+      <link>https://powershellmagazine.com/2014/03/18/writing-a-powershell-module-in-c-part-1-the-basics/</link>
       <pubDate>Tue, 18 Mar 2014 16:00:28 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/03/18/writing-a-powershell-module-in-c-part-1-the-basics/</guid>
+      <guid>https://powershellmagazine.com/2014/03/18/writing-a-powershell-module-in-c-part-1-the-basics/</guid>
       <description>In this series we will cover the basics of building a Windows PowerShell binary module using C#. In the first part of the series we will build a module with just one cmdlet called Get-Salutation that will resemble the traditional “Hello World” example.</description>
     </item>
     
     <item>
       <title>Accidental Sabotage: Beware of CredSSP</title>
-      <link>https://psmag.github.io/2014/03/06/accidental-sabotage-beware-of-credssp/</link>
+      <link>https://powershellmagazine.com/2014/03/06/accidental-sabotage-beware-of-credssp/</link>
       <pubDate>Thu, 06 Mar 2014 17:00:30 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/03/06/accidental-sabotage-beware-of-credssp/</guid>
+      <guid>https://powershellmagazine.com/2014/03/06/accidental-sabotage-beware-of-credssp/</guid>
       <description>One common issue that an administrator faces when using PowerShell remoting is the “double hop” problem. An administrator uses PowerShell remoting to connect to Server A and then attempts to connect from Server A to Server B.</description>
     </item>
     
     <item>
       <title>Reporting Cluster Shared Volume (CSV) disk space utilization</title>
-      <link>https://psmag.github.io/2014/02/28/reporting-cluster-shared-volume-csv-disk-space-utilization/</link>
+      <link>https://powershellmagazine.com/2014/02/28/reporting-cluster-shared-volume-csv-disk-space-utilization/</link>
       <pubDate>Fri, 28 Feb 2014 17:00:16 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/02/28/reporting-cluster-shared-volume-csv-disk-space-utilization/</guid>
+      <guid>https://powershellmagazine.com/2014/02/28/reporting-cluster-shared-volume-csv-disk-space-utilization/</guid>
       <description>The Failover Cluster cmdlets can be used to get information about Cluster Shared Volumes (CSV). The Get-ClusterSharedVolume cmdlet when run on a cluster node, gives us the information about all the CSVs.</description>
     </item>
     
     <item>
       <title></title>
-      <link>https://psmag.github.io/2014/02/27/using-powershell-and-web-platform-installer-to-install-azure-powershell-cmdlets/</link>
+      <link>https://powershellmagazine.com/2014/02/27/using-powershell-and-web-platform-installer-to-install-azure-powershell-cmdlets/</link>
       <pubDate>Thu, 27 Feb 2014 17:00:16 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/02/27/using-powershell-and-web-platform-installer-to-install-azure-powershell-cmdlets/</guid>
+      <guid>https://powershellmagazine.com/2014/02/27/using-powershell-and-web-platform-installer-to-install-azure-powershell-cmdlets/</guid>
       <description>Web Platform Installer or Web PI is a free tool that makes getting the latest components of the Microsoft Web Platform, including Internet Information Services (IIS), SQL Server Express, .</description>
     </item>
     
     <item>
       <title>How Current Path Affects Cmdlets</title>
-      <link>https://psmag.github.io/2014/02/26/current-path-affects-cmdlets/</link>
+      <link>https://powershellmagazine.com/2014/02/26/current-path-affects-cmdlets/</link>
       <pubDate>Wed, 26 Feb 2014 17:00:55 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/02/26/current-path-affects-cmdlets/</guid>
+      <guid>https://powershellmagazine.com/2014/02/26/current-path-affects-cmdlets/</guid>
       <description>Why and how would the current path affect how cmdlets work? What exactly is the current path?
 I am sure you&amp;rsquo;ll be up for a bunch of surprises!</description>
     </item>
     
     <item>
       <title>Converting Hyper-V virtual machine disks from VHD to VHDX</title>
-      <link>https://psmag.github.io/2014/02/25/converting-hyper-v-virtual-machine-disks-from-vhd-to-vhdx/</link>
+      <link>https://powershellmagazine.com/2014/02/25/converting-hyper-v-virtual-machine-disks-from-vhd-to-vhdx/</link>
       <pubDate>Tue, 25 Feb 2014 17:00:57 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/02/25/converting-hyper-v-virtual-machine-disks-from-vhd-to-vhdx/</guid>
+      <guid>https://powershellmagazine.com/2014/02/25/converting-hyper-v-virtual-machine-disks-from-vhd-to-vhdx/</guid>
       <description>I’ve read recently a post by Hyper-V MVP Aidan Finn about a script he wrote to convert Hyper-V virtual machine VHDs to the new VHDX disk format.</description>
     </item>
     
     <item>
       <title>Managing Kemp LoadMaster using REST API and PowerShell</title>
-      <link>https://psmag.github.io/2014/01/16/managing-kemp-loadmaster-using-rest-api-and-powershell/</link>
+      <link>https://powershellmagazine.com/2014/01/16/managing-kemp-loadmaster-using-rest-api-and-powershell/</link>
       <pubDate>Thu, 16 Jan 2014 17:00:21 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/01/16/managing-kemp-loadmaster-using-rest-api-and-powershell/</guid>
+      <guid>https://powershellmagazine.com/2014/01/16/managing-kemp-loadmaster-using-rest-api-and-powershell/</guid>
       <description>If you are an application or a network administrator, you would have certainly heard about or even used load balancers. Load balancers are shipped either as hardware or virtual appliances based on the size of the deployment behind them.</description>
     </item>
     
     <item>
       <title>Simplifying Data Manipulation in PowerShell with Lambda Functions</title>
-      <link>https://psmag.github.io/2013/12/23/simplifying-data-manipulation-in-powershell-with-lambda-functions/</link>
+      <link>https://powershellmagazine.com/2013/12/23/simplifying-data-manipulation-in-powershell-with-lambda-functions/</link>
       <pubDate>Mon, 23 Dec 2013 17:00:29 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/12/23/simplifying-data-manipulation-in-powershell-with-lambda-functions/</guid>
+      <guid>https://powershellmagazine.com/2013/12/23/simplifying-data-manipulation-in-powershell-with-lambda-functions/</guid>
       <description>Scenario: You have a large dataset and need to perform various transformations on the data. For example, let’s say you need to multiply a sequence by a variable constant and you need to add a sequence by a variable constant.</description>
     </item>
     
     <item>
       <title>Using PowerShell Switch vs. Boolean Parameters in SMA Runbooks</title>
-      <link>https://psmag.github.io/2013/12/20/using-powershell-switch-vs-boolean-parameters-in-sma-runbooks/</link>
+      <link>https://powershellmagazine.com/2013/12/20/using-powershell-switch-vs-boolean-parameters-in-sma-runbooks/</link>
       <pubDate>Fri, 20 Dec 2013 17:00:50 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/12/20/using-powershell-switch-vs-boolean-parameters-in-sma-runbooks/</guid>
+      <guid>https://powershellmagazine.com/2013/12/20/using-powershell-switch-vs-boolean-parameters-in-sma-runbooks/</guid>
       <description>Hey Readers. In this article, I wanted to take the opportunity to talk about a scenario that may be “edge case” but a case just the same within the constructs of leveraging switch parameters in PowerShell workflow.</description>
     </item>
     
     <item>
       <title>PowerShell Certificate Pinning</title>
-      <link>https://psmag.github.io/2013/12/17/powershell-certificate-pinning/</link>
+      <link>https://powershellmagazine.com/2013/12/17/powershell-certificate-pinning/</link>
       <pubDate>Tue, 17 Dec 2013 17:00:50 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/12/17/powershell-certificate-pinning/</guid>
+      <guid>https://powershellmagazine.com/2013/12/17/powershell-certificate-pinning/</guid>
       <description>Recently, we have seen in the news how governments intercept communications. We’ve seen evidence that they are abusing their powers against those who run valid Certificate Authorities, creating fraudulent certificates to intercept SSL/TLS encrypted communications.</description>
     </item>
     
     <item>
       <title>Using Copy-VMFile cmdlet in Windows Server 2012 R2 Hyper-V</title>
-      <link>https://psmag.github.io/2013/12/16/using-copy-vmfile-cmdlet-in-windows-server-2012-r2-hyper-v/</link>
+      <link>https://powershellmagazine.com/2013/12/16/using-copy-vmfile-cmdlet-in-windows-server-2012-r2-hyper-v/</link>
       <pubDate>Mon, 16 Dec 2013 17:00:44 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/12/16/using-copy-vmfile-cmdlet-in-windows-server-2012-r2-hyper-v/</guid>
+      <guid>https://powershellmagazine.com/2013/12/16/using-copy-vmfile-cmdlet-in-windows-server-2012-r2-hyper-v/</guid>
       <description>With Windows Server 2012 R2, the Hyper-V product team introduced a new cmdlet called Copy-VMFile. This, as the name implies, help you copy a file into a Hyper-V Virtual Machine (VM).</description>
     </item>
     
     <item>
       <title>Be “SMART” with Windows Azure Pack and SMA</title>
-      <link>https://psmag.github.io/2013/12/11/be-smart-with-windows-azure-pack-and-sma/</link>
+      <link>https://powershellmagazine.com/2013/12/11/be-smart-with-windows-azure-pack-and-sma/</link>
       <pubDate>Wed, 11 Dec 2013 19:00:09 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/12/11/be-smart-with-windows-azure-pack-and-sma/</guid>
+      <guid>https://powershellmagazine.com/2013/12/11/be-smart-with-windows-azure-pack-and-sma/</guid>
       <description>Service Management Automation (SMA) So, what exactly is SMA and why is it important in the world of PowerShell? I’ll start with a link where you can read even more information at your leisure http://aka.</description>
     </item>
     
     <item>
       <title>Secure Parameter Validation in PowerShell</title>
-      <link>https://psmag.github.io/2013/12/09/secure-parameter-validation-in-powershell/</link>
+      <link>https://powershellmagazine.com/2013/12/09/secure-parameter-validation-in-powershell/</link>
       <pubDate>Mon, 09 Dec 2013 17:00:54 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/12/09/secure-parameter-validation-in-powershell/</guid>
+      <guid>https://powershellmagazine.com/2013/12/09/secure-parameter-validation-in-powershell/</guid>
       <description>Parameter validation in PowerShell is an extremely useful and easy way to alert a user as early as possible that incorrect input was provided to a function or cmdlet.</description>
     </item>
     
     <item>
       <title>Identifying Active Directory built-in groups with PowerShell</title>
-      <link>https://psmag.github.io/2013/11/26/identifying-active-directory-built-in-groups-with-powershell/</link>
+      <link>https://powershellmagazine.com/2013/11/26/identifying-active-directory-built-in-groups-with-powershell/</link>
       <pubDate>Tue, 26 Nov 2013 17:00:26 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/11/26/identifying-active-directory-built-in-groups-with-powershell/</guid>
+      <guid>https://powershellmagazine.com/2013/11/26/identifying-active-directory-built-in-groups-with-powershell/</guid>
       <description>Built-in groups are predefined security groups, defined with domain local scope, that are created automatically when you create an Active Directory domain.</description>
     </item>
     
     <item>
       <title>Mastering everyday XML tasks in PowerShell</title>
-      <link>https://psmag.github.io/2013/08/19/mastering-everyday-xml-tasks-in-powershell/</link>
+      <link>https://powershellmagazine.com/2013/08/19/mastering-everyday-xml-tasks-in-powershell/</link>
       <pubDate>Mon, 19 Aug 2013 16:00:48 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/08/19/mastering-everyday-xml-tasks-in-powershell/</guid>
+      <guid>https://powershellmagazine.com/2013/08/19/mastering-everyday-xml-tasks-in-powershell/</guid>
       <description>PowerShell has awesome XML support. It is not obvious at first, but with a little help from your friends here at PowerShellMagazine.</description>
     </item>
     
     <item>
       <title>Querying performance counters from PowerShell</title>
-      <link>https://psmag.github.io/2013/07/19/querying-performance-counters-from-powershell/</link>
+      <link>https://powershellmagazine.com/2013/07/19/querying-performance-counters-from-powershell/</link>
       <pubDate>Fri, 19 Jul 2013 16:00:20 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/07/19/querying-performance-counters-from-powershell/</guid>
+      <guid>https://powershellmagazine.com/2013/07/19/querying-performance-counters-from-powershell/</guid>
       <description>Whether you want to know the CPU load of a system or how busy your network is, querying performance counters provides reliable and fast answers.</description>
     </item>
     
     <item>
       <title>An example when using Write-Host makes sense</title>
-      <link>https://psmag.github.io/2013/06/20/an-example-when-using-write-host-makes-sense/</link>
+      <link>https://powershellmagazine.com/2013/06/20/an-example-when-using-write-host-makes-sense/</link>
       <pubDate>Thu, 20 Jun 2013 16:00:01 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/06/20/an-example-when-using-write-host-makes-sense/</guid>
+      <guid>https://powershellmagazine.com/2013/06/20/an-example-when-using-write-host-makes-sense/</guid>
       <description>In the PowerShell community, there is some debate about the usage of the Write-Host cmdlet. The debate stems from the fact that the output of the Write-Host cmdlet places strings of text on the monitor and not in the pipeline.</description>
     </item>
     
     <item>
       <title>Working with non-native PowerShell encoding (EBCDIC)</title>
-      <link>https://psmag.github.io/2013/06/17/working-with-non-native-powershell-encoding-ebcdic/</link>
+      <link>https://powershellmagazine.com/2013/06/17/working-with-non-native-powershell-encoding-ebcdic/</link>
       <pubDate>Mon, 17 Jun 2013 16:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/06/17/working-with-non-native-powershell-encoding-ebcdic/</guid>
+      <guid>https://powershellmagazine.com/2013/06/17/working-with-non-native-powershell-encoding-ebcdic/</guid>
       <description>The -Encoding parameter in many native I/O cmdlets uses the [Microsoft.PowerShell.Commands.FileSystemCmdletProviderEncoding] enum.
 PS&amp;gt; [System.Enum]::GetNames([Microsoft.PowerShell.Commands.FileSystemCmdletProviderEncoding]) Unknown String Unicode Byte BigEndianUnicode UTF8 UTF7 UTF32 Ascii Default Oem  Files that come from an IBM mainframe such as the AS/400 are often exported to ASCII or Unicode when a PC is the intended consumer.</description>
     </item>
     
     <item>
       <title>Measuring PowerShell scripts</title>
-      <link>https://psmag.github.io/2013/05/13/measuring-powershell-scripts/</link>
+      <link>https://powershellmagazine.com/2013/05/13/measuring-powershell-scripts/</link>
       <pubDate>Mon, 13 May 2013 16:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/05/13/measuring-powershell-scripts/</guid>
+      <guid>https://powershellmagazine.com/2013/05/13/measuring-powershell-scripts/</guid>
       <description>Earlier this year, Microsoft released the Windows PowerShell 3.0 SDK Sample Pack which includes a lot of code samples that show how to build applications based on Windows PowerShell 3.</description>
     </item>
     
     <item>
       <title>Creating and configuring a SharePoint 2013 search service application</title>
-      <link>https://psmag.github.io/2013/04/29/creating-and-configuring-a-sharepoint-2013-search-service-application/</link>
+      <link>https://powershellmagazine.com/2013/04/29/creating-and-configuring-a-sharepoint-2013-search-service-application/</link>
       <pubDate>Mon, 29 Apr 2013 16:37:24 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/04/29/creating-and-configuring-a-sharepoint-2013-search-service-application/</guid>
+      <guid>https://powershellmagazine.com/2013/04/29/creating-and-configuring-a-sharepoint-2013-search-service-application/</guid>
       <description>The Search Service Application (SSA) in SharePoint provides the content crawl and search functionality. In SharePoint 2010, the Central Administration (CA) site has the option to configure and customize the SSA.</description>
     </item>
     
     <item>
       <title>Creating PowerShell custom objects</title>
-      <link>https://psmag.github.io/2013/02/04/creating-powershell-custom-objects/</link>
+      <link>https://powershellmagazine.com/2013/02/04/creating-powershell-custom-objects/</link>
       <pubDate>Mon, 04 Feb 2013 17:00:21 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/02/04/creating-powershell-custom-objects/</guid>
+      <guid>https://powershellmagazine.com/2013/02/04/creating-powershell-custom-objects/</guid>
       <description>Creating PowerShell custom objects is a common task that some find hard to do right. In this article I’ll show a sample code that has some of the common flaws.</description>
     </item>
     
     <item>
       <title>The complete list of PowerShell ISE 3.0 keyboard shortcuts</title>
-      <link>https://psmag.github.io/2013/01/29/the-complete-list-of-powershell-ise-3-0-keyboard-shortcuts/</link>
+      <link>https://powershellmagazine.com/2013/01/29/the-complete-list-of-powershell-ise-3-0-keyboard-shortcuts/</link>
       <pubDate>Tue, 29 Jan 2013 17:00:22 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/01/29/the-complete-list-of-powershell-ise-3-0-keyboard-shortcuts/</guid>
+      <guid>https://powershellmagazine.com/2013/01/29/the-complete-list-of-powershell-ise-3-0-keyboard-shortcuts/</guid>
       <description>In a previous tip I showed a new hidden keyboard shortcut to transpose lines of code in the ISE. At the PowerShell Facebook group, Dave Carnahan was wondering if there’s a way to pull all of the ISE related hot keys.</description>
     </item>
     
     <item>
       <title>Calling native commands from PowerShell</title>
-      <link>https://psmag.github.io/2013/01/02/calling-native-commands-from-powershell/</link>
+      <link>https://powershellmagazine.com/2013/01/02/calling-native-commands-from-powershell/</link>
       <pubDate>Wed, 02 Jan 2013 17:00:14 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/01/02/calling-native-commands-from-powershell/</guid>
+      <guid>https://powershellmagazine.com/2013/01/02/calling-native-commands-from-powershell/</guid>
       <description>Every now and then I find myself facing task I am not sure how to solve using without using native commands.</description>
     </item>
     
     <item>
       <title>Improving the output of Update-Help</title>
-      <link>https://psmag.github.io/2012/12/20/improving-the-output-of-update-help/</link>
+      <link>https://powershellmagazine.com/2012/12/20/improving-the-output-of-update-help/</link>
       <pubDate>Thu, 20 Dec 2012 17:00:48 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/12/20/improving-the-output-of-update-help/</guid>
+      <guid>https://powershellmagazine.com/2012/12/20/improving-the-output-of-update-help/</guid>
       <description>If you’ve updated PowerShell to version 3.0 you probably noticed that help is no longer shipped in the box. PowerShell 3.</description>
     </item>
     
     <item>
       <title>Handle log files with PowerShell 3.0</title>
-      <link>https://psmag.github.io/2012/12/06/handle-log-files-with-powershell-3-0/</link>
+      <link>https://powershellmagazine.com/2012/12/06/handle-log-files-with-powershell-3-0/</link>
       <pubDate>Thu, 06 Dec 2012 19:00:18 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/12/06/handle-log-files-with-powershell-3-0/</guid>
+      <guid>https://powershellmagazine.com/2012/12/06/handle-log-files-with-powershell-3-0/</guid>
       <description>In a recent task I had to handle quite a massive amount of log files from a load test program and I wanted to get the amount of log records and also the time from the first to the last record.</description>
     </item>
     
     <item>
       <title>Skipping empty CSV objects</title>
-      <link>https://psmag.github.io/2012/12/04/skipping-empty-csv-objects/</link>
+      <link>https://powershellmagazine.com/2012/12/04/skipping-empty-csv-objects/</link>
       <pubDate>Tue, 04 Dec 2012 18:00:14 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/12/04/skipping-empty-csv-objects/</guid>
+      <guid>https://powershellmagazine.com/2012/12/04/skipping-empty-csv-objects/</guid>
       <description>Working with CSV files in PowerShell is a common practice. You import the file, loop on its records and you’re good to go.</description>
     </item>
     
     <item>
       <title>Better Restart-Computer cmdlet in PowerShell 3.0</title>
-      <link>https://psmag.github.io/2012/11/27/better-restart-computer-cmdlet-in-powershell-3-0/</link>
+      <link>https://powershellmagazine.com/2012/11/27/better-restart-computer-cmdlet-in-powershell-3-0/</link>
       <pubDate>Tue, 27 Nov 2012 17:00:11 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/11/27/better-restart-computer-cmdlet-in-powershell-3-0/</guid>
+      <guid>https://powershellmagazine.com/2012/11/27/better-restart-computer-cmdlet-in-powershell-3-0/</guid>
       <description>As the name suggests the Restart-Computer cmdlet helps in restarting the operating system on the local and remote computers.
 Compared to earlier version of Restart-Computer in PowerShell 2.</description>
     </item>
     
     <item>
       <title>Client and patch management using the UpdateServices module</title>
-      <link>https://psmag.github.io/2012/11/07/client-and-patch-management-using-the-updateservices-module/</link>
+      <link>https://powershellmagazine.com/2012/11/07/client-and-patch-management-using-the-updateservices-module/</link>
       <pubDate>Wed, 07 Nov 2012 13:19:22 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/11/07/client-and-patch-management-using-the-updateservices-module/</guid>
+      <guid>https://powershellmagazine.com/2012/11/07/client-and-patch-management-using-the-updateservices-module/</guid>
       <description>With the release of Windows Server 2012 into the world, automating and managing Windows Server Update Services (WSUS) with PowerShell has become a little easier with the inclusion of the UpdateServices module.</description>
     </item>
     
     <item>
       <title>Using SkyDrive to sync your WindowsPowerShell folder</title>
-      <link>https://psmag.github.io/2012/10/16/using-skydrive-to-sync-your-windowspowershell-folder/</link>
+      <link>https://powershellmagazine.com/2012/10/16/using-skydrive-to-sync-your-windowspowershell-folder/</link>
       <pubDate>Tue, 16 Oct 2012 16:00:54 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/10/16/using-skydrive-to-sync-your-windowspowershell-folder/</guid>
+      <guid>https://powershellmagazine.com/2012/10/16/using-skydrive-to-sync-your-windowspowershell-folder/</guid>
       <description>I while back I was asked if it is possible to use SkyDrive to sync the WindowsPowerShell folder between multiple machines.</description>
     </item>
     
     <item>
       <title>Manipulating Wildcards</title>
-      <link>https://psmag.github.io/2012/10/09/manipulating-wildcards/</link>
+      <link>https://powershellmagazine.com/2012/10/09/manipulating-wildcards/</link>
       <pubDate>Tue, 09 Oct 2012 18:00:52 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/10/09/manipulating-wildcards/</guid>
+      <guid>https://powershellmagazine.com/2012/10/09/manipulating-wildcards/</guid>
       <description>Many Windows PowerShell cmdlets support wildcard characters for their parameter values. For example, almost every cmdlet that has the Name or Path parameter supports wildcard characters for these parameters.</description>
     </item>
     
     <item>
       <title>Formatting changes for System Center Operations Manager 2012 in Update Rollup 1</title>
-      <link>https://psmag.github.io/2012/05/14/formatting-changes-for-system-center-operations-manager-2012-in-update-rollup-1/</link>
+      <link>https://powershellmagazine.com/2012/05/14/formatting-changes-for-system-center-operations-manager-2012-in-update-rollup-1/</link>
       <pubDate>Mon, 14 May 2012 18:00:18 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/05/14/formatting-changes-for-system-center-operations-manager-2012-in-update-rollup-1/</guid>
+      <guid>https://powershellmagazine.com/2012/05/14/formatting-changes-for-system-center-operations-manager-2012-in-update-rollup-1/</guid>
       <description>On the 7th of May 2012 we released our first Update Rollup 1 (UR1) for System Center 2012. In addition to earlier released fixes for Virtual Machine Manager (VMM) and App Controller (AC), the update rollup now includes fixes for System Center Operations Manager (OM).</description>
     </item>
     
     <item>
       <title>PowerShell Detective</title>
-      <link>https://psmag.github.io/2012/05/10/powershell-detective/</link>
+      <link>https://powershellmagazine.com/2012/05/10/powershell-detective/</link>
       <pubDate>Thu, 10 May 2012 18:00:45 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/05/10/powershell-detective/</guid>
+      <guid>https://powershellmagazine.com/2012/05/10/powershell-detective/</guid>
       <description>I guess when you use PowerShell; you very often don’t care how it works. As long as it does what you asked it to do – you are happy.</description>
     </item>
     
     <item>
       <title>Getting PowerShelled in 10 Minutes</title>
-      <link>https://psmag.github.io/2012/05/02/getting-powershelled-in-10-minutes/</link>
+      <link>https://powershellmagazine.com/2012/05/02/getting-powershelled-in-10-minutes/</link>
       <pubDate>Wed, 02 May 2012 18:00:50 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/05/02/getting-powershelled-in-10-minutes/</guid>
+      <guid>https://powershellmagazine.com/2012/05/02/getting-powershelled-in-10-minutes/</guid>
       <description>Windows PowerShell is an extremely powerful scripting language, and when you first put your hands on PowerShell, you may get – frustrated!</description>
     </item>
     
     <item>
       <title>A day in the life of a Poshoholic: Creating and using type accelerators and namespaces the easy way</title>
-      <link>https://psmag.github.io/2012/04/27/a-day-in-the-life-of-a-poshoholic-creating-and-using-type-accelerators-and-namespaces-the-easy-way/</link>
+      <link>https://powershellmagazine.com/2012/04/27/a-day-in-the-life-of-a-poshoholic-creating-and-using-type-accelerators-and-namespaces-the-easy-way/</link>
       <pubDate>Fri, 27 Apr 2012 18:00:20 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/04/27/a-day-in-the-life-of-a-poshoholic-creating-and-using-type-accelerators-and-namespaces-the-easy-way/</guid>
+      <guid>https://powershellmagazine.com/2012/04/27/a-day-in-the-life-of-a-poshoholic-creating-and-using-type-accelerators-and-namespaces-the-easy-way/</guid>
       <description>You never know where you’re going to find inspiration. As a PowerShell MVP and a confessed Poshoholic, I tend to travel to conferences a fair bit.</description>
     </item>
     
     <item>
       <title>My 10 best practices leading to the Scripting Games 2012 – Part I</title>
-      <link>https://psmag.github.io/2012/03/20/my-10-best-practices-leading-to-the-scripting-games-2012-part-i/</link>
+      <link>https://powershellmagazine.com/2012/03/20/my-10-best-practices-leading-to-the-scripting-games-2012-part-i/</link>
       <pubDate>Tue, 20 Mar 2012 18:00:49 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/03/20/my-10-best-practices-leading-to-the-scripting-games-2012-part-i/</guid>
+      <guid>https://powershellmagazine.com/2012/03/20/my-10-best-practices-leading-to-the-scripting-games-2012-part-i/</guid>
       <description>I wrote an article earlier in the year about how I got inspired into PowerShell. The enthusiasm has made me consider entering for the scripting games, I even decided to visit site here to learn even more, if you are interested to learn how to play sbobet poker online game follow us.</description>
     </item>
     
     <item>
       <title>Pimp Your Profile</title>
-      <link>https://psmag.github.io/2012/02/13/pimp-your-profile-2/</link>
+      <link>https://powershellmagazine.com/2012/02/13/pimp-your-profile-2/</link>
       <pubDate>Mon, 13 Feb 2012 19:00:44 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/02/13/pimp-your-profile-2/</guid>
+      <guid>https://powershellmagazine.com/2012/02/13/pimp-your-profile-2/</guid>
       <description>One characteristic of effective shell users is that they modify their environment in ways that makes them as efficient as possible.</description>
     </item>
     
     <item>
       <title>Managing scheduled tasks in your environment – Part II</title>
-      <link>https://psmag.github.io/2011/11/22/managing-scheduled-tasks-in-your-environment-part-ii/</link>
+      <link>https://powershellmagazine.com/2011/11/22/managing-scheduled-tasks-in-your-environment-part-ii/</link>
       <pubDate>Tue, 22 Nov 2011 10:21:20 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/22/managing-scheduled-tasks-in-your-environment-part-ii/</guid>
+      <guid>https://powershellmagazine.com/2011/11/22/managing-scheduled-tasks-in-your-environment-part-ii/</guid>
       <description>In Part 1 we looked at gathering information about the scheduled tasks in your environment, in part 2 we will look at how to make changes to the scheduled tasks, and fixing a “problem” with scheduled tasks created in the 2008(R2) Task Scheduler GUI.</description>
     </item>
     
     <item>
       <title>Managing scheduled tasks in your environment – Part I</title>
-      <link>https://psmag.github.io/2011/11/21/managing-scheduled-tasks-in-your-environment-part-i/</link>
+      <link>https://powershellmagazine.com/2011/11/21/managing-scheduled-tasks-in-your-environment-part-i/</link>
       <pubDate>Mon, 21 Nov 2011 10:01:27 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/21/managing-scheduled-tasks-in-your-environment-part-i/</guid>
+      <guid>https://powershellmagazine.com/2011/11/21/managing-scheduled-tasks-in-your-environment-part-i/</guid>
       <description>In Part 1 of the series, I will look at getting information on the scheduled tasks running in your environment. One of the things I see a lot in our company is that a lot of scheduled tasks get created on different servers, for one reason or another, but very often these tasks are quickly forgotten.</description>
     </item>
     
     <item>
       <title>Custom errors</title>
-      <link>https://psmag.github.io/2011/09/14/custom-errors/</link>
+      <link>https://powershellmagazine.com/2011/09/14/custom-errors/</link>
       <pubDate>Wed, 14 Sep 2011 07:44:49 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/09/14/custom-errors/</guid>
+      <guid>https://powershellmagazine.com/2011/09/14/custom-errors/</guid>
       <description>The most common ways of reporting errors in PowerShell are through the Write-Error Cmdlet or the Throw statement. Write-Error writes non-terminating errors while the throw statement writes terminating errors which halt execution but are not very descriptive.</description>
     </item>
     

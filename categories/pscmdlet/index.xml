@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PSCmdlet on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/pscmdlet/</link>
+    <link>https://powershellmagazine.com/categories/pscmdlet/</link>
     <description>Recent content in PSCmdlet on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 23 Jun 2014 16:00:39 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/pscmdlet/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/pscmdlet/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Dynamic Parameters in C# Cmdlets</title>
-      <link>https://psmag.github.io/2014/06/23/dynamic-parameters-in-c-cmdlets/</link>
+      <link>https://powershellmagazine.com/2014/06/23/dynamic-parameters-in-c-cmdlets/</link>
       <pubDate>Mon, 23 Jun 2014 16:00:39 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/06/23/dynamic-parameters-in-c-cmdlets/</guid>
+      <guid>https://powershellmagazine.com/2014/06/23/dynamic-parameters-in-c-cmdlets/</guid>
       <description>In my last article I wrote, I covered how to create dynamic parameters in a PowerShell cmdlet. If you haven’t read that article, please read that one before continuing with this one as I reference it several times in this article.</description>
     </item>
     

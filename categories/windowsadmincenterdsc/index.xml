@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>WindowsAdminCenterDSC on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/windowsadmincenterdsc/</link>
+    <link>https://powershellmagazine.com/categories/windowsadmincenterdsc/</link>
     <description>Recent content in WindowsAdminCenterDSC on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 31 Jan 2019 17:00:15 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/windowsadmincenterdsc/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/windowsadmincenterdsc/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>PowerShell DSC Resource Module to Install and Configure Windows Admin Center</title>
-      <link>https://psmag.github.io/2019/01/31/dsc-resource-module-to-install-and-configure-windows-admin-center/</link>
+      <link>https://powershellmagazine.com/2019/01/31/dsc-resource-module-to-install-and-configure-windows-admin-center/</link>
       <pubDate>Thu, 31 Jan 2019 17:00:15 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2019/01/31/dsc-resource-module-to-install-and-configure-windows-admin-center/</guid>
+      <guid>https://powershellmagazine.com/2019/01/31/dsc-resource-module-to-install-and-configure-windows-admin-center/</guid>
       <description>Windows Admin Center (WAC) is the new web-based management application for managing Windows Servers, Failover Clusters, Hyper-Converged Infrastructure (HCI) clusters, and Windows 10 PCs.</description>
     </item>
     

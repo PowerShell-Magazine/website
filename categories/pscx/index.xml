@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PSCX on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/pscx/</link>
+    <link>https://powershellmagazine.com/categories/pscx/</link>
     <description>Recent content in PSCX on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 26 Dec 2012 17:00:31 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/pscx/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/pscx/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>How to strong name partially signed assemblies</title>
-      <link>https://psmag.github.io/2012/12/26/how-to-strong-name-partially-signed-assemblies/</link>
+      <link>https://powershellmagazine.com/2012/12/26/how-to-strong-name-partially-signed-assemblies/</link>
       <pubDate>Wed, 26 Dec 2012 17:00:31 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/12/26/how-to-strong-name-partially-signed-assemblies/</guid>
+      <guid>https://powershellmagazine.com/2012/12/26/how-to-strong-name-partially-signed-assemblies/</guid>
       <description>When developing software based on .NET it is quite common to strong name your assemblies especially if you’re a library vendor providing your libraries to other people.</description>
     </item>
     
     <item>
       <title>PowerShell Community Extensions</title>
-      <link>https://psmag.github.io/2012/04/30/powershell-community-extensions/</link>
+      <link>https://powershellmagazine.com/2012/04/30/powershell-community-extensions/</link>
       <pubDate>Mon, 30 Apr 2012 18:00:25 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/04/30/powershell-community-extensions/</guid>
+      <guid>https://powershellmagazine.com/2012/04/30/powershell-community-extensions/</guid>
       <description>I started the PowerShell Community Extensions (PSCX) project to fill in some of the gaps in the set of built-in Windows PowerShell commands.</description>
     </item>
     

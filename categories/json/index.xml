@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>JSON on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/json/</link>
+    <link>https://powershellmagazine.com/categories/json/</link>
     <description>Recent content in JSON on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 01 Dec 2014 17:00:47 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/json/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/json/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>A JSON primer for administrators</title>
-      <link>https://psmag.github.io/2014/12/01/a-json-primer-for-administrators/</link>
+      <link>https://powershellmagazine.com/2014/12/01/a-json-primer-for-administrators/</link>
       <pubDate>Mon, 01 Dec 2014 17:00:47 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/12/01/a-json-primer-for-administrators/</guid>
+      <guid>https://powershellmagazine.com/2014/12/01/a-json-primer-for-administrators/</guid>
       <description>JavaScript Object Notation ([JSON][1]) is quickly becoming the most used data-interchange format. XML enjoyed the top spot for a long time but slowly people have been moving towards JSON.</description>
     </item>
     

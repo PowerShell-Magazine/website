@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Azure DevTest on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/azure-devtest/</link>
+    <link>https://powershellmagazine.com/categories/azure-devtest/</link>
     <description>Recent content in Azure DevTest on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 22 Jan 2018 17:00:50 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/azure-devtest/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/azure-devtest/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Azure DevTest Labs Artifact for installing PowerShell Core</title>
-      <link>https://psmag.github.io/2018/01/22/azure-devtest-labs-artifact-for-installing-powershell-core/</link>
+      <link>https://powershellmagazine.com/2018/01/22/azure-devtest-labs-artifact-for-installing-powershell-core/</link>
       <pubDate>Mon, 22 Jan 2018 17:00:50 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2018/01/22/azure-devtest-labs-artifact-for-installing-powershell-core/</guid>
+      <guid>https://powershellmagazine.com/2018/01/22/azure-devtest-labs-artifact-for-installing-powershell-core/</guid>
       <description>Unless you were living under a rock, PowerShell Core general availability isn’t any breaking news.
  PowerShell Core is a cross-platform (Windows, Linux, and macOS) automation and configuration tool/framework that works well with your existing tools and is optimized for dealing with structured data (e.</description>
     </item>
     
     <item>
       <title>Azure DevTest Labs Artifact for Installing PowerShell on Linux</title>
-      <link>https://psmag.github.io/2016/08/22/azure-devtest-labs-artifact-for-installing-powershell-on-linux/</link>
+      <link>https://powershellmagazine.com/2016/08/22/azure-devtest-labs-artifact-for-installing-powershell-on-linux/</link>
       <pubDate>Mon, 22 Aug 2016 16:00:59 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/08/22/azure-devtest-labs-artifact-for-installing-powershell-on-linux/</guid>
+      <guid>https://powershellmagazine.com/2016/08/22/azure-devtest-labs-artifact-for-installing-powershell-on-linux/</guid>
       <description>Update: The PowerShell on Linux artifact is now available in official Azure DTL artifact repository.
 Bartek and Ben have written a great introduction article on open source PowerShell.</description>
     </item>

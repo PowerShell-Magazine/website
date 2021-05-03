@@ -2,76 +2,76 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>XML on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/xml/</link>
+    <link>https://powershellmagazine.com/categories/xml/</link>
     <description>Recent content in XML on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 02 Jul 2014 18:00:26 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/xml/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/xml/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>#PSTip Using XPath in PowerShell, Part 6</title>
-      <link>https://psmag.github.io/2014/07/02/pstip-using-xpath-in-powershell-part-6/</link>
+      <link>https://powershellmagazine.com/2014/07/02/pstip-using-xpath-in-powershell-part-6/</link>
       <pubDate>Wed, 02 Jul 2014 18:00:26 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/02/pstip-using-xpath-in-powershell-part-6/</guid>
+      <guid>https://powershellmagazine.com/2014/07/02/pstip-using-xpath-in-powershell-part-6/</guid>
       <description>When we analyze XML documents with XPath we may need information about number of certain items. For example, we can have an XHTML document with several tables and we can easily check which tables contain rows with ‘class’ attribute:</description>
     </item>
     
     <item>
       <title>#PSTip Using XPath in PowerShell, Part 5</title>
-      <link>https://psmag.github.io/2014/07/01/pstip-using-xpath-in-powershell-part-5/</link>
+      <link>https://powershellmagazine.com/2014/07/01/pstip-using-xpath-in-powershell-part-5/</link>
       <pubDate>Tue, 01 Jul 2014 18:00:37 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/01/pstip-using-xpath-in-powershell-part-5/</guid>
+      <guid>https://powershellmagazine.com/2014/07/01/pstip-using-xpath-in-powershell-part-5/</guid>
       <description>XPath has one big disadvantage–it’s case sensitive. Unlike regular expressions, there is no way to “turn it off”. But there is a way around it.</description>
     </item>
     
     <item>
       <title>#PSTip Using XPath in PowerShell, Part 4</title>
-      <link>https://psmag.github.io/2014/06/30/pstip-using-xpath-in-powershell-part-4/</link>
+      <link>https://powershellmagazine.com/2014/06/30/pstip-using-xpath-in-powershell-part-4/</link>
       <pubDate>Mon, 30 Jun 2014 18:00:24 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/06/30/pstip-using-xpath-in-powershell-part-4/</guid>
+      <guid>https://powershellmagazine.com/2014/06/30/pstip-using-xpath-in-powershell-part-4/</guid>
       <description>Filtering using XPath is not limited to queries that make sure that existing value is equal to value that we are interested in.</description>
     </item>
     
     <item>
       <title>#PSTip Using XPath in PowerShell, Part 3</title>
-      <link>https://psmag.github.io/2014/06/26/pstip-using-xpath-in-powershell-part-3/</link>
+      <link>https://powershellmagazine.com/2014/06/26/pstip-using-xpath-in-powershell-part-3/</link>
       <pubDate>Thu, 26 Jun 2014 18:00:07 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/06/26/pstip-using-xpath-in-powershell-part-3/</guid>
+      <guid>https://powershellmagazine.com/2014/06/26/pstip-using-xpath-in-powershell-part-3/</guid>
       <description>Filtering data with XPath works very well even if we need more complex filters that require information from different levels in the XML document.</description>
     </item>
     
     <item>
       <title>#PSTip Using XPath in PowerShell, Part 2</title>
-      <link>https://psmag.github.io/2014/06/25/pstip-using-xpath-in-powershell-part-2/</link>
+      <link>https://powershellmagazine.com/2014/06/25/pstip-using-xpath-in-powershell-part-2/</link>
       <pubDate>Wed, 25 Jun 2014 18:00:41 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/06/25/pstip-using-xpath-in-powershell-part-2/</guid>
+      <guid>https://powershellmagazine.com/2014/06/25/pstip-using-xpath-in-powershell-part-2/</guid>
       <description>XPath can be used to apply ‘filter left’ philosophy to XML documents. For example we can find any h1 element with ‘title’ id using the following syntax:</description>
     </item>
     
     <item>
       <title>#PSTip Using XPath in PowerShell, Part 1</title>
-      <link>https://psmag.github.io/2014/06/24/pstip-using-xpath-in-powershell-part-1/</link>
+      <link>https://powershellmagazine.com/2014/06/24/pstip-using-xpath-in-powershell-part-1/</link>
       <pubDate>Tue, 24 Jun 2014 18:00:09 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/06/24/pstip-using-xpath-in-powershell-part-1/</guid>
+      <guid>https://powershellmagazine.com/2014/06/24/pstip-using-xpath-in-powershell-part-1/</guid>
       <description>This is the first tip in a series of Select-Xml/XPath tips.
 Working with XML documents in PowerShell is relatively easy. For most things it is enough to read XML file and convert it to XmlDocument object using XML type accelerator:</description>
     </item>
     
     <item>
       <title>Mastering everyday XML tasks in PowerShell</title>
-      <link>https://psmag.github.io/2013/08/19/mastering-everyday-xml-tasks-in-powershell/</link>
+      <link>https://powershellmagazine.com/2013/08/19/mastering-everyday-xml-tasks-in-powershell/</link>
       <pubDate>Mon, 19 Aug 2013 16:00:48 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/08/19/mastering-everyday-xml-tasks-in-powershell/</guid>
+      <guid>https://powershellmagazine.com/2013/08/19/mastering-everyday-xml-tasks-in-powershell/</guid>
       <description>PowerShell has awesome XML support. It is not obvious at first, but with a little help from your friends here at PowerShellMagazine.</description>
     </item>
     

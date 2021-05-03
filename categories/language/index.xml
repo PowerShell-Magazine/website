@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Language on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/language/</link>
+    <link>https://powershellmagazine.com/categories/language/</link>
     <description>Recent content in Language on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 22 Oct 2014 16:00:38 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/language/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/language/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>ForEach and Where magic methods</title>
-      <link>https://psmag.github.io/2014/10/22/foreach-and-where-magic-methods/</link>
+      <link>https://powershellmagazine.com/2014/10/22/foreach-and-where-magic-methods/</link>
       <pubDate>Wed, 22 Oct 2014 16:00:38 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/10/22/foreach-and-where-magic-methods/</guid>
+      <guid>https://powershellmagazine.com/2014/10/22/foreach-and-where-magic-methods/</guid>
       <description>ForEach and Where are two frequently used concepts that have been available in PowerShell since version 1 came out in 2006.</description>
     </item>
     

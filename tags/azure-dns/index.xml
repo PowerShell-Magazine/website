@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Azure DNS on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/azure-dns/</link>
+    <link>https://powershellmagazine.com/tags/azure-dns/</link>
     <description>Recent content in Azure DNS on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 11 May 2015 16:00:40 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/azure-dns/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/azure-dns/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Manage your public DNS zones with Azure DNS</title>
-      <link>https://psmag.github.io/2015/05/11/manage-your-public-dns-zones-with-azure-dns/</link>
+      <link>https://powershellmagazine.com/2015/05/11/manage-your-public-dns-zones-with-azure-dns/</link>
       <pubDate>Mon, 11 May 2015 16:00:40 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/05/11/manage-your-public-dns-zones-with-azure-dns/</guid>
+      <guid>https://powershellmagazine.com/2015/05/11/manage-your-public-dns-zones-with-azure-dns/</guid>
       <description>On May 4 2015, Microsoft has released a public preview of a new Microsoft Azure feature – Azure DNS.
 Azure DNS is a hosting service for DNS domains, providing name resolution using Microsoft Azure infrastructure.</description>
     </item>

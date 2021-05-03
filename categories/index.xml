@@ -2,876 +2,876 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/</link>
+    <link>https://powershellmagazine.com/categories/</link>
     <description>Recent content in Categories on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 05 Apr 2021 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Azure</title>
-      <link>https://psmag.github.io/categories/azure/</link>
+      <link>https://powershellmagazine.com/categories/azure/</link>
       <pubDate>Mon, 05 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/azure/</guid>
+      <guid>https://powershellmagazine.com/categories/azure/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Azure Resource Manager</title>
-      <link>https://psmag.github.io/categories/azure-resource-manager/</link>
+      <link>https://powershellmagazine.com/categories/azure-resource-manager/</link>
       <pubDate>Mon, 05 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/azure-resource-manager/</guid>
+      <guid>https://powershellmagazine.com/categories/azure-resource-manager/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Module Spotlight</title>
-      <link>https://psmag.github.io/categories/module-spotlight/</link>
+      <link>https://powershellmagazine.com/categories/module-spotlight/</link>
       <pubDate>Mon, 05 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/module-spotlight/</guid>
+      <guid>https://powershellmagazine.com/categories/module-spotlight/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PSArm</title>
-      <link>https://psmag.github.io/categories/psarm/</link>
+      <link>https://powershellmagazine.com/categories/psarm/</link>
       <pubDate>Mon, 05 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/psarm/</guid>
+      <guid>https://powershellmagazine.com/categories/psarm/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PSConf</title>
-      <link>https://psmag.github.io/categories/psconf/</link>
+      <link>https://powershellmagazine.com/categories/psconf/</link>
       <pubDate>Thu, 12 Mar 2020 10:43:51 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/psconf/</guid>
+      <guid>https://powershellmagazine.com/categories/psconf/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PSConfAsia</title>
-      <link>https://psmag.github.io/categories/psconfasia/</link>
+      <link>https://powershellmagazine.com/categories/psconfasia/</link>
       <pubDate>Thu, 12 Mar 2020 10:43:51 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/psconfasia/</guid>
+      <guid>https://powershellmagazine.com/categories/psconfasia/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Debugging</title>
-      <link>https://psmag.github.io/categories/debugging/</link>
+      <link>https://powershellmagazine.com/categories/debugging/</link>
       <pubDate>Mon, 10 Feb 2020 15:30:16 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/debugging/</guid>
+      <guid>https://powershellmagazine.com/categories/debugging/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SecretManagement</title>
-      <link>https://psmag.github.io/categories/secretmanagement/</link>
+      <link>https://powershellmagazine.com/categories/secretmanagement/</link>
       <pubDate>Fri, 07 Feb 2020 05:49:39 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/secretmanagement/</guid>
+      <guid>https://powershellmagazine.com/categories/secretmanagement/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PSConfEU</title>
-      <link>https://psmag.github.io/categories/psconfeu/</link>
+      <link>https://powershellmagazine.com/categories/psconfeu/</link>
       <pubDate>Thu, 30 Jan 2020 19:53:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/psconfeu/</guid>
+      <guid>https://powershellmagazine.com/categories/psconfeu/</guid>
       <description></description>
     </item>
     
     <item>
       <title>FailoverCluster</title>
-      <link>https://psmag.github.io/categories/failovercluster/</link>
+      <link>https://powershellmagazine.com/categories/failovercluster/</link>
       <pubDate>Thu, 30 Jan 2020 13:22:02 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/failovercluster/</guid>
+      <guid>https://powershellmagazine.com/categories/failovercluster/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ImportExcel</title>
-      <link>https://psmag.github.io/categories/importexcel/</link>
+      <link>https://powershellmagazine.com/categories/importexcel/</link>
       <pubDate>Mon, 09 Sep 2019 04:00:30 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/importexcel/</guid>
+      <guid>https://powershellmagazine.com/categories/importexcel/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Polaris</title>
-      <link>https://psmag.github.io/categories/polaris/</link>
+      <link>https://powershellmagazine.com/categories/polaris/</link>
       <pubDate>Tue, 03 Sep 2019 05:41:44 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/polaris/</guid>
+      <guid>https://powershellmagazine.com/categories/polaris/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PSHTML</title>
-      <link>https://psmag.github.io/categories/pshtml/</link>
+      <link>https://powershellmagazine.com/categories/pshtml/</link>
       <pubDate>Wed, 21 Aug 2019 04:00:12 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/pshtml/</guid>
+      <guid>https://powershellmagazine.com/categories/pshtml/</guid>
       <description></description>
     </item>
     
     <item>
       <title>DevOps</title>
-      <link>https://psmag.github.io/categories/devops/</link>
+      <link>https://powershellmagazine.com/categories/devops/</link>
       <pubDate>Thu, 25 Jul 2019 16:00:07 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/devops/</guid>
+      <guid>https://powershellmagazine.com/categories/devops/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Pester</title>
-      <link>https://psmag.github.io/categories/pester/</link>
+      <link>https://powershellmagazine.com/categories/pester/</link>
       <pubDate>Thu, 25 Jul 2019 16:00:07 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/pester/</guid>
+      <guid>https://powershellmagazine.com/categories/pester/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Podcast</title>
-      <link>https://psmag.github.io/categories/podcast/</link>
+      <link>https://powershellmagazine.com/categories/podcast/</link>
       <pubDate>Mon, 15 Jul 2019 16:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/podcast/</guid>
+      <guid>https://powershellmagazine.com/categories/podcast/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Garuda</title>
-      <link>https://psmag.github.io/categories/garuda/</link>
+      <link>https://powershellmagazine.com/categories/garuda/</link>
       <pubDate>Thu, 11 Jul 2019 14:31:47 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/garuda/</guid>
+      <guid>https://powershellmagazine.com/categories/garuda/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Community</title>
-      <link>https://psmag.github.io/categories/community/</link>
+      <link>https://powershellmagazine.com/categories/community/</link>
       <pubDate>Wed, 10 Jul 2019 14:21:18 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/community/</guid>
+      <guid>https://powershellmagazine.com/categories/community/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PSPublicAPI</title>
-      <link>https://psmag.github.io/categories/pspublicapi/</link>
+      <link>https://powershellmagazine.com/categories/pspublicapi/</link>
       <pubDate>Tue, 18 Jun 2019 14:54:14 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/pspublicapi/</guid>
+      <guid>https://powershellmagazine.com/categories/pspublicapi/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tips and Tricks</title>
-      <link>https://psmag.github.io/categories/tips-and-tricks/</link>
+      <link>https://powershellmagazine.com/categories/tips-and-tricks/</link>
       <pubDate>Fri, 14 Jun 2019 05:41:49 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/tips-and-tricks/</guid>
+      <guid>https://powershellmagazine.com/categories/tips-and-tricks/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PSWindowsAdminCenter</title>
-      <link>https://psmag.github.io/categories/pswindowsadmincenter/</link>
+      <link>https://powershellmagazine.com/categories/pswindowsadmincenter/</link>
       <pubDate>Tue, 19 Feb 2019 14:42:53 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/pswindowsadmincenter/</guid>
+      <guid>https://powershellmagazine.com/categories/pswindowsadmincenter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>WindowsAdminCenterDSC</title>
-      <link>https://psmag.github.io/categories/windowsadmincenterdsc/</link>
+      <link>https://powershellmagazine.com/categories/windowsadmincenterdsc/</link>
       <pubDate>Thu, 31 Jan 2019 17:00:15 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/windowsadmincenterdsc/</guid>
+      <guid>https://powershellmagazine.com/categories/windowsadmincenterdsc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PSRedfishEventListener</title>
-      <link>https://psmag.github.io/categories/psredfisheventlistener/</link>
+      <link>https://powershellmagazine.com/categories/psredfisheventlistener/</link>
       <pubDate>Tue, 13 Nov 2018 09:00:51 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/psredfisheventlistener/</guid>
+      <guid>https://powershellmagazine.com/categories/psredfisheventlistener/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Azure DevOps</title>
-      <link>https://psmag.github.io/categories/azure-devops/</link>
+      <link>https://powershellmagazine.com/categories/azure-devops/</link>
       <pubDate>Thu, 20 Sep 2018 18:01:19 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/azure-devops/</guid>
+      <guid>https://powershellmagazine.com/categories/azure-devops/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Azure SQL</title>
-      <link>https://psmag.github.io/categories/azure-sql/</link>
+      <link>https://powershellmagazine.com/categories/azure-sql/</link>
       <pubDate>Mon, 23 Jul 2018 16:00:34 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/azure-sql/</guid>
+      <guid>https://powershellmagazine.com/categories/azure-sql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SHiPS</title>
-      <link>https://psmag.github.io/categories/ships/</link>
+      <link>https://powershellmagazine.com/categories/ships/</link>
       <pubDate>Tue, 03 Apr 2018 16:24:41 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/ships/</guid>
+      <guid>https://powershellmagazine.com/categories/ships/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Azure DevTest</title>
-      <link>https://psmag.github.io/categories/azure-devtest/</link>
+      <link>https://powershellmagazine.com/categories/azure-devtest/</link>
       <pubDate>Mon, 22 Jan 2018 17:00:50 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/azure-devtest/</guid>
+      <guid>https://powershellmagazine.com/categories/azure-devtest/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Feedback</title>
-      <link>https://psmag.github.io/categories/feedback/</link>
+      <link>https://powershellmagazine.com/categories/feedback/</link>
       <pubDate>Mon, 08 Jan 2018 17:00:53 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/feedback/</guid>
+      <guid>https://powershellmagazine.com/categories/feedback/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PowerShell DSC</title>
-      <link>https://psmag.github.io/categories/powershell-dsc/</link>
+      <link>https://powershellmagazine.com/categories/powershell-dsc/</link>
       <pubDate>Fri, 05 Jan 2018 17:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/powershell-dsc/</guid>
+      <guid>https://powershellmagazine.com/categories/powershell-dsc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Containers</title>
-      <link>https://psmag.github.io/categories/containers/</link>
+      <link>https://powershellmagazine.com/categories/containers/</link>
       <pubDate>Mon, 20 Nov 2017 17:00:50 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/containers/</guid>
+      <guid>https://powershellmagazine.com/categories/containers/</guid>
       <description></description>
     </item>
     
     <item>
       <title>How To</title>
-      <link>https://psmag.github.io/categories/how-to/</link>
+      <link>https://powershellmagazine.com/categories/how-to/</link>
       <pubDate>Mon, 20 Nov 2017 17:00:50 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/how-to/</guid>
+      <guid>https://powershellmagazine.com/categories/how-to/</guid>
       <description></description>
     </item>
     
     <item>
       <title>News</title>
-      <link>https://psmag.github.io/categories/news/</link>
+      <link>https://powershellmagazine.com/categories/news/</link>
       <pubDate>Thu, 02 Feb 2017 22:43:28 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/news/</guid>
+      <guid>https://powershellmagazine.com/categories/news/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hyper-V</title>
-      <link>https://psmag.github.io/categories/hyper-v/</link>
+      <link>https://powershellmagazine.com/categories/hyper-v/</link>
       <pubDate>Mon, 24 Oct 2016 13:14:34 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/hyper-v/</guid>
+      <guid>https://powershellmagazine.com/categories/hyper-v/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PowerShell Linux</title>
-      <link>https://psmag.github.io/categories/powershell-linux/</link>
+      <link>https://powershellmagazine.com/categories/powershell-linux/</link>
       <pubDate>Mon, 22 Aug 2016 16:00:59 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/powershell-linux/</guid>
+      <guid>https://powershellmagazine.com/categories/powershell-linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Azure Automation</title>
-      <link>https://psmag.github.io/categories/azure-automation/</link>
+      <link>https://powershellmagazine.com/categories/azure-automation/</link>
       <pubDate>Mon, 11 Jul 2016 16:00:53 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/azure-automation/</guid>
+      <guid>https://powershellmagazine.com/categories/azure-automation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PowerShell</title>
-      <link>https://psmag.github.io/categories/powershell/</link>
+      <link>https://powershellmagazine.com/categories/powershell/</link>
       <pubDate>Wed, 08 Jun 2016 16:00:57 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/powershell/</guid>
+      <guid>https://powershellmagazine.com/categories/powershell/</guid>
       <description></description>
     </item>
     
     <item>
       <title>VS Code</title>
-      <link>https://psmag.github.io/categories/vs-code/</link>
+      <link>https://powershellmagazine.com/categories/vs-code/</link>
       <pubDate>Wed, 08 Jun 2016 16:00:57 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/vs-code/</guid>
+      <guid>https://powershellmagazine.com/categories/vs-code/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Interviews</title>
-      <link>https://psmag.github.io/categories/interviews/</link>
+      <link>https://powershellmagazine.com/categories/interviews/</link>
       <pubDate>Thu, 12 May 2016 16:00:09 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/interviews/</guid>
+      <guid>https://powershellmagazine.com/categories/interviews/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Articles</title>
-      <link>https://psmag.github.io/categories/articles/</link>
+      <link>https://powershellmagazine.com/categories/articles/</link>
       <pubDate>Tue, 05 Jan 2016 17:00:14 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/articles/</guid>
+      <guid>https://powershellmagazine.com/categories/articles/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Package Management</title>
-      <link>https://psmag.github.io/categories/package-management/</link>
+      <link>https://powershellmagazine.com/categories/package-management/</link>
       <pubDate>Mon, 30 Nov 2015 17:00:33 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/package-management/</guid>
+      <guid>https://powershellmagazine.com/categories/package-management/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Azure PowerShell</title>
-      <link>https://psmag.github.io/categories/azure-powershell/</link>
+      <link>https://powershellmagazine.com/categories/azure-powershell/</link>
       <pubDate>Tue, 13 Oct 2015 14:43:07 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/azure-powershell/</guid>
+      <guid>https://powershellmagazine.com/categories/azure-powershell/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Azure Pack</title>
-      <link>https://psmag.github.io/categories/azure-pack/</link>
+      <link>https://powershellmagazine.com/categories/azure-pack/</link>
       <pubDate>Tue, 22 Sep 2015 16:58:15 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/azure-pack/</guid>
+      <guid>https://powershellmagazine.com/categories/azure-pack/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Service Management Automation</title>
-      <link>https://psmag.github.io/categories/service-management-automation/</link>
+      <link>https://powershellmagazine.com/categories/service-management-automation/</link>
       <pubDate>Mon, 14 Sep 2015 16:00:47 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/service-management-automation/</guid>
+      <guid>https://powershellmagazine.com/categories/service-management-automation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Git</title>
-      <link>https://psmag.github.io/categories/git/</link>
+      <link>https://powershellmagazine.com/categories/git/</link>
       <pubDate>Mon, 27 Jul 2015 17:52:57 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/git/</guid>
+      <guid>https://powershellmagazine.com/categories/git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Linux</title>
-      <link>https://psmag.github.io/categories/linux/</link>
+      <link>https://powershellmagazine.com/categories/linux/</link>
       <pubDate>Fri, 10 Jul 2015 16:00:17 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/linux/</guid>
+      <guid>https://powershellmagazine.com/categories/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SQL</title>
-      <link>https://psmag.github.io/categories/sql/</link>
+      <link>https://powershellmagazine.com/categories/sql/</link>
       <pubDate>Tue, 12 May 2015 16:00:15 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/sql/</guid>
+      <guid>https://powershellmagazine.com/categories/sql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Azure DNS</title>
-      <link>https://psmag.github.io/categories/azure-dns/</link>
+      <link>https://powershellmagazine.com/categories/azure-dns/</link>
       <pubDate>Mon, 11 May 2015 16:00:40 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/azure-dns/</guid>
+      <guid>https://powershellmagazine.com/categories/azure-dns/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Royal TS</title>
-      <link>https://psmag.github.io/categories/royal-ts/</link>
+      <link>https://powershellmagazine.com/categories/royal-ts/</link>
       <pubDate>Tue, 24 Mar 2015 16:00:47 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/royal-ts/</guid>
+      <guid>https://powershellmagazine.com/categories/royal-ts/</guid>
       <description></description>
     </item>
     
     <item>
       <title>OMI</title>
-      <link>https://psmag.github.io/categories/omi/</link>
+      <link>https://powershellmagazine.com/categories/omi/</link>
       <pubDate>Mon, 23 Mar 2015 16:00:02 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/omi/</guid>
+      <guid>https://powershellmagazine.com/categories/omi/</guid>
       <description></description>
     </item>
     
     <item>
       <title>OneGet</title>
-      <link>https://psmag.github.io/categories/oneget/</link>
+      <link>https://powershellmagazine.com/categories/oneget/</link>
       <pubDate>Wed, 14 Jan 2015 17:00:39 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/oneget/</guid>
+      <guid>https://powershellmagazine.com/categories/oneget/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Conferences</title>
-      <link>https://psmag.github.io/categories/conferences/</link>
+      <link>https://powershellmagazine.com/categories/conferences/</link>
       <pubDate>Tue, 13 Jan 2015 15:00:26 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/conferences/</guid>
+      <guid>https://powershellmagazine.com/categories/conferences/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ISESteroids</title>
-      <link>https://psmag.github.io/categories/isesteroids/</link>
+      <link>https://powershellmagazine.com/categories/isesteroids/</link>
       <pubDate>Fri, 05 Dec 2014 13:35:12 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/isesteroids/</guid>
+      <guid>https://powershellmagazine.com/categories/isesteroids/</guid>
       <description></description>
     </item>
     
     <item>
       <title>JSON</title>
-      <link>https://psmag.github.io/categories/json/</link>
+      <link>https://powershellmagazine.com/categories/json/</link>
       <pubDate>Mon, 01 Dec 2014 17:00:47 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/json/</guid>
+      <guid>https://powershellmagazine.com/categories/json/</guid>
       <description></description>
     </item>
     
     <item>
       <title>WMI</title>
-      <link>https://psmag.github.io/categories/wmi/</link>
+      <link>https://powershellmagazine.com/categories/wmi/</link>
       <pubDate>Mon, 24 Nov 2014 17:00:41 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/wmi/</guid>
+      <guid>https://powershellmagazine.com/categories/wmi/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PowerShelll DSC</title>
-      <link>https://psmag.github.io/categories/powershelll-dsc/</link>
+      <link>https://powershellmagazine.com/categories/powershelll-dsc/</link>
       <pubDate>Tue, 18 Nov 2014 17:00:03 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/powershelll-dsc/</guid>
+      <guid>https://powershellmagazine.com/categories/powershelll-dsc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Language</title>
-      <link>https://psmag.github.io/categories/language/</link>
+      <link>https://powershellmagazine.com/categories/language/</link>
       <pubDate>Wed, 22 Oct 2014 16:00:38 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/language/</guid>
+      <guid>https://powershellmagazine.com/categories/language/</guid>
       <description></description>
     </item>
     
     <item>
       <title>InfoSec</title>
-      <link>https://psmag.github.io/categories/infosec/</link>
+      <link>https://powershellmagazine.com/categories/infosec/</link>
       <pubDate>Thu, 25 Sep 2014 16:00:46 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/infosec/</guid>
+      <guid>https://powershellmagazine.com/categories/infosec/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Security</title>
-      <link>https://psmag.github.io/categories/security/</link>
+      <link>https://powershellmagazine.com/categories/security/</link>
       <pubDate>Thu, 25 Sep 2014 16:00:46 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/security/</guid>
+      <guid>https://powershellmagazine.com/categories/security/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Dell</title>
-      <link>https://psmag.github.io/categories/dell/</link>
+      <link>https://powershellmagazine.com/categories/dell/</link>
       <pubDate>Tue, 19 Aug 2014 16:00:53 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/dell/</guid>
+      <guid>https://powershellmagazine.com/categories/dell/</guid>
       <description></description>
     </item>
     
     <item>
       <title>VMware</title>
-      <link>https://psmag.github.io/categories/vmware/</link>
+      <link>https://powershellmagazine.com/categories/vmware/</link>
       <pubDate>Tue, 19 Aug 2014 16:00:53 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/vmware/</guid>
+      <guid>https://powershellmagazine.com/categories/vmware/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Learning PowerShell</title>
-      <link>https://psmag.github.io/categories/learning-powershell/</link>
+      <link>https://powershellmagazine.com/categories/learning-powershell/</link>
       <pubDate>Fri, 25 Jul 2014 16:00:19 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/learning-powershell/</guid>
+      <guid>https://powershellmagazine.com/categories/learning-powershell/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Exchange</title>
-      <link>https://psmag.github.io/categories/exchange/</link>
+      <link>https://powershellmagazine.com/categories/exchange/</link>
       <pubDate>Thu, 24 Jul 2014 16:00:55 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/exchange/</guid>
+      <guid>https://powershellmagazine.com/categories/exchange/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SCCM</title>
-      <link>https://psmag.github.io/categories/sccm/</link>
+      <link>https://powershellmagazine.com/categories/sccm/</link>
       <pubDate>Tue, 22 Jul 2014 16:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/sccm/</guid>
+      <guid>https://powershellmagazine.com/categories/sccm/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Kansa</title>
-      <link>https://psmag.github.io/categories/kansa/</link>
+      <link>https://powershellmagazine.com/categories/kansa/</link>
       <pubDate>Fri, 18 Jul 2014 16:00:57 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/kansa/</guid>
+      <guid>https://powershellmagazine.com/categories/kansa/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Modules</title>
-      <link>https://psmag.github.io/categories/modules/</link>
+      <link>https://powershellmagazine.com/categories/modules/</link>
       <pubDate>Tue, 15 Jul 2014 16:05:09 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/modules/</guid>
+      <guid>https://powershellmagazine.com/categories/modules/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PoshShodan</title>
-      <link>https://psmag.github.io/categories/poshshodan/</link>
+      <link>https://powershellmagazine.com/categories/poshshodan/</link>
       <pubDate>Tue, 15 Jul 2014 16:05:09 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/poshshodan/</guid>
+      <guid>https://powershellmagazine.com/categories/poshshodan/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Veil-PowerView</title>
-      <link>https://psmag.github.io/categories/veil-powerview/</link>
+      <link>https://powershellmagazine.com/categories/veil-powerview/</link>
       <pubDate>Mon, 14 Jul 2014 16:00:33 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/veil-powerview/</guid>
+      <guid>https://powershellmagazine.com/categories/veil-powerview/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PoshSec</title>
-      <link>https://psmag.github.io/categories/poshsec/</link>
+      <link>https://powershellmagazine.com/categories/poshsec/</link>
       <pubDate>Fri, 11 Jul 2014 16:00:50 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/poshsec/</guid>
+      <guid>https://powershellmagazine.com/categories/poshsec/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PowerSploit</title>
-      <link>https://psmag.github.io/categories/powersploit/</link>
+      <link>https://powershellmagazine.com/categories/powersploit/</link>
       <pubDate>Tue, 08 Jul 2014 16:00:53 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/powersploit/</guid>
+      <guid>https://powershellmagazine.com/categories/powersploit/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Posh-SSH</title>
-      <link>https://psmag.github.io/categories/posh-ssh/</link>
+      <link>https://powershellmagazine.com/categories/posh-ssh/</link>
       <pubDate>Thu, 03 Jul 2014 17:15:48 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/posh-ssh/</guid>
+      <guid>https://powershellmagazine.com/categories/posh-ssh/</guid>
       <description></description>
     </item>
     
     <item>
       <title>XML</title>
-      <link>https://psmag.github.io/categories/xml/</link>
+      <link>https://powershellmagazine.com/categories/xml/</link>
       <pubDate>Wed, 02 Jul 2014 18:00:26 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/xml/</guid>
+      <guid>https://powershellmagazine.com/categories/xml/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PSCmdlet</title>
-      <link>https://psmag.github.io/categories/pscmdlet/</link>
+      <link>https://powershellmagazine.com/categories/pscmdlet/</link>
       <pubDate>Mon, 23 Jun 2014 16:00:39 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/pscmdlet/</guid>
+      <guid>https://powershellmagazine.com/categories/pscmdlet/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Demo</title>
-      <link>https://psmag.github.io/categories/demo/</link>
+      <link>https://powershellmagazine.com/categories/demo/</link>
       <pubDate>Fri, 21 Mar 2014 18:00:03 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/demo/</guid>
+      <guid>https://powershellmagazine.com/categories/demo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Kemp</title>
-      <link>https://psmag.github.io/categories/kemp/</link>
+      <link>https://powershellmagazine.com/categories/kemp/</link>
       <pubDate>Thu, 20 Mar 2014 18:36:57 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/kemp/</guid>
+      <guid>https://powershellmagazine.com/categories/kemp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Active Directory</title>
-      <link>https://psmag.github.io/categories/active-directory/</link>
+      <link>https://powershellmagazine.com/categories/active-directory/</link>
       <pubDate>Tue, 11 Mar 2014 18:00:59 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/active-directory/</guid>
+      <guid>https://powershellmagazine.com/categories/active-directory/</guid>
       <description></description>
     </item>
     
     <item>
       <title>AWS</title>
-      <link>https://psmag.github.io/categories/aws/</link>
+      <link>https://powershellmagazine.com/categories/aws/</link>
       <pubDate>Wed, 05 Mar 2014 19:00:44 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/aws/</guid>
+      <guid>https://powershellmagazine.com/categories/aws/</guid>
       <description></description>
     </item>
     
     <item>
       <title>HPE</title>
-      <link>https://psmag.github.io/categories/hpe/</link>
+      <link>https://powershellmagazine.com/categories/hpe/</link>
       <pubDate>Tue, 12 Nov 2013 14:31:07 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/hpe/</guid>
+      <guid>https://powershellmagazine.com/categories/hpe/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SharePoint</title>
-      <link>https://psmag.github.io/categories/sharepoint/</link>
+      <link>https://powershellmagazine.com/categories/sharepoint/</link>
       <pubDate>Tue, 05 Nov 2013 19:00:47 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/sharepoint/</guid>
+      <guid>https://powershellmagazine.com/categories/sharepoint/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PSReadLine</title>
-      <link>https://psmag.github.io/categories/psreadline/</link>
+      <link>https://powershellmagazine.com/categories/psreadline/</link>
       <pubDate>Tue, 10 Sep 2013 06:38:02 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/psreadline/</guid>
+      <guid>https://powershellmagazine.com/categories/psreadline/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Columns</title>
-      <link>https://psmag.github.io/categories/columns/</link>
+      <link>https://powershellmagazine.com/categories/columns/</link>
       <pubDate>Fri, 23 Aug 2013 18:00:59 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/columns/</guid>
+      <guid>https://powershellmagazine.com/categories/columns/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Brainteaser</title>
-      <link>https://psmag.github.io/categories/brainteaser/</link>
+      <link>https://powershellmagazine.com/categories/brainteaser/</link>
       <pubDate>Mon, 27 May 2013 18:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/brainteaser/</guid>
+      <guid>https://powershellmagazine.com/categories/brainteaser/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PowerCLI</title>
-      <link>https://psmag.github.io/categories/powercli/</link>
+      <link>https://powershellmagazine.com/categories/powercli/</link>
       <pubDate>Tue, 12 Feb 2013 13:49:16 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/powercli/</guid>
+      <guid>https://powershellmagazine.com/categories/powercli/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PSCX</title>
-      <link>https://psmag.github.io/categories/pscx/</link>
+      <link>https://powershellmagazine.com/categories/pscx/</link>
       <pubDate>Wed, 26 Dec 2012 17:00:31 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/pscx/</guid>
+      <guid>https://powershellmagazine.com/categories/pscx/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tabexpansion2</title>
-      <link>https://psmag.github.io/categories/tabexpansion2/</link>
+      <link>https://powershellmagazine.com/categories/tabexpansion2/</link>
       <pubDate>Thu, 29 Nov 2012 17:00:50 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/tabexpansion2/</guid>
+      <guid>https://powershellmagazine.com/categories/tabexpansion2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Wallpapers</title>
-      <link>https://psmag.github.io/categories/wallpapers/</link>
+      <link>https://powershellmagazine.com/categories/wallpapers/</link>
       <pubDate>Fri, 28 Sep 2012 18:00:28 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/wallpapers/</guid>
+      <guid>https://powershellmagazine.com/categories/wallpapers/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ShowUI</title>
-      <link>https://psmag.github.io/categories/showui/</link>
+      <link>https://powershellmagazine.com/categories/showui/</link>
       <pubDate>Thu, 07 Jun 2012 06:44:21 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/showui/</guid>
+      <guid>https://powershellmagazine.com/categories/showui/</guid>
       <description></description>
     </item>
     
     <item>
       <title>System Center</title>
-      <link>https://psmag.github.io/categories/system-center/</link>
+      <link>https://powershellmagazine.com/categories/system-center/</link>
       <pubDate>Mon, 14 May 2012 18:00:18 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/system-center/</guid>
+      <guid>https://powershellmagazine.com/categories/system-center/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Group Policy</title>
-      <link>https://psmag.github.io/categories/group-policy/</link>
+      <link>https://powershellmagazine.com/categories/group-policy/</link>
       <pubDate>Mon, 14 May 2012 18:00:14 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/group-policy/</guid>
+      <guid>https://powershellmagazine.com/categories/group-policy/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Remoting</title>
-      <link>https://psmag.github.io/categories/remoting/</link>
+      <link>https://powershellmagazine.com/categories/remoting/</link>
       <pubDate>Sat, 28 Apr 2012 18:00:38 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/remoting/</guid>
+      <guid>https://powershellmagazine.com/categories/remoting/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Office 365</title>
-      <link>https://psmag.github.io/categories/office-365/</link>
+      <link>https://powershellmagazine.com/categories/office-365/</link>
       <pubDate>Mon, 23 Apr 2012 18:00:55 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/office-365/</guid>
+      <guid>https://powershellmagazine.com/categories/office-365/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Configuration Manager</title>
-      <link>https://psmag.github.io/categories/configuration-manager/</link>
+      <link>https://powershellmagazine.com/categories/configuration-manager/</link>
       <pubDate>Mon, 16 Apr 2012 18:00:28 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/configuration-manager/</guid>
+      <guid>https://powershellmagazine.com/categories/configuration-manager/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Scripting Games</title>
-      <link>https://psmag.github.io/categories/scripting-games/</link>
+      <link>https://powershellmagazine.com/categories/scripting-games/</link>
       <pubDate>Thu, 22 Mar 2012 18:00:47 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/scripting-games/</guid>
+      <guid>https://powershellmagazine.com/categories/scripting-games/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Workflows</title>
-      <link>https://psmag.github.io/categories/workflows/</link>
+      <link>https://powershellmagazine.com/categories/workflows/</link>
       <pubDate>Fri, 23 Dec 2011 14:23:52 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/workflows/</guid>
+      <guid>https://powershellmagazine.com/categories/workflows/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Call For Authors</title>
-      <link>https://psmag.github.io/categories/call-for-authors/</link>
+      <link>https://powershellmagazine.com/categories/call-for-authors/</link>
       <pubDate>Mon, 28 Nov 2011 23:25:33 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/call-for-authors/</guid>
+      <guid>https://powershellmagazine.com/categories/call-for-authors/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Performance</title>
-      <link>https://psmag.github.io/categories/performance/</link>
+      <link>https://powershellmagazine.com/categories/performance/</link>
       <pubDate>Tue, 15 Nov 2011 07:27:15 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/performance/</guid>
+      <guid>https://powershellmagazine.com/categories/performance/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PowerShell ISE</title>
-      <link>https://psmag.github.io/categories/powershell-ise/</link>
+      <link>https://powershellmagazine.com/categories/powershell-ise/</link>
       <pubDate>Wed, 28 Sep 2011 13:29:27 +0000</pubDate>
       
-      <guid>https://psmag.github.io/categories/powershell-ise/</guid>
+      <guid>https://powershellmagazine.com/categories/powershell-ise/</guid>
       <description></description>
     </item>
     

@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ShowUI on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/showui/</link>
+    <link>https://powershellmagazine.com/categories/showui/</link>
     <description>Recent content in ShowUI on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 07 Jun 2012 06:44:21 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/showui/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/showui/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Interacting with TechEd NA 2012 Schedule using PowerShell v3</title>
-      <link>https://psmag.github.io/2012/06/07/interacting-with-teched-na-2012-schedule-using-powershell-v3/</link>
+      <link>https://powershellmagazine.com/2012/06/07/interacting-with-teched-na-2012-schedule-using-powershell-v3/</link>
       <pubDate>Thu, 07 Jun 2012 06:44:21 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/06/07/interacting-with-teched-na-2012-schedule-using-powershell-v3/</guid>
+      <guid>https://powershellmagazine.com/2012/06/07/interacting-with-teched-na-2012-schedule-using-powershell-v3/</guid>
       <description>The techniques used in this article are covered in deeper detail in Doug Finke’s book “Windows PowerShell for Developers” . Microsoft TechEd NA 2012 is just around corner.</description>
     </item>
     
     <item>
       <title>Building Advanced User Interfaces with ShowUI</title>
-      <link>https://psmag.github.io/2012/04/25/building-advanced-user-interfaces-with-showui/</link>
+      <link>https://powershellmagazine.com/2012/04/25/building-advanced-user-interfaces-with-showui/</link>
       <pubDate>Wed, 25 Apr 2012 18:00:41 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/04/25/building-advanced-user-interfaces-with-showui/</guid>
+      <guid>https://powershellmagazine.com/2012/04/25/building-advanced-user-interfaces-with-showui/</guid>
       <description>I’ve blogged a lot of quick demos with ShowUI (and its predecessors) in the last few years, but as things ramp up with ShowUI and it starts getting more attention at the enterprise level, a lot of the questions that we’ve been getting on the ShowUI forums focus on the professional touches that make a user interface feel like an application, and the challenges of pulling together different controls into a single user interface in a reusable way.</description>
     </item>
     

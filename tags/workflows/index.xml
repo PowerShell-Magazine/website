@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Workflows on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/workflows/</link>
+    <link>https://powershellmagazine.com/tags/workflows/</link>
     <description>Recent content in Workflows on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 23 Dec 2011 14:23:52 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/workflows/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/workflows/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Getting Started with Windows PowerShell Workflows</title>
-      <link>https://psmag.github.io/2011/12/23/getting-started-with-windows-powershell-workflows/</link>
+      <link>https://powershellmagazine.com/2011/12/23/getting-started-with-windows-powershell-workflows/</link>
       <pubDate>Fri, 23 Dec 2011 14:23:52 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/23/getting-started-with-windows-powershell-workflows/</guid>
+      <guid>https://powershellmagazine.com/2011/12/23/getting-started-with-windows-powershell-workflows/</guid>
       <description>Windows PowerShell workflows consist of a set of activities that run in sequence or in parallel and perform long-running, complex management tasks, such as multimachine application provisioning.</description>
     </item>
     

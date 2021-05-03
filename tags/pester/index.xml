@@ -2,169 +2,169 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pester on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/pester/</link>
+    <link>https://powershellmagazine.com/tags/pester/</link>
     <description>Recent content in Pester on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 25 Jul 2019 16:00:07 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/pester/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/pester/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Pester Result Reporting With Suggestions And XSL Support</title>
-      <link>https://psmag.github.io/2019/07/25/pester-result-reporting-with-suggestions-and-xsl-support/</link>
+      <link>https://powershellmagazine.com/2019/07/25/pester-result-reporting-with-suggestions-and-xsl-support/</link>
       <pubDate>Thu, 25 Jul 2019 16:00:07 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2019/07/25/pester-result-reporting-with-suggestions-and-xsl-support/</guid>
+      <guid>https://powershellmagazine.com/2019/07/25/pester-result-reporting-with-suggestions-and-xsl-support/</guid>
       <description>I believe there is no introduction required for pester in PowerShell community. If you have never heard of Pester, this is the place to go first.</description>
     </item>
     
     <item>
       <title>Garuda – Session Demo From #PSConfEU</title>
-      <link>https://psmag.github.io/2019/07/11/garuda-session-demo-from-psconfeu/</link>
+      <link>https://powershellmagazine.com/2019/07/11/garuda-session-demo-from-psconfeu/</link>
       <pubDate>Thu, 11 Jul 2019 14:31:47 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2019/07/11/garuda-session-demo-from-psconfeu/</guid>
+      <guid>https://powershellmagazine.com/2019/07/11/garuda-session-demo-from-psconfeu/</guid>
       <description>In the earlier parts of this series, I introduced you to the concepts and design of Garuda framework. I demonstrated a proof-of-concept version of this at PowerShell Conference Europe.</description>
     </item>
     
     <item>
       <title>Garuda – Architecture and Plan</title>
-      <link>https://psmag.github.io/2019/06/24/garuda-architecture-and-plan/</link>
+      <link>https://powershellmagazine.com/2019/06/24/garuda-architecture-and-plan/</link>
       <pubDate>Mon, 24 Jun 2019 04:01:55 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2019/06/24/garuda-architecture-and-plan/</guid>
+      <guid>https://powershellmagazine.com/2019/06/24/garuda-architecture-and-plan/</guid>
       <description>In the first part of this series, I mentioned the reasoning behind starting development of a new framework for operations validation.</description>
     </item>
     
     <item>
       <title>Distributed and Flexible Operations Validation Framework – Introduction</title>
-      <link>https://psmag.github.io/2019/06/17/distributed-and-flexible-operations-validation-framework-introduction/</link>
+      <link>https://powershellmagazine.com/2019/06/17/distributed-and-flexible-operations-validation-framework-introduction/</link>
       <pubDate>Mon, 17 Jun 2019 16:16:51 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2019/06/17/distributed-and-flexible-operations-validation-framework-introduction/</guid>
+      <guid>https://powershellmagazine.com/2019/06/17/distributed-and-flexible-operations-validation-framework-introduction/</guid>
       <description>Operations validation using PowerShell and Pester has been one of my favorite topics and I have both personal and professional interest in this area.</description>
     </item>
     
     <item>
       <title>PSRemotely – Authoring workflow (Part 1)</title>
-      <link>https://psmag.github.io/2017/06/29/psremotely-authoring-workflow-part-1/</link>
+      <link>https://powershellmagazine.com/2017/06/29/psremotely-authoring-workflow-part-1/</link>
       <pubDate>Thu, 29 Jun 2017 16:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2017/06/29/psremotely-authoring-workflow-part-1/</guid>
+      <guid>https://powershellmagazine.com/2017/06/29/psremotely-authoring-workflow-part-1/</guid>
       <description>Introduction After setting up the context in the previous post, it is time to look at how the authoring workflow looks like when using Pester for writing operations validation tests, to begin with, and then leveraging PSRemotely DSL to target it to the remote nodes.</description>
     </item>
     
     <item>
       <title>Infrastructure Blueprints – Adding Pre-deployment Validations</title>
-      <link>https://psmag.github.io/2017/06/28/infrastructure-blueprints-adding-pre-deployment-validations/</link>
+      <link>https://powershellmagazine.com/2017/06/28/infrastructure-blueprints-adding-pre-deployment-validations/</link>
       <pubDate>Wed, 28 Jun 2017 16:00:22 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2017/06/28/infrastructure-blueprints-adding-pre-deployment-validations/</guid>
+      <guid>https://powershellmagazine.com/2017/06/28/infrastructure-blueprints-adding-pre-deployment-validations/</guid>
       <description>In one of my earlier articles here, I wrote about the Infrastructure Blueprints project. Over the weekend, I published an update this project.</description>
     </item>
     
     <item>
       <title>PSRemotely – Framework to Enable Remote Operations Validation</title>
-      <link>https://psmag.github.io/2017/04/07/psremotely-framework-to-enable-remote-operations-validation/</link>
+      <link>https://powershellmagazine.com/2017/04/07/psremotely-framework-to-enable-remote-operations-validation/</link>
       <pubDate>Fri, 07 Apr 2017 16:00:40 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2017/04/07/psremotely-framework-to-enable-remote-operations-validation/</guid>
+      <guid>https://powershellmagazine.com/2017/04/07/psremotely-framework-to-enable-remote-operations-validation/</guid>
       <description>Before we get started with what is PSRemotely, here is some background.
 As part of my work in an engineering team, I am tasked with writing scripts which will validate the underlying infrastructure before the automation (using PowerShell DSC) kicks in to deploy the solution.</description>
     </item>
     
     <item>
       <title>Pester Explained: Describe, Context, and It Blocks</title>
-      <link>https://psmag.github.io/2015/12/03/pester-explained-describe-context-and-it-blocks/</link>
+      <link>https://powershellmagazine.com/2015/12/03/pester-explained-describe-context-and-it-blocks/</link>
       <pubDate>Thu, 03 Dec 2015 17:00:12 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/12/03/pester-explained-describe-context-and-it-blocks/</guid>
+      <guid>https://powershellmagazine.com/2015/12/03/pester-explained-describe-context-and-it-blocks/</guid>
       <description>This article is a part of a larger series on Pester.
 Last time, we looked at how assertions work in theory, and how they are implemented in Pester.</description>
     </item>
     
     <item>
       <title>Pester Explained: Should</title>
-      <link>https://psmag.github.io/2015/12/02/pester-explained-should/</link>
+      <link>https://powershellmagazine.com/2015/12/02/pester-explained-should/</link>
       <pubDate>Wed, 02 Dec 2015 17:00:32 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/12/02/pester-explained-should/</guid>
+      <guid>https://powershellmagazine.com/2015/12/02/pester-explained-should/</guid>
       <description>This article is a part of a larger series on Pester.
 Last time we looked at the theory of assertions and what mechanisms they use to fail our tests.</description>
     </item>
     
     <item>
       <title>Pester Explained: Introduction and Assertions</title>
-      <link>https://psmag.github.io/2015/12/01/pester-explained-introduction-and-assertions/</link>
+      <link>https://powershellmagazine.com/2015/12/01/pester-explained-introduction-and-assertions/</link>
       <pubDate>Tue, 01 Dec 2015 17:00:41 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/12/01/pester-explained-introduction-and-assertions/</guid>
+      <guid>https://powershellmagazine.com/2015/12/01/pester-explained-introduction-and-assertions/</guid>
       <description>This article is a part of a larger series on Pester.
 I always found the word framework intimidating. It’s probably because my first encounter with the word was in .</description>
     </item>
     
     <item>
       <title>PowerShell tools for the advanced use cases – part 2</title>
-      <link>https://psmag.github.io/2015/11/02/powershell-tools-for-the-advanced-use-cases-part-2/</link>
+      <link>https://powershellmagazine.com/2015/11/02/powershell-tools-for-the-advanced-use-cases-part-2/</link>
       <pubDate>Mon, 02 Nov 2015 17:00:35 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/11/02/powershell-tools-for-the-advanced-use-cases-part-2/</guid>
+      <guid>https://powershellmagazine.com/2015/11/02/powershell-tools-for-the-advanced-use-cases-part-2/</guid>
       <description>Posts in this series  PowerShell Tools for the Advanced Use Cases, part 1 PowerShell tools for the advanced use cases – part 2 (this article) PowerShell tools for the advanced use cases – part 3  Testing In all teams that follow a “DevOps” mindset there is also the concept of CI (Continuous Integration) or even CD (Continuous Deployment).</description>
     </item>
     
     <item>
       <title>Pester: Triangulation and reusing test cases</title>
-      <link>https://psmag.github.io/2015/06/04/pester-triangulation-and-reusing-test-cases/</link>
+      <link>https://powershellmagazine.com/2015/06/04/pester-triangulation-and-reusing-test-cases/</link>
       <pubDate>Thu, 04 Jun 2015 16:00:19 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/06/04/pester-triangulation-and-reusing-test-cases/</guid>
+      <guid>https://powershellmagazine.com/2015/06/04/pester-triangulation-and-reusing-test-cases/</guid>
       <description>Pester has a great feature called TestCases. This feature enables you to easily call the same test code multiple times, but with different data.</description>
     </item>
     
     <item>
       <title>Boost your productivity with Pester snippets</title>
-      <link>https://psmag.github.io/2015/01/13/boost-your-productivity-with-pester-snippets/</link>
+      <link>https://powershellmagazine.com/2015/01/13/boost-your-productivity-with-pester-snippets/</link>
       <pubDate>Tue, 13 Jan 2015 17:00:22 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/01/13/boost-your-productivity-with-pester-snippets/</guid>
+      <guid>https://powershellmagazine.com/2015/01/13/boost-your-productivity-with-pester-snippets/</guid>
       <description>Authoring Pester tests is easy as it is, but if you are lucky enough to own a copy of ISESteroids 2 it now became even easier.</description>
     </item>
     
     <item>
       <title>Pester Mock and TestDrive</title>
-      <link>https://psmag.github.io/2014/09/30/pester-mock-and-testdrive/</link>
+      <link>https://powershellmagazine.com/2014/09/30/pester-mock-and-testdrive/</link>
       <pubDate>Tue, 30 Sep 2014 10:00:07 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/09/30/pester-mock-and-testdrive/</guid>
+      <guid>https://powershellmagazine.com/2014/09/30/pester-mock-and-testdrive/</guid>
       <description>In this part of Pester basics series, I will cover the most powerful tool from the whole framework, the Mock function.</description>
     </item>
     
     <item>
       <title>New feature in Pester 3.0:  Code Coverage metrics</title>
-      <link>https://psmag.github.io/2014/09/01/new-feature-in-pester-3-0-code-coverage-metrics/</link>
+      <link>https://powershellmagazine.com/2014/09/01/new-feature-in-pester-3-0-code-coverage-metrics/</link>
       <pubDate>Mon, 01 Sep 2014 16:00:26 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/09/01/new-feature-in-pester-3-0-code-coverage-metrics/</guid>
+      <guid>https://powershellmagazine.com/2014/09/01/new-feature-in-pester-3-0-code-coverage-metrics/</guid>
       <description>Introduction I have a confession to make… I don’t actually practice TDD or BDD yet. I see the value of having unit tests, but I’ve been writing scripts for so many years now–most of that time without automated tests–that it’s been difficult to change my habits and get into that 30-second micro cycle of “Red-Green-Refactor”.</description>
     </item>
     
     <item>
       <title>Testing your PowerShell scripts with Pester: Assertions and more</title>
-      <link>https://psmag.github.io/2014/03/27/testing-your-powershell-scripts-with-pester-assertions-and-more/</link>
+      <link>https://powershellmagazine.com/2014/03/27/testing-your-powershell-scripts-with-pester-assertions-and-more/</link>
       <pubDate>Thu, 27 Mar 2014 16:34:18 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/03/27/testing-your-powershell-scripts-with-pester-assertions-and-more/</guid>
+      <guid>https://powershellmagazine.com/2014/03/27/testing-your-powershell-scripts-with-pester-assertions-and-more/</guid>
       <description>This is part two of Pester series of articles. In this article you will learn about the Context keyword, how to use all the assertions available in Pester and a bit about best practices.</description>
     </item>
     
     <item>
       <title>Get started with Pester (PowerShell unit testing framework)</title>
-      <link>https://psmag.github.io/2014/03/12/get-started-with-pester-powershell-unit-testing-framework/</link>
+      <link>https://powershellmagazine.com/2014/03/12/get-started-with-pester-powershell-unit-testing-framework/</link>
       <pubDate>Wed, 12 Mar 2014 17:38:47 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/03/12/get-started-with-pester-powershell-unit-testing-framework/</guid>
+      <guid>https://powershellmagazine.com/2014/03/12/get-started-with-pester-powershell-unit-testing-framework/</guid>
       <description>Some time ago I stumbled upon the Pester framework that promised I would be able to test my scripts. This seemed to be super-useful for my day-to-day scripting, but unfortunately the learning curve was a bit steeper than I thought it would be.</description>
     </item>
     

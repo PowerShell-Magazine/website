@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PoshSec on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/poshsec/</link>
+    <link>https://powershellmagazine.com/categories/poshsec/</link>
     <description>Recent content in PoshSec on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 11 Jul 2014 16:00:50 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/poshsec/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/poshsec/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Introduction to the PoshSec Framework</title>
-      <link>https://psmag.github.io/2014/07/11/introduction-to-the-poshsec-framework/</link>
+      <link>https://powershellmagazine.com/2014/07/11/introduction-to-the-poshsec-framework/</link>
       <pubDate>Fri, 11 Jul 2014 16:00:50 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/11/introduction-to-the-poshsec-framework/</guid>
+      <guid>https://powershellmagazine.com/2014/07/11/introduction-to-the-poshsec-framework/</guid>
       <description>In March of 2013 I had the desire to create an open source Security Information and Event Management system, also known as a SIEM.</description>
     </item>
     
     <item>
       <title>Introduction to PoshSec</title>
-      <link>https://psmag.github.io/2014/07/10/introduction-to-poshsec/</link>
+      <link>https://powershellmagazine.com/2014/07/10/introduction-to-poshsec/</link>
       <pubDate>Thu, 10 Jul 2014 16:00:16 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/10/introduction-to-poshsec/</guid>
+      <guid>https://powershellmagazine.com/2014/07/10/introduction-to-poshsec/</guid>
       <description>Security has always been a passion of mine. It was a few short years ago that I was sitting down having a friendly chat with Will Steele.</description>
     </item>
     

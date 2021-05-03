@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kansa on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/kansa/</link>
+    <link>https://powershellmagazine.com/tags/kansa/</link>
     <description>Recent content in Kansa on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 18 Jul 2014 16:00:57 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/kansa/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/kansa/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Kansa: A PowerShell-based incident response framework</title>
-      <link>https://psmag.github.io/2014/07/18/kansa-a-powershell-based-incident-response-framework/</link>
+      <link>https://powershellmagazine.com/2014/07/18/kansa-a-powershell-based-incident-response-framework/</link>
       <pubDate>Fri, 18 Jul 2014 16:00:57 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/18/kansa-a-powershell-based-incident-response-framework/</guid>
+      <guid>https://powershellmagazine.com/2014/07/18/kansa-a-powershell-based-incident-response-framework/</guid>
       <description>Known unknowns and unknown unknowns If you follow information security, you know that information systems are constantly under attack and often fall victim to adversaries looking to make a quick buck, gain competitive advantage through theft of intellectual property or embarrass a target that they find politically or ideologically offensive.</description>
     </item>
     

@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>SHiPS on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/ships/</link>
+    <link>https://powershellmagazine.com/categories/ships/</link>
     <description>Recent content in SHiPS on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 03 Apr 2018 16:24:41 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/ships/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/ships/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>#PSConfEU Agenda as a PowerShell Drive using #SHiPS</title>
-      <link>https://psmag.github.io/2018/04/03/psconfeu-agenda-as-a-powershell-drive-using-ships/</link>
+      <link>https://powershellmagazine.com/2018/04/03/psconfeu-agenda-as-a-powershell-drive-using-ships/</link>
       <pubDate>Tue, 03 Apr 2018 16:24:41 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2018/04/03/psconfeu-agenda-as-a-powershell-drive-using-ships/</guid>
+      <guid>https://powershellmagazine.com/2018/04/03/psconfeu-agenda-as-a-powershell-drive-using-ships/</guid>
       <description>The SHiPS module has several use cases with structured data. I have written a few proof-of-concept modules using SHiPS to understand how it works and try out different design patterns.</description>
     </item>
     
     <item>
       <title>Hyper-V Server PowerShell Drive based on #SHiPS</title>
-      <link>https://psmag.github.io/2018/01/02/hyper-v-server-powershell-drive-based-on-ships/</link>
+      <link>https://powershellmagazine.com/2018/01/02/hyper-v-server-powershell-drive-based-on-ships/</link>
       <pubDate>Tue, 02 Jan 2018 17:00:29 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2018/01/02/hyper-v-server-powershell-drive-based-on-ships/</guid>
+      <guid>https://powershellmagazine.com/2018/01/02/hyper-v-server-powershell-drive-based-on-ships/</guid>
       <description>In an earlier article, I had written about a PowerShell provider for Failover Clusters written using the SHiPS provider framework. I have been experimenting with this a bit and made a few more providers.</description>
     </item>
     
     <item>
       <title>Failover Cluster PowerShell Drive based on #SHiPS</title>
-      <link>https://psmag.github.io/2017/12/21/failover-cluster-powershell-drive-based-on-ships/</link>
+      <link>https://powershellmagazine.com/2017/12/21/failover-cluster-powershell-drive-based-on-ships/</link>
       <pubDate>Thu, 21 Dec 2017 17:00:48 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2017/12/21/failover-cluster-powershell-drive-based-on-ships/</guid>
+      <guid>https://powershellmagazine.com/2017/12/21/failover-cluster-powershell-drive-based-on-ships/</guid>
       <description>Simple Hierarchy in PowerShell (SHiPS) is a module that simplifies implementing PowerShell providers. If you are new to PowerShell providers, a PowerShell provider allows any data store to be exposed like a file system as if it were a mounted drive.</description>
     </item>
     

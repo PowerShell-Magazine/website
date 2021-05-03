@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cisco on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/cisco/</link>
+    <link>https://powershellmagazine.com/tags/cisco/</link>
     <description>Recent content in Cisco on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 29 May 2017 16:00:59 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/cisco/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/cisco/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Cisco UCS Custom Resource for the Windows PowerShell Desired State Configuration (DSC)</title>
-      <link>https://psmag.github.io/2017/05/29/cisco-ucs-custom-resource-for-the-windows-powershell-desired-state-configuration-dsc/</link>
+      <link>https://powershellmagazine.com/2017/05/29/cisco-ucs-custom-resource-for-the-windows-powershell-desired-state-configuration-dsc/</link>
       <pubDate>Mon, 29 May 2017 16:00:59 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2017/05/29/cisco-ucs-custom-resource-for-the-windows-powershell-desired-state-configuration-dsc/</guid>
+      <guid>https://powershellmagazine.com/2017/05/29/cisco-ucs-custom-resource-for-the-windows-powershell-desired-state-configuration-dsc/</guid>
       <description>The Cisco UCS PowerTool Suite is a set of PowerShell modules for Cisco UCS Manager, Cisco IMC (C-Series stand-alone servers) and Cisco UCS Central that helps in configuration and management of Cisco UCS domains and solutions.</description>
     </item>
     

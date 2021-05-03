@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>AWS on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/aws/</link>
+    <link>https://powershellmagazine.com/categories/aws/</link>
     <description>Recent content in AWS on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 05 Mar 2014 19:00:44 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/aws/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/aws/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>#PSTip Installing and setting up AWS PowerShell Tools</title>
-      <link>https://psmag.github.io/2014/03/05/pstip-installing-and-setting-up-aws-powershell-tools/</link>
+      <link>https://powershellmagazine.com/2014/03/05/pstip-installing-and-setting-up-aws-powershell-tools/</link>
       <pubDate>Wed, 05 Mar 2014 19:00:44 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/03/05/pstip-installing-and-setting-up-aws-powershell-tools/</guid>
+      <guid>https://powershellmagazine.com/2014/03/05/pstip-installing-and-setting-up-aws-powershell-tools/</guid>
       <description>Note: This tip requires PowerShell 2.0 or above.
 I have been working with Amazon Web Services (AWS) and for me the default management tool is their PowerShell module.</description>
     </item>

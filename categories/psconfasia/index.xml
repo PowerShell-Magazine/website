@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PSConfAsia on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/psconfasia/</link>
+    <link>https://powershellmagazine.com/categories/psconfasia/</link>
     <description>Recent content in PSConfAsia on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 12 Mar 2020 10:43:51 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/psconfasia/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/psconfasia/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>PowerShell and DevOps Conference Asia 2020</title>
-      <link>https://psmag.github.io/2020/03/12/powershell-and-devops-conference-asia-2020/</link>
+      <link>https://powershellmagazine.com/2020/03/12/powershell-and-devops-conference-asia-2020/</link>
       <pubDate>Thu, 12 Mar 2020 10:43:51 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2020/03/12/powershell-and-devops-conference-asia-2020/</guid>
+      <guid>https://powershellmagazine.com/2020/03/12/powershell-and-devops-conference-asia-2020/</guid>
       <description>PowerShell Conference Asia 2019 was held in Bangalore (India). It was such a great event and fun hosting it here. For the first time in the history of PowerShell Conference Asia we had 220+ PowerShell lovers at the conference.</description>
     </item>
     
     <item>
       <title>PowerShell Conference Asia – Early Bird Ticket Sales</title>
-      <link>https://psmag.github.io/2019/04/09/powershell-conference-asia-early-bird-ticket-sales/</link>
+      <link>https://powershellmagazine.com/2019/04/09/powershell-conference-asia-early-bird-ticket-sales/</link>
       <pubDate>Tue, 09 Apr 2019 12:34:26 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2019/04/09/powershell-conference-asia-early-bird-ticket-sales/</guid>
+      <guid>https://powershellmagazine.com/2019/04/09/powershell-conference-asia-early-bird-ticket-sales/</guid>
       <description>PowerShell Conference Asia 2019 edition will be in Bangalore, India. We closed our CFP towards end of February and finalized (partially) a great set of International PowerShell Experts.</description>
     </item>
     
     <item>
       <title>#PowerShell Conference Asia 2019 – Call for papers!</title>
-      <link>https://psmag.github.io/2018/12/31/powershell-conference-asia-2019-call-for-papers-2/</link>
+      <link>https://powershellmagazine.com/2018/12/31/powershell-conference-asia-2019-call-for-papers-2/</link>
       <pubDate>Tue, 01 Jan 2019 03:32:02 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2018/12/31/powershell-conference-asia-2019-call-for-papers-2/</guid>
+      <guid>https://powershellmagazine.com/2018/12/31/powershell-conference-asia-2019-call-for-papers-2/</guid>
       <description>We announced back in October that the next edition of PowerShell Conference Asia will be hosted in Bangalore (India) and is scheduled to happen from 19th to 21st September 2019.</description>
     </item>
     
     <item>
       <title>#PowerShell Conference Asia 2018 #PSConfAsia</title>
-      <link>https://psmag.github.io/2018/08/14/powershell-conference-asia-2018-psconfasia/</link>
+      <link>https://powershellmagazine.com/2018/08/14/powershell-conference-asia-2018-psconfasia/</link>
       <pubDate>Tue, 14 Aug 2018 11:56:44 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2018/08/14/powershell-conference-asia-2018-psconfasia/</guid>
+      <guid>https://powershellmagazine.com/2018/08/14/powershell-conference-asia-2018-psconfasia/</guid>
       <description>The PowerShell Conference Asia resumes for its 4th year this October, bringing speakers from Asia and around the world to deliver in-depth PowerShell and DevOps sessions.</description>
     </item>
     

@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>VS Code on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/vs-code/</link>
+    <link>https://powershellmagazine.com/tags/vs-code/</link>
     <description>Recent content in VS Code on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 08 Jun 2016 16:00:57 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/vs-code/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/vs-code/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Build Your Visual Studio Code Development Environment Using PowerShell DSC</title>
-      <link>https://psmag.github.io/2016/06/08/build-your-visual-studio-code-development-environment-using-powershell-dsc/</link>
+      <link>https://powershellmagazine.com/2016/06/08/build-your-visual-studio-code-development-environment-using-powershell-dsc/</link>
       <pubDate>Wed, 08 Jun 2016 16:00:57 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/06/08/build-your-visual-studio-code-development-environment-using-powershell-dsc/</guid>
+      <guid>https://powershellmagazine.com/2016/06/08/build-your-visual-studio-code-development-environment-using-powershell-dsc/</guid>
       <description>I keep re-building my lab machines and in the process I rebuild my development virtual machines. One of the items that gets reinstalled all the time is Visual Studio Code editor.</description>
     </item>
     
     <item>
       <title>How to add a new functionality to the Visual Studio Code PowerShell extension</title>
-      <link>https://psmag.github.io/2016/02/10/how-to-add-a-new-functionality-to-the-visual-studio-code-powershell-extension/</link>
+      <link>https://powershellmagazine.com/2016/02/10/how-to-add-a-new-functionality-to-the-visual-studio-code-powershell-extension/</link>
       <pubDate>Wed, 10 Feb 2016 19:59:38 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/02/10/how-to-add-a-new-functionality-to-the-visual-studio-code-powershell-extension/</guid>
+      <guid>https://powershellmagazine.com/2016/02/10/how-to-add-a-new-functionality-to-the-visual-studio-code-powershell-extension/</guid>
       <description>Visual Studio Code is a free code editor redefined and optimized for building and debugging modern web and cloud applications.</description>
     </item>
     
     <item>
       <title>PowerShell Extension for #VisualStudio Code #Connect2015</title>
-      <link>https://psmag.github.io/2015/11/18/powershell-extension-for-visualstudio-code-connect2015/</link>
+      <link>https://powershellmagazine.com/2015/11/18/powershell-extension-for-visualstudio-code-connect2015/</link>
       <pubDate>Wed, 18 Nov 2015 16:11:31 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/11/18/powershell-extension-for-visualstudio-code-connect2015/</guid>
+      <guid>https://powershellmagazine.com/2015/11/18/powershell-extension-for-visualstudio-code-connect2015/</guid>
       <description>If you are not watching #VisualStudio #Connect2015, you are certainly missing a lot. Because … @ScottGu just announced a lot of new features including extension support in Visual Studio Code.</description>
     </item>
     

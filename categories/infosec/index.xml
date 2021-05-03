@@ -2,111 +2,111 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>InfoSec on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/infosec/</link>
+    <link>https://powershellmagazine.com/categories/infosec/</link>
     <description>Recent content in InfoSec on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 25 Sep 2014 16:00:46 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/infosec/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/infosec/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Easily Defining Enums, Structs, and Win32 Functions in Memory</title>
-      <link>https://psmag.github.io/2014/09/25/easily-defining-enums-structs-and-win32-functions-in-memory/</link>
+      <link>https://powershellmagazine.com/2014/09/25/easily-defining-enums-structs-and-win32-functions-in-memory/</link>
       <pubDate>Thu, 25 Sep 2014 16:00:46 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/09/25/easily-defining-enums-structs-and-win32-functions-in-memory/</guid>
+      <guid>https://powershellmagazine.com/2014/09/25/easily-defining-enums-structs-and-win32-functions-in-memory/</guid>
       <description>In the past, I’ve spoken extensively on how to use reflection to define enums, structs, and Win32 functions in PowerShell and the merits of doing so.</description>
     </item>
     
     <item>
       <title>Kansa: A PowerShell-based incident response framework</title>
-      <link>https://psmag.github.io/2014/07/18/kansa-a-powershell-based-incident-response-framework/</link>
+      <link>https://powershellmagazine.com/2014/07/18/kansa-a-powershell-based-incident-response-framework/</link>
       <pubDate>Fri, 18 Jul 2014 16:00:57 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/18/kansa-a-powershell-based-incident-response-framework/</guid>
+      <guid>https://powershellmagazine.com/2014/07/18/kansa-a-powershell-based-incident-response-framework/</guid>
       <description>Known unknowns and unknown unknowns If you follow information security, you know that information systems are constantly under attack and often fall victim to adversaries looking to make a quick buck, gain competitive advantage through theft of intellectual property or embarrass a target that they find politically or ideologically offensive.</description>
     </item>
     
     <item>
       <title>Live Incident Response with PowerShell</title>
-      <link>https://psmag.github.io/2014/07/17/live-incident-response-with-powershell/</link>
+      <link>https://powershellmagazine.com/2014/07/17/live-incident-response-with-powershell/</link>
       <pubDate>Thu, 17 Jul 2014 16:00:41 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/17/live-incident-response-with-powershell/</guid>
+      <guid>https://powershellmagazine.com/2014/07/17/live-incident-response-with-powershell/</guid>
       <description>We often see the offensive capabilities of PowerShell hit the headlines as it is more attractive. It’s good to know and see what attackers do to penetrate your network, execute code to remain undetected, move laterally, and steal administrative credentials.</description>
     </item>
     
     <item>
       <title>Investigating PowerShell Attacks</title>
-      <link>https://psmag.github.io/2014/07/16/investigating-powershell-attacks/</link>
+      <link>https://powershellmagazine.com/2014/07/16/investigating-powershell-attacks/</link>
       <pubDate>Wed, 16 Jul 2014 16:00:13 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/16/investigating-powershell-attacks/</guid>
+      <guid>https://powershellmagazine.com/2014/07/16/investigating-powershell-attacks/</guid>
       <description>“Huh, that’s weird. Look at this system. I think the attacker used PowerShell.” It was late summer 2012, and we were working on an incident response investigation for a Fortune 100 technology company compromised by an intruder attempting to steal intellectual property.</description>
     </item>
     
     <item>
       <title>Posh-Shodan module for the Shodan service</title>
-      <link>https://psmag.github.io/2014/07/15/posh-shodan-module-for-the-shodan-service/</link>
+      <link>https://powershellmagazine.com/2014/07/15/posh-shodan-module-for-the-shodan-service/</link>
       <pubDate>Tue, 15 Jul 2014 16:05:09 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/15/posh-shodan-module-for-the-shodan-service/</guid>
+      <guid>https://powershellmagazine.com/2014/07/15/posh-shodan-module-for-the-shodan-service/</guid>
       <description>What is Shodan? Shodan is a search engine that lets one find hosts on the internet using a variety of filters.</description>
     </item>
     
     <item>
       <title>Veil-PowerView</title>
-      <link>https://psmag.github.io/2014/07/14/veil-powerview/</link>
+      <link>https://powershellmagazine.com/2014/07/14/veil-powerview/</link>
       <pubDate>Mon, 14 Jul 2014 16:00:33 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/14/veil-powerview/</guid>
+      <guid>https://powershellmagazine.com/2014/07/14/veil-powerview/</guid>
       <description>I was led to PowerShell in the past few years as it began to rise to prominence in the information security community.</description>
     </item>
     
     <item>
       <title>Introduction to the PoshSec Framework</title>
-      <link>https://psmag.github.io/2014/07/11/introduction-to-the-poshsec-framework/</link>
+      <link>https://powershellmagazine.com/2014/07/11/introduction-to-the-poshsec-framework/</link>
       <pubDate>Fri, 11 Jul 2014 16:00:50 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/11/introduction-to-the-poshsec-framework/</guid>
+      <guid>https://powershellmagazine.com/2014/07/11/introduction-to-the-poshsec-framework/</guid>
       <description>In March of 2013 I had the desire to create an open source Security Information and Event Management system, also known as a SIEM.</description>
     </item>
     
     <item>
       <title>Introduction to PoshSec</title>
-      <link>https://psmag.github.io/2014/07/10/introduction-to-poshsec/</link>
+      <link>https://powershellmagazine.com/2014/07/10/introduction-to-poshsec/</link>
       <pubDate>Thu, 10 Jul 2014 16:00:16 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/10/introduction-to-poshsec/</guid>
+      <guid>https://powershellmagazine.com/2014/07/10/introduction-to-poshsec/</guid>
       <description>Security has always been a passion of mine. It was a few short years ago that I was sitting down having a friendly chat with Will Steele.</description>
     </item>
     
     <item>
       <title>Owning Networks and Evading Incident Response with PowerShell</title>
-      <link>https://psmag.github.io/2014/07/09/owning-networks-and-evading-incident-response-with-powershell/</link>
+      <link>https://powershellmagazine.com/2014/07/09/owning-networks-and-evading-incident-response-with-powershell/</link>
       <pubDate>Wed, 09 Jul 2014 16:00:03 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/09/owning-networks-and-evading-incident-response-with-powershell/</guid>
+      <guid>https://powershellmagazine.com/2014/07/09/owning-networks-and-evading-incident-response-with-powershell/</guid>
       <description>Up until several months ago, I was a member of a penetration test team tasked with compromising data centers and evading detection.</description>
     </item>
     
     <item>
       <title>PowerSploit</title>
-      <link>https://psmag.github.io/2014/07/08/powersploit/</link>
+      <link>https://powershellmagazine.com/2014/07/08/powersploit/</link>
       <pubDate>Tue, 08 Jul 2014 16:00:53 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/08/powersploit/</guid>
+      <guid>https://powershellmagazine.com/2014/07/08/powersploit/</guid>
       <description>PowerSploit is an offensive security framework for penetration testers and reverse engineers. It was born out of the realization that PowerShell was the ideal post-exploitation utility in Windows due to its ability to perform a wide range of administrative and low-level tasks all without the need to drop malicious executables to disk, thus, evading antivirus products with ease.</description>
     </item>
     
     <item>
       <title>Security in a Changing World</title>
-      <link>https://psmag.github.io/2014/07/07/security-in-a-changing-world/</link>
+      <link>https://powershellmagazine.com/2014/07/07/security-in-a-changing-world/</link>
       <pubDate>Mon, 07 Jul 2014 16:00:37 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/07/security-in-a-changing-world/</guid>
+      <guid>https://powershellmagazine.com/2014/07/07/security-in-a-changing-world/</guid>
       <description>If you surveyed the landscape of computer security a decade ago, you would find a world completely different than the one we live in today.</description>
     </item>
     

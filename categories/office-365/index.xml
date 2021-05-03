@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Office 365 on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/office-365/</link>
+    <link>https://powershellmagazine.com/categories/office-365/</link>
     <description>Recent content in Office 365 on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 23 Apr 2012 18:00:55 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/office-365/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/office-365/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Provisioning and Licensing Office 365 Accounts with PowerShell</title>
-      <link>https://psmag.github.io/2012/04/23/provisioning-and-licensing-office-365-accounts-with-powershell/</link>
+      <link>https://powershellmagazine.com/2012/04/23/provisioning-and-licensing-office-365-accounts-with-powershell/</link>
       <pubDate>Mon, 23 Apr 2012 18:00:55 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/04/23/provisioning-and-licensing-office-365-accounts-with-powershell/</guid>
+      <guid>https://powershellmagazine.com/2012/04/23/provisioning-and-licensing-office-365-accounts-with-powershell/</guid>
       <description>The Office 365 platform provides a PowerShell module that can be used to provision and manage user accounts. You can even automate the process of assigning licenses to users in the cloud using the cmdlets in this module.</description>
     </item>
     

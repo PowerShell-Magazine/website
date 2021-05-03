@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Feedback on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/feedback/</link>
+    <link>https://powershellmagazine.com/categories/feedback/</link>
     <description>Recent content in Feedback on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 08 Jan 2018 17:00:53 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/feedback/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/feedback/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>PowerShell UserVoice: Add Support for NPM Type Version Specification in Module Manifest and #Requires</title>
-      <link>https://psmag.github.io/2018/01/08/powershell-user-voice-add-support-for-npm-type-version-specification-in-module-manifest-and-requires/</link>
+      <link>https://powershellmagazine.com/2018/01/08/powershell-user-voice-add-support-for-npm-type-version-specification-in-module-manifest-and-requires/</link>
       <pubDate>Mon, 08 Jan 2018 17:00:53 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2018/01/08/powershell-user-voice-add-support-for-npm-type-version-specification-in-module-manifest-and-requires/</guid>
+      <guid>https://powershellmagazine.com/2018/01/08/powershell-user-voice-add-support-for-npm-type-version-specification-in-module-manifest-and-requires/</guid>
       <description>If you have ever used Node.js, the packages.json file is used to specify the module dependencies. Here is an example:</description>
     </item>
     

@@ -2,88 +2,88 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Exchange on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/exchange/</link>
+    <link>https://powershellmagazine.com/categories/exchange/</link>
     <description>Recent content in Exchange on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 24 Jul 2014 16:00:55 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/exchange/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/exchange/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Using PowerShell to troubleshoot the Exchange mailbox creation process</title>
-      <link>https://psmag.github.io/2014/07/24/using-powershell-to-troubleshoot-the-exchange-mailbox-creation-process/</link>
+      <link>https://powershellmagazine.com/2014/07/24/using-powershell-to-troubleshoot-the-exchange-mailbox-creation-process/</link>
       <pubDate>Thu, 24 Jul 2014 16:00:55 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/24/using-powershell-to-troubleshoot-the-exchange-mailbox-creation-process/</guid>
+      <guid>https://powershellmagazine.com/2014/07/24/using-powershell-to-troubleshoot-the-exchange-mailbox-creation-process/</guid>
       <description>I’ve been recently tasked by the team responsible for user account management to investigate why a user mailbox wasn’t created along with its Active Directory account.</description>
     </item>
     
     <item>
       <title>#PSTip Preview the members of a dynamic distribution group</title>
-      <link>https://psmag.github.io/2013/09/13/pstip-preview-the-members-of-a-dynamic-distribution-group/</link>
+      <link>https://powershellmagazine.com/2013/09/13/pstip-preview-the-members-of-a-dynamic-distribution-group/</link>
       <pubDate>Fri, 13 Sep 2013 18:00:13 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/09/13/pstip-preview-the-members-of-a-dynamic-distribution-group/</guid>
+      <guid>https://powershellmagazine.com/2013/09/13/pstip-preview-the-members-of-a-dynamic-distribution-group/</guid>
       <description>Note: This tip requires PowerShell 2.0 or above.
 Getting the members of a dynamic distribution group in the Exchange Management Console (EMC) is not an issue; you open the group and click the Preview button.</description>
     </item>
     
     <item>
       <title>#PSTip How to create a dynamic distribution group</title>
-      <link>https://psmag.github.io/2013/09/12/pstip-how-to-create-a-dynamic-distribution-group/</link>
+      <link>https://powershellmagazine.com/2013/09/12/pstip-how-to-create-a-dynamic-distribution-group/</link>
       <pubDate>Thu, 12 Sep 2013 18:00:27 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/09/12/pstip-how-to-create-a-dynamic-distribution-group/</guid>
+      <guid>https://powershellmagazine.com/2013/09/12/pstip-how-to-create-a-dynamic-distribution-group/</guid>
       <description>Note: This tip requires PowerShell 2.0 or above.
 One of the group types that Exchange can create is a dynamic distribution group.</description>
     </item>
     
     <item>
       <title>#PSTip How to find which mailboxes are over quota limits</title>
-      <link>https://psmag.github.io/2013/09/10/pstip-how-to-find-which-mailboxes-are-over-quota-limits/</link>
+      <link>https://powershellmagazine.com/2013/09/10/pstip-how-to-find-which-mailboxes-are-over-quota-limits/</link>
       <pubDate>Tue, 10 Sep 2013 18:00:28 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/09/10/pstip-how-to-find-which-mailboxes-are-over-quota-limits/</guid>
+      <guid>https://powershellmagazine.com/2013/09/10/pstip-how-to-find-which-mailboxes-are-over-quota-limits/</guid>
       <description>Note: This tip requires PowerShell 2.0 or above.
 In a previous tip we saw how to configure storage quotas for a mailbox using PowerShell.</description>
     </item>
     
     <item>
       <title>#PSTip How to configure storage quotas for a mailbox using PowerShell</title>
-      <link>https://psmag.github.io/2013/09/09/pstip-how-to-configure-storage-quotas-for-a-mailbox-using-powershell/</link>
+      <link>https://powershellmagazine.com/2013/09/09/pstip-how-to-configure-storage-quotas-for-a-mailbox-using-powershell/</link>
       <pubDate>Mon, 09 Sep 2013 18:00:51 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/09/09/pstip-how-to-configure-storage-quotas-for-a-mailbox-using-powershell/</guid>
+      <guid>https://powershellmagazine.com/2013/09/09/pstip-how-to-configure-storage-quotas-for-a-mailbox-using-powershell/</guid>
       <description>Note: This tip requires PowerShell 2.0 or above.
 Exchange lets us configure mailbox storage quotas for a mailbox, control the size of mailboxes and manage the growth of mailbox databases.</description>
     </item>
     
     <item>
       <title>#PSTip Count the number of mailboxes per department</title>
-      <link>https://psmag.github.io/2013/04/17/pstip-count-the-number-of-mailboxes-per-department/</link>
+      <link>https://powershellmagazine.com/2013/04/17/pstip-count-the-number-of-mailboxes-per-department/</link>
       <pubDate>Wed, 17 Apr 2013 18:00:32 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/04/17/pstip-count-the-number-of-mailboxes-per-department/</guid>
+      <guid>https://powershellmagazine.com/2013/04/17/pstip-count-the-number-of-mailboxes-per-department/</guid>
       <description>Yesterday I got an email asking for help to create a report of all user mailboxes in Exchange per department. When you execute a Get-Mailbox command, you’ll see that the Department property is not included in the result.</description>
     </item>
     
     <item>
       <title>Provisioning and Licensing Office 365 Accounts with PowerShell</title>
-      <link>https://psmag.github.io/2012/04/23/provisioning-and-licensing-office-365-accounts-with-powershell/</link>
+      <link>https://powershellmagazine.com/2012/04/23/provisioning-and-licensing-office-365-accounts-with-powershell/</link>
       <pubDate>Mon, 23 Apr 2012 18:00:55 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/04/23/provisioning-and-licensing-office-365-accounts-with-powershell/</guid>
+      <guid>https://powershellmagazine.com/2012/04/23/provisioning-and-licensing-office-365-accounts-with-powershell/</guid>
       <description>The Office 365 platform provides a PowerShell module that can be used to provision and manage user accounts. You can even automate the process of assigning licenses to users in the cloud using the cmdlets in this module.</description>
     </item>
     
     <item>
       <title>5 Essential PowerShell Skills for Exchange Server Administrators</title>
-      <link>https://psmag.github.io/2011/12/20/5-essential-powershell-skills-for-exchange-server-administrators/</link>
+      <link>https://powershellmagazine.com/2011/12/20/5-essential-powershell-skills-for-exchange-server-administrators/</link>
       <pubDate>Tue, 20 Dec 2011 19:00:23 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/20/5-essential-powershell-skills-for-exchange-server-administrators/</guid>
+      <guid>https://powershellmagazine.com/2011/12/20/5-essential-powershell-skills-for-exchange-server-administrators/</guid>
       <description>Ask an experienced Exchange administrator and they’ll tell you that learning PowerShell is important to be able to do the job well.</description>
     </item>
     

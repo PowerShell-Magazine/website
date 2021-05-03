@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PoshShodan on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/poshshodan/</link>
+    <link>https://powershellmagazine.com/categories/poshshodan/</link>
     <description>Recent content in PoshShodan on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 15 Jul 2014 16:05:09 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/poshshodan/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/poshshodan/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Posh-Shodan module for the Shodan service</title>
-      <link>https://psmag.github.io/2014/07/15/posh-shodan-module-for-the-shodan-service/</link>
+      <link>https://powershellmagazine.com/2014/07/15/posh-shodan-module-for-the-shodan-service/</link>
       <pubDate>Tue, 15 Jul 2014 16:05:09 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/15/posh-shodan-module-for-the-shodan-service/</guid>
+      <guid>https://powershellmagazine.com/2014/07/15/posh-shodan-module-for-the-shodan-service/</guid>
       <description>What is Shodan? Shodan is a search engine that lets one find hosts on the internet using a variety of filters.</description>
     </item>
     

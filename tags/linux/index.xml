@@ -2,141 +2,141 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/linux/</link>
+    <link>https://powershellmagazine.com/tags/linux/</link>
     <description>Recent content in Linux on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 22 Aug 2016 16:00:59 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Azure DevTest Labs Artifact for Installing PowerShell on Linux</title>
-      <link>https://psmag.github.io/2016/08/22/azure-devtest-labs-artifact-for-installing-powershell-on-linux/</link>
+      <link>https://powershellmagazine.com/2016/08/22/azure-devtest-labs-artifact-for-installing-powershell-on-linux/</link>
       <pubDate>Mon, 22 Aug 2016 16:00:59 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/08/22/azure-devtest-labs-artifact-for-installing-powershell-on-linux/</guid>
+      <guid>https://powershellmagazine.com/2016/08/22/azure-devtest-labs-artifact-for-installing-powershell-on-linux/</guid>
       <description>Update: The PowerShell on Linux artifact is now available in official Azure DTL artifact repository.
 Bartek and Ben have written a great introduction article on open source PowerShell.</description>
     </item>
     
     <item>
       <title>Open source PowerShell on Windows, Linux, and OS X!</title>
-      <link>https://psmag.github.io/2016/08/18/open-source-powershell-on-windows-linux-and-osx/</link>
+      <link>https://powershellmagazine.com/2016/08/18/open-source-powershell-on-windows-linux-and-osx/</link>
       <pubDate>Thu, 18 Aug 2016 15:25:48 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/08/18/open-source-powershell-on-windows-linux-and-osx/</guid>
+      <guid>https://powershellmagazine.com/2016/08/18/open-source-powershell-on-windows-linux-and-osx/</guid>
       <description>This article was co-authored by Bartek Bielawski and Ben Gelens.
 Windows PowerShell is a powerful tool, but it always had one very serious limitation: it was possible to run it only on Windows.</description>
     </item>
     
     <item>
       <title>PowerShell DSC for Linux: Pull Server</title>
-      <link>https://psmag.github.io/2015/07/10/powershell-dsc-for-linux-pull-server/</link>
+      <link>https://powershellmagazine.com/2015/07/10/powershell-dsc-for-linux-pull-server/</link>
       <pubDate>Fri, 10 Jul 2015 16:00:17 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/07/10/powershell-dsc-for-linux-pull-server/</guid>
+      <guid>https://powershellmagazine.com/2015/07/10/powershell-dsc-for-linux-pull-server/</guid>
       <description>Initial release of PowerShell DSC for Linux had one big gap: it supported only pushing the configuration to the node. And even though this mode is good enough for demos or basic proof of concept, it doesn’t seem like a proper solution for production environment.</description>
     </item>
     
     <item>
       <title>PowerShell DSC for Linux: Resources</title>
-      <link>https://psmag.github.io/2015/07/08/powershell-dsc-for-linux-resources/</link>
+      <link>https://powershellmagazine.com/2015/07/08/powershell-dsc-for-linux-resources/</link>
       <pubDate>Wed, 08 Jul 2015 16:00:58 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/07/08/powershell-dsc-for-linux-resources/</guid>
+      <guid>https://powershellmagazine.com/2015/07/08/powershell-dsc-for-linux-resources/</guid>
       <description>New version of PowerShell DSC for Linux doubled the number of resources available. Initial batch in CTP covered basics: nxUser to create and manage users, nxGroup to define groups and manage group members, nxFile to create and modify files, nxService to start, stop, enable, and disable daemons, and nxScript to cover anything that couldn’t be done with other resources.</description>
     </item>
     
     <item>
       <title>PowerShell DSC for Linux: Installation</title>
-      <link>https://psmag.github.io/2015/07/06/powershell-dsc-for-linux-installation/</link>
+      <link>https://powershellmagazine.com/2015/07/06/powershell-dsc-for-linux-installation/</link>
       <pubDate>Mon, 06 Jul 2015 16:00:44 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/07/06/powershell-dsc-for-linux-installation/</guid>
+      <guid>https://powershellmagazine.com/2015/07/06/powershell-dsc-for-linux-installation/</guid>
       <description>First version of PowerShell DSC for Linux is released. We announced that and promised to come back to that subject. It’s time to fulfil that promise.</description>
     </item>
     
     <item>
       <title>PowerShell DSC for Linux released!</title>
-      <link>https://psmag.github.io/2015/05/14/powershell-dsc-for-linux-released/</link>
+      <link>https://powershellmagazine.com/2015/05/14/powershell-dsc-for-linux-released/</link>
       <pubDate>Thu, 14 May 2015 22:29:50 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/05/14/powershell-dsc-for-linux-released/</guid>
+      <guid>https://powershellmagazine.com/2015/05/14/powershell-dsc-for-linux-released/</guid>
       <description>The day that people who love both PowerShell DSC and xplat solutions where looking for had finally arrived. Last week the first version of PowerShell DSC for Linux was released.</description>
     </item>
     
     <item>
       <title>OMI with WSMan over HTTPS: Done right.</title>
-      <link>https://psmag.github.io/2015/03/23/omi-with-wsman-over-https-done-right/</link>
+      <link>https://powershellmagazine.com/2015/03/23/omi-with-wsman-over-https-done-right/</link>
       <pubDate>Mon, 23 Mar 2015 16:00:02 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/03/23/omi-with-wsman-over-https-done-right/</guid>
+      <guid>https://powershellmagazine.com/2015/03/23/omi-with-wsman-over-https-done-right/</guid>
       <description>When you install OMI for the first time, a pair of keys is generated for you. When an automated process is used, the only option that will “just work” is to generate self-signed certificate.</description>
     </item>
     
     <item>
       <title>Working with PowerShell DSC for Linux, part 5</title>
-      <link>https://psmag.github.io/2015/02/27/working-with-powershell-dsc-for-linux-part-5/</link>
+      <link>https://powershellmagazine.com/2015/02/27/working-with-powershell-dsc-for-linux-part-5/</link>
       <pubDate>Fri, 27 Feb 2015 17:00:20 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/02/27/working-with-powershell-dsc-for-linux-part-5/</guid>
+      <guid>https://powershellmagazine.com/2015/02/27/working-with-powershell-dsc-for-linux-part-5/</guid>
       <description>Managing Linux can become a challenge if you don’t have some way of distributing credentials. There are several options: joining Active Directory domain and using shared credentials for both Linux and Windows, using other LDAP implementation to authenticate or distribute users/groups using Configuration Management tools.</description>
     </item>
     
     <item>
       <title>Working with PowerShell DSC for Linux, part 4</title>
-      <link>https://psmag.github.io/2015/02/26/working-with-powershell-dsc-for-linux-part-4/</link>
+      <link>https://powershellmagazine.com/2015/02/26/working-with-powershell-dsc-for-linux-part-4/</link>
       <pubDate>Thu, 26 Feb 2015 17:00:57 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/02/26/working-with-powershell-dsc-for-linux-part-4/</guid>
+      <guid>https://powershellmagazine.com/2015/02/26/working-with-powershell-dsc-for-linux-part-4/</guid>
       <description>CTP of Linux DSC that was released last year has only five resources: nxService, nxFile, nxUser, nxGroup, and nxScript. Things like package management, network configuration, firewall settings, jobs scheduled in crontab don’t have coverage in resources.</description>
     </item>
     
     <item>
       <title>Working with PowerShell DSC for Linux, part 3</title>
-      <link>https://psmag.github.io/2015/02/25/working-with-powershell-dsc-for-linux-part-3/</link>
+      <link>https://powershellmagazine.com/2015/02/25/working-with-powershell-dsc-for-linux-part-3/</link>
       <pubDate>Wed, 25 Feb 2015 17:00:54 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/02/25/working-with-powershell-dsc-for-linux-part-3/</guid>
+      <guid>https://powershellmagazine.com/2015/02/25/working-with-powershell-dsc-for-linux-part-3/</guid>
       <description>Linux is a system that stores configuration in text files. As a result, nxFile should be considered one of two most powerful resources offered in the CTP release.</description>
     </item>
     
     <item>
       <title>Working with PowerShell DSC for Linux, part 2</title>
-      <link>https://psmag.github.io/2015/02/23/working-with-powershell-dsc-for-linux-part-2/</link>
+      <link>https://powershellmagazine.com/2015/02/23/working-with-powershell-dsc-for-linux-part-2/</link>
       <pubDate>Mon, 23 Feb 2015 17:00:34 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/02/23/working-with-powershell-dsc-for-linux-part-2/</guid>
+      <guid>https://powershellmagazine.com/2015/02/23/working-with-powershell-dsc-for-linux-part-2/</guid>
       <description>PowerShell DSC for Linux caught my attention immediately after it was announced. Being able to control configuration of Linux box with pure PowerShell code is huge for anybody who is interested in cross-platform solutions build in PowerShell.</description>
     </item>
     
     <item>
       <title>Working with PowerShell DSC for Linux, part 1</title>
-      <link>https://psmag.github.io/2015/02/21/working-with-powershell-dsc-for-linux-part-1/</link>
+      <link>https://powershellmagazine.com/2015/02/21/working-with-powershell-dsc-for-linux-part-1/</link>
       <pubDate>Sun, 22 Feb 2015 00:15:33 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/02/21/working-with-powershell-dsc-for-linux-part-1/</guid>
+      <guid>https://powershellmagazine.com/2015/02/21/working-with-powershell-dsc-for-linux-part-1/</guid>
       <description>In the first part of this series, we covered the basis–how to get Desired State Configuration to do what the name promises: keep desired state consistent.</description>
     </item>
     
     <item>
       <title>Installing and configuring DSC for Linux</title>
-      <link>https://psmag.github.io/2014/05/21/installing-and-configuring-dsc-for-linux/</link>
+      <link>https://powershellmagazine.com/2014/05/21/installing-and-configuring-dsc-for-linux/</link>
       <pubDate>Wed, 21 May 2014 16:00:29 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/05/21/installing-and-configuring-dsc-for-linux/</guid>
+      <guid>https://powershellmagazine.com/2014/05/21/installing-and-configuring-dsc-for-linux/</guid>
       <description>[Update 1: 5/23/2014] Added pre-requisite install commands for Oracle Linux
 I am sure you are aware of the Microsoft’s announcement of the CTP release of DSC for Linux.</description>
     </item>
     
     <item>
       <title>Microsoft announced the CTP release of Windows PowerShell Desired State Configuration for Linux</title>
-      <link>https://psmag.github.io/2014/05/19/microsoft-announced-the-ctp-release-of-windows-powershell-desired-state-configuration-for-linux/</link>
+      <link>https://powershellmagazine.com/2014/05/19/microsoft-announced-the-ctp-release-of-windows-powershell-desired-state-configuration-for-linux/</link>
       <pubDate>Tue, 20 May 2014 02:52:52 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/05/19/microsoft-announced-the-ctp-release-of-windows-powershell-desired-state-configuration-for-linux/</guid>
+      <guid>https://powershellmagazine.com/2014/05/19/microsoft-announced-the-ctp-release-of-windows-powershell-desired-state-configuration-for-linux/</guid>
       <description>When I was speaking at DevOpsDays India and demonstrating Windows PowerShel DSC (6 months ago), several people in the room had a laugh as I’d mentioned Microsoft and OpenSource.</description>
     </item>
     

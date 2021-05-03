@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tabexpansion2 on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/tabexpansion2/</link>
+    <link>https://powershellmagazine.com/tags/tabexpansion2/</link>
     <description>Recent content in tabexpansion2 on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 29 Nov 2012 17:00:50 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/tabexpansion2/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/tabexpansion2/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Using custom argument completers in PowerShell 3.0</title>
-      <link>https://psmag.github.io/2012/11/29/using-custom-argument-completers-in-powershell-3-0/</link>
+      <link>https://powershellmagazine.com/2012/11/29/using-custom-argument-completers-in-powershell-3-0/</link>
       <pubDate>Thu, 29 Nov 2012 17:00:50 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/11/29/using-custom-argument-completers-in-powershell-3-0/</guid>
+      <guid>https://powershellmagazine.com/2012/11/29/using-custom-argument-completers-in-powershell-3-0/</guid>
       <description>Custom argument completers is a new feature in PowerShell 3.0 which makes it possible to define your own argument values for parameters.</description>
     </item>
     

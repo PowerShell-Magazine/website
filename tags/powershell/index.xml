@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PowerShell on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/powershell/</link>
+    <link>https://powershellmagazine.com/tags/powershell/</link>
     <description>Recent content in PowerShell on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 03 Apr 2014 09:40:19 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Is native Windows PowerShell support coming to Visual Studio?</title>
-      <link>https://psmag.github.io/2014/04/03/is-native-windows-powershell-support-coming-to-visual-studio/</link>
+      <link>https://powershellmagazine.com/2014/04/03/is-native-windows-powershell-support-coming-to-visual-studio/</link>
       <pubDate>Thu, 03 Apr 2014 09:40:19 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/04/03/is-native-windows-powershell-support-coming-to-visual-studio/</guid>
+      <guid>https://powershellmagazine.com/2014/04/03/is-native-windows-powershell-support-coming-to-visual-studio/</guid>
       <description>Not completely yet. But, the Visual Studio 2013 Update 2 RC release seems to be a step in that direction. This update includes PowerShell syntax highlighting in the Visual Studio Editor.</description>
     </item>
     
     <item>
       <title>#PSTip Setting VM Bandwidth Management QoS in Hyper-V using PowerShell</title>
-      <link>https://psmag.github.io/2014/03/10/pstip-setting-vm-bandwidth-management-qos-in-hyper-v-using-powershell/</link>
+      <link>https://powershellmagazine.com/2014/03/10/pstip-setting-vm-bandwidth-management-qos-in-hyper-v-using-powershell/</link>
       <pubDate>Mon, 10 Mar 2014 18:00:10 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/03/10/pstip-setting-vm-bandwidth-management-qos-in-hyper-v-using-powershell/</guid>
+      <guid>https://powershellmagazine.com/2014/03/10/pstip-setting-vm-bandwidth-management-qos-in-hyper-v-using-powershell/</guid>
       <description>Note: This tip requires PowerShell 3.0 or above.
 The bandwidth utilized by a VM (QoS = Quality of Service ) can be controlled via special parameters of the virtual network card for a given VM.</description>
     </item>
     
     <item>
       <title>#PSTip CompareTo() method for comparing strings!</title>
-      <link>https://psmag.github.io/2012/10/24/pstip-different-method-to-compare-strings/</link>
+      <link>https://powershellmagazine.com/2012/10/24/pstip-different-method-to-compare-strings/</link>
       <pubDate>Wed, 24 Oct 2012 18:00:41 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/10/24/pstip-different-method-to-compare-strings/</guid>
+      <guid>https://powershellmagazine.com/2012/10/24/pstip-different-method-to-compare-strings/</guid>
       <description>There are certainly many methods to compare strings in PowerShell.
 Today, I will show you one of the methods that I recently came across — a less known method, maybe.</description>
     </item>

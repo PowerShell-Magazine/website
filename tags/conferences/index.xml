@@ -2,285 +2,285 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Conferences on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/conferences/</link>
+    <link>https://powershellmagazine.com/tags/conferences/</link>
     <description>Recent content in Conferences on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 12 Mar 2020 10:43:51 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/conferences/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/conferences/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>PowerShell and DevOps Conference Asia 2020</title>
-      <link>https://psmag.github.io/2020/03/12/powershell-and-devops-conference-asia-2020/</link>
+      <link>https://powershellmagazine.com/2020/03/12/powershell-and-devops-conference-asia-2020/</link>
       <pubDate>Thu, 12 Mar 2020 10:43:51 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2020/03/12/powershell-and-devops-conference-asia-2020/</guid>
+      <guid>https://powershellmagazine.com/2020/03/12/powershell-and-devops-conference-asia-2020/</guid>
       <description>PowerShell Conference Asia 2019 was held in Bangalore (India). It was such a great event and fun hosting it here. For the first time in the history of PowerShell Conference Asia we had 220+ PowerShell lovers at the conference.</description>
     </item>
     
     <item>
       <title>PowerShell Conference Europe 2020</title>
-      <link>https://psmag.github.io/2020/01/30/powershell-conference-europe-2020/</link>
+      <link>https://powershellmagazine.com/2020/01/30/powershell-conference-europe-2020/</link>
       <pubDate>Thu, 30 Jan 2020 19:53:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2020/01/30/powershell-conference-europe-2020/</guid>
+      <guid>https://powershellmagazine.com/2020/01/30/powershell-conference-europe-2020/</guid>
       <description>June 2, 2020, PowerShell Conference Europe opens for the 5th time in Hannover, Germany. Here is a quick walkthrough for this year’s event.</description>
     </item>
     
     <item>
       <title>Inviting Women In Tech to PowerShell Conference Asia</title>
-      <link>https://psmag.github.io/2019/07/10/inviting-women-in-tech-to-powershell-conference-asia/</link>
+      <link>https://powershellmagazine.com/2019/07/10/inviting-women-in-tech-to-powershell-conference-asia/</link>
       <pubDate>Wed, 10 Jul 2019 14:21:18 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2019/07/10/inviting-women-in-tech-to-powershell-conference-asia/</guid>
+      <guid>https://powershellmagazine.com/2019/07/10/inviting-women-in-tech-to-powershell-conference-asia/</guid>
       <description>I have been talking to several automation engineers (for a vacant position) and realized there are many women who have been doing some great work in the area of infrastructure automation.</description>
     </item>
     
     <item>
       <title>PowerShell Conference Asia – Early Bird Ticket Sales</title>
-      <link>https://psmag.github.io/2019/04/09/powershell-conference-asia-early-bird-ticket-sales/</link>
+      <link>https://powershellmagazine.com/2019/04/09/powershell-conference-asia-early-bird-ticket-sales/</link>
       <pubDate>Tue, 09 Apr 2019 12:34:26 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2019/04/09/powershell-conference-asia-early-bird-ticket-sales/</guid>
+      <guid>https://powershellmagazine.com/2019/04/09/powershell-conference-asia-early-bird-ticket-sales/</guid>
       <description>PowerShell Conference Asia 2019 edition will be in Bangalore, India. We closed our CFP towards end of February and finalized (partially) a great set of International PowerShell Experts.</description>
     </item>
     
     <item>
       <title>#PowerShell Conference Asia 2019 – Call for papers!</title>
-      <link>https://psmag.github.io/2018/12/31/powershell-conference-asia-2019-call-for-papers-2/</link>
+      <link>https://powershellmagazine.com/2018/12/31/powershell-conference-asia-2019-call-for-papers-2/</link>
       <pubDate>Tue, 01 Jan 2019 03:32:02 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2018/12/31/powershell-conference-asia-2019-call-for-papers-2/</guid>
+      <guid>https://powershellmagazine.com/2018/12/31/powershell-conference-asia-2019-call-for-papers-2/</guid>
       <description>We announced back in October that the next edition of PowerShell Conference Asia will be hosted in Bangalore (India) and is scheduled to happen from 19th to 21st September 2019.</description>
     </item>
     
     <item>
       <title>#PowerShell Conference Asia 2018 #PSConfAsia</title>
-      <link>https://psmag.github.io/2018/08/14/powershell-conference-asia-2018-psconfasia/</link>
+      <link>https://powershellmagazine.com/2018/08/14/powershell-conference-asia-2018-psconfasia/</link>
       <pubDate>Tue, 14 Aug 2018 11:56:44 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2018/08/14/powershell-conference-asia-2018-psconfasia/</guid>
+      <guid>https://powershellmagazine.com/2018/08/14/powershell-conference-asia-2018-psconfasia/</guid>
       <description>The PowerShell Conference Asia resumes for its 4th year this October, bringing speakers from Asia and around the world to deliver in-depth PowerShell and DevOps sessions.</description>
     </item>
     
     <item>
       <title>#PSConfEU Agenda as a PowerShell Drive using #SHiPS</title>
-      <link>https://psmag.github.io/2018/04/03/psconfeu-agenda-as-a-powershell-drive-using-ships/</link>
+      <link>https://powershellmagazine.com/2018/04/03/psconfeu-agenda-as-a-powershell-drive-using-ships/</link>
       <pubDate>Tue, 03 Apr 2018 16:24:41 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2018/04/03/psconfeu-agenda-as-a-powershell-drive-using-ships/</guid>
+      <guid>https://powershellmagazine.com/2018/04/03/psconfeu-agenda-as-a-powershell-drive-using-ships/</guid>
       <description>The SHiPS module has several use cases with structured data. I have written a few proof-of-concept modules using SHiPS to understand how it works and try out different design patterns.</description>
     </item>
     
     <item>
       <title>PowerShell Conference EU 2018</title>
-      <link>https://psmag.github.io/2018/02/09/powershell-conference-eu-2018/</link>
+      <link>https://powershellmagazine.com/2018/02/09/powershell-conference-eu-2018/</link>
       <pubDate>Fri, 09 Feb 2018 14:51:40 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2018/02/09/powershell-conference-eu-2018/</guid>
+      <guid>https://powershellmagazine.com/2018/02/09/powershell-conference-eu-2018/</guid>
       <description>The US-based “PowerShell and DevOps Global Summit” sold out in record time this year, and the European “PowerShell Conference EU” (psconf.</description>
     </item>
     
     <item>
       <title>PowerShell Conference EU 2017 – Speakers and Sessions</title>
-      <link>https://psmag.github.io/2017/02/02/powershell-conference-eu-2017-speakers-and-sessions/</link>
+      <link>https://powershellmagazine.com/2017/02/02/powershell-conference-eu-2017-speakers-and-sessions/</link>
       <pubDate>Thu, 02 Feb 2017 22:43:28 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2017/02/02/powershell-conference-eu-2017-speakers-and-sessions/</guid>
+      <guid>https://powershellmagazine.com/2017/02/02/powershell-conference-eu-2017-speakers-and-sessions/</guid>
       <description>Modern administrators are responsible for business-critical automation, influence IT architectural design, and are a crucial part of corporate security both in daily operations and in conceptual planning.</description>
     </item>
     
     <item>
       <title>Announcing Registrations – PowerShell Conference Asia 2016, Singapore</title>
-      <link>https://psmag.github.io/2016/08/15/announcing-regisrations-powershell-conference-asia-2016-singapore/</link>
+      <link>https://powershellmagazine.com/2016/08/15/announcing-regisrations-powershell-conference-asia-2016-singapore/</link>
       <pubDate>Mon, 15 Aug 2016 16:00:27 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/08/15/announcing-regisrations-powershell-conference-asia-2016-singapore/</guid>
+      <guid>https://powershellmagazine.com/2016/08/15/announcing-regisrations-powershell-conference-asia-2016-singapore/</guid>
       <description>PowerShell Conference Asia is back. After a successful last year, we are back with a really exciting line up of sessions and speakers.</description>
     </item>
     
     <item>
       <title>From PSConfEU 2016 – Session Recordings</title>
-      <link>https://psmag.github.io/2016/05/13/from-psconfeu-2016-session-recordings/</link>
+      <link>https://powershellmagazine.com/2016/05/13/from-psconfeu-2016-session-recordings/</link>
       <pubDate>Fri, 13 May 2016 15:43:14 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/05/13/from-psconfeu-2016-session-recordings/</guid>
+      <guid>https://powershellmagazine.com/2016/05/13/from-psconfeu-2016-session-recordings/</guid>
       <description>Session recordings – both videos and screencasts – from PowerShell Conference Europe 2016 are now available. It may be a couple of days before all sessions appear in the playlist.</description>
     </item>
     
     <item>
       <title>PowerShell Conference Europe Speakers and Sessions</title>
-      <link>https://psmag.github.io/2016/01/12/powershell-conference-europe-speakers-and-sessions/</link>
+      <link>https://powershellmagazine.com/2016/01/12/powershell-conference-europe-speakers-and-sessions/</link>
       <pubDate>Tue, 12 Jan 2016 12:28:44 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/01/12/powershell-conference-europe-speakers-and-sessions/</guid>
+      <guid>https://powershellmagazine.com/2016/01/12/powershell-conference-europe-speakers-and-sessions/</guid>
       <description>PowerShell is not just a simple little script automation language anymore. It has transitioned into true DNA for Microsoft server technology, and with workflows and DSC forms the platform for “infrastructure as code”.</description>
     </item>
     
     <item>
       <title>PowerShell Conference EU 2016 – Registration Starts Now</title>
-      <link>https://psmag.github.io/2015/11/02/powershell-conference-eu-2016-registration-starts-now/</link>
+      <link>https://powershellmagazine.com/2015/11/02/powershell-conference-eu-2016-registration-starts-now/</link>
       <pubDate>Mon, 02 Nov 2015 07:30:27 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/11/02/powershell-conference-eu-2016-registration-starts-now/</guid>
+      <guid>https://powershellmagazine.com/2015/11/02/powershell-conference-eu-2016-registration-starts-now/</guid>
       <description>In 2016, the newly minted “PowerShell Conference EU” will be hosted in Hannover, Germany, and may well become the largest PowerShell conference world-wide with its 160 delegates and 30 speakers.</description>
     </item>
     
     <item>
       <title>Summary from PowerShell Summit Europe 2015</title>
-      <link>https://psmag.github.io/2015/09/23/summary-from-powershell-summit-europe-2015/</link>
+      <link>https://powershellmagazine.com/2015/09/23/summary-from-powershell-summit-europe-2015/</link>
       <pubDate>Wed, 23 Sep 2015 16:00:39 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/09/23/summary-from-powershell-summit-europe-2015/</guid>
+      <guid>https://powershellmagazine.com/2015/09/23/summary-from-powershell-summit-europe-2015/</guid>
       <description>The PowerShell Summit Europe 2015 was arranged in Stockholm, Sweden on September 14-16. This was a unique opportunity to meet community people you mostly know from Twitter and other social media, as well as product group members from Microsoft.</description>
     </item>
     
     <item>
       <title>PowerShell Conference Asia 2015 – Get-Here:  Travel Tips</title>
-      <link>https://psmag.github.io/2015/06/30/powershell-conference-asia-2015-get-here-travel-tips/</link>
+      <link>https://powershellmagazine.com/2015/06/30/powershell-conference-asia-2015-get-here-travel-tips/</link>
       <pubDate>Tue, 30 Jun 2015 17:45:04 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/06/30/powershell-conference-asia-2015-get-here-travel-tips/</guid>
+      <guid>https://powershellmagazine.com/2015/06/30/powershell-conference-asia-2015-get-here-travel-tips/</guid>
       <description>As the PowerShell Conference draws closer, people have been asking a number of travel questions, so we wanted to share some travel tips.</description>
     </item>
     
     <item>
       <title>PowerShell Conference Asia 2015 Update – Registration is Open!</title>
-      <link>https://psmag.github.io/2015/06/17/powershell-conference-asia-2015-update-registration-is-open/</link>
+      <link>https://powershellmagazine.com/2015/06/17/powershell-conference-asia-2015-update-registration-is-open/</link>
       <pubDate>Wed, 17 Jun 2015 16:28:36 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/06/17/powershell-conference-asia-2015-update-registration-is-open/</guid>
+      <guid>https://powershellmagazine.com/2015/06/17/powershell-conference-asia-2015-update-registration-is-open/</guid>
       <description>PowerShell Conference Asia 2015 is coming up fast so here’s a quick update on all the incredible speakers we’ve got lined up already.</description>
     </item>
     
     <item>
       <title>PowerShell Conference Asia, 2015 – call for speakers and sponsors</title>
-      <link>https://psmag.github.io/2015/04/06/powershell-conference-asia-2015-call-for-speakers-and-sponsors/</link>
+      <link>https://powershellmagazine.com/2015/04/06/powershell-conference-asia-2015-call-for-speakers-and-sponsors/</link>
       <pubDate>Mon, 06 Apr 2015 16:38:10 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/04/06/powershell-conference-asia-2015-call-for-speakers-and-sponsors/</guid>
+      <guid>https://powershellmagazine.com/2015/04/06/powershell-conference-asia-2015-call-for-speakers-and-sponsors/</guid>
       <description>Exciting times! On September 18-19 2015, we at the Singapore PowerShell User Group are planning to host the first PowerShell Conference Asia.</description>
     </item>
     
     <item>
       <title>PowerShell Community Conference in Germany</title>
-      <link>https://psmag.github.io/2015/01/13/powershell-community-conference-in-germany/</link>
+      <link>https://powershellmagazine.com/2015/01/13/powershell-community-conference-in-germany/</link>
       <pubDate>Tue, 13 Jan 2015 15:00:26 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/01/13/powershell-community-conference-in-germany/</guid>
+      <guid>https://powershellmagazine.com/2015/01/13/powershell-community-conference-in-germany/</guid>
       <description>The heat is on! The 3rd annual German PowerShell Community conference is taking place in Essen/Ruhr April 22 and 23. Hosted on the venue of the Philharmonics in Essen, Germany, twelve international speakers celebrate a very special and very passionate PowerShell happening with you.</description>
     </item>
     
     <item>
       <title>PowerShell Magazine teams up again with the TechMentor conference</title>
-      <link>https://psmag.github.io/2013/06/03/powershell-magazine-teams-up-again-with-the-techmentor-conference/</link>
+      <link>https://powershellmagazine.com/2013/06/03/powershell-magazine-teams-up-again-with-the-techmentor-conference/</link>
       <pubDate>Mon, 03 Jun 2013 16:00:52 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/06/03/powershell-magazine-teams-up-again-with-the-techmentor-conference/</guid>
+      <guid>https://powershellmagazine.com/2013/06/03/powershell-magazine-teams-up-again-with-the-techmentor-conference/</guid>
       <description>We are happy to announce that PowerShell Magazine is an “Alliance Media Partner” for the TechMentor Las Vegas conference.
 Surrounded by your fellow IT professionals, TechMentor provides you with immediately usable IT education that will keep you relevant in the workforce.</description>
     </item>
     
     <item>
       <title>TechEd North America 2013 sessions you don’t want to miss</title>
-      <link>https://psmag.github.io/2013/06/01/teched-north-america-2013-sessions-you-dont-want-to-miss/</link>
+      <link>https://powershellmagazine.com/2013/06/01/teched-north-america-2013-sessions-you-dont-want-to-miss/</link>
       <pubDate>Sat, 01 Jun 2013 13:43:46 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/06/01/teched-north-america-2013-sessions-you-dont-want-to-miss/</guid>
+      <guid>https://powershellmagazine.com/2013/06/01/teched-north-america-2013-sessions-you-dont-want-to-miss/</guid>
       <description>We are all eager to see what Microsoft will announce at the TechEd North America 2013 conference that starts on Monday.</description>
     </item>
     
     <item>
       <title>PowerShell Summit 2013 session recordings</title>
-      <link>https://psmag.github.io/2013/05/08/powershell-summit-2013-session-recordings/</link>
+      <link>https://powershellmagazine.com/2013/05/08/powershell-summit-2013-session-recordings/</link>
       <pubDate>Wed, 08 May 2013 13:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/05/08/powershell-summit-2013-session-recordings/</guid>
+      <guid>https://powershellmagazine.com/2013/05/08/powershell-summit-2013-session-recordings/</guid>
       <description>Haven’t had the chance to attend the PowerShell Summit? You can now watch the recordings on YouTube thanks to Aaron Hoover, one of the great PowerShell enthusiasts who attended this successful PowerShell event.</description>
     </item>
     
     <item>
       <title>PowerShell Summit 2013: Build Your Demo Environment or a Test Lab with Windows PowerShell</title>
-      <link>https://psmag.github.io/2013/04/30/powershell-summit-2013-build-your-demo-environment-or-a-test-lab-with-windows-powershell/</link>
+      <link>https://powershellmagazine.com/2013/04/30/powershell-summit-2013-build-your-demo-environment-or-a-test-lab-with-windows-powershell/</link>
       <pubDate>Tue, 30 Apr 2013 20:45:10 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/04/30/powershell-summit-2013-build-your-demo-environment-or-a-test-lab-with-windows-powershell/</guid>
+      <guid>https://powershellmagazine.com/2013/04/30/powershell-summit-2013-build-your-demo-environment-or-a-test-lab-with-windows-powershell/</guid>
       <description>I’ve had a pleasure to speak at PowerShell Summit North America 2013. I would like to thank the organizers, all attendees–amazing, passionate PowerShellers who made this event such a huge success, Microsoft and PowerShell team, and a few generous individuals who helped me to be a part of an unforgettable experience.</description>
     </item>
     
     <item>
       <title>PowerShell conference in Germany</title>
-      <link>https://psmag.github.io/2013/01/09/powershell-conference-in-germany/</link>
+      <link>https://powershellmagazine.com/2013/01/09/powershell-conference-in-germany/</link>
       <pubDate>Wed, 09 Jan 2013 09:18:25 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/01/09/powershell-conference-in-germany/</guid>
+      <guid>https://powershellmagazine.com/2013/01/09/powershell-conference-in-germany/</guid>
       <description>In the scenic setting of the Museum for Industrial and Social History in Oberhausen, Germany, the first German PowerShell Community Conference will take place on April 10 and 11, 2013.</description>
     </item>
     
     <item>
       <title>Day 3 From the PowerShell Deep Dive at TEC 2012</title>
-      <link>https://psmag.github.io/2012/05/05/day-3-from-the-powershell-deep-dive-at-tec-2012/</link>
+      <link>https://powershellmagazine.com/2012/05/05/day-3-from-the-powershell-deep-dive-at-tec-2012/</link>
       <pubDate>Sat, 05 May 2012 12:25:54 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/05/05/day-3-from-the-powershell-deep-dive-at-tec-2012/</guid>
+      <guid>https://powershellmagazine.com/2012/05/05/day-3-from-the-powershell-deep-dive-at-tec-2012/</guid>
       <description>On the third and final day of the PowerShell Deep Dive, the great content continued to roll.
 The morning started with a bang when Richard Siddaway opened up with an overview of CDXML and how, using an XML configuration file, one can generate cmdlets from a WMI interface.</description>
     </item>
     
     <item>
       <title>Day 2 From the PowerShell Deep Dive at TEC 2012</title>
-      <link>https://psmag.github.io/2012/05/03/day-2-from-the-powershell-deep-dive-at-tec-2012/</link>
+      <link>https://powershellmagazine.com/2012/05/03/day-2-from-the-powershell-deep-dive-at-tec-2012/</link>
       <pubDate>Thu, 03 May 2012 04:07:46 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/05/03/day-2-from-the-powershell-deep-dive-at-tec-2012/</guid>
+      <guid>https://powershellmagazine.com/2012/05/03/day-2-from-the-powershell-deep-dive-at-tec-2012/</guid>
       <description>On the second day of the PowerShell Deep Dive, we had another great lineup of presentations.
 The day started with Jim Truher describing a technique for creating formatting files for using Format-Custom.</description>
     </item>
     
     <item>
       <title>Day 1 From the PowerShell Deep Dive at TEC 2012</title>
-      <link>https://psmag.github.io/2012/05/01/day-1-from-the-powershell-deep-dive-at-tec-2012/</link>
+      <link>https://powershellmagazine.com/2012/05/01/day-1-from-the-powershell-deep-dive-at-tec-2012/</link>
       <pubDate>Tue, 01 May 2012 15:44:05 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/05/01/day-1-from-the-powershell-deep-dive-at-tec-2012/</guid>
+      <guid>https://powershellmagazine.com/2012/05/01/day-1-from-the-powershell-deep-dive-at-tec-2012/</guid>
       <description>Day 1 has wrapped up on the PowerShell Deep Dive and we are getting ready to start Day 2. Day 1 was jam packed with PowerShell goodness.</description>
     </item>
     
     <item>
       <title>Windows PowerShell sessions from Nordic Infrastructure Conference 2012 available</title>
-      <link>https://psmag.github.io/2012/01/29/windows-powershell-sessions-from-nordic-infrastructure-conference-2012-available/</link>
+      <link>https://powershellmagazine.com/2012/01/29/windows-powershell-sessions-from-nordic-infrastructure-conference-2012-available/</link>
       <pubDate>Sun, 29 Jan 2012 14:29:01 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/01/29/windows-powershell-sessions-from-nordic-infrastructure-conference-2012-available/</guid>
+      <guid>https://powershellmagazine.com/2012/01/29/windows-powershell-sessions-from-nordic-infrastructure-conference-2012-available/</guid>
       <description>For the first time the Nordic Infrastructure Conference (NIC) was held in Oslo, Norway on January 13th – 14th. More than 30 speakers held close to 60 sessions in two days divided into the tracks Security, Virtualization &amp;amp; Cloud, System Management, Unified Communication and Windows 8.</description>
     </item>
     
     <item>
       <title>It’s Time For Another PowerShell Deep Dive!</title>
-      <link>https://psmag.github.io/2012/01/27/its-time-for-another-powershell-deep-dive/</link>
+      <link>https://powershellmagazine.com/2012/01/27/its-time-for-another-powershell-deep-dive/</link>
       <pubDate>Fri, 27 Jan 2012 19:30:29 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/01/27/its-time-for-another-powershell-deep-dive/</guid>
+      <guid>https://powershellmagazine.com/2012/01/27/its-time-for-another-powershell-deep-dive/</guid>
       <description>The PowerShell Deep Dive is going to be at The Experts Conference USA again this year! The event is being held in San Diego, CA from April 29 – May 2.</description>
     </item>
     
     <item>
       <title>PowerShell Magazine at the BUILD conference</title>
-      <link>https://psmag.github.io/2011/09/13/powershell-magazine-at-the-build-conference/</link>
+      <link>https://powershellmagazine.com/2011/09/13/powershell-magazine-at-the-build-conference/</link>
       <pubDate>Mon, 12 Sep 2011 18:52:46 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/09/13/powershell-magazine-at-the-build-conference/</guid>
+      <guid>https://powershellmagazine.com/2011/09/13/powershell-magazine-at-the-build-conference/</guid>
       <description>Keith Hill, a PowerShell MVP and the brain behind PowerShell Community Extensions, agreed to get you all the PowerShell information live from the BUILD conference.</description>
     </item>
     
     <item>
       <title>News: PowerShell Deep Dive session at TEC2011</title>
-      <link>https://psmag.github.io/2011/09/03/powershell-deep-dive-session-abstracts/</link>
+      <link>https://powershellmagazine.com/2011/09/03/powershell-deep-dive-session-abstracts/</link>
       <pubDate>Sat, 03 Sep 2011 11:22:46 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/09/03/powershell-deep-dive-session-abstracts/</guid>
+      <guid>https://powershellmagazine.com/2011/09/03/powershell-deep-dive-session-abstracts/</guid>
       <description>The Experts Conference 2011, Europe will be hosting the PowerShell Deep Dive. The PowerShell team has announced the first 8 session abstracts for the PowerShell Deep Dive in Frankfurt.</description>
     </item>
     

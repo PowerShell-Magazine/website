@@ -2,241 +2,241 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Learning PowerShell on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/learning-powershell/</link>
+    <link>https://powershellmagazine.com/categories/learning-powershell/</link>
     <description>Recent content in Learning PowerShell on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 25 Jul 2014 16:00:19 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/learning-powershell/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/learning-powershell/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>How braces and semicolons became a part of my life</title>
-      <link>https://psmag.github.io/2014/07/25/how-braces-and-semicolons-became-a-part-of-my-life/</link>
+      <link>https://powershellmagazine.com/2014/07/25/how-braces-and-semicolons-became-a-part-of-my-life/</link>
       <pubDate>Fri, 25 Jul 2014 16:00:19 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/25/how-braces-and-semicolons-became-a-part-of-my-life/</guid>
+      <guid>https://powershellmagazine.com/2014/07/25/how-braces-and-semicolons-became-a-part-of-my-life/</guid>
       <description>A mishandled case, an irate customer and a top box (i.e. exceeded customer expectations in a post case resolution survey) at the climax.</description>
     </item>
     
     <item>
       <title>How I’ve started loving PowerShell</title>
-      <link>https://psmag.github.io/2014/07/23/how-ive-started-loving-powershell/</link>
+      <link>https://powershellmagazine.com/2014/07/23/how-ive-started-loving-powershell/</link>
       <pubDate>Wed, 23 Jul 2014 16:00:57 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/23/how-ive-started-loving-powershell/</guid>
+      <guid>https://powershellmagazine.com/2014/07/23/how-ive-started-loving-powershell/</guid>
       <description>So, it’s my turn to present myself!
 I’m Fabien, 32 years old and I started using PowerShell in 2008 because I’m a lazy guy.</description>
     </item>
     
     <item>
       <title>Are you still thinking about getting started with PowerShell?</title>
-      <link>https://psmag.github.io/2013/12/30/are-you-still-thinking-about-getting-started-with-powershell/</link>
+      <link>https://powershellmagazine.com/2013/12/30/are-you-still-thinking-about-getting-started-with-powershell/</link>
       <pubDate>Mon, 30 Dec 2013 17:00:33 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/12/30/are-you-still-thinking-about-getting-started-with-powershell/</guid>
+      <guid>https://powershellmagazine.com/2013/12/30/are-you-still-thinking-about-getting-started-with-powershell/</guid>
       <description>At present, Windows PowerShell is in version 4.0. It came a long way since its initial release back in 2006. It is today called a distributed automation engine, command-line shell, and scripting language.</description>
     </item>
     
     <item>
       <title>Preparing for a PowerShell interview!</title>
-      <link>https://psmag.github.io/2013/07/15/preparing-for-a-powershell-interview/</link>
+      <link>https://powershellmagazine.com/2013/07/15/preparing-for-a-powershell-interview/</link>
       <pubDate>Mon, 15 Jul 2013 16:00:29 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/07/15/preparing-for-a-powershell-interview/</guid>
+      <guid>https://powershellmagazine.com/2013/07/15/preparing-for-a-powershell-interview/</guid>
       <description>Recently, I was interviewing candidates for a couple of PowerShell automation vacancies. Being a PowerShell enthusiast, I, naturally, focused on understanding how well these candidates understand PowerShell and how well they can solve some problems on the fly.</description>
     </item>
     
     <item>
       <title>Getting PowerShelled in 10 Minutes</title>
-      <link>https://psmag.github.io/2012/05/02/getting-powershelled-in-10-minutes/</link>
+      <link>https://powershellmagazine.com/2012/05/02/getting-powershelled-in-10-minutes/</link>
       <pubDate>Wed, 02 May 2012 18:00:50 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/05/02/getting-powershelled-in-10-minutes/</guid>
+      <guid>https://powershellmagazine.com/2012/05/02/getting-powershelled-in-10-minutes/</guid>
       <description>Windows PowerShell is an extremely powerful scripting language, and when you first put your hands on PowerShell, you may get – frustrated!</description>
     </item>
     
     <item>
       <title>PowerShell: The Great Problem Solver</title>
-      <link>https://psmag.github.io/2012/03/28/powershell-the-great-problem-solver/</link>
+      <link>https://powershellmagazine.com/2012/03/28/powershell-the-great-problem-solver/</link>
       <pubDate>Wed, 28 Mar 2012 18:00:58 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/03/28/powershell-the-great-problem-solver/</guid>
+      <guid>https://powershellmagazine.com/2012/03/28/powershell-the-great-problem-solver/</guid>
       <description>I began a love affair with scripting eight years ago. Fairly new to IT, I took every training opportunity I could.</description>
     </item>
     
     <item>
       <title>Old Habits Die Hard</title>
-      <link>https://psmag.github.io/2012/03/07/old-habits-die-hard/</link>
+      <link>https://powershellmagazine.com/2012/03/07/old-habits-die-hard/</link>
       <pubDate>Wed, 07 Mar 2012 19:00:57 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/03/07/old-habits-die-hard/</guid>
+      <guid>https://powershellmagazine.com/2012/03/07/old-habits-die-hard/</guid>
       <description>So, finally I’m getting around to write down how I plunged into PowerShell scripting…
 First of all, I’ll begin with my core statement for those who are still reluctant to learn PowerShell: don’t hesitate anymore!</description>
     </item>
     
     <item>
       <title>Why did I start learning PowerShell</title>
-      <link>https://psmag.github.io/2012/01/16/why-did-i-start-learning-powershell/</link>
+      <link>https://powershellmagazine.com/2012/01/16/why-did-i-start-learning-powershell/</link>
       <pubDate>Mon, 16 Jan 2012 19:00:21 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/01/16/why-did-i-start-learning-powershell/</guid>
+      <guid>https://powershellmagazine.com/2012/01/16/why-did-i-start-learning-powershell/</guid>
       <description>Hi, my name is Adam and I wrote this article to try and entice other people into learning something new—and for me that was Microsoft PowerShell.</description>
     </item>
     
     <item>
       <title>How I started to love PowerShell</title>
-      <link>https://psmag.github.io/2012/01/11/how-i-started-to-love-powershell/</link>
+      <link>https://powershellmagazine.com/2012/01/11/how-i-started-to-love-powershell/</link>
       <pubDate>Wed, 11 Jan 2012 19:00:59 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/01/11/how-i-started-to-love-powershell/</guid>
+      <guid>https://powershellmagazine.com/2012/01/11/how-i-started-to-love-powershell/</guid>
       <description>Prologue My first encounter with PowerShell dates from late 2006. One of my colleagues came back from Microsoft IT Forum 2006 in Barcelona and was very enthusiastic about something that was called PowerShell.</description>
     </item>
     
     <item>
       <title>My Inspiration</title>
-      <link>https://psmag.github.io/2012/01/09/my-inspiration/</link>
+      <link>https://powershellmagazine.com/2012/01/09/my-inspiration/</link>
       <pubDate>Mon, 09 Jan 2012 19:00:42 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/01/09/my-inspiration/</guid>
+      <guid>https://powershellmagazine.com/2012/01/09/my-inspiration/</guid>
       <description>I have avoided programming for several years, particularly because I could not just wrap my mind around the concepts of objects, classes, loops, etc.</description>
     </item>
     
     <item>
       <title>Announcing the winners of the PowerShell story series!</title>
-      <link>https://psmag.github.io/2012/01/01/announcing-the-winners-of-the-powershell-story-series/</link>
+      <link>https://powershellmagazine.com/2012/01/01/announcing-the-winners-of-the-powershell-story-series/</link>
       <pubDate>Sun, 01 Jan 2012 15:00:38 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/01/01/announcing-the-winners-of-the-powershell-story-series/</guid>
+      <guid>https://powershellmagazine.com/2012/01/01/announcing-the-winners-of-the-powershell-story-series/</guid>
       <description>A month ago, we started a contest for our readers to share their first PowerShell experience — their PowerShell story. Along with that, we have also announced that there were prizes to win!</description>
     </item>
     
     <item>
       <title>How I Met Your PowerShell</title>
-      <link>https://psmag.github.io/2011/12/30/how-i-met-your-powershell/</link>
+      <link>https://powershellmagazine.com/2011/12/30/how-i-met-your-powershell/</link>
       <pubDate>Fri, 30 Dec 2011 19:00:39 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/30/how-i-met-your-powershell/</guid>
+      <guid>https://powershellmagazine.com/2011/12/30/how-i-met-your-powershell/</guid>
       <description>The Confession Hi. My name is Josh and:
  I love PowerShell and what it enables me to do. I have not always used PowerShell  While neither of these confessions is an Earth shattering revelation I would not have been able to make these statements 4 years ago.</description>
     </item>
     
     <item>
       <title>My PowerShell story</title>
-      <link>https://psmag.github.io/2011/12/28/my-powershell-story/</link>
+      <link>https://powershellmagazine.com/2011/12/28/my-powershell-story/</link>
       <pubDate>Wed, 28 Dec 2011 19:00:32 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/28/my-powershell-story/</guid>
+      <guid>https://powershellmagazine.com/2011/12/28/my-powershell-story/</guid>
       <description>I used to be VBScripter, but not anymore. As I learned PowerShell, I slowly stopped using VBScript and now, I rarely write VB scripts.</description>
     </item>
     
     <item>
       <title>Helping Admins Getting Started with PowerShell</title>
-      <link>https://psmag.github.io/2011/12/26/helping-admins-getting-started-with-powershell/</link>
+      <link>https://powershellmagazine.com/2011/12/26/helping-admins-getting-started-with-powershell/</link>
       <pubDate>Mon, 26 Dec 2011 19:00:46 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/26/helping-admins-getting-started-with-powershell/</guid>
+      <guid>https://powershellmagazine.com/2011/12/26/helping-admins-getting-started-with-powershell/</guid>
       <description>Writing for me has always been a daunting and seemingly endless task, one filled with pain. This is not due to the typical ‘writer’s block’ as I am full of ideas (sometimes referred to as bullshit from my friends), but the labor of the language itself has always challenged me.</description>
     </item>
     
     <item>
       <title>How I learned to Love the PowerShell</title>
-      <link>https://psmag.github.io/2011/12/23/how-i-learned-to-love-the-powershell/</link>
+      <link>https://powershellmagazine.com/2011/12/23/how-i-learned-to-love-the-powershell/</link>
       <pubDate>Fri, 23 Dec 2011 19:00:52 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/23/how-i-learned-to-love-the-powershell/</guid>
+      <guid>https://powershellmagazine.com/2011/12/23/how-i-learned-to-love-the-powershell/</guid>
       <description>When I first discovered the existence of PowerShell it was in its pre-release stages and still known as Monad. At first I couldn’t believe what I was seeing and hearing, “A Windows shell that uses objects?</description>
     </item>
     
     <item>
       <title>$Knowledge = Get-PowerShell</title>
-      <link>https://psmag.github.io/2011/12/21/knowledge-get-powershell/</link>
+      <link>https://powershellmagazine.com/2011/12/21/knowledge-get-powershell/</link>
       <pubDate>Wed, 21 Dec 2011 19:00:46 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/21/knowledge-get-powershell/</guid>
+      <guid>https://powershellmagazine.com/2011/12/21/knowledge-get-powershell/</guid>
       <description>Being a student of IT is not simple. In my first steps in the career I could not realize how big and varied are the products of Microsoft, to the point where you have to choose a way forward (a path to follow).</description>
     </item>
     
     <item>
       <title>Get-PowerShell | Create-Blog | Write-Book</title>
-      <link>https://psmag.github.io/2011/12/19/get-powershell-create-blog-write-book/</link>
+      <link>https://powershellmagazine.com/2011/12/19/get-powershell-create-blog-write-book/</link>
       <pubDate>Mon, 19 Dec 2011 19:00:02 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/19/get-powershell-create-blog-write-book/</guid>
+      <guid>https://powershellmagazine.com/2011/12/19/get-powershell-create-blog-write-book/</guid>
       <description>When I was hired into my current position in July 2007, one of my first tasks was to modify an Active Directory attribute for SharePoint contacts.</description>
     </item>
     
     <item>
       <title>PowerShell -Limit none</title>
-      <link>https://psmag.github.io/2011/12/16/powershell-limit-none/</link>
+      <link>https://powershellmagazine.com/2011/12/16/powershell-limit-none/</link>
       <pubDate>Fri, 16 Dec 2011 19:00:06 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/16/powershell-limit-none/</guid>
+      <guid>https://powershellmagazine.com/2011/12/16/powershell-limit-none/</guid>
       <description>I have been employed as a Windows systems administrator for the last 14 years, cutting my enterprise teeth back in the NT days.</description>
     </item>
     
     <item>
       <title>How Powershell Made My Life Easier</title>
-      <link>https://psmag.github.io/2011/12/14/how-powershell-made-my-life-easier/</link>
+      <link>https://powershellmagazine.com/2011/12/14/how-powershell-made-my-life-easier/</link>
       <pubDate>Wed, 14 Dec 2011 19:00:39 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/14/how-powershell-made-my-life-easier/</guid>
+      <guid>https://powershellmagazine.com/2011/12/14/how-powershell-made-my-life-easier/</guid>
       <description>Hello. My name is Jonathan Tyler…and I am a PowerShell junkie.
 I work for one of the world’s leading providers of commercial transportation solutions.</description>
     </item>
     
     <item>
       <title>PowerShell and I</title>
-      <link>https://psmag.github.io/2011/12/12/powershell-and-i/</link>
+      <link>https://powershellmagazine.com/2011/12/12/powershell-and-i/</link>
       <pubDate>Mon, 12 Dec 2011 19:00:56 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/12/powershell-and-i/</guid>
+      <guid>https://powershellmagazine.com/2011/12/12/powershell-and-i/</guid>
       <description>I will start by saying that a person’s overall experience is no indication of his/her knowledge. I have over 10 years of experience and I spent the first five years supporting desktop systems and applications.</description>
     </item>
     
     <item>
       <title>My PowerShell Journey</title>
-      <link>https://psmag.github.io/2011/12/09/my-powershell-journey/</link>
+      <link>https://powershellmagazine.com/2011/12/09/my-powershell-journey/</link>
       <pubDate>Fri, 09 Dec 2011 19:00:45 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/09/my-powershell-journey/</guid>
+      <guid>https://powershellmagazine.com/2011/12/09/my-powershell-journey/</guid>
       <description>It was the time when I started working on a project which involved data entry form to register new employees and the information about their allocated PC details.</description>
     </item>
     
     <item>
       <title>Teaching an old dog new tricks – Live@Edu and Windows PowerShell</title>
-      <link>https://psmag.github.io/2011/12/07/teaching-an-old-dog-new-tricks-liveedu-and-windows-powershell/</link>
+      <link>https://powershellmagazine.com/2011/12/07/teaching-an-old-dog-new-tricks-liveedu-and-windows-powershell/</link>
       <pubDate>Wed, 07 Dec 2011 19:00:12 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/07/teaching-an-old-dog-new-tricks-liveedu-and-windows-powershell/</guid>
+      <guid>https://powershellmagazine.com/2011/12/07/teaching-an-old-dog-new-tricks-liveedu-and-windows-powershell/</guid>
       <description>By way of introduction, I am the Software Services Manager at Patrick Henry College, a Christian liberal arts school in Virginia, USA.</description>
     </item>
     
     <item>
       <title>ScriptWarrior&#39;s First PowerShell Experiences</title>
-      <link>https://psmag.github.io/2011/12/05/scriptwarriors-first-powershell-experiences/</link>
+      <link>https://powershellmagazine.com/2011/12/05/scriptwarriors-first-powershell-experiences/</link>
       <pubDate>Mon, 05 Dec 2011 20:00:39 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/05/scriptwarriors-first-powershell-experiences/</guid>
+      <guid>https://powershellmagazine.com/2011/12/05/scriptwarriors-first-powershell-experiences/</guid>
       <description>I was asked by a PowerShell Rock Star, Shay Levy, to forward on my very first experiences with PowerShell. Why I started to use it in the first place and what resources I employed to solve my first scripting problems.</description>
     </item>
     
     <item>
       <title>How the Scripting Wife Got Started</title>
-      <link>https://psmag.github.io/2011/12/01/how-the-scripting-wife-got-started/</link>
+      <link>https://powershellmagazine.com/2011/12/01/how-the-scripting-wife-got-started/</link>
       <pubDate>Thu, 01 Dec 2011 20:00:18 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/01/how-the-scripting-wife-got-started/</guid>
+      <guid>https://powershellmagazine.com/2011/12/01/how-the-scripting-wife-got-started/</guid>
       <description>Once upon a time, right before the 2010 Scripting Games, the Microsoft Scripting Guy, Ed Wilson was thinking out loud about the challenges he would use for the 2010 Scripting Games.</description>
     </item>
     
     <item>
       <title>Call for Writers: Share Your Experiences and Help New Users</title>
-      <link>https://psmag.github.io/2011/11/29/call-for-writers-share-your-experiences-and-help-new-users/</link>
+      <link>https://powershellmagazine.com/2011/11/29/call-for-writers-share-your-experiences-and-help-new-users/</link>
       <pubDate>Mon, 28 Nov 2011 23:25:33 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/29/call-for-writers-share-your-experiences-and-help-new-users/</guid>
+      <guid>https://powershellmagazine.com/2011/11/29/call-for-writers-share-your-experiences-and-help-new-users/</guid>
       <description>PowerShell Magazine is starting a series of posts with personal stories about people’s PowerShell beginnings entitled “How I Learned to Stop Worrying and Love Windows PowerShell”.</description>
     </item>
     

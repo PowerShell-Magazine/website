@@ -2,295 +2,295 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>News on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/news/</link>
+    <link>https://powershellmagazine.com/tags/news/</link>
     <description>Recent content in News on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 02 Feb 2017 22:43:28 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/news/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/news/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>PowerShell Conference EU 2017 – Speakers and Sessions</title>
-      <link>https://psmag.github.io/2017/02/02/powershell-conference-eu-2017-speakers-and-sessions/</link>
+      <link>https://powershellmagazine.com/2017/02/02/powershell-conference-eu-2017-speakers-and-sessions/</link>
       <pubDate>Thu, 02 Feb 2017 22:43:28 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2017/02/02/powershell-conference-eu-2017-speakers-and-sessions/</guid>
+      <guid>https://powershellmagazine.com/2017/02/02/powershell-conference-eu-2017-speakers-and-sessions/</guid>
       <description>Modern administrators are responsible for business-critical automation, influence IT architectural design, and are a crucial part of corporate security both in daily operations and in conceptual planning.</description>
     </item>
     
     <item>
       <title>Open source PowerShell on Windows, Linux, and OS X!</title>
-      <link>https://psmag.github.io/2016/08/18/open-source-powershell-on-windows-linux-and-osx/</link>
+      <link>https://powershellmagazine.com/2016/08/18/open-source-powershell-on-windows-linux-and-osx/</link>
       <pubDate>Thu, 18 Aug 2016 15:25:48 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/08/18/open-source-powershell-on-windows-linux-and-osx/</guid>
+      <guid>https://powershellmagazine.com/2016/08/18/open-source-powershell-on-windows-linux-and-osx/</guid>
       <description>This article was co-authored by Bartek Bielawski and Ben Gelens.
 Windows PowerShell is a powerful tool, but it always had one very serious limitation: it was possible to run it only on Windows.</description>
     </item>
     
     <item>
       <title>Announcing Registrations – PowerShell Conference Asia 2016, Singapore</title>
-      <link>https://psmag.github.io/2016/08/15/announcing-regisrations-powershell-conference-asia-2016-singapore/</link>
+      <link>https://powershellmagazine.com/2016/08/15/announcing-regisrations-powershell-conference-asia-2016-singapore/</link>
       <pubDate>Mon, 15 Aug 2016 16:00:27 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/08/15/announcing-regisrations-powershell-conference-asia-2016-singapore/</guid>
+      <guid>https://powershellmagazine.com/2016/08/15/announcing-regisrations-powershell-conference-asia-2016-singapore/</guid>
       <description>PowerShell Conference Asia is back. After a successful last year, we are back with a really exciting line up of sessions and speakers.</description>
     </item>
     
     <item>
       <title>ISESteroids 2.6 with new version of PSSharper released</title>
-      <link>https://psmag.github.io/2016/08/10/isesteroids-2-6-with-new-version-of-pssharper-released/</link>
+      <link>https://powershellmagazine.com/2016/08/10/isesteroids-2-6-with-new-version-of-pssharper-released/</link>
       <pubDate>Wed, 10 Aug 2016 20:54:56 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/08/10/isesteroids-2-6-with-new-version-of-pssharper-released/</guid>
+      <guid>https://powershellmagazine.com/2016/08/10/isesteroids-2-6-with-new-version-of-pssharper-released/</guid>
       <description>PowerShell is everywhere these days. And solid PowerShell skills are probably among the most important personal career factors for an IT professional today.</description>
     </item>
     
     <item>
       <title>Windows 10 Anniversary Update Brings Remoting Support for BITS</title>
-      <link>https://psmag.github.io/2016/08/03/windows-10-anniversary-update-brings-remoting-support-for-bits/</link>
+      <link>https://powershellmagazine.com/2016/08/03/windows-10-anniversary-update-brings-remoting-support-for-bits/</link>
       <pubDate>Wed, 03 Aug 2016 16:05:49 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/08/03/windows-10-anniversary-update-brings-remoting-support-for-bits/</guid>
+      <guid>https://powershellmagazine.com/2016/08/03/windows-10-anniversary-update-brings-remoting-support-for-bits/</guid>
       <description>In this article we will look at a new feature in the BITS service which is included in Windows. Some background:</description>
     </item>
     
     <item>
       <title>From PSConfEU 2016 – Session Recordings</title>
-      <link>https://psmag.github.io/2016/05/13/from-psconfeu-2016-session-recordings/</link>
+      <link>https://powershellmagazine.com/2016/05/13/from-psconfeu-2016-session-recordings/</link>
       <pubDate>Fri, 13 May 2016 15:43:14 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/05/13/from-psconfeu-2016-session-recordings/</guid>
+      <guid>https://powershellmagazine.com/2016/05/13/from-psconfeu-2016-session-recordings/</guid>
       <description>Session recordings – both videos and screencasts – from PowerShell Conference Europe 2016 are now available. It may be a couple of days before all sessions appear in the playlist.</description>
     </item>
     
     <item>
       <title>PowerShell Conference Europe Speakers and Sessions</title>
-      <link>https://psmag.github.io/2016/01/12/powershell-conference-europe-speakers-and-sessions/</link>
+      <link>https://powershellmagazine.com/2016/01/12/powershell-conference-europe-speakers-and-sessions/</link>
       <pubDate>Tue, 12 Jan 2016 12:28:44 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/01/12/powershell-conference-europe-speakers-and-sessions/</guid>
+      <guid>https://powershellmagazine.com/2016/01/12/powershell-conference-europe-speakers-and-sessions/</guid>
       <description>PowerShell is not just a simple little script automation language anymore. It has transitioned into true DNA for Microsoft server technology, and with workflows and DSC forms the platform for “infrastructure as code”.</description>
     </item>
     
     <item>
       <title>PowerShell Extension for #VisualStudio Code #Connect2015</title>
-      <link>https://psmag.github.io/2015/11/18/powershell-extension-for-visualstudio-code-connect2015/</link>
+      <link>https://powershellmagazine.com/2015/11/18/powershell-extension-for-visualstudio-code-connect2015/</link>
       <pubDate>Wed, 18 Nov 2015 16:11:31 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/11/18/powershell-extension-for-visualstudio-code-connect2015/</guid>
+      <guid>https://powershellmagazine.com/2015/11/18/powershell-extension-for-visualstudio-code-connect2015/</guid>
       <description>If you are not watching #VisualStudio #Connect2015, you are certainly missing a lot. Because … @ScottGu just announced a lot of new features including extension support in Visual Studio Code.</description>
     </item>
     
     <item>
       <title>PowerShell Conference EU 2016 – Registration Starts Now</title>
-      <link>https://psmag.github.io/2015/11/02/powershell-conference-eu-2016-registration-starts-now/</link>
+      <link>https://powershellmagazine.com/2015/11/02/powershell-conference-eu-2016-registration-starts-now/</link>
       <pubDate>Mon, 02 Nov 2015 07:30:27 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/11/02/powershell-conference-eu-2016-registration-starts-now/</guid>
+      <guid>https://powershellmagazine.com/2015/11/02/powershell-conference-eu-2016-registration-starts-now/</guid>
       <description>In 2016, the newly minted “PowerShell Conference EU” will be hosted in Hannover, Germany, and may well become the largest PowerShell conference world-wide with its 160 delegates and 30 speakers.</description>
     </item>
     
     <item>
       <title>Summary from PowerShell Summit Europe 2015</title>
-      <link>https://psmag.github.io/2015/09/23/summary-from-powershell-summit-europe-2015/</link>
+      <link>https://powershellmagazine.com/2015/09/23/summary-from-powershell-summit-europe-2015/</link>
       <pubDate>Wed, 23 Sep 2015 16:00:39 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/09/23/summary-from-powershell-summit-europe-2015/</guid>
+      <guid>https://powershellmagazine.com/2015/09/23/summary-from-powershell-summit-europe-2015/</guid>
       <description>The PowerShell Summit Europe 2015 was arranged in Stockholm, Sweden on September 14-16. This was a unique opportunity to meet community people you mostly know from Twitter and other social media, as well as product group members from Microsoft.</description>
     </item>
     
     <item>
       <title>PowerShell Conference Asia 2015 – Get-Here:  Travel Tips</title>
-      <link>https://psmag.github.io/2015/06/30/powershell-conference-asia-2015-get-here-travel-tips/</link>
+      <link>https://powershellmagazine.com/2015/06/30/powershell-conference-asia-2015-get-here-travel-tips/</link>
       <pubDate>Tue, 30 Jun 2015 17:45:04 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/06/30/powershell-conference-asia-2015-get-here-travel-tips/</guid>
+      <guid>https://powershellmagazine.com/2015/06/30/powershell-conference-asia-2015-get-here-travel-tips/</guid>
       <description>As the PowerShell Conference draws closer, people have been asking a number of travel questions, so we wanted to share some travel tips.</description>
     </item>
     
     <item>
       <title>PowerShell Conference Asia 2015 Update – Registration is Open!</title>
-      <link>https://psmag.github.io/2015/06/17/powershell-conference-asia-2015-update-registration-is-open/</link>
+      <link>https://powershellmagazine.com/2015/06/17/powershell-conference-asia-2015-update-registration-is-open/</link>
       <pubDate>Wed, 17 Jun 2015 16:28:36 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/06/17/powershell-conference-asia-2015-update-registration-is-open/</guid>
+      <guid>https://powershellmagazine.com/2015/06/17/powershell-conference-asia-2015-update-registration-is-open/</guid>
       <description>PowerShell Conference Asia 2015 is coming up fast so here’s a quick update on all the incredible speakers we’ve got lined up already.</description>
     </item>
     
     <item>
       <title>Introducing DNS Policies in Windows Server 2016 Technical Preview 2</title>
-      <link>https://psmag.github.io/2015/05/13/introducing-dns-policies-in-windows-server-2016-technical-preview-2/</link>
+      <link>https://powershellmagazine.com/2015/05/13/introducing-dns-policies-in-windows-server-2016-technical-preview-2/</link>
       <pubDate>Wed, 13 May 2015 16:00:25 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/05/13/introducing-dns-policies-in-windows-server-2016-technical-preview-2/</guid>
+      <guid>https://powershellmagazine.com/2015/05/13/introducing-dns-policies-in-windows-server-2016-technical-preview-2/</guid>
       <description>In this article, we will have a look at DNS Policies – a new feature in the DNS Server role introduced in Windows Server 2016 Technical Preview 2 (TP2):</description>
     </item>
     
     <item>
       <title>PowerShell Conference Asia, 2015 – call for speakers and sponsors</title>
-      <link>https://psmag.github.io/2015/04/06/powershell-conference-asia-2015-call-for-speakers-and-sponsors/</link>
+      <link>https://powershellmagazine.com/2015/04/06/powershell-conference-asia-2015-call-for-speakers-and-sponsors/</link>
       <pubDate>Mon, 06 Apr 2015 16:38:10 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/04/06/powershell-conference-asia-2015-call-for-speakers-and-sponsors/</guid>
+      <guid>https://powershellmagazine.com/2015/04/06/powershell-conference-asia-2015-call-for-speakers-and-sponsors/</guid>
       <description>Exciting times! On September 18-19 2015, we at the Singapore PowerShell User Group are planning to host the first PowerShell Conference Asia.</description>
     </item>
     
     <item>
       <title>Windows Management Framework 5.0 February preview available</title>
-      <link>https://psmag.github.io/2015/02/18/windows-management-framework-5-0-february-preview-available/</link>
+      <link>https://powershellmagazine.com/2015/02/18/windows-management-framework-5-0-february-preview-available/</link>
       <pubDate>Thu, 19 Feb 2015 02:23:39 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/02/18/windows-management-framework-5-0-february-preview-available/</guid>
+      <guid>https://powershellmagazine.com/2015/02/18/windows-management-framework-5-0-february-preview-available/</guid>
       <description>Windows PowerShell team announced the availability of Windows Management Framework (WMF) 5.0 Preview February 2015. This preview is available for Windows 8.</description>
     </item>
     
     <item>
       <title>Announcing DSC resources to deploy Hyper-V converged virtual network</title>
-      <link>https://psmag.github.io/2015/01/19/announcing-dsc-resources-to-deploy-hyper-v-converged-virtual-network/</link>
+      <link>https://powershellmagazine.com/2015/01/19/announcing-dsc-resources-to-deploy-hyper-v-converged-virtual-network/</link>
       <pubDate>Mon, 19 Jan 2015 15:30:43 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/01/19/announcing-dsc-resources-to-deploy-hyper-v-converged-virtual-network/</guid>
+      <guid>https://powershellmagazine.com/2015/01/19/announcing-dsc-resources-to-deploy-hyper-v-converged-virtual-network/</guid>
       <description>The converged virtual network within Hyper-V deployments is a common configuration. There are multiple ways to deploy the converged network configuration.</description>
     </item>
     
     <item>
       <title>PowerShell cmdlets to manage Azure Key Vault</title>
-      <link>https://psmag.github.io/2015/01/08/powershell-cmdlets-to-manage-azure-key-vault/</link>
+      <link>https://powershellmagazine.com/2015/01/08/powershell-cmdlets-to-manage-azure-key-vault/</link>
       <pubDate>Fri, 09 Jan 2015 04:12:34 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/01/08/powershell-cmdlets-to-manage-azure-key-vault/</guid>
+      <guid>https://powershellmagazine.com/2015/01/08/powershell-cmdlets-to-manage-azure-key-vault/</guid>
       <description>Microsoft announced a public preview of Azure Key Vault. Azure Key Vault is a cloud-hosted HSM-backed service for managing cryptographic keys and other secrets used in your cloud applications.</description>
     </item>
     
     <item>
       <title>Holiday gift from Windows PowerShell team – DSC Resource Kit Wave 9</title>
-      <link>https://psmag.github.io/2014/12/18/holiday-gift-from-windows-powershell-team-dsc-resource-kit-wave-9/</link>
+      <link>https://powershellmagazine.com/2014/12/18/holiday-gift-from-windows-powershell-team-dsc-resource-kit-wave-9/</link>
       <pubDate>Thu, 18 Dec 2014 19:34:27 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/12/18/holiday-gift-from-windows-powershell-team-dsc-resource-kit-wave-9/</guid>
+      <guid>https://powershellmagazine.com/2014/12/18/holiday-gift-from-windows-powershell-team-dsc-resource-kit-wave-9/</guid>
       <description>Windows PowerShell team just released a new wave of DSC resources taking the overall DSC resource count to 172! This is a great accomplishment within a single year!</description>
     </item>
     
     <item>
       <title>ISESteroids RC</title>
-      <link>https://psmag.github.io/2014/12/05/isesteroids-rc/</link>
+      <link>https://powershellmagazine.com/2014/12/05/isesteroids-rc/</link>
       <pubDate>Fri, 05 Dec 2014 13:35:12 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/12/05/isesteroids-rc/</guid>
+      <guid>https://powershellmagazine.com/2014/12/05/isesteroids-rc/</guid>
       <description>ISESteroids originally started as a simple add-on to add professional editor capabilities to the built-in PowerShell ISE editor. Meanwhile, it evolved to a slick high-end PowerShell script editor.</description>
     </item>
     
     <item>
       <title>DSC changes in Windows Management Framework 5.0 Preview November 2014 release</title>
-      <link>https://psmag.github.io/2014/11/18/dsc-changes-in-windows-management-framework-5-0-preview-november-2014-release/</link>
+      <link>https://powershellmagazine.com/2014/11/18/dsc-changes-in-windows-management-framework-5-0-preview-november-2014-release/</link>
       <pubDate>Wed, 19 Nov 2014 03:58:53 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/11/18/dsc-changes-in-windows-management-framework-5-0-preview-november-2014-release/</guid>
+      <guid>https://powershellmagazine.com/2014/11/18/dsc-changes-in-windows-management-framework-5-0-preview-november-2014-release/</guid>
       <description>If you’ve missed Windows PowerShell team’s announcement, WMF 5.0 Preview November 2014 release is out.
 This Windows Management Framework (WMF) preview includes everything from WMF 5.</description>
     </item>
     
     <item>
       <title>Azure PowerShell Tools 0.8.10 is available</title>
-      <link>https://psmag.github.io/2014/10/28/azure-powershell-tools-0-8-10-is-available/</link>
+      <link>https://powershellmagazine.com/2014/10/28/azure-powershell-tools-0-8-10-is-available/</link>
       <pubDate>Wed, 29 Oct 2014 02:05:26 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/10/28/azure-powershell-tools-0-8-10-is-available/</guid>
+      <guid>https://powershellmagazine.com/2014/10/28/azure-powershell-tools-0-8-10-is-available/</guid>
       <description>If you have missed it, Scott Gu announced major set of updates to Azure services. At a high level, these changes include,</description>
     </item>
     
     <item>
       <title>PowerShell Magazine completes 3 years!</title>
-      <link>https://psmag.github.io/2014/09/25/powershell-magazine-completes-3-years/</link>
+      <link>https://powershellmagazine.com/2014/09/25/powershell-magazine-completes-3-years/</link>
       <pubDate>Thu, 25 Sep 2014 17:34:06 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/09/25/powershell-magazine-completes-3-years/</guid>
+      <guid>https://powershellmagazine.com/2014/09/25/powershell-magazine-completes-3-years/</guid>
       <description>Time just flies. On 13th of this month, PowerShell Magazine completed 3 years of publishing exclusive PowerShell content. This was possible because of ever growing support from our awesome contributors.</description>
     </item>
     
     <item>
       <title>New features introduced in Windows Management Framework 5.0 Preview September 2014</title>
-      <link>https://psmag.github.io/2014/09/12/new-features-introduced-in-windows-management-framework-5-0-preview-september-2014/</link>
+      <link>https://powershellmagazine.com/2014/09/12/new-features-introduced-in-windows-management-framework-5-0-preview-september-2014/</link>
       <pubDate>Fri, 12 Sep 2014 16:00:26 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/09/12/new-features-introduced-in-windows-management-framework-5-0-preview-september-2014/</guid>
+      <guid>https://powershellmagazine.com/2014/09/12/new-features-introduced-in-windows-management-framework-5-0-preview-september-2014/</guid>
       <description>Windows Management Framework 5.0 Preview September 2014 was released on September 4.
 An overview of new features added since the May 2014 Preview is listed in the announcement on the Windows PowerShell Team blog, while additional details are available in the release notes.</description>
     </item>
     
     <item>
       <title>Microsoft Azure PowerShell 0.8.8 is available</title>
-      <link>https://psmag.github.io/2014/09/10/microsoft-azure-powershell-0-8-8-is-available/</link>
+      <link>https://powershellmagazine.com/2014/09/10/microsoft-azure-powershell-0-8-8-is-available/</link>
       <pubDate>Wed, 10 Sep 2014 21:25:16 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/09/10/microsoft-azure-powershell-0-8-8-is-available/</guid>
+      <guid>https://powershellmagazine.com/2014/09/10/microsoft-azure-powershell-0-8-8-is-available/</guid>
       <description>Just a few hours ago, Azure team released Microsoft Azure PowerShell 0.8.8. The new release has a lot of improvements and added a support for today’s Azure update–Role-Based Access Control in Azure Preview Portal.</description>
     </item>
     
     <item>
       <title>Book: Announcing Windows PowerShell Desired State Configuration Revealed</title>
-      <link>https://psmag.github.io/2014/09/09/book-announcing-windows-powershell-desired-state-configuration-revealed/</link>
+      <link>https://powershellmagazine.com/2014/09/09/book-announcing-windows-powershell-desired-state-configuration-revealed/</link>
       <pubDate>Tue, 09 Sep 2014 09:43:29 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/09/09/book-announcing-windows-powershell-desired-state-configuration-revealed/</guid>
+      <guid>https://powershellmagazine.com/2014/09/09/book-announcing-windows-powershell-desired-state-configuration-revealed/</guid>
       <description>If you have followed my posts here and/or heard me speaking in the last 6 to 8 months, I have been mostly focusing on Desired State Configuration.</description>
     </item>
     
     <item>
       <title>Windows Management Framework 5.0 (September 2014) preview is available for download</title>
-      <link>https://psmag.github.io/2014/09/05/windows-management-framework-5-0-september-2014-preview-is-available-for-download/</link>
+      <link>https://powershellmagazine.com/2014/09/05/windows-management-framework-5-0-september-2014-preview-is-available-for-download/</link>
       <pubDate>Fri, 05 Sep 2014 05:15:25 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/09/05/windows-management-framework-5-0-september-2014-preview-is-available-for-download/</guid>
+      <guid>https://powershellmagazine.com/2014/09/05/windows-management-framework-5-0-september-2014-preview-is-available-for-download/</guid>
       <description>An updated version of WMF 5.0 preview is now available with a great set of enhancements and new features. Some of these changes are:</description>
     </item>
     
     <item>
       <title>DSC Resource Kit Wave 6 is here!</title>
-      <link>https://psmag.github.io/2014/08/21/dsc-resource-kit-wave-6-is-here/</link>
+      <link>https://powershellmagazine.com/2014/08/21/dsc-resource-kit-wave-6-is-here/</link>
       <pubDate>Thu, 21 Aug 2014 09:14:18 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/08/21/dsc-resource-kit-wave-6-is-here/</guid>
+      <guid>https://powershellmagazine.com/2014/08/21/dsc-resource-kit-wave-6-is-here/</guid>
       <description>Windows PowerShell team published a new wave of DSC Resource Kit. It is Wave 6!
 This wave contains four new resources:</description>
     </item>
     
     <item>
       <title>Azure PowerShell Tools 0.8.7 is available</title>
-      <link>https://psmag.github.io/2014/08/19/azure-powershell-tools-0-8-7-is-available/</link>
+      <link>https://powershellmagazine.com/2014/08/19/azure-powershell-tools-0-8-7-is-available/</link>
       <pubDate>Tue, 19 Aug 2014 06:14:09 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/08/19/azure-powershell-tools-0-8-7-is-available/</guid>
+      <guid>https://powershellmagazine.com/2014/08/19/azure-powershell-tools-0-8-7-is-available/</guid>
       <description>Just a few hours ago, Azure PowerShell Tools version 0.8.7 was released. This release includes enhancements to the existing cmdlets.</description>
     </item>
     
     <item>
       <title>Bartek Bielawski joins PowerShell Magazine editorial board</title>
-      <link>https://psmag.github.io/2014/08/18/bartek-bielawski-joins-powershell-magazine-editorial-board/</link>
+      <link>https://powershellmagazine.com/2014/08/18/bartek-bielawski-joins-powershell-magazine-editorial-board/</link>
       <pubDate>Mon, 18 Aug 2014 14:53:19 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/08/18/bartek-bielawski-joins-powershell-magazine-editorial-board/</guid>
+      <guid>https://powershellmagazine.com/2014/08/18/bartek-bielawski-joins-powershell-magazine-editorial-board/</guid>
       <description>I am very happy to announce that Bartek Bielawski joined the PowerShell Magazine editorial board. Bartek is a multi-year recipient of Microsoft MVP award for Windows PowerShell.</description>
     </item>
     
     <item>
       <title>Azure PowerShell Tools version 0.8.6 is available</title>
-      <link>https://psmag.github.io/2014/08/05/azure-powershell-tools-version-0-8-6-is-available/</link>
+      <link>https://powershellmagazine.com/2014/08/05/azure-powershell-tools-version-0-8-6-is-available/</link>
       <pubDate>Tue, 05 Aug 2014 07:00:20 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/08/05/azure-powershell-tools-version-0-8-6-is-available/</guid>
+      <guid>https://powershellmagazine.com/2014/08/05/azure-powershell-tools-version-0-8-6-is-available/</guid>
       <description>The Azure PowerShell Tools are updated very often. But, this 0.8.6 release, is special and has many features that I was looking forward to.</description>
     </item>
     
     <item>
       <title>DSC Resource Kit Wave 5 is available</title>
-      <link>https://psmag.github.io/2014/07/18/dsc-resource-kit-wave-5-is-available/</link>
+      <link>https://powershellmagazine.com/2014/07/18/dsc-resource-kit-wave-5-is-available/</link>
       <pubDate>Fri, 18 Jul 2014 07:38:49 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/18/dsc-resource-kit-wave-5-is-available/</guid>
+      <guid>https://powershellmagazine.com/2014/07/18/dsc-resource-kit-wave-5-is-available/</guid>
       <description>Windows PowerShell team released DSC Resource Kit Wave 5.
 This wave has added the following
  xWordPress: This module contains two resources, xIISWordPressSite and xWordPressSite, as well as example configurations under Samples, which show end-to-end deployment of the common WordPress site.</description>
@@ -298,1039 +298,1039 @@ This wave has added the following
     
     <item>
       <title>Microsoft announced the CTP release of Windows PowerShell Desired State Configuration for Linux</title>
-      <link>https://psmag.github.io/2014/05/19/microsoft-announced-the-ctp-release-of-windows-powershell-desired-state-configuration-for-linux/</link>
+      <link>https://powershellmagazine.com/2014/05/19/microsoft-announced-the-ctp-release-of-windows-powershell-desired-state-configuration-for-linux/</link>
       <pubDate>Tue, 20 May 2014 02:52:52 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/05/19/microsoft-announced-the-ctp-release-of-windows-powershell-desired-state-configuration-for-linux/</guid>
+      <guid>https://powershellmagazine.com/2014/05/19/microsoft-announced-the-ctp-release-of-windows-powershell-desired-state-configuration-for-linux/</guid>
       <description>When I was speaking at DevOpsDays India and demonstrating Windows PowerShel DSC (6 months ago), several people in the room had a laugh as I’d mentioned Microsoft and OpenSource.</description>
     </item>
     
     <item>
       <title>PowerShell module management as a native feature is here!</title>
-      <link>https://psmag.github.io/2014/05/14/powershell-module-management-as-a-native-feature-is-here/</link>
+      <link>https://powershellmagazine.com/2014/05/14/powershell-module-management-as-a-native-feature-is-here/</link>
       <pubDate>Thu, 15 May 2014 03:24:19 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/05/14/powershell-module-management-as-a-native-feature-is-here/</guid>
+      <guid>https://powershellmagazine.com/2014/05/14/powershell-module-management-as-a-native-feature-is-here/</guid>
       <description>Windows PowerShell team just announced the availability of WMF 5.0 Preview May 2014 release. This includes an exciting new feature called PowerShellGet.</description>
     </item>
     
     <item>
       <title>Windows PowerShell 4.0 and Other Quick Reference Guides</title>
-      <link>https://psmag.github.io/2014/04/24/windows-powershell-4-0-and-other-quick-reference-guides/</link>
+      <link>https://powershellmagazine.com/2014/04/24/windows-powershell-4-0-and-other-quick-reference-guides/</link>
       <pubDate>Thu, 24 Apr 2014 09:14:51 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/04/24/windows-powershell-4-0-and-other-quick-reference-guides/</guid>
+      <guid>https://powershellmagazine.com/2014/04/24/windows-powershell-4-0-and-other-quick-reference-guides/</guid>
       <description>We are pleased to announce the availability of Windows PowerShell 4.0 quick reference guides created by PowerShell Magazine. They are now part of “Windows PowerShell 4.</description>
     </item>
     
     <item>
       <title>Microsoft Azure Automation</title>
-      <link>https://psmag.github.io/2014/04/24/microsoft-azure-automation/</link>
+      <link>https://powershellmagazine.com/2014/04/24/microsoft-azure-automation/</link>
       <pubDate>Thu, 24 Apr 2014 08:54:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/04/24/microsoft-azure-automation/</guid>
+      <guid>https://powershellmagazine.com/2014/04/24/microsoft-azure-automation/</guid>
       <description>Microsoft launched a new service to simplify public, private, and hybrid clouds management. Using the Microsoft Azure Automation preview you can automate the creation, deployment, monitoring, and maintenance of resources in your Microsoft Azure environment using runbooks, which under the hood are Windows PowerShell workflows.</description>
     </item>
     
     <item>
       <title>Script Browser for Windows PowerShell ISE</title>
-      <link>https://psmag.github.io/2014/04/18/script-browser-for-windows-powershell-ise/</link>
+      <link>https://powershellmagazine.com/2014/04/18/script-browser-for-windows-powershell-ise/</link>
       <pubDate>Fri, 18 Apr 2014 11:36:33 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/04/18/script-browser-for-windows-powershell-ise/</guid>
+      <guid>https://powershellmagazine.com/2014/04/18/script-browser-for-windows-powershell-ise/</guid>
       <description>Microsoft has released a new ISE add-on, developed by Microsoft Customer Services &amp;amp; Support (CSS) team, that enables you to easilysearch and download scripts from the TechNet Script Center, from within the scripting environment.</description>
     </item>
     
     <item>
       <title>Windows Management Framework 5.0 preview is here!</title>
-      <link>https://psmag.github.io/2014/04/03/windows-management-framework-5-0-preview-is-here/</link>
+      <link>https://powershellmagazine.com/2014/04/03/windows-management-framework-5-0-preview-is-here/</link>
       <pubDate>Thu, 03 Apr 2014 15:37:46 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/04/03/windows-management-framework-5-0-preview-is-here/</guid>
+      <guid>https://powershellmagazine.com/2014/04/03/windows-management-framework-5-0-preview-is-here/</guid>
       <description>While the PowerShell community is still looking at the Desired State Configuration feature in PowerShell 4.0, Windows Server team already announced the preview release of Windows Management Framework 5.</description>
     </item>
     
     <item>
       <title>Announcing PowerShell module for managing Kemp LoadMaster appliances</title>
-      <link>https://psmag.github.io/2014/03/18/announcing-powershell-module-for-managing-kemp-loadmaster-appliances/</link>
+      <link>https://powershellmagazine.com/2014/03/18/announcing-powershell-module-for-managing-kemp-loadmaster-appliances/</link>
       <pubDate>Tue, 18 Mar 2014 15:37:18 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/03/18/announcing-powershell-module-for-managing-kemp-loadmaster-appliances/</guid>
+      <guid>https://powershellmagazine.com/2014/03/18/announcing-powershell-module-for-managing-kemp-loadmaster-appliances/</guid>
       <description>In an earlier article, I talked about managing Kemp LoadMaster appliances (both physical and virtual) using the Kemp’s RESTful API. Using RESTful API is complex because you need to know all the details of how API is implemented and what are different features available to you.</description>
     </item>
     
     <item>
       <title>Jan Egil Ring joins PowerShell Magazine</title>
-      <link>https://psmag.github.io/2014/03/04/jan-egil-ring-joins-powershell-magazine/</link>
+      <link>https://powershellmagazine.com/2014/03/04/jan-egil-ring-joins-powershell-magazine/</link>
       <pubDate>Tue, 04 Mar 2014 18:38:59 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/03/04/jan-egil-ring-joins-powershell-magazine/</guid>
+      <guid>https://powershellmagazine.com/2014/03/04/jan-egil-ring-joins-powershell-magazine/</guid>
       <description>I am very happy to announce that Jan Egil Ring accepted to join PowerShell Magazine. Jan is a known personality in the Windows PowerShell and virtualization communities.</description>
     </item>
     
     <item>
       <title>WMI Query Language via PowerShell available on Kindle</title>
-      <link>https://psmag.github.io/2014/02/28/wmi-query-language-via-powershell-available-on-kindle/</link>
+      <link>https://powershellmagazine.com/2014/02/28/wmi-query-language-via-powershell-available-on-kindle/</link>
       <pubDate>Fri, 28 Feb 2014 10:28:26 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/02/28/wmi-query-language-via-powershell-available-on-kindle/</guid>
+      <guid>https://powershellmagazine.com/2014/02/28/wmi-query-language-via-powershell-available-on-kindle/</guid>
       <description>Back in 2011, I published a free book on learning WMI Query Language (WQL) via PowerShell. It was a huge success.</description>
     </item>
     
     <item>
       <title>Another important milestone! PowerShell Magazine has published 500 posts!</title>
-      <link>https://psmag.github.io/2014/02/19/another-important-milestone-powershell-magazine-has-published-500-posts/</link>
+      <link>https://powershellmagazine.com/2014/02/19/another-important-milestone-powershell-magazine-has-published-500-posts/</link>
       <pubDate>Wed, 19 Feb 2014 20:00:51 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/02/19/another-important-milestone-powershell-magazine-has-published-500-posts/</guid>
+      <guid>https://powershellmagazine.com/2014/02/19/another-important-milestone-powershell-magazine-has-published-500-posts/</guid>
       <description>You are reading the 500th post on PowerShell Magazine. Wow, what a journey! We had our share of ups and downs but kept this going for a good reason.</description>
     </item>
     
     <item>
       <title>Announcing PowerShell Saturday India</title>
-      <link>https://psmag.github.io/2014/02/15/announcing-powershell-saturday-india/</link>
+      <link>https://powershellmagazine.com/2014/02/15/announcing-powershell-saturday-india/</link>
       <pubDate>Sat, 15 Feb 2014 09:50:31 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/02/15/announcing-powershell-saturday-india/</guid>
+      <guid>https://powershellmagazine.com/2014/02/15/announcing-powershell-saturday-india/</guid>
       <description>PowerShell Bangalore User Group (PSBUG) and Bangalore IT Pro are happy to announce the first ever PowerShell Saturday event in India.</description>
     </item>
     
     <item>
       <title>Announcing PowerShell Information Server (PSIS)</title>
-      <link>https://psmag.github.io/2014/01/13/announcing-powershell-information-server-psis/</link>
+      <link>https://powershellmagazine.com/2014/01/13/announcing-powershell-information-server-psis/</link>
       <pubDate>Tue, 14 Jan 2014 04:01:39 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/01/13/announcing-powershell-information-server-psis/</guid>
+      <guid>https://powershellmagazine.com/2014/01/13/announcing-powershell-information-server-psis/</guid>
       <description>Johan Akerstrom – PowerShell expert from Sweden – released a PowerShell module that can be used to start a PowerShell-based web server.</description>
     </item>
     
     <item>
       <title>PowerShell Magazine Day!</title>
-      <link>https://psmag.github.io/2013/12/17/powershell-magazine-day/</link>
+      <link>https://powershellmagazine.com/2013/12/17/powershell-magazine-day/</link>
       <pubDate>Tue, 17 Dec 2013 20:24:16 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/12/17/powershell-magazine-day/</guid>
+      <guid>https://powershellmagazine.com/2013/12/17/powershell-magazine-day/</guid>
       <description>Today is PowerShell Magazine Day at Manning Books. Save 50% on these selected books. Just enter dotd1217cc in the Promotional Code box when you check out at manning.</description>
     </item>
     
     <item>
       <title>HP Scripting Tools for Windows PowerShell</title>
-      <link>https://psmag.github.io/2013/11/12/hp-scripting-tools-for-windows-powershell/</link>
+      <link>https://powershellmagazine.com/2013/11/12/hp-scripting-tools-for-windows-powershell/</link>
       <pubDate>Tue, 12 Nov 2013 14:31:07 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/11/12/hp-scripting-tools-for-windows-powershell/</guid>
+      <guid>https://powershellmagazine.com/2013/11/12/hp-scripting-tools-for-windows-powershell/</guid>
       <description>HP has released a PowerShell module HPiLOCmdlets, designed to help IT experts to configure and manage HP iLO 3 and iLO 4 using Windows PowerShell.</description>
     </item>
     
     <item>
       <title>PowerTips Monthly: PowerShell Reference Library</title>
-      <link>https://psmag.github.io/2013/11/05/powertips-monthly-powershell-reference-library/</link>
+      <link>https://powershellmagazine.com/2013/11/05/powertips-monthly-powershell-reference-library/</link>
       <pubDate>Tue, 05 Nov 2013 07:35:23 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/11/05/powertips-monthly-powershell-reference-library/</guid>
+      <guid>https://powershellmagazine.com/2013/11/05/powertips-monthly-powershell-reference-library/</guid>
       <description>For the past 5 years, PowerShell MVP Tobias Weltner has published a daily tip on powershell.com. Together with fellow MVP Aleksandar Nikolic, he’s started revising and compiling this huge tips collection for you and came up with ready-to-use pocket guides of PowerShell knowledge.</description>
     </item>
     
     <item>
       <title>Windows Management Framework 4.0 is now available!</title>
-      <link>https://psmag.github.io/2013/10/25/windows-management-framework-4-0-is-now-available/</link>
+      <link>https://powershellmagazine.com/2013/10/25/windows-management-framework-4-0-is-now-available/</link>
       <pubDate>Fri, 25 Oct 2013 13:11:56 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/10/25/windows-management-framework-4-0-is-now-available/</guid>
+      <guid>https://powershellmagazine.com/2013/10/25/windows-management-framework-4-0-is-now-available/</guid>
       <description>Windows Management Framework 4.0 is available for installation on Windows 7 SP1, Windows Server 2008 R2 SP1, Windows Server 2012, and Windows Embedded 7.</description>
     </item>
     
     <item>
       <title>Announcing Kemp Technologies as a technology partner</title>
-      <link>https://psmag.github.io/2013/09/18/announcing-kemp-technologies-as-a-technology-partner/</link>
+      <link>https://powershellmagazine.com/2013/09/18/announcing-kemp-technologies-as-a-technology-partner/</link>
       <pubDate>Wed, 18 Sep 2013 12:27:38 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/09/18/announcing-kemp-technologies-as-a-technology-partner/</guid>
+      <guid>https://powershellmagazine.com/2013/09/18/announcing-kemp-technologies-as-a-technology-partner/</guid>
       <description>We are very happy to announce Kemp Technologies as our technology partner.
 Kemp Technologies is an emerging leader in theload balancers and application delivery optimization market.</description>
     </item>
     
     <item>
       <title>PC Monitor – Remotely monitor and manage your critical systems</title>
-      <link>https://psmag.github.io/2013/09/13/pc-monitor-remotely-monitor-and-manage-your-critical-systems/</link>
+      <link>https://powershellmagazine.com/2013/09/13/pc-monitor-remotely-monitor-and-manage-your-critical-systems/</link>
       <pubDate>Fri, 13 Sep 2013 16:00:30 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/09/13/pc-monitor-remotely-monitor-and-manage-your-critical-systems/</guid>
+      <guid>https://powershellmagazine.com/2013/09/13/pc-monitor-remotely-monitor-and-manage-your-critical-systems/</guid>
       <description>Mobile PC Monitor is an innovative solution for monitoring and managing mission-critical IT systems using a secure mobile application that gives IT administrators complete control of their critical servers and applications from anywhere, anytime.</description>
     </item>
     
     <item>
       <title>Announcing PSReadLine – A bash-inspired readline implementation for PowerShell</title>
-      <link>https://psmag.github.io/2013/09/10/announcing-psreadline-a-bash-inspiried-readline-implementation-for-powershell/</link>
+      <link>https://powershellmagazine.com/2013/09/10/announcing-psreadline-a-bash-inspiried-readline-implementation-for-powershell/</link>
       <pubDate>Tue, 10 Sep 2013 06:38:02 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/09/10/announcing-psreadline-a-bash-inspiried-readline-implementation-for-powershell/</guid>
+      <guid>https://powershellmagazine.com/2013/09/10/announcing-psreadline-a-bash-inspiried-readline-implementation-for-powershell/</guid>
       <description>Jason Shirk is back! He just announced the release of his new PowerShell project PSReadLine. In PowerShell 3.0, a hook was added to replace the command line editing experience in the console and Jason wrote a new module to take advantage of this hook.</description>
     </item>
     
     <item>
       <title>Dell announced the availability of vWorkspace PowerShell module beta</title>
-      <link>https://psmag.github.io/2013/08/30/dell-announced-the-availability-of-vworkspace-powershell-module-beta/</link>
+      <link>https://powershellmagazine.com/2013/08/30/dell-announced-the-availability-of-vworkspace-powershell-module-beta/</link>
       <pubDate>Fri, 30 Aug 2013 14:42:38 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/08/30/dell-announced-the-availability-of-vworkspace-powershell-module-beta/</guid>
+      <guid>https://powershellmagazine.com/2013/08/30/dell-announced-the-availability-of-vworkspace-powershell-module-beta/</guid>
       <description>Dell announced the availability of beta version of PowerShell module for Dell vWorkspace. As per the announcement, the features included in this beta release are:</description>
     </item>
     
     <item>
       <title>Why PowerShell?</title>
-      <link>https://psmag.github.io/2013/08/29/why-powershell/</link>
+      <link>https://powershellmagazine.com/2013/08/29/why-powershell/</link>
       <pubDate>Thu, 29 Aug 2013 07:39:10 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/08/29/why-powershell/</guid>
+      <guid>https://powershellmagazine.com/2013/08/29/why-powershell/</guid>
       <description>Have you ever been asked this question and scratched your head for an answer? If so (and if not), Mark Minasi, is doing a free 40 to 60 minute webinar on the subject.</description>
     </item>
     
     <item>
       <title>SAPIEN Technologies announces the availability of PowerRegEx – Community Preview</title>
-      <link>https://psmag.github.io/2013/08/27/sapien-technologies-announces-the-availability-of-powerregex-community-preview/</link>
+      <link>https://powershellmagazine.com/2013/08/27/sapien-technologies-announces-the-availability-of-powerregex-community-preview/</link>
       <pubDate>Tue, 27 Aug 2013 10:24:44 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/08/27/sapien-technologies-announces-the-availability-of-powerregex-community-preview/</guid>
+      <guid>https://powershellmagazine.com/2013/08/27/sapien-technologies-announces-the-availability-of-powerregex-community-preview/</guid>
       <description>Just when I was thinking that there is a need for a nice regular expression helper for PowerShell, SAPIEN Technologies announced the community preview of their new product called PowerRegEx.</description>
     </item>
     
     <item>
       <title>PowerShell module for Lync Online is available</title>
-      <link>https://psmag.github.io/2013/08/20/powershell-module-for-lync-online-is-available/</link>
+      <link>https://powershellmagazine.com/2013/08/20/powershell-module-for-lync-online-is-available/</link>
       <pubDate>Tue, 20 Aug 2013 11:15:49 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/08/20/powershell-module-for-lync-online-is-available/</guid>
+      <guid>https://powershellmagazine.com/2013/08/20/powershell-module-for-lync-online-is-available/</guid>
       <description>Microsoft has released a PowerShell module for Lync Online. You can now use the module to enable and disable push notifications for both iPhones and Windows Phones, manage Exchange Unified Messaging and hosted voicemail policies, manage meeting room endpoint devices with a Microsoft Exchange Server 2013 resource mailbox, grant client inband policies using pre-created policy instances, and you can also utilize Exchange Online cmdlets to extend the capabilities of Lync Online reports beyond the currently available reports in the Office 365 admin center.</description>
     </item>
     
     <item>
       <title>PSharp makes PowerShell ISE better</title>
-      <link>https://psmag.github.io/2013/08/18/psharp-makes-powershell-ise-better/</link>
+      <link>https://powershellmagazine.com/2013/08/18/psharp-makes-powershell-ise-better/</link>
       <pubDate>Sun, 18 Aug 2013 16:00:58 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/08/18/psharp-makes-powershell-ise-better/</guid>
+      <guid>https://powershellmagazine.com/2013/08/18/psharp-makes-powershell-ise-better/</guid>
       <description>Here’s another cool project created by PowerShell MVP Doug Finke. PSharp is a tool designed for PowerShell’s Integrated Scripting Environment (ISE) editor.</description>
     </item>
     
     <item>
       <title>Announcing PoshTools – Visual Studio extension for PowerShell Scripting</title>
-      <link>https://psmag.github.io/2013/08/13/announcing-poshtools-visual-studio-extension-for-powershell-scripting/</link>
+      <link>https://powershellmagazine.com/2013/08/13/announcing-poshtools-visual-studio-extension-for-powershell-scripting/</link>
       <pubDate>Tue, 13 Aug 2013 15:49:17 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/08/13/announcing-poshtools-visual-studio-extension-for-powershell-scripting/</guid>
+      <guid>https://powershellmagazine.com/2013/08/13/announcing-poshtools-visual-studio-extension-for-powershell-scripting/</guid>
       <description>Ever wondered why isn’t there support for writing PowerShell scripts in Visual Studio? I have had several projects where I needed to integrate PowerShell scripts into a C# solution I created in Visual Studio.</description>
     </item>
     
     <item>
       <title>New version of the Windows Azure PowerShell</title>
-      <link>https://psmag.github.io/2013/07/23/new-version-of-the-windows-azure-powershell-2/</link>
+      <link>https://powershellmagazine.com/2013/07/23/new-version-of-the-windows-azure-powershell-2/</link>
       <pubDate>Tue, 23 Jul 2013 13:22:43 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/07/23/new-version-of-the-windows-azure-powershell-2/</guid>
+      <guid>https://powershellmagazine.com/2013/07/23/new-version-of-the-windows-azure-powershell-2/</guid>
       <description>Few days ago the new version (0.6.17) of the Windows Azure PowerShell has been released. The Windows Azure PowerShell provides IT Pros and developers with Windows PowerShell cmdlets for building, deploying, and managing Windows Azure services.</description>
     </item>
     
     <item>
       <title>PowerShell Deep Dives book</title>
-      <link>https://psmag.github.io/2013/07/21/powershell-deep-dives-book/</link>
+      <link>https://powershellmagazine.com/2013/07/21/powershell-deep-dives-book/</link>
       <pubDate>Sun, 21 Jul 2013 18:00:59 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/07/21/powershell-deep-dives-book/</guid>
+      <guid>https://powershellmagazine.com/2013/07/21/powershell-deep-dives-book/</guid>
       <description>The PowerShell Deep Dives book is ready for your reading pleasure!
 The book, written by Microsoft MVPs and PowerShell community experts, contains 28 chapters grouped in four parts: Administration, Scripting, Development, and Platforms.</description>
     </item>
     
     <item>
       <title>Advanced Tools &amp; Scripting with PowerShell 3.0</title>
-      <link>https://psmag.github.io/2013/07/21/advanced-tools-scripting-with-powershell-3-0-2/</link>
+      <link>https://powershellmagazine.com/2013/07/21/advanced-tools-scripting-with-powershell-3-0-2/</link>
       <pubDate>Sun, 21 Jul 2013 10:38:25 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/07/21/advanced-tools-scripting-with-powershell-3-0-2/</guid>
+      <guid>https://powershellmagazine.com/2013/07/21/advanced-tools-scripting-with-powershell-3-0-2/</guid>
       <description>After the Getting started with PowerShell 3.0 event on Microsoft Virtual Academy, Jeffrey Snover and Jason Helmick are back with another full day PowerShell training event.</description>
     </item>
     
     <item>
       <title>Tobias Weltner joins PowerShell Magazine</title>
-      <link>https://psmag.github.io/2013/07/15/tobias-weltner-joins-powershell-magazine/</link>
+      <link>https://powershellmagazine.com/2013/07/15/tobias-weltner-joins-powershell-magazine/</link>
       <pubDate>Mon, 15 Jul 2013 14:41:24 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/07/15/tobias-weltner-joins-powershell-magazine/</guid>
+      <guid>https://powershellmagazine.com/2013/07/15/tobias-weltner-joins-powershell-magazine/</guid>
       <description>We are very happy to announce that Tobias Weltner accepted our offer to join PowerShell Magazine’s editorial board. For people in the PowerShell community, Tobias is not an unknown face.</description>
     </item>
     
     <item>
       <title>Getting Started with PowerShell 3.0</title>
-      <link>https://psmag.github.io/2013/07/01/getting-started-with-powershell-3-0/</link>
+      <link>https://powershellmagazine.com/2013/07/01/getting-started-with-powershell-3-0/</link>
       <pubDate>Mon, 01 Jul 2013 07:12:39 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/07/01/getting-started-with-powershell-3-0/</guid>
+      <guid>https://powershellmagazine.com/2013/07/01/getting-started-with-powershell-3-0/</guid>
       <description>Interested in a free PowerShell course tailored especially for IT Professionals? Want to know more about PowerShell and how to use it?</description>
     </item>
     
     <item>
       <title>Windows Management Framework 4.0 Preview download is available</title>
-      <link>https://psmag.github.io/2013/06/26/windows-management-framework-4-0-preview-download-is-available/</link>
+      <link>https://powershellmagazine.com/2013/06/26/windows-management-framework-4-0-preview-download-is-available/</link>
       <pubDate>Thu, 27 Jun 2013 02:44:34 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/06/26/windows-management-framework-4-0-preview-download-is-available/</guid>
+      <guid>https://powershellmagazine.com/2013/06/26/windows-management-framework-4-0-preview-download-is-available/</guid>
       <description>Microsoft announced that the Windows Management Framework (WMF) 4.0 preview is available for download on Microsoft download center.
 Windows Management Framework (WMF) 4.</description>
     </item>
     
     <item>
       <title>New Features in Windows PowerShell 4.0</title>
-      <link>https://psmag.github.io/2013/06/25/new-features-in-windows-powershell-4-0/</link>
+      <link>https://powershellmagazine.com/2013/06/25/new-features-in-windows-powershell-4-0/</link>
       <pubDate>Tue, 25 Jun 2013 07:25:40 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/06/25/new-features-in-windows-powershell-4-0/</guid>
+      <guid>https://powershellmagazine.com/2013/06/25/new-features-in-windows-powershell-4-0/</guid>
       <description>“Windows PowerShell 4.0 includes several significant features that extend its use, improve its usability, and allow you to control and manage Windows-based environments more easily and comprehensively.</description>
     </item>
     
     <item>
       <title>PowerShell Magazine teams up again with the TechMentor conference</title>
-      <link>https://psmag.github.io/2013/06/03/powershell-magazine-teams-up-again-with-the-techmentor-conference/</link>
+      <link>https://powershellmagazine.com/2013/06/03/powershell-magazine-teams-up-again-with-the-techmentor-conference/</link>
       <pubDate>Mon, 03 Jun 2013 16:00:52 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/06/03/powershell-magazine-teams-up-again-with-the-techmentor-conference/</guid>
+      <guid>https://powershellmagazine.com/2013/06/03/powershell-magazine-teams-up-again-with-the-techmentor-conference/</guid>
       <description>We are happy to announce that PowerShell Magazine is an “Alliance Media Partner” for the TechMentor Las Vegas conference.
 Surrounded by your fellow IT professionals, TechMentor provides you with immediately usable IT education that will keep you relevant in the workforce.</description>
     </item>
     
     <item>
       <title>Get to know PowerShell 3.0 with Jeffery Hicks</title>
-      <link>https://psmag.github.io/2013/05/16/get-to-know-powershell-3-0-with-jeffery-hicks/</link>
+      <link>https://powershellmagazine.com/2013/05/16/get-to-know-powershell-3-0-with-jeffery-hicks/</link>
       <pubDate>Thu, 16 May 2013 08:14:03 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/05/16/get-to-know-powershell-3-0-with-jeffery-hicks/</guid>
+      <guid>https://powershellmagazine.com/2013/05/16/get-to-know-powershell-3-0-with-jeffery-hicks/</guid>
       <description>On May 22nd, 2013, MVP Systems Software is hosting a free webinar on introduction to PowerShell 3.0. PowerShell MVP and a well known author Jeffery Hicks will be presenting this.</description>
     </item>
     
     <item>
       <title>PowerShell Summit 2013 session recordings</title>
-      <link>https://psmag.github.io/2013/05/08/powershell-summit-2013-session-recordings/</link>
+      <link>https://powershellmagazine.com/2013/05/08/powershell-summit-2013-session-recordings/</link>
       <pubDate>Wed, 08 May 2013 13:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/05/08/powershell-summit-2013-session-recordings/</guid>
+      <guid>https://powershellmagazine.com/2013/05/08/powershell-summit-2013-session-recordings/</guid>
       <description>Haven’t had the chance to attend the PowerShell Summit? You can now watch the recordings on YouTube thanks to Aaron Hoover, one of the great PowerShell enthusiasts who attended this successful PowerShell event.</description>
     </item>
     
     <item>
       <title>New PowerShell Book: PowerShell 3.0 Advanced Administration Handbook</title>
-      <link>https://psmag.github.io/2013/04/26/new-powershell-book-powershell-3-0-advanced-administration-handbook/</link>
+      <link>https://powershellmagazine.com/2013/04/26/new-powershell-book-powershell-3-0-advanced-administration-handbook/</link>
       <pubDate>Fri, 26 Apr 2013 15:01:12 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/04/26/new-powershell-book-powershell-3-0-advanced-administration-handbook/</guid>
+      <guid>https://powershellmagazine.com/2013/04/26/new-powershell-book-powershell-3-0-advanced-administration-handbook/</guid>
       <description>Packt Publishing has released a new book on Windows PowerShell “PowerShell 3.0 Advanced Administration Handbook“. This book was authored by PowerShell MVPs Sherif Talaat and Haijun Fu.</description>
     </item>
     
     <item>
       <title>2013 PowerShell Scripting Games</title>
-      <link>https://psmag.github.io/2013/04/14/2013-powershell-scripting-games/</link>
+      <link>https://powershellmagazine.com/2013/04/14/2013-powershell-scripting-games/</link>
       <pubDate>Sun, 14 Apr 2013 13:32:35 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/04/14/2013-powershell-scripting-games/</guid>
+      <guid>https://powershellmagazine.com/2013/04/14/2013-powershell-scripting-games/</guid>
       <description>Mark your calendars. Registrations for the 2013 Scripting Games begin on April 22. To get a better understanding of how the games work this year (hosted on PowerShell.</description>
     </item>
     
     <item>
       <title>PowerGUI Script Editor gets full support for PowerShell 3.0</title>
-      <link>https://psmag.github.io/2013/04/10/powergui-script-editor-gets-full-support-for-powershell-3-0/</link>
+      <link>https://powershellmagazine.com/2013/04/10/powergui-script-editor-gets-full-support-for-powershell-3-0/</link>
       <pubDate>Wed, 10 Apr 2013 15:38:16 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/04/10/powergui-script-editor-gets-full-support-for-powershell-3-0/</guid>
+      <guid>https://powershellmagazine.com/2013/04/10/powergui-script-editor-gets-full-support-for-powershell-3-0/</guid>
       <description>Dell released PowerGUI 3.6.0 script editor early this week. With this release, PowerGUI includes full support for Windows PowerShell 3.0 and support for Windows 8 / Windows Server 2012 Operating Systems.</description>
     </item>
     
     <item>
       <title>Heads up: Microsoft Script Explorer reaches the end of the road</title>
-      <link>https://psmag.github.io/2013/04/09/heads-up-microsoft-script-explorer-reaches-the-end-of-the-road/</link>
+      <link>https://powershellmagazine.com/2013/04/09/heads-up-microsoft-script-explorer-reaches-the-end-of-the-road/</link>
       <pubDate>Tue, 09 Apr 2013 12:15:37 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/04/09/heads-up-microsoft-script-explorer-reaches-the-end-of-the-road/</guid>
+      <guid>https://powershellmagazine.com/2013/04/09/heads-up-microsoft-script-explorer-reaches-the-end-of-the-road/</guid>
       <description>Due to low adoption and usage of the pre-release versions of Script Explorer, Microsoft has decided to take the project down, starting by removing the RC package from the Download Center.</description>
     </item>
     
     <item>
       <title>Channel 9’s MMS 2013 RSS feed is more fun with PowerShell</title>
-      <link>https://psmag.github.io/2013/04/03/channel-9s-mms-2013-rss-feed-is-more-fun-with-powershell/</link>
+      <link>https://powershellmagazine.com/2013/04/03/channel-9s-mms-2013-rss-feed-is-more-fun-with-powershell/</link>
       <pubDate>Wed, 03 Apr 2013 19:59:33 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/04/03/channel-9s-mms-2013-rss-feed-is-more-fun-with-powershell/</guid>
+      <guid>https://powershellmagazine.com/2013/04/03/channel-9s-mms-2013-rss-feed-is-more-fun-with-powershell/</guid>
       <description>The MMS 2013 conference starts next week. The keynote and sessions will be available for replay through the Channel 9 web site.</description>
     </item>
     
     <item>
       <title>Write a #PSTip and win a copy of Packt’s Oracle Database and PowerShell How-to eBook</title>
-      <link>https://psmag.github.io/2013/04/02/write-a-pstip-and-win-a-copy-of-packts-oracle-database-and-powershell-how-to-ebook/</link>
+      <link>https://powershellmagazine.com/2013/04/02/write-a-pstip-and-win-a-copy-of-packts-oracle-database-and-powershell-how-to-ebook/</link>
       <pubDate>Tue, 02 Apr 2013 17:00:10 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/04/02/write-a-pstip-and-win-a-copy-of-packts-oracle-database-and-powershell-how-to-ebook/</guid>
+      <guid>https://powershellmagazine.com/2013/04/02/write-a-pstip-and-win-a-copy-of-packts-oracle-database-and-powershell-how-to-ebook/</guid>
       <description>We are pleased to announce that we have teamed up with Packt Publishing again and are organizing a giveaway especially for you.</description>
     </item>
     
     <item>
       <title>Free PowerShell 3.0 eBook in Brazilian Portuguese</title>
-      <link>https://psmag.github.io/2013/04/01/free-powershell-3-0-ebook-in-brazilian-portuguese/</link>
+      <link>https://powershellmagazine.com/2013/04/01/free-powershell-3-0-ebook-in-brazilian-portuguese/</link>
       <pubDate>Mon, 01 Apr 2013 19:22:43 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/04/01/free-powershell-3-0-ebook-in-brazilian-portuguese/</guid>
+      <guid>https://powershellmagazine.com/2013/04/01/free-powershell-3-0-ebook-in-brazilian-portuguese/</guid>
       <description>Daniel Donda, Windows Expert-IT Pro MVP, has released a new PowerShell eBook written in Brazilian Portuguese. Windows PowerShell 3.0 for IT Pro is an eBook written with infrastructure administrators in mind.</description>
     </item>
     
     <item>
       <title>The Windows PowerShell 3.0 SDK Sample Pack</title>
-      <link>https://psmag.github.io/2013/03/20/the-windows-powershell-3-0-sdk-sample-pack/</link>
+      <link>https://powershellmagazine.com/2013/03/20/the-windows-powershell-3-0-sdk-sample-pack/</link>
       <pubDate>Wed, 20 Mar 2013 12:01:42 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/03/20/the-windows-powershell-3-0-sdk-sample-pack/</guid>
+      <guid>https://powershellmagazine.com/2013/03/20/the-windows-powershell-3-0-sdk-sample-pack/</guid>
       <description>Microsoft has released the Windows PowerShell 3.0 SDK Sample Pack. The pack contains code samples that show how to build applications based on Windows PowerShell 3.</description>
     </item>
     
     <item>
       <title>PowerShell Magazine is a media partner for TechMentor, Orlando</title>
-      <link>https://psmag.github.io/2013/02/20/powershell-magazine-is-a-silver-media-partner-for-techmentor-orlando/</link>
+      <link>https://powershellmagazine.com/2013/02/20/powershell-magazine-is-a-silver-media-partner-for-techmentor-orlando/</link>
       <pubDate>Wed, 20 Feb 2013 16:44:46 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/02/20/powershell-magazine-is-a-silver-media-partner-for-techmentor-orlando/</guid>
+      <guid>https://powershellmagazine.com/2013/02/20/powershell-magazine-is-a-silver-media-partner-for-techmentor-orlando/</guid>
       <description>We are happy to announce that PowerShell Magazine is a media partner for TechMentor, Orlando.
 About TechMentor: Surrounded by your fellow IT professionals, TechMentor provides you with immediately usable IT education that will keep you relevant in the workforce.</description>
     </item>
     
     <item>
       <title>New version of the Windows Azure PowerShell</title>
-      <link>https://psmag.github.io/2013/02/15/new-version-of-the-windows-azure-powershell/</link>
+      <link>https://powershellmagazine.com/2013/02/15/new-version-of-the-windows-azure-powershell/</link>
       <pubDate>Fri, 15 Feb 2013 17:03:35 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/02/15/new-version-of-the-windows-azure-powershell/</guid>
+      <guid>https://powershellmagazine.com/2013/02/15/new-version-of-the-windows-azure-powershell/</guid>
       <description>Few days ago the new version (0.6.10) of the Windows Azure PowerShell has been released. The Windows Azure PowerShell provides IT Pros and developers with Windows PowerShell cmdlets for building, deploying, and managing Windows Azure services.</description>
     </item>
     
     <item>
       <title>PowerCLI 5.1 Release 2 is released</title>
-      <link>https://psmag.github.io/2013/02/12/powercli-5-1-release-2-is-released/</link>
+      <link>https://powershellmagazine.com/2013/02/12/powercli-5-1-release-2-is-released/</link>
       <pubDate>Tue, 12 Feb 2013 13:49:16 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/02/12/powercli-5-1-release-2-is-released/</guid>
+      <guid>https://powershellmagazine.com/2013/02/12/powercli-5-1-release-2-is-released/</guid>
       <description>PowerCLI 5.1 Release 2 has now been released and can be downloaded here. Other than bug fixes and new enhancements, the new release supports PowerShell 3.</description>
     </item>
     
     <item>
       <title>Windows PowerShell for SharePoint 2013 – A learning roadmap</title>
-      <link>https://psmag.github.io/2013/02/07/windows-powershell-for-sharepoint-2013-a-learning-roadmap/</link>
+      <link>https://powershellmagazine.com/2013/02/07/windows-powershell-for-sharepoint-2013-a-learning-roadmap/</link>
       <pubDate>Thu, 07 Feb 2013 10:41:42 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/02/07/windows-powershell-for-sharepoint-2013-a-learning-roadmap/</guid>
+      <guid>https://powershellmagazine.com/2013/02/07/windows-powershell-for-sharepoint-2013-a-learning-roadmap/</guid>
       <description>Microsoft has recently published a learning roadmap to understand Windows PowerShell for SharePoint 2013. Microsoft SharePoint 2013, as many other updated Microsoft products, has an increased number of cmdlets to perform SharePoint management tasks.</description>
     </item>
     
     <item>
       <title>Windows PowerShell – 2013 Technology of the Year Award winner</title>
-      <link>https://psmag.github.io/2013/01/15/windows-powershell-2013-technology-of-the-year-award-winner/</link>
+      <link>https://powershellmagazine.com/2013/01/15/windows-powershell-2013-technology-of-the-year-award-winner/</link>
       <pubDate>Tue, 15 Jan 2013 13:48:02 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/01/15/windows-powershell-2013-technology-of-the-year-award-winner/</guid>
+      <guid>https://powershellmagazine.com/2013/01/15/windows-powershell-2013-technology-of-the-year-award-winner/</guid>
       <description>Chosen from all products reviewed, tested, worked with, explored, and relied on throughout the year, InfoWorld&amp;rsquo;s Technology of the Year Award winners represent the best of the best for end-users, developers, IT pros, and the businesses they serve.</description>
     </item>
     
     <item>
       <title>Windows PowerShell 3.0 language specification available for download</title>
-      <link>https://psmag.github.io/2013/01/11/windows-powershell-3-0-language-specification-available-for-download/</link>
+      <link>https://powershellmagazine.com/2013/01/11/windows-powershell-3-0-language-specification-available-for-download/</link>
       <pubDate>Fri, 11 Jan 2013 09:20:12 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/01/11/windows-powershell-3-0-language-specification-available-for-download/</guid>
+      <guid>https://powershellmagazine.com/2013/01/11/windows-powershell-3-0-language-specification-available-for-download/</guid>
       <description>Microsoft released Windows PowerShell 3.0 Language specification to the public. This is a 334 pages of documentation and has tons of information on how the language is implemented.</description>
     </item>
     
     <item>
       <title>PowerShell conference in Germany</title>
-      <link>https://psmag.github.io/2013/01/09/powershell-conference-in-germany/</link>
+      <link>https://powershellmagazine.com/2013/01/09/powershell-conference-in-germany/</link>
       <pubDate>Wed, 09 Jan 2013 09:18:25 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/01/09/powershell-conference-in-germany/</guid>
+      <guid>https://powershellmagazine.com/2013/01/09/powershell-conference-in-germany/</guid>
       <description>In the scenic setting of the Museum for Industrial and Social History in Oberhausen, Germany, the first German PowerShell Community Conference will take place on April 10 and 11, 2013.</description>
     </item>
     
     <item>
       <title>Preparing Data for the Report</title>
-      <link>https://psmag.github.io/2012/12/27/preparing-data-for-the-report/</link>
+      <link>https://powershellmagazine.com/2012/12/27/preparing-data-for-the-report/</link>
       <pubDate>Thu, 27 Dec 2012 17:00:06 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/12/27/preparing-data-for-the-report/</guid>
+      <guid>https://powershellmagazine.com/2012/12/27/preparing-data-for-the-report/</guid>
       <description>One of PowerShell’s most common uses is to collect data and then generate reports from that data. There are a number of different formats in which PowerShell can export data for reporting purposes, such as CSV, XML, and HTML.</description>
     </item>
     
     <item>
       <title>PowerShell Magazine has a new home!</title>
-      <link>https://psmag.github.io/2012/11/30/powershell-magazine-has-a-new-home/</link>
+      <link>https://powershellmagazine.com/2012/11/30/powershell-magazine-has-a-new-home/</link>
       <pubDate>Fri, 30 Nov 2012 16:14:27 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/11/30/powershell-magazine-has-a-new-home/</guid>
+      <guid>https://powershellmagazine.com/2012/11/30/powershell-magazine-has-a-new-home/</guid>
       <description>PowerShell Magazine – since it’s inception – has certainly been growing in popularity and readership. We moved from 100 posts to 230+ in no time.</description>
     </item>
     
     <item>
       <title>PowerShell Workflows</title>
-      <link>https://psmag.github.io/2012/11/14/powershell-workflows/</link>
+      <link>https://powershellmagazine.com/2012/11/14/powershell-workflows/</link>
       <pubDate>Wed, 14 Nov 2012 17:43:51 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/11/14/powershell-workflows/</guid>
+      <guid>https://powershellmagazine.com/2012/11/14/powershell-workflows/</guid>
       <description>Today we have a real treat for you–an excerpt about the Windows PowerShell Workflow feature from the upcoming book Learn PowerShell Toolmaking in a Month of Luncheswritten by Don Jones and Jeffery Hicks.</description>
     </item>
     
     <item>
       <title>Learn Windows PowerShell 3 in a Month of Lunches</title>
-      <link>https://psmag.github.io/2012/11/07/learn-windows-powershell-3-in-a-month-of-lunches/</link>
+      <link>https://powershellmagazine.com/2012/11/07/learn-windows-powershell-3-in-a-month-of-lunches/</link>
       <pubDate>Wed, 07 Nov 2012 08:44:29 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/11/07/learn-windows-powershell-3-in-a-month-of-lunches/</guid>
+      <guid>https://powershellmagazine.com/2012/11/07/learn-windows-powershell-3-in-a-month-of-lunches/</guid>
       <description>The second edition of Don Jones and Jeffery Hicks’s bestseller, Learn Windows PowerShell 3 in a Month of Lunches, is released as an eBook.</description>
     </item>
     
     <item>
       <title>New version of PowerShell Help files</title>
-      <link>https://psmag.github.io/2012/10/30/new-version-of-powershell-help-files/</link>
+      <link>https://powershellmagazine.com/2012/10/30/new-version-of-powershell-help-files/</link>
       <pubDate>Tue, 30 Oct 2012 11:01:57 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/10/30/new-version-of-powershell-help-files/</guid>
+      <guid>https://powershellmagazine.com/2012/10/30/new-version-of-powershell-help-files/</guid>
       <description>If you start Windows PowerShell with the Run as Administrator option and then type Update-Help -Force -Verbose you should get the new version of some PowerShell Help XML-based files and About topics.</description>
     </item>
     
     <item>
       <title>Two WMI cheat sheets for PowerShell users and developers from the WMI team!</title>
-      <link>https://psmag.github.io/2012/10/29/cim-cmdlets-cheat-sheet-from-the-wmi-team/</link>
+      <link>https://powershellmagazine.com/2012/10/29/cim-cmdlets-cheat-sheet-from-the-wmi-team/</link>
       <pubDate>Mon, 29 Oct 2012 08:13:34 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/10/29/cim-cmdlets-cheat-sheet-from-the-wmi-team/</guid>
+      <guid>https://powershellmagazine.com/2012/10/29/cim-cmdlets-cheat-sheet-from-the-wmi-team/</guid>
       <description>Osama Sajid from the Windows Management Infrastructure team blogged about two WMI cheat sheets created by the WMI team. The first cheat sheet contains information to get you started with the CIM cmdlets in PowerShell 3.</description>
     </item>
     
     <item>
       <title>Multi-Server Management with Windows PowerShell</title>
-      <link>https://psmag.github.io/2012/10/27/multi-server-management-with-windows-powershell/</link>
+      <link>https://powershellmagazine.com/2012/10/27/multi-server-management-with-windows-powershell/</link>
       <pubDate>Sat, 27 Oct 2012 18:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/10/27/multi-server-management-with-windows-powershell/</guid>
+      <guid>https://powershellmagazine.com/2012/10/27/multi-server-management-with-windows-powershell/</guid>
       <description>These videos were released yesterday on YouTube. They are part of the Windows Server 2012 Jump Start video series published on Microsoft TechNet.</description>
     </item>
     
     <item>
       <title>PowerShell Plus is Free!</title>
-      <link>https://psmag.github.io/2012/10/23/powershell-plus-is-free/</link>
+      <link>https://powershellmagazine.com/2012/10/23/powershell-plus-is-free/</link>
       <pubDate>Tue, 23 Oct 2012 12:26:24 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/10/23/powershell-plus-is-free/</guid>
+      <guid>https://powershellmagazine.com/2012/10/23/powershell-plus-is-free/</guid>
       <description>Idera, a leading provider of application and server management solutions, today demonstrated its strong commitment to the PowerShell community by making its PowerShell Plus product available for free.</description>
     </item>
     
     <item>
       <title>Two new PowerShell modules related to Storage Spaces</title>
-      <link>https://psmag.github.io/2012/10/20/two-new-powershell-modules-related-to-storage-spaces/</link>
+      <link>https://powershellmagazine.com/2012/10/20/two-new-powershell-modules-related-to-storage-spaces/</link>
       <pubDate>Sat, 20 Oct 2012 13:19:16 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/10/20/two-new-powershell-modules-related-to-storage-spaces/</guid>
+      <guid>https://powershellmagazine.com/2012/10/20/two-new-powershell-modules-related-to-storage-spaces/</guid>
       <description>Bruce Langworthy, Senior Program Manager with the Storage and FileSystems team at Microsoft, just posted two new PowerShell modules designed to help with the management and diagnosis of Storage Spaces.</description>
     </item>
     
     <item>
       <title>Windows PowerShell Cookbook 3rd edition</title>
-      <link>https://psmag.github.io/2012/10/05/windows-powershell-cookbook-3rd-edition/</link>
+      <link>https://powershellmagazine.com/2012/10/05/windows-powershell-cookbook-3rd-edition/</link>
       <pubDate>Fri, 05 Oct 2012 15:03:38 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/10/05/windows-powershell-cookbook-3rd-edition/</guid>
+      <guid>https://powershellmagazine.com/2012/10/05/windows-powershell-cookbook-3rd-edition/</guid>
       <description>The popular PowerShell Cookbook, by Lee Holmes, has reached its 3rd edition and is updated for PowerShell 3.0. The book has not yet been released and is available for pre-order.</description>
     </item>
     
     <item>
       <title>New Book: Microsoft PowerShell 3.0 First Look</title>
-      <link>https://psmag.github.io/2012/10/05/new-book-microsoft-powershell-3-0-first-look/</link>
+      <link>https://powershellmagazine.com/2012/10/05/new-book-microsoft-powershell-3-0-first-look/</link>
       <pubDate>Fri, 05 Oct 2012 15:02:24 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/10/05/new-book-microsoft-powershell-3-0-first-look/</guid>
+      <guid>https://powershellmagazine.com/2012/10/05/new-book-microsoft-powershell-3-0-first-look/</guid>
       <description>It&amp;rsquo;s published! Microsoft PowerShell 3.0 First Look, by Adam Driscoll, is a concise overview of the up and coming features and enhancements to PowerShell.</description>
     </item>
     
     <item>
       <title>Happy Birthday, PowerShell Magazine!</title>
-      <link>https://psmag.github.io/2012/09/13/happy-birthday-powershell-magazine/</link>
+      <link>https://powershellmagazine.com/2012/09/13/happy-birthday-powershell-magazine/</link>
       <pubDate>Thu, 13 Sep 2012 13:00:26 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/09/13/happy-birthday-powershell-magazine/</guid>
+      <guid>https://powershellmagazine.com/2012/09/13/happy-birthday-powershell-magazine/</guid>
       <description>Last year, on this day, we announced the launch of PowerShell Magazine. It has been an interesting year. We are proud to say that we are the exclusive PowerShell online magazine and proud of what we have achieved so far!</description>
     </item>
     
     <item>
       <title>PowerShell 3.0 is available for downlevel systems</title>
-      <link>https://psmag.github.io/2012/09/05/powershell-3-0-is-available-for-downlevel-systems/</link>
+      <link>https://powershellmagazine.com/2012/09/05/powershell-3-0-is-available-for-downlevel-systems/</link>
       <pubDate>Wed, 05 Sep 2012 06:41:48 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/09/05/powershell-3-0-is-available-for-downlevel-systems/</guid>
+      <guid>https://powershellmagazine.com/2012/09/05/powershell-3-0-is-available-for-downlevel-systems/</guid>
       <description>Windows Management Framework 3.0 was released yesterday. It includes updated management functionality for Windows 7 Service Pack 1, Windows Server 2008 R2 SP1, and Windows Server 2008 Service Pack 2 (Windows Vista, Windows XP, and Windows Server 2003 are not supported).</description>
     </item>
     
     <item>
       <title>New PowerShell community website</title>
-      <link>https://psmag.github.io/2012/09/01/new-powershell-community-website/</link>
+      <link>https://powershellmagazine.com/2012/09/01/new-powershell-community-website/</link>
       <pubDate>Sat, 01 Sep 2012 18:00:13 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/09/01/new-powershell-community-website/</guid>
+      <guid>https://powershellmagazine.com/2012/09/01/new-powershell-community-website/</guid>
       <description>PowerShell.org is a new community site, led by PowerShell MVPs Don Jones and Kirk Munro, designed to be a general-purpose gathering place and portal for Windows PowerShell, providing discussion forums, technical articles, blog posts, and other resources.</description>
     </item>
     
     <item>
       <title>PoSHStats for Hyper-V 3.0</title>
-      <link>https://psmag.github.io/2012/08/30/poshstats-for-hyper-v-3-0/</link>
+      <link>https://powershellmagazine.com/2012/08/30/poshstats-for-hyper-v-3-0/</link>
       <pubDate>Thu, 30 Aug 2012 16:00:44 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/08/30/poshstats-for-hyper-v-3-0/</guid>
+      <guid>https://powershellmagazine.com/2012/08/30/poshstats-for-hyper-v-3-0/</guid>
       <description>PowerShell MVP Yusuf Ozturk released a project he’s been working on lately – PoSHStats v1.1. PoSHStats is the first free and open source reporting tool of Hyper-V resource metering.</description>
     </item>
     
     <item>
       <title>PowerShell 2.0 Help on Windows Phone</title>
-      <link>https://psmag.github.io/2012/08/18/powershell-2-0-help-on-windows-phone/</link>
+      <link>https://powershellmagazine.com/2012/08/18/powershell-2-0-help-on-windows-phone/</link>
       <pubDate>Sat, 18 Aug 2012 11:28:48 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/08/18/powershell-2-0-help-on-windows-phone/</guid>
+      <guid>https://powershellmagazine.com/2012/08/18/powershell-2-0-help-on-windows-phone/</guid>
       <description>Rolf Masuch [MSFT], a former PowerShell MVP, has created the PowerShell Help app for Windows Phone. The app gives you a searchable list of the PowerShell v2 cmdlets.</description>
     </item>
     
     <item>
       <title>Announcing Microsoft All-In-One Script Framework</title>
-      <link>https://psmag.github.io/2012/08/02/announcing-microsoft-all-in-one-script-framework/</link>
+      <link>https://powershellmagazine.com/2012/08/02/announcing-microsoft-all-in-one-script-framework/</link>
       <pubDate>Thu, 02 Aug 2012 11:23:34 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/08/02/announcing-microsoft-all-in-one-script-framework/</guid>
+      <guid>https://powershellmagazine.com/2012/08/02/announcing-microsoft-all-in-one-script-framework/</guid>
       <description>We are very excited about the RTM of Windows 8 and Windows Server 2012. You know the reason, right? The final version of Windows PowerShell 3.</description>
     </item>
     
     <item>
       <title>Jeffrey Snover on RunAs Radio</title>
-      <link>https://psmag.github.io/2012/08/01/jeffrey-snover-on-runas-radio/</link>
+      <link>https://powershellmagazine.com/2012/08/01/jeffrey-snover-on-runas-radio/</link>
       <pubDate>Wed, 01 Aug 2012 11:12:29 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/08/01/jeffrey-snover-on-runas-radio/</guid>
+      <guid>https://powershellmagazine.com/2012/08/01/jeffrey-snover-on-runas-radio/</guid>
       <description>RunAs Radio is a weekly Internet audio talk show for IT Professionals working with Microsoft products. The full range of IT topics is covered from a Microsoft-centric viewpoint.</description>
     </item>
     
     <item>
       <title>Configuration Manager PowerShell SDK</title>
-      <link>https://psmag.github.io/2012/07/03/configuration-manager-powershell-sdk/</link>
+      <link>https://powershellmagazine.com/2012/07/03/configuration-manager-powershell-sdk/</link>
       <pubDate>Tue, 03 Jul 2012 19:32:34 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/07/03/configuration-manager-powershell-sdk/</guid>
+      <guid>https://powershellmagazine.com/2012/07/03/configuration-manager-powershell-sdk/</guid>
       <description>Working with PowerShell and Configuration Manager? Check out the Configuration Manager PowerShell SDK website, created by MVP Kaido Järvemet. It is targeted toward Configuration Manager administrators and developers who are looking for How-To examples.</description>
     </item>
     
     <item>
       <title>Workflow documentation now live on TechNet</title>
-      <link>https://psmag.github.io/2012/06/28/workflow-documentation-now-live-on-technet/</link>
+      <link>https://powershellmagazine.com/2012/06/28/workflow-documentation-now-live-on-technet/</link>
       <pubDate>Thu, 28 Jun 2012 10:08:45 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/06/28/workflow-documentation-now-live-on-technet/</guid>
+      <guid>https://powershellmagazine.com/2012/06/28/workflow-documentation-now-live-on-technet/</guid>
       <description>Some of you have noticed that the CTP Workflow PDF guide that was a part of PowerShell 3.0 CTP download is no longer available.</description>
     </item>
     
     <item>
       <title>Windows PowerShell 3.0 and Server Manager Quick Reference Guides (updated)</title>
-      <link>https://psmag.github.io/2012/06/27/windows-powershell-3-0-and-server-manager-quick-reference-guides-updated/</link>
+      <link>https://powershellmagazine.com/2012/06/27/windows-powershell-3-0-and-server-manager-quick-reference-guides-updated/</link>
       <pubDate>Wed, 27 Jun 2012 13:36:44 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/06/27/windows-powershell-3-0-and-server-manager-quick-reference-guides-updated/</guid>
+      <guid>https://powershellmagazine.com/2012/06/27/windows-powershell-3-0-and-server-manager-quick-reference-guides-updated/</guid>
       <description>Microsoft has updated the Quick Reference Guides page with a new PDF guide: WMI and CIM quick reference. The two page guide describes differences between Windows Management Instrumentation (WMI) in Windows PowerShell 2.</description>
     </item>
     
     <item>
       <title>PowerShell Videos From TechEd North America 2012</title>
-      <link>https://psmag.github.io/2012/06/14/powershell-videos-from-teched-north-america-2012/</link>
+      <link>https://powershellmagazine.com/2012/06/14/powershell-videos-from-teched-north-america-2012/</link>
       <pubDate>Thu, 14 Jun 2012 11:27:01 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/06/14/powershell-videos-from-teched-north-america-2012/</guid>
+      <guid>https://powershellmagazine.com/2012/06/14/powershell-videos-from-teched-north-america-2012/</guid>
       <description>For those of us who couldn’t make it to Tech Ed this year, you can watch the live stream of today’s sessions HERE (begins at 08:30).</description>
     </item>
     
     <item>
       <title>Windows PowerShell 3.0 and Server Manager Quick Reference Guides</title>
-      <link>https://psmag.github.io/2012/06/09/windows-powershell-3-0-and-server-manager-quick-reference-guides/</link>
+      <link>https://powershellmagazine.com/2012/06/09/windows-powershell-3-0-and-server-manager-quick-reference-guides/</link>
       <pubDate>Sat, 09 Jun 2012 04:24:53 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/06/09/windows-powershell-3-0-and-server-manager-quick-reference-guides/</guid>
+      <guid>https://powershellmagazine.com/2012/06/09/windows-powershell-3-0-and-server-manager-quick-reference-guides/</guid>
       <description>We are pleased to announce the availability of Windows PowerShell 3.0 quick reference guides that PowerShell Magazine has created and are now part of “Windows PowerShell 3.</description>
     </item>
     
     <item>
       <title>Visualize your data using PowerShell: Introducing SeeShell</title>
-      <link>https://psmag.github.io/2012/06/06/visualize-your-data-using-powershell-introducing-seeshell/</link>
+      <link>https://powershellmagazine.com/2012/06/06/visualize-your-data-using-powershell-introducing-seeshell/</link>
       <pubDate>Wed, 06 Jun 2012 16:41:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/06/06/visualize-your-data-using-powershell-introducing-seeshell/</guid>
+      <guid>https://powershellmagazine.com/2012/06/06/visualize-your-data-using-powershell-introducing-seeshell/</guid>
       <description>Jim Christopher, a Windows PowerShell MVP and a founder of Code Owls LLC, announced the release of SeeShell—a toolkit to visualize the data from various sources such as WMI objects, performance counters, event logs, files, databases, system events, etc.</description>
     </item>
     
     <item>
       <title>Microsoft PowerShell 3.0 First Look</title>
-      <link>https://psmag.github.io/2012/06/05/microsoft-powershell-3-0-first-look/</link>
+      <link>https://powershellmagazine.com/2012/06/05/microsoft-powershell-3-0-first-look/</link>
       <pubDate>Tue, 05 Jun 2012 17:00:45 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/06/05/microsoft-powershell-3-0-first-look/</guid>
+      <guid>https://powershellmagazine.com/2012/06/05/microsoft-powershell-3-0-first-look/</guid>
       <description>Microsoft PowerShell 3.0 First Look, by Adam Driscoll, is a concise overview of the up and coming features and enhancements to PowerShell.</description>
     </item>
     
     <item>
       <title>Windows Management Framework 3.0 RC is available for download</title>
-      <link>https://psmag.github.io/2012/06/04/windows-management-framework-3-0-rc-is-available-for-download/</link>
+      <link>https://powershellmagazine.com/2012/06/04/windows-management-framework-3-0-rc-is-available-for-download/</link>
       <pubDate>Mon, 04 Jun 2012 09:09:34 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/06/04/windows-management-framework-3-0-rc-is-available-for-download/</guid>
+      <guid>https://powershellmagazine.com/2012/06/04/windows-management-framework-3-0-rc-is-available-for-download/</guid>
       <description>The RC version is available for download HERE. You can also find the download link in the Downloads section in the right hand side column of the magazine’s home page.</description>
     </item>
     
     <item>
       <title>PowerShell for Developers</title>
-      <link>https://psmag.github.io/2012/05/31/powershell-for-developers/</link>
+      <link>https://powershellmagazine.com/2012/05/31/powershell-for-developers/</link>
       <pubDate>Thu, 31 May 2012 17:00:02 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/05/31/powershell-for-developers/</guid>
+      <guid>https://powershellmagazine.com/2012/05/31/powershell-for-developers/</guid>
       <description>The new book, ”PowerShell for Developers” written by our Editor and PowerShell MVP Doug Finke, is available in early release at a significant discount.</description>
     </item>
     
     <item>
       <title>Master-PowerShell | With Dr. Tobias Weltner</title>
-      <link>https://psmag.github.io/2012/05/21/master-powershell-with-dr-tobias-weltner/</link>
+      <link>https://powershellmagazine.com/2012/05/21/master-powershell-with-dr-tobias-weltner/</link>
       <pubDate>Mon, 21 May 2012 18:00:37 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/05/21/master-powershell-with-dr-tobias-weltner/</guid>
+      <guid>https://powershellmagazine.com/2012/05/21/master-powershell-with-dr-tobias-weltner/</guid>
       <description>The popular free eBook has been updated for PowerShell 2.0. You can read it online.
 You need to be a PowerShell.</description>
     </item>
     
     <item>
       <title>PrimalScript 2012 and PowerShell Studio 2012</title>
-      <link>https://psmag.github.io/2012/05/20/primalscript-2012-and-powershell-studio-2012/</link>
+      <link>https://powershellmagazine.com/2012/05/20/primalscript-2012-and-powershell-studio-2012/</link>
       <pubDate>Sun, 20 May 2012 16:49:16 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/05/20/primalscript-2012-and-powershell-studio-2012/</guid>
+      <guid>https://powershellmagazine.com/2012/05/20/primalscript-2012-and-powershell-studio-2012/</guid>
       <description>SAPIEN Technologies has announced the immediate availability of PrimalScript 2012, the premiere Scripting Integrated Development Environment, and PowerShell Studio 2012. PowerShell Studio, has all the features of its predecessor, PrimalForms, plus a raft of new features for 2012.</description>
     </item>
     
     <item>
       <title>Windows PowerShell 3.0 Step by Step</title>
-      <link>https://psmag.github.io/2012/05/10/windows-powershell-3-0-step-by-step/</link>
+      <link>https://powershellmagazine.com/2012/05/10/windows-powershell-3-0-step-by-step/</link>
       <pubDate>Thu, 10 May 2012 06:50:51 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/05/10/windows-powershell-3-0-step-by-step/</guid>
+      <guid>https://powershellmagazine.com/2012/05/10/windows-powershell-3-0-step-by-step/</guid>
       <description>The book, by Ed Wilson, the Microsoft Scripting Guy, is available for pre-order (45% off) on Amazon.</description>
     </item>
     
     <item>
       <title>Day 3 From the PowerShell Deep Dive at TEC 2012</title>
-      <link>https://psmag.github.io/2012/05/05/day-3-from-the-powershell-deep-dive-at-tec-2012/</link>
+      <link>https://powershellmagazine.com/2012/05/05/day-3-from-the-powershell-deep-dive-at-tec-2012/</link>
       <pubDate>Sat, 05 May 2012 12:25:54 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/05/05/day-3-from-the-powershell-deep-dive-at-tec-2012/</guid>
+      <guid>https://powershellmagazine.com/2012/05/05/day-3-from-the-powershell-deep-dive-at-tec-2012/</guid>
       <description>On the third and final day of the PowerShell Deep Dive, the great content continued to roll.
 The morning started with a bang when Richard Siddaway opened up with an overview of CDXML and how, using an XML configuration file, one can generate cmdlets from a WMI interface.</description>
     </item>
     
     <item>
       <title>Day 2 From the PowerShell Deep Dive at TEC 2012</title>
-      <link>https://psmag.github.io/2012/05/03/day-2-from-the-powershell-deep-dive-at-tec-2012/</link>
+      <link>https://powershellmagazine.com/2012/05/03/day-2-from-the-powershell-deep-dive-at-tec-2012/</link>
       <pubDate>Thu, 03 May 2012 04:07:46 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/05/03/day-2-from-the-powershell-deep-dive-at-tec-2012/</guid>
+      <guid>https://powershellmagazine.com/2012/05/03/day-2-from-the-powershell-deep-dive-at-tec-2012/</guid>
       <description>On the second day of the PowerShell Deep Dive, we had another great lineup of presentations.
 The day started with Jim Truher describing a technique for creating formatting files for using Format-Custom.</description>
     </item>
     
     <item>
       <title>Office 365 Helper Script Examples</title>
-      <link>https://psmag.github.io/2012/05/02/office-365-helper-script-examples/</link>
+      <link>https://powershellmagazine.com/2012/05/02/office-365-helper-script-examples/</link>
       <pubDate>Wed, 02 May 2012 12:48:09 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/05/02/office-365-helper-script-examples/</guid>
+      <guid>https://powershellmagazine.com/2012/05/02/office-365-helper-script-examples/</guid>
       <description>If you’re working with Office 365 than you may want to check out the Office 365 Helper Scripts package. This package includes a number of helper scripts created during Office 365 deployments.</description>
     </item>
     
     <item>
       <title>Day 1 From the PowerShell Deep Dive at TEC 2012</title>
-      <link>https://psmag.github.io/2012/05/01/day-1-from-the-powershell-deep-dive-at-tec-2012/</link>
+      <link>https://powershellmagazine.com/2012/05/01/day-1-from-the-powershell-deep-dive-at-tec-2012/</link>
       <pubDate>Tue, 01 May 2012 15:44:05 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/05/01/day-1-from-the-powershell-deep-dive-at-tec-2012/</guid>
+      <guid>https://powershellmagazine.com/2012/05/01/day-1-from-the-powershell-deep-dive-at-tec-2012/</guid>
       <description>Day 1 has wrapped up on the PowerShell Deep Dive and we are getting ready to start Day 2. Day 1 was jam packed with PowerShell goodness.</description>
     </item>
     
     <item>
       <title>Windows Server 2012 Beta Virtual Labs</title>
-      <link>https://psmag.github.io/2012/04/29/windows-server-2012-beta-virtual-labs/</link>
+      <link>https://powershellmagazine.com/2012/04/29/windows-server-2012-beta-virtual-labs/</link>
       <pubDate>Sun, 29 Apr 2012 18:00:49 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/04/29/windows-server-2012-beta-virtual-labs/</guid>
+      <guid>https://powershellmagazine.com/2012/04/29/windows-server-2012-beta-virtual-labs/</guid>
       <description>Want to test drive the new and improved features of Windows PowerShell?
 Check out the Windows Server 2012 Beta Virtual Labs page where you can find virtual labs, three of which are on Windows PowerShell!</description>
     </item>
     
     <item>
       <title>Secrets of PowerShell Remoting</title>
-      <link>https://psmag.github.io/2012/04/28/secrets-of-powershell-remoting/</link>
+      <link>https://powershellmagazine.com/2012/04/28/secrets-of-powershell-remoting/</link>
       <pubDate>Sat, 28 Apr 2012 18:00:38 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/04/28/secrets-of-powershell-remoting/</guid>
+      <guid>https://powershellmagazine.com/2012/04/28/secrets-of-powershell-remoting/</guid>
       <description>This free guide covers all of the hidden details, configuration tricks, and difficult scenarios involved with Windows PowerShell Remoting. Learn the secret and undocumented tricks to Windows PowerShell Remoting!</description>
     </item>
     
     <item>
       <title>Microsoft Script Explorer for Windows PowerShell</title>
-      <link>https://psmag.github.io/2012/03/13/microsoft-script-explorer-for-windows-powershell/</link>
+      <link>https://powershellmagazine.com/2012/03/13/microsoft-script-explorer-for-windows-powershell/</link>
       <pubDate>Tue, 13 Mar 2012 12:57:32 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/03/13/microsoft-script-explorer-for-windows-powershell/</guid>
+      <guid>https://powershellmagazine.com/2012/03/13/microsoft-script-explorer-for-windows-powershell/</guid>
       <description>The pre-release version of Microsoft’s Script Explorer for Windows PowerShell Beta 1 has been released. Download it HERE.
 Script Explorer Beta 1 is a free download and an extension of the content and guidance experience that combines the vast amount of knowledge held in the community with the resources available today from Microsoft.</description>
     </item>
     
     <item>
       <title>Windows PowerShell for the Busy Admin</title>
-      <link>https://psmag.github.io/2012/03/07/windows-powershell-for-the-busy-admin/</link>
+      <link>https://powershellmagazine.com/2012/03/07/windows-powershell-for-the-busy-admin/</link>
       <pubDate>Wed, 07 Mar 2012 16:42:05 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/03/07/windows-powershell-for-the-busy-admin/</guid>
+      <guid>https://powershellmagazine.com/2012/03/07/windows-powershell-for-the-busy-admin/</guid>
       <description>Beginning on Monday, March 12, 2012, Ed Wilson, The Scripting Guy, will start a new series of Learn Windows PowerShell Live Meetings titled “Windows PowerShell for the Busy Admin”.</description>
     </item>
     
     <item>
       <title>PowerShell 3.0 Beta is out</title>
-      <link>https://psmag.github.io/2012/03/01/powershell-3-0-beta-is-out/</link>
+      <link>https://powershellmagazine.com/2012/03/01/powershell-3-0-beta-is-out/</link>
       <pubDate>Thu, 01 Mar 2012 18:09:44 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/03/01/powershell-3-0-beta-is-out/</guid>
+      <guid>https://powershellmagazine.com/2012/03/01/powershell-3-0-beta-is-out/</guid>
       <description>Windows Management Framework 3.0 – Beta is available for download. Get it HERE. More information on the PowerShell team blog.</description>
     </item>
     
     <item>
       <title>Data ONTAP PowerShell Toolkit 1.7</title>
-      <link>https://psmag.github.io/2012/02/02/data-ontap-powershell-toolkit-1-7/</link>
+      <link>https://powershellmagazine.com/2012/02/02/data-ontap-powershell-toolkit-1-7/</link>
       <pubDate>Thu, 02 Feb 2012 15:21:27 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/02/02/data-ontap-powershell-toolkit-1-7/</guid>
+      <guid>https://powershellmagazine.com/2012/02/02/data-ontap-powershell-toolkit-1-7/</guid>
       <description>The Data ONTAP PowerShell Toolkit 1.7 was released! This latest offering of the very popular PowerShell module for managing NetApp storage systems features over 900 cmdlets.</description>
     </item>
     
     <item>
       <title>The 2012 PowerShell Scripting Games</title>
-      <link>https://psmag.github.io/2012/01/30/the-2012-powershell-scripting-games/</link>
+      <link>https://powershellmagazine.com/2012/01/30/the-2012-powershell-scripting-games/</link>
       <pubDate>Mon, 30 Jan 2012 09:29:23 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/01/30/the-2012-powershell-scripting-games/</guid>
+      <guid>https://powershellmagazine.com/2012/01/30/the-2012-powershell-scripting-games/</guid>
       <description>The Microsoft Scripting Guys formally announce the 2012 Scripting Games featuring Windows PowerShell. Read the announcement HERE.</description>
     </item>
     
     <item>
       <title>PowerShell Essentials – Become a PowerShell Wiz, Too!</title>
-      <link>https://psmag.github.io/2012/01/29/power-essentials-become-a-powershell-wiz-too/</link>
+      <link>https://powershellmagazine.com/2012/01/29/power-essentials-become-a-powershell-wiz-too/</link>
       <pubDate>Sun, 29 Jan 2012 16:10:44 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/01/29/power-essentials-become-a-powershell-wiz-too/</guid>
+      <guid>https://powershellmagazine.com/2012/01/29/power-essentials-become-a-powershell-wiz-too/</guid>
       <description>If you weren’t able to attend “PowerShell Essentials – Become a PowerShell Wiz, Too!” webcast presented by PowerShell MVP and trainer Dr.</description>
     </item>
     
     <item>
       <title>Windows PowerShell sessions from Nordic Infrastructure Conference 2012 available</title>
-      <link>https://psmag.github.io/2012/01/29/windows-powershell-sessions-from-nordic-infrastructure-conference-2012-available/</link>
+      <link>https://powershellmagazine.com/2012/01/29/windows-powershell-sessions-from-nordic-infrastructure-conference-2012-available/</link>
       <pubDate>Sun, 29 Jan 2012 14:29:01 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/01/29/windows-powershell-sessions-from-nordic-infrastructure-conference-2012-available/</guid>
+      <guid>https://powershellmagazine.com/2012/01/29/windows-powershell-sessions-from-nordic-infrastructure-conference-2012-available/</guid>
       <description>For the first time the Nordic Infrastructure Conference (NIC) was held in Oslo, Norway on January 13th – 14th. More than 30 speakers held close to 60 sessions in two days divided into the tracks Security, Virtualization &amp;amp; Cloud, System Management, Unified Communication and Windows 8.</description>
     </item>
     
     <item>
       <title>It’s Time For Another PowerShell Deep Dive!</title>
-      <link>https://psmag.github.io/2012/01/27/its-time-for-another-powershell-deep-dive/</link>
+      <link>https://powershellmagazine.com/2012/01/27/its-time-for-another-powershell-deep-dive/</link>
       <pubDate>Fri, 27 Jan 2012 19:30:29 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/01/27/its-time-for-another-powershell-deep-dive/</guid>
+      <guid>https://powershellmagazine.com/2012/01/27/its-time-for-another-powershell-deep-dive/</guid>
       <description>The PowerShell Deep Dive is going to be at The Experts Conference USA again this year! The event is being held in San Diego, CA from April 29 – May 2.</description>
     </item>
     
     <item>
       <title>PowerWF and PowerSE 2.7</title>
-      <link>https://psmag.github.io/2012/01/24/powerwf-and-powerse-2-7/</link>
+      <link>https://powershellmagazine.com/2012/01/24/powerwf-and-powerse-2-7/</link>
       <pubDate>Wed, 25 Jan 2012 00:26:55 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/01/24/powerwf-and-powerse-2-7/</guid>
+      <guid>https://powershellmagazine.com/2012/01/24/powerwf-and-powerse-2-7/</guid>
       <description>PowerWF and PowerSE 2.7 were released to the web and they can now be downloaded from HERE.</description>
     </item>
     
     <item>
       <title>SQLite PowerShell Provider</title>
-      <link>https://psmag.github.io/2012/01/23/sqlite-powershell-provider/</link>
+      <link>https://powershellmagazine.com/2012/01/23/sqlite-powershell-provider/</link>
       <pubDate>Mon, 23 Jan 2012 16:20:27 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/01/23/sqlite-powershell-provider/</guid>
+      <guid>https://powershellmagazine.com/2012/01/23/sqlite-powershell-provider/</guid>
       <description>PowerShell MVP Jim Christopher has published a new project on codeplex – SQLite PowerShell Provider. The new provider enables you to use SQLite databases from your PowerShell session by mounting the database as a drive.</description>
     </item>
     
     <item>
       <title>Announcing the winners of the PowerShell story series!</title>
-      <link>https://psmag.github.io/2012/01/01/announcing-the-winners-of-the-powershell-story-series/</link>
+      <link>https://powershellmagazine.com/2012/01/01/announcing-the-winners-of-the-powershell-story-series/</link>
       <pubDate>Sun, 01 Jan 2012 15:00:38 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/01/01/announcing-the-winners-of-the-powershell-story-series/</guid>
+      <guid>https://powershellmagazine.com/2012/01/01/announcing-the-winners-of-the-powershell-story-series/</guid>
       <description>A month ago, we started a contest for our readers to share their first PowerShell experience — their PowerShell story. Along with that, we have also announced that there were prizes to win!</description>
     </item>
     
     <item>
       <title>Getting Started with Windows PowerShell Workflows</title>
-      <link>https://psmag.github.io/2011/12/23/getting-started-with-windows-powershell-workflows/</link>
+      <link>https://powershellmagazine.com/2011/12/23/getting-started-with-windows-powershell-workflows/</link>
       <pubDate>Fri, 23 Dec 2011 14:23:52 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/23/getting-started-with-windows-powershell-workflows/</guid>
+      <guid>https://powershellmagazine.com/2011/12/23/getting-started-with-windows-powershell-workflows/</guid>
       <description>Windows PowerShell workflows consist of a set of activities that run in sequence or in parallel and perform long-running, complex management tasks, such as multimachine application provisioning.</description>
     </item>
     
     <item>
       <title>FREE NetCmdlets Workstation License</title>
-      <link>https://psmag.github.io/2011/12/21/free-netcmdlets-workstation-license/</link>
+      <link>https://powershellmagazine.com/2011/12/21/free-netcmdlets-workstation-license/</link>
       <pubDate>Wed, 21 Dec 2011 09:51:34 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/21/free-netcmdlets-workstation-license/</guid>
+      <guid>https://powershellmagazine.com/2011/12/21/free-netcmdlets-workstation-license/</guid>
       <description>/n software, the makers of NetCmdlets, is offering a FREE NetCmdlets Workstation License_._ NetCmdlets extend the features of Microsoft Windows PowerShell with a broad range of network management and messaging capabilities.</description>
     </item>
     
     <item>
       <title>Windows PowerShell at Microsoft Virtual TechDays (Online event)</title>
-      <link>https://psmag.github.io/2011/12/10/windows-powershell-at-microsoft-virtual-techdays-online-event/</link>
+      <link>https://powershellmagazine.com/2011/12/10/windows-powershell-at-microsoft-virtual-techdays-online-event/</link>
       <pubDate>Sat, 10 Dec 2011 19:00:25 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/10/windows-powershell-at-microsoft-virtual-techdays-online-event/</guid>
+      <guid>https://powershellmagazine.com/2011/12/10/windows-powershell-at-microsoft-virtual-techdays-online-event/</guid>
       <description>The 13th Edition of Microsoft Virtual TechDays is scheduled between 14-16 December, 2011. Virtual TechDays is an event for all types of audience — developers, IT professionals, and architects.</description>
     </item>
     
     <item>
       <title>WSMAN, WMI, and CIM at the UK PowerShell User Group</title>
-      <link>https://psmag.github.io/2011/12/08/wsman-wmi-and-cim-at-the-uk-powershell-user-group/</link>
+      <link>https://powershellmagazine.com/2011/12/08/wsman-wmi-and-cim-at-the-uk-powershell-user-group/</link>
       <pubDate>Thu, 08 Dec 2011 10:55:01 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/08/wsman-wmi-and-cim-at-the-uk-powershell-user-group/</guid>
+      <guid>https://powershellmagazine.com/2011/12/08/wsman-wmi-and-cim-at-the-uk-powershell-user-group/</guid>
       <description>Join the UK PowerShell User Group virtual meeting at Thursday, Dec 15, 2011 7:30 PM (GMT), and discover how to use the WSMAN cmdlets to retreive WMI information and see a demo of the new WMI API’s CIM cmdlets in PowerShell v3 CTP 2.</description>
     </item>
     
     <item>
       <title>Webcast: Enterprise Exchange Management with PowerShell</title>
-      <link>https://psmag.github.io/2011/12/07/webcast-enterprise-exchange-management-with-powershell/</link>
+      <link>https://powershellmagazine.com/2011/12/07/webcast-enterprise-exchange-management-with-powershell/</link>
       <pubDate>Wed, 07 Dec 2011 08:33:41 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/07/webcast-enterprise-exchange-management-with-powershell/</guid>
+      <guid>https://powershellmagazine.com/2011/12/07/webcast-enterprise-exchange-management-with-powershell/</guid>
       <description>In this webcast, Mike Pfeiffer , a Microsoft Exchange MVP, shows how you can take control of your messaging environment using the Exchange Management Shell.</description>
     </item>
     
     <item>
       <title>Windows Management Framework 3.0 Community Technology Preview (CTP) 2 is here</title>
-      <link>https://psmag.github.io/2011/12/03/windows-management-framework-3-0-community-technology-preview-ctp-2-is-here/</link>
+      <link>https://powershellmagazine.com/2011/12/03/windows-management-framework-3-0-community-technology-preview-ctp-2-is-here/</link>
       <pubDate>Sat, 03 Dec 2011 12:19:33 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/03/windows-management-framework-3-0-community-technology-preview-ctp-2-is-here/</guid>
+      <guid>https://powershellmagazine.com/2011/12/03/windows-management-framework-3-0-community-technology-preview-ctp-2-is-here/</guid>
       <description>The PowerShell team has announced the release  of Windows Management Framework 3.0 CTP2. The new build contains Windows PowerShell 3.</description>
     </item>
     
     <item>
       <title>An overview of Windows PowerShell features in Windows Server 8 Developer Preview</title>
-      <link>https://psmag.github.io/2011/10/04/an-overview-of-windows-powershell-features-in-windows-server-8-developer-preview/</link>
+      <link>https://powershellmagazine.com/2011/10/04/an-overview-of-windows-powershell-features-in-windows-server-8-developer-preview/</link>
       <pubDate>Mon, 03 Oct 2011 21:40:59 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/10/04/an-overview-of-windows-powershell-features-in-windows-server-8-developer-preview/</guid>
+      <guid>https://powershellmagazine.com/2011/10/04/an-overview-of-windows-powershell-features-in-windows-server-8-developer-preview/</guid>
       <description>This article describes features in a preview of the next version of Windows Server, and features described may and probably will change in the final product.</description>
     </item>
     
     <item>
       <title>PowerShell v3 ISE and ISE scripting model changes &amp; improvements</title>
-      <link>https://psmag.github.io/2011/09/28/powershell-v3-ise-and-ise-scripting-model-changes-improvements/</link>
+      <link>https://powershellmagazine.com/2011/09/28/powershell-v3-ise-and-ise-scripting-model-changes-improvements/</link>
       <pubDate>Wed, 28 Sep 2011 13:29:27 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/09/28/powershell-v3-ise-and-ise-scripting-model-changes-improvements/</guid>
+      <guid>https://powershellmagazine.com/2011/09/28/powershell-v3-ise-and-ise-scripting-model-changes-improvements/</guid>
       <description>PowerShell Integrated Scripting Environment (ISE) in version 2 was a great addition for people who wanted a better script editor with syntax highlighting.</description>
     </item>
     
     <item>
       <title>PowerShell vNext – Web Service Entities</title>
-      <link>https://psmag.github.io/2011/09/24/powershell-vnext-web-service-entities/</link>
+      <link>https://powershellmagazine.com/2011/09/24/powershell-vnext-web-service-entities/</link>
       <pubDate>Sat, 24 Sep 2011 12:40:31 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/09/24/powershell-vnext-web-service-entities/</guid>
+      <guid>https://powershellmagazine.com/2011/09/24/powershell-vnext-web-service-entities/</guid>
       <description>With the release of Windows 8 and PowerShell V3 CTP1, Microsoft added Management ODATA Web Services Dev. Tools which lets you create PowerShell web services.</description>
     </item>
     
     <item>
       <title>Cmdlet Help Editor was released on CodePlex</title>
-      <link>https://psmag.github.io/2011/09/22/cmdlet-help-editor-was-released-on-codeplex/</link>
+      <link>https://powershellmagazine.com/2011/09/22/cmdlet-help-editor-was-released-on-codeplex/</link>
       <pubDate>Thu, 22 Sep 2011 10:09:52 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/09/22/cmdlet-help-editor-was-released-on-codeplex/</guid>
+      <guid>https://powershellmagazine.com/2011/09/22/cmdlet-help-editor-was-released-on-codeplex/</guid>
       <description>Wassim Fayed [MSFT] has published the source code for the Cmdlet Help Editor on CodePlex.
 Cmdlet Help Editor enables you to create help topics for Windows PowerShell cmdlets and in the XML format that Windows PowerShell reads.</description>
     </item>
     
     <item>
       <title>Windows Management Framework 3.0 Community Technology Preview (CTP) 1 is here</title>
-      <link>https://psmag.github.io/2011/09/20/windows-management-framework-3-0-community-technology-preview-ctp-1-is-here/</link>
+      <link>https://powershellmagazine.com/2011/09/20/windows-management-framework-3-0-community-technology-preview-ctp-1-is-here/</link>
       <pubDate>Tue, 20 Sep 2011 09:24:13 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/09/20/windows-management-framework-3-0-community-technology-preview-ctp-1-is-here/</guid>
+      <guid>https://powershellmagazine.com/2011/09/20/windows-management-framework-3-0-community-technology-preview-ctp-1-is-here/</guid>
       <description>Have you tried PowerShell vNext included as a part of Windows 8 client and server developer preview? Don’t have a Windows 8 system to look at it just yet?</description>
     </item>
     
     <item>
       <title>PowerShell Plus v4.1 Has Been Released!</title>
-      <link>https://psmag.github.io/2011/09/14/powershell-plus-v4-1-has-been-released/</link>
+      <link>https://powershellmagazine.com/2011/09/14/powershell-plus-v4-1-has-been-released/</link>
       <pubDate>Tue, 13 Sep 2011 23:12:19 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/09/14/powershell-plus-v4-1-has-been-released/</guid>
+      <guid>https://powershellmagazine.com/2011/09/14/powershell-plus-v4-1-has-been-released/</guid>
       <description>Idera, a well-known provider of Windows PowerShell management and administration solutions, today announced PowerShell Plus v4.1, the advanced Interactive Development Environment (IDE) for Windows PowerShell.</description>
     </item>
     
     <item>
       <title>PowerShell Magazine at the BUILD conference</title>
-      <link>https://psmag.github.io/2011/09/13/powershell-magazine-at-the-build-conference/</link>
+      <link>https://powershellmagazine.com/2011/09/13/powershell-magazine-at-the-build-conference/</link>
       <pubDate>Mon, 12 Sep 2011 18:52:46 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/09/13/powershell-magazine-at-the-build-conference/</guid>
+      <guid>https://powershellmagazine.com/2011/09/13/powershell-magazine-at-the-build-conference/</guid>
       <description>Keith Hill, a PowerShell MVP and the brain behind PowerShell Community Extensions, agreed to get you all the PowerShell information live from the BUILD conference.</description>
     </item>
     
     <item>
       <title>Announcing the launch of PowerShell Magazine website!</title>
-      <link>https://psmag.github.io/2011/09/12/announcing-the-launch-of-powershell-magazine-website/</link>
+      <link>https://powershellmagazine.com/2011/09/12/announcing-the-launch-of-powershell-magazine-website/</link>
       <pubDate>Mon, 12 Sep 2011 17:48:05 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/09/12/announcing-the-launch-of-powershell-magazine-website/</guid>
+      <guid>https://powershellmagazine.com/2011/09/12/announcing-the-launch-of-powershell-magazine-website/</guid>
       <description>Today, we are very happy to announce the launch of PowerShellMagazine.com – a magazine dedicated to Windows PowerShell.
 What an exciting journey this was!</description>
     </item>
     
     <item>
       <title>News: Poshoholic moved from Quest to DevFarm</title>
-      <link>https://psmag.github.io/2011/09/10/news-poshoholic-moved-from-quest-to-devfarm/</link>
+      <link>https://powershellmagazine.com/2011/09/10/news-poshoholic-moved-from-quest-to-devfarm/</link>
       <pubDate>Sat, 10 Sep 2011 16:02:25 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/09/10/news-poshoholic-moved-from-quest-to-devfarm/</guid>
+      <guid>https://powershellmagazine.com/2011/09/10/news-poshoholic-moved-from-quest-to-devfarm/</guid>
       <description>Kirk Munro a.k.a @Poshoholic announced his departure from Quest on July 28th. Kirk has been very instrumental in several releases of PowerGUI.</description>
     </item>
     
     <item>
       <title>News: PowerShell Deep Dive session at TEC2011</title>
-      <link>https://psmag.github.io/2011/09/03/powershell-deep-dive-session-abstracts/</link>
+      <link>https://powershellmagazine.com/2011/09/03/powershell-deep-dive-session-abstracts/</link>
       <pubDate>Sat, 03 Sep 2011 11:22:46 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/09/03/powershell-deep-dive-session-abstracts/</guid>
+      <guid>https://powershellmagazine.com/2011/09/03/powershell-deep-dive-session-abstracts/</guid>
       <description>The Experts Conference 2011, Europe will be hosting the PowerShell Deep Dive. The PowerShell team has announced the first 8 session abstracts for the PowerShell Deep Dive in Frankfurt.</description>
     </item>
     
     <item>
       <title>PowerShell Version 3 Unveiled at Microsoft BUILD Conference</title>
-      <link>https://psmag.github.io/2011/09/03/powershell-version-3-unveiled-at-microsoft-build-conference/</link>
+      <link>https://powershellmagazine.com/2011/09/03/powershell-version-3-unveiled-at-microsoft-build-conference/</link>
       <pubDate>Sat, 03 Sep 2011 11:22:37 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/09/03/powershell-version-3-unveiled-at-microsoft-build-conference/</guid>
+      <guid>https://powershellmagazine.com/2011/09/03/powershell-version-3-unveiled-at-microsoft-build-conference/</guid>
       <description>Microsoft took the wraps off Windows PowerShell V3 at the BUILD conference today in the broader context of the Windows Management Framework (WMF).</description>
     </item>
     

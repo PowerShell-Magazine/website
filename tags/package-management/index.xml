@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Package Management on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/package-management/</link>
+    <link>https://powershellmagazine.com/tags/package-management/</link>
     <description>Recent content in Package Management on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 30 Nov 2015 17:00:33 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/package-management/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/package-management/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>The case of potentially broken Package Management for Windows 10 Insiders</title>
-      <link>https://psmag.github.io/2015/11/30/the-case-of-potentially-broken-packagemanagement-for-windows-10-insiders-2/</link>
+      <link>https://powershellmagazine.com/2015/11/30/the-case-of-potentially-broken-packagemanagement-for-windows-10-insiders-2/</link>
       <pubDate>Mon, 30 Nov 2015 17:00:33 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/11/30/the-case-of-potentially-broken-packagemanagement-for-windows-10-insiders-2/</guid>
+      <guid>https://powershellmagazine.com/2015/11/30/the-case-of-potentially-broken-packagemanagement-for-windows-10-insiders-2/</guid>
       <description>I’ve been running in the Windows Insiders fast ring since it was incepted and went from Windows 8.1 to Windows 10 November update with all the insider builds in between.</description>
     </item>
     
     <item>
       <title>PowerShell OneGet: Gist-As-A-Package</title>
-      <link>https://psmag.github.io/2015/01/14/powershell-oneget-gist-as-a-package/</link>
+      <link>https://powershellmagazine.com/2015/01/14/powershell-oneget-gist-as-a-package/</link>
       <pubDate>Wed, 14 Jan 2015 17:00:39 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/01/14/powershell-oneget-gist-as-a-package/</guid>
+      <guid>https://powershellmagazine.com/2015/01/14/powershell-oneget-gist-as-a-package/</guid>
       <description>This article will cover a new powerful feature delivered in the PowerShell 5.0 November Preview. This feature is OneGet. OneGet is a unified package manager for package management systems.</description>
     </item>
     
     <item>
       <title>Chocolatey and PowerShell – Revolutionize Windows, Part II</title>
-      <link>https://psmag.github.io/2012/02/20/chocolatey-and-powershell-revolutionize-windows-part-ii/</link>
+      <link>https://powershellmagazine.com/2012/02/20/chocolatey-and-powershell-revolutionize-windows-part-ii/</link>
       <pubDate>Mon, 20 Feb 2012 19:00:27 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/02/20/chocolatey-and-powershell-revolutionize-windows-part-ii/</guid>
+      <guid>https://powershellmagazine.com/2012/02/20/chocolatey-and-powershell-revolutionize-windows-part-ii/</guid>
       <description>In the first installment we covered installing both a tool and an application. If the possibilities of Chocolatey have not yet started to solidify for you, hopefully this next segment will.</description>
     </item>
     
     <item>
       <title>Chocolatey and PowerShell – Revolutionize Windows, Part I</title>
-      <link>https://psmag.github.io/2012/02/15/chocolatey-and-powershell-revolutionize-windows-part-i/</link>
+      <link>https://powershellmagazine.com/2012/02/15/chocolatey-and-powershell-revolutionize-windows-part-i/</link>
       <pubDate>Wed, 15 Feb 2012 19:00:41 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/02/15/chocolatey-and-powershell-revolutionize-windows-part-i/</guid>
+      <guid>https://powershellmagazine.com/2012/02/15/chocolatey-and-powershell-revolutionize-windows-part-i/</guid>
       <description>Ten years ago we did things a certain way. Five years ago we thought the things we did ten years ago were antiquated.</description>
     </item>
     

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Demo on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/demo/</link>
+    <link>https://powershellmagazine.com/tags/demo/</link>
     <description>Recent content in Demo on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 21 Mar 2014 18:00:03 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/demo/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/demo/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>PowerShell Demo Extravaganza: Lego Mindstorms Robot, Part 1</title>
-      <link>https://psmag.github.io/2014/03/21/powershell-demo-extravaganza-lego-mindstorms-robot-part-1/</link>
+      <link>https://powershellmagazine.com/2014/03/21/powershell-demo-extravaganza-lego-mindstorms-robot-part-1/</link>
       <pubDate>Fri, 21 Mar 2014 18:00:03 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/03/21/powershell-demo-extravaganza-lego-mindstorms-robot-part-1/</guid>
+      <guid>https://powershellmagazine.com/2014/03/21/powershell-demo-extravaganza-lego-mindstorms-robot-part-1/</guid>
       <description>One of PowerShell Magazine’s editors is asking me for quite some time to write an article about how to move Lego “bricks” from PowerShell.</description>
     </item>
     

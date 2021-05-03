@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PSConfEU on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/psconfeu/</link>
+    <link>https://powershellmagazine.com/categories/psconfeu/</link>
     <description>Recent content in PSConfEU on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Jan 2020 19:53:00 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/psconfeu/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/psconfeu/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>PowerShell Conference Europe 2020</title>
-      <link>https://psmag.github.io/2020/01/30/powershell-conference-europe-2020/</link>
+      <link>https://powershellmagazine.com/2020/01/30/powershell-conference-europe-2020/</link>
       <pubDate>Thu, 30 Jan 2020 19:53:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2020/01/30/powershell-conference-europe-2020/</guid>
+      <guid>https://powershellmagazine.com/2020/01/30/powershell-conference-europe-2020/</guid>
       <description>June 2, 2020, PowerShell Conference Europe opens for the 5th time in Hannover, Germany. Here is a quick walkthrough for this year’s event.</description>
     </item>
     
     <item>
       <title>#PSConfEU Agenda as a PowerShell Drive using #SHiPS</title>
-      <link>https://psmag.github.io/2018/04/03/psconfeu-agenda-as-a-powershell-drive-using-ships/</link>
+      <link>https://powershellmagazine.com/2018/04/03/psconfeu-agenda-as-a-powershell-drive-using-ships/</link>
       <pubDate>Tue, 03 Apr 2018 16:24:41 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2018/04/03/psconfeu-agenda-as-a-powershell-drive-using-ships/</guid>
+      <guid>https://powershellmagazine.com/2018/04/03/psconfeu-agenda-as-a-powershell-drive-using-ships/</guid>
       <description>The SHiPS module has several use cases with structured data. I have written a few proof-of-concept modules using SHiPS to understand how it works and try out different design patterns.</description>
     </item>
     
     <item>
       <title>PowerShell Conference EU 2018</title>
-      <link>https://psmag.github.io/2018/02/09/powershell-conference-eu-2018/</link>
+      <link>https://powershellmagazine.com/2018/02/09/powershell-conference-eu-2018/</link>
       <pubDate>Fri, 09 Feb 2018 14:51:40 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2018/02/09/powershell-conference-eu-2018/</guid>
+      <guid>https://powershellmagazine.com/2018/02/09/powershell-conference-eu-2018/</guid>
       <description>The US-based “PowerShell and DevOps Global Summit” sold out in record time this year, and the European “PowerShell Conference EU” (psconf.</description>
     </item>
     

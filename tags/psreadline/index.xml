@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PSReadLine on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/psreadline/</link>
+    <link>https://powershellmagazine.com/tags/psreadline/</link>
     <description>Recent content in PSReadLine on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 10 Sep 2013 06:38:02 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/psreadline/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/psreadline/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Announcing PSReadLine – A bash-inspired readline implementation for PowerShell</title>
-      <link>https://psmag.github.io/2013/09/10/announcing-psreadline-a-bash-inspiried-readline-implementation-for-powershell/</link>
+      <link>https://powershellmagazine.com/2013/09/10/announcing-psreadline-a-bash-inspiried-readline-implementation-for-powershell/</link>
       <pubDate>Tue, 10 Sep 2013 06:38:02 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2013/09/10/announcing-psreadline-a-bash-inspiried-readline-implementation-for-powershell/</guid>
+      <guid>https://powershellmagazine.com/2013/09/10/announcing-psreadline-a-bash-inspiried-readline-implementation-for-powershell/</guid>
       <description>Jason Shirk is back! He just announced the release of his new PowerShell project PSReadLine. In PowerShell 3.0, a hook was added to replace the command line editing experience in the console and Jason wrote a new module to take advantage of this hook.</description>
     </item>
     

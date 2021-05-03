@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Azure DevOps on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/azure-devops/</link>
+    <link>https://powershellmagazine.com/categories/azure-devops/</link>
     <description>Recent content in Azure DevOps on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 20 Sep 2018 18:01:19 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/azure-devops/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/azure-devops/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Converting a PowerShell Project to use Azure DevOps Pipelines</title>
-      <link>https://psmag.github.io/2018/09/20/converting-a-powershell-project-to-use-azure-devops-pipelines/</link>
+      <link>https://powershellmagazine.com/2018/09/20/converting-a-powershell-project-to-use-azure-devops-pipelines/</link>
       <pubDate>Thu, 20 Sep 2018 18:01:19 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2018/09/20/converting-a-powershell-project-to-use-azure-devops-pipelines/</guid>
+      <guid>https://powershellmagazine.com/2018/09/20/converting-a-powershell-project-to-use-azure-devops-pipelines/</guid>
       <description>Introduction Continuous Integration (CI) is the process of integrating code into a source code repository several times a day. Each time code is pushed into the repository an automated process runs to build and verify the code continues to work.</description>
     </item>
     

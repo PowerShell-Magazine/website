@@ -2,345 +2,345 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Interviews on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/interviews/</link>
+    <link>https://powershellmagazine.com/tags/interviews/</link>
     <description>Recent content in Interviews on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 12 May 2016 16:00:09 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/interviews/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/interviews/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>From #PSConfEU 2016 – A Conversation with Jeffrey Snover</title>
-      <link>https://psmag.github.io/2016/05/12/from-psconfeu-2016-a-conversation-with-jeffrey-snover/</link>
+      <link>https://powershellmagazine.com/2016/05/12/from-psconfeu-2016-a-conversation-with-jeffrey-snover/</link>
       <pubDate>Thu, 12 May 2016 16:00:09 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/05/12/from-psconfeu-2016-a-conversation-with-jeffrey-snover/</guid>
+      <guid>https://powershellmagazine.com/2016/05/12/from-psconfeu-2016-a-conversation-with-jeffrey-snover/</guid>
       <description>This post is a bit delayed, but PowerShell Conference Europe 2016 was a blast. It’s a true global conference with both attendees and speakers from four different continents.</description>
     </item>
     
     <item>
       <title>#PSConfAsia An Interview with PowerShell Expert Janaka Rangama</title>
-      <link>https://psmag.github.io/2015/10/20/psconfasia-an-interview-with-powershell-expert-janaka-rangama/</link>
+      <link>https://powershellmagazine.com/2015/10/20/psconfasia-an-interview-with-powershell-expert-janaka-rangama/</link>
       <pubDate>Tue, 20 Oct 2015 16:00:12 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/10/20/psconfasia-an-interview-with-powershell-expert-janaka-rangama/</guid>
+      <guid>https://powershellmagazine.com/2015/10/20/psconfasia-an-interview-with-powershell-expert-janaka-rangama/</guid>
       <description>We concluded the first exclusive PowerShell conference in Asia a couple of weeks ago. It was very successful and there are already plans to take this conference around APAC region.</description>
     </item>
     
     <item>
       <title>#PSConfAsia An Interview with PowerShell Expert Emerald Tabirao</title>
-      <link>https://psmag.github.io/2015/10/19/psconfasia-an-interview-with-powershell-expert-emerald-tabirao/</link>
+      <link>https://powershellmagazine.com/2015/10/19/psconfasia-an-interview-with-powershell-expert-emerald-tabirao/</link>
       <pubDate>Mon, 19 Oct 2015 16:00:19 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/10/19/psconfasia-an-interview-with-powershell-expert-emerald-tabirao/</guid>
+      <guid>https://powershellmagazine.com/2015/10/19/psconfasia-an-interview-with-powershell-expert-emerald-tabirao/</guid>
       <description>We concluded the first exclusive PowerShell conference in Asia a couple of weeks ago. It was very successful and there are already plans to take this conference around APAC region.</description>
     </item>
     
     <item>
       <title>#PSConfAsia An Interview with PowerShell Expert Milton Goh</title>
-      <link>https://psmag.github.io/2015/10/16/psconfasia-an-interview-with-powershell-expert-milton-goh/</link>
+      <link>https://powershellmagazine.com/2015/10/16/psconfasia-an-interview-with-powershell-expert-milton-goh/</link>
       <pubDate>Fri, 16 Oct 2015 16:00:29 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/10/16/psconfasia-an-interview-with-powershell-expert-milton-goh/</guid>
+      <guid>https://powershellmagazine.com/2015/10/16/psconfasia-an-interview-with-powershell-expert-milton-goh/</guid>
       <description>We concluded the first exclusive PowerShell conference in Asia a couple of weeks ago. It was very successful and there are already plans to take this conference around APAC region.</description>
     </item>
     
     <item>
       <title>#PSConfAsia An Interview with PowerShell Expert Ryan Yates</title>
-      <link>https://psmag.github.io/2015/10/15/psconfasia-an-interview-with-powershell-expert-ryan-yates/</link>
+      <link>https://powershellmagazine.com/2015/10/15/psconfasia-an-interview-with-powershell-expert-ryan-yates/</link>
       <pubDate>Thu, 15 Oct 2015 16:00:40 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/10/15/psconfasia-an-interview-with-powershell-expert-ryan-yates/</guid>
+      <guid>https://powershellmagazine.com/2015/10/15/psconfasia-an-interview-with-powershell-expert-ryan-yates/</guid>
       <description>We concluded the first exclusive PowerShell conference in Asia a couple of weeks ago. It was very successful and there are already plans to take this conference around APAC region.</description>
     </item>
     
     <item>
       <title>#PSConfAsia An Interview with PowerShell Expert Gayathri Narayanan</title>
-      <link>https://psmag.github.io/2015/10/14/psconfasia-an-interview-with-powershell-expert-gayathri-narayanan/</link>
+      <link>https://powershellmagazine.com/2015/10/14/psconfasia-an-interview-with-powershell-expert-gayathri-narayanan/</link>
       <pubDate>Wed, 14 Oct 2015 16:00:44 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/10/14/psconfasia-an-interview-with-powershell-expert-gayathri-narayanan/</guid>
+      <guid>https://powershellmagazine.com/2015/10/14/psconfasia-an-interview-with-powershell-expert-gayathri-narayanan/</guid>
       <description>We concluded the first exclusive PowerShell conference in Asia a couple of weeks ago. It was very successful and there are already plans to take this conference around APAC region.</description>
     </item>
     
     <item>
       <title>#PSConfAsia An Interview with PowerShell Expert Jason Brown</title>
-      <link>https://psmag.github.io/2015/10/13/psconfasia-an-interview-with-powershell-expert-jason-brown/</link>
+      <link>https://powershellmagazine.com/2015/10/13/psconfasia-an-interview-with-powershell-expert-jason-brown/</link>
       <pubDate>Tue, 13 Oct 2015 16:00:48 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/10/13/psconfasia-an-interview-with-powershell-expert-jason-brown/</guid>
+      <guid>https://powershellmagazine.com/2015/10/13/psconfasia-an-interview-with-powershell-expert-jason-brown/</guid>
       <description>We concluded the first exclusive PowerShell conference in Asia a couple of weeks ago. It was very successful and there are already plans to take this conference around APAC region.</description>
     </item>
     
     <item>
       <title>#PSConfAsia An Interview with PowerShell Expert Girish Prakash</title>
-      <link>https://psmag.github.io/2015/10/12/psconfasia-an-interview-with-powershell-expert-girish-prakash-2/</link>
+      <link>https://powershellmagazine.com/2015/10/12/psconfasia-an-interview-with-powershell-expert-girish-prakash-2/</link>
       <pubDate>Mon, 12 Oct 2015 16:00:48 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/10/12/psconfasia-an-interview-with-powershell-expert-girish-prakash-2/</guid>
+      <guid>https://powershellmagazine.com/2015/10/12/psconfasia-an-interview-with-powershell-expert-girish-prakash-2/</guid>
       <description>We concluded the first exclusive PowerShell conference in Asia a couple of weeks ago. It was very successful and there are already plans to take this conference around APAC region.</description>
     </item>
     
     <item>
       <title>#PSConfAsia An Interview with PowerShell Expert Jaap Brasser</title>
-      <link>https://psmag.github.io/2015/10/09/psconfasia-an-interview-with-powershell-expert-jaap-brasser/</link>
+      <link>https://powershellmagazine.com/2015/10/09/psconfasia-an-interview-with-powershell-expert-jaap-brasser/</link>
       <pubDate>Fri, 09 Oct 2015 16:00:10 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/10/09/psconfasia-an-interview-with-powershell-expert-jaap-brasser/</guid>
+      <guid>https://powershellmagazine.com/2015/10/09/psconfasia-an-interview-with-powershell-expert-jaap-brasser/</guid>
       <description>We concluded the first exclusive PowerShell conference in Asia a couple of weeks ago. It was very successful and there are already plans to take this conference around APAC region.</description>
     </item>
     
     <item>
       <title>#PSConfAsia An Interview with PowerShell Expert Deepak Dhami</title>
-      <link>https://psmag.github.io/2015/10/08/psconfasia-an-interview-with-powershell-expert-deepak-dhami/</link>
+      <link>https://powershellmagazine.com/2015/10/08/psconfasia-an-interview-with-powershell-expert-deepak-dhami/</link>
       <pubDate>Thu, 08 Oct 2015 16:00:17 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/10/08/psconfasia-an-interview-with-powershell-expert-deepak-dhami/</guid>
+      <guid>https://powershellmagazine.com/2015/10/08/psconfasia-an-interview-with-powershell-expert-deepak-dhami/</guid>
       <description>We concluded the first exclusive PowerShell conference in Asia a couple of weeks ago. It was very successful and there are already plans to take this conference around APAC region.</description>
     </item>
     
     <item>
       <title>#PSConfAsia An Interview with PowerShell Expert Narayanan Lakshmanan</title>
-      <link>https://psmag.github.io/2015/10/07/psconfasia-an-interview-with-powershell-expert-narayanan-lakshmanan/</link>
+      <link>https://powershellmagazine.com/2015/10/07/psconfasia-an-interview-with-powershell-expert-narayanan-lakshmanan/</link>
       <pubDate>Wed, 07 Oct 2015 16:00:04 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/10/07/psconfasia-an-interview-with-powershell-expert-narayanan-lakshmanan/</guid>
+      <guid>https://powershellmagazine.com/2015/10/07/psconfasia-an-interview-with-powershell-expert-narayanan-lakshmanan/</guid>
       <description>We concluded the first exclusive PowerShell conference in Asia a couple of weeks ago. It was very successful and there are already plans to take this conference around APAC region.</description>
     </item>
     
     <item>
       <title>#PSConfAsia An Interview with PowerShell Expert Benjamin Hodge</title>
-      <link>https://psmag.github.io/2015/10/06/psconfasia-an-interview-with-powershell-expert-benjamin-hodge/</link>
+      <link>https://powershellmagazine.com/2015/10/06/psconfasia-an-interview-with-powershell-expert-benjamin-hodge/</link>
       <pubDate>Tue, 06 Oct 2015 16:00:18 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/10/06/psconfasia-an-interview-with-powershell-expert-benjamin-hodge/</guid>
+      <guid>https://powershellmagazine.com/2015/10/06/psconfasia-an-interview-with-powershell-expert-benjamin-hodge/</guid>
       <description>We concluded the first exclusive PowerShell conference in Asia a couple of weeks ago. It was very successful and there are already plans to take this conference around APAC region.</description>
     </item>
     
     <item>
       <title>#PSConfAsia An Interview with PowerShell Expert Ferdinand Rios</title>
-      <link>https://psmag.github.io/2015/10/05/psconfasia-an-interview-with-powershell-expert-ferdinand-rios/</link>
+      <link>https://powershellmagazine.com/2015/10/05/psconfasia-an-interview-with-powershell-expert-ferdinand-rios/</link>
       <pubDate>Mon, 05 Oct 2015 16:00:36 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2015/10/05/psconfasia-an-interview-with-powershell-expert-ferdinand-rios/</guid>
+      <guid>https://powershellmagazine.com/2015/10/05/psconfasia-an-interview-with-powershell-expert-ferdinand-rios/</guid>
       <description>We concluded the first exclusive PowerShell conference in Asia a couple of weeks ago. It was very successful and there are already plans to take this conference around APAC region.</description>
     </item>
     
     <item>
       <title>Interview with Darren Mar-Elia from MMS 2012</title>
-      <link>https://psmag.github.io/2012/05/09/interview-with-darren-mar-elia-from-mms-2012/</link>
+      <link>https://powershellmagazine.com/2012/05/09/interview-with-darren-mar-elia-from-mms-2012/</link>
       <pubDate>Wed, 09 May 2012 14:30:04 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/05/09/interview-with-darren-mar-elia-from-mms-2012/</guid>
+      <guid>https://powershellmagazine.com/2012/05/09/interview-with-darren-mar-elia-from-mms-2012/</guid>
       <description>Editor Aleksandar Nikolic caught up with Darren Mar-Elia, the CTO and founder of SDM Software &amp;amp; &amp;lt;GPOGUY.com&amp;gt;, at MMS 2012. Darren has been a Microsoft MVP in Group Policy technology for the last 8 years, and has written and spoken on Active Directory, Group Policy and PowerShell topics around the world.</description>
     </item>
     
     <item>
       <title>Interview with Jeffrey Snover from MMS 2012</title>
-      <link>https://psmag.github.io/2012/04/27/interview-with-jeffrey-snover-from-mms-2012/</link>
+      <link>https://powershellmagazine.com/2012/04/27/interview-with-jeffrey-snover-from-mms-2012/</link>
       <pubDate>Fri, 27 Apr 2012 20:58:20 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/04/27/interview-with-jeffrey-snover-from-mms-2012/</guid>
+      <guid>https://powershellmagazine.com/2012/04/27/interview-with-jeffrey-snover-from-mms-2012/</guid>
       <description>Editor Aleksandar Nikolic caught up with Jeffrey Snover, Lead Architect for Windows Server and the Father of PowerShell, at MMS 2012.</description>
     </item>
     
     <item>
       <title>An interview with Microsoft’s Scripting Guy, Ed Wilson at TechEd NA 2011</title>
-      <link>https://psmag.github.io/2012/03/21/an-interview-with-microsofts-scripting-guy-ed-wilson-at-teched-na-2011/</link>
+      <link>https://powershellmagazine.com/2012/03/21/an-interview-with-microsofts-scripting-guy-ed-wilson-at-teched-na-2011/</link>
       <pubDate>Wed, 21 Mar 2012 18:00:43 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/03/21/an-interview-with-microsofts-scripting-guy-ed-wilson-at-teched-na-2011/</guid>
+      <guid>https://powershellmagazine.com/2012/03/21/an-interview-with-microsofts-scripting-guy-ed-wilson-at-teched-na-2011/</guid>
       <description>Courtesy of TrainSignal (a hat tip to Kasia Lorenc) we are presenting an interview with Ed Wilson conducted at TechEd NA 2011 in Atlanta.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell MVP Hal Rottenberg at TechEd NA 2011</title>
-      <link>https://psmag.github.io/2012/03/19/an-interview-with-powershell-mvp-hal-rottenberg-at-teched-na-2011/</link>
+      <link>https://powershellmagazine.com/2012/03/19/an-interview-with-powershell-mvp-hal-rottenberg-at-teched-na-2011/</link>
       <pubDate>Mon, 19 Mar 2012 18:00:01 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/03/19/an-interview-with-powershell-mvp-hal-rottenberg-at-teched-na-2011/</guid>
+      <guid>https://powershellmagazine.com/2012/03/19/an-interview-with-powershell-mvp-hal-rottenberg-at-teched-na-2011/</guid>
       <description>Courtesy of TrainSignal (a hat tip to Kasia Lorenc) we are presenting an interview with Hal Rottenberg conducted at TechEd NA 2011 in Atlanta.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell MVP Thomas Lee at TechEd NA 2011</title>
-      <link>https://psmag.github.io/2011/12/22/an-interview-with-powershell-mvp-thomas-lee-at-teched-na-2011/</link>
+      <link>https://powershellmagazine.com/2011/12/22/an-interview-with-powershell-mvp-thomas-lee-at-teched-na-2011/</link>
       <pubDate>Thu, 22 Dec 2011 19:00:25 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/22/an-interview-with-powershell-mvp-thomas-lee-at-teched-na-2011/</guid>
+      <guid>https://powershellmagazine.com/2011/12/22/an-interview-with-powershell-mvp-thomas-lee-at-teched-na-2011/</guid>
       <description>Courtesy of TrainSignal (a hat tip to Kasia Lorenc) we are presenting an interview with Thomas Lee conducted at TechEd NA 2011 in Atlanta.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell MVP Don Jones at TechEd NA 2011</title>
-      <link>https://psmag.github.io/2011/12/15/an-interview-with-powershell-mvp-don-jones-at-teched-na-2011/</link>
+      <link>https://powershellmagazine.com/2011/12/15/an-interview-with-powershell-mvp-don-jones-at-teched-na-2011/</link>
       <pubDate>Thu, 15 Dec 2011 15:00:45 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/12/15/an-interview-with-powershell-mvp-don-jones-at-teched-na-2011/</guid>
+      <guid>https://powershellmagazine.com/2011/12/15/an-interview-with-powershell-mvp-don-jones-at-teched-na-2011/</guid>
       <description>Courtesy of TrainSignal (a hat tip to Kasia Lorenc) we are presenting an interview with Don Jones conducted at TechEd NA 2011 in Atlanta.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell expert Peter Monadjemi</title>
-      <link>https://psmag.github.io/2011/11/18/an-interview-with-powershell-expert-peter-monadjemi/</link>
+      <link>https://powershellmagazine.com/2011/11/18/an-interview-with-powershell-expert-peter-monadjemi/</link>
       <pubDate>Fri, 18 Nov 2011 08:08:16 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/18/an-interview-with-powershell-expert-peter-monadjemi/</guid>
+      <guid>https://powershellmagazine.com/2011/11/18/an-interview-with-powershell-expert-peter-monadjemi/</guid>
       <description>During the PowerShell Deep Dive at The Experts Conference (TEC) Europe 2011 in Frankfurt, Germany, Aleksandar Nikolic, one of the editors of the PowerShell Magazine, conducted a series of short video interviews with PowerShell experts.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell expert Brandon Shell</title>
-      <link>https://psmag.github.io/2011/11/17/an-interview-with-powershell-expert-brandon-shell/</link>
+      <link>https://powershellmagazine.com/2011/11/17/an-interview-with-powershell-expert-brandon-shell/</link>
       <pubDate>Thu, 17 Nov 2011 06:03:05 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/17/an-interview-with-powershell-expert-brandon-shell/</guid>
+      <guid>https://powershellmagazine.com/2011/11/17/an-interview-with-powershell-expert-brandon-shell/</guid>
       <description>During the PowerShell Deep Dive at The Experts Conference (TEC) Europe 2011 in Frankfurt, Germany, Aleksandar Nikolic, one of the editors of the PowerShell Magazine, conducted a series of short video interviews with PowerShell experts.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell expert James Brundage</title>
-      <link>https://psmag.github.io/2011/11/16/an-interview-with-powershell-expert-james-brundage/</link>
+      <link>https://powershellmagazine.com/2011/11/16/an-interview-with-powershell-expert-james-brundage/</link>
       <pubDate>Wed, 16 Nov 2011 06:00:07 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/16/an-interview-with-powershell-expert-james-brundage/</guid>
+      <guid>https://powershellmagazine.com/2011/11/16/an-interview-with-powershell-expert-james-brundage/</guid>
       <description>During the PowerShell Deep Dive at The Experts Conference (TEC) Europe 2011 in Frankfurt, Germany, Aleksandar Nikolic, one of the editors of the PowerShell Magazine, conducted a series of short video interviews with PowerShell experts.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell expert Craig Martin</title>
-      <link>https://psmag.github.io/2011/11/15/an-interview-with-powershell-expert-craig-martin/</link>
+      <link>https://powershellmagazine.com/2011/11/15/an-interview-with-powershell-expert-craig-martin/</link>
       <pubDate>Tue, 15 Nov 2011 05:56:24 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/15/an-interview-with-powershell-expert-craig-martin/</guid>
+      <guid>https://powershellmagazine.com/2011/11/15/an-interview-with-powershell-expert-craig-martin/</guid>
       <description>During the PowerShell Deep Dive at The Experts Conference (TEC) Europe 2011 in Frankfurt, Germany, Aleksandar Nikolic, one of the editors of the PowerShell Magazine, conducted a series of short video interviews with PowerShell experts.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell expert Marc van Orsouw</title>
-      <link>https://psmag.github.io/2011/11/14/an-interview-with-powershell-expert-marc-van-orsouw/</link>
+      <link>https://powershellmagazine.com/2011/11/14/an-interview-with-powershell-expert-marc-van-orsouw/</link>
       <pubDate>Mon, 14 Nov 2011 16:13:45 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/14/an-interview-with-powershell-expert-marc-van-orsouw/</guid>
+      <guid>https://powershellmagazine.com/2011/11/14/an-interview-with-powershell-expert-marc-van-orsouw/</guid>
       <description>During the PowerShell Deep Dive at The Experts Conference (TEC) Europe 2011 in Frankfurt, Germany, Aleksandar Nikolic, one of the editors of the PowerShell Magazine, conducted a series of short video interviews with PowerShell experts.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell expert Bartek Bielawski</title>
-      <link>https://psmag.github.io/2011/11/11/an-interview-with-powershell-expert-bartek-bielawski/</link>
+      <link>https://powershellmagazine.com/2011/11/11/an-interview-with-powershell-expert-bartek-bielawski/</link>
       <pubDate>Fri, 11 Nov 2011 16:07:25 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/11/an-interview-with-powershell-expert-bartek-bielawski/</guid>
+      <guid>https://powershellmagazine.com/2011/11/11/an-interview-with-powershell-expert-bartek-bielawski/</guid>
       <description>During the PowerShell Deep Dive at The Experts Conference (TEC) Europe 2011 in Frankfurt, Germany, Aleksandar Nikolic, one of the editors of the PowerShell Magazine, conducted a series of short video interviews with PowerShell experts.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell expert James O’Neill</title>
-      <link>https://psmag.github.io/2011/11/10/an-interview-with-powershell-expert-james-oneill/</link>
+      <link>https://powershellmagazine.com/2011/11/10/an-interview-with-powershell-expert-james-oneill/</link>
       <pubDate>Thu, 10 Nov 2011 12:30:54 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/10/an-interview-with-powershell-expert-james-oneill/</guid>
+      <guid>https://powershellmagazine.com/2011/11/10/an-interview-with-powershell-expert-james-oneill/</guid>
       <description>During the PowerShell Deep Dive at The Experts Conference (TEC) Europe 2011 in Frankfurt, Germany, Aleksandar Nikolic, one of the editors of the PowerShell Magazine, conducted a series of short video interviews with PowerShell experts.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell expert Bruce Payette</title>
-      <link>https://psmag.github.io/2011/11/08/an-interview-with-powershell-expert-bruce-payette/</link>
+      <link>https://powershellmagazine.com/2011/11/08/an-interview-with-powershell-expert-bruce-payette/</link>
       <pubDate>Tue, 08 Nov 2011 09:10:40 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/08/an-interview-with-powershell-expert-bruce-payette/</guid>
+      <guid>https://powershellmagazine.com/2011/11/08/an-interview-with-powershell-expert-bruce-payette/</guid>
       <description>During the PowerShell Deep Dive at The Experts Conference (TEC) Europe 2011 in Frankfurt, Germany, Aleksandar Nikolic, one of the editors of the PowerShell Magazine, conducted a series of short video interviews with PowerShell experts.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell expert Kirk Munro</title>
-      <link>https://psmag.github.io/2011/11/08/an-interview-with-powershell-expert-kirk-munro/</link>
+      <link>https://powershellmagazine.com/2011/11/08/an-interview-with-powershell-expert-kirk-munro/</link>
       <pubDate>Tue, 08 Nov 2011 08:54:48 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/08/an-interview-with-powershell-expert-kirk-munro/</guid>
+      <guid>https://powershellmagazine.com/2011/11/08/an-interview-with-powershell-expert-kirk-munro/</guid>
       <description>During the PowerShell Deep Dive at The Experts Conference (TEC) Europe 2011 in Frankfurt, Germany, Aleksandar Nikolic, one of the editors of the PowerShell Magazine, conducted a series of short video interviews with PowerShell experts.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell expert Thomas Lee</title>
-      <link>https://psmag.github.io/2011/11/07/an-interview-with-powershell-expert-thomas-lee/</link>
+      <link>https://powershellmagazine.com/2011/11/07/an-interview-with-powershell-expert-thomas-lee/</link>
       <pubDate>Mon, 07 Nov 2011 13:53:23 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/07/an-interview-with-powershell-expert-thomas-lee/</guid>
+      <guid>https://powershellmagazine.com/2011/11/07/an-interview-with-powershell-expert-thomas-lee/</guid>
       <description>During the PowerShell Deep Dive at The Experts Conference (TEC) Europe 2011 in Frankfurt, Germany, Aleksandar Nikolic, one of the editors of the PowerShell Magazine, conducted a series of short video interviews with PowerShell experts.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell expert Jan Egil Ring</title>
-      <link>https://psmag.github.io/2011/11/03/an-interview-with-powershell-expert-jan-egil-ring/</link>
+      <link>https://powershellmagazine.com/2011/11/03/an-interview-with-powershell-expert-jan-egil-ring/</link>
       <pubDate>Thu, 03 Nov 2011 14:42:12 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/03/an-interview-with-powershell-expert-jan-egil-ring/</guid>
+      <guid>https://powershellmagazine.com/2011/11/03/an-interview-with-powershell-expert-jan-egil-ring/</guid>
       <description>During the PowerShell Deep Dive at The Experts Conference (TEC) Europe 2011 in Frankfurt, Germany, Aleksandar Nikolic, one of the editors of the PowerShell Magazine, conducted a series of short video interviews with PowerShell experts.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell expert Jason Shirk</title>
-      <link>https://psmag.github.io/2011/11/03/an-interview-with-powershell-expert-jason-shirk/</link>
+      <link>https://powershellmagazine.com/2011/11/03/an-interview-with-powershell-expert-jason-shirk/</link>
       <pubDate>Thu, 03 Nov 2011 12:52:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/03/an-interview-with-powershell-expert-jason-shirk/</guid>
+      <guid>https://powershellmagazine.com/2011/11/03/an-interview-with-powershell-expert-jason-shirk/</guid>
       <description>During the PowerShell Deep Dive at The Experts Conference (TEC) Europe 2011 in Frankfurt, Germany, Aleksandar Nikolic, one of the editors of the PowerShell Magazine, conducted a series of short video interviews with PowerShell experts.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell expert Jeff Hicks</title>
-      <link>https://psmag.github.io/2011/11/02/an-interview-with-powershell-expert-jeff-hicks/</link>
+      <link>https://powershellmagazine.com/2011/11/02/an-interview-with-powershell-expert-jeff-hicks/</link>
       <pubDate>Wed, 02 Nov 2011 09:47:04 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/02/an-interview-with-powershell-expert-jeff-hicks/</guid>
+      <guid>https://powershellmagazine.com/2011/11/02/an-interview-with-powershell-expert-jeff-hicks/</guid>
       <description>During the PowerShell Deep Dive at The Experts Conference (TEC) Europe 2011 in Frankfurt, Germany, Aleksandar Nikolic, one of the editors of the PowerShell Magazine, conducted a series of short video interviews with PowerShell experts.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell expert Jeff Truman</title>
-      <link>https://psmag.github.io/2011/11/01/an-interview-with-powershell-expert-jeff-truman/</link>
+      <link>https://powershellmagazine.com/2011/11/01/an-interview-with-powershell-expert-jeff-truman/</link>
       <pubDate>Tue, 01 Nov 2011 10:08:02 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/01/an-interview-with-powershell-expert-jeff-truman/</guid>
+      <guid>https://powershellmagazine.com/2011/11/01/an-interview-with-powershell-expert-jeff-truman/</guid>
       <description>During the PowerShell Deep Dive at The Experts Conference (TEC) Europe 2011 in Frankfurt, Germany, Aleksandar Nikolic, one of the editors of the PowerShell Magazine, conducted a series of short video interviews with PowerShell experts.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell expert Tobias Weltner</title>
-      <link>https://psmag.github.io/2011/10/31/an-interview-with-powershell-expert-tobias-weltner/</link>
+      <link>https://powershellmagazine.com/2011/10/31/an-interview-with-powershell-expert-tobias-weltner/</link>
       <pubDate>Mon, 31 Oct 2011 13:46:28 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/10/31/an-interview-with-powershell-expert-tobias-weltner/</guid>
+      <guid>https://powershellmagazine.com/2011/10/31/an-interview-with-powershell-expert-tobias-weltner/</guid>
       <description>During the PowerShell Deep Dive at The Experts Conference (TEC) Europe 2011 in Frankfurt, Germany, Aleksandar Nikolic, one of the editors of the PowerShell Magazine, conducted a series of short video interviews with PowerShell experts.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell expert Kenneth Hansen</title>
-      <link>https://psmag.github.io/2011/10/28/an-interview-with-powershell-expert-kenneth-hansen/</link>
+      <link>https://powershellmagazine.com/2011/10/28/an-interview-with-powershell-expert-kenneth-hansen/</link>
       <pubDate>Fri, 28 Oct 2011 12:12:13 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/10/28/an-interview-with-powershell-expert-kenneth-hansen/</guid>
+      <guid>https://powershellmagazine.com/2011/10/28/an-interview-with-powershell-expert-kenneth-hansen/</guid>
       <description>During the PowerShell Deep Dive at The Experts Conference (TEC) Europe 2011 in Frankfurt, Germany, Aleksandar Nikolic, one of the editors of the PowerShell Magazine, conducted a series of short video interviews with PowerShell experts.</description>
     </item>
     
     <item>
       <title>An interview with PowerShell expert Dmitry Sotnikov</title>
-      <link>https://psmag.github.io/2011/10/24/an-interview-with-powershell-expert-dmitry-sotnikov/</link>
+      <link>https://powershellmagazine.com/2011/10/24/an-interview-with-powershell-expert-dmitry-sotnikov/</link>
       <pubDate>Mon, 24 Oct 2011 16:38:34 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/10/24/an-interview-with-powershell-expert-dmitry-sotnikov/</guid>
+      <guid>https://powershellmagazine.com/2011/10/24/an-interview-with-powershell-expert-dmitry-sotnikov/</guid>
       <description>During the PowerShell Deep Dive at The Experts Conference (TEC) Europe 2011 in Frankfurt, Germany, Aleksandar Nikolic, one of the editors of the PowerShell Magazine, conducted a series of short video interviews with PowerShell experts.</description>
     </item>
     
     <item>
       <title>Do you have any questions for Jeffrey Snover?</title>
-      <link>https://psmag.github.io/2011/09/25/do-you-have-any-questions-for-jeffrey-snover/</link>
+      <link>https://powershellmagazine.com/2011/09/25/do-you-have-any-questions-for-jeffrey-snover/</link>
       <pubDate>Sun, 25 Sep 2011 13:13:41 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/09/25/do-you-have-any-questions-for-jeffrey-snover/</guid>
+      <guid>https://powershellmagazine.com/2011/09/25/do-you-have-any-questions-for-jeffrey-snover/</guid>
       <description>Jeffrey Snover is the inventor of PowerShell and I&amp;rsquo;ve always wanted to ask him what is his all time favorite trick in PowerShell.</description>
     </item>
     

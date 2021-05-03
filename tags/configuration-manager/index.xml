@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Configuration Manager on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/configuration-manager/</link>
+    <link>https://powershellmagazine.com/tags/configuration-manager/</link>
     <description>Recent content in Configuration Manager on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 16 Apr 2012 18:00:28 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/configuration-manager/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/configuration-manager/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Automating Configuration Manager with Windows PowerShell</title>
-      <link>https://psmag.github.io/2012/04/16/automating-configuration-manager-with-windows-powershell/</link>
+      <link>https://powershellmagazine.com/2012/04/16/automating-configuration-manager-with-windows-powershell/</link>
       <pubDate>Mon, 16 Apr 2012 18:00:28 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/04/16/automating-configuration-manager-with-windows-powershell/</guid>
+      <guid>https://powershellmagazine.com/2012/04/16/automating-configuration-manager-with-windows-powershell/</guid>
       <description>Introduction First off, I&amp;rsquo;d like to express my sincere thanks to the board of the PowerShell Magazine for allowing me to publish an article in the premiere issue of the magazine.</description>
     </item>
     

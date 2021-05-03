@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>OData on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/odata/</link>
+    <link>https://powershellmagazine.com/tags/odata/</link>
     <description>Recent content in OData on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 07 Jun 2012 06:44:21 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/odata/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/odata/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Interacting with TechEd NA 2012 Schedule using PowerShell v3</title>
-      <link>https://psmag.github.io/2012/06/07/interacting-with-teched-na-2012-schedule-using-powershell-v3/</link>
+      <link>https://powershellmagazine.com/2012/06/07/interacting-with-teched-na-2012-schedule-using-powershell-v3/</link>
       <pubDate>Thu, 07 Jun 2012 06:44:21 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2012/06/07/interacting-with-teched-na-2012-schedule-using-powershell-v3/</guid>
+      <guid>https://powershellmagazine.com/2012/06/07/interacting-with-teched-na-2012-schedule-using-powershell-v3/</guid>
       <description>The techniques used in this article are covered in deeper detail in Doug Finke’s book “Windows PowerShell for Developers” . Microsoft TechEd NA 2012 is just around corner.</description>
     </item>
     

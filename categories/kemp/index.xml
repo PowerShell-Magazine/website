@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kemp on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/kemp/</link>
+    <link>https://powershellmagazine.com/categories/kemp/</link>
     <description>Recent content in Kemp on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 20 Mar 2014 18:36:57 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/kemp/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/kemp/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Deploying Azure Virtual Machines from VM Depot using PowerShell</title>
-      <link>https://psmag.github.io/2014/03/20/deploying-azure-virtual-machines-from-vm-depot-using-powershell/</link>
+      <link>https://powershellmagazine.com/2014/03/20/deploying-azure-virtual-machines-from-vm-depot-using-powershell/</link>
       <pubDate>Thu, 20 Mar 2014 18:36:57 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/03/20/deploying-azure-virtual-machines-from-vm-depot-using-powershell/</guid>
+      <guid>https://powershellmagazine.com/2014/03/20/deploying-azure-virtual-machines-from-vm-depot-using-powershell/</guid>
       <description>VM Depot is a community-driven catalog of open source virtual machine images. Azure management portal can be used to copy these VM images into “My images” of your Azure subscription.</description>
     </item>
     
     <item>
       <title>Announcing PowerShell module for managing Kemp LoadMaster appliances</title>
-      <link>https://psmag.github.io/2014/03/18/announcing-powershell-module-for-managing-kemp-loadmaster-appliances/</link>
+      <link>https://powershellmagazine.com/2014/03/18/announcing-powershell-module-for-managing-kemp-loadmaster-appliances/</link>
       <pubDate>Tue, 18 Mar 2014 15:37:18 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/03/18/announcing-powershell-module-for-managing-kemp-loadmaster-appliances/</guid>
+      <guid>https://powershellmagazine.com/2014/03/18/announcing-powershell-module-for-managing-kemp-loadmaster-appliances/</guid>
       <description>In an earlier article, I talked about managing Kemp LoadMaster appliances (both physical and virtual) using the Kemp’s RESTful API. Using RESTful API is complex because you need to know all the details of how API is implemented and what are different features available to you.</description>
     </item>
     
     <item>
       <title>Managing Kemp LoadMaster using REST API and PowerShell</title>
-      <link>https://psmag.github.io/2014/01/16/managing-kemp-loadmaster-using-rest-api-and-powershell/</link>
+      <link>https://powershellmagazine.com/2014/01/16/managing-kemp-loadmaster-using-rest-api-and-powershell/</link>
       <pubDate>Thu, 16 Jan 2014 17:00:21 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/01/16/managing-kemp-loadmaster-using-rest-api-and-powershell/</guid>
+      <guid>https://powershellmagazine.com/2014/01/16/managing-kemp-loadmaster-using-rest-api-and-powershell/</guid>
       <description>If you are an application or a network administrator, you would have certainly heard about or even used load balancers. Load balancers are shipped either as hardware or virtual appliances based on the size of the deployment behind them.</description>
     </item>
     

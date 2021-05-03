@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Scheduled Tasks on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/scheduled-tasks/</link>
+    <link>https://powershellmagazine.com/tags/scheduled-tasks/</link>
     <description>Recent content in Scheduled Tasks on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Nov 2011 10:21:20 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/scheduled-tasks/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/scheduled-tasks/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Managing scheduled tasks in your environment – Part II</title>
-      <link>https://psmag.github.io/2011/11/22/managing-scheduled-tasks-in-your-environment-part-ii/</link>
+      <link>https://powershellmagazine.com/2011/11/22/managing-scheduled-tasks-in-your-environment-part-ii/</link>
       <pubDate>Tue, 22 Nov 2011 10:21:20 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/22/managing-scheduled-tasks-in-your-environment-part-ii/</guid>
+      <guid>https://powershellmagazine.com/2011/11/22/managing-scheduled-tasks-in-your-environment-part-ii/</guid>
       <description>In Part 1 we looked at gathering information about the scheduled tasks in your environment, in part 2 we will look at how to make changes to the scheduled tasks, and fixing a “problem” with scheduled tasks created in the 2008(R2) Task Scheduler GUI.</description>
     </item>
     
     <item>
       <title>Managing scheduled tasks in your environment – Part I</title>
-      <link>https://psmag.github.io/2011/11/21/managing-scheduled-tasks-in-your-environment-part-i/</link>
+      <link>https://powershellmagazine.com/2011/11/21/managing-scheduled-tasks-in-your-environment-part-i/</link>
       <pubDate>Mon, 21 Nov 2011 10:01:27 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/21/managing-scheduled-tasks-in-your-environment-part-i/</guid>
+      <guid>https://powershellmagazine.com/2011/11/21/managing-scheduled-tasks-in-your-environment-part-i/</guid>
       <description>In Part 1 of the series, I will look at getting information on the scheduled tasks running in your environment. One of the things I see a lot in our company is that a lot of scheduled tasks get created on different servers, for one reason or another, but very often these tasks are quickly forgotten.</description>
     </item>
     

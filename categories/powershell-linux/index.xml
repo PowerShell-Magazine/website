@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PowerShell Linux on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/powershell-linux/</link>
+    <link>https://powershellmagazine.com/categories/powershell-linux/</link>
     <description>Recent content in PowerShell Linux on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 22 Aug 2016 16:00:59 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/powershell-linux/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/powershell-linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Azure DevTest Labs Artifact for Installing PowerShell on Linux</title>
-      <link>https://psmag.github.io/2016/08/22/azure-devtest-labs-artifact-for-installing-powershell-on-linux/</link>
+      <link>https://powershellmagazine.com/2016/08/22/azure-devtest-labs-artifact-for-installing-powershell-on-linux/</link>
       <pubDate>Mon, 22 Aug 2016 16:00:59 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/08/22/azure-devtest-labs-artifact-for-installing-powershell-on-linux/</guid>
+      <guid>https://powershellmagazine.com/2016/08/22/azure-devtest-labs-artifact-for-installing-powershell-on-linux/</guid>
       <description>Update: The PowerShell on Linux artifact is now available in official Azure DTL artifact repository.
 Bartek and Ben have written a great introduction article on open source PowerShell.</description>
     </item>
     
     <item>
       <title>Open source PowerShell on Windows, Linux, and OS X!</title>
-      <link>https://psmag.github.io/2016/08/18/open-source-powershell-on-windows-linux-and-osx/</link>
+      <link>https://powershellmagazine.com/2016/08/18/open-source-powershell-on-windows-linux-and-osx/</link>
       <pubDate>Thu, 18 Aug 2016 15:25:48 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2016/08/18/open-source-powershell-on-windows-linux-and-osx/</guid>
+      <guid>https://powershellmagazine.com/2016/08/18/open-source-powershell-on-windows-linux-and-osx/</guid>
       <description>This article was co-authored by Bartek Bielawski and Ben Gelens.
 Windows PowerShell is a powerful tool, but it always had one very serious limitation: it was possible to run it only on Windows.</description>
     </item>

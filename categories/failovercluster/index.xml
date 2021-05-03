@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>FailoverCluster on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/failovercluster/</link>
+    <link>https://powershellmagazine.com/categories/failovercluster/</link>
     <description>Recent content in FailoverCluster on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Jan 2020 13:22:02 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/failovercluster/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/failovercluster/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Parsing Failover Cluster Validation Report in PowerShell</title>
-      <link>https://psmag.github.io/2020/01/30/parsing-failover-cluster-validation-report-in-powershell/</link>
+      <link>https://powershellmagazine.com/2020/01/30/parsing-failover-cluster-validation-report-in-powershell/</link>
       <pubDate>Thu, 30 Jan 2020 13:22:02 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2020/01/30/parsing-failover-cluster-validation-report-in-powershell/</guid>
+      <guid>https://powershellmagazine.com/2020/01/30/parsing-failover-cluster-validation-report-in-powershell/</guid>
       <description>If you have ever worked with the Test-Cluster command in the failover clustering module, you will know that this command generates an HTML report.</description>
     </item>
     

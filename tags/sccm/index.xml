@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>SCCM on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/sccm/</link>
+    <link>https://powershellmagazine.com/tags/sccm/</link>
     <description>Recent content in SCCM on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Jul 2014 16:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/sccm/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/sccm/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Automating deployments in Configuration Manager with PowerShell</title>
-      <link>https://psmag.github.io/2014/07/22/automating-deployments-in-configuration-manager-with-powershell/</link>
+      <link>https://powershellmagazine.com/2014/07/22/automating-deployments-in-configuration-manager-with-powershell/</link>
       <pubDate>Tue, 22 Jul 2014 16:00:00 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/22/automating-deployments-in-configuration-manager-with-powershell/</guid>
+      <guid>https://powershellmagazine.com/2014/07/22/automating-deployments-in-configuration-manager-with-powershell/</guid>
       <description>Introduction First of all, thanks to PowerShell magazine for giving me this great honour to post an article here.
 There have been a few articles about Configuration Manager in PowerShell Magazine–one by PowerShell MVP Trevor Sullivan is especially worth reading.</description>
     </item>

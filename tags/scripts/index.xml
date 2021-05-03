@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Scripts on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/scripts/</link>
+    <link>https://powershellmagazine.com/tags/scripts/</link>
     <description>Recent content in Scripts on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 Jan 2020 13:22:02 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/scripts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/scripts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Parsing Failover Cluster Validation Report in PowerShell</title>
-      <link>https://psmag.github.io/2020/01/30/parsing-failover-cluster-validation-report-in-powershell/</link>
+      <link>https://powershellmagazine.com/2020/01/30/parsing-failover-cluster-validation-report-in-powershell/</link>
       <pubDate>Thu, 30 Jan 2020 13:22:02 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2020/01/30/parsing-failover-cluster-validation-report-in-powershell/</guid>
+      <guid>https://powershellmagazine.com/2020/01/30/parsing-failover-cluster-validation-report-in-powershell/</guid>
       <description>If you have ever worked with the Test-Cluster command in the failover clustering module, you will know that this command generates an HTML report.</description>
     </item>
     
     <item>
       <title>Using PowerShell for generating dynamic folders in Royal TS</title>
-      <link>https://psmag.github.io/2019/01/03/using-powershell-for-generating-dynamic-folders-in-royal-ts/</link>
+      <link>https://powershellmagazine.com/2019/01/03/using-powershell-for-generating-dynamic-folders-in-royal-ts/</link>
       <pubDate>Thu, 03 Jan 2019 11:00:13 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2019/01/03/using-powershell-for-generating-dynamic-folders-in-royal-ts/</guid>
+      <guid>https://powershellmagazine.com/2019/01/03/using-powershell-for-generating-dynamic-folders-in-royal-ts/</guid>
       <description>Royal TS is a powerful tool for managing remote systems using many different protocols such as Remote Desktop (RDP), PowerShell, SSH, HTTPS, and many more.</description>
     </item>
     

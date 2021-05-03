@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Call For Authors on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/categories/call-for-authors/</link>
+    <link>https://powershellmagazine.com/categories/call-for-authors/</link>
     <description>Recent content in Call For Authors on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 28 Nov 2011 23:25:33 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/categories/call-for-authors/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/categories/call-for-authors/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Call for Writers: Share Your Experiences and Help New Users</title>
-      <link>https://psmag.github.io/2011/11/29/call-for-writers-share-your-experiences-and-help-new-users/</link>
+      <link>https://powershellmagazine.com/2011/11/29/call-for-writers-share-your-experiences-and-help-new-users/</link>
       <pubDate>Mon, 28 Nov 2011 23:25:33 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2011/11/29/call-for-writers-share-your-experiences-and-help-new-users/</guid>
+      <guid>https://powershellmagazine.com/2011/11/29/call-for-writers-share-your-experiences-and-help-new-users/</guid>
       <description>PowerShell Magazine is starting a series of posts with personal stories about people’s PowerShell beginnings entitled “How I Learned to Stop Worrying and Love Windows PowerShell”.</description>
     </item>
     

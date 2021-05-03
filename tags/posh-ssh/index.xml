@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posh-SSH on PowerShell Magazine | For the most powerful community</title>
-    <link>https://psmag.github.io/tags/posh-ssh/</link>
+    <link>https://powershellmagazine.com/tags/posh-ssh/</link>
     <description>Recent content in Posh-SSH on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 03 Jul 2014 17:15:48 +0000</lastBuildDate>
     
-	<atom:link href="https://psmag.github.io/tags/posh-ssh/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://powershellmagazine.com/tags/posh-ssh/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Posh-SSH: Open Source SSH PowerShell Module</title>
-      <link>https://psmag.github.io/2014/07/03/posh-ssh-open-source-ssh-powershell-module/</link>
+      <link>https://powershellmagazine.com/2014/07/03/posh-ssh-open-source-ssh-powershell-module/</link>
       <pubDate>Thu, 03 Jul 2014 17:15:48 +0000</pubDate>
       
-      <guid>https://psmag.github.io/2014/07/03/posh-ssh-open-source-ssh-powershell-module/</guid>
+      <guid>https://powershellmagazine.com/2014/07/03/posh-ssh-open-source-ssh-powershell-module/</guid>
       <description>What Posh-SSH is a PowerShell 3.0 or newer module for automating tasks against system using the SSH protocol. The module supports only a subset of the capabilities that the different SSH RFCs http://en.</description>
     </item>
     
