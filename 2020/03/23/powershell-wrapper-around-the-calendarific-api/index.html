@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>PowerShell wrapper around the Calendarific API</title>
 
 <meta name="description" content="For the most powerful community">
@@ -236,38 +237,38 @@ if (!doNotTrack) {
           <div class="content"><p><a href="https://calendarific.com/">Calendarific</a> offers a webservice for listing holidays from different countries. They also have an API that can be used by developers to implement this holiday queries in the their own applications.</p>
 <p>Accessing this API requires an API key which can be registered for free at <a href="https://calendarific.com/signup">https://calendarific.com/signup</a>.</p>
 <p>This module is a wrapper around the Calendarific API. You can install the module from the <a href="https://www.powershellgallery.com/packages/PSCalendarific/1.0.0.0">PowerShell Gallery</a>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Install-Module -Name PSCalendarific -Force
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">PSCalendarific</span> <span class="n">-Force</span>
 </code></pre></div><p>The following commands are available in this module.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Get-Command -Module PSCalendarific
-CommandType     Name                                               Version    Source
------------     ----                                               -------    ------
-<span style="color:#66d9ef">Function</span>        Get-PSCalendarificCountry                          1.0.0.0    PSCalendarific
-<span style="color:#66d9ef">Function</span>        Get-PSCalendarificDefaultConfiguration             1.0.0.0    PSCalendarific
-<span style="color:#66d9ef">Function</span>        Get-PSCalendarificHoliday                          1.0.0.0    PSCalendarific
-<span style="color:#66d9ef">Function</span>        Register-PSCalendarificDefaultConfiguration        1.0.0.0    PSCalendarific
-<span style="color:#66d9ef">Function</span>        Unregister-PSCalendarificDefaultConfiguration      1.0.0.0    PSCalendarific
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Get-Command</span> <span class="n">-Module</span> <span class="n">PSCalendarific</span>
+<span class="ln">2</span><span class="n">CommandType</span>     <span class="n">Name</span>                                               <span class="n">Version</span>    <span class="n">Source</span>
+<span class="ln">3</span><span class="p">-----------</span>     <span class="p">----</span>                                               <span class="p">-------</span>    <span class="p">------</span>
+<span class="ln">4</span><span class="k">Function</span>        <span class="nb">Get-PSCalendarificCountry</span>                          <span class="n">1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span>    <span class="n">PSCalendarific</span>
+<span class="ln">5</span><span class="k">Function</span>        <span class="nb">Get-PSCalendarificDefaultConfiguration</span>             <span class="n">1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span>    <span class="n">PSCalendarific</span>
+<span class="ln">6</span><span class="k">Function</span>        <span class="nb">Get-PSCalendarificHoliday</span>                          <span class="n">1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span>    <span class="n">PSCalendarific</span>
+<span class="ln">7</span><span class="k">Function</span>        <span class="nb">Register-PSCalendarificDefaultConfiguration</span>        <span class="n">1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span>    <span class="n">PSCalendarific</span>
+<span class="ln">8</span><span class="k">Function</span>        <span class="nb">Unregister-PSCalendarificDefaultConfiguration</span>      <span class="n">1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span>    <span class="n">PSCalendarific</span>
 </code></pre></div><h3 id="register-pscalendarificdefaultconfiguration">Register-PSCalendarificDefaultConfiguration</h3>
 <p>This command helps set the parameter defaults for accessing the API. At present, this command supports only storing APIKey and Country values as default configuration. API key must always be provided and the <code>Get-PSCalendarificHoliday</code> requires Country name as well for listing the holidays. Therefore, these configuration settings can be stored locally so that other commands in the module can be used without explicitly providing any of these parameters.</p>
 <blockquote>
 <p>Note: Storing API key on local filesystem is not a good practice.</p>
 </blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Register-PSCalendarificDefaultConfiguration -APIKey <span style="color:#e6db74">&#39;1562567d51443af046079a9bca8a84a358e2c393&#39;</span> -Country <span style="color:#66d9ef">IN</span> -Verbose
-WARNING<span style="color:#960050;background-color:#1e0010">:</span> This command stores specified parameters <span style="color:#66d9ef">in</span> a local file. API Key is sensitive information. <span style="color:#66d9ef">If</span> you <span style="color:#66d9ef">do</span> not 
-prefer this, use Unregister-PSCalendarificDefaultConfiguration -APIKey to remove the API key from the store
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Register-PSCalendarificDefaultConfiguration</span> <span class="n">-APIKey</span> <span class="s1">&#39;1562567d51443af046079a9bca8a84a358e2c393&#39;</span> <span class="n">-Country</span> <span class="k">IN</span> <span class="n">-Verbose</span>
+<span class="ln">2</span><span class="n">WARNING</span><span class="err">:</span> <span class="n">This</span> <span class="n">command</span> <span class="n">stores</span> <span class="n">specified</span> <span class="n">parameters</span> <span class="k">in</span> <span class="n">a</span> <span class="n">local</span> <span class="n">file</span><span class="p">.</span> <span class="n">API</span> <span class="n">Key</span> <span class="n">is</span> <span class="n">sensitive</span> <span class="n">information</span><span class="p">.</span> <span class="k">If</span> <span class="n">you</span> <span class="k">do</span> <span class="n">not</span> 
+<span class="ln">3</span><span class="n">prefer</span> <span class="n">this</span><span class="p">,</span> <span class="n">use</span> <span class="nb">Unregister-PSCalendarificDefaultConfiguration</span> <span class="n">-APIKey</span> <span class="n">to</span> <span class="n">remove</span> <span class="n">the</span> <span class="n">API</span> <span class="n">key</span> <span class="n">from</span> <span class="n">the</span> <span class="n">store</span>
 </code></pre></div><p>This command has no mandatory parameters. You can specify either APIKey or Country or both. When you need to update either configuration parameters, just specify the parameter you want to update.</p>
 <h3 id="unregister-pscalendarificdefaultconfiguration">Unregister-PSCalendarificDefaultConfiguration</h3>
 <p>This command helps you remove the stored API key or just delete the configuration store itself.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Unregister-PSCalendarificDefaultConfiguration -APIKey -Verbose
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Unregister-PSCalendarificDefaultConfiguration</span> <span class="n">-APIKey</span> <span class="n">-Verbose</span>
 </code></pre></div><p>If you do not specify any parameters, the configuration store gets deleted.</p>
 <h3 id="get-pscalendarificdefaultconfiguration">Get-PSCalendarificDefaultConfiguration</h3>
 <p>This command gets the stored defaults from the configuration store.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Get-PSCalendarificDefaultConfiguration -Verbose
-APIKey                                   Country
-------                                   -------
-1562567d51443af046079a9bca8a84a358e2c393 <span style="color:#66d9ef">IN</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Get-PSCalendarificDefaultConfiguration</span> <span class="n">-Verbose</span>
+<span class="ln">2</span><span class="n">APIKey</span>                                   <span class="n">Country</span>
+<span class="ln">3</span><span class="p">------</span>                                   <span class="p">-------</span>
+<span class="ln">4</span><span class="n">1562567d51443af046079a9bca8a84a358e2c393</span> <span class="k">IN</span>
 </code></pre></div><h3 id="get-pscalendarificholiday">Get-PSCalendarificHoliday</h3>
 <p>This command lists all holidays for a given country based on the parameters supplied. If you do not provide any parameters, this commands tries to find and use the default parameter values from the configuration store.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Get-PSCalendarificHoliday
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Get-PSCalendarificHoliday</span>
 </code></pre></div><p>The following are different parameters supported with this command.</p>
 <table>
 <thead>

@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Journey to a Windows Azure Pack VM Role DSC Resource: PowerShell Module Usage</title>
 
 <meta name="description" content="For the most powerful community">
@@ -255,40 +256,40 @@ if (!doNotTrack) {
 <h3 id="prerequisites">Prerequisites</h3>
 <p>For the module to work against the Windows Azure Pack Tenant Public API we need to configure the API to accept bearer tokens together with certificates. By default, the API is configured in what is known as “Native” mode. We need to configure it in Hybrid mode to work with the bearer tokens.</p>
 <p>Run the following code on all the servers hosting the Tenant Public API:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Unprotect-MgmtSvcConfiguration -Namespace tenantpublicapi
-Set-WebConfigurationProperty -PSPath IIS<span style="color:#960050;background-color:#1e0010">:</span>\Sites\MgmtSvc-TenantPublicAPI -Filter <span style="color:#e6db74">&#34;appSettings/add[@key=&#39;TenantServiceMode&#39;]&#34;</span> -Name <span style="color:#e6db74">&#39;value&#39;</span> -Value <span style="color:#e6db74">&#39;HybridTenant&#39;</span>
-Protect-MgmtSvcConfiguration -Namespace tenantpublicapi
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Unprotect-MgmtSvcConfiguration</span> <span class="n">-Namespace</span> <span class="n">tenantpublicapi</span>
+<span class="ln">2</span><span class="nb">Set-WebConfigurationProperty</span> <span class="n">-PSPath</span> <span class="n">IIS</span><span class="err">:</span><span class="p">\</span><span class="n">Sites</span><span class="p">\</span><span class="n">MgmtSvc-TenantPublicAPI</span> <span class="n">-Filter</span> <span class="s2">&#34;appSettings/add[@key=&#39;TenantServiceMode&#39;]&#34;</span> <span class="n">-Name</span> <span class="s1">&#39;value&#39;</span> <span class="n">-Value</span> <span class="s1">&#39;HybridTenant&#39;</span>
+<span class="ln">3</span><span class="nb">Protect-MgmtSvcConfiguration</span> <span class="n">-Namespace</span> <span class="n">tenantpublicapi</span>
 </code></pre></div><p>The change is effective immediately, no need to restart IIS or anything.</p>
 <p>The Tenant API works out of the box with bearer tokens, so no need to change configurations.</p>
 <p>From my experience, some permissions are missing in the Azure Pack Store database for the Tenant Public API to function correctly under Hybrid mode. Specifically means to check on invalidated user tokens. To fix this, run the following TSQL code against the database:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">USE <span style="color:#66d9ef">[Microsoft.MgmtSvc.Store]</span>
-GO
-Grant Execute On Type::.mp.CoAdminTableType To mp_TenantAPI
-Grant Execute On Object::mp.GetInvalidatedUserTokens To mp_TenantAPI
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">USE</span> <span class="no">[Microsoft.MgmtSvc.Store]</span>
+<span class="ln">2</span><span class="n">GO</span>
+<span class="ln">3</span><span class="n">Grant</span> <span class="n">Execute</span> <span class="n">On</span> <span class="n">Type</span><span class="p">::.</span><span class="n">mp</span><span class="p">.</span><span class="n">CoAdminTableType</span> <span class="n">To</span> <span class="n">mp_TenantAPI</span>
+<span class="ln">4</span><span class="n">Grant</span> <span class="n">Execute</span> <span class="n">On</span> <span class="n">Object</span><span class="p">::</span><span class="n">mp</span><span class="p">.</span><span class="n">GetInvalidatedUserTokens</span> <span class="n">To</span> <span class="n">mp_TenantAPI</span>
 </code></pre></div><h3 id="the-powershell-module">The PowerShell module</h3>
 <p>As I wrote in the previous article, the module discussed here can be downloaded from <a href="https://github.com/bgelens/WAPTenantPublicAPI%C2%A0">GitHub</a> or from the PowerShell gallery, if you have WMF5 installed, by running <em>Install-Module WAPTenantPublicAPI</em>.</p>
 <h3 id="example-deployment">Example deployment</h3>
 <p>This article focuses on getting you familiar with the module. In the next article I will highlight some code used in this module.  First have a look at an example script which uses the functions from this module and go from there.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Get-WAPToken -Url https<span style="color:#960050;background-color:#1e0010">:</span>//sts.bgelens.nl -ADFS -Credential administrator@gelens.int
-Connect-WAPAPI -Url https<span style="color:#960050;background-color:#1e0010">:</span>//api.bgelens.nl -Port 443
-Get-WAPSubscription -Name Test | Select-WAPSubscription
-$GI = Get-WAPGalleryVMRole -Name DSCPullServerClient
-$OSDisk = $GI | Get-WAPVMRoleOSDisk | Sort-Object -Property AddedTime -Descending | Select-Object -First 1
-$NW = Get-WAPVMNetwork -Name internal
-$VMProps = New-WAPVMRoleParameterObject -VMRole $GI -OSDisk $OSDisk -VMRoleVMSize Medium -VMNetwork $NW
-$VMProps.VMRoleAdminCredential = <span style="color:#e6db74">&#39;Administrator:Welkom01&#39;</span>
-$VMProps.DSCPullServerClientCredential = <span style="color:#e6db74">&#39;Domain\Certreq:password&#39;</span>
-$VMProps.DSCPullServerClientConfigurationId = <span style="color:#e6db74">&#39;7844f909-1f2e-4770-9c97-7a2e2e5677ae&#39;</span>
-New-WAPVMRoleDeployment -VMRole $GI -ParameterObject $VMProps -CloudServiceName MyCloudService
-Get-WAPCloudService -Name MyCloudService | Get-WAPVMRole
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nb">Get-WAPToken</span> <span class="n">-Url</span> <span class="n">https</span><span class="err">:</span><span class="p">//</span><span class="n">sts</span><span class="p">.</span><span class="n">bgelens</span><span class="p">.</span><span class="n">nl</span> <span class="n">-ADFS</span> <span class="n">-Credential</span> <span class="n">administrator</span><span class="nv">@gelens</span><span class="p">.</span><span class="n">int</span>
+<span class="ln"> 2</span><span class="nb">Connect-WAPAPI</span> <span class="n">-Url</span> <span class="n">https</span><span class="err">:</span><span class="p">//</span><span class="n">api</span><span class="p">.</span><span class="n">bgelens</span><span class="p">.</span><span class="n">nl</span> <span class="n">-Port</span> <span class="n">443</span>
+<span class="ln"> 3</span><span class="nb">Get-WAPSubscription</span> <span class="n">-Name</span> <span class="n">Test</span> <span class="p">|</span> <span class="nb">Select-WAPSubscription</span>
+<span class="ln"> 4</span><span class="nv">$GI</span> <span class="p">=</span> <span class="nb">Get-WAPGalleryVMRole</span> <span class="n">-Name</span> <span class="n">DSCPullServerClient</span>
+<span class="ln"> 5</span><span class="nv">$OSDisk</span> <span class="p">=</span> <span class="nv">$GI</span> <span class="p">|</span> <span class="nb">Get-WAPVMRoleOSDisk</span> <span class="p">|</span> <span class="nb">Sort-Object</span> <span class="n">-Property</span> <span class="n">AddedTime</span> <span class="n">-Descending</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-First</span> <span class="n">1</span>
+<span class="ln"> 6</span><span class="nv">$NW</span> <span class="p">=</span> <span class="nb">Get-WAPVMNetwork</span> <span class="n">-Name</span> <span class="n">internal</span>
+<span class="ln"> 7</span><span class="nv">$VMProps</span> <span class="p">=</span> <span class="nb">New-WAPVMRoleParameterObject</span> <span class="n">-VMRole</span> <span class="nv">$GI</span> <span class="n">-OSDisk</span> <span class="nv">$OSDisk</span> <span class="n">-VMRoleVMSize</span> <span class="n">Medium</span> <span class="n">-VMNetwork</span> <span class="nv">$NW</span>
+<span class="ln"> 8</span><span class="nv">$VMProps</span><span class="p">.</span><span class="n">VMRoleAdminCredential</span> <span class="p">=</span> <span class="s1">&#39;Administrator:Welkom01&#39;</span>
+<span class="ln"> 9</span><span class="nv">$VMProps</span><span class="p">.</span><span class="n">DSCPullServerClientCredential</span> <span class="p">=</span> <span class="s1">&#39;Domain\Certreq:password&#39;</span>
+<span class="ln">10</span><span class="nv">$VMProps</span><span class="p">.</span><span class="n">DSCPullServerClientConfigurationId</span> <span class="p">=</span> <span class="s1">&#39;7844f909-1f2e-4770-9c97-7a2e2e5677ae&#39;</span>
+<span class="ln">11</span><span class="nb">New-WAPVMRoleDeployment</span> <span class="n">-VMRole</span> <span class="nv">$GI</span> <span class="n">-ParameterObject</span> <span class="nv">$VMProps</span> <span class="n">-CloudServiceName</span> <span class="n">MyCloudService</span>
+<span class="ln">12</span><span class="nb">Get-WAPCloudService</span> <span class="n">-Name</span> <span class="n">MyCloudService</span> <span class="p">|</span> <span class="nb">Get-WAPVMRole</span>
 </code></pre></div><p>First you acquire the token by authenticating against either the Windows Azure Pack authentication website or ADFS (use the –ADFS switch in this case) using the <em>Get-WAPToken</em> function.</p>
 <p><img src="/images/wapdsc1.png" alt=""></p>
 <p>This function will populate some variables (Token and Headers) defined in the module level so other functions can now access the data. The Headers variable will contain a hash table once successfully authenticated.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">@{
-    Authorization = <span style="color:#e6db74">&#34;Bearer $Token&#34;</span>
-    <span style="color:#e6db74">&#39;x-ms-principal-id&#39;</span> = $Credential.UserName
-    Accept = <span style="color:#e6db74">&#39;application/json&#39;</span>
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="p">@{</span>
+<span class="ln">2</span>    <span class="n">Authorization</span> <span class="p">=</span> <span class="s2">&#34;Bearer $Token&#34;</span>
+<span class="ln">3</span>    <span class="s1">&#39;x-ms-principal-id&#39;</span> <span class="p">=</span> <span class="nv">$Credential</span><span class="p">.</span><span class="n">UserName</span>
+<span class="ln">4</span>    <span class="n">Accept</span> <span class="p">=</span> <span class="s1">&#39;application/json&#39;</span>
+<span class="ln">5</span><span class="p">}</span>
 </code></pre></div><p>These headers are used with each subsequent function which target the API. It tells the API:</p>
 <ul>
 <li>

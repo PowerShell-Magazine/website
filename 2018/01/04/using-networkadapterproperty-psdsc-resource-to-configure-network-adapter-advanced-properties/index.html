@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Using NetworkAdapterProperty #PSDSC Resource to Configure Network Adapter Advanced Properties</title>
 
 <meta name="description" content="For the most powerful community">
@@ -243,45 +244,45 @@ if (!doNotTrack) {
 <p>This resource requires the display name of the network adapter and it can be seen by using the <em>Get-NetAdapterAdvancedProperty</em> cmdlet. Depending on what the network adapter driver implements, this list changes between different network adapter models/vendors. Let’s see a couple of examples of using this resource.</p>
 <h3 id="configuring-vlan-id-advanced-property">Configuring VLAN ID advanced property</h3>
 <p>The display name of the advanced property for VLAN configuration on physical adapter is usually <em>VLAN ID</em>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Configuration PhysicalAdapterVLAN
-{
-    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
-    Import-DscResource -ModuleName NetworkingDsc -ModuleVersion 1.0.0.0
-
-    NetworkAdapterProperty VLAN
-    {
-        Id = <span style="color:#e6db74">&#39;S1P1VLAN&#39;</span>
-        Name = <span style="color:#e6db74">&#39;SLOT 1 PORT 1&#39;</span>
-        DisplayName =  <span style="color:#e6db74">&#39;VLAN ID&#39;</span>
-        DisplayValue = <span style="color:#e6db74">&#39;102&#39;</span>
-        Ensure = <span style="color:#e6db74">&#39;Present&#39;</span>
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Configuration</span> <span class="n">PhysicalAdapterVLAN</span>
+<span class="ln"> 2</span><span class="p">{</span>
+<span class="ln"> 3</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">PSDesiredStateConfiguration</span> <span class="n">-ModuleVersion</span> <span class="n">1</span><span class="p">.</span><span class="n">1</span>
+<span class="ln"> 4</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">NetworkingDsc</span> <span class="n">-ModuleVersion</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span>    <span class="n">NetworkAdapterProperty</span> <span class="n">VLAN</span>
+<span class="ln"> 7</span>    <span class="p">{</span>
+<span class="ln"> 8</span>        <span class="n">Id</span> <span class="p">=</span> <span class="s1">&#39;S1P1VLAN&#39;</span>
+<span class="ln"> 9</span>        <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;SLOT 1 PORT 1&#39;</span>
+<span class="ln">10</span>        <span class="n">DisplayName</span> <span class="p">=</span>  <span class="s1">&#39;VLAN ID&#39;</span>
+<span class="ln">11</span>        <span class="n">DisplayValue</span> <span class="p">=</span> <span class="s1">&#39;102&#39;</span>
+<span class="ln">12</span>        <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+<span class="ln">13</span>    <span class="p">}</span>
+<span class="ln">14</span><span class="p">}</span>
 </code></pre></div><h3 id="configuring-dcbx-mode-on-mellanox-cx4-adapters">Configuring DCBX Mode on Mellanox CX4 adapters</h3>
 <p>This following example is specific to Mellanox CX4 adapters. These adapters support firmware or host controlled DCB exchange. We can configure this by changing the value of <em>DcbxMode</em> property.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Configuration PhysicalAdapterVLAN
-{
-    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
-    Import-DscResource -ModuleName NetworkingDsc -ModuleVersion 1.0.0.0
-
-    NetworkAdapterProperty S1P1DCBX
-    {
-        Id = <span style="color:#e6db74">&#39;S1P1DCBX&#39;</span>
-        Name = <span style="color:#e6db74">&#39;SLOT 1 PORT 1&#39;</span>
-        DisplayName =  <span style="color:#e6db74">&#39;DcbxMode&#39;</span>
-        DisplayValue = <span style="color:#e6db74">&#39;Host in charge&#39;</span>
-        Ensure = <span style="color:#e6db74">&#39;Present&#39;</span>
-    }
-
-    NetworkAdapterProperty S1P2DCBX
-    {
-        Id = <span style="color:#e6db74">&#39;S2P2DCBX&#39;</span>
-        Name = <span style="color:#e6db74">&#39;SLOT 1 PORT 2&#39;</span>
-        DisplayName =  <span style="color:#e6db74">&#39;DcbxMode&#39;</span>
-        DisplayValue = <span style="color:#e6db74">&#39;Host in charge&#39;</span>
-        Ensure = <span style="color:#e6db74">&#39;Present&#39;</span>
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Configuration</span> <span class="n">PhysicalAdapterVLAN</span>
+<span class="ln"> 2</span><span class="p">{</span>
+<span class="ln"> 3</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">PSDesiredStateConfiguration</span> <span class="n">-ModuleVersion</span> <span class="n">1</span><span class="p">.</span><span class="n">1</span>
+<span class="ln"> 4</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">NetworkingDsc</span> <span class="n">-ModuleVersion</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span>    <span class="n">NetworkAdapterProperty</span> <span class="n">S1P1DCBX</span>
+<span class="ln"> 7</span>    <span class="p">{</span>
+<span class="ln"> 8</span>        <span class="n">Id</span> <span class="p">=</span> <span class="s1">&#39;S1P1DCBX&#39;</span>
+<span class="ln"> 9</span>        <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;SLOT 1 PORT 1&#39;</span>
+<span class="ln">10</span>        <span class="n">DisplayName</span> <span class="p">=</span>  <span class="s1">&#39;DcbxMode&#39;</span>
+<span class="ln">11</span>        <span class="n">DisplayValue</span> <span class="p">=</span> <span class="s1">&#39;Host in charge&#39;</span>
+<span class="ln">12</span>        <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+<span class="ln">13</span>    <span class="p">}</span>
+<span class="ln">14</span>
+<span class="ln">15</span>    <span class="n">NetworkAdapterProperty</span> <span class="n">S1P2DCBX</span>
+<span class="ln">16</span>    <span class="p">{</span>
+<span class="ln">17</span>        <span class="n">Id</span> <span class="p">=</span> <span class="s1">&#39;S2P2DCBX&#39;</span>
+<span class="ln">18</span>        <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;SLOT 1 PORT 2&#39;</span>
+<span class="ln">19</span>        <span class="n">DisplayName</span> <span class="p">=</span>  <span class="s1">&#39;DcbxMode&#39;</span>
+<span class="ln">20</span>        <span class="n">DisplayValue</span> <span class="p">=</span> <span class="s1">&#39;Host in charge&#39;</span>
+<span class="ln">21</span>        <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+<span class="ln">22</span>    <span class="p">}</span>
+<span class="ln">23</span><span class="p">}</span>
 </code></pre></div></div>
         </article>
         

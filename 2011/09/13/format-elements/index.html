@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Format elements</title>
 
 <meta name="description" content="For the most powerful community">
@@ -236,9 +237,9 @@ if (!doNotTrack) {
           <div class="content"><h3 id="problem">Problem</h3>
 <p>Given an Array of at least 2 elements, return a new Array of formatted elements without using array indices, pipelines or loop statements.</p>
 <h3 id="solution">Solution</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$array = 1..7
--split (<span style="color:#e6db74">&#39;{0:C}&#39;</span> <span style="color:#f92672">-f</span> <span style="color:#66d9ef">[PSObject]</span>$array)
--split (<span style="color:#e6db74">&#39;{0:C}&#39;</span> <span style="color:#f92672">-f</span> ($array <span style="color:#f92672">-as</span> <span style="color:#e6db74">&#39;PSObject&#39;</span>))
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$array</span> <span class="p">=</span> <span class="n">1</span><span class="p">..</span><span class="n">7</span>
+<span class="ln">2</span><span class="n">-split</span> <span class="p">(</span><span class="s1">&#39;{0:C}&#39;</span> <span class="o">-f</span> <span class="no">[PSObject]</span><span class="nv">$array</span><span class="p">)</span>
+<span class="ln">3</span><span class="n">-split</span> <span class="p">(</span><span class="s1">&#39;{0:C}&#39;</span> <span class="o">-f</span> <span class="p">(</span><span class="nv">$array</span> <span class="o">-as</span> <span class="s1">&#39;PSObject&#39;</span><span class="p">))</span>
 </code></pre></div><p>The secret is to cast the Array as PSObject, this causes PowerShell to enumerate all elements internally looking for extended members, the Format Operator performs its magic on each element and returns a single String with the new -formatted- String Array expanded within it. Finally the Split Operator breaks the String and we get a new String Array of formatted Strings.</p>
 <hr style="color: #d8d8d8; height: 1px;" />
 <p id="psmagWinner0" style="background: #B2FEE1; text-align: center;">

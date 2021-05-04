@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>The Case of Unknown Custom Object Property</title>
 
 <meta name="description" content="For the most powerful community">
@@ -235,35 +236,35 @@ if (!doNotTrack) {
           </ul>
           <div class="content"><p>In the last two or three months, I have been busy working on a complete end to end deployment automation solution and been writing lot of PowerShell code. Literally, lot of code. A simple to use deployment automation solution always has complex implementation beneath. I was dealing with several configuration files, dynamically deciding what configuration to fetch and update, and dealing with hundreds of lines of dynamically generated JSON for progress tracking and so on.</p>
 <p>While working with one such JSON (shown below), I was seeing a strange error when trying to update a specific property within the JSON.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">{
-     <span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;6894cb4e-907c-43d0-b79d-c4fb8ef422eb&#34;</span>,
-     <span style="color:#e6db74">&#34;description&#34;</span> <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;Just another manifest for deployment&#34;</span>,
-     <span style="color:#e6db74">&#34;version&#34;</span> <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;1.0.0.0&#34;</span>,
-     <span style="color:#e6db74">&#34;systems&#34;</span> <span style="color:#960050;background-color:#1e0010">:</span> [
-         {
-             <span style="color:#e6db74">&#34;serialNumber&#34;</span> <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;123abc&#34;</span>,
-             <span style="color:#e6db74">&#34;ipAddress&#34;</span> <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;8.9.10.11&#34;</span>,
-             <span style="color:#e6db74">&#34;status&#34;</span> <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;pending&#34;</span>
-         },
-         {
-             <span style="color:#e6db74">&#34;serialNumber&#34;</span> <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;456def&#34;</span>,
-             <span style="color:#e6db74">&#34;ipAddress&#34;</span> <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;8.9.10.12&#34;</span>,
-             <span style="color:#e6db74">&#34;status&#34;</span> <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;pending&#34;</span>
-         },
-         {
-             <span style="color:#e6db74">&#34;serialNumber&#34;</span> <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;789ghi&#34;</span>,
-             <span style="color:#e6db74">&#34;ipAddress&#34;</span> <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;8.9.10.13&#34;</span>,
-             <span style="color:#e6db74">&#34;status&#34;</span> <span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;pending&#34;</span>
-         }
-     ]
- }
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="p">{</span>
+<span class="ln"> 2</span>     <span class="s2">&#34;id&#34;</span> <span class="err">:</span> <span class="s2">&#34;6894cb4e-907c-43d0-b79d-c4fb8ef422eb&#34;</span><span class="p">,</span>
+<span class="ln"> 3</span>     <span class="s2">&#34;description&#34;</span> <span class="err">:</span> <span class="s2">&#34;Just another manifest for deployment&#34;</span><span class="p">,</span>
+<span class="ln"> 4</span>     <span class="s2">&#34;version&#34;</span> <span class="err">:</span> <span class="s2">&#34;1.0.0.0&#34;</span><span class="p">,</span>
+<span class="ln"> 5</span>     <span class="s2">&#34;systems&#34;</span> <span class="err">:</span> <span class="p">[</span>
+<span class="ln"> 6</span>         <span class="p">{</span>
+<span class="ln"> 7</span>             <span class="s2">&#34;serialNumber&#34;</span> <span class="err">:</span> <span class="s2">&#34;123abc&#34;</span><span class="p">,</span>
+<span class="ln"> 8</span>             <span class="s2">&#34;ipAddress&#34;</span> <span class="err">:</span> <span class="s2">&#34;8.9.10.11&#34;</span><span class="p">,</span>
+<span class="ln"> 9</span>             <span class="s2">&#34;status&#34;</span> <span class="err">:</span> <span class="s2">&#34;pending&#34;</span>
+<span class="ln">10</span>         <span class="p">},</span>
+<span class="ln">11</span>         <span class="p">{</span>
+<span class="ln">12</span>             <span class="s2">&#34;serialNumber&#34;</span> <span class="err">:</span> <span class="s2">&#34;456def&#34;</span><span class="p">,</span>
+<span class="ln">13</span>             <span class="s2">&#34;ipAddress&#34;</span> <span class="err">:</span> <span class="s2">&#34;8.9.10.12&#34;</span><span class="p">,</span>
+<span class="ln">14</span>             <span class="s2">&#34;status&#34;</span> <span class="err">:</span> <span class="s2">&#34;pending&#34;</span>
+<span class="ln">15</span>         <span class="p">},</span>
+<span class="ln">16</span>         <span class="p">{</span>
+<span class="ln">17</span>             <span class="s2">&#34;serialNumber&#34;</span> <span class="err">:</span> <span class="s2">&#34;789ghi&#34;</span><span class="p">,</span>
+<span class="ln">18</span>             <span class="s2">&#34;ipAddress&#34;</span> <span class="err">:</span> <span class="s2">&#34;8.9.10.13&#34;</span><span class="p">,</span>
+<span class="ln">19</span>             <span class="s2">&#34;status&#34;</span> <span class="err">:</span> <span class="s2">&#34;pending&#34;</span>
+<span class="ln">20</span>         <span class="p">}</span>
+<span class="ln">21</span>     <span class="p">]</span>
+<span class="ln">22</span> <span class="p">}</span>
 </code></pre></div><p>This is a very minimal and simplified version of JSON that I have in the automation framework. In this JSON, based on the status of deployment, I need to update the status property of each system in the manifest.</p>
 <p>Here is what I tried.</p>
 <p><img src="/images/customobject1.png" alt="image"></p>
 <p>Now, that error is pretty strange. To investigate this, I looked at the type of object that was getting returned from the Where() method.</p>
 <p><img src="/images/customobject2.png" alt="image"></p>
 <p><strong>Update (2/11):</strong> Prasoon commented on this post and mentioned that the Item() method on this collection to update the status property. Here is how we do it based on his suggestion</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$manifest.systems.Where({$_.serialNumber <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;123abc&#39;</span>}).item(0).Status = <span style="color:#e6db74">&#39;Complete&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$manifest</span><span class="p">.</span><span class="n">systems</span><span class="p">.</span><span class="n">Where</span><span class="p">({</span><span class="nv">$_</span><span class="p">.</span><span class="n">serialNumber</span> <span class="o">-eq</span> <span class="s1">&#39;123abc&#39;</span><span class="p">}).</span><span class="n">item</span><span class="p">(</span><span class="n">0</span><span class="p">).</span><span class="n">Status</span> <span class="p">=</span> <span class="s1">&#39;Complete&#39;</span>
 </code></pre></div><p>What you see below is my investigation before Prasoon commented on this post!</p>
 <p>It should ideally be a PS custom object. The where() method is therefore doing something to the custom object. I tried, then, using the index of an object within the systems collection.</p>
 <p>c</p>
@@ -271,19 +272,19 @@ if (!doNotTrack) {
 <p><img src="/images/customobject4.png" alt="image"></p>
 <p>I was skeptical about the above method of using <code>where()</code> again. And, it does fail. The index of the object instance returned using this method is always -1.</p>
 <p>In the second method, I resorted to using a simple for loop to gather the index of the node.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$serialNumber = <span style="color:#e6db74">&#39;456def&#39;</span>
-<span style="color:#66d9ef">for</span> ($currentIndex = 0; $currentIndex <span style="color:#f92672">-lt</span> $manifest.systems.Count; $currentIndex++)
- {
-     <span style="color:#66d9ef">if</span> ($manifest.systems[$currentIndex].serialNumber <span style="color:#f92672">-eq</span> $serialNumber)
-     {
-         <span style="color:#66d9ef">break</span>
-     }
-     <span style="color:#66d9ef">else</span>
-     {
-         <span style="color:#66d9ef">continue</span>
-     }
- }
- $manifest.systems[$currentIndex].status = <span style="color:#e6db74">&#39;complete&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$serialNumber</span> <span class="p">=</span> <span class="s1">&#39;456def&#39;</span>
+<span class="ln"> 2</span><span class="k">for</span> <span class="p">(</span><span class="nv">$currentIndex</span> <span class="p">=</span> <span class="n">0</span><span class="p">;</span> <span class="nv">$currentIndex</span> <span class="o">-lt</span> <span class="nv">$manifest</span><span class="p">.</span><span class="n">systems</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span> <span class="nv">$currentIndex</span><span class="p">++)</span>
+<span class="ln"> 3</span> <span class="p">{</span>
+<span class="ln"> 4</span>     <span class="k">if</span> <span class="p">(</span><span class="nv">$manifest</span><span class="p">.</span><span class="n">systems</span><span class="p">[</span><span class="nv">$currentIndex</span><span class="p">].</span><span class="n">serialNumber</span> <span class="o">-eq</span> <span class="nv">$serialNumber</span><span class="p">)</span>
+<span class="ln"> 5</span>     <span class="p">{</span>
+<span class="ln"> 6</span>         <span class="k">break</span>
+<span class="ln"> 7</span>     <span class="p">}</span>
+<span class="ln"> 8</span>     <span class="k">else</span>
+<span class="ln"> 9</span>     <span class="p">{</span>
+<span class="ln">10</span>         <span class="k">continue</span>
+<span class="ln">11</span>     <span class="p">}</span>
+<span class="ln">12</span> <span class="p">}</span>
+<span class="ln">13</span> <span class="nv">$manifest</span><span class="p">.</span><span class="n">systems</span><span class="p">[</span><span class="nv">$currentIndex</span><span class="p">].</span><span class="n">status</span> <span class="p">=</span> <span class="s1">&#39;complete&#39;</span>
 </code></pre></div><p>The above snippet does not look super optimal to me but works as expected.</p>
 <p><img src="/images/customobject5.png" alt="image"></p>
 <p>I have not figured out any other optimal way of handling this but have you come across something like this? Do you see a better way to handle this?</p>

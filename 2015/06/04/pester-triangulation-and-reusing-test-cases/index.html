@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Pester: Triangulation and reusing test cases</title>
 
 <meta name="description" content="For the most powerful community">
@@ -234,17 +235,17 @@ if (!doNotTrack) {
 <p>Providing just the first two test cases, we could simply fool the test and return the value of the a. But the more test cases we provide, the more certain we are that the operation in fact behaves correctly.</p>
 <p>Adding more test cases without the TestCases functionality would require a lot of copy-pasting and modifying the values. This is very error prone and would likely cause a lot of problems.</p>
 <p>With TestCases it is as simple as this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Describe <span style="color:#e6db74">&#39;Test reuse&#39;</span> {
-    It <span style="color:#e6db74">&#39;Prerequisite file &lt;file&gt; is present&#39;</span> `
-    -TestCases `
-        @{file = <span style="color:#e6db74">&#39;.\Script1.ps1&#39;</span>},
-        @{file = <span style="color:#e6db74">&#39;.\Script2.ps1&#39;</span>},
-        @{file = <span style="color:#e6db74">&#39;.\Script3.ps1&#39;</span>} `
-    -Test {
-        <span style="color:#66d9ef">param</span> (<span style="color:#66d9ef">[string]</span>$file)
-	$file | Should Exist
-}
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Describe</span> <span class="s1">&#39;Test reuse&#39;</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="n">It</span> <span class="s1">&#39;Prerequisite file &lt;file&gt; is present&#39;</span> <span class="p">`</span>
+<span class="ln"> 3</span>    <span class="n">-TestCases</span> <span class="p">`</span>
+<span class="ln"> 4</span>        <span class="p">@{</span><span class="n">file</span> <span class="p">=</span> <span class="s1">&#39;.\Script1.ps1&#39;</span><span class="p">},</span>
+<span class="ln"> 5</span>        <span class="p">@{</span><span class="n">file</span> <span class="p">=</span> <span class="s1">&#39;.\Script2.ps1&#39;</span><span class="p">},</span>
+<span class="ln"> 6</span>        <span class="p">@{</span><span class="n">file</span> <span class="p">=</span> <span class="s1">&#39;.\Script3.ps1&#39;</span><span class="p">}</span> <span class="p">`</span>
+<span class="ln"> 7</span>    <span class="n">-Test</span> <span class="p">{</span>
+<span class="ln"> 8</span>        <span class="k">param</span> <span class="p">(</span><span class="no">[string]</span><span class="nv">$file</span><span class="p">)</span>
+<span class="ln"> 9</span>	<span class="nv">$file</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Exist</span>
+<span class="ln">10</span><span class="p">}</span>
+<span class="ln">11</span><span class="p">}</span>
 </code></pre></div><p><img src="/images/pestertri2.png" alt=""></p>
 <p>As you can see the test was executed once for each test case and produced a very clear output without barely any effort. You should also notice that you can use tokens named as the parameter names to show the input and output values for the given test case. In our example the parameters are $a, $b and $c and so the tokens are <a>, <b>, and <c>.</p>
 <h3 id="test-case-reuse">Test case reuse</h3>
@@ -252,16 +253,16 @@ if (!doNotTrack) {
 <p><img src="/images/pestertri3.png" alt=""></p>
 <p>In the above picture you can see that the test takes a path to a script and tests if that script file exist. On the first look it might seem pretty similar to triangulation, but the test does not point to a single function. Instead it points to multiple places which are <em>determined</em> by the input data.</p>
 <p>In code it would look like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Describe <span style="color:#e6db74">&#39;Test reuse&#39;</span> {
-    It <span style="color:#e6db74">&#39;Prerequisite file is present&#39;</span> -TestCases
-    @{file = <span style="color:#e6db74">&#39;.\Script1.ps1&#39;</span>},
-    @{file = <span style="color:#e6db74">&#39;.\Script2.ps1&#39;</span>},
-    @{file = <span style="color:#e6db74">&#39;.\Script3.ps1&#39;</span>} -Test {
-    <span style="color:#66d9ef">param</span> (<span style="color:#66d9ef">[string]</span>$file)
-
-    $file | Should Exist
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Describe</span> <span class="s1">&#39;Test reuse&#39;</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="n">It</span> <span class="s1">&#39;Prerequisite file is present&#39;</span> <span class="n">-TestCases</span>
+<span class="ln"> 3</span>    <span class="p">@{</span><span class="n">file</span> <span class="p">=</span> <span class="s1">&#39;.\Script1.ps1&#39;</span><span class="p">},</span>
+<span class="ln"> 4</span>    <span class="p">@{</span><span class="n">file</span> <span class="p">=</span> <span class="s1">&#39;.\Script2.ps1&#39;</span><span class="p">},</span>
+<span class="ln"> 5</span>    <span class="p">@{</span><span class="n">file</span> <span class="p">=</span> <span class="s1">&#39;.\Script3.ps1&#39;</span><span class="p">}</span> <span class="n">-Test</span> <span class="p">{</span>
+<span class="ln"> 6</span>    <span class="k">param</span> <span class="p">(</span><span class="no">[string]</span><span class="nv">$file</span><span class="p">)</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span>    <span class="nv">$file</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Exist</span>
+<span class="ln"> 9</span>    <span class="p">}</span>
+<span class="ln">10</span><span class="p">}</span>
 </code></pre></div><p><img src="/images/pestertri4.png" alt=""></p>
 </div>
         </article>

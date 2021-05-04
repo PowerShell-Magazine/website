@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>5 Essential PowerShell Skills for Exchange Server Administrators</title>
 
 <meta name="description" content="For the most powerful community">
@@ -237,129 +238,129 @@ if (!doNotTrack) {
 <h3 id="discovering-commands">Discovering Commands</h3>
 <p>One of the first challenges with using PowerShell for Exchange Server management is knowing which commands to run for the task you want to perform. Fortunately you only need to remember one: <a href="http://technet.microsoft.com/en-us/library/ee176842.aspx">Get-Command</a>.</p>
 <p>Using Get-Command you can quickly search for cmdlets based on keywords. Let’s say for example you want to administer a mailbox. Using Get-Command you can discover all of the cmdlets that have the noun “mailbox” in them.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; Get-Command -Noun Mailbox
-CommandType     Name
------------     ----
-Cmdlet          Connect-Mailbox
-Cmdlet          Disable-Mailbox
-Cmdlet          Enable-Mailbox
-Cmdlet          Get-Mailbox
-Cmdlet          New-Mailbox
-Cmdlet          Remove-Mailbox
-Cmdlet          Restore-Mailbox
-Cmdlet          Search-Mailbox
-Cmdlet          Set-Mailbox
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Command</span> <span class="n">-Noun</span> <span class="n">Mailbox</span>
+<span class="ln"> 2</span><span class="n">CommandType</span>     <span class="n">Name</span>
+<span class="ln"> 3</span><span class="p">-----------</span>     <span class="p">----</span>
+<span class="ln"> 4</span><span class="n">Cmdlet</span>          <span class="nb">Connect-Mailbox</span>
+<span class="ln"> 5</span><span class="n">Cmdlet</span>          <span class="nb">Disable-Mailbox</span>
+<span class="ln"> 6</span><span class="n">Cmdlet</span>          <span class="nb">Enable-Mailbox</span>
+<span class="ln"> 7</span><span class="n">Cmdlet</span>          <span class="nb">Get-Mailbox</span>
+<span class="ln"> 8</span><span class="n">Cmdlet</span>          <span class="nb">New-Mailbox</span>
+<span class="ln"> 9</span><span class="n">Cmdlet</span>          <span class="nb">Remove-Mailbox</span>
+<span class="ln">10</span><span class="n">Cmdlet</span>          <span class="nb">Restore-Mailbox</span>
+<span class="ln">11</span><span class="n">Cmdlet</span>          <span class="nb">Search-Mailbox</span>
+<span class="ln">12</span><span class="n">Cmdlet</span>          <span class="nb">Set-Mailbox</span>
 </code></pre></div><p>With PowerShell’s simple “Verb-Noun” cmdlet names you can now quickly see which cmdlet to use if you want to get a list of mailboxes, set a mailbox property, or create a new mailbox.</p>
 <h3 id="filtering-output">Filtering Output</h3>
 <p>Some PowerShell cmdlets return a lot of data. For example if you run <a href="http://technet.microsoft.com/en-us/library/bb123685.aspx">Get-Mailbox</a> it will return every mailbox in your organization. That may be hundreds or thousands of mailboxes, when all you really wanted is the mailboxes that match a certain criteria. PowerShell lets you filter the data that a cmdlet returns by using the <a href="http://technet.microsoft.com/en-us/library/ee177028.aspx">Where-Object</a> command, or simply “where” as it is often abbreviated. For example, to get the list of mailbox users in the branch office of the organization you can run the following command:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; Get-Mailbox | Where-Object { $_.Office <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#34;Branch Office&#34;</span>}
-Name             <span style="color:#66d9ef">Alias</span>                ServerName       ProhibitSendQuota
-----             -----                ----------       -----------------
-Alex.Heyne       Alex.Heyne           br-ex2010-mb     unlimited
-John.Williams    John.Williams        br-ex2010-mb     unlimited
-Judith.Rodrigues Judith.Rodrigues     br-ex2010-mb     unlimited
-Katherine.Phipps Katherine.Phipps     br-ex2010-mb     unlimited
-Olive.Weeks      Olive.Weeks          br-ex2010-mb     unlimited
-Sonia.Smith      Sonia.Smith          br-ex2010-mb     unlimited
-Wendy.Fyson      Wendy.Fyson          br-ex2010-mb     unlimited
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Mailbox</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Office</span> <span class="o">-eq</span> <span class="s2">&#34;Branch Office&#34;</span><span class="p">}</span>
+<span class="ln"> 2</span><span class="n">Name</span>             <span class="k">Alias</span>                <span class="n">ServerName</span>       <span class="n">ProhibitSendQuota</span>
+<span class="ln"> 3</span><span class="p">----</span>             <span class="p">-----</span>                <span class="p">----------</span>       <span class="p">-----------------</span>
+<span class="ln"> 4</span><span class="n">Alex</span><span class="p">.</span><span class="n">Heyne</span>       <span class="n">Alex</span><span class="p">.</span><span class="n">Heyne</span>           <span class="n">br-ex2010-mb</span>     <span class="n">unlimited</span>
+<span class="ln"> 5</span><span class="n">John</span><span class="p">.</span><span class="n">Williams</span>    <span class="n">John</span><span class="p">.</span><span class="n">Williams</span>        <span class="n">br-ex2010-mb</span>     <span class="n">unlimited</span>
+<span class="ln"> 6</span><span class="n">Judith</span><span class="p">.</span><span class="n">Rodrigues</span> <span class="n">Judith</span><span class="p">.</span><span class="n">Rodrigues</span>     <span class="n">br-ex2010-mb</span>     <span class="n">unlimited</span>
+<span class="ln"> 7</span><span class="n">Katherine</span><span class="p">.</span><span class="n">Phipps</span> <span class="n">Katherine</span><span class="p">.</span><span class="n">Phipps</span>     <span class="n">br-ex2010-mb</span>     <span class="n">unlimited</span>
+<span class="ln"> 8</span><span class="n">Olive</span><span class="p">.</span><span class="n">Weeks</span>      <span class="n">Olive</span><span class="p">.</span><span class="n">Weeks</span>          <span class="n">br-ex2010-mb</span>     <span class="n">unlimited</span>
+<span class="ln"> 9</span><span class="n">Sonia</span><span class="p">.</span><span class="n">Smith</span>      <span class="n">Sonia</span><span class="p">.</span><span class="n">Smith</span>          <span class="n">br-ex2010-mb</span>     <span class="n">unlimited</span>
+<span class="ln">10</span><span class="n">Wendy</span><span class="p">.</span><span class="n">Fyson</span>      <span class="n">Wendy</span><span class="p">.</span><span class="n">Fyson</span>          <span class="n">br-ex2010-mb</span>     <span class="n">unlimited</span>
 </code></pre></div><p>As you can see by filtering the output of Get-Mailbox to only those where the “Office” attribute equals “Branch Office”, you can retrieve only the data that you are interested in seeing.</p>
 <h3 id="using-the-pipeline">Using the Pipeline</h3>
 <p>One of the PowerShell techniques you will use regularly is the pipeline. In PowerShell the pipeline is how output from one command is passed to another. You may have noticed in the previous example the | (or pipe) character that was between the Get-Mailbox and Where-Object cmdlets. That is an example of the pipeline in action. Continuing the previous example, let’s say that the business has decided that all branch office mailbox users should have a 3Gb mailbox storage quota. You can use the same command shown above to get the branch office mailboxes, and then pipe that into the <a href="http://technet.microsoft.com/en-us/library/bb123981.aspx">Set-Mailbox</a> cmdlet to make the change to their storage quota settings.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Get-Mailbox | Where-Object { $_.Office <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#34;Branch Office&#34;</span>} | Set-Mailbox -IssueWarningQuota 2.8Gb -ProhibitSendQuota 3Gb
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Get-Mailbox</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Office</span> <span class="o">-eq</span> <span class="s2">&#34;Branch Office&#34;</span><span class="p">}</span> <span class="p">|</span> <span class="nb">Set-Mailbox</span> <span class="n">-IssueWarningQuota</span> <span class="n">2</span><span class="p">.</span><span class="n">8Gb</span> <span class="n">-ProhibitSendQuota</span> <span class="n">3Gb</span>
 </code></pre></div><p>Now when we look at the list of branch office mailboxes again we can see the change to the storage quota settings.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Name             <span style="color:#66d9ef">Alias</span>              ServerName     ProhibitSendQuota
-----             -----              ----------     -----------------
-Alex.Heyne       Alex.Heyne         br-ex2010-mb   3 GB (3,221,225,472 bytes)
-John.Williams    John.Williams      br-ex2010-mb   3 GB (3,221,225,472 bytes)
-Judith.Rodrigues Judith.Rodrigues   br-ex2010-mb   3 GB (3,221,225,472 bytes)
-Katherine.Phipps Katherine.Phipps   br-ex2010-mb   3 GB (3,221,225,472 bytes)
-Olive.Weeks      Olive.Weeks        br-ex2010-mb   3 GB (3,221,225,472 bytes)
-Sonia.Smith      Sonia.Smith        br-ex2010-mb   3 GB (3,221,225,472 bytes)
-Wendy.Fyson      Wendy.Fyson        br-ex2010-mb   3 GB (3,221,225,472 bytes)
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">Name</span>             <span class="k">Alias</span>              <span class="n">ServerName</span>     <span class="n">ProhibitSendQuota</span>
+<span class="ln">2</span><span class="p">----</span>             <span class="p">-----</span>              <span class="p">----------</span>     <span class="p">-----------------</span>
+<span class="ln">3</span><span class="n">Alex</span><span class="p">.</span><span class="n">Heyne</span>       <span class="n">Alex</span><span class="p">.</span><span class="n">Heyne</span>         <span class="n">br-ex2010-mb</span>   <span class="n">3</span> <span class="n">GB</span> <span class="p">(</span><span class="n">3</span><span class="p">,</span><span class="n">221</span><span class="p">,</span><span class="n">225</span><span class="p">,</span><span class="n">472</span> <span class="n">bytes</span><span class="p">)</span>
+<span class="ln">4</span><span class="n">John</span><span class="p">.</span><span class="n">Williams</span>    <span class="n">John</span><span class="p">.</span><span class="n">Williams</span>      <span class="n">br-ex2010-mb</span>   <span class="n">3</span> <span class="n">GB</span> <span class="p">(</span><span class="n">3</span><span class="p">,</span><span class="n">221</span><span class="p">,</span><span class="n">225</span><span class="p">,</span><span class="n">472</span> <span class="n">bytes</span><span class="p">)</span>
+<span class="ln">5</span><span class="n">Judith</span><span class="p">.</span><span class="n">Rodrigues</span> <span class="n">Judith</span><span class="p">.</span><span class="n">Rodrigues</span>   <span class="n">br-ex2010-mb</span>   <span class="n">3</span> <span class="n">GB</span> <span class="p">(</span><span class="n">3</span><span class="p">,</span><span class="n">221</span><span class="p">,</span><span class="n">225</span><span class="p">,</span><span class="n">472</span> <span class="n">bytes</span><span class="p">)</span>
+<span class="ln">6</span><span class="n">Katherine</span><span class="p">.</span><span class="n">Phipps</span> <span class="n">Katherine</span><span class="p">.</span><span class="n">Phipps</span>   <span class="n">br-ex2010-mb</span>   <span class="n">3</span> <span class="n">GB</span> <span class="p">(</span><span class="n">3</span><span class="p">,</span><span class="n">221</span><span class="p">,</span><span class="n">225</span><span class="p">,</span><span class="n">472</span> <span class="n">bytes</span><span class="p">)</span>
+<span class="ln">7</span><span class="n">Olive</span><span class="p">.</span><span class="n">Weeks</span>      <span class="n">Olive</span><span class="p">.</span><span class="n">Weeks</span>        <span class="n">br-ex2010-mb</span>   <span class="n">3</span> <span class="n">GB</span> <span class="p">(</span><span class="n">3</span><span class="p">,</span><span class="n">221</span><span class="p">,</span><span class="n">225</span><span class="p">,</span><span class="n">472</span> <span class="n">bytes</span><span class="p">)</span>
+<span class="ln">8</span><span class="n">Sonia</span><span class="p">.</span><span class="n">Smith</span>      <span class="n">Sonia</span><span class="p">.</span><span class="n">Smith</span>        <span class="n">br-ex2010-mb</span>   <span class="n">3</span> <span class="n">GB</span> <span class="p">(</span><span class="n">3</span><span class="p">,</span><span class="n">221</span><span class="p">,</span><span class="n">225</span><span class="p">,</span><span class="n">472</span> <span class="n">bytes</span><span class="p">)</span>
+<span class="ln">9</span><span class="n">Wendy</span><span class="p">.</span><span class="n">Fyson</span>      <span class="n">Wendy</span><span class="p">.</span><span class="n">Fyson</span>        <span class="n">br-ex2010-mb</span>   <span class="n">3</span> <span class="n">GB</span> <span class="p">(</span><span class="n">3</span><span class="p">,</span><span class="n">221</span><span class="p">,</span><span class="n">225</span><span class="p">,</span><span class="n">472</span> <span class="n">bytes</span><span class="p">)</span>
 </code></pre></div><h3 id="discovering-object-properties">Discovering Object Properties</h3>
 <p>PowerShell is an object-oriented language. If you don’t know what that means then don’t worry, I was using PowerShell for almost two years before I began to understand what it meant.</p>
 <p>An “object” is simply a collection of data. In Exchange Server 2010 an object could be a mailbox, a distribution group, a database, or one of many other things.</p>
 <p>An object has properties. In the example of a mailbox object these include properties such as the name of the database the mailbox resides on, the mailbox storage quota values, or the office location for the mailbox user. In the previous examples we looked at filtering mailboxes using the “Office” attribute, and setting the values for mailbox storage quota attributes. But how do we know which properties a mailbox object has, so that we can perform that filtering or apply changes to those settings?</p>
 <p>Again PowerShell gives us the answer thanks to the <a href="http://technet.microsoft.com/en-us/library/ee176854.aspx">Get-Member</a> cmdlet. Get-Member will list all of the properties of an object to help you learn what you can and can’t do with them. For example, to discover which properties the mailbox object has you can run the following command (note once again the use of the pipeline):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; Get-Mailbox | Get-Member
-TypeName<span style="color:#960050;background-color:#1e0010">:</span> Microsoft.Exchange.Data.Directory.Management.Mailbox
-
-Name                                   MemberType
-
-----                                   ----------
-
-Clone                                  Method
-Equals                                 Method
-GetHashCode                            Method
-GetProperties                          Method
-GetType                                Method
-ToString                               Method
-Validate                               Method
-AcceptMessagesOnlyFrom                 Property
-AcceptMessagesOnlyFromDLMembers        Property
-AcceptMessagesOnlyFromSendersOrMembers Property
-AddressBookPolicy                      Property
-AddressListMembership                  Property
-<span style="color:#66d9ef">Alias</span>                                  Property
-AntispamBypassEnabled                  Property
-ArbitrationMailbox                     Property
-ArchiveDatabase                        Property
-ArchiveDomain                          Property
-ArchiveGuid                            Property
-ArchiveName                            Property
-ArchiveQuota                           Property
-ArchiveStatus                          Property
-ArchiveWarningQuota                    Property
-AuditAdmin                             Property
-AuditDelegate                          Property
-AuditEnabled                           Property
-AuditLogAgeLimit                       Property
-AuditOwner                             Property
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Mailbox</span> <span class="p">|</span> <span class="nb">Get-Member</span>
+<span class="ln"> 2</span><span class="n">TypeName</span><span class="err">:</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">Exchange</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Directory</span><span class="p">.</span><span class="n">Management</span><span class="p">.</span><span class="n">Mailbox</span>
+<span class="ln"> 3</span>
+<span class="ln"> 4</span><span class="n">Name</span>                                   <span class="n">MemberType</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span><span class="p">----</span>                                   <span class="p">----------</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span><span class="n">Clone</span>                                  <span class="n">Method</span>
+<span class="ln"> 9</span><span class="n">Equals</span>                                 <span class="n">Method</span>
+<span class="ln">10</span><span class="n">GetHashCode</span>                            <span class="n">Method</span>
+<span class="ln">11</span><span class="n">GetProperties</span>                          <span class="n">Method</span>
+<span class="ln">12</span><span class="n">GetType</span>                                <span class="n">Method</span>
+<span class="ln">13</span><span class="n">ToString</span>                               <span class="n">Method</span>
+<span class="ln">14</span><span class="n">Validate</span>                               <span class="n">Method</span>
+<span class="ln">15</span><span class="n">AcceptMessagesOnlyFrom</span>                 <span class="n">Property</span>
+<span class="ln">16</span><span class="n">AcceptMessagesOnlyFromDLMembers</span>        <span class="n">Property</span>
+<span class="ln">17</span><span class="n">AcceptMessagesOnlyFromSendersOrMembers</span> <span class="n">Property</span>
+<span class="ln">18</span><span class="n">AddressBookPolicy</span>                      <span class="n">Property</span>
+<span class="ln">19</span><span class="n">AddressListMembership</span>                  <span class="n">Property</span>
+<span class="ln">20</span><span class="k">Alias</span>                                  <span class="n">Property</span>
+<span class="ln">21</span><span class="n">AntispamBypassEnabled</span>                  <span class="n">Property</span>
+<span class="ln">22</span><span class="n">ArbitrationMailbox</span>                     <span class="n">Property</span>
+<span class="ln">23</span><span class="n">ArchiveDatabase</span>                        <span class="n">Property</span>
+<span class="ln">24</span><span class="n">ArchiveDomain</span>                          <span class="n">Property</span>
+<span class="ln">25</span><span class="n">ArchiveGuid</span>                            <span class="n">Property</span>
+<span class="ln">26</span><span class="n">ArchiveName</span>                            <span class="n">Property</span>
+<span class="ln">27</span><span class="n">ArchiveQuota</span>                           <span class="n">Property</span>
+<span class="ln">28</span><span class="n">ArchiveStatus</span>                          <span class="n">Property</span>
+<span class="ln">29</span><span class="n">ArchiveWarningQuota</span>                    <span class="n">Property</span>
+<span class="ln">30</span><span class="n">AuditAdmin</span>                             <span class="n">Property</span>
+<span class="ln">31</span><span class="n">AuditDelegate</span>                          <span class="n">Property</span>
+<span class="ln">32</span><span class="n">AuditEnabled</span>                           <span class="n">Property</span>
+<span class="ln">33</span><span class="n">AuditLogAgeLimit</span>                       <span class="n">Property</span>
+<span class="ln">34</span><span class="n">AuditOwner</span>                             <span class="n">Property</span>
 </code></pre></div><p>I’ve had to truncate the output in this example because it returns quite a long list of properties that mailbox objects have. It would be more convenient to filter the list down to just the properties I might be interested in. So let’s say that we just want to see which mailbox object properties relate to quota settings. Once again we can use the pipeline and filtering to achieve that.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; Get-Mailbox | Get-Member -Name <span style="color:#e6db74">&#34;*quota*&#34;</span>
- TypeName<span style="color:#960050;background-color:#1e0010">:</span> Microsoft.Exchange.Data.Directory.Management.Mailbox
-Name                         MemberType
-----                         ----------
-ArchiveQuota                 Property
-ArchiveWarningQuota          Property
-IssueWarningQuota            Property
-ProhibitSendQuota            Property
-ProhibitSendReceiveQuota     Property
-RecoverableItemsQuota        Property
-RecoverableItemsWarningQuota Property
-RulesQuota                   Property
-UseDatabaseQuotaDefaults     Property
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Mailbox</span> <span class="p">|</span> <span class="nb">Get-Member</span> <span class="n">-Name</span> <span class="s2">&#34;*quota*&#34;</span>
+<span class="ln"> 2</span> <span class="n">TypeName</span><span class="err">:</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">Exchange</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Directory</span><span class="p">.</span><span class="n">Management</span><span class="p">.</span><span class="n">Mailbox</span>
+<span class="ln"> 3</span><span class="n">Name</span>                         <span class="n">MemberType</span>
+<span class="ln"> 4</span><span class="p">----</span>                         <span class="p">----------</span>
+<span class="ln"> 5</span><span class="n">ArchiveQuota</span>                 <span class="n">Property</span>
+<span class="ln"> 6</span><span class="n">ArchiveWarningQuota</span>          <span class="n">Property</span>
+<span class="ln"> 7</span><span class="n">IssueWarningQuota</span>            <span class="n">Property</span>
+<span class="ln"> 8</span><span class="n">ProhibitSendQuota</span>            <span class="n">Property</span>
+<span class="ln"> 9</span><span class="n">ProhibitSendReceiveQuota</span>     <span class="n">Property</span>
+<span class="ln">10</span><span class="n">RecoverableItemsQuota</span>        <span class="n">Property</span>
+<span class="ln">11</span><span class="n">RecoverableItemsWarningQuota</span> <span class="n">Property</span>
+<span class="ln">12</span><span class="n">RulesQuota</span>                   <span class="n">Property</span>
+<span class="ln">13</span><span class="n">UseDatabaseQuotaDefaults</span>     <span class="n">Property</span>
 </code></pre></div><p>Pretty neat isn’t it.</p>
 <h3 id="remoting">Remoting</h3>
 <p>The last essential skill that I’ll demonstrate to you in this article is remoting, which is a feature available in PowerShell 2.0 and above. Exchange Server 2010 servers require at least PowerShell 2.0, so this technique will work for Exchange 2010 environments. Remoting is simply the technique of connecting a PowerShell session on the local computer to a remote server. This is useful if you are logged on to a workstation that has PowerShell installed, but doesn’t have the Exchange Server 2010 management tools installed, and you need to run some Exchange management tasks. By remoting from the workstation to an Exchange 2010 server you quickly get access to all of the Exchange cmdlets.</p>
 <p>To demonstrate, here is a PowerShell window on a workstation that does not have the Exchange 2010 management tools installed. Notice that the <a href="http://technet.microsoft.com/en-us/library/bb123873.aspx">Get-ExchangeServer</a> cmdlet returns an error because it doesn’t exist on that workstation.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; Get-ExchangeServer
-The term <span style="color:#e6db74">&#39;Get-ExchangeServer&#39;</span> is not recognized as the name of a cmdlet, functi
-on, script file, or operable program. Check the spelling of the name, or <span style="color:#66d9ef">if</span> a p
-ath was included, verify that the path is correct and <span style="color:#66d9ef">try</span> again.
-At line<span style="color:#960050;background-color:#1e0010">:</span>1 char<span style="color:#960050;background-color:#1e0010">:</span>19
-+ Get-ExchangeServer &gt;&gt;&gt;&gt;
-    + CategoryInfo          <span style="color:#960050;background-color:#1e0010">:</span> ObjectNotFound<span style="color:#960050;background-color:#1e0010">:</span> (Get-ExchangeServer<span style="color:#960050;background-color:#1e0010">:</span>String) [],
-   CommandNotFoundException
-    + FullyQualifiedErrorId <span style="color:#960050;background-color:#1e0010">:</span> CommandNotFoundException
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-ExchangeServer</span>
+<span class="ln">2</span><span class="n">The</span> <span class="n">term</span> <span class="s1">&#39;Get-ExchangeServer&#39;</span> <span class="n">is</span> <span class="n">not</span> <span class="n">recognized</span> <span class="n">as</span> <span class="n">the</span> <span class="n">name</span> <span class="n">of</span> <span class="n">a</span> <span class="n">cmdlet</span><span class="p">,</span> <span class="n">functi</span>
+<span class="ln">3</span><span class="n">on</span><span class="p">,</span> <span class="n">script</span> <span class="n">file</span><span class="p">,</span> <span class="n">or</span> <span class="n">operable</span> <span class="n">program</span><span class="p">.</span> <span class="n">Check</span> <span class="n">the</span> <span class="n">spelling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">name</span><span class="p">,</span> <span class="n">or</span> <span class="k">if</span> <span class="n">a</span> <span class="n">p</span>
+<span class="ln">4</span><span class="n">ath</span> <span class="n">was</span> <span class="n">included</span><span class="p">,</span> <span class="n">verify</span> <span class="n">that</span> <span class="n">the</span> <span class="n">path</span> <span class="n">is</span> <span class="n">correct</span> <span class="n">and</span> <span class="k">try</span> <span class="n">again</span><span class="p">.</span>
+<span class="ln">5</span><span class="n">At</span> <span class="n">line</span><span class="err">:</span><span class="n">1</span> <span class="n">char</span><span class="err">:</span><span class="n">19</span>
+<span class="ln">6</span><span class="p">+</span> <span class="nb">Get-ExchangeServer</span> <span class="p">&gt;&gt;&gt;&gt;</span>
+<span class="ln">7</span>    <span class="p">+</span> <span class="n">CategoryInfo</span>          <span class="err">:</span> <span class="n">ObjectNotFound</span><span class="err">:</span> <span class="p">(</span><span class="nb">Get-ExchangeServer</span><span class="err">:</span><span class="n">String</span><span class="p">)</span> <span class="p">[],</span>
+<span class="ln">8</span>   <span class="n">CommandNotFoundException</span>
+<span class="ln">9</span>    <span class="p">+</span> <span class="n">FullyQualifiedErrorId</span> <span class="err">:</span> <span class="n">CommandNotFoundException</span>
 </code></pre></div><p>Now let&rsquo;s remote to an Exchange 2010 server and try running the cmdlet again.  There are two steps for PowerShell remoting. The first is to create a new PowerShell session object using <a href="http://technet.microsoft.com/en-us/library/dd347668.aspx">New-PSSession</a>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$session = New-PSSession -ConfigurationName Microsoft.Exchange `
-                         -ConnectionUri http<span style="color:#960050;background-color:#1e0010">:</span>//ho-ex2010-mb1.exchangeserverpro.net/powershell ` 						 -Authentication Kerberos
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$session</span> <span class="p">=</span> <span class="nb">New-PSSession</span> <span class="n">-ConfigurationName</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">Exchange</span> <span class="p">`</span>
+<span class="ln">2</span>                         <span class="n">-ConnectionUri</span> <span class="n">http</span><span class="err">:</span><span class="p">//</span><span class="n">ho-ex2010-mb1</span><span class="p">.</span><span class="n">exchangeserverpro</span><span class="p">.</span><span class="n">net</span><span class="p">/</span><span class="n">powershell</span> <span class="p">`</span> 						 <span class="n">-Authentication</span> <span class="n">Kerberos</span>
 </code></pre></div><p>Notice the URI that the session is connecting to? That is the /powershell virtual directory in IIS on the Exchange 2010 server named “ho-ex2010-mb1”. After you have created the new session object you can import it using <a href="http://technet.microsoft.com/en-us/library/dd347575.aspx">Import-PSSession</a>.</p>
 <pre><code>PS&gt; Import-PSSession $session
 ModuleType Name                      ExportedCommands
 ---------- ----                      ----------------
 Script     tmp_c536eb19-09db-41c1... Get-ExchangeDiagnosticInfo
 </code></pre><p>Now let’s try the Get-ExchangeServer cmdlet again.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; Get-ExchangeServer
-Name                Site                 ServerRole  Edition     AdminDisplayVe
-                                                                 rsion
-----                ----                 ----------  -------     --------------
-BR-EX2010-MB        exchangeserverpro... Mailbox,... Enterprise  Version 14....
-HO-EX2010-CAHT1     exchangeserverpro... ClientAc... Enterprise  Version 14....
-HO-EX2010-MB1       exchangeserverpro... Mailbox,... Enterprise  Version 14....
-HO-EX2010-MB2       exchangeserverpro... Mailbox,... Enterprise  Version 14....
-HO-EX2010-EDGE      exchangeserverpro... Edge        Standard... Version 14....
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-ExchangeServer</span>
+<span class="ln">2</span><span class="n">Name</span>                <span class="n">Site</span>                 <span class="n">ServerRole</span>  <span class="n">Edition</span>     <span class="n">AdminDisplayVe</span>
+<span class="ln">3</span>                                                                 <span class="n">rsion</span>
+<span class="ln">4</span><span class="p">----</span>                <span class="p">----</span>                 <span class="p">----------</span>  <span class="p">-------</span>     <span class="p">--------------</span>
+<span class="ln">5</span><span class="n">BR-EX2010-MB</span>        <span class="n">exchangeserverpro</span><span class="p">...</span> <span class="n">Mailbox</span><span class="p">,...</span> <span class="n">Enterprise</span>  <span class="n">Version</span> <span class="n">14</span><span class="p">....</span>
+<span class="ln">6</span><span class="n">HO-EX2010-CAHT1</span>     <span class="n">exchangeserverpro</span><span class="p">...</span> <span class="n">ClientAc</span><span class="p">...</span> <span class="n">Enterprise</span>  <span class="n">Version</span> <span class="n">14</span><span class="p">....</span>
+<span class="ln">7</span><span class="n">HO-EX2010-MB1</span>       <span class="n">exchangeserverpro</span><span class="p">...</span> <span class="n">Mailbox</span><span class="p">,...</span> <span class="n">Enterprise</span>  <span class="n">Version</span> <span class="n">14</span><span class="p">....</span>
+<span class="ln">8</span><span class="n">HO-EX2010-MB2</span>       <span class="n">exchangeserverpro</span><span class="p">...</span> <span class="n">Mailbox</span><span class="p">,...</span> <span class="n">Enterprise</span>  <span class="n">Version</span> <span class="n">14</span><span class="p">....</span>
+<span class="ln">9</span><span class="n">HO-EX2010-EDGE</span>      <span class="n">exchangeserverpro</span><span class="p">...</span> <span class="n">Edge</span>        <span class="n">Standard</span><span class="p">...</span> <span class="n">Version</span> <span class="n">14</span><span class="p">....</span>
 </code></pre></div><p>This time it works, thanks to PowerShell remoting.</p>
 <p>As you can see from this article PowerShell is not a daunting language to learn and to begin using on a daily basis once you understand a few of the fundamental skills involved. Try some of these yourself and let us know in the comments below if you have any questions.</p>
 </div>

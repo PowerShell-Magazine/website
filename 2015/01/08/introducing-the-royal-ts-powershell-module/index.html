@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Introducing the Royal TS PowerShell module</title>
 
 <meta name="description" content="For the most powerful community">
@@ -276,7 +277,7 @@ if (!doNotTrack) {
 <p>The ability to automate Royal TS documents using PowerShell opens up many interesting scenarios.</p>
 <p>I have created a script which demonstrates a practical example. The following is copied from the script’s comment-based help:</p>
 <p><em>Syntax</em></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">.\Update-RoyalFolder.ps1 [-RootOUPath] &lt;String&gt; [[-RoyalDocumentPath] &lt;String&gt;] [-RemoveInactiveComputerObjects ] [[-InactiveComputerObjectThresholdInDays] &lt;String&gt;] [-UpdateRoyalComputerProperties ] [-UpdateRoyalFolderProperties ]  [[-RTSPSModulePath] &lt;String&gt;] [&lt;CommonParameters&gt;]
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="p">.\</span><span class="nb">Update-RoyalFolder</span><span class="p">.</span><span class="n">ps1</span> <span class="p">[</span><span class="n">-RootOUPath</span><span class="p">]</span> <span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;</span> <span class="p">[[</span><span class="n">-RoyalDocumentPath</span><span class="p">]</span> <span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;]</span> <span class="p">[</span><span class="n">-RemoveInactiveComputerObjects</span> <span class="p">]</span> <span class="p">[[</span><span class="n">-InactiveComputerObjectThresholdInDays</span><span class="p">]</span> <span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;]</span> <span class="p">[</span><span class="n">-UpdateRoyalComputerProperties</span> <span class="p">]</span> <span class="p">[</span><span class="n">-UpdateRoyalFolderProperties</span> <span class="p">]</span>  <span class="p">[[</span><span class="n">-RTSPSModulePath</span><span class="p">]</span> <span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;]</span> <span class="p">[&lt;</span><span class="n">CommonParameters</span><span class="p">&gt;]</span>
 </code></pre></div><p><em>Description</em></p>
 <p>_    This script will mirror the OU structure from the specified root OU to a top level folder in the specified Royal TS document and create Remote Desktop Connection objects for all AD computer accounts meeting specific criteria._</p>
 <p>_       The criteria are the following:_</p>

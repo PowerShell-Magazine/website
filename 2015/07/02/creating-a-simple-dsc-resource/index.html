@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Creating a Simple DSC Resource</title>
 
 <meta name="description" content="For the most powerful community">
@@ -270,30 +271,30 @@ if (!doNotTrack) {
 <p>-XmlTemplatePath – The path (either a central UNC path or a local path) to the template exported from Performance Monitor</p>
 <p>-Ensure – This is not required, but I’ve chosen to include it in order to be able to remove obsolete Data Collector Sets</p>
 <p>This means that our goal is to create a DSC resource which we can use like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Logman Hyper-V {
-    DataCollectorSetName = <span style="color:#e6db74">&#39;Hyper-V&#39;</span>
-    Ensure = <span style="color:#e6db74">&#39;Present&#39;</span>
-    XmlTemplatePath = <span style="color:#e6db74">&#39;C:\PerfLogs\Templates\HyperV.xml&#39;</span>
-} 
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">Logman</span> <span class="n">Hyper-V</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="n">DataCollectorSetName</span> <span class="p">=</span> <span class="s1">&#39;Hyper-V&#39;</span>
+<span class="ln">3</span>    <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+<span class="ln">4</span>    <span class="n">XmlTemplatePath</span> <span class="p">=</span> <span class="s1">&#39;C:\PerfLogs\Templates\HyperV.xml&#39;</span>
+<span class="ln">5</span><span class="p">}</span> 
 </code></pre></div><p>Instead of creating everything by hand, we are going to leverage the DSC Resource Designer Tool created by the PowerShell team. If you are running WMF 5.0, you can leverage PowerShellGet to download and install the xDSCResourceDesigner module from the PowerShell Gallery:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Find-Module -Name xDSCResourceDesigner | Install-Module -Force
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Find-Module</span> <span class="n">-Name</span> <span class="n">xDSCResourceDesigner</span> <span class="p">|</span> <span class="nb">Install-Module</span> <span class="n">-Force</span>
 </code></pre></div><p>If you are running PowerShell 4.0, which is the minimum version required for authoring DSC configurations and resources), you can download the latest version from the <a href="https://github.com/PowerShell/xDSCResourceDesigner">xDSCResourceDesigner repository</a> on GitHub.</p>
 <p>When the module is installed, we can list the available commands using Get-Command:</p>
 <p><img src="/images/dscrescreate12.png" alt=""></p>
 <p>In our scenario, we will use New-xDscResourceProperty to define the properties we need (DataCollectorSetName, Ensure, and  XmlTemplatePath). And then, we will use New-xDscResource to create the resource.</p>
 <p>Before we do that we will need to create a PowerShell module to create the new resource into.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">New-Item -Path <span style="color:#e6db74">&#34;$env:ProgramFiles\WindowsPowerShell\Modules&#34;</span> -Name PSCommunityDSCResources -ItemType Directory
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">New-Item</span> <span class="n">-Path</span> <span class="s2">&#34;$env:ProgramFiles\WindowsPowerShell\Modules&#34;</span> <span class="n">-Name</span> <span class="n">PSCommunityDSCResources</span> <span class="n">-ItemType</span> <span class="n">Directory</span>
 </code></pre></div><p>The minimum requirement for the new module is having a module manifest, as the version number specified in the manifest also will be the version of the DSC resource.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">New-ModuleManifest -Path <span style="color:#e6db74">&#34;$env:ProgramFiles\WindowsPowerShell\Modules\PSCommunityDSCResources\PSCommunityDSCResources.psd1&#34;</span> -Guid ((<span style="color:#66d9ef">[guid]</span>::NewGuid()).Guid) -Author <span style="color:#e6db74">&#39;Jan Egil Ring&#39;</span> -CompanyName PSCommunity -ModuleVersion 1.0 -Description <span style="color:#e6db74">&#39;Example DSC Resource Module for PSCommunity&#39;</span> -PowerShellVersion 4.0 -FunctionsToExport <span style="color:#e6db74">&#39;*.TargetResource&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">New-ModuleManifest</span> <span class="n">-Path</span> <span class="s2">&#34;$env:ProgramFiles\WindowsPowerShell\Modules\PSCommunityDSCResources\PSCommunityDSCResources.psd1&#34;</span> <span class="n">-Guid</span> <span class="p">((</span><span class="no">[guid]</span><span class="p">::</span><span class="n">NewGuid</span><span class="p">()).</span><span class="n">Guid</span><span class="p">)</span> <span class="n">-Author</span> <span class="s1">&#39;Jan Egil Ring&#39;</span> <span class="n">-CompanyName</span> <span class="n">PSCommunity</span> <span class="n">-ModuleVersion</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">-Description</span> <span class="s1">&#39;Example DSC Resource Module for PSCommunity&#39;</span> <span class="n">-PowerShellVersion</span> <span class="n">4</span><span class="p">.</span><span class="n">0</span> <span class="n">-FunctionsToExport</span> <span class="s1">&#39;*.TargetResource&#39;</span>
 </code></pre></div><p>Next, we can go ahead and create the DSC resource by using the two mentioned commands from the xDSCResourceDesigner module:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Define DSC resource properties </span>
-
-$DataCollectorSetName = New-xDscResourceProperty -Type String -Name DataCollectorSetName -Attribute Key
-$Ensure = New-xDscResourceProperty -Name Ensure -Type String -Attribute Write -ValidateSet <span style="color:#e6db74">&#34;Present&#34;</span>, <span style="color:#e6db74">&#34;Absent&#34;</span>
-$XmlTemplatePath = New-xDscResourceProperty -Name XmlTemplatePath -Type String -Attribute Required
-
-<span style="color:#75715e"># Create the DSC resource </span>
-New-xDscResource -Name Logman -Property $DataCollectorSet,$Ensure,$XmlTemplatePath -Path <span style="color:#e6db74">&#34;$env:ProgramFiles\WindowsPowerShell\Modules\PSCommunityDSCResources&#34;</span> -ClassVersion 1.0 -FriendlyName Logman <span style="color:#960050;background-color:#1e0010">–</span>Force
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="c"># Define DSC resource properties </span>
+<span class="ln">2</span>
+<span class="ln">3</span><span class="nv">$DataCollectorSetName</span> <span class="p">=</span> <span class="nb">New-xDscResourceProperty</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Name</span> <span class="n">DataCollectorSetName</span> <span class="n">-Attribute</span> <span class="n">Key</span>
+<span class="ln">4</span><span class="nv">$Ensure</span> <span class="p">=</span> <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">Ensure</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Attribute</span> <span class="nb">Write </span><span class="n">-ValidateSet</span> <span class="s2">&#34;Present&#34;</span><span class="p">,</span> <span class="s2">&#34;Absent&#34;</span>
+<span class="ln">5</span><span class="nv">$XmlTemplatePath</span> <span class="p">=</span> <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">XmlTemplatePath</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Attribute</span> <span class="n">Required</span>
+<span class="ln">6</span>
+<span class="ln">7</span><span class="c"># Create the DSC resource </span>
+<span class="ln">8</span><span class="nb">New-xDscResource</span> <span class="n">-Name</span> <span class="n">Logman</span> <span class="n">-Property</span> <span class="nv">$DataCollectorSet</span><span class="p">,</span><span class="nv">$Ensure</span><span class="p">,</span><span class="nv">$XmlTemplatePath</span> <span class="n">-Path</span> <span class="s2">&#34;$env:ProgramFiles\WindowsPowerShell\Modules\PSCommunityDSCResources&#34;</span> <span class="n">-ClassVersion</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">-FriendlyName</span> <span class="n">Logman</span> <span class="err">–</span><span class="n">Force</span>
 </code></pre></div><p>We should now have the following file and folder structure in the module folder:</p>
 <p><img src="/images/dscrescreate13.png" alt=""></p>
 <p>The Logman.schema.mof file defines the 3 parameters we defined when creating the resource, and no further changes to this file is required.</p>
@@ -301,72 +302,72 @@ New-xDscResource -Name Logman -Property $DataCollectorSet,$Ensure,$XmlTemplatePa
 <p>You can see the complete template file in the middle of <a href="http://blogs.msdn.com/b/powershell/archive/2013/11/19/resource-designer-tool-a-walkthrough-writing-a-dsc-resource.aspx">this article</a> on the PowerShell Team blog, where you also can find other details about using the xDSCResourceDesigner module.</p>
 <p>Our task is now to edit the three functions in the Logman.psm1 file so they perform the required tasks.</p>
 <p>Let us start with Get-TargetResource, which should return a hash table containing the three properties for our resource. Since logman is a text-based command-line tool, we will need to parse the information we are interested in. In this scenario we want the name of all Data Collector Sets, and this use Select-String and the –replace operator to extract this information. If the query contains the value of the $DataCollectorSetName variable, we will set the value of $Ensure to $true. We then create a hash table containing the 3 properties, which is then returned as output from the function:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$logmanquery = (logman.exe query $DataCollectorSetName | Select-String -Pattern Name) <span style="color:#f92672">-replace</span> <span style="color:#e6db74">&#39;Name:                 &#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>
-<span style="color:#66d9ef">if</span> ($logmanquery <span style="color:#f92672">-contains</span> $DataCollectorSetName)
-{
-$Ensure = $true
-}
-<span style="color:#66d9ef">else</span>
-{
-$Ensure = $false
-}
-
-$returnValue = @{
-DataCollectorSetName = $DataCollectorSetName
-Ensure               = $Ensure
-XmlTemplatePath      = $XmlTemplatePath
-}
-$returnValue
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$logmanquery</span> <span class="p">=</span> <span class="p">(</span><span class="n">logman</span><span class="p">.</span><span class="n">exe</span> <span class="n">query</span> <span class="nv">$DataCollectorSetName</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="n">-Pattern</span> <span class="n">Name</span><span class="p">)</span> <span class="o">-replace</span> <span class="s1">&#39;Name:                 &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
+<span class="ln"> 2</span><span class="k">if</span> <span class="p">(</span><span class="nv">$logmanquery</span> <span class="o">-contains</span> <span class="nv">$DataCollectorSetName</span><span class="p">)</span>
+<span class="ln"> 3</span><span class="p">{</span>
+<span class="ln"> 4</span><span class="nv">$Ensure</span> <span class="p">=</span> <span class="nv">$true</span>
+<span class="ln"> 5</span><span class="p">}</span>
+<span class="ln"> 6</span><span class="k">else</span>
+<span class="ln"> 7</span><span class="p">{</span>
+<span class="ln"> 8</span><span class="nv">$Ensure</span> <span class="p">=</span> <span class="nv">$false</span>
+<span class="ln"> 9</span><span class="p">}</span>
+<span class="ln">10</span>
+<span class="ln">11</span><span class="nv">$returnValue</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln">12</span><span class="n">DataCollectorSetName</span> <span class="p">=</span> <span class="nv">$DataCollectorSetName</span>
+<span class="ln">13</span><span class="n">Ensure</span>               <span class="p">=</span> <span class="nv">$Ensure</span>
+<span class="ln">14</span><span class="n">XmlTemplatePath</span>      <span class="p">=</span> <span class="nv">$XmlTemplatePath</span>
+<span class="ln">15</span><span class="p">}</span>
+<span class="ln">16</span><span class="nv">$returnValue</span>
 </code></pre></div><p>Note that we do not calculate or gather the value of $XmlTemplatePath, we simply use the value which is specified by the DSC configuration author.</p>
 <p>Next is Set-TargetResource; this function should contain the necessary logic to put the target resource (in our case a Data Collector Set) into the desired state. It should not return any output, but Debug and/or Verbose messages is recommended in order to make it easier to see what is happening during a consistency check. Since we decided to implement the Ensure property, we will also need to create the necessary logic based on whether the value of Ensure is Present or Absent:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">if</span>( $Ensure <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;Present&#39;</span> )
-  {
-    <span style="color:#66d9ef">if</span> (Test-Path -Path $XmlTemplatePath)
-    {
-      Write-Verbose -Message <span style="color:#e6db74">&#34;Importing logman Data Collector Set $DataCollectorSetName from Xml template $XmlTemplatePath&#34;</span>
-    
-  	  $null = logman.exe import -n $DataCollectorSetName -xml $XmlTemplatePath
-    } <span style="color:#66d9ef">else</span>
-    {
-      Write-Verbose -Message <span style="color:#e6db74">&#34;$XmlTemplatePath not found or temporary inaccessible, trying again on next consistency check&#34;</span>
-
-    }
-  }
-  <span style="color:#66d9ef">elseif</span>( $Ensure <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;Absent&#39;</span> )
-  {
-    Write-Verbose -Message <span style="color:#e6db74">&#34;Removing logman Data Collector Set $DataCollectorSetName&#34;</span>
-    $null = logman.exe delete $DataCollectorSetName
-  }
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">if</span><span class="p">(</span> <span class="nv">$Ensure</span> <span class="o">-eq</span> <span class="s1">&#39;Present&#39;</span> <span class="p">)</span>
+<span class="ln"> 2</span>  <span class="p">{</span>
+<span class="ln"> 3</span>    <span class="k">if</span> <span class="p">(</span><span class="nb">Test-Path</span> <span class="n">-Path</span> <span class="nv">$XmlTemplatePath</span><span class="p">)</span>
+<span class="ln"> 4</span>    <span class="p">{</span>
+<span class="ln"> 5</span>      <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Importing logman Data Collector Set $DataCollectorSetName from Xml template $XmlTemplatePath&#34;</span>
+<span class="ln"> 6</span>    
+<span class="ln"> 7</span>  	  <span class="nv">$null</span> <span class="p">=</span> <span class="n">logman</span><span class="p">.</span><span class="n">exe</span> <span class="n">import</span> <span class="n">-n</span> <span class="nv">$DataCollectorSetName</span> <span class="n">-xml</span> <span class="nv">$XmlTemplatePath</span>
+<span class="ln"> 8</span>    <span class="p">}</span> <span class="k">else</span>
+<span class="ln"> 9</span>    <span class="p">{</span>
+<span class="ln">10</span>      <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;$XmlTemplatePath not found or temporary inaccessible, trying again on next consistency check&#34;</span>
+<span class="ln">11</span>
+<span class="ln">12</span>    <span class="p">}</span>
+<span class="ln">13</span>  <span class="p">}</span>
+<span class="ln">14</span>  <span class="k">elseif</span><span class="p">(</span> <span class="nv">$Ensure</span> <span class="o">-eq</span> <span class="s1">&#39;Absent&#39;</span> <span class="p">)</span>
+<span class="ln">15</span>  <span class="p">{</span>
+<span class="ln">16</span>    <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Removing logman Data Collector Set $DataCollectorSetName&#34;</span>
+<span class="ln">17</span>    <span class="nv">$null</span> <span class="p">=</span> <span class="n">logman</span><span class="p">.</span><span class="n">exe</span> <span class="n">delete</span> <span class="nv">$DataCollectorSetName</span>
+<span class="ln">18</span>  <span class="p">}</span>
 </code></pre></div><p>Last is Test-TargetResource which should return a Boolean $true or $false. We reuse the same logman query as used in Get-TargetResource and returns the appropriate the Boolean based on the value of $Ensure and whether the Data Collector Set exists or not:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$logmanquery = (logman.exe query $DataCollectorSetName | Select-String -Pattern Name) <span style="color:#f92672">-replace</span> <span style="color:#e6db74">&#39;Name:                 &#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>
-
-<span style="color:#66d9ef">if</span> ($logmanquery <span style="color:#f92672">-contains</span> $DataCollectorSetName)
-  {
-    Write-Verbose -Message <span style="color:#e6db74">&#34;Data Collector $DataCollectorSetName exists&#34;</span>
-
-    <span style="color:#66d9ef">if</span>( $Ensure <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;Present&#39;</span> )
-    {
-      <span style="color:#66d9ef">return</span> $true
-    }
-    <span style="color:#66d9ef">elseif</span> ( $Ensure <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;Absent&#39;</span> )
-    {
-      <span style="color:#66d9ef">return</span> $false
-    }
-  }
-  <span style="color:#66d9ef">else</span>
-  {
-
-    Write-Verbose -Message <span style="color:#e6db74">&#34;Data Collector $DataCollectorSetName does not exist&#34;</span>
-
-    <span style="color:#66d9ef">if</span>( $Ensure <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;Present&#39;</span> )
-    {
-      <span style="color:#66d9ef">return</span> $false
-    }
-    <span style="color:#66d9ef">elseif</span> ( $Ensure <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;Absent&#39;</span> )
-    {
-      <span style="color:#66d9ef">return</span> $true
-    }
-  }
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$logmanquery</span> <span class="p">=</span> <span class="p">(</span><span class="n">logman</span><span class="p">.</span><span class="n">exe</span> <span class="n">query</span> <span class="nv">$DataCollectorSetName</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="n">-Pattern</span> <span class="n">Name</span><span class="p">)</span> <span class="o">-replace</span> <span class="s1">&#39;Name:                 &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
+<span class="ln"> 2</span>
+<span class="ln"> 3</span><span class="k">if</span> <span class="p">(</span><span class="nv">$logmanquery</span> <span class="o">-contains</span> <span class="nv">$DataCollectorSetName</span><span class="p">)</span>
+<span class="ln"> 4</span>  <span class="p">{</span>
+<span class="ln"> 5</span>    <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Data Collector $DataCollectorSetName exists&#34;</span>
+<span class="ln"> 6</span>
+<span class="ln"> 7</span>    <span class="k">if</span><span class="p">(</span> <span class="nv">$Ensure</span> <span class="o">-eq</span> <span class="s1">&#39;Present&#39;</span> <span class="p">)</span>
+<span class="ln"> 8</span>    <span class="p">{</span>
+<span class="ln"> 9</span>      <span class="k">return</span> <span class="nv">$true</span>
+<span class="ln">10</span>    <span class="p">}</span>
+<span class="ln">11</span>    <span class="k">elseif</span> <span class="p">(</span> <span class="nv">$Ensure</span> <span class="o">-eq</span> <span class="s1">&#39;Absent&#39;</span> <span class="p">)</span>
+<span class="ln">12</span>    <span class="p">{</span>
+<span class="ln">13</span>      <span class="k">return</span> <span class="nv">$false</span>
+<span class="ln">14</span>    <span class="p">}</span>
+<span class="ln">15</span>  <span class="p">}</span>
+<span class="ln">16</span>  <span class="k">else</span>
+<span class="ln">17</span>  <span class="p">{</span>
+<span class="ln">18</span>
+<span class="ln">19</span>    <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Data Collector $DataCollectorSetName does not exist&#34;</span>
+<span class="ln">20</span>
+<span class="ln">21</span>    <span class="k">if</span><span class="p">(</span> <span class="nv">$Ensure</span> <span class="o">-eq</span> <span class="s1">&#39;Present&#39;</span> <span class="p">)</span>
+<span class="ln">22</span>    <span class="p">{</span>
+<span class="ln">23</span>      <span class="k">return</span> <span class="nv">$false</span>
+<span class="ln">24</span>    <span class="p">}</span>
+<span class="ln">25</span>    <span class="k">elseif</span> <span class="p">(</span> <span class="nv">$Ensure</span> <span class="o">-eq</span> <span class="s1">&#39;Absent&#39;</span> <span class="p">)</span>
+<span class="ln">26</span>    <span class="p">{</span>
+<span class="ln">27</span>      <span class="k">return</span> <span class="nv">$true</span>
+<span class="ln">28</span>    <span class="p">}</span>
+<span class="ln">29</span>  <span class="p">}</span>
 </code></pre></div><p>Due to the implementation of Ensure, the code might be a bit more complicated than necessary. However, this shouldn`t be too hard if you have some experience with scripting constructs in PowerShell.</p>
 <p>At this point, we are ready to test our new resource. By running Get-DscResource we can see whether it is registered properly as a valid resource. Highlighted in the following screenshot, it looks fine:</p>
 <p><img src="/images/dscrescreate14.png" alt=""></p>
@@ -375,19 +376,19 @@ $returnValue
 <p><img src="/images/dscrescreate15.png" alt=""></p>
 <p>In the above example, Ctrl+Space is used to get IntelliSense for valid properties. Note that the PsDscRunAsCredential property is only available in PowerShell 5.0 and later.</p>
 <p>Here is a complete example of using the new resource:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Configuration LogmanHyperV {
-	Import-DscResource -ModuleName PSCommunityDSCResources
-    node localhost {
-        Logman Hyper-V {
-        DataCollectorSetName = <span style="color:#e6db74">&#39;Hyper-V&#39;</span>
-        Ensure = <span style="color:#e6db74">&#39;Present&#39;</span>
-        XmlTemplatePath = <span style="color:#e6db74">&#39;\\domain.local\IT-Ops\Perfmon-templates\HyperV.xml&#39;</span>
-        }
-    }
-} 
-
-LogmanHyperV -OutputPath c:\temp 
-Start-DscConfiguration -ComputerName localhost -Path C:\temp -Wait -Verbose
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Configuration</span> <span class="n">LogmanHyperV</span> <span class="p">{</span>
+<span class="ln"> 2</span>	<span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">PSCommunityDSCResources</span>
+<span class="ln"> 3</span>    <span class="n">node</span> <span class="n">localhost</span> <span class="p">{</span>
+<span class="ln"> 4</span>        <span class="n">Logman</span> <span class="n">Hyper-V</span> <span class="p">{</span>
+<span class="ln"> 5</span>        <span class="n">DataCollectorSetName</span> <span class="p">=</span> <span class="s1">&#39;Hyper-V&#39;</span>
+<span class="ln"> 6</span>        <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+<span class="ln"> 7</span>        <span class="n">XmlTemplatePath</span> <span class="p">=</span> <span class="s1">&#39;\\domain.local\IT-Ops\Perfmon-templates\HyperV.xml&#39;</span>
+<span class="ln"> 8</span>        <span class="p">}</span>
+<span class="ln"> 9</span>    <span class="p">}</span>
+<span class="ln">10</span><span class="p">}</span> 
+<span class="ln">11</span>
+<span class="ln">12</span><span class="n">LogmanHyperV</span> <span class="n">-OutputPath</span> <span class="n">c:</span><span class="p">\</span><span class="n">temp</span> 
+<span class="ln">13</span><span class="nb">Start-DscConfiguration</span> <span class="n">-ComputerName</span> <span class="n">localhost</span> <span class="n">-Path</span> <span class="n">C:</span><span class="p">\</span><span class="n">temp</span> <span class="n">-Wait</span> <span class="n">-Verbose</span>
 </code></pre></div><p>After compiling it to a MOF-file and pushing it to the target node using Start-DscConfiguration, we can see the Verbose messages we added to the resource:</p>
 <p><img src="/images/dscrescreatefinal9.png" alt=""></p>
 <p>We could open Performance Monitor to see if the Data Collector Set is present, but it’s also possible to simply run logman to verify:</p>
@@ -410,11 +411,11 @@ Start-DscConfiguration -ComputerName localhost -Path C:\temp -Wait -Verbose
 <h3 id="creating-the-logman-dsc-resource-as-a-class-based-resource">Creating the Logman DSC resource as a class-based resource</h3>
 <p>In PowerShell 5.0, the process of creating custom DSC resources is drastically simplified due to the use of classes. This means that we no longer need to create a .schema.mof file. The folder structure is also simplified.</p>
 <p>Now we can create the PowerShell module for the new DSC resource in 3 lines:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">New-Item -Path <span style="color:#e6db74">&#34;$env:ProgramFiles\WindowsPowerShell\Modules&#34;</span> -Name PSCommunityDSCClassBasedResources -ItemType Directory
-
-New-ModuleManifest -Path <span style="color:#e6db74">&#34;$env:ProgramFiles\WindowsPowerShell\Modules\PSCommunityDSCClassBasedResources\PSCommunityDSCClassBasedResources.psd1&#34;</span> -Guid (New-Guid).Guid -Author <span style="color:#e6db74">&#39;Jan Egil Ring&#39;</span> -CompanyName PSCommunity -ModuleVersion 1.0 -Description <span style="color:#e6db74">&#39;Example class based DSC Resource module for PSCommunity&#39;</span> -PowerShellVersion 5.0 -DscResourcesToExport * -RootModule PSCommunityDSCClassBasedResources.psm1
-
-New-Item -Path <span style="color:#e6db74">&#34;$env:ProgramFiles\WindowsPowerShell\Modules\PSCommunityDSCClassBasedResources&#34;</span> -Name PSCommunityDSCClassBasedResources.psm1 -ItemType File
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">New-Item</span> <span class="n">-Path</span> <span class="s2">&#34;$env:ProgramFiles\WindowsPowerShell\Modules&#34;</span> <span class="n">-Name</span> <span class="n">PSCommunityDSCClassBasedResources</span> <span class="n">-ItemType</span> <span class="n">Directory</span>
+<span class="ln">2</span>
+<span class="ln">3</span><span class="nb">New-ModuleManifest</span> <span class="n">-Path</span> <span class="s2">&#34;$env:ProgramFiles\WindowsPowerShell\Modules\PSCommunityDSCClassBasedResources\PSCommunityDSCClassBasedResources.psd1&#34;</span> <span class="n">-Guid</span> <span class="p">(</span><span class="nb">New-Guid</span><span class="p">).</span><span class="n">Guid</span> <span class="n">-Author</span> <span class="s1">&#39;Jan Egil Ring&#39;</span> <span class="n">-CompanyName</span> <span class="n">PSCommunity</span> <span class="n">-ModuleVersion</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">-Description</span> <span class="s1">&#39;Example class based DSC Resource module for PSCommunity&#39;</span> <span class="n">-PowerShellVersion</span> <span class="n">5</span><span class="p">.</span><span class="n">0</span> <span class="n">-DscResourcesToExport</span> <span class="p">*</span> <span class="n">-RootModule</span> <span class="n">PSCommunityDSCClassBasedResources</span><span class="p">.</span><span class="n">psm1</span>
+<span class="ln">4</span>
+<span class="ln">5</span><span class="nb">New-Item</span> <span class="n">-Path</span> <span class="s2">&#34;$env:ProgramFiles\WindowsPowerShell\Modules\PSCommunityDSCClassBasedResources&#34;</span> <span class="n">-Name</span> <span class="n">PSCommunityDSCClassBasedResources</span><span class="p">.</span><span class="n">psm1</span> <span class="n">-ItemType</span> <span class="n">File</span>
 </code></pre></div><p>This gives us the following file and folder structure:</p>
 <p><img src="/images/dscrescreatefinal2.png" alt=""></p>
 <p>In the .psm1 file we define a new class using the class keyword and DscResource declaration introduced in PowerShell 5.0. We then define the properties we previously had to declare in a separate schema.mof file directly inside the new class. Get/Set/Test-TargetResource is replaced by class methods:</p>
@@ -423,7 +424,7 @@ New-Item -Path <span style="color:#e6db74">&#34;$env:ProgramFiles\WindowsPowerSh
 <p>In class-based resources, we refer to the current instance of a class by using the $this variable. If we need to reference a parameter supplied to the Get/Set/Test methods, we will need to reference them using $this.variablename, not just $variablename. That is the most important thing to edit when copying code from legacy DSC resources. Here is an example where for example $Ensure is changed to $this.Ensure:</p>
 <p><img src="/images/dscrescreatefinal.png" alt=""></p>
 <p>The rewritten class-based version of the Logman DSC resource is available in <a href="https://github.com/janegilring/PSCommunity/blob/master/DSC/PSCommunityDSCClassBasedResources/PSCommunityDSCClassBasedResources.psm1">this repository</a> on GitHub, as well as on the <a href="https://www.powershellgallery.com/packages/Logman/">PowerShell Gallery</a>. To install the module from the PowerShell Gallery, use Install-Module:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Install-Module -Name Logman
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">Logman</span>
 </code></pre></div><p>You can find more details about class based resources in the article <a href="https://technet.microsoft.com/en-us/library/dn948461.aspx">Writing a custom DSC resource with PowerShell classes</a> on Microsoft TechNet.</p>
 <h3 id="summary">Summary</h3>
 <p>By leveraging the new resource we have created, it should be an easy task to establish baselines for collecting performance data.</p>

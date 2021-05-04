@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Pester Explained: Introduction and Assertions</title>
 
 <meta name="description" content="For the most powerful community">
@@ -208,7 +209,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>8 Min To Read
+              <i class="far fa-clock"></i>9 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>01 Dec, 2015
@@ -237,162 +238,162 @@ if (!doNotTrack) {
 <h2 id="assertion-theory">Assertion theory</h2>
 <p>Let’s start from the end, that is from the assertions, and work our way from the inside out.</p>
 <p>The assertions are what decides whether the test will pass or fail. An assertion in Pester is represented by word Should and a second word such as Be or Exist, that determines what kind of assertion should be used. The most used combination of those words is Should Be, that tests whether the actual and expected values are equal, so we will use that for our first example.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$expected = 8
-$actual = 4
-$actual | Should Be $expected
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$expected</span> <span class="p">=</span> <span class="n">8</span>
+<span class="ln">2</span><span class="nv">$actual</span> <span class="p">=</span> <span class="n">4</span>
+<span class="ln">3</span><span class="nv">$actual</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="nv">$expected</span>
 </code></pre></div><p>The $actual value typically wouldn’t be hardcoded in the test; rather it would be a result a some function call, such as Get-ProcessorCoreCount. The test would actually look more like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$expected = 8
-$actual = Get-ProcessorCoreCount
-$actual | Should Be $expected
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$expected</span> <span class="p">=</span> <span class="n">8</span>
+<span class="ln">2</span><span class="nv">$actual</span> <span class="p">=</span> <span class="nb">Get-ProcessorCoreCount</span>
+<span class="ln">3</span><span class="nv">$actual</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="nv">$expected</span>
 </code></pre></div><p>We can express the same comparison as a simple if statement:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">if</span> ($actual <span style="color:#f92672">-eq</span> $expected)
-{
-   $didTheTestPass = $True
-}
-<span style="color:#66d9ef">else</span>
-{
-   $didTheTestPass = $False
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="k">if</span> <span class="p">(</span><span class="nv">$actual</span> <span class="o">-eq</span> <span class="nv">$expected</span><span class="p">)</span>
+<span class="ln">2</span><span class="p">{</span>
+<span class="ln">3</span>   <span class="nv">$didTheTestPass</span> <span class="p">=</span> <span class="nv">$True</span>
+<span class="ln">4</span><span class="p">}</span>
+<span class="ln">5</span><span class="k">else</span>
+<span class="ln">6</span><span class="p">{</span>
+<span class="ln">7</span>   <span class="nv">$didTheTestPass</span> <span class="p">=</span> <span class="nv">$False</span>
+<span class="ln">8</span><span class="p">}</span>
 </code></pre></div><p>We can also express the condition in an opposite way:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">if</span> ($actual <span style="color:#f92672">-ne</span> $expected) 
-{
-    $didTheTestPass = $False
-}
-<span style="color:#66d9ef">else</span> 
-{
-    $didTheTestPass = $True
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="k">if</span> <span class="p">(</span><span class="nv">$actual</span> <span class="o">-ne</span> <span class="nv">$expected</span><span class="p">)</span> 
+<span class="ln">2</span><span class="p">{</span>
+<span class="ln">3</span>    <span class="nv">$didTheTestPass</span> <span class="p">=</span> <span class="nv">$False</span>
+<span class="ln">4</span><span class="p">}</span>
+<span class="ln">5</span><span class="k">else</span> 
+<span class="ln">6</span><span class="p">{</span>
+<span class="ln">7</span>    <span class="nv">$didTheTestPass</span> <span class="p">=</span> <span class="nv">$True</span>
+<span class="ln">8</span><span class="p">}</span>
 </code></pre></div><p>We could further get rid of the else clause, by assuming every test starts as a passing test.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$didTheTestPass = $True
-<span style="color:#66d9ef">if</span> ($actual <span style="color:#f92672">-ne</span> $expected) 
-{
-    $didTheTestPass = $False
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$didTheTestPass</span> <span class="p">=</span> <span class="nv">$True</span>
+<span class="ln">2</span><span class="k">if</span> <span class="p">(</span><span class="nv">$actual</span> <span class="o">-ne</span> <span class="nv">$expected</span><span class="p">)</span> 
+<span class="ln">3</span><span class="p">{</span>
+<span class="ln">4</span>    <span class="nv">$didTheTestPass</span> <span class="p">=</span> <span class="nv">$False</span>
+<span class="ln">5</span><span class="p">}</span>
 </code></pre></div><p>This brings one problem though–if we put two such assertions in a row, it does not matter if the first one fails or passes, because only the last assertion would determine the outcome of the test.</p>
 <p>That is definitely not correct. We want the first assertion to fail to stop the execution of the test. This can likely be done in many ways, but all the testing frameworks I know, throw an exception to do that. Our assertion would look like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$didTheTestPass = $True
-<span style="color:#66d9ef">if</span> ($actual <span style="color:#f92672">-ne</span> $expected) 
-{
-    <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;The test failed!&#34;</span>
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$didTheTestPass</span> <span class="p">=</span> <span class="nv">$True</span>
+<span class="ln">2</span><span class="k">if</span> <span class="p">(</span><span class="nv">$actual</span> <span class="o">-ne</span> <span class="nv">$expected</span><span class="p">)</span> 
+<span class="ln">3</span><span class="p">{</span>
+<span class="ln">4</span>    <span class="k">throw</span> <span class="s2">&#34;The test failed!&#34;</span>
+<span class="ln">5</span><span class="p">}</span>
 </code></pre></div><p>At this point the $didTheTestPass does not bring any added value, because we know that any test that did not throw an exception is a passing test. The core of our assertion would look like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">if</span> ($actual <span style="color:#f92672">-ne</span> $expected) 
-{
-   <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;The test failed!&#34;</span>
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="k">if</span> <span class="p">(</span><span class="nv">$actual</span> <span class="o">-ne</span> <span class="nv">$expected</span><span class="p">)</span> 
+<span class="ln">2</span><span class="p">{</span>
+<span class="ln">3</span>   <span class="k">throw</span> <span class="s2">&#34;The test failed!&#34;</span>
+<span class="ln">4</span><span class="p">}</span>
 </code></pre></div><p>Which is simpler, but not oversimplified version of what is happening inside of Pester, after you remove all the parsing and fancy messages.</p>
 <p>If you do not believe me, go to <a href="https://github.com/pester/Pester/blob/master/Functions/Assertions/Should.ps1#L92">line 92 in Should.ps1</a> and see for yourself. The comparison is also very easy to find, it’s on <a href="https://github.com/pester/Pester/blob/master/Functions/Assertions/Be.ps1#L3">line 3 in the Be.ps1</a> file.</p>
 <h3 id="writing-your-own-assertion">Writing your own assertion</h3>
 <p>I promised that we will write a testing framework of our own, so let’s start. It won’t be exactly like Pester, but I will be pretty close. Our own framework will definitely need to have assertions, but we will avoid all the unnecessary parsing Pester does and we will create a function called Assert-Equal which will be very simple:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> Assert-Equal ($expected, $actual) {
-    <span style="color:#66d9ef">if</span> ($actual <span style="color:#f92672">-ne</span> $expected) 
-    {
-        <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;Value &#39;$expected&#39; was expected, but was &#39;$actual&#39;&#34;</span>
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="k">function</span> <span class="nb">Assert-Equal</span> <span class="p">(</span><span class="nv">$expected</span><span class="p">,</span> <span class="nv">$actual</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$actual</span> <span class="o">-ne</span> <span class="nv">$expected</span><span class="p">)</span> 
+<span class="ln">3</span>    <span class="p">{</span>
+<span class="ln">4</span>        <span class="k">throw</span> <span class="s2">&#34;Value &#39;$expected&#39; was expected, but was &#39;$actual&#39;&#34;</span>
+<span class="ln">5</span>    <span class="p">}</span>
+<span class="ln">6</span><span class="p">}</span>
 </code></pre></div><p>And we can write our first test (don’t forget to keep the Assert-Equal function in the same file and make sure you define it before you use it):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> Assert-Equal ($Expected, $Actual) {
-    <span style="color:#66d9ef">if</span> ($Actual <span style="color:#f92672">-ne</span> $Expected) 
-    {
-        <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;Value &#39;$Expected&#39; was expected, but was &#39;$Actual&#39;&#34;</span>
-    }
-}
-
-$expected = 8
-$actual = 4
-
-Assert-Equal -actual $actual -expected  $expected
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Assert-Equal</span> <span class="p">(</span><span class="nv">$Expected</span><span class="p">,</span> <span class="nv">$Actual</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$Actual</span> <span class="o">-ne</span> <span class="nv">$Expected</span><span class="p">)</span> 
+<span class="ln"> 3</span>    <span class="p">{</span>
+<span class="ln"> 4</span>        <span class="k">throw</span> <span class="s2">&#34;Value &#39;$Expected&#39; was expected, but was &#39;$Actual&#39;&#34;</span>
+<span class="ln"> 5</span>    <span class="p">}</span>
+<span class="ln"> 6</span><span class="p">}</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span><span class="nv">$expected</span> <span class="p">=</span> <span class="n">8</span>
+<span class="ln"> 9</span><span class="nv">$actual</span> <span class="p">=</span> <span class="n">4</span>
+<span class="ln">10</span>
+<span class="ln">11</span><span class="nb">Assert-Equal</span> <span class="n">-actual</span> <span class="nv">$actual</span> <span class="n">-expected</span>  <span class="nv">$expected</span>
 </code></pre></div><p>Which will output:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Value <span style="color:#e6db74">&#39;8&#39;</span> was expected, but was <span style="color:#e6db74">&#39;4&#39;</span>
-At line<span style="color:#960050;background-color:#1e0010">:</span>5 char<span style="color:#960050;background-color:#1e0010">:</span>3
-
-+         <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;Value &#39;$Expected&#39; was expected, but was &#39;$Actual&#39;&#34;</span>
-+         CategoryInfo          <span style="color:#960050;background-color:#1e0010">:</span> OperationStopped<span style="color:#960050;background-color:#1e0010">:</span> (Value <span style="color:#e6db74">&#39;8&#39;</span> was expected, but was <span style="color:#e6db74">&#39;4&#39;</span><span style="color:#960050;background-color:#1e0010">:</span>String) [], RuntimeException
-+         FullyQualifiedErrorId <span style="color:#960050;background-color:#1e0010">:</span> Value <span style="color:#e6db74">&#39;8&#39;</span> was expected, but was <span style="color:#e6db74">&#39;4&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">Value</span> <span class="s1">&#39;8&#39;</span> <span class="n">was</span> <span class="n">expected</span><span class="p">,</span> <span class="n">but</span> <span class="n">was</span> <span class="s1">&#39;4&#39;</span>
+<span class="ln">2</span><span class="n">At</span> <span class="n">line</span><span class="err">:</span><span class="n">5</span> <span class="n">char</span><span class="err">:</span><span class="n">3</span>
+<span class="ln">3</span>
+<span class="ln">4</span><span class="p">+</span>         <span class="k">throw</span> <span class="s2">&#34;Value &#39;$Expected&#39; was expected, but was &#39;$Actual&#39;&#34;</span>
+<span class="ln">5</span><span class="p">+</span>         <span class="n">CategoryInfo</span>          <span class="err">:</span> <span class="n">OperationStopped</span><span class="err">:</span> <span class="p">(</span><span class="n">Value</span> <span class="s1">&#39;8&#39;</span> <span class="n">was</span> <span class="n">expected</span><span class="p">,</span> <span class="n">but</span> <span class="n">was</span> <span class="s1">&#39;4&#39;</span><span class="err">:</span><span class="n">String</span><span class="p">)</span> <span class="p">[],</span> <span class="n">RuntimeException</span>
+<span class="ln">6</span><span class="p">+</span>         <span class="n">FullyQualifiedErrorId</span> <span class="err">:</span> <span class="n">Value</span> <span class="s1">&#39;8&#39;</span> <span class="n">was</span> <span class="n">expected</span><span class="p">,</span> <span class="n">but</span> <span class="n">was</span> <span class="s1">&#39;4&#39;</span>
 </code></pre></div><p>Yaay! You just wrote your first piece of a testing framework.</p>
 <h3 id="expecting-exceptions">Expecting exceptions</h3>
 <p>As we saw earlier using exceptions to fail tests is great because the test will stop executing as soon as any assertion fails. There is also other reason why exceptions are used in most of testing frameworks: When code fails, it usually throws an exception which in turn will make your test fail without using any assertion.</p>
 <p>But what if throwing an exception is the expected outcome of the test? What if we want to test that our code throws FileNotFoundException when we try to read from a file that does not exist?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> Read-File ($Path) {
-    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> (Test-Path $Path))
-    {
-        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">[IO.FileNotFoundException]</span><span style="color:#e6db74">&#34;The file &#39;$Path&#39; was not found.&#34;</span>
-    }
-    Get-Content $Path
-}
-Read-File C:\NotExistingFile.txt
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="k">function</span> <span class="nb">Read-File</span> <span class="p">(</span><span class="nv">$Path</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="p">(</span><span class="nb">Test-Path</span> <span class="nv">$Path</span><span class="p">))</span>
+<span class="ln">3</span>    <span class="p">{</span>
+<span class="ln">4</span>        <span class="k">throw</span> <span class="no">[IO.FileNotFoundException]</span><span class="s2">&#34;The file &#39;$Path&#39; was not found.&#34;</span>
+<span class="ln">5</span>    <span class="p">}</span>
+<span class="ln">6</span>    <span class="nb">Get-Content</span> <span class="nv">$Path</span>
+<span class="ln">7</span><span class="p">}</span>
+<span class="ln">8</span><span class="nb">Read-File</span> <span class="n">C:</span><span class="p">\</span><span class="n">NotExistingFile</span><span class="p">.</span><span class="n">txt</span>
 </code></pre></div><p>We need a way to check if a given piece of code thrown an exception, and prevent this exception from failing the test. The try/catch statement turns out to be a perfect candidate for that:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> Read-File ($Path) {
-    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> (Test-Path $Path))
-    {
-        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">[IO.FileNotFoundException]</span><span style="color:#e6db74">&#34;The file &#39;$Path&#39; was not found.&#34;</span>
-    }
-
-	Get-Content $Path
-}
-
-$exceptionWasThrown = $False
-<span style="color:#66d9ef">try</span> 
-{
-   <span style="color:#75715e"># Read-File C:\NotExistingFile.txt</span>
-}
-<span style="color:#66d9ef">catch</span> 
-{
-    $exceptionWasThrown = $True
-}
-
-<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> $exceptionWasThrown)
-{
-    <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#39;Expected an exception to be thrown but no exception was thrown.&#39;</span>
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Read-File</span> <span class="p">(</span><span class="nv">$Path</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="p">(</span><span class="nb">Test-Path</span> <span class="nv">$Path</span><span class="p">))</span>
+<span class="ln"> 3</span>    <span class="p">{</span>
+<span class="ln"> 4</span>        <span class="k">throw</span> <span class="no">[IO.FileNotFoundException]</span><span class="s2">&#34;The file &#39;$Path&#39; was not found.&#34;</span>
+<span class="ln"> 5</span>    <span class="p">}</span>
+<span class="ln"> 6</span>
+<span class="ln"> 7</span>	<span class="nb">Get-Content</span> <span class="nv">$Path</span>
+<span class="ln"> 8</span><span class="p">}</span>
+<span class="ln"> 9</span>
+<span class="ln">10</span><span class="nv">$exceptionWasThrown</span> <span class="p">=</span> <span class="nv">$False</span>
+<span class="ln">11</span><span class="k">try</span> 
+<span class="ln">12</span><span class="p">{</span>
+<span class="ln">13</span>   <span class="c"># Read-File C:\NotExistingFile.txt</span>
+<span class="ln">14</span><span class="p">}</span>
+<span class="ln">15</span><span class="k">catch</span> 
+<span class="ln">16</span><span class="p">{</span>
+<span class="ln">17</span>    <span class="nv">$exceptionWasThrown</span> <span class="p">=</span> <span class="nv">$True</span>
+<span class="ln">18</span><span class="p">}</span>
+<span class="ln">19</span>
+<span class="ln">20</span><span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="nv">$exceptionWasThrown</span><span class="p">)</span>
+<span class="ln">21</span><span class="p">{</span>
+<span class="ln">22</span>    <span class="k">throw</span> <span class="s1">&#39;Expected an exception to be thrown but no exception was thrown.&#39;</span>
+<span class="ln">23</span><span class="p">}</span>
 </code></pre></div><p>Notice that the call to the Read-File is commented out, so by default no code will be executed in the try block, and hence no exception will be thrown inside of the try catch block. This means that the $exceptionWasThrown will remain $False, and so the last “if” will throw an exception saying ‘Expected an exception to be thrown but no exception was thrown.’, which will fail the test.</p>
 <p>Now try to uncomment the call to the Read-File. The read file will throw an exception (unless you actually have a file called NotExistingFile.txt on your C: drive, of course). This exception will be swallowed by the catch block, preventing our test from failing. The catch block will also set the  $exceptionWasThrown variable to $True, the condition of the last “if” won’t be satisfied, and as a result the whole script won’t produce any output, meaning that our test passed.</p>
 <h3 id="assert-throw">Assert-Throw</h3>
 <p>We could definitely use such useful assertion in our own framework, so let’s create a function named Assert-Throw, which will look like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> Assert-Throw (<span style="color:#66d9ef">[ScriptBlock]</span>$ScriptBlock) {
-    $exceptionWasThrown = $False
-    <span style="color:#66d9ef">try</span> 
-    {
-       &amp;$ScriptBlock
-    }
-    <span style="color:#66d9ef">catch</span> 
-    {
-        $exceptionWasThrown = $True
-    }
-
-    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> $exceptionWasThrown)
-    {
-        <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#39;Expected an exception to be thrown but no exception was thrown.&#39;</span>
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Assert-Throw</span> <span class="p">(</span><span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="nv">$exceptionWasThrown</span> <span class="p">=</span> <span class="nv">$False</span>
+<span class="ln"> 3</span>    <span class="k">try</span> 
+<span class="ln"> 4</span>    <span class="p">{</span>
+<span class="ln"> 5</span>       <span class="p">&amp;</span><span class="nv">$ScriptBlock</span>
+<span class="ln"> 6</span>    <span class="p">}</span>
+<span class="ln"> 7</span>    <span class="k">catch</span> 
+<span class="ln"> 8</span>    <span class="p">{</span>
+<span class="ln"> 9</span>        <span class="nv">$exceptionWasThrown</span> <span class="p">=</span> <span class="nv">$True</span>
+<span class="ln">10</span>    <span class="p">}</span>
+<span class="ln">11</span>
+<span class="ln">12</span>    <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="nv">$exceptionWasThrown</span><span class="p">)</span>
+<span class="ln">13</span>    <span class="p">{</span>
+<span class="ln">14</span>        <span class="k">throw</span> <span class="s1">&#39;Expected an exception to be thrown but no exception was thrown.&#39;</span>
+<span class="ln">15</span>    <span class="p">}</span>
+<span class="ln">16</span><span class="p">}</span>
 </code></pre></div><p>As you can see the body of the function is almost the same as the code in the previous script, the only challenge that we needed to solve was getting the piece of code that should throw an exception as a parameter. We used a script block for that. A script block is a piece of code that we can execute at the right time and place using the ‘&amp;’ operator.</p>
 <p>You can try using our new assertion, but expect no output because the Read-File throws an exception, which is what we want to happen and so our test passes:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> Read-File ($Path) {
-    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> (Test-Path $Path))
-    {
-        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">[IO.FileNotFoundException]</span><span style="color:#e6db74">&#34;The file &#39;$Path&#39; was not found.&#34;</span>
-    }
-	Get-Content $Path
-}
-
-<span style="color:#66d9ef">function</span> Assert-Throw (<span style="color:#66d9ef">[ScriptBlock]</span>$ScriptBlock) {
-    $exceptionWasThrown = $False
-    <span style="color:#66d9ef">try</span> 
-    {
-       &amp;$ScriptBlock
-    }
-    <span style="color:#66d9ef">catch</span> 
-    {
-        $exceptionWasThrown = $True
-    }
-
-    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> $exceptionWasThrown)
-    {
-        <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#39;Expected an exception to be thrown but no exception was thrown.&#39;</span>
-    }
-}
-
-Assert-Throw -ScriptBlock { Read-File C:\NotExistingFile.txt }
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Read-File</span> <span class="p">(</span><span class="nv">$Path</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="p">(</span><span class="nb">Test-Path</span> <span class="nv">$Path</span><span class="p">))</span>
+<span class="ln"> 3</span>    <span class="p">{</span>
+<span class="ln"> 4</span>        <span class="k">throw</span> <span class="no">[IO.FileNotFoundException]</span><span class="s2">&#34;The file &#39;$Path&#39; was not found.&#34;</span>
+<span class="ln"> 5</span>    <span class="p">}</span>
+<span class="ln"> 6</span>	<span class="nb">Get-Content</span> <span class="nv">$Path</span>
+<span class="ln"> 7</span><span class="p">}</span>
+<span class="ln"> 8</span>
+<span class="ln"> 9</span><span class="k">function</span> <span class="nb">Assert-Throw</span> <span class="p">(</span><span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">10</span>    <span class="nv">$exceptionWasThrown</span> <span class="p">=</span> <span class="nv">$False</span>
+<span class="ln">11</span>    <span class="k">try</span> 
+<span class="ln">12</span>    <span class="p">{</span>
+<span class="ln">13</span>       <span class="p">&amp;</span><span class="nv">$ScriptBlock</span>
+<span class="ln">14</span>    <span class="p">}</span>
+<span class="ln">15</span>    <span class="k">catch</span> 
+<span class="ln">16</span>    <span class="p">{</span>
+<span class="ln">17</span>        <span class="nv">$exceptionWasThrown</span> <span class="p">=</span> <span class="nv">$True</span>
+<span class="ln">18</span>    <span class="p">}</span>
+<span class="ln">19</span>
+<span class="ln">20</span>    <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="nv">$exceptionWasThrown</span><span class="p">)</span>
+<span class="ln">21</span>    <span class="p">{</span>
+<span class="ln">22</span>        <span class="k">throw</span> <span class="s1">&#39;Expected an exception to be thrown but no exception was thrown.&#39;</span>
+<span class="ln">23</span>    <span class="p">}</span>
+<span class="ln">24</span><span class="p">}</span>
+<span class="ln">25</span>
+<span class="ln">26</span><span class="nb">Assert-Throw</span> <span class="n">-ScriptBlock</span> <span class="p">{</span> <span class="nb">Read-File</span> <span class="n">C:</span><span class="p">\</span><span class="n">NotExistingFile</span><span class="p">.</span><span class="n">txt</span> <span class="p">}</span>
 </code></pre></div><h3 id="is-there-more-to-it">Is there more to it?</h3>
 <p>Now that we covered two different assertions, you might ask: Is there more to it? And the answer would be: No, not really.</p>
 <p>Every other assertion in Pester is just a variation on the Should Be (or in our case Assert-Equal). The difference between Should Be, Should Match, or Should Exist is only in the condition where in the “if” condition they use -eq, -match and Test-Item respectively, but the mechanism remains the same.</p>

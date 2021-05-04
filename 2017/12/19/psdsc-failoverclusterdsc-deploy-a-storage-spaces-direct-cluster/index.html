@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>#PSDSC FailoverClusterDSC – Deploy a Storage Spaces Direct Cluster</title>
 
 <meta name="description" content="For the most powerful community">
@@ -215,7 +216,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>2 Min To Read
+              <i class="far fa-clock"></i>3 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>19 Dec, 2017
@@ -242,103 +243,103 @@ if (!doNotTrack) {
 </blockquote>
 <p>You can take a look at each of these resources to check what different configuration options are supported as of today.</p>
 <p>Here is an example of creating and configuring a Storage Spaces Direct cluster.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$configData = @{
-	AllNodes = @(
-		@{
-    	    NodeName = <span style="color:#e6db74">&#39;localhost&#39;</span>
-           	thumbprint = <span style="color:#e6db74">&#39;25A1359A27FB3F2D562D7508D98E7189F2A1F1B0&#39;</span>
-        	CertificateFile = <span style="color:#e6db74">&#39;C:\PublicKeys\S2D4N01.cer&#39;</span>
-        	PsDscAllowDomainUser = $true
-    	}
-    )
-}
-
-Configuration CreateS2DCluster
-{
-    <span style="color:#66d9ef">param</span>
-    (
-        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Mandatory</span> = $true)]
-        <span style="color:#66d9ef">[pscredential]</span>
-        $Credential,
-    	
-    	[<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Mandatory</span> = $true)]
-    	<span style="color:#66d9ef">[String[]]</span>
-    	$ParticipantNodes,
-
-    	[<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Mandatory</span> = $true)]
-    	<span style="color:#66d9ef">[String]</span>
-    	$ClusterName,
-
-    	[<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Mandatory</span> = $true)]
-    	<span style="color:#66d9ef">[String]</span>
-    	$StaticAddress,
-
-    	[<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Mandatory</span> = $true)]
-    	<span style="color:#66d9ef">[String[]]</span>
-    	$IgnoreNetworks,
-
-    	[<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Mandatory</span> = $true)]
-    	<span style="color:#66d9ef">[String]</span>
-    	$QuorumResource,
-
-    	[<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Mandatory</span> = $true)]
-    	<span style="color:#66d9ef">[String]</span>
-    	$QuorumType 
-	)
-
-	Import-DscResource -ModuleName FailoverClusterDsc
-
-	Node $AllNodes.NodeName
-	{
-    	FailoverCluster CreateCluster
-    	{
-        	ClusterName = $ClusterName
-        	StaticAddress = $StaticAddress
-        	NoStorage = $true
-        	IgnoreNetwork = $IgnoreNetworks
-        	Ensure = <span style="color:#e6db74">&#39;Present&#39;</span>
-        	PsDscRunAsCredential = $Credential
-    	}
-
-    	WaitForFailoverCluster WaitForCluster
-    	{
-        	ClusterName = $ClusterName
-        	PsDscRunAsCredential = $Credential
-    	}
-
-    	<span style="color:#66d9ef">Foreach</span> ($node <span style="color:#66d9ef">in</span> $ParticipantNodes)
-    	{
-        	FailoverClusterNode $node
-        	{
-            	NodeName = $node
-            	ClusterName = $ClusterName
-            	PsDscRunAsCredential = $Credential
-            	Ensure = <span style="color:#e6db74">&#39;Present&#39;</span>
-        	}
-    	}
-
-    	FailoverClusterQuorum FileShareQuorum
-    	{
-        	IsSingleInstance = <span style="color:#e6db74">&#39;Yes&#39;</span>
-        	QuorumType = $QuorumType
-        	Resource = $QuorumResource
-    	}
-
-    	FailoverClusterS2D EnableS2D
-    	{
-        	IsSingleInstance = <span style="color:#e6db74">&#39;yes&#39;</span>
-        	Ensure = <span style="color:#e6db74">&#39;Present&#39;</span>
-    	}
-	}
-}
-
-CreateS2DCluster -Credential (Get-Credential) -ConfigurationData $configData `
-                                           -QuorumType <span style="color:#e6db74">&#39;NodeAndFileShareMajority&#39;</span> `
-                                           -QuorumResource <span style="color:#e6db74">&#39;\\sofs\share&#39;</span> `
-                                           -ClusterName <span style="color:#e6db74">&#39;S2D4NCluster&#39;</span> `
-                                           -StaticAddress <span style="color:#e6db74">&#39;172.16.102.45&#39;</span> `
-                                           -IgnoreNetworks @(<span style="color:#e6db74">&#39;172.16.103.0/24&#39;</span>,<span style="color:#e6db74">&#39;172.16.104.0/24&#39;</span>) `
-                                           -ParticipantNodes @(<span style="color:#e6db74">&#39;S2D4N02&#39;</span>,<span style="color:#e6db74">&#39;S2D4N03&#39;</span>,<span style="color:#e6db74">&#39;S2D4N04&#39;</span>)
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$configData</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln"> 2</span>	<span class="n">AllNodes</span> <span class="p">=</span> <span class="p">@(</span>
+<span class="ln"> 3</span>		<span class="p">@{</span>
+<span class="ln"> 4</span>    	    <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;localhost&#39;</span>
+<span class="ln"> 5</span>           	<span class="n">thumbprint</span> <span class="p">=</span> <span class="s1">&#39;25A1359A27FB3F2D562D7508D98E7189F2A1F1B0&#39;</span>
+<span class="ln"> 6</span>        	<span class="n">CertificateFile</span> <span class="p">=</span> <span class="s1">&#39;C:\PublicKeys\S2D4N01.cer&#39;</span>
+<span class="ln"> 7</span>        	<span class="n">PsDscAllowDomainUser</span> <span class="p">=</span> <span class="nv">$true</span>
+<span class="ln"> 8</span>    	<span class="p">}</span>
+<span class="ln"> 9</span>    <span class="p">)</span>
+<span class="ln">10</span><span class="p">}</span>
+<span class="ln">11</span>
+<span class="ln">12</span><span class="n">Configuration</span> <span class="n">CreateS2DCluster</span>
+<span class="ln">13</span><span class="p">{</span>
+<span class="ln">14</span>    <span class="k">param</span>
+<span class="ln">15</span>    <span class="p">(</span>
+<span class="ln">16</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
+<span class="ln">17</span>        <span class="no">[pscredential]</span>
+<span class="ln">18</span>        <span class="nv">$Credential</span><span class="p">,</span>
+<span class="ln">19</span>    	
+<span class="ln">20</span>    	<span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
+<span class="ln">21</span>    	<span class="no">[String[]]</span>
+<span class="ln">22</span>    	<span class="nv">$ParticipantNodes</span><span class="p">,</span>
+<span class="ln">23</span>
+<span class="ln">24</span>    	<span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
+<span class="ln">25</span>    	<span class="no">[String]</span>
+<span class="ln">26</span>    	<span class="nv">$ClusterName</span><span class="p">,</span>
+<span class="ln">27</span>
+<span class="ln">28</span>    	<span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
+<span class="ln">29</span>    	<span class="no">[String]</span>
+<span class="ln">30</span>    	<span class="nv">$StaticAddress</span><span class="p">,</span>
+<span class="ln">31</span>
+<span class="ln">32</span>    	<span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
+<span class="ln">33</span>    	<span class="no">[String[]]</span>
+<span class="ln">34</span>    	<span class="nv">$IgnoreNetworks</span><span class="p">,</span>
+<span class="ln">35</span>
+<span class="ln">36</span>    	<span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
+<span class="ln">37</span>    	<span class="no">[String]</span>
+<span class="ln">38</span>    	<span class="nv">$QuorumResource</span><span class="p">,</span>
+<span class="ln">39</span>
+<span class="ln">40</span>    	<span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
+<span class="ln">41</span>    	<span class="no">[String]</span>
+<span class="ln">42</span>    	<span class="nv">$QuorumType</span> 
+<span class="ln">43</span>	<span class="p">)</span>
+<span class="ln">44</span>
+<span class="ln">45</span>	<span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">FailoverClusterDsc</span>
+<span class="ln">46</span>
+<span class="ln">47</span>	<span class="n">Node</span> <span class="nv">$AllNodes</span><span class="p">.</span><span class="n">NodeName</span>
+<span class="ln">48</span>	<span class="p">{</span>
+<span class="ln">49</span>    	<span class="n">FailoverCluster</span> <span class="n">CreateCluster</span>
+<span class="ln">50</span>    	<span class="p">{</span>
+<span class="ln">51</span>        	<span class="n">ClusterName</span> <span class="p">=</span> <span class="nv">$ClusterName</span>
+<span class="ln">52</span>        	<span class="n">StaticAddress</span> <span class="p">=</span> <span class="nv">$StaticAddress</span>
+<span class="ln">53</span>        	<span class="n">NoStorage</span> <span class="p">=</span> <span class="nv">$true</span>
+<span class="ln">54</span>        	<span class="n">IgnoreNetwork</span> <span class="p">=</span> <span class="nv">$IgnoreNetworks</span>
+<span class="ln">55</span>        	<span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+<span class="ln">56</span>        	<span class="n">PsDscRunAsCredential</span> <span class="p">=</span> <span class="nv">$Credential</span>
+<span class="ln">57</span>    	<span class="p">}</span>
+<span class="ln">58</span>
+<span class="ln">59</span>    	<span class="n">WaitForFailoverCluster</span> <span class="n">WaitForCluster</span>
+<span class="ln">60</span>    	<span class="p">{</span>
+<span class="ln">61</span>        	<span class="n">ClusterName</span> <span class="p">=</span> <span class="nv">$ClusterName</span>
+<span class="ln">62</span>        	<span class="n">PsDscRunAsCredential</span> <span class="p">=</span> <span class="nv">$Credential</span>
+<span class="ln">63</span>    	<span class="p">}</span>
+<span class="ln">64</span>
+<span class="ln">65</span>    	<span class="k">Foreach</span> <span class="p">(</span><span class="nv">$node</span> <span class="k">in</span> <span class="nv">$ParticipantNodes</span><span class="p">)</span>
+<span class="ln">66</span>    	<span class="p">{</span>
+<span class="ln">67</span>        	<span class="n">FailoverClusterNode</span> <span class="nv">$node</span>
+<span class="ln">68</span>        	<span class="p">{</span>
+<span class="ln">69</span>            	<span class="n">NodeName</span> <span class="p">=</span> <span class="nv">$node</span>
+<span class="ln">70</span>            	<span class="n">ClusterName</span> <span class="p">=</span> <span class="nv">$ClusterName</span>
+<span class="ln">71</span>            	<span class="n">PsDscRunAsCredential</span> <span class="p">=</span> <span class="nv">$Credential</span>
+<span class="ln">72</span>            	<span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+<span class="ln">73</span>        	<span class="p">}</span>
+<span class="ln">74</span>    	<span class="p">}</span>
+<span class="ln">75</span>
+<span class="ln">76</span>    	<span class="n">FailoverClusterQuorum</span> <span class="n">FileShareQuorum</span>
+<span class="ln">77</span>    	<span class="p">{</span>
+<span class="ln">78</span>        	<span class="n">IsSingleInstance</span> <span class="p">=</span> <span class="s1">&#39;Yes&#39;</span>
+<span class="ln">79</span>        	<span class="n">QuorumType</span> <span class="p">=</span> <span class="nv">$QuorumType</span>
+<span class="ln">80</span>        	<span class="n">Resource</span> <span class="p">=</span> <span class="nv">$QuorumResource</span>
+<span class="ln">81</span>    	<span class="p">}</span>
+<span class="ln">82</span>
+<span class="ln">83</span>    	<span class="n">FailoverClusterS2D</span> <span class="n">EnableS2D</span>
+<span class="ln">84</span>    	<span class="p">{</span>
+<span class="ln">85</span>        	<span class="n">IsSingleInstance</span> <span class="p">=</span> <span class="s1">&#39;yes&#39;</span>
+<span class="ln">86</span>        	<span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+<span class="ln">87</span>    	<span class="p">}</span>
+<span class="ln">88</span>	<span class="p">}</span>
+<span class="ln">89</span><span class="p">}</span>
+<span class="ln">90</span>
+<span class="ln">91</span><span class="n">CreateS2DCluster</span> <span class="n">-Credential</span> <span class="p">(</span><span class="nb">Get-Credential</span><span class="p">)</span> <span class="n">-ConfigurationData</span> <span class="nv">$configData</span> <span class="p">`</span>
+<span class="ln">92</span>                                           <span class="n">-QuorumType</span> <span class="s1">&#39;NodeAndFileShareMajority&#39;</span> <span class="p">`</span>
+<span class="ln">93</span>                                           <span class="n">-QuorumResource</span> <span class="s1">&#39;\\sofs\share&#39;</span> <span class="p">`</span>
+<span class="ln">94</span>                                           <span class="n">-ClusterName</span> <span class="s1">&#39;S2D4NCluster&#39;</span> <span class="p">`</span>
+<span class="ln">95</span>                                           <span class="n">-StaticAddress</span> <span class="s1">&#39;172.16.102.45&#39;</span> <span class="p">`</span>
+<span class="ln">96</span>                                           <span class="n">-IgnoreNetworks</span> <span class="p">@(</span><span class="s1">&#39;172.16.103.0/24&#39;</span><span class="p">,</span><span class="s1">&#39;172.16.104.0/24&#39;</span><span class="p">)</span> <span class="p">`</span>
+<span class="ln">97</span>                                           <span class="n">-ParticipantNodes</span> <span class="p">@(</span><span class="s1">&#39;S2D4N02&#39;</span><span class="p">,</span><span class="s1">&#39;S2D4N03&#39;</span><span class="p">,</span><span class="s1">&#39;S2D4N04&#39;</span><span class="p">)</span>
 </code></pre></div><p>In the above pattern, I am creating a failover cluster and then adding the remaining nodes using the same configuration document. You can, however, have the node addition configuration using the <em>FailoverClusterNode</em> resource as a separate configuration document that gets enacted on the participant node.</p>
 <p>The failover cluster configuration requires administrator privileges and these resources do not have a Credential parameter of their own and depend on <em>PSDscRunAsCredential</em>. Therefore, you need at least PowerShell 5.0 to use these resources.</p>
 <p>I am looking at expanding the resource modules to beyond what is there at the moment. If you see any issues or have feedback, feel free to create an issue in my repository. These resources lack tests today. I would be glad to accept any PRs for tests.</p>

@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Parsing remote machine local date and time with WMI</title>
 
 <meta name="description" content="For the most powerful community">
@@ -234,18 +235,18 @@ if (!doNotTrack) {
             </li>
           </ul>
           <div class="content"><p>The other day I was asked to check the local date and time on some workstations in our network. The reason for that was time skew, and as I was told, some workstations’ clock was 1 hour behind. I launched PowerShell and wrote a quick script to get the raw WMI value of the local date and time on a list of ****remote machines and convert it to a readable DateTime object:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$computers = <span style="color:#e6db74">&#39;pc1&#39;</span>,<span style="color:#e6db74">&#39;pc2&#39;</span>,<span style="color:#e6db74">&#39;pc3&#39;</span>
-$computers | <span style="color:#66d9ef">ForEach</span>-Object{
-   $os = Get-WmiObject -Class Win32_OperatingSystem -ComputerName $_
-   $cdt = @{Name=<span style="color:#e6db74">&#39;ConvertedDateTime&#39;</span>;Expression={$_.ConvertToDateTime($os.LocalDateTime)}}
-   $os | Select-Object -Property Name,LocalDateTime,$cdt
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$computers</span> <span class="p">=</span> <span class="s1">&#39;pc1&#39;</span><span class="p">,</span><span class="s1">&#39;pc2&#39;</span><span class="p">,</span><span class="s1">&#39;pc3&#39;</span>
+<span class="ln">2</span><span class="nv">$computers</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span><span class="p">{</span>
+<span class="ln">3</span>   <span class="nv">$os</span> <span class="p">=</span> <span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">Win32_OperatingSystem</span> <span class="n">-ComputerName</span> <span class="nv">$_</span>
+<span class="ln">4</span>   <span class="nv">$cdt</span> <span class="p">=</span> <span class="p">@{</span><span class="n">Name</span><span class="p">=</span><span class="s1">&#39;ConvertedDateTime&#39;</span><span class="p">;</span><span class="n">Expression</span><span class="p">={</span><span class="nv">$_</span><span class="p">.</span><span class="n">ConvertToDateTime</span><span class="p">(</span><span class="nv">$os</span><span class="p">.</span><span class="n">LocalDateTime</span><span class="p">)}}</span>
+<span class="ln">5</span>   <span class="nv">$os</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-Property</span> <span class="n">Name</span><span class="p">,</span><span class="n">LocalDateTime</span><span class="p">,</span><span class="nv">$cdt</span>
+<span class="ln">6</span><span class="p">}</span>
 </code></pre></div><p>The result looked like:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Name  LocalDateTime              ConvertedDateTime
-----  -------------              ----
-pc1   20110912093710.927000+120  9/12/2011 10:37:10 AM
-pc2   20110912103722.322000+120  9/12/2011 10:37:22 AM
-pc3   20110912103703.530000+120  9/12/2011 10:37:03 AM
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Name  LocalDateTime              ConvertedDateTime
+<span class="ln">2</span>----  -------------              ----
+<span class="ln">3</span>pc1   20110912093710.927000+120  9/12/2011 10:37:10 AM
+<span class="ln">4</span>pc2   20110912103722.322000+120  9/12/2011 10:37:22 AM
+<span class="ln">5</span>pc3   20110912103703.530000+120  9/12/2011 10:37:03 AM
 </code></pre></div><p>I took a quick look at the last column and was able to determine that the time on the machines in question was correct. Right?</p>
 <p>Wrong! Take a look at the result. Do you find anything unusual? Sharp-eyed among you probably noticed that there’s a one hour difference on pc1, between the hour in the LocalDateTime and the converted one (9 vs. 10). I was always under the impression that the DMTF conversion happens on the remote machine but apparently I was wrong.</p>
 <p>The ConvertToDateTime method used in the calculated property is a script method added via ETS (Extended Type System) and under the cover it is using the [System.Management.ManagementDateTimeconverter]::ToDateTime method.</p>
@@ -253,13 +254,13 @@ pc3   20110912103703.530000+120  9/12/2011 10:37:03 AM
 <p>Converts a given DMTF date time to DateTime. The returned DateTime will be in the current time zone of the system. </p>
 <p>Which raises the question: the current time zone of the remote machine or the time zone of the machine that executed the script? The ToDateTime method doesn’t support remote connections so conversion is done locally. This can, and does, introduce a “bug” or false results. No one really checks the value of LocalDateTime (guilty as charged); it’s too cryptic, and I have always counted on the result of the ConvertToDateTime method.</p>
 <p>Now that I know that the conversion is made on the machine that executes the script I use one of the following to parse the LocalDateTime value (the Win32_LocalTime class is supported on XP/Windows Server 2003 and above):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; $lt = Get-WmiObject -Class Win32_LocalTime -ComputerName pc1
-PS&gt; Get-Date -Year $lt.Year -Month $lt.Month -Day $lt.Day -Hour $lt.Hour -Minute `
-              $lt.Minute -Second $lt.Second
-Monday, September 12, 2011 9<span style="color:#960050;background-color:#1e0010">:</span>37<span style="color:#960050;background-color:#1e0010">:</span>10 AM
-or
-PS&gt; <span style="color:#66d9ef">[datetime]</span>::ParseExact($lt.split(<span style="color:#e6db74">&#39;.&#39;</span>)[0],<span style="color:#e6db74">&#39;yyyyMMddHHmmss&#39;</span>,$null)
-Monday, September 12, 2011 9<span style="color:#960050;background-color:#1e0010">:</span>37<span style="color:#960050;background-color:#1e0010">:</span>10 AM
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nv">$lt</span> <span class="p">=</span> <span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">Win32_LocalTime</span> <span class="n">-ComputerName</span> <span class="n">pc1</span>
+<span class="ln">2</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Date</span> <span class="n">-Year</span> <span class="nv">$lt</span><span class="p">.</span><span class="n">Year</span> <span class="n">-Month</span> <span class="nv">$lt</span><span class="p">.</span><span class="n">Month</span> <span class="n">-Day</span> <span class="nv">$lt</span><span class="p">.</span><span class="n">Day</span> <span class="n">-Hour</span> <span class="nv">$lt</span><span class="p">.</span><span class="n">Hour</span> <span class="n">-Minute</span> <span class="p">`</span>
+<span class="ln">3</span>              <span class="nv">$lt</span><span class="p">.</span><span class="n">Minute</span> <span class="n">-Second</span> <span class="nv">$lt</span><span class="p">.</span><span class="n">Second</span>
+<span class="ln">4</span><span class="n">Monday</span><span class="p">,</span> <span class="n">September</span> <span class="n">12</span><span class="p">,</span> <span class="n">2011</span> <span class="n">9</span><span class="err">:</span><span class="n">37</span><span class="err">:</span><span class="n">10</span> <span class="n">AM</span>
+<span class="ln">5</span><span class="n">or</span>
+<span class="ln">6</span><span class="n">PS</span><span class="p">&gt;</span> <span class="no">[datetime]</span><span class="p">::</span><span class="n">ParseExact</span><span class="p">(</span><span class="nv">$lt</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="n">0</span><span class="p">],</span><span class="s1">&#39;yyyyMMddHHmmss&#39;</span><span class="p">,</span><span class="nv">$null</span><span class="p">)</span>
+<span class="ln">7</span><span class="n">Monday</span><span class="p">,</span> <span class="n">September</span> <span class="n">12</span><span class="p">,</span> <span class="n">2011</span> <span class="n">9</span><span class="err">:</span><span class="n">37</span><span class="err">:</span><span class="n">10</span> <span class="n">AM</span>
 </code></pre></div></div>
         </article>
         

@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Getting Started with PSArm</title>
 
 <meta name="description" content="For the most powerful community">
@@ -254,141 +255,141 @@ if (!doNotTrack) {
           <div class="content"><p>In the first part of this <a href="/tags/psarm">series</a>, you learned about <a href="https://github.com/powershell/psarm">PSArm</a> &ndash; a PowerShell embedded DSL &ndash; that you can use to declaratively define your Azure infrastructure and generate an ARM template. PSArm, being a PowerShell DSL, supports PowerShell language constructs and builds the object model for ARM templates on top of PowerShell. So, if you are already familiar with PowerShell, writing ARM templates now will be as simple as writing another PowerShell script. So, how do you get started?</p>
 <h3 id="installing-psarm">Installing PSArm</h3>
 <p>You can get PSArm module from the <a href="https://www.powershellgallery.com/packages/PSArm">PowerShell gallery</a>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Install-Module -Name PSArm -AllowPrerelease
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">PSArm</span> <span class="n">-AllowPrerelease</span>
 </code></pre></div><p>You can also build module from the <a href="https://github.com/powershell/psarm">source code available on GitHub</a>.</p>
 <p>This module, when loaded, exports a bunch of functions and cmdlets.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\sandbox\psarm&gt; Get-Command -Module PSArm
-CommandType     Name                                               Version    Source
------------     ----                                               -------    ------                 
-<span style="color:#66d9ef">Function</span>        add                                                0.1.0      PSArm             
-<span style="color:#66d9ef">Function</span>        and                                                0.1.0      PSArm          
-<span style="color:#66d9ef">Function</span>        array                                              0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        base64                                             0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        base64ToJson                                       0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        base64ToString                                     0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        bool                                               0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        coalesce                                           0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        concat                                             0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        contains                                           0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        copyIndex                                          0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        createArray                                        0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        createObject                                       0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        dataUri                                            0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        dataUriToString                                    0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        dateTimeAdd                                        0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        deployment                                         0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        div                                                0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        empty                                              0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        endsWith                                           0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        environment                                        0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        equals                                             0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        extensionResourceId                                0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        false                                              0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        first                                              0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        float                                              0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        format                                             0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        greater                                            0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        greaterOrEquals                                    0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        guid                                               0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        <span style="color:#66d9ef">if</span>                                                 0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        indexOf                                            0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        int                                                0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        intersection                                       0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        json                                               0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        last                                               0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        lastIndexOf                                        0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        length                                             0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        less                                               0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        lessOrEquals                                       0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        list                                               0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        listAccountSas                                     0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        listAdminKeys                                      0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        listAuthKeys                                       0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        listChannelWithKeys                                0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        listClusterAdminCredential                         0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        listConnectionStrings                              0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        listCredential                                     0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        listCredentials                                    0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        listKeys                                           0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        listKeyValue                                       0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        listPackage                                        0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        listQueryKeys                                      0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        listRawCallbackUrl                                 0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        listSecrets                                        0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        listServiceSas                                     0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        listSyncFunctionTriggerStatus                      0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        max                                                0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        min                                                0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        mod                                                0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        mul                                                0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        newGuid                                            0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        not                                                0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        null                                               0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        or                                                 0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        padLeft                                            0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        parameters                                         0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        providers                                          0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        range                                              0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        reference                                          0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        replace                                            0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        resourceGroup                                      0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        resourceId                                         0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        skip                                               0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        split                                              0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        startsWith                                         0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        string                                             0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        sub                                                0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        subscription                                       0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        subscriptionResourceId                             0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        substring                                          0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        take                                               0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        tenantResourceId                                   0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        toLower                                            0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        toUpper                                            0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        trim                                               0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        true                                               0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        union                                              0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        uniqueString                                       0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        uri                                                0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        uriComponent                                       0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        uriComponentToString                               0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        utcNow                                             0.1.0      PSArm
-<span style="color:#66d9ef">Function</span>        variables                                          0.1.0      PSArm
-Cmdlet          ConvertFrom-ArmTemplate                            0.1.0      PSArm
-Cmdlet          ConvertTo-PSArm                                    0.1.0      PSArm
-Cmdlet          New-PSArmDependsOn                                 0.1.0      PSArm
-Cmdlet          New-PSArmEntry                                     0.1.0      PSArm
-Cmdlet          New-PSArmFunctionCall                              0.1.0      PSArm
-Cmdlet          New-PSArmOutput                                    0.1.0      PSArm
-Cmdlet          New-PSArmResource                                  0.1.0      PSArm                   
-Cmdlet          New-PSArmSku                                       0.1.0      PSArm
-Cmdlet          New-PSArmTemplate                                  0.1.0      PSArm
-Cmdlet          Publish-PSArmTemplate                              0.1.0      PSArm 
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">  1</span><span class="nb">PS </span><span class="n">C:</span><span class="p">\</span><span class="n">sandbox</span><span class="p">\</span><span class="n">psarm</span><span class="p">&gt;</span> <span class="nb">Get-Command</span> <span class="n">-Module</span> <span class="n">PSArm</span>
+<span class="ln">  2</span><span class="n">CommandType</span>     <span class="n">Name</span>                                               <span class="n">Version</span>    <span class="n">Source</span>
+<span class="ln">  3</span><span class="p">-----------</span>     <span class="p">----</span>                                               <span class="p">-------</span>    <span class="p">------</span>                 
+<span class="ln">  4</span><span class="k">Function</span>        <span class="n">add</span>                                                <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>             
+<span class="ln">  5</span><span class="k">Function</span>        <span class="n">and</span>                                                <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>          
+<span class="ln">  6</span><span class="k">Function</span>        <span class="n">array</span>                                              <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln">  7</span><span class="k">Function</span>        <span class="n">base64</span>                                             <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln">  8</span><span class="k">Function</span>        <span class="n">base64ToJson</span>                                       <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln">  9</span><span class="k">Function</span>        <span class="n">base64ToString</span>                                     <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 10</span><span class="k">Function</span>        <span class="n">bool</span>                                               <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 11</span><span class="k">Function</span>        <span class="n">coalesce</span>                                           <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 12</span><span class="k">Function</span>        <span class="n">concat</span>                                             <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 13</span><span class="k">Function</span>        <span class="n">contains</span>                                           <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 14</span><span class="k">Function</span>        <span class="n">copyIndex</span>                                          <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 15</span><span class="k">Function</span>        <span class="n">createArray</span>                                        <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 16</span><span class="k">Function</span>        <span class="n">createObject</span>                                       <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 17</span><span class="k">Function</span>        <span class="n">dataUri</span>                                            <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 18</span><span class="k">Function</span>        <span class="n">dataUriToString</span>                                    <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 19</span><span class="k">Function</span>        <span class="n">dateTimeAdd</span>                                        <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 20</span><span class="k">Function</span>        <span class="n">deployment</span>                                         <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 21</span><span class="k">Function</span>        <span class="n">div</span>                                                <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 22</span><span class="k">Function</span>        <span class="n">empty</span>                                              <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 23</span><span class="k">Function</span>        <span class="n">endsWith</span>                                           <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 24</span><span class="k">Function</span>        <span class="n">environment</span>                                        <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 25</span><span class="k">Function</span>        <span class="n">equals</span>                                             <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 26</span><span class="k">Function</span>        <span class="n">extensionResourceId</span>                                <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 27</span><span class="k">Function</span>        <span class="n">false</span>                                              <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 28</span><span class="k">Function</span>        <span class="n">first</span>                                              <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 29</span><span class="k">Function</span>        <span class="n">float</span>                                              <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 30</span><span class="k">Function</span>        <span class="n">format</span>                                             <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 31</span><span class="k">Function</span>        <span class="n">greater</span>                                            <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 32</span><span class="k">Function</span>        <span class="n">greaterOrEquals</span>                                    <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 33</span><span class="k">Function</span>        <span class="n">guid</span>                                               <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 34</span><span class="k">Function</span>        <span class="k">if</span>                                                 <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 35</span><span class="k">Function</span>        <span class="n">indexOf</span>                                            <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 36</span><span class="k">Function</span>        <span class="n">int</span>                                                <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 37</span><span class="k">Function</span>        <span class="n">intersection</span>                                       <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 38</span><span class="k">Function</span>        <span class="n">json</span>                                               <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 39</span><span class="k">Function</span>        <span class="n">last</span>                                               <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 40</span><span class="k">Function</span>        <span class="n">lastIndexOf</span>                                        <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 41</span><span class="k">Function</span>        <span class="n">length</span>                                             <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 42</span><span class="k">Function</span>        <span class="n">less</span>                                               <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 43</span><span class="k">Function</span>        <span class="n">lessOrEquals</span>                                       <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 44</span><span class="k">Function</span>        <span class="n">list</span>                                               <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 45</span><span class="k">Function</span>        <span class="n">listAccountSas</span>                                     <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 46</span><span class="k">Function</span>        <span class="n">listAdminKeys</span>                                      <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 47</span><span class="k">Function</span>        <span class="n">listAuthKeys</span>                                       <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 48</span><span class="k">Function</span>        <span class="n">listChannelWithKeys</span>                                <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 49</span><span class="k">Function</span>        <span class="n">listClusterAdminCredential</span>                         <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 50</span><span class="k">Function</span>        <span class="n">listConnectionStrings</span>                              <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 51</span><span class="k">Function</span>        <span class="n">listCredential</span>                                     <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 52</span><span class="k">Function</span>        <span class="n">listCredentials</span>                                    <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 53</span><span class="k">Function</span>        <span class="n">listKeys</span>                                           <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 54</span><span class="k">Function</span>        <span class="n">listKeyValue</span>                                       <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 55</span><span class="k">Function</span>        <span class="n">listPackage</span>                                        <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 56</span><span class="k">Function</span>        <span class="n">listQueryKeys</span>                                      <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 57</span><span class="k">Function</span>        <span class="n">listRawCallbackUrl</span>                                 <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 58</span><span class="k">Function</span>        <span class="n">listSecrets</span>                                        <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 59</span><span class="k">Function</span>        <span class="n">listServiceSas</span>                                     <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 60</span><span class="k">Function</span>        <span class="n">listSyncFunctionTriggerStatus</span>                      <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 61</span><span class="k">Function</span>        <span class="n">max</span>                                                <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 62</span><span class="k">Function</span>        <span class="n">min</span>                                                <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 63</span><span class="k">Function</span>        <span class="n">mod</span>                                                <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 64</span><span class="k">Function</span>        <span class="n">mul</span>                                                <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 65</span><span class="k">Function</span>        <span class="n">newGuid</span>                                            <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 66</span><span class="k">Function</span>        <span class="n">not</span>                                                <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 67</span><span class="k">Function</span>        <span class="n">null</span>                                               <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 68</span><span class="k">Function</span>        <span class="n">or</span>                                                 <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 69</span><span class="k">Function</span>        <span class="n">padLeft</span>                                            <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 70</span><span class="k">Function</span>        <span class="n">parameters</span>                                         <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 71</span><span class="k">Function</span>        <span class="n">providers</span>                                          <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 72</span><span class="k">Function</span>        <span class="n">range</span>                                              <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 73</span><span class="k">Function</span>        <span class="n">reference</span>                                          <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 74</span><span class="k">Function</span>        <span class="n">replace</span>                                            <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 75</span><span class="k">Function</span>        <span class="n">resourceGroup</span>                                      <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 76</span><span class="k">Function</span>        <span class="n">resourceId</span>                                         <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 77</span><span class="k">Function</span>        <span class="n">skip</span>                                               <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 78</span><span class="k">Function</span>        <span class="n">split</span>                                              <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 79</span><span class="k">Function</span>        <span class="n">startsWith</span>                                         <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 80</span><span class="k">Function</span>        <span class="n">string</span>                                             <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 81</span><span class="k">Function</span>        <span class="n">sub</span>                                                <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 82</span><span class="k">Function</span>        <span class="n">subscription</span>                                       <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 83</span><span class="k">Function</span>        <span class="n">subscriptionResourceId</span>                             <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 84</span><span class="k">Function</span>        <span class="n">substring</span>                                          <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 85</span><span class="k">Function</span>        <span class="n">take</span>                                               <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 86</span><span class="k">Function</span>        <span class="n">tenantResourceId</span>                                   <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 87</span><span class="k">Function</span>        <span class="n">toLower</span>                                            <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 88</span><span class="k">Function</span>        <span class="n">toUpper</span>                                            <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 89</span><span class="k">Function</span>        <span class="n">trim</span>                                               <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 90</span><span class="k">Function</span>        <span class="n">true</span>                                               <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 91</span><span class="k">Function</span>        <span class="n">union</span>                                              <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 92</span><span class="k">Function</span>        <span class="n">uniqueString</span>                                       <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 93</span><span class="k">Function</span>        <span class="n">uri</span>                                                <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 94</span><span class="k">Function</span>        <span class="n">uriComponent</span>                                       <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 95</span><span class="k">Function</span>        <span class="n">uriComponentToString</span>                               <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 96</span><span class="k">Function</span>        <span class="n">utcNow</span>                                             <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 97</span><span class="k">Function</span>        <span class="n">variables</span>                                          <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 98</span><span class="n">Cmdlet</span>          <span class="nb">ConvertFrom-ArmTemplate</span>                            <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 99</span><span class="n">Cmdlet</span>          <span class="nb">ConvertTo-PSArm</span>                                    <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln">100</span><span class="n">Cmdlet</span>          <span class="nb">New-PSArmDependsOn</span>                                 <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln">101</span><span class="n">Cmdlet</span>          <span class="nb">New-PSArmEntry</span>                                     <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln">102</span><span class="n">Cmdlet</span>          <span class="nb">New-PSArmFunctionCall</span>                              <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln">103</span><span class="n">Cmdlet</span>          <span class="nb">New-PSArmOutput</span>                                    <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln">104</span><span class="n">Cmdlet</span>          <span class="nb">New-PSArmResource</span>                                  <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>                   
+<span class="ln">105</span><span class="n">Cmdlet</span>          <span class="nb">New-PSArmSku</span>                                       <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln">106</span><span class="n">Cmdlet</span>          <span class="nb">New-PSArmTemplate</span>                                  <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln">107</span><span class="n">Cmdlet</span>          <span class="nb">Publish-PSArmTemplate</span>                              <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span> 
 </code></pre></div><p>You can see that the exported functions are similar to what ARM template language offers.</p>
 <h3 id="psarm-syntax-basics">PSArm Syntax Basics</h3>
 <p>A typical PSArm script for ARM template starts with the <code>Arm</code> keyword. Within the <code>Arm</code> body, you define each Azure resource using the <code>Resource</code> keyword.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Arm {
-    Resource <span style="color:#e6db74">&#34;identifier&#34;</span> -Namespace <span style="color:#e6db74">&#34;Microsoft.resource&#34;</span> -ApiVersion <span style="color:#e6db74">&#34;resourceApiVersion&#34;</span> -Type <span style="color:#e6db74">&#34;resourceType&#34;</span> {
-        properties {
-            <span style="color:#e6db74">&#34;propertyName&#34;</span> <span style="color:#e6db74">&#34;value&#34;</span>
-        }
-    }
-
-    output <span style="color:#e6db74">&#34;Output from deployment&#34;</span>
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">Arm</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="n">Resource</span> <span class="s2">&#34;identifier&#34;</span> <span class="n">-Namespace</span> <span class="s2">&#34;Microsoft.resource&#34;</span> <span class="n">-ApiVersion</span> <span class="s2">&#34;resourceApiVersion&#34;</span> <span class="n">-Type</span> <span class="s2">&#34;resourceType&#34;</span> <span class="p">{</span>
+<span class="ln">3</span>        <span class="n">properties</span> <span class="p">{</span>
+<span class="ln">4</span>            <span class="s2">&#34;propertyName&#34;</span> <span class="s2">&#34;value&#34;</span>
+<span class="ln">5</span>        <span class="p">}</span>
+<span class="ln">6</span>    <span class="p">}</span>
+<span class="ln">7</span>
+<span class="ln">8</span>    <span class="n">output</span> <span class="s2">&#34;Output from deployment&#34;</span>
+<span class="ln">9</span><span class="p">}</span>
 </code></pre></div><p>The <code>Arm</code>, <code>Resource</code>, and <code>output</code> keywords are aliases defined in the module.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS C:\sandbox\psarm&gt; (Get-Alias).Where({$_.Source <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;PSArm&#39;</span>})
-CommandType     Name                                               Version    Source    
------------     ----                                               -------    ------                 
-<span style="color:#66d9ef">Alias</span>           Arm -&gt; New-PSArmTemplate                           0.1.0      PSArm
-<span style="color:#66d9ef">Alias</span>           ArmArray -&gt; New-PSArmArray                         0.1.0      PSArm
-<span style="color:#66d9ef">Alias</span>           ArmElement -&gt; New-PSArmElement                     0.1.0      PSArm
-<span style="color:#66d9ef">Alias</span>           ArmSku -&gt; New-PSArmSku                             0.1.0      PSArm
-<span style="color:#66d9ef">Alias</span>           DependsOn -&gt; New-PSArmDependsOn                    0.1.0      PSArm
-<span style="color:#66d9ef">Alias</span>           Output -&gt; New-PSArmOutput                          0.1.0      PSArm
-<span style="color:#66d9ef">Alias</span>           RawCall -&gt; New-PSArmFunctionCall                   0.1.0      PSArm
-<span style="color:#66d9ef">Alias</span>           RawEntry -&gt; New-PSArmEntry                         0.1.0      PSArm
-<span style="color:#66d9ef">Alias</span>           Resource -&gt; New-PSArmResource                      0.1.0      PSArm
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nb">PS </span><span class="n">C:</span><span class="p">\</span><span class="n">sandbox</span><span class="p">\</span><span class="n">psarm</span><span class="p">&gt;</span> <span class="p">(</span><span class="nb">Get-Alias</span><span class="p">).</span><span class="n">Where</span><span class="p">({</span><span class="nv">$_</span><span class="p">.</span><span class="n">Source</span> <span class="o">-eq</span> <span class="s1">&#39;PSArm&#39;</span><span class="p">})</span>
+<span class="ln"> 2</span><span class="n">CommandType</span>     <span class="n">Name</span>                                               <span class="n">Version</span>    <span class="n">Source</span>    
+<span class="ln"> 3</span><span class="p">-----------</span>     <span class="p">----</span>                                               <span class="p">-------</span>    <span class="p">------</span>                 
+<span class="ln"> 4</span><span class="k">Alias</span>           <span class="n">Arm</span> <span class="p">-&gt;</span> <span class="nb">New-PSArmTemplate</span>                           <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 5</span><span class="k">Alias</span>           <span class="n">ArmArray</span> <span class="p">-&gt;</span> <span class="nb">New-PSArmArray</span>                         <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 6</span><span class="k">Alias</span>           <span class="n">ArmElement</span> <span class="p">-&gt;</span> <span class="nb">New-PSArmElement</span>                     <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 7</span><span class="k">Alias</span>           <span class="n">ArmSku</span> <span class="p">-&gt;</span> <span class="nb">New-PSArmSku</span>                             <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 8</span><span class="k">Alias</span>           <span class="n">DependsOn</span> <span class="p">-&gt;</span> <span class="nb">New-PSArmDependsOn</span>                    <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln"> 9</span><span class="k">Alias</span>           <span class="n">Output</span> <span class="p">-&gt;</span> <span class="nb">New-PSArmOutput</span>                          <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln">10</span><span class="k">Alias</span>           <span class="n">RawCall</span> <span class="p">-&gt;</span> <span class="nb">New-PSArmFunctionCall</span>                   <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln">11</span><span class="k">Alias</span>           <span class="n">RawEntry</span> <span class="p">-&gt;</span> <span class="nb">New-PSArmEntry</span>                         <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
+<span class="ln">12</span><span class="k">Alias</span>           <span class="n">Resource</span> <span class="p">-&gt;</span> <span class="nb">New-PSArmResource</span>                      <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
 </code></pre></div><p>With <code>Arm</code> keyword, you can specify an optional <code>Name</code> parameter which will be used as a name of the deployment within the template. For the resource definition, you use the <code>Resource</code> keyword. You must specify a <code>Name</code> to be used for the resource you want to provision, <code>Namespace</code> of the resource, <code>ApiVersion</code>, and <code>Type</code>.  As you enter arguments for these four parameters, you will see that PowerShell dynamically adds some more parameters based on the type of resource you intend to provision.</p>
 <p><img src="/images/psarmresourceparam.png" alt=""></p>
 <p>For example, as you see in the above screenshot, as soon as I added the <code>Type</code> parameter and its argument, I get <code>Kind</code> and <code>Tags</code> as the dynamic parameters. You can, then, use the <code>ArmSku</code> keyword to specify the SKU of the resource that you intend to provision. In case of a storage account, this can be set to Standard_LRS or any other supported value. Each Azure resource may need some more additional properties for resource provisioning and configuration. You can use the <code>properties</code> keyword for this purpose. PSArm gives you the auto-completion of property names within the <code>properties</code> block.</p>
@@ -396,80 +397,80 @@ CommandType     Name                                               Version    So
 <p>Finally, the <code>output</code> keyword can be used to retrieve properties required from the deployed resource objects. This keyword takes <code>Name</code>, <code>Type</code>, and <code>Value</code> as parameters.</p>
 <h3 id="first-psarm-script">First PSArm Script</h3>
 <p>Here is a complete PSArm script for provisioning a simple storage account.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Arm -Name myFirstTemplate -Body {
-    Resource <span style="color:#e6db74">&#39;mypsarmsaccount&#39;</span> `
-             -Namespace <span style="color:#e6db74">&#39;Microsoft.Storage&#39;</span> `
-             -Type <span style="color:#e6db74">&#39;storageAccounts&#39;</span> `
-             -apiVersion <span style="color:#e6db74">&#39;2019-06-01&#39;</span> `
-             -Kind <span style="color:#e6db74">&#39;StorageV2&#39;</span> `
-             -Location <span style="color:#e6db74">&#39;WestUS&#39;</span> {
-        ArmSku <span style="color:#e6db74">&#39;Standard_LRS&#39;</span>
-        Properties {
-            accessTier <span style="color:#e6db74">&#39;Hot&#39;</span>
-        }
-    }
-
-    Output <span style="color:#e6db74">&#39;storageResourceId&#39;</span> -Type <span style="color:#e6db74">&#39;string&#39;</span> -Value (ResourceId <span style="color:#e6db74">&#39;Microsoft.Storage/storageAccounts&#39;</span> (Concat <span style="color:#e6db74">&#39;myPsArmSaccount&#39;</span>))
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Arm</span> <span class="n">-Name</span> <span class="n">myFirstTemplate</span> <span class="n">-Body</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="n">Resource</span> <span class="s1">&#39;mypsarmsaccount&#39;</span> <span class="p">`</span>
+<span class="ln"> 3</span>             <span class="n">-Namespace</span> <span class="s1">&#39;Microsoft.Storage&#39;</span> <span class="p">`</span>
+<span class="ln"> 4</span>             <span class="n">-Type</span> <span class="s1">&#39;storageAccounts&#39;</span> <span class="p">`</span>
+<span class="ln"> 5</span>             <span class="n">-apiVersion</span> <span class="s1">&#39;2019-06-01&#39;</span> <span class="p">`</span>
+<span class="ln"> 6</span>             <span class="n">-Kind</span> <span class="s1">&#39;StorageV2&#39;</span> <span class="p">`</span>
+<span class="ln"> 7</span>             <span class="n">-Location</span> <span class="s1">&#39;WestUS&#39;</span> <span class="p">{</span>
+<span class="ln"> 8</span>        <span class="n">ArmSku</span> <span class="s1">&#39;Standard_LRS&#39;</span>
+<span class="ln"> 9</span>        <span class="n">Properties</span> <span class="p">{</span>
+<span class="ln">10</span>            <span class="n">accessTier</span> <span class="s1">&#39;Hot&#39;</span>
+<span class="ln">11</span>        <span class="p">}</span>
+<span class="ln">12</span>    <span class="p">}</span>
+<span class="ln">13</span>
+<span class="ln">14</span>    <span class="n">Output</span> <span class="s1">&#39;storageResourceId&#39;</span> <span class="n">-Type</span> <span class="s1">&#39;string&#39;</span> <span class="n">-Value</span> <span class="p">(</span><span class="n">ResourceId</span> <span class="s1">&#39;Microsoft.Storage/storageAccounts&#39;</span> <span class="p">(</span><span class="n">Concat</span> <span class="s1">&#39;myPsArmSaccount&#39;</span><span class="p">))</span>
+<span class="ln">15</span><span class="p">}</span>
 </code></pre></div><p>Make a note of the <code>ResourceId</code> and <code>Concat</code> functions used along with the <code>output</code> keyword. PSArm has public function parity with what is offered in ARM template language. You can save this script with a <code>.psarm.ps1</code> extension and generate the ARM template JSON using the <code>Publish-PSArmTemplate</code> cmdlet that PSArm module provides.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Publish-PSArmTemplate -Path .\firstTemplate.psarm.ps1 `
-                      -OutFile .\firstTemplate.json -Force
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Publish-PSArmTemplate</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">firstTemplate</span><span class="p">.</span><span class="n">psarm</span><span class="p">.</span><span class="n">ps1</span> <span class="p">`</span>
+<span class="ln">2</span>                      <span class="n">-OutFile</span> <span class="p">.\</span><span class="n">firstTemplate</span><span class="p">.</span><span class="n">json</span> <span class="n">-Force</span>
 </code></pre></div><p>Here is the generated ARM template JSON for the PSArm script that you just built.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;$schema&#34;</span>: <span style="color:#e6db74">&#34;https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#&#34;</span>,
-  <span style="color:#f92672">&#34;contentVersion&#34;</span>: <span style="color:#e6db74">&#34;1.0.0.0&#34;</span>,
-  <span style="color:#f92672">&#34;metadata&#34;</span>: {
-    <span style="color:#f92672">&#34;_generator&#34;</span>: {
-      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;psarm&#34;</span>,
-      <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;0.1.0.0&#34;</span>,
-      <span style="color:#f92672">&#34;psarm-psversion&#34;</span>: <span style="color:#e6db74">&#34;5.1.19041.610&#34;</span>,
-      <span style="color:#f92672">&#34;templateHash&#34;</span>: <span style="color:#e6db74">&#34;5716551932369025750&#34;</span>
-    }
-  },
-  <span style="color:#f92672">&#34;resources&#34;</span>: [
-    {
-      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;myFirstTemplate&#34;</span>,
-      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Microsoft.Resources/deployments&#34;</span>,
-      <span style="color:#f92672">&#34;apiVersion&#34;</span>: <span style="color:#e6db74">&#34;2019-10-01&#34;</span>,
-      <span style="color:#f92672">&#34;properties&#34;</span>: {
-        <span style="color:#f92672">&#34;mode&#34;</span>: <span style="color:#e6db74">&#34;Incremental&#34;</span>,
-        <span style="color:#f92672">&#34;expressionEvaluationOptions&#34;</span>: {
-          <span style="color:#f92672">&#34;scope&#34;</span>: <span style="color:#e6db74">&#34;inner&#34;</span>
-        },
-        <span style="color:#f92672">&#34;template&#34;</span>: {
-          <span style="color:#f92672">&#34;$schema&#34;</span>: <span style="color:#e6db74">&#34;https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#&#34;</span>,
-          <span style="color:#f92672">&#34;contentVersion&#34;</span>: <span style="color:#e6db74">&#34;1.0.0.0&#34;</span>,
-          <span style="color:#f92672">&#34;resources&#34;</span>: [
-            {
-              <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;mypsarmsaccount&#34;</span>,
-              <span style="color:#f92672">&#34;apiVersion&#34;</span>: <span style="color:#e6db74">&#34;2019-06-01&#34;</span>,
-              <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Microsoft.Storage/storageAccounts&#34;</span>,
-              <span style="color:#f92672">&#34;kind&#34;</span>: <span style="color:#e6db74">&#34;StorageV2&#34;</span>,
-              <span style="color:#f92672">&#34;location&#34;</span>: <span style="color:#e6db74">&#34;WestUS&#34;</span>,
-              <span style="color:#f92672">&#34;sku&#34;</span>: {
-                <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Standard_LRS&#34;</span>
-              },
-              <span style="color:#f92672">&#34;properties&#34;</span>: {
-                <span style="color:#f92672">&#34;accessTier&#34;</span>: <span style="color:#e6db74">&#34;Hot&#34;</span>
-              }
-            }
-          ],
-          <span style="color:#f92672">&#34;outputs&#34;</span>: {
-            <span style="color:#f92672">&#34;storageResourceId&#34;</span>: {
-              <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
-              <span style="color:#f92672">&#34;value&#34;</span>: <span style="color:#e6db74">&#34;[resourceId(&#39;Microsoft.Storage/storageAccounts&#39;, concat(&#39;myPsArmSaccount&#39;))]&#34;</span>
-            }
-          }
-        }
-      }
-    }
-  ]
-}
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="ln"> 1</span><span class="p">{</span>
+<span class="ln"> 2</span>  <span class="nt">&#34;$schema&#34;</span><span class="p">:</span> <span class="s2">&#34;https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#&#34;</span><span class="p">,</span>
+<span class="ln"> 3</span>  <span class="nt">&#34;contentVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0.0.0&#34;</span><span class="p">,</span>
+<span class="ln"> 4</span>  <span class="nt">&#34;metadata&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln"> 5</span>    <span class="nt">&#34;_generator&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln"> 6</span>      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;psarm&#34;</span><span class="p">,</span>
+<span class="ln"> 7</span>      <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.1.0.0&#34;</span><span class="p">,</span>
+<span class="ln"> 8</span>      <span class="nt">&#34;psarm-psversion&#34;</span><span class="p">:</span> <span class="s2">&#34;5.1.19041.610&#34;</span><span class="p">,</span>
+<span class="ln"> 9</span>      <span class="nt">&#34;templateHash&#34;</span><span class="p">:</span> <span class="s2">&#34;5716551932369025750&#34;</span>
+<span class="ln">10</span>    <span class="p">}</span>
+<span class="ln">11</span>  <span class="p">},</span>
+<span class="ln">12</span>  <span class="nt">&#34;resources&#34;</span><span class="p">:</span> <span class="p">[</span>
+<span class="ln">13</span>    <span class="p">{</span>
+<span class="ln">14</span>      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;myFirstTemplate&#34;</span><span class="p">,</span>
+<span class="ln">15</span>      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;Microsoft.Resources/deployments&#34;</span><span class="p">,</span>
+<span class="ln">16</span>      <span class="nt">&#34;apiVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;2019-10-01&#34;</span><span class="p">,</span>
+<span class="ln">17</span>      <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln">18</span>        <span class="nt">&#34;mode&#34;</span><span class="p">:</span> <span class="s2">&#34;Incremental&#34;</span><span class="p">,</span>
+<span class="ln">19</span>        <span class="nt">&#34;expressionEvaluationOptions&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln">20</span>          <span class="nt">&#34;scope&#34;</span><span class="p">:</span> <span class="s2">&#34;inner&#34;</span>
+<span class="ln">21</span>        <span class="p">},</span>
+<span class="ln">22</span>        <span class="nt">&#34;template&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln">23</span>          <span class="nt">&#34;$schema&#34;</span><span class="p">:</span> <span class="s2">&#34;https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#&#34;</span><span class="p">,</span>
+<span class="ln">24</span>          <span class="nt">&#34;contentVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0.0.0&#34;</span><span class="p">,</span>
+<span class="ln">25</span>          <span class="nt">&#34;resources&#34;</span><span class="p">:</span> <span class="p">[</span>
+<span class="ln">26</span>            <span class="p">{</span>
+<span class="ln">27</span>              <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;mypsarmsaccount&#34;</span><span class="p">,</span>
+<span class="ln">28</span>              <span class="nt">&#34;apiVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;2019-06-01&#34;</span><span class="p">,</span>
+<span class="ln">29</span>              <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;Microsoft.Storage/storageAccounts&#34;</span><span class="p">,</span>
+<span class="ln">30</span>              <span class="nt">&#34;kind&#34;</span><span class="p">:</span> <span class="s2">&#34;StorageV2&#34;</span><span class="p">,</span>
+<span class="ln">31</span>              <span class="nt">&#34;location&#34;</span><span class="p">:</span> <span class="s2">&#34;WestUS&#34;</span><span class="p">,</span>
+<span class="ln">32</span>              <span class="nt">&#34;sku&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln">33</span>                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Standard_LRS&#34;</span>
+<span class="ln">34</span>              <span class="p">},</span>
+<span class="ln">35</span>              <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln">36</span>                <span class="nt">&#34;accessTier&#34;</span><span class="p">:</span> <span class="s2">&#34;Hot&#34;</span>
+<span class="ln">37</span>              <span class="p">}</span>
+<span class="ln">38</span>            <span class="p">}</span>
+<span class="ln">39</span>          <span class="p">],</span>
+<span class="ln">40</span>          <span class="nt">&#34;outputs&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln">41</span>            <span class="nt">&#34;storageResourceId&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln">42</span>              <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
+<span class="ln">43</span>              <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;[resourceId(&#39;Microsoft.Storage/storageAccounts&#39;, concat(&#39;myPsArmSaccount&#39;))]&#34;</span>
+<span class="ln">44</span>            <span class="p">}</span>
+<span class="ln">45</span>          <span class="p">}</span>
+<span class="ln">46</span>        <span class="p">}</span>
+<span class="ln">47</span>      <span class="p">}</span>
+<span class="ln">48</span>    <span class="p">}</span>
+<span class="ln">49</span>  <span class="p">]</span>
+<span class="ln">50</span><span class="p">}</span>
 </code></pre></div><p>This ARM template can be deployed using your favorite command line tool or using template deployment in Azure Portal.</p>
 <p>When using Azure CLI,</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">az deployment group create --resource-group psarm --template-file .<span style="color:#ae81ff">\f</span>irstTemplate.json
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>az deployment group create --resource-group psarm --template-file .<span class="se">\f</span>irstTemplate.json
 </code></pre></div><p>When using Azure PowerShell,</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">New-AzResourceGroupDeployment -ResourceGroupName psarm -TemplateFile .\firstTemplate.json
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">New-AzResourceGroupDeployment</span> <span class="n">-ResourceGroupName</span> <span class="n">psarm</span> <span class="n">-TemplateFile</span> <span class="p">.\</span><span class="n">firstTemplate</span><span class="p">.</span><span class="n">json</span>
 </code></pre></div><p>This is it. Congratulations. You just used PowerShell based DSL to generate and deploy an ARM template. In the next part of this series, you will learn more parameterizing PSArm scripts.</p>
 </div>
         </article>

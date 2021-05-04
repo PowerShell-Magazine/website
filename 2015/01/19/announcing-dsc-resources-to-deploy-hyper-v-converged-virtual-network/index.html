@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Announcing DSC resources to deploy Hyper-V converged virtual network</title>
 
 <meta name="description" content="For the most powerful community">
@@ -287,8 +288,8 @@ if (!doNotTrack) {
 <p>While my application of the following DSC resources is deploying a Hyper-V converged network, their functionality is more generic and granular. I could have combined <em>cVMNetworkAdapter</em>, <em>cVMNetworkAdapterSettings</em>, and <em>cVMNetworkAdapterVlan</em> into a single resource. However, that would only increase the complexity of authoring and have too many resource properties to deal with.</p>
 <p><strong>Note:</strong> The xHyper-V resource module contains additional resources for dealing with VMs and VHDs. I have not added them except the <em>cVMSwitch</em> to the cHyper-V resource module as I have not modified any of them.</p>
 <p>You can download these resource modules from my <a href="https://github.com/rchaganti/DSCResources">Github repo</a>. These resource modules are available on <a href="http://www.powershellgallery.com">PowerShell Gallery</a> as well. So, if you are running WMF 5.0, you can download these using the <em>Install-Module</em> cmdlet.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Install-Module -Name cWindowsOS
-Install-Module -Name cHyper-V
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">cWindowsOS</span>
+<span class="ln">2</span><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">cHyper-V</span>
 </code></pre></div><p>In today’s article, I have only introduced these resources and their purpose. I will walk-through each of these resources and show you how to build a Hyper-V converged network. Stay tuned!</p>
 <p>Meanwhile, feel free to explore the resources yourself (no rocket science, really!) and let me know what you think.</p>
 </div>

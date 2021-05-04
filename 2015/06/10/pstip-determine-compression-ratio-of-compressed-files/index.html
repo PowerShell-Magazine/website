@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>#PSTip Determine compression ratio of compressed files</title>
 
 <meta name="description" content="For the most powerful community">
@@ -234,22 +235,22 @@ if (!doNotTrack) {
             </li>
           </ul>
           <div class="content"><p>In the previous <a href="/2015/06/09/pstip-compress-files-and-folders-with-system-io-compression-filesystem-class/" target="_blank">#PSTip Compress files and folders with System.IO.Compression.FileSystem class</a>, a .zip file was created and extracted. Now it might be good to know the compression ratio to see how much storage space has been saved by compressing the files. Using a ForEach-Object loop in combination with the Open method of this class we can determine the total size, compressed size, and the ratio of compression of a .zip file.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">[System.IO.Compression.ZipFile]</span>::Open(<span style="color:#e6db74">&#34;c:\testing\colorcopy\yourfile.zip&#34;</span>,<span style="color:#e6db74">&#39;Read&#39;</span>) | <span style="color:#66d9ef">ForEach</span>-Object {
-
-     $_.Entries | <span style="color:#66d9ef">ForEach</span>-Object -Begin {
-        <span style="color:#66d9ef">[long]</span>$TotalCompressed = $null
-        <span style="color:#66d9ef">[long]</span>$TotalSize = $null
-    } -Process {
-        $TotalCompressed += $_.CompressedLength
-        $TotalSize += $_.Length
-    } -End {
-        <span style="color:#66d9ef">[pscustomobject]</span>@{
-            FileSize = $TotalSize
-            CompressedSize = $TotalCompressed
-            Ratio = <span style="color:#e6db74">&#34;{0:P2}&#34;</span> <span style="color:#f92672">-f</span> ($TotalCompressed / $TotalSize)
-        }
-    }
-} 
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="no">[System.IO.Compression.ZipFile]</span><span class="p">::</span><span class="n">Open</span><span class="p">(</span><span class="s2">&#34;c:\testing\colorcopy\yourfile.zip&#34;</span><span class="p">,</span><span class="s1">&#39;Read&#39;</span><span class="p">)</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span>
+<span class="ln"> 2</span>
+<span class="ln"> 3</span>     <span class="nv">$_</span><span class="p">.</span><span class="n">Entries</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="n">-Begin</span> <span class="p">{</span>
+<span class="ln"> 4</span>        <span class="no">[long]</span><span class="nv">$TotalCompressed</span> <span class="p">=</span> <span class="nv">$null</span>
+<span class="ln"> 5</span>        <span class="no">[long]</span><span class="nv">$TotalSize</span> <span class="p">=</span> <span class="nv">$null</span>
+<span class="ln"> 6</span>    <span class="p">}</span> <span class="n">-Process</span> <span class="p">{</span>
+<span class="ln"> 7</span>        <span class="nv">$TotalCompressed</span> <span class="p">+=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">CompressedLength</span>
+<span class="ln"> 8</span>        <span class="nv">$TotalSize</span> <span class="p">+=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Length</span>
+<span class="ln"> 9</span>    <span class="p">}</span> <span class="n">-End</span> <span class="p">{</span>
+<span class="ln">10</span>        <span class="no">[pscustomobject]</span><span class="p">@{</span>
+<span class="ln">11</span>            <span class="n">FileSize</span> <span class="p">=</span> <span class="nv">$TotalSize</span>
+<span class="ln">12</span>            <span class="n">CompressedSize</span> <span class="p">=</span> <span class="nv">$TotalCompressed</span>
+<span class="ln">13</span>            <span class="n">Ratio</span> <span class="p">=</span> <span class="s2">&#34;{0:P2}&#34;</span> <span class="o">-f</span> <span class="p">(</span><span class="nv">$TotalCompressed</span> <span class="p">/</span> <span class="nv">$TotalSize</span><span class="p">)</span>
+<span class="ln">14</span>        <span class="p">}</span>
+<span class="ln">15</span>    <span class="p">}</span>
+<span class="ln">16</span><span class="p">}</span> 
 </code></pre></div></div>
         </article>
         

@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Comparing commands between PowerShell versions</title>
 
 <meta name="description" content="For the most powerful community">
@@ -239,25 +240,25 @@ if (!doNotTrack) {
 <p>At the time of this writing, a new technical preview of Windows Server 2016 has just been released. But how can you know what is changed with regards to PowerShell commands?</p>
 <p>There are some code snippets available to compare changes between versions. For example, Shay Levy’s script listed in <a href="/2011/09/15/how-to-find-out-whats-new-in-powershell-vnext/">this article</a>. Since the need to perform this task will occur more and more often going forward, I decided to turn this into a reusable function. The function is named Compare-PSVersionCommand and is available in the module PSVersionCompare. You can either get it directly from <a href="https://github.com/janegilring/PSVersionCompare">GitHub</a>, or use PowerShellGet to install it from the PowerShell Gallery: <strong>Install-Module -Name PSVersionCompare</strong></p>
 <p>In the initial version, Compare-PSVersionCommand have two parameter sets which makes it possible to compare based on either XML-files pre-gathered from systems, or data gathered directly via PowerShell remoting:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e">#Input gathered via PowerShell remoting</span>
-Compare-PSVersionCommand -SourceVersionComputerName HPV-VM-2016TP4 -CompareVersionComputerName HPV-JR-2016TP5 -ModuleFilter Microsoft.*
-
-<span style="color:#75715e">#Input from XML</span>
-$PSCommandDataRoot = <span style="color:#e6db74">&#39;C:\Program Files\WindowsPowerShell\Modules\PSVersionCompare\PSCommandData&#39;</span>
-$SourceVersionPath = Join-Path -Path $PSCommandDataRoot -ChildPath <span style="color:#e6db74">&#39;Microsoft Windows Server 2016 Datacenter Technical Preview 4_5.0.10586.0_Desktop.xml&#39;</span>
-$CompareVersionPath = Join-Path -Path $PSCommandDataRoot -ChildPath <span style="color:#e6db74">&#39;Microsoft Windows Server 2016 Datacenter Technical Preview 5_5.1.14284.1000_Desktop.xml&#39;</span>
-Compare-PSVersionCommand -SourceVersionPath $SourceVersionPath  -CompareVersionPath $CompareVersionPath -ModuleFilter Microsoft.*
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="c">#Input gathered via PowerShell remoting</span>
+<span class="ln">2</span><span class="nb">Compare-PSVersionCommand</span> <span class="n">-SourceVersionComputerName</span> <span class="n">HPV-VM</span><span class="p">-</span><span class="n">2016TP4</span> <span class="n">-CompareVersionComputerName</span> <span class="n">HPV-JR</span><span class="p">-</span><span class="n">2016TP5</span> <span class="n">-ModuleFilter</span> <span class="n">Microsoft</span><span class="p">.*</span>
+<span class="ln">3</span>
+<span class="ln">4</span><span class="c">#Input from XML</span>
+<span class="ln">5</span><span class="nv">$PSCommandDataRoot</span> <span class="p">=</span> <span class="s1">&#39;C:\Program Files\WindowsPowerShell\Modules\PSVersionCompare\PSCommandData&#39;</span>
+<span class="ln">6</span><span class="nv">$SourceVersionPath</span> <span class="p">=</span> <span class="nb">Join-Path</span> <span class="n">-Path</span> <span class="nv">$PSCommandDataRoot</span> <span class="n">-ChildPath</span> <span class="s1">&#39;Microsoft Windows Server 2016 Datacenter Technical Preview 4_5.0.10586.0_Desktop.xml&#39;</span>
+<span class="ln">7</span><span class="nv">$CompareVersionPath</span> <span class="p">=</span> <span class="nb">Join-Path</span> <span class="n">-Path</span> <span class="nv">$PSCommandDataRoot</span> <span class="n">-ChildPath</span> <span class="s1">&#39;Microsoft Windows Server 2016 Datacenter Technical Preview 5_5.1.14284.1000_Desktop.xml&#39;</span>
+<span class="ln">8</span><span class="nb">Compare-PSVersionCommand</span> <span class="n">-SourceVersionPath</span> <span class="nv">$SourceVersionPath</span>  <span class="n">-CompareVersionPath</span> <span class="nv">$CompareVersionPath</span> <span class="n">-ModuleFilter</span> <span class="n">Microsoft</span><span class="p">.*</span>
 </code></pre></div><p>Here is an example which shows the differences in the native PowerShell modules between Windows Server 2016 Technical Preview 4 and Technical Preview 5:</p>
 <p><img src="/images/comp2.png" alt=""></p>
 <p>Showing changes for all commands in all modules is impractical in an article like this, so a .txt file containing all changes is available <a href="https://raw.githubusercontent.com/janegilring/PSVersionCompare/master/Output/txt/WS2016TP4_PSVersion_5.0.10586.0-WS2016TP5_PSVersion_5.1.14300.1000.txt">here</a>.</p>
 <p>Same information for Windows Server 2016 Nano TP4-&gt;TP5 (<a href="https://raw.githubusercontent.com/janegilring/PSVersionCompare/master/Output/txt/WS2016TP4_Nano_Server_Compute_5.0.10586.0-WS2016TP5_Nano_Server_Compute_5.1.14300.1000.txt">TXT-file</a>), using PowerShell remoting as input:</p>
 <p><img src="/images/comp3.png" alt=""></p>
 <p>The XML files specified are generated by running the following on systems running the versions you want to compare:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Get-PSVersionCommand -ComputerName HPV-JR-2016TP5 -Export -Verbose
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Get-PSVersionCommand</span> <span class="n">-ComputerName</span> <span class="n">HPV-JR</span><span class="p">-</span><span class="n">2016TP5</span> <span class="n">-Export</span> <span class="n">-Verbose</span>
 </code></pre></div><p>If you run Get-PSVersionCommand without -Export, you will get all commands from system wide modules returned.</p>
 <p>As you might know, there is a new $PSEdition variable (also exists in $PSVersionTable.PSEdition) introduced in the Windows Server 2016 Technical Previews. This is intended to distinguish PowerShell Core (used in Nano Server) from “regular PowerShell” called PowerShell Desktop. If -Path is not specified to Get-PSVersionCommand -Export, the default naming convention for the generated XML-file is “OS Caption_PSVersion_PSEdition.xml” (for example Microsoft Windows Server 2016 Datacenter Technical Preview 5_5.1.14284.1000_Core.xml).</p>
 <p>When creating reference XML-files for server operating systems, I like to make sure that all Remote Server Administration Tools (RSAT) is installed on the reference computers in order to have all modules available for comparison. This can be accomplished like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Get-WindowsFeature -Name *RSAT* | Where-Object Installed <span style="color:#f92672">-eq</span> $false | Install-WindowsFeature
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Get-WindowsFeature</span> <span class="n">-Name</span> <span class="p">*</span><span class="n">RSAT</span><span class="p">*</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="n">Installed</span> <span class="o">-eq</span> <span class="nv">$false</span> <span class="p">|</span> <span class="nb">Install-WindowsFeature</span>
 </code></pre></div><p>There are a lot more features planned for this module, so check out the <a href="https://github.com/janegilring/PSVersionCompare">Git repository</a> for the latest status (or run <strong>Update-Module -Name PSVersionCompare</strong> if you already installed it using PowerShellGet). Some of the planned features:</p>
 <ul>
 <li>A Name parameter for specifying what command to compare. If not specified, all commands will be compared.</li>

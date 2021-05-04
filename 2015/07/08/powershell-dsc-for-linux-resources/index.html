@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>PowerShell DSC for Linux: Resources</title>
 
 <meta name="description" content="For the most powerful community">
@@ -240,100 +241,100 @@ if (!doNotTrack) {
 <p>New resources cover installation of packages (nxPackage), injecting single line into existing file (nxFileLine), configuring environment variables (nxEnvironment), working with archived data (nxArchive) and setting up authorized SSH keys (nxSShAuthorizedKeys). In this part of the series we will focus on these newly-added resources.</p>
 <h3 id="nxpackage">nxPackage</h3>
 <p>We will start with nxPackage. For me personally that is the most important resource from those added in this release. I created <a href="/2015/02/26/working-with-powershell-dsc-for-linux-part-4/" target="_blank">composite resource for previous version</a> to cover this gap. Unlike my composite resource, the one that shipped covers several package managers. It has support for local installation of packages. You just have to specify <em>FilePath</em> to package file. It understands concepts of package groups. You can specify <em>Arguments</em> for installation and define what is expected <em>ReturnCode</em>. I’m a CentOS user. So, I’ve tested it with <em>yum</em>. It worked fine for any scenarios that I’ve tried. For very basic scenarios when you specify absolute minimum information, the only required property is the <em>Name</em>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Configuration packages {
-    Import-DscResource -ModuleName nx
-    node LinuxNode {
-        nxPackage apache {
-            Name = <span style="color:#e6db74">&#39;httpd&#39;</span>
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">Configuration</span> <span class="n">packages</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">nx</span>
+<span class="ln">3</span>    <span class="n">node</span> <span class="n">LinuxNode</span> <span class="p">{</span>
+<span class="ln">4</span>        <span class="n">nxPackage</span> <span class="n">apache</span> <span class="p">{</span>
+<span class="ln">5</span>            <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;httpd&#39;</span>
+<span class="ln">6</span>        <span class="p">}</span>
+<span class="ln">7</span>    <span class="p">}</span>
+<span class="ln">8</span><span class="p">}</span>
 </code></pre></div><p>If you don’t specify package manager the resource will try to find one for you. That means that if you are not sure or have a mixed environment with distributions that resemble both Debian and RedHat, you can use one configuration and it will “just work”. The part of code that does the magic is using <em>which</em> command:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">GetPackageManager</span>():
-    ret <span style="color:#f92672">=</span> None
-    <span style="color:#75715e"># choose default - almost surely one will match.</span>
-    <span style="color:#66d9ef">for</span> b <span style="color:#f92672">in</span> (<span style="color:#e6db74">&#39;apt-get&#39;</span>, <span style="color:#e6db74">&#39;zypper&#39;</span>, <span style="color:#e6db74">&#39;yum&#39;</span>):
-        code, out <span style="color:#f92672">=</span> RunGetOutput(<span style="color:#e6db74">&#39;which &#39;</span> <span style="color:#f92672">+</span> b, False, False)
-        <span style="color:#66d9ef">if</span> code <span style="color:#f92672">is</span> <span style="color:#ae81ff">0</span>:
-            ret <span style="color:#f92672">=</span> b
-            <span style="color:#66d9ef">if</span> ret <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;apt-get&#39;</span>:
-                ret <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;apt&#39;</span>
-            <span style="color:#66d9ef">break</span>
-    <span style="color:#66d9ef">return</span> ret
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ln"> 1</span><span class="k">def</span> <span class="nf">GetPackageManager</span><span class="p">():</span>
+<span class="ln"> 2</span>    <span class="n">ret</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="ln"> 3</span>    <span class="c1"># choose default - almost surely one will match.</span>
+<span class="ln"> 4</span>    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;apt-get&#39;</span><span class="p">,</span> <span class="s1">&#39;zypper&#39;</span><span class="p">,</span> <span class="s1">&#39;yum&#39;</span><span class="p">):</span>
+<span class="ln"> 5</span>        <span class="n">code</span><span class="p">,</span> <span class="n">out</span> <span class="o">=</span> <span class="n">RunGetOutput</span><span class="p">(</span><span class="s1">&#39;which &#39;</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="ln"> 6</span>        <span class="k">if</span> <span class="n">code</span> <span class="ow">is</span> <span class="mi">0</span><span class="p">:</span>
+<span class="ln"> 7</span>            <span class="n">ret</span> <span class="o">=</span> <span class="n">b</span>
+<span class="ln"> 8</span>            <span class="k">if</span> <span class="n">ret</span> <span class="o">==</span> <span class="s1">&#39;apt-get&#39;</span><span class="p">:</span>
+<span class="ln"> 9</span>                <span class="n">ret</span> <span class="o">=</span> <span class="s1">&#39;apt&#39;</span>
+<span class="ln">10</span>            <span class="k">break</span>
+<span class="ln">11</span>    <span class="k">return</span> <span class="n">ret</span>
 </code></pre></div><p>In my opinion that is very elegant solution to the problem of package management diversity between Linux distributions.</p>
 <p>If we don’t want to depend on the resource to find package manager for us or we want to be sure that specific manager is used, we need to specify it in our configuration. If given manager is not present on remote system, we should get an error but that is unfortunately not very verbose. To find actual cause, we would have to use my favorite (and from my experience–the most effective) debugging technique, run omiserver interactively:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">CalledProcessError.  Error Code is <span style="color:#ae81ff">127</span>
-CalledProcessError.  Command string was dpkg-query -W -f<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;${Description}|${Maintainer}|&#39;</span>Unknown<span style="color:#e6db74">&#39;|${Installed-Size}|${Version}|${Status}
-</span><span style="color:#e6db74">&#39;</span> httpd
-CalledProcessError.  Command result was /bin/sh: dpkg-query: command not found
-check installed:/bin/sh: dpkg-query: command not found
-
-CalledProcessError.  Error Code is <span style="color:#ae81ff">127</span>
-CalledProcessError.  Command string was apt-get  install  --allow-unauthenticated --yes  httpd
-CalledProcessError.  Command result was /bin/sh: apt-get: command not found
-Failed to Install httpd output <span style="color:#66d9ef">for</span> command was: /bin/sh: apt-get: command not found
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln"> 1</span>CalledProcessError.  Error Code is <span class="m">127</span>
+<span class="ln"> 2</span>CalledProcessError.  Command string was dpkg-query -W -f<span class="o">=</span><span class="s1">&#39;${Description}|${Maintainer}|&#39;</span>Unknown<span class="s1">&#39;|${Installed-Size}|${Version}|${Status}
+</span><span class="ln"> 3</span><span class="s1">&#39;</span> httpd
+<span class="ln"> 4</span>CalledProcessError.  Command result was /bin/sh: dpkg-query: <span class="nb">command</span> not found
+<span class="ln"> 5</span>check installed:/bin/sh: dpkg-query: <span class="nb">command</span> not found
+<span class="ln"> 6</span>
+<span class="ln"> 7</span>CalledProcessError.  Error Code is <span class="m">127</span>
+<span class="ln"> 8</span>CalledProcessError.  Command string was apt-get  install  --allow-unauthenticated --yes  httpd
+<span class="ln"> 9</span>CalledProcessError.  Command result was /bin/sh: apt-get: <span class="nb">command</span> not found
+<span class="ln">10</span>Failed to Install httpd output <span class="k">for</span> <span class="nb">command</span> was: /bin/sh: apt-get: <span class="nb">command</span> not found
 </code></pre></div><p>My system doesn’t have apt-get on it, so error message is expected.</p>
 <p>If we want to remove packages, we can do it by specifying value <em>Absent</em> to Ensure property.</p>
 <h3 id="nxfileline">nxFileLine</h3>
 <p>Another interesting and potentially useful resource is nxFileLine. Unlike nxFile, this one is suitable for any component that have just one configuration file without option to read parts of the configuration from other files stored on disk. In such a case, replacing whole file may not be the best option. What we need is an option to remove certain lines or add lines that we need. Former can be achieved with a <em>DoesNotContainPattern</em> property which accepts regular expressions. Latter is done with <em>ContainsLine</em> property that specifies the line that needs to be appended. You have to be aware that there is no correlation between the two: new line is always added at the end of a file, so if position in the file is important; nxFileLine won’t help you. Example configuration that makes sure that <em>sshd</em> is not trying to resolve hosts (handy in lab environment) and removes any line that is just a comment:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Configuration Lines {
-    Import-DscResource -ModuleName nx
-    node LinuxNode {
-        nxFileLine sshd {
-            FilePath = <span style="color:#e6db74">&#39;/etc/ssh/sshd_config&#39;</span>
-            DoesNotContainPattern = <span style="color:#e6db74">&#39;^#.*?$|UseDNS yes&#39;</span>
-            ContainsLine = <span style="color:#e6db74">&#39;UseDNS no&#39;</span>
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Configuration</span> <span class="n">Lines</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">nx</span>
+<span class="ln"> 3</span>    <span class="n">node</span> <span class="n">LinuxNode</span> <span class="p">{</span>
+<span class="ln"> 4</span>        <span class="n">nxFileLine</span> <span class="n">sshd</span> <span class="p">{</span>
+<span class="ln"> 5</span>            <span class="n">FilePath</span> <span class="p">=</span> <span class="s1">&#39;/etc/ssh/sshd_config&#39;</span>
+<span class="ln"> 6</span>            <span class="n">DoesNotContainPattern</span> <span class="p">=</span> <span class="s1">&#39;^#.*?$|UseDNS yes&#39;</span>
+<span class="ln"> 7</span>            <span class="n">ContainsLine</span> <span class="p">=</span> <span class="s1">&#39;UseDNS no&#39;</span>
+<span class="ln"> 8</span>        <span class="p">}</span>
+<span class="ln"> 9</span>    <span class="p">}</span>
+<span class="ln">10</span><span class="p">}</span>
 </code></pre></div><h3 id="nxenvironment">nxEnvironment</h3>
 <p>Another common need on Linux system is configuration of environment variables. Their purpose and behavior is similar to the one we observe on Windows: most of variables are product-specific and are used only by certain applications. There is one environment variable that stands out: <em>PATH</em>. The only difference between both systems is separator: Windows is using semicolon where Linux is using colon. One of the resources added in this release (nxEnvironment) is designed to configure these variables, including the <em>PATH</em>. Example configuration adds <em>OMI_HOME</em> variable and adds folder with OMI binaries to the <em>PATH</em>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Configuration Environment {
-    Import-DscResource -ModuleName nx
-    node LinuxNode {
-        nxEnvironment Normal {
-            Name = <span style="color:#e6db74">&#39;OMI_HOME&#39;</span>
-            Value = <span style="color:#e6db74">&#39;/opt/omi&#39;</span>
-        }
-        nxEnvironment Path {
-            Name = <span style="color:#e6db74">&#39;WhoCares?&#39;</span>
-            Path = $true
-            Value = <span style="color:#e6db74">&#39;/opt/omi/bin&#39;</span>
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Configuration</span> <span class="n">Environment</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">nx</span>
+<span class="ln"> 3</span>    <span class="n">node</span> <span class="n">LinuxNode</span> <span class="p">{</span>
+<span class="ln"> 4</span>        <span class="n">nxEnvironment</span> <span class="n">Normal</span> <span class="p">{</span>
+<span class="ln"> 5</span>            <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;OMI_HOME&#39;</span>
+<span class="ln"> 6</span>            <span class="n">Value</span> <span class="p">=</span> <span class="s1">&#39;/opt/omi&#39;</span>
+<span class="ln"> 7</span>        <span class="p">}</span>
+<span class="ln"> 8</span>        <span class="n">nxEnvironment</span> <span class="n">Path</span> <span class="p">{</span>
+<span class="ln"> 9</span>            <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;WhoCares?&#39;</span>
+<span class="ln">10</span>            <span class="n">Path</span> <span class="p">=</span> <span class="nv">$true</span>
+<span class="ln">11</span>            <span class="n">Value</span> <span class="p">=</span> <span class="s1">&#39;/opt/omi/bin&#39;</span>
+<span class="ln">12</span>        <span class="p">}</span>
+<span class="ln">13</span>    <span class="p">}</span>
+<span class="ln">14</span><span class="p">}</span>
 </code></pre></div><p>This configuration highlights two differences between “normal” variables and the PATH variable. Former use name to specify the name of variable, for <em>PATH</em> it’s still a key value, but used only to differentiate between several items added to the path. To tell the resource that it’s a path that we configure we need to provide value <em>$true</em> to Path parameter. Another difference is a way both types are defined on Linux box. <em>PATH</em> is configured in <em>/etc/profile.d/DSCEnvironment.sh</em> by appending each item to existing <em>PATH</em> with colon as a separator. Any other variable definition is added to <em>/etc/environment</em> that is dot-sourced in <em>DSCEnvironment.sh</em>. The only problem I’ve found so far with this resource is related to <em>Ensure</em> property. Specifying <em>Present</em> works fine, but <em>Absent</em> don’t seem to change anything if variable is defined in another script under <em>/etc/profile.d</em>.</p>
 <h3 id="nxarchive">nxArchive</h3>
 <p>Another resource, nxArchive, should help us with using archived files. All you need to do is specify path to archive and destination for the files. This resource have very similar properties as Archive available for Windows. The difference is checksum usage: we can choose between md5, mtime, and ctime. Another difference is lack of credential support and validate property. Example configuration would use archive <em>/tmp/source.tgz</em> and create <em>/tmp/target</em> folder using it content:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Configuration Archive {
-    Import-DscResource -ModuleName nx
-    node 192.168.7.204 {
-        nxArchive tmp {
-            SourcePath = <span style="color:#e6db74">&#39;/tmp/source.tgz&#39;</span>
-            DestinationPath = <span style="color:#e6db74">&#39;/tmp/target&#39;</span>
-            Checksum = <span style="color:#e6db74">&#39;md5&#39;</span>
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Configuration</span> <span class="n">Archive</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">nx</span>
+<span class="ln"> 3</span>    <span class="n">node</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">7</span><span class="p">.</span><span class="n">204</span> <span class="p">{</span>
+<span class="ln"> 4</span>        <span class="n">nxArchive</span> <span class="n">tmp</span> <span class="p">{</span>
+<span class="ln"> 5</span>            <span class="n">SourcePath</span> <span class="p">=</span> <span class="s1">&#39;/tmp/source.tgz&#39;</span>
+<span class="ln"> 6</span>            <span class="n">DestinationPath</span> <span class="p">=</span> <span class="s1">&#39;/tmp/target&#39;</span>
+<span class="ln"> 7</span>            <span class="n">Checksum</span> <span class="p">=</span> <span class="s1">&#39;md5&#39;</span>
+<span class="ln"> 8</span>        <span class="p">}</span>
+<span class="ln"> 9</span>    <span class="p">}</span>
+<span class="ln">10</span><span class="p">}</span>
 </code></pre></div><h3 id="nxsshauthorizedkeys">nxSshAuthorizedKeys</h3>
 <p>Last resource added in this release should address issue of managing SSH keys for a given user. With nxSshAuthorizedKeys resource we can deliver keys to any number of nodes and be sure that our private key will work seamlessly with all of them. It will take care of proper file structure and permissions on both <em>.ssh</em> folder and <em>authorized_keys</em> file:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#f92672">[</span>root@PSMag ~<span style="color:#f92672">]</span><span style="color:#75715e"># ls /home/bielawb/.ssh/ -las</span>
-total <span style="color:#ae81ff">4</span>
-<span style="color:#ae81ff">0</span> drwx------. <span style="color:#ae81ff">2</span> bielawb bielawb  <span style="color:#ae81ff">28</span> Jun <span style="color:#ae81ff">14</span> 01:29 .
-<span style="color:#ae81ff">0</span> drwx------. <span style="color:#ae81ff">3</span> bielawb bielawb  <span style="color:#ae81ff">90</span> Jun <span style="color:#ae81ff">14</span> 01:29 ..
-<span style="color:#ae81ff">4</span> -rwx------. <span style="color:#ae81ff">1</span> bielawb bielawb <span style="color:#ae81ff">424</span> Jun <span style="color:#ae81ff">14</span> 01:29 authorized_keys
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="o">[</span>root@PSMag ~<span class="o">]</span><span class="c1"># ls /home/bielawb/.ssh/ -las</span>
+<span class="ln">2</span>total <span class="m">4</span>
+<span class="ln">3</span><span class="m">0</span> drwx------. <span class="m">2</span> bielawb bielawb  <span class="m">28</span> Jun <span class="m">14</span> 01:29 .
+<span class="ln">4</span><span class="m">0</span> drwx------. <span class="m">3</span> bielawb bielawb  <span class="m">90</span> Jun <span class="m">14</span> 01:29 ..
+<span class="ln">5</span><span class="m">4</span> -rwx------. <span class="m">1</span> bielawb bielawb <span class="m">424</span> Jun <span class="m">14</span> 01:29 authorized_keys
 </code></pre></div><p>Something that might require change is rights for <em>authorized_keys</em> files: <em>x</em> is not necessary. It’s not a big issue: keys will work just fine with either.</p>
 <p>There are two odd things about this resource: first of all, <em>KeyComment</em> is marked as a key in the schema. Probably because there was no natural candidate that could be used: same key value may need to be applied to several users, same user can have multiple keys. Other one is more important: even though schema doesn’t define <em>UserName</em> as required, it is required by the resource. This means that instead of getting errors at compilation phase, we will get them at implementation phase. Example configuration (with actual key removed):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Configuration SshKeys {
-    Import-DscResource -ModuleName nx
-    node LinuxNode {
-        nxSshAuthorizedKeys bielawb {
-            Key = <span style="color:#e6db74">&#39;ssh-rsa key description&#39;</span>
-            KeyComment = <span style="color:#e6db74">&#39;How will that work?&#39;</span>
-            UserName = <span style="color:#e6db74">&#39;bielawb&#39;</span>
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Configuration</span> <span class="n">SshKeys</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">nx</span>
+<span class="ln"> 3</span>    <span class="n">node</span> <span class="n">LinuxNode</span> <span class="p">{</span>
+<span class="ln"> 4</span>        <span class="n">nxSshAuthorizedKeys</span> <span class="n">bielawb</span> <span class="p">{</span>
+<span class="ln"> 5</span>            <span class="n">Key</span> <span class="p">=</span> <span class="s1">&#39;ssh-rsa key description&#39;</span>
+<span class="ln"> 6</span>            <span class="n">KeyComment</span> <span class="p">=</span> <span class="s1">&#39;How will that work?&#39;</span>
+<span class="ln"> 7</span>            <span class="n">UserName</span> <span class="p">=</span> <span class="s1">&#39;bielawb&#39;</span>
+<span class="ln"> 8</span>        <span class="p">}</span>
+<span class="ln"> 9</span>    <span class="p">}</span>
+<span class="ln">10</span><span class="p">}</span>
 </code></pre></div><p>Because there isn’t any strict link between resource key and actual data stored in the file we can easily break existing one by adding single line between comment and actual key data, or by removing comment from the file. If that happens DSC will duplicate the line with a key. It’s not a big issue, but just something that user should be aware of.</p>
 <p>We now know what we can configure currently with PowerShell DSC for Linux. But there is also huge change in how we can achieve that. We will take a look at that in the third and final part of this series.</p>
 </div>

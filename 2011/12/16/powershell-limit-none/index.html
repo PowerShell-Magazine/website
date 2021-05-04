@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>PowerShell -Limit none</title>
 
 <meta name="description" content="For the most powerful community">
@@ -239,7 +240,7 @@ if (!doNotTrack) {
 <p>Here are some tips from my endeavors over the years. Unfortunately they are not fully detailed but enough for you and your favorite search engine to build on.</p>
 <p>– Quit using cmd.exe. Running net, ipconfig, netsh, ping, or netstat works just fine in PowerShell, as do most other “native” commands. Perform the exercise of finding the PowerShell way of accomplishing the same task, i.e. Get-Service. If there is no single cmdlet that mirrors the command write a function that gets you there.</p>
 <p>– The type accelerator is very handy. For example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$content = Get-Content -Path SomeFile.xml
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$content</span> <span class="p">=</span> <span class="nb">Get-Content</span> <span class="n">-Path</span> <span class="n">SomeFile</span><span class="p">.</span><span class="n">xml</span>
 </code></pre></div><p>This is a first class object. Many configuration files, even non Microsoft, are XML based.</p>
 <p>– PowerShell’s .NET integration, a more advanced path, has capabilities that can be harnessed today. The MSDN .NET documentation is great and many entries have PowerShell examples in the comments. Classes like System.Net.WebClient and System.Net.Sockets can be used against web services and Linux daemons.</p>
 <p>– For those of us with legacy systems and applications, the COM object can still be used under PowerShell.  Check the help for New-Object, load up an instance, and dig in with Get-Member. You will be amazed at what is possible.</p>

@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>PSRemotely – Authoring workflow (Part 1)</title>
 
 <meta name="description" content="For the most powerful community">
@@ -271,79 +272,79 @@ if (!doNotTrack) {
 <p>This stage consists of authoring tests using Pester/PoshSpec for operations validations.</p>
 <p>Let us start by translating the above gathered configurations in Pester Describe blocks independently, to begin with.</p>
 <p>Below is a very crude way that can be used to determine that Windows Server 2016 is installed on the node. There are two Pester assertions –. First one asserts that OS type is a server and the OS SKU is either datacenter edition with GUI or server core.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Ensure that Server 2016 OS installation is done.</span>
-Describe <span style="color:#e6db74">&#34;Operating system installed validation&#34;</span> {
-    $OS = Get-CimInstance -Class Win32_OperatingSystem
-
-    Context <span style="color:#e6db74">&#34;Server Type check&#34;</span> {
-        It <span style="color:#e6db74">&#34;Should have the OSType as WinNT&#34;</span> {
-            $OS.OSType | Should Be 18
-        }
-    }
-
-    Context <span style="color:#e6db74">&#39;Server 2016 check&#39;</span> {
-        It <span style="color:#e6db74">&#34;Should have server 2016 installed&#34;</span> {
-           $OS.Caption | Should BeLike <span style="color:#e6db74">&#39;*Server 2016*&#39;</span>
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="c"># Ensure that Server 2016 OS installation is done.</span>
+<span class="ln"> 2</span><span class="n">Describe</span> <span class="s2">&#34;Operating system installed validation&#34;</span> <span class="p">{</span>
+<span class="ln"> 3</span>    <span class="nv">$OS</span> <span class="p">=</span> <span class="nb">Get-CimInstance</span> <span class="n">-Class</span> <span class="n">Win32_OperatingSystem</span>
+<span class="ln"> 4</span>
+<span class="ln"> 5</span>    <span class="n">Context</span> <span class="s2">&#34;Server Type check&#34;</span> <span class="p">{</span>
+<span class="ln"> 6</span>        <span class="n">It</span> <span class="s2">&#34;Should have the OSType as WinNT&#34;</span> <span class="p">{</span>
+<span class="ln"> 7</span>            <span class="nv">$OS</span><span class="p">.</span><span class="n">OSType</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="n">18</span>
+<span class="ln"> 8</span>        <span class="p">}</span>
+<span class="ln"> 9</span>    <span class="p">}</span>
+<span class="ln">10</span>
+<span class="ln">11</span>    <span class="n">Context</span> <span class="s1">&#39;Server 2016 check&#39;</span> <span class="p">{</span>
+<span class="ln">12</span>        <span class="n">It</span> <span class="s2">&#34;Should have server 2016 installed&#34;</span> <span class="p">{</span>
+<span class="ln">13</span>           <span class="nv">$OS</span><span class="p">.</span><span class="n">Caption</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">BeLike</span> <span class="s1">&#39;*Server 2016*&#39;</span>
+<span class="ln">14</span>        <span class="p">}</span>
+<span class="ln">15</span>    <span class="p">}</span>
+<span class="ln">16</span><span class="p">}</span>
 </code></pre></div><p>Here is another independent test for validating that the domain account is a member of the local administrators group on a node.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Validate that the domain account is part of the local administrators group on a node.</span>
-Describe <span style="color:#e6db74">&#34;Domain account is local administrator validation&#34;</span> {
-    $LocalGroupMember = Get-LocalGroupMember -Group Administrators -Member <span style="color:#e6db74">&#34;S2DClusterAdmin&#34;</span> -ErrorAction SilentlyContinue
-    It <span style="color:#e6db74">&#34;Should be member of local admins group&#34;</span> {
-        $LocalGroupMember | Should NOT BeNullOrEmpty
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="c"># Validate that the domain account is part of the local administrators group on a node.</span>
+<span class="ln">2</span><span class="n">Describe</span> <span class="s2">&#34;Domain account is local administrator validation&#34;</span> <span class="p">{</span>
+<span class="ln">3</span>    <span class="nv">$LocalGroupMember</span> <span class="p">=</span> <span class="nb">Get-LocalGroupMember</span> <span class="n">-Group</span> <span class="n">Administrators</span> <span class="n">-Member</span> <span class="s2">&#34;S2DClusterAdmin&#34;</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
+<span class="ln">4</span>    <span class="n">It</span> <span class="s2">&#34;Should be member of local admins group&#34;</span> <span class="p">{</span>
+<span class="ln">5</span>        <span class="nv">$LocalGroupMember</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">NOT</span> <span class="n">BeNullOrEmpty</span>
+<span class="ln">6</span>    <span class="p">}</span>
+<span class="ln">7</span><span class="p">}</span>
 </code></pre></div><h3 id="stage-2--prepare-node-configuration-data">Stage 2 – Prepare node configuration data</h3>
 <p>If you look at the authored Pester describe blocks to validate the configuration on the nodes, it might use environment specific data hard coded into the tests e.g. domain username in above example.</p>
 <p>So we need to now collect all this data which is environment specific and decouple it from our tests.</p>
 <p>Start with the below empty configuration data (place it in the EnvironmentConfigData.psd1 file) and start populating it (it follows the DSC style configuration data syntax).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">@{
-    AllNodes = @(
-        @{
-            <span style="color:#75715e"># common node information hashtable</span>
-            NodeName = <span style="color:#e6db74">&#39;*&#39;</span>; <span style="color:#75715e"># do not edit</span>
-        },
-        @{
-            <span style="color:#75715e"># Individual node information hashtable</span>
-            NodeName = <span style="color:#e6db74">&#39;Node1&#39;</span>
-        },
-        @{
-            NodeName = <span style="color:#e6db74">&#39;Node2&#39;</span>
-        },
-        @{
-            NodeName = <span style="color:#e6db74">&#39;Node3&#39;</span>
-        },
-        @{
-            NodeName = <span style="color:#e6db74">&#39;Node4&#39;</span>
-        }
-    )
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="p">@{</span>
+<span class="ln"> 2</span>    <span class="n">AllNodes</span> <span class="p">=</span> <span class="p">@(</span>
+<span class="ln"> 3</span>        <span class="p">@{</span>
+<span class="ln"> 4</span>            <span class="c"># common node information hashtable</span>
+<span class="ln"> 5</span>            <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;*&#39;</span><span class="p">;</span> <span class="c"># do not edit</span>
+<span class="ln"> 6</span>        <span class="p">},</span>
+<span class="ln"> 7</span>        <span class="p">@{</span>
+<span class="ln"> 8</span>            <span class="c"># Individual node information hashtable</span>
+<span class="ln"> 9</span>            <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;Node1&#39;</span>
+<span class="ln">10</span>        <span class="p">},</span>
+<span class="ln">11</span>        <span class="p">@{</span>
+<span class="ln">12</span>            <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;Node2&#39;</span>
+<span class="ln">13</span>        <span class="p">},</span>
+<span class="ln">14</span>        <span class="p">@{</span>
+<span class="ln">15</span>            <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;Node3&#39;</span>
+<span class="ln">16</span>        <span class="p">},</span>
+<span class="ln">17</span>        <span class="p">@{</span>
+<span class="ln">18</span>            <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;Node4&#39;</span>
+<span class="ln">19</span>        <span class="p">}</span>
+<span class="ln">20</span>    <span class="p">)</span>
+<span class="ln">21</span><span class="p">}</span>
 </code></pre></div><p>Start by placing them inside the node configuration data with a general thumb rule of mapping common data to common node information hashtable and node specific details to node configuration hashtable.</p>
 <p>Now in the previous tests, the only input is the domain user name. So we can add that to common node information hashtable, since the domain user is a member of the local administrators group needs to be validated on all the nodes in the solution. So now the configuration data looks like below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">@{    
-    AllNodes = @(
-        @{
-            <span style="color:#75715e"># common node information hashtable</span>
-            NodeName = <span style="color:#e6db74">&#39;*&#39;</span>; <span style="color:#75715e"># do not edit</span>
-            DomainUser = <span style="color:#e6db74">&#39;S2DClusterAdmin&#39;</span>
-        },
-        @{
-            <span style="color:#75715e"># Individual node information hashtable</span>
-            NodeName = <span style="color:#e6db74">&#39;Node1&#39;</span>
-        },
-        @{
-            NodeName = <span style="color:#e6db74">&#39;Node2&#39;</span>
-        },
-        @{
-            NodeName = <span style="color:#e6db74">&#39;Node3&#39;</span>
-        },
-        @{
-            NodeName = <span style="color:#e6db74">&#39;Node4&#39;</span>
-        }
-    )
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="p">@{</span>    
+<span class="ln"> 2</span>    <span class="n">AllNodes</span> <span class="p">=</span> <span class="p">@(</span>
+<span class="ln"> 3</span>        <span class="p">@{</span>
+<span class="ln"> 4</span>            <span class="c"># common node information hashtable</span>
+<span class="ln"> 5</span>            <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;*&#39;</span><span class="p">;</span> <span class="c"># do not edit</span>
+<span class="ln"> 6</span>            <span class="n">DomainUser</span> <span class="p">=</span> <span class="s1">&#39;S2DClusterAdmin&#39;</span>
+<span class="ln"> 7</span>        <span class="p">},</span>
+<span class="ln"> 8</span>        <span class="p">@{</span>
+<span class="ln"> 9</span>            <span class="c"># Individual node information hashtable</span>
+<span class="ln">10</span>            <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;Node1&#39;</span>
+<span class="ln">11</span>        <span class="p">},</span>
+<span class="ln">12</span>        <span class="p">@{</span>
+<span class="ln">13</span>            <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;Node2&#39;</span>
+<span class="ln">14</span>        <span class="p">},</span>
+<span class="ln">15</span>        <span class="p">@{</span>
+<span class="ln">16</span>            <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;Node3&#39;</span>
+<span class="ln">17</span>        <span class="p">},</span>
+<span class="ln">18</span>        <span class="p">@{</span>
+<span class="ln">19</span>            <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;Node4&#39;</span>
+<span class="ln">20</span>        <span class="p">}</span>
+<span class="ln">21</span>    <span class="p">)</span>
+<span class="ln">22</span><span class="p">}</span>
 </code></pre></div><h3 id="stage-3-8211-using-psremotely-for-remote-ops-validation">Stage 3 – Using PSRemotely for remote ops validation</h3>
 <p>At this stage in the authoring workflow, we have our tests ready along with the environment configuration data in hand. Before using PSRemotely to target all the nodes for deployment readiness we have to ask this question, How do we connect over PSRemoting to these nodes?</p>
 <ul>
@@ -365,33 +366,33 @@ Describe <span style="color:#e6db74">&#34;Domain account is local administrator 
 <blockquote>
 <p>Take note of how the hard coded value for domain username (S2DClusterAdmin) from the standalone Pester tests is replaced with node specific configuration data e.g. $Node.DomainUser.</p>
 </blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Use the PSRemotely DSL to wrap the existing Pester tests and target remote nodes</span>
-PSRemotely -Path <span style="color:#e6db74">&#34;$PSScriptRoot\EnvironmentConfigData.psd1&#34;</span> {
-    <span style="color:#75715e"># All the nodes in the solution are to be targeted</span>
-    Node $AllNodes.NodeName {
-        <span style="color:#75715e"># Ensure that Server 2016 OS installation is done.</span>
-        Describe <span style="color:#e6db74">&#34;Operating system installed validation&#34;</span> {
-            $OS = Get-CimInstance -Class Win32_OperatingSystem
-            Context <span style="color:#e6db74">&#34;Server Type check&#34;</span> {
-                It <span style="color:#e6db74">&#34;Should have the OSType as WinNT&#34;</span> {
-                    $OS.OSType | Should Be 18
-                }
-            }
-            Context <span style="color:#e6db74">&#39;Server 2016 check&#39;</span> {
-                It <span style="color:#e6db74">&#34;Should have server 2016 installed&#34;</span> {
-                $OS.Caption | Should BeLike <span style="color:#e6db74">&#39;*Server 2016*&#39;</span>
-                }
-            }
-        }
-        <span style="color:#75715e"># Validate that the domain account is part of the local administrators group on a node.</span>
-        Describe <span style="color:#e6db74">&#34;Domain account is local administrator validation&#34;</span> {
-          $LocalGroupMember = Get-LocalGroupMember -Group Administrators -Member <span style="color:#e6db74">&#34;</span>$($Node.DomainUser)<span style="color:#e6db74">&#34;</span> -ErrorAction SilentlyContinue
-            It <span style="color:#e6db74">&#34;Should be member of local admins group&#34;</span> {
-                $LocalGroupMember | Should NOT BeNullOrEmpty
-            }
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="c"># Use the PSRemotely DSL to wrap the existing Pester tests and target remote nodes</span>
+<span class="ln"> 2</span><span class="n">PSRemotely</span> <span class="n">-Path</span> <span class="s2">&#34;$PSScriptRoot\EnvironmentConfigData.psd1&#34;</span> <span class="p">{</span>
+<span class="ln"> 3</span>    <span class="c"># All the nodes in the solution are to be targeted</span>
+<span class="ln"> 4</span>    <span class="n">Node</span> <span class="nv">$AllNodes</span><span class="p">.</span><span class="n">NodeName</span> <span class="p">{</span>
+<span class="ln"> 5</span>        <span class="c"># Ensure that Server 2016 OS installation is done.</span>
+<span class="ln"> 6</span>        <span class="n">Describe</span> <span class="s2">&#34;Operating system installed validation&#34;</span> <span class="p">{</span>
+<span class="ln"> 7</span>            <span class="nv">$OS</span> <span class="p">=</span> <span class="nb">Get-CimInstance</span> <span class="n">-Class</span> <span class="n">Win32_OperatingSystem</span>
+<span class="ln"> 8</span>            <span class="n">Context</span> <span class="s2">&#34;Server Type check&#34;</span> <span class="p">{</span>
+<span class="ln"> 9</span>                <span class="n">It</span> <span class="s2">&#34;Should have the OSType as WinNT&#34;</span> <span class="p">{</span>
+<span class="ln">10</span>                    <span class="nv">$OS</span><span class="p">.</span><span class="n">OSType</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="n">18</span>
+<span class="ln">11</span>                <span class="p">}</span>
+<span class="ln">12</span>            <span class="p">}</span>
+<span class="ln">13</span>            <span class="n">Context</span> <span class="s1">&#39;Server 2016 check&#39;</span> <span class="p">{</span>
+<span class="ln">14</span>                <span class="n">It</span> <span class="s2">&#34;Should have server 2016 installed&#34;</span> <span class="p">{</span>
+<span class="ln">15</span>                <span class="nv">$OS</span><span class="p">.</span><span class="n">Caption</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">BeLike</span> <span class="s1">&#39;*Server 2016*&#39;</span>
+<span class="ln">16</span>                <span class="p">}</span>
+<span class="ln">17</span>            <span class="p">}</span>
+<span class="ln">18</span>        <span class="p">}</span>
+<span class="ln">19</span>        <span class="c"># Validate that the domain account is part of the local administrators group on a node.</span>
+<span class="ln">20</span>        <span class="n">Describe</span> <span class="s2">&#34;Domain account is local administrator validation&#34;</span> <span class="p">{</span>
+<span class="ln">21</span>          <span class="nv">$LocalGroupMember</span> <span class="p">=</span> <span class="nb">Get-LocalGroupMember</span> <span class="n">-Group</span> <span class="n">Administrators</span> <span class="n">-Member</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$Node</span><span class="p">.</span><span class="n">DomainUser</span><span class="p">)</span><span class="s2">&#34;</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
+<span class="ln">22</span>            <span class="n">It</span> <span class="s2">&#34;Should be member of local admins group&#34;</span> <span class="p">{</span>
+<span class="ln">23</span>                <span class="nv">$LocalGroupMember</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">NOT</span> <span class="n">BeNullOrEmpty</span>
+<span class="ln">24</span>            <span class="p">}</span>
+<span class="ln">25</span>        <span class="p">}</span>
+<span class="ln">26</span>    <span class="p">}</span>
+<span class="ln">27</span><span class="p">}</span>
 </code></pre></div><p>We are all set and have two files in the directory e.g. EnvironmentConfigData.psd1 and S2DValidation.PSRemotely.ps1, it is finally time to <a href="http://psremotely.readthedocs.io/en/latest/Invoke-PSRemotely/">invoke PSRemotely</a> and give remote operations validation a go.</p>
 <p>We can use Invoke-PSRemotely in the current directory to run all the operations validation housed inside it or specify a path to a file ending with *.PSRemotely.ps1 extension.</p>
 

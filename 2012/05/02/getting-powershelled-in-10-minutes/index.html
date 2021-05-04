@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Getting PowerShelled in 10 Minutes</title>
 
 <meta name="description" content="For the most powerful community">
@@ -248,7 +249,7 @@ if (!doNotTrack) {
 <h3 id="playing-with-cmdlets">Playing With Cmdlets</h3>
 <p>To make PowerShell do something, you need to know what your weapons are. Most of what PowerShell can do is encapsulated in a “cmdlet”, a basic command that is responsible for one specific area or topic.</p>
 <p>To find the right weapon for a mission, each cmdlet has a formal name. It consists of a verb (what it does, weapon category) and a noun (what it acts upon, its target range). The mother of all cmdlets is called “Get-Command”: it “gets” you all other “commands”.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; Get-Command
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Command</span>
 </code></pre></div><p>As it turns out, Get-Command not only returns cmdlets but also other command types that are beyond the current video game level.</p>
 <h3 id="mission-1-getting-cmdlet-list">Mission 1: Getting Cmdlet List</h3>
 <p>Our first fighter mission: “Obtain a list of all cmdlets available!”</p>

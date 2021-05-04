@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>PSTip: Connect to Azure Virtual Machines without being prompted for credentials</title>
 
 <meta name="description" content="For the most powerful community">
@@ -235,13 +236,13 @@ if (!doNotTrack) {
           </ul>
           <div class="content"><p>When working with Azure it can be useful to quickly connect to a number of Azure VMs. Unfortunately this might result in having to enter your password multiple times. To circumvent this problem I wrote the Connect-Mstsc function which accepts a user name and password as parameters. The function stores the credentials in the local credential store and because of this the credentials do not have to be separately entered when connecting via RDP to the remote system. Although the Get-AzureRemoteDesktopFile is a useful cmdlet that creates an .RDP file for Remote Desktop connection, it does prompt for the credentials.</p>
 <p>For example, to connect to an Azure Virtual Machine using its hostname and port number:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$Cred = Get-Credential
-Connect-Mstsc <span style="color:#960050;background-color:#1e0010">–</span>ComputerName cloudservice.cloudapp.net<span style="color:#960050;background-color:#1e0010">:</span>58142 <span style="color:#960050;background-color:#1e0010">–</span>Credential $Cred
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$Cred</span> <span class="p">=</span> <span class="nb">Get-Credential</span>
+<span class="ln">2</span><span class="nb">Connect-Mstsc</span> <span class="err">–</span><span class="n">ComputerName</span> <span class="n">cloudservice</span><span class="p">.</span><span class="n">cloudapp</span><span class="p">.</span><span class="n">net</span><span class="err">:</span><span class="n">58142</span> <span class="err">–</span><span class="n">Credential</span> <span class="nv">$Cred</span>
 </code></pre></div><p>This also works in combination with the Azure PowerShell, if a RDP session needs to be created with all of the systems that have RDP configured the following code can be used. It filters based on the AzureEndpoint which has port 3389 configured:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$Cred = Get-Credential
-Get-AzureVM | Get-AzureEndPoint | Where-Object {$_.LocalPort <span style="color:#f92672">-eq</span> 3389} | <span style="color:#66d9ef">ForEach</span>-Object {
-    Connect-Mstsc -ComputerName ($_.Vip,$_.Port -join <span style="color:#e6db74">&#39;:&#39;</span>) -Credential $Cred
-} 
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$Cred</span> <span class="p">=</span> <span class="nb">Get-Credential</span>
+<span class="ln">2</span><span class="nb">Get-AzureVM</span> <span class="p">|</span> <span class="nb">Get-AzureEndPoint</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">LocalPort</span> <span class="o">-eq</span> <span class="n">3389</span><span class="p">}</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span>
+<span class="ln">3</span>    <span class="nb">Connect-Mstsc</span> <span class="n">-ComputerName</span> <span class="p">(</span><span class="nv">$_</span><span class="p">.</span><span class="n">Vip</span><span class="p">,</span><span class="nv">$_</span><span class="p">.</span><span class="n">Port</span> <span class="n">-join</span> <span class="s1">&#39;:&#39;</span><span class="p">)</span> <span class="n">-Credential</span> <span class="nv">$Cred</span>
+<span class="ln">4</span><span class="p">}</span> 
 </code></pre></div><p>The Connect-Mstsc function is available for download in the TechNet Script Gallery: <a href="https://gallery.technet.microsoft.com/scriptcenter/Connect-Mstsc-Open-RDP-2064b10b">Connect-Mstsc</a></p>
 </div>
         </article>

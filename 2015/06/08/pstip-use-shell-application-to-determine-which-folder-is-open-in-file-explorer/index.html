@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>#PSTip Use Shell.Application to determine which folder is open in File Explorer</title>
 
 <meta name="description" content="For the most powerful community">
@@ -234,9 +235,9 @@ if (!doNotTrack) {
             </li>
           </ul>
           <div class="content"><p>By using the Windows() method and the LocationURL and LocationName properties we can programmatically determine which folder is open in File Explorer.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$ShellApp = New-Object -ComObject Shell.Application
-$ShellApp.Windows() | Where-Object {$_.Name <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;File Explorer&#39;</span>} | 
-Select-Object LocationName,LocationURL
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$ShellApp</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">-ComObject</span> <span class="n">Shell</span><span class="p">.</span><span class="n">Application</span>
+<span class="ln">2</span><span class="nv">$ShellApp</span><span class="p">.</span><span class="n">Windows</span><span class="p">()</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">Name</span> <span class="o">-eq</span> <span class="s1">&#39;File Explorer&#39;</span><span class="p">}</span> <span class="p">|</span> 
+<span class="ln">3</span><span class="nb">Select-Object</span> <span class="n">LocationName</span><span class="p">,</span><span class="n">LocationURL</span>
 </code></pre></div><p>The Where-Object statement is required to filter out results from Internet Explorer. If you are interested in all results including the open Internet Explorer windows and tabs the Where-Object statement can be omitted.</p>
 </div>
         </article>

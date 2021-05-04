@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Working with PowerShell DSC for Linux, part 5</title>
 
 <meta name="description" content="For the most powerful community">
@@ -241,133 +242,133 @@ if (!doNotTrack) {
           </ul>
           <div class="content"><p>Managing Linux can become a challenge if you don’t have some way of distributing credentials. There are several options: joining Active Directory domain and using shared credentials for both Linux and Windows, using other LDAP implementation to authenticate or distribute users/groups using Configuration Management tools. In the final part of Linux DSC series we will take a look at last two resources – <em>nxUser</em> and <em>nxGroup</em> – that should help us manage user and groups on Linux systems. We will also take a look at few debugging techniques that should help you identify a reason why given configuration fails.</p>
 <p>Adding a user on a Linux with <em>nxUser</em> resource is relatively simple task. It’s usually enough to specify username, password, and a home folder. The password is a tricky part: we have to provide it in salted hash form. I couldn’t find any reasonable solution for Windows to create such hashes, so I ended up creating a simple script on the Linux box that would generate the salted hash of selected password for me:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/python</span>
-<span style="color:#f92672">from</span> crypt <span style="color:#f92672">import</span> crypt
-<span style="color:#f92672">from</span> optparse <span style="color:#f92672">import</span> OptionParser
-
-
-parser <span style="color:#f92672">=</span> OptionParser(
-    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Creates salted hash using specified plain-text password and salt&#39;</span>
-)
-
-parser<span style="color:#f92672">.</span>add_option(
-    <span style="color:#e6db74">&#39;-p&#39;</span>,
-    <span style="color:#e6db74">&#39;--password&#39;</span>,
-    help <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Plain text password&#39;</span>
-)
-
-parser<span style="color:#f92672">.</span>add_option(
-    <span style="color:#e6db74">&#39;-s&#39;</span>,
-    <span style="color:#e6db74">&#39;--salt&#39;</span>,
-    help <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Salt that will be used&#39;</span>,
-    default <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;PowerShellMag&#39;</span>
-)
-
-(options, args) <span style="color:#f92672">=</span> parser<span style="color:#f92672">.</span>parse_args()
-
-<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> options<span style="color:#f92672">.</span>password:
-    parser<span style="color:#f92672">.</span>error(<span style="color:#e6db74">&#39;Password is required!&#39;</span>)
-
-<span style="color:#66d9ef">print</span> crypt(
-    options<span style="color:#f92672">.</span>password,
-    <span style="color:#e6db74">&#34;$6$</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">$&#34;</span> <span style="color:#f92672">%</span> options<span style="color:#f92672">.</span>salt
-)
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ln"> 1</span><span class="ch">#!/usr/bin/python</span>
+<span class="ln"> 2</span><span class="kn">from</span> <span class="nn">crypt</span> <span class="kn">import</span> <span class="n">crypt</span>
+<span class="ln"> 3</span><span class="kn">from</span> <span class="nn">optparse</span> <span class="kn">import</span> <span class="n">OptionParser</span>
+<span class="ln"> 4</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span><span class="n">parser</span> <span class="o">=</span> <span class="n">OptionParser</span><span class="p">(</span>
+<span class="ln"> 7</span>    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Creates salted hash using specified plain-text password and salt&#39;</span>
+<span class="ln"> 8</span><span class="p">)</span>
+<span class="ln"> 9</span>
+<span class="ln">10</span><span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span>
+<span class="ln">11</span>    <span class="s1">&#39;-p&#39;</span><span class="p">,</span>
+<span class="ln">12</span>    <span class="s1">&#39;--password&#39;</span><span class="p">,</span>
+<span class="ln">13</span>    <span class="n">help</span> <span class="o">=</span> <span class="s1">&#39;Plain text password&#39;</span>
+<span class="ln">14</span><span class="p">)</span>
+<span class="ln">15</span>
+<span class="ln">16</span><span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span>
+<span class="ln">17</span>    <span class="s1">&#39;-s&#39;</span><span class="p">,</span>
+<span class="ln">18</span>    <span class="s1">&#39;--salt&#39;</span><span class="p">,</span>
+<span class="ln">19</span>    <span class="n">help</span> <span class="o">=</span> <span class="s1">&#39;Salt that will be used&#39;</span><span class="p">,</span>
+<span class="ln">20</span>    <span class="n">default</span> <span class="o">=</span> <span class="s1">&#39;PowerShellMag&#39;</span>
+<span class="ln">21</span><span class="p">)</span>
+<span class="ln">22</span>
+<span class="ln">23</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+<span class="ln">24</span>
+<span class="ln">25</span><span class="k">if</span> <span class="ow">not</span> <span class="n">options</span><span class="o">.</span><span class="n">password</span><span class="p">:</span>
+<span class="ln">26</span>    <span class="n">parser</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Password is required!&#39;</span><span class="p">)</span>
+<span class="ln">27</span>
+<span class="ln">28</span><span class="k">print</span> <span class="n">crypt</span><span class="p">(</span>
+<span class="ln">29</span>    <span class="n">options</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+<span class="ln">30</span>    <span class="s2">&#34;$6$</span><span class="si">%s</span><span class="s2">$&#34;</span> <span class="o">%</span> <span class="n">options</span><span class="o">.</span><span class="n">salt</span>
+<span class="ln">31</span><span class="p">)</span>
 </code></pre></div><p>There are at least few methods to copy this file over to Linux box: scp, sftp, or even nxFile resource. Once the script is there, we can call it. Again: there are few options available. I decided to use Posh-Ssh module <a href="/2014/07/03/posh-ssh-open-source-ssh-powershell-module/" target="_blank">described in PowerShell Magazine a while ago</a>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$linuxSession = New-SSHSession -ComputerName 192.168.200.104 -Credential $bielawbCred -AcceptKey $true
-
-$salt = Invoke-SSHCommand -SSHSession $linuxSession -Command <span style="color:#e6db74">&#39;bin/passgen.py -p P@ssw0rd&#39;</span> | <span style="color:#66d9ef">ForEach</span>-Object {
-    $_.Output <span style="color:#f92672">-replace</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">&#34;</span>
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$linuxSession</span> <span class="p">=</span> <span class="nb">New-SSHSession</span> <span class="n">-ComputerName</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">200</span><span class="p">.</span><span class="n">104</span> <span class="n">-Credential</span> <span class="nv">$bielawbCred</span> <span class="n">-AcceptKey</span> <span class="nv">$true</span>
+<span class="ln">2</span>
+<span class="ln">3</span><span class="nv">$salt</span> <span class="p">=</span> <span class="nb">Invoke-SSHCommand</span> <span class="n">-SSHSession</span> <span class="nv">$linuxSession</span> <span class="n">-Command</span> <span class="s1">&#39;bin/passgen.py -p P@ssw0rd&#39;</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span>
+<span class="ln">4</span>    <span class="nv">$_</span><span class="p">.</span><span class="n">Output</span> <span class="o">-replace</span> <span class="s2">&#34;</span><span class="se">`n</span><span class="s2">&#34;</span>
+<span class="ln">5</span><span class="p">}</span>
 </code></pre></div><p>Our configuration should take at least two parameters: name of the computer and a salted hash, which we will generate at runtime. Of course, we would have to change salt or we will get the same salted hash every time. Configuration that would create Web Admin account on target node:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">configuration LinuxUser {
-    <span style="color:#66d9ef">param</span> (
-        <span style="color:#66d9ef">[String]</span>$ComputerName,
-        <span style="color:#66d9ef">[String]</span>$PasswordSalt
-    )
-
-	Import-DscResource -ModuleName nx
-
-	node $ComputerName {
-    	nxUser WebAdmin {
-        	Ensure = <span style="color:#e6db74">&#39;Present&#39;</span>
-        	UserName = <span style="color:#e6db74">&#39;webadmin&#39;</span>
-        	FullName = <span style="color:#e6db74">&#39;Web Admin&#39;</span>
-        	Password = $PasswordSalt
-    	}
-	}
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">configuration</span> <span class="n">LinuxUser</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln"> 3</span>        <span class="no">[String]</span><span class="nv">$ComputerName</span><span class="p">,</span>
+<span class="ln"> 4</span>        <span class="no">[String]</span><span class="nv">$PasswordSalt</span>
+<span class="ln"> 5</span>    <span class="p">)</span>
+<span class="ln"> 6</span>
+<span class="ln"> 7</span>	<span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">nx</span>
+<span class="ln"> 8</span>
+<span class="ln"> 9</span>	<span class="n">node</span> <span class="nv">$ComputerName</span> <span class="p">{</span>
+<span class="ln">10</span>    	<span class="n">nxUser</span> <span class="n">WebAdmin</span> <span class="p">{</span>
+<span class="ln">11</span>        	<span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+<span class="ln">12</span>        	<span class="n">UserName</span> <span class="p">=</span> <span class="s1">&#39;webadmin&#39;</span>
+<span class="ln">13</span>        	<span class="n">FullName</span> <span class="p">=</span> <span class="s1">&#39;Web Admin&#39;</span>
+<span class="ln">14</span>        	<span class="n">Password</span> <span class="p">=</span> <span class="nv">$PasswordSalt</span>
+<span class="ln">15</span>    	<span class="p">}</span>
+<span class="ln">16</span>	<span class="p">}</span>
+<span class="ln">17</span><span class="p">}</span>
 </code></pre></div><p>In this case we have used <em>nxUser</em> to create a user, but nothing prevents us from updating users using the same resource. For example, we may want to update password for a user using content of <em>/etc/shadow</em> on the reference machine. First we need to run SSH command as the root to read hash for a given user:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$rootSession = New-SSHSession -ComputerName 192.168.200.104 -Credential $root -AcceptKey $true
-$salt = Invoke-SSHCommand -SSHSession $rootSession -Command <span style="color:#e6db74">&#39;grep bielawb /etc/shadow | cut -d: -f2&#39;</span> | <span style="color:#66d9ef">ForEach</span>-Object {
-    $_.Output <span style="color:#f92672">-replace</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">&#34;</span>
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$rootSession</span> <span class="p">=</span> <span class="nb">New-SSHSession</span> <span class="n">-ComputerName</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">200</span><span class="p">.</span><span class="n">104</span> <span class="n">-Credential</span> <span class="nv">$root</span> <span class="n">-AcceptKey</span> <span class="nv">$true</span>
+<span class="ln">2</span><span class="nv">$salt</span> <span class="p">=</span> <span class="nb">Invoke-SSHCommand</span> <span class="n">-SSHSession</span> <span class="nv">$rootSession</span> <span class="n">-Command</span> <span class="s1">&#39;grep bielawb /etc/shadow | cut -d: -f2&#39;</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span>
+<span class="ln">3</span>    <span class="nv">$_</span><span class="p">.</span><span class="n">Output</span> <span class="o">-replace</span> <span class="s2">&#34;</span><span class="se">`n</span><span class="s2">&#34;</span>
+<span class="ln">4</span><span class="p">}</span>
 </code></pre></div><p>Next, we add <em>nxUser</em> to our configuration script. In this case we need a few parameters: name of the node, name of the user, and user’s password:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">configuration UpdatePassword {
-<span style="color:#66d9ef">param</span> (
-    <span style="color:#66d9ef">[String]</span>$ComputerName,
-    <span style="color:#66d9ef">[String]</span>$UserName,
-    <span style="color:#66d9ef">[String]</span>$PasswordSalt
-)
-    Import-DscResource -ModuleName nx
-    <span style="color:#75715e"># (...)</span>
-    node $ComputerName {
-        nxUser <span style="color:#e6db74">&#34;$UserName-Update&#34;</span> {
-            UserName = $UserName
-            Password = $PasswordSalt
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">configuration</span> <span class="n">UpdatePassword</span> <span class="p">{</span>
+<span class="ln"> 2</span><span class="k">param</span> <span class="p">(</span>
+<span class="ln"> 3</span>    <span class="no">[String]</span><span class="nv">$ComputerName</span><span class="p">,</span>
+<span class="ln"> 4</span>    <span class="no">[String]</span><span class="nv">$UserName</span><span class="p">,</span>
+<span class="ln"> 5</span>    <span class="no">[String]</span><span class="nv">$PasswordSalt</span>
+<span class="ln"> 6</span><span class="p">)</span>
+<span class="ln"> 7</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">nx</span>
+<span class="ln"> 8</span>    <span class="c"># (...)</span>
+<span class="ln"> 9</span>    <span class="n">node</span> <span class="nv">$ComputerName</span> <span class="p">{</span>
+<span class="ln">10</span>        <span class="n">nxUser</span> <span class="s2">&#34;$UserName-Update&#34;</span> <span class="p">{</span>
+<span class="ln">11</span>            <span class="n">UserName</span> <span class="p">=</span> <span class="nv">$UserName</span>
+<span class="ln">12</span>            <span class="n">Password</span> <span class="p">=</span> <span class="nv">$PasswordSalt</span>
+<span class="ln">13</span>        <span class="p">}</span>
+<span class="ln">14</span>    <span class="p">}</span>
+<span class="ln">15</span><span class="p">}</span>
 </code></pre></div><p>As a final step we have to apply the configuration to selected nodes. After this is done we can use the same password on all nodes where this configuration was applied.</p>
 <p>Creating a user is only part of the picture. The group membership is usually more important as it is used to grant users certain rights on the Linux box. With <em>nxGroup</em> resource we can create groups, specify group members, request preferred group ID, and select users that should be added or removed from a given group. Example configuration that creates group <em>web</em> with <em>bielawb</em> and <em>webadmin</em> as a members and makes sure that <em>bielawb</em> is a member of the group <em>wheel</em> but not group <em>apache</em> and at the same time <em>webadmin</em> is a member of the group <em>apache</em> but not a member of the group <em>wheel</em>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">configuration LinuxGroup {
-    <span style="color:#66d9ef">param</span> (
-        <span style="color:#66d9ef">[String]</span>$ComputerName
-    )
-
-	Import-DscResource -ModuleName nx
-
-	node $ComputerName {
-    	nxUser WebAdmin {
-        	Ensure = <span style="color:#e6db74">&#39;Present&#39;</span>
-        	UserName = <span style="color:#e6db74">&#39;webadmin&#39;</span>
-    	}
-
-		nxGroup WebAdmins {
-    		Ensure = <span style="color:#e6db74">&#39;Present&#39;</span>
-    		GroupName = <span style="color:#e6db74">&#39;web&#39;</span>
-    		Members = <span style="color:#e6db74">&#39;bielawb&#39;</span>, <span style="color:#e6db74">&#39;webadmin&#39;</span>
-    		DependsOn = <span style="color:#e6db74">&#39;[nxUser]WebAdmin&#39;</span>
-		}
-
-		nxGroup Apache {
-    		GroupName = <span style="color:#e6db74">&#39;apache&#39;</span>
-    		MembersToInclude = <span style="color:#e6db74">&#39;webadmin&#39;</span>
-    		MembersToExclude = <span style="color:#e6db74">&#39;bielawb&#39;</span>
-    		DependsOn = <span style="color:#e6db74">&#39;[nxUser]WebAdmin&#39;</span>
-		}
-
-		nxGroup Wheel {
-    		GroupName = <span style="color:#e6db74">&#39;wheel&#39;</span>
-    		MembersToInclude = <span style="color:#e6db74">&#39;bielawb&#39;</span>
-    		MembersToExclude = <span style="color:#e6db74">&#39;webadmin&#39;</span>
-    		DependsOn = <span style="color:#e6db74">&#39;[nxUser]WebAdmin&#39;</span>
-		}
-	}
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">configuration</span> <span class="n">LinuxGroup</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln"> 3</span>        <span class="no">[String]</span><span class="nv">$ComputerName</span>
+<span class="ln"> 4</span>    <span class="p">)</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span>	<span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">nx</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span>	<span class="n">node</span> <span class="nv">$ComputerName</span> <span class="p">{</span>
+<span class="ln"> 9</span>    	<span class="n">nxUser</span> <span class="n">WebAdmin</span> <span class="p">{</span>
+<span class="ln">10</span>        	<span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+<span class="ln">11</span>        	<span class="n">UserName</span> <span class="p">=</span> <span class="s1">&#39;webadmin&#39;</span>
+<span class="ln">12</span>    	<span class="p">}</span>
+<span class="ln">13</span>
+<span class="ln">14</span>		<span class="n">nxGroup</span> <span class="n">WebAdmins</span> <span class="p">{</span>
+<span class="ln">15</span>    		<span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+<span class="ln">16</span>    		<span class="n">GroupName</span> <span class="p">=</span> <span class="s1">&#39;web&#39;</span>
+<span class="ln">17</span>    		<span class="n">Members</span> <span class="p">=</span> <span class="s1">&#39;bielawb&#39;</span><span class="p">,</span> <span class="s1">&#39;webadmin&#39;</span>
+<span class="ln">18</span>    		<span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[nxUser]WebAdmin&#39;</span>
+<span class="ln">19</span>		<span class="p">}</span>
+<span class="ln">20</span>
+<span class="ln">21</span>		<span class="n">nxGroup</span> <span class="n">Apache</span> <span class="p">{</span>
+<span class="ln">22</span>    		<span class="n">GroupName</span> <span class="p">=</span> <span class="s1">&#39;apache&#39;</span>
+<span class="ln">23</span>    		<span class="n">MembersToInclude</span> <span class="p">=</span> <span class="s1">&#39;webadmin&#39;</span>
+<span class="ln">24</span>    		<span class="n">MembersToExclude</span> <span class="p">=</span> <span class="s1">&#39;bielawb&#39;</span>
+<span class="ln">25</span>    		<span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[nxUser]WebAdmin&#39;</span>
+<span class="ln">26</span>		<span class="p">}</span>
+<span class="ln">27</span>
+<span class="ln">28</span>		<span class="n">nxGroup</span> <span class="n">Wheel</span> <span class="p">{</span>
+<span class="ln">29</span>    		<span class="n">GroupName</span> <span class="p">=</span> <span class="s1">&#39;wheel&#39;</span>
+<span class="ln">30</span>    		<span class="n">MembersToInclude</span> <span class="p">=</span> <span class="s1">&#39;bielawb&#39;</span>
+<span class="ln">31</span>    		<span class="n">MembersToExclude</span> <span class="p">=</span> <span class="s1">&#39;webadmin&#39;</span>
+<span class="ln">32</span>    		<span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[nxUser]WebAdmin&#39;</span>
+<span class="ln">33</span>		<span class="p">}</span>
+<span class="ln">34</span>	<span class="p">}</span>
+<span class="ln">35</span><span class="p">}</span>
 </code></pre></div><p>We covered basics and all of the resources, it’s time for a few hints that may save you from hours of banging your head against the desk.</p>
 <p>First of all: you can skip the <em>Verbose</em> parameter on <em>Start-DscConfiguration</em>. Based on my experience it doesn’t provide any useful information. You have to look for hints on the other side of the wire, on the Linux box that you are talking to. First of all – you can read logs. There are two logs that may give you some ideas in case your configuration doesn’t work as expected. Both can be find in <em>$OMI_HOME/var/log</em>. There is a log for omiserver (<em>omiserver.log</em>) and separate one for dsc (<em>dsc.log</em>). If amount of information in the omiserver log is not sufficient, we can increase the logging level (<em>–loglevel</em>, default is 2, max value is 5) or log also http traffic (<em>–httptrace</em>).</p>
 <p>DSC depends on OMI. OMI usually runs in the background as a service. I strongly recommend to run it interactively while debugging: most of the Python code used in the resources doesn’t have any error handling. When we run omiserver interactively, we can see errors/exceptions that bubble up and based on these errors find out what failed:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Set
-Traceback <span style="color:#f92672">(</span>most recent call last<span style="color:#f92672">)</span>:
-  File <span style="color:#e6db74">&#34;/opt/omi-1.0.8/lib/Scripts/nxFile.py&#34;</span>, line 33, in Set_Marshall
-    retval <span style="color:#f92672">=</span> Set<span style="color:#f92672">(</span>DestinationPath, SourcePath, Ensure, Type, Force, Contents, Checksum, Recurse, Links, Owner, Group, Mode<span style="color:#f92672">)</span>
-  File <span style="color:#e6db74">&#34;/opt/omi-1.0.8/lib/Scripts/nxFile.py&#34;</span>, line 428, in Set
-    <span style="color:#66d9ef">if</span> SetFile<span style="color:#f92672">(</span>DestinationPath, SourcePath, fc<span style="color:#f92672">)</span> <span style="color:#f92672">==</span> False:
-  File <span style="color:#e6db74">&#34;/opt/omi-1.0.8/lib/Scripts/nxFile.py&#34;</span>, line 368, in SetFile
-    shutil.copyfile<span style="color:#f92672">(</span>SourcePath, DestinationPath<span style="color:#f92672">)</span>
-  File <span style="color:#e6db74">&#34;/usr/lib64/python2.6/shutil.py&#34;</span>, line 50, in copyfile
-    with open<span style="color:#f92672">(</span>src, <span style="color:#e6db74">&#39;rb&#39;</span><span style="color:#f92672">)</span> as fsrc:
-IOError: <span style="color:#f92672">[</span>Errno 2<span style="color:#f92672">]</span> No such file or directory: u<span style="color:#e6db74">&#39;/not/there&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln"> 1</span>Set
+<span class="ln"> 2</span>Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+<span class="ln"> 3</span>  File <span class="s2">&#34;/opt/omi-1.0.8/lib/Scripts/nxFile.py&#34;</span>, line 33, in Set_Marshall
+<span class="ln"> 4</span>    <span class="nv">retval</span> <span class="o">=</span> Set<span class="o">(</span>DestinationPath, SourcePath, Ensure, Type, Force, Contents, Checksum, Recurse, Links, Owner, Group, Mode<span class="o">)</span>
+<span class="ln"> 5</span>  File <span class="s2">&#34;/opt/omi-1.0.8/lib/Scripts/nxFile.py&#34;</span>, line 428, in Set
+<span class="ln"> 6</span>    <span class="k">if</span> SetFile<span class="o">(</span>DestinationPath, SourcePath, <span class="nb">fc</span><span class="o">)</span> <span class="o">==</span> False:
+<span class="ln"> 7</span>  File <span class="s2">&#34;/opt/omi-1.0.8/lib/Scripts/nxFile.py&#34;</span>, line 368, in SetFile
+<span class="ln"> 8</span>    shutil.copyfile<span class="o">(</span>SourcePath, DestinationPath<span class="o">)</span>
+<span class="ln"> 9</span>  File <span class="s2">&#34;/usr/lib64/python2.6/shutil.py&#34;</span>, line 50, in copyfile
+<span class="ln">10</span>    with open<span class="o">(</span>src, <span class="s1">&#39;rb&#39;</span><span class="o">)</span> as fsrc:
+<span class="ln">11</span>IOError: <span class="o">[</span>Errno 2<span class="o">]</span> No such file or directory: u<span class="s1">&#39;/not/there&#39;</span>
 </code></pre></div><p>With this extra information spotting the problem should be easier.</p>
 <p>Linux DSC was announced last year and published as a CTP. As any other CTP, it’s not perfect. However, it would help to see how it changes in the same location that it was initially published, on GitHub. Without this it may seem that the project was dropped. Lack of the official fixes leaves anybody who identifies a problem with two options. First options is to fix the problem. Second options is to use unofficial version of the product. I chose the first one. I hope this series convinced you that my attempt was good enough, and encourage you to give Linux DSC a try. And that concludes this series about Linux DSC “in action”.</p>
 </div>

@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Why you should install WMF 5.0 Production Preview on your SMA runbook workers</title>
 
 <meta name="description" content="For the most powerful community">
@@ -215,7 +216,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>4 Min To Read
+              <i class="far fa-clock"></i>5 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>14 Sep, 2015
@@ -237,54 +238,54 @@ if (!doNotTrack) {
 <h3 id="background">Background</h3>
 <p>Because we don’t have native PowerShell support in SMA (yet), the InlineScript activity is used to execute all PowerShell code which cannot be handled by PowerShell Workflow natively. This even may occur without you knowing about it as PowerShell Workflow also does this under the covers for you automatically. It wraps your non-PS workflow commands in an InlineScript activity on a per command basis.</p>
 <p>Let’s look at a simple example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">workflow test {
-    Get-VM | Stop-VM
-    Get-VMSwitch
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">workflow</span> <span class="n">test</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="nb">Get-VM</span> <span class="p">|</span> <span class="nb">Stop-VM</span>
+<span class="ln">3</span>    <span class="nb">Get-VMSwitch</span>
+<span class="ln">4</span><span class="p">}</span>
 </code></pre></div><p>When loading the workflow in memory, you can investigate the XAML definition.</p>
 <p><img src="/images/sma1.png" alt=""></p>
 <p>As you can see, the Get-VM | Stop-VM pipeline is broken up into 2 InlineScripts and the Get-VMSwitch into another one without us specifying this.</p>
 <p>The InlineScript activity, when specified explicitly, supports remoting. A functionality I use all the time when dealing with SMA runbooks. Let’s look at an example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">workflow StartVM {
-    $HVCred = Get-AutomationPSCredential -Name <span style="color:#e6db74">&#39;HVCredentials&#39;</span>
-    InlineScript {
-        Get-VM | Where-Object -FilterScript {$_.State <span style="color:#f92672">-ne</span> <span style="color:#e6db74">&#39;Running&#39;</span>} | Start-VM
-    } -PSComputerName <span style="color:#e6db74">&#39;HV01&#39;</span> -PSCredential $HVCred -PSAuthentication CredSSP -PSRequiredModules <span style="color:#e6db74">&#39;Hyper-V&#39;</span>
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">workflow</span> <span class="n">StartVM</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="nv">$HVCred</span> <span class="p">=</span> <span class="nb">Get-AutomationPSCredential</span> <span class="n">-Name</span> <span class="s1">&#39;HVCredentials&#39;</span>
+<span class="ln">3</span>    <span class="n">InlineScript</span> <span class="p">{</span>
+<span class="ln">4</span>        <span class="nb">Get-VM</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="n">-FilterScript</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">State</span> <span class="o">-ne</span> <span class="s1">&#39;Running&#39;</span><span class="p">}</span> <span class="p">|</span> <span class="nb">Start-VM</span>
+<span class="ln">5</span>    <span class="p">}</span> <span class="n">-PSComputerName</span> <span class="s1">&#39;HV01&#39;</span> <span class="n">-PSCredential</span> <span class="nv">$HVCred</span> <span class="n">-PSAuthentication</span> <span class="n">CredSSP</span> <span class="n">-PSRequiredModules</span> <span class="s1">&#39;Hyper-V&#39;</span>
+<span class="ln">6</span><span class="p">}</span>
 </code></pre></div><p>Not the most useful example but it serves its purpose. As you can see, the InlineScript activity has the PSComputerName, PSCredential, and PSAuthentication parameters which are used for remoting. This code is actually run on the computer HV01 and not on the runbook worker.</p>
 <h3 id="the-inlinescript-activity-bug">The InlineScript activity bug</h3>
 <p>If you run multiple InlineScript activities within a certain amount of time and these connect to the same computer, an ugly bug can show its head.</p>
 <p>Consider the following example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">workflow Test {
-    $MyVar = <span style="color:#e6db74">&#39;Just some Text&#39;</span>
-    InlineScript {
-        $ErrorActionPreference = <span style="color:#e6db74">&#39;Stop&#39;</span>
-        Write-Output -InputObject $using<span style="color:#960050;background-color:#1e0010">:</span>MyVar
-    } -PSComputerName <span style="color:#e6db74">&#39;Hyper-v&#39;</span>
-    $MyVar = <span style="color:#e6db74">&#39;Some other text&#39;</span>
-    InlineScript {
-        $ErrorActionPreference = <span style="color:#e6db74">&#39;Stop&#39;</span>
-        Write-Output -InputObject $using<span style="color:#960050;background-color:#1e0010">:</span>MyVar
-    } -PSComputerName <span style="color:#e6db74">&#39;Hyper-v&#39;</span>
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">workflow</span> <span class="n">Test</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="nv">$MyVar</span> <span class="p">=</span> <span class="s1">&#39;Just some Text&#39;</span>
+<span class="ln"> 3</span>    <span class="n">InlineScript</span> <span class="p">{</span>
+<span class="ln"> 4</span>        <span class="nv">$ErrorActionPreference</span> <span class="p">=</span> <span class="s1">&#39;Stop&#39;</span>
+<span class="ln"> 5</span>        <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="nv">$using</span><span class="err">:</span><span class="n">MyVar</span>
+<span class="ln"> 6</span>    <span class="p">}</span> <span class="n">-PSComputerName</span> <span class="s1">&#39;Hyper-v&#39;</span>
+<span class="ln"> 7</span>    <span class="nv">$MyVar</span> <span class="p">=</span> <span class="s1">&#39;Some other text&#39;</span>
+<span class="ln"> 8</span>    <span class="n">InlineScript</span> <span class="p">{</span>
+<span class="ln"> 9</span>        <span class="nv">$ErrorActionPreference</span> <span class="p">=</span> <span class="s1">&#39;Stop&#39;</span>
+<span class="ln">10</span>        <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="nv">$using</span><span class="err">:</span><span class="n">MyVar</span>
+<span class="ln">11</span>    <span class="p">}</span> <span class="n">-PSComputerName</span> <span class="s1">&#39;Hyper-v&#39;</span>
+<span class="ln">12</span><span class="p">}</span>
 </code></pre></div><p>In this example there is no specific reason to specify ErrorActionPreference as stop but this invokes the bug. When run it you would expect that two lines will be shown: ‘Just some Text’ and ‘Some other text’. However, it will output ‘Just some Text’ 2 times. The bug here has broken the Using scope functionality!</p>
 <p><img src="/images/sma2.png" alt=""></p>
 <p>Thing gets even worse. Let’s look at another example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">workflow Test {
-    $MyVar = <span style="color:#e6db74">&#39;Just some Text&#39;</span>
-    InlineScript {
-        $ErrorActionPreference = <span style="color:#e6db74">&#39;Stop&#39;</span>
-        Write-Output -InputObject $using<span style="color:#960050;background-color:#1e0010">:</span>MyVar
-    } -PSComputerName <span style="color:#e6db74">&#39;Hyper-v&#39;</span>
-    $SomeOtherVar = <span style="color:#e6db74">&#39;THIS WILL BE NULL instead off this text&#39;</span>
-    InlineScript {
-        $ErrorActionPreference = <span style="color:#e6db74">&#39;Stop&#39;</span>
-        Write-Output -InputObject <span style="color:#e6db74">&#34;A completely new variable: $using:SomeOtherVar&#34;</span>
-        <span style="color:#66d9ef">if</span> ($null <span style="color:#f92672">-eq</span> $using<span style="color:#960050;background-color:#1e0010">:</span>SomeOtherVar) {
-            <span style="color:#e6db74">&#39;I have nothing!&#39;</span>
-        }
-    } -PSComputerName <span style="color:#e6db74">&#39;Hyper-v&#39;</span>
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">workflow</span> <span class="n">Test</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="nv">$MyVar</span> <span class="p">=</span> <span class="s1">&#39;Just some Text&#39;</span>
+<span class="ln"> 3</span>    <span class="n">InlineScript</span> <span class="p">{</span>
+<span class="ln"> 4</span>        <span class="nv">$ErrorActionPreference</span> <span class="p">=</span> <span class="s1">&#39;Stop&#39;</span>
+<span class="ln"> 5</span>        <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="nv">$using</span><span class="err">:</span><span class="n">MyVar</span>
+<span class="ln"> 6</span>    <span class="p">}</span> <span class="n">-PSComputerName</span> <span class="s1">&#39;Hyper-v&#39;</span>
+<span class="ln"> 7</span>    <span class="nv">$SomeOtherVar</span> <span class="p">=</span> <span class="s1">&#39;THIS WILL BE NULL instead off this text&#39;</span>
+<span class="ln"> 8</span>    <span class="n">InlineScript</span> <span class="p">{</span>
+<span class="ln"> 9</span>        <span class="nv">$ErrorActionPreference</span> <span class="p">=</span> <span class="s1">&#39;Stop&#39;</span>
+<span class="ln">10</span>        <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="s2">&#34;A completely new variable: $using:SomeOtherVar&#34;</span>
+<span class="ln">11</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$null</span> <span class="o">-eq</span> <span class="nv">$using</span><span class="err">:</span><span class="n">SomeOtherVar</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">12</span>            <span class="s1">&#39;I have nothing!&#39;</span>
+<span class="ln">13</span>        <span class="p">}</span>
+<span class="ln">14</span>    <span class="p">}</span> <span class="n">-PSComputerName</span> <span class="s1">&#39;Hyper-v&#39;</span>
+<span class="ln">15</span><span class="p">}</span>
 </code></pre></div><p>In this case, in the second InlineScript activity, targets another workflow scope defined variable entirely. You would expect it to output <strong>‘A completely new variable: THIS WILL BE NULL instead of this text’</strong> but it does not contain the variable’s text. Instead, nothing is passed. It is NULL and that’s why we have the <strong>‘I have nothing!’</strong> on screen.</p>
 <p><img src="/images/sma3.png" alt=""></p>
 <p>Since SMA uses PowerShell Workflow, the bug is invoked here as well. My friend and fellow InlineScript sufferer <a href="https://twitter.com/trondhindenes" target="_blank">Trond Hindenes</a> has logged this bug on <a href="https://connect.microsoft.com/PowerShell/feedback/details/894721/workflows-using-multiple-inlinescripts-with-the-pscomputername-does-not-get-correct-variables-from-the-workflow-when-using-using-scoping" target="_blank">Connect</a>.</p>
@@ -292,38 +293,38 @@ if (!doNotTrack) {
 <p>The reason why you should install the WMF 5.0 Production Preview package is: The PowerShell team solved the issue!</p>
 <p>Please note that SMA does not officially support WMF 5.0 yet but I’ve heard from good sources that Microsoft is aware people are using the combination successfully in production already without known issues.</p>
 <p>Sample runbook:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">workflow WMF5Test {
-    $TestCred = Get-AutomationPSCredential -Name <span style="color:#e6db74">&#39;TestCredentials&#39;</span>
-    Write-Output -InputObject <span style="color:#e6db74">&#34;Handled on Runbook Worker </span>$($env:ComputerName)<span style="color:#e6db74"> with PSVersion </span>$($psversiontable.PSVersion.Major)<span style="color:#e6db74">&#34;</span>
-<span style="color:#75715e">#region first run</span>
-$PassingVar = <span style="color:#e6db74">&#39;1&#39;</span>
-
-InlineScript {
-    $ErrorActionPreference = <span style="color:#e6db74">&#39;Stop&#39;</span>
-    Write-Output -InputObject <span style="color:#e6db74">&#34;First Run. Var value: $using:PassingVar Running on </span>$($env:ComputerName)<span style="color:#e6db74"> with PSVersion </span>$($psversiontable.PSVersion.Major)<span style="color:#e6db74">&#34;</span>
-} -PSComputerName <span style="color:#e6db74">&#39;Server01&#39;</span> -PSCredential $TestCred -PSAuthentication CredSSP -PSUseSsl $true
-
-InlineScript {
-    $ErrorActionPreference = <span style="color:#e6db74">&#39;Stop&#39;</span>
-    Write-Output -InputObject <span style="color:#e6db74">&#34;First Run. Var value: $using:PassingVar Running on </span>$($env:ComputerName)<span style="color:#e6db74"> with PSVersion </span>$($psversiontable.PSVersion.Major)<span style="color:#e6db74">&#34;</span>
-} -PSComputerName <span style="color:#e6db74">&#39;Server02&#39;</span> -PSCredential $TestCred -PSAuthentication CredSSP
-<span style="color:#75715e">#endregion first run</span>
-
-<span style="color:#75715e">#region second run</span>
-$PassingVar = <span style="color:#e6db74">&#39;2&#39;</span> <span style="color:#75715e">#overwriting variable for second run</span>
-$AditionalVar = <span style="color:#e6db74">&#39;A String&#39;</span> <span style="color:#75715e">#add aditional Var to second run output</span>
-
-InlineScript {
-    $ErrorActionPreference = <span style="color:#e6db74">&#39;Stop&#39;</span>
-    Write-Output -InputObject <span style="color:#e6db74">&#34;Second Run. Var value: $using:PassingVar Running on </span>$($env:ComputerName)<span style="color:#e6db74"> with PSVersion </span>$($psversiontable.PSVersion.Major)<span style="color:#e6db74">. Second Var: $using:AditionalVar&#34;</span>
-} -PSComputerName <span style="color:#e6db74">&#39;Server01&#39;</span> -PSCredential $TestCred -PSAuthentication CredSSP -PSUseSsl $true
-
-InlineScript {
-    $ErrorActionPreference = <span style="color:#e6db74">&#39;Stop&#39;</span>
-    Write-Output -InputObject <span style="color:#e6db74">&#34;Second Run. Var value: $using:PassingVar Running on </span>$($env:ComputerName)<span style="color:#e6db74"> with PSVersion </span>$($psversiontable.PSVersion.Major)<span style="color:#e6db74"> Second Var: $using:AditionalVar&#34;</span>
-} -PSComputerName <span style="color:#e6db74">&#39;Server02&#39;</span> -PSCredential $TestCred -PSAuthentication CredSSP
-<span style="color:#75715e">#endregion second run</span>
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">workflow</span> <span class="n">WMF5Test</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="nv">$TestCred</span> <span class="p">=</span> <span class="nb">Get-AutomationPSCredential</span> <span class="n">-Name</span> <span class="s1">&#39;TestCredentials&#39;</span>
+<span class="ln"> 3</span>    <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="s2">&#34;Handled on Runbook Worker </span><span class="p">$(</span><span class="nv">$env:ComputerName</span><span class="p">)</span><span class="s2"> with PSVersion </span><span class="p">$(</span><span class="nv">$psversiontable</span><span class="p">.</span><span class="n">PSVersion</span><span class="p">.</span><span class="n">Major</span><span class="p">)</span><span class="s2">&#34;</span>
+<span class="ln"> 4</span><span class="c">#region first run</span>
+<span class="ln"> 5</span><span class="nv">$PassingVar</span> <span class="p">=</span> <span class="s1">&#39;1&#39;</span>
+<span class="ln"> 6</span>
+<span class="ln"> 7</span><span class="n">InlineScript</span> <span class="p">{</span>
+<span class="ln"> 8</span>    <span class="nv">$ErrorActionPreference</span> <span class="p">=</span> <span class="s1">&#39;Stop&#39;</span>
+<span class="ln"> 9</span>    <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="s2">&#34;First Run. Var value: $using:PassingVar Running on </span><span class="p">$(</span><span class="nv">$env:ComputerName</span><span class="p">)</span><span class="s2"> with PSVersion </span><span class="p">$(</span><span class="nv">$psversiontable</span><span class="p">.</span><span class="n">PSVersion</span><span class="p">.</span><span class="n">Major</span><span class="p">)</span><span class="s2">&#34;</span>
+<span class="ln">10</span><span class="p">}</span> <span class="n">-PSComputerName</span> <span class="s1">&#39;Server01&#39;</span> <span class="n">-PSCredential</span> <span class="nv">$TestCred</span> <span class="n">-PSAuthentication</span> <span class="n">CredSSP</span> <span class="n">-PSUseSsl</span> <span class="nv">$true</span>
+<span class="ln">11</span>
+<span class="ln">12</span><span class="n">InlineScript</span> <span class="p">{</span>
+<span class="ln">13</span>    <span class="nv">$ErrorActionPreference</span> <span class="p">=</span> <span class="s1">&#39;Stop&#39;</span>
+<span class="ln">14</span>    <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="s2">&#34;First Run. Var value: $using:PassingVar Running on </span><span class="p">$(</span><span class="nv">$env:ComputerName</span><span class="p">)</span><span class="s2"> with PSVersion </span><span class="p">$(</span><span class="nv">$psversiontable</span><span class="p">.</span><span class="n">PSVersion</span><span class="p">.</span><span class="n">Major</span><span class="p">)</span><span class="s2">&#34;</span>
+<span class="ln">15</span><span class="p">}</span> <span class="n">-PSComputerName</span> <span class="s1">&#39;Server02&#39;</span> <span class="n">-PSCredential</span> <span class="nv">$TestCred</span> <span class="n">-PSAuthentication</span> <span class="n">CredSSP</span>
+<span class="ln">16</span><span class="c">#endregion first run</span>
+<span class="ln">17</span>
+<span class="ln">18</span><span class="c">#region second run</span>
+<span class="ln">19</span><span class="nv">$PassingVar</span> <span class="p">=</span> <span class="s1">&#39;2&#39;</span> <span class="c">#overwriting variable for second run</span>
+<span class="ln">20</span><span class="nv">$AditionalVar</span> <span class="p">=</span> <span class="s1">&#39;A String&#39;</span> <span class="c">#add aditional Var to second run output</span>
+<span class="ln">21</span>
+<span class="ln">22</span><span class="n">InlineScript</span> <span class="p">{</span>
+<span class="ln">23</span>    <span class="nv">$ErrorActionPreference</span> <span class="p">=</span> <span class="s1">&#39;Stop&#39;</span>
+<span class="ln">24</span>    <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="s2">&#34;Second Run. Var value: $using:PassingVar Running on </span><span class="p">$(</span><span class="nv">$env:ComputerName</span><span class="p">)</span><span class="s2"> with PSVersion </span><span class="p">$(</span><span class="nv">$psversiontable</span><span class="p">.</span><span class="n">PSVersion</span><span class="p">.</span><span class="n">Major</span><span class="p">)</span><span class="s2">. Second Var: $using:AditionalVar&#34;</span>
+<span class="ln">25</span><span class="p">}</span> <span class="n">-PSComputerName</span> <span class="s1">&#39;Server01&#39;</span> <span class="n">-PSCredential</span> <span class="nv">$TestCred</span> <span class="n">-PSAuthentication</span> <span class="n">CredSSP</span> <span class="n">-PSUseSsl</span> <span class="nv">$true</span>
+<span class="ln">26</span>
+<span class="ln">27</span><span class="n">InlineScript</span> <span class="p">{</span>
+<span class="ln">28</span>    <span class="nv">$ErrorActionPreference</span> <span class="p">=</span> <span class="s1">&#39;Stop&#39;</span>
+<span class="ln">29</span>    <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="s2">&#34;Second Run. Var value: $using:PassingVar Running on </span><span class="p">$(</span><span class="nv">$env:ComputerName</span><span class="p">)</span><span class="s2"> with PSVersion </span><span class="p">$(</span><span class="nv">$psversiontable</span><span class="p">.</span><span class="n">PSVersion</span><span class="p">.</span><span class="n">Major</span><span class="p">)</span><span class="s2"> Second Var: $using:AditionalVar&#34;</span>
+<span class="ln">30</span><span class="p">}</span> <span class="n">-PSComputerName</span> <span class="s1">&#39;Server02&#39;</span> <span class="n">-PSCredential</span> <span class="nv">$TestCred</span> <span class="n">-PSAuthentication</span> <span class="n">CredSSP</span>
+<span class="ln">31</span><span class="c">#endregion second run</span>
+<span class="ln">32</span><span class="p">}</span>
 </code></pre></div><p>Results when the sample runbook is run through a runbook worker still on WMF 4.0:</p>
 <p><img src="/images/sma4.png" alt=""></p>
 <p>Results when the sample runbook is run through a runbook worker on WMF 5.0:</p>

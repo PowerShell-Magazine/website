@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Part 4 – Journey to a Windows Azure Pack VM Role DSC Resource: The DSC resource</title>
 
 <meta name="description" content="For the most powerful community">
@@ -217,7 +218,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>16 Min To Read
+              <i class="far fa-clock"></i>18 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>22 Sep, 2015
@@ -254,29 +255,29 @@ if (!doNotTrack) {
 <h4 id="xdscresourcedesigner">xDSCResourceDesigner</h4>
 <p>To help you set up a DSC script module correctly (using the correct folder structure, MOF schema file, etc.) Microsoft released a PowerShell helper module which can handle this for you. The module is called xDSCResourceDesigner and can be found on <a href="https://github.com/PowerShell/xDSCResourceDesigner/tree/master">GitHub</a> and the <a href="https://www.powershellgallery.com/packages/xDSCResourceDesigner/">PowerShell gallery</a> (<strong>Install-Module xDSCResourceDesigner</strong>).</p>
 <p>Once this module is installed we can create a DSC resource script module using a PowerShell script. I used the following to create mine:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Import-Module xDSCResourceDesigner
-$BuildDir = <span style="color:#e6db74">&#39;C:\&#39;</span>
-
-New-xDscResource -ModuleName cWAPack -Name <span style="color:#e6db74">&#39;BG_WAPackVMRole&#39;</span> -FriendlyName <span style="color:#e6db74">&#39;WAPackVMRole&#39;</span> -ClassVersion <span style="color:#e6db74">&#39;0.0.3.0&#39;</span> -Path $BuildDir -Property @(
-    New-xDscResourceProperty -Name Name -Type String -Attribute Key -Description <span style="color:#e6db74">&#39;Cloud Service and VM Role Name&#39;</span>
-    New-xDscResourceProperty -Name Ensure -Type String -Attribute Write -ValidateSet <span style="color:#e6db74">&#39;Present&#39;</span>,<span style="color:#e6db74">&#39;Absent&#39;</span>
-    New-xDscResourceProperty -Name Url -Type String -Attribute Required -Description <span style="color:#e6db74">&#39;Tenant Public API or Tenant API URL&#39;</span>
-    New-xDscResourceProperty -Name SubscriptionId -Type String -Attribute Required -Description <span style="color:#e6db74">&#39;Subscription ID&#39;</span>
-    New-xDscResourceProperty -Name Credential -Type PSCredential -Attribute Required -Description <span style="color:#e6db74">&#39;Credentials to acquire token&#39;</span>
-    New-xDscResourceProperty -Name VMRoleGIName -Type String -Attribute Required -Description <span style="color:#e6db74">&#39;VM Role Gallery Item name&#39;</span>
-    New-xDscResourceProperty -Name VMRoleGIVersion -Type String -Attribute Write -Description <span style="color:#e6db74">&#39;VM Role Gallery Item Version. Specify if multiple versions are published&#39;</span>
-    New-xDscResourceProperty -Name VMRoleGIPublisher -Type String -Attribute Write -Description <span style="color:#e6db74">&#39;VM Role Gallery Item Publisher. Specify if multiple VM Roles with the same name but different publishers are published&#39;</span>
-    New-xDscResourceProperty -Name VMSize -Type String -Attribute Write -ValidateSet <span style="color:#e6db74">&#39;Small&#39;</span>,<span style="color:#e6db74">&#39;A7&#39;</span>,<span style="color:#e6db74">&#39;ExtraSmall&#39;</span>,<span style="color:#e6db74">&#39;Large&#39;</span>,<span style="color:#e6db74">&#39;A6&#39;</span>,<span style="color:#e6db74">&#39;Medium&#39;</span>,<span style="color:#e6db74">&#39;ExtraLarge&#39;</span>
-    New-xDscResourceProperty -Name OSDiskSearch -Type String -Attribute Write -ValidateSet <span style="color:#e6db74">&#39;LatestApplicable&#39;</span>,<span style="color:#e6db74">&#39;LatestApplicableWithFamilyName&#39;</span>,<span style="color:#e6db74">&#39;Specified&#39;</span>
-    New-xDscResourceProperty -Name OSDiskFamilyName -Type String -Attribute Write
-    New-xDscResourceProperty -Name OSDiskRelease -Type String -Attribute Write
-    New-xDscResourceProperty -Name NetworkReference -Type String -Attribute Required
-    New-xDscResourceProperty -Name VMRoleParameters -Type Hashtable -Attribute Write
-    New-xDscResourceProperty -Name TokenSource -Type String -Attribute Required -ValidateSet <span style="color:#e6db74">&#39;ASPNET&#39;</span>,<span style="color:#e6db74">&#39;ADFS&#39;</span>
-    New-xDscResourceProperty -Name TokenUrl -Type String -Attribute Required
-    New-xDscResourceProperty -Name TokenPort -Type Uint16 -Attribute Write -Description <span style="color:#e6db74">&#39;Specify custom port to acquire token. Defaults for ADFS: 443, ASP.Net: 30071&#39;</span>
-    New-xDscResourceProperty -Name Port -Type Uint16 -Attribute Write -Description <span style="color:#e6db74">&#39;Specify API port. Default: 30006&#39;</span>
-) -Force
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nb">Import-Module</span> <span class="n">xDSCResourceDesigner</span>
+<span class="ln"> 2</span><span class="nv">$BuildDir</span> <span class="p">=</span> <span class="s1">&#39;C:\&#39;</span>
+<span class="ln"> 3</span>
+<span class="ln"> 4</span><span class="nb">New-xDscResource</span> <span class="n">-ModuleName</span> <span class="n">cWAPack</span> <span class="n">-Name</span> <span class="s1">&#39;BG_WAPackVMRole&#39;</span> <span class="n">-FriendlyName</span> <span class="s1">&#39;WAPackVMRole&#39;</span> <span class="n">-ClassVersion</span> <span class="s1">&#39;0.0.3.0&#39;</span> <span class="n">-Path</span> <span class="nv">$BuildDir</span> <span class="n">-Property</span> <span class="p">@(</span>
+<span class="ln"> 5</span>    <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">Name</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Attribute</span> <span class="n">Key</span> <span class="n">-Description</span> <span class="s1">&#39;Cloud Service and VM Role Name&#39;</span>
+<span class="ln"> 6</span>    <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">Ensure</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Attribute</span> <span class="nb">Write </span><span class="n">-ValidateSet</span> <span class="s1">&#39;Present&#39;</span><span class="p">,</span><span class="s1">&#39;Absent&#39;</span>
+<span class="ln"> 7</span>    <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">Url</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Attribute</span> <span class="n">Required</span> <span class="n">-Description</span> <span class="s1">&#39;Tenant Public API or Tenant API URL&#39;</span>
+<span class="ln"> 8</span>    <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">SubscriptionId</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Attribute</span> <span class="n">Required</span> <span class="n">-Description</span> <span class="s1">&#39;Subscription ID&#39;</span>
+<span class="ln"> 9</span>    <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">Credential</span> <span class="n">-Type</span> <span class="n">PSCredential</span> <span class="n">-Attribute</span> <span class="n">Required</span> <span class="n">-Description</span> <span class="s1">&#39;Credentials to acquire token&#39;</span>
+<span class="ln">10</span>    <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">VMRoleGIName</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Attribute</span> <span class="n">Required</span> <span class="n">-Description</span> <span class="s1">&#39;VM Role Gallery Item name&#39;</span>
+<span class="ln">11</span>    <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">VMRoleGIVersion</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Attribute</span> <span class="nb">Write </span><span class="n">-Description</span> <span class="s1">&#39;VM Role Gallery Item Version. Specify if multiple versions are published&#39;</span>
+<span class="ln">12</span>    <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">VMRoleGIPublisher</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Attribute</span> <span class="nb">Write </span><span class="n">-Description</span> <span class="s1">&#39;VM Role Gallery Item Publisher. Specify if multiple VM Roles with the same name but different publishers are published&#39;</span>
+<span class="ln">13</span>    <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">VMSize</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Attribute</span> <span class="nb">Write </span><span class="n">-ValidateSet</span> <span class="s1">&#39;Small&#39;</span><span class="p">,</span><span class="s1">&#39;A7&#39;</span><span class="p">,</span><span class="s1">&#39;ExtraSmall&#39;</span><span class="p">,</span><span class="s1">&#39;Large&#39;</span><span class="p">,</span><span class="s1">&#39;A6&#39;</span><span class="p">,</span><span class="s1">&#39;Medium&#39;</span><span class="p">,</span><span class="s1">&#39;ExtraLarge&#39;</span>
+<span class="ln">14</span>    <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">OSDiskSearch</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Attribute</span> <span class="nb">Write </span><span class="n">-ValidateSet</span> <span class="s1">&#39;LatestApplicable&#39;</span><span class="p">,</span><span class="s1">&#39;LatestApplicableWithFamilyName&#39;</span><span class="p">,</span><span class="s1">&#39;Specified&#39;</span>
+<span class="ln">15</span>    <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">OSDiskFamilyName</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Attribute</span> <span class="nb">Write
+</span><span class="ln">16</span><span class="nb"></span>    <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">OSDiskRelease</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Attribute</span> <span class="nb">Write
+</span><span class="ln">17</span><span class="nb"></span>    <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">NetworkReference</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Attribute</span> <span class="n">Required</span>
+<span class="ln">18</span>    <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">VMRoleParameters</span> <span class="n">-Type</span> <span class="n">Hashtable</span> <span class="n">-Attribute</span> <span class="nb">Write
+</span><span class="ln">19</span><span class="nb"></span>    <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">TokenSource</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Attribute</span> <span class="n">Required</span> <span class="n">-ValidateSet</span> <span class="s1">&#39;ASPNET&#39;</span><span class="p">,</span><span class="s1">&#39;ADFS&#39;</span>
+<span class="ln">20</span>    <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">TokenUrl</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Attribute</span> <span class="n">Required</span>
+<span class="ln">21</span>    <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">TokenPort</span> <span class="n">-Type</span> <span class="n">Uint16</span> <span class="n">-Attribute</span> <span class="nb">Write </span><span class="n">-Description</span> <span class="s1">&#39;Specify custom port to acquire token. Defaults for ADFS: 443, ASP.Net: 30071&#39;</span>
+<span class="ln">22</span>    <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">Port</span> <span class="n">-Type</span> <span class="n">Uint16</span> <span class="n">-Attribute</span> <span class="nb">Write </span><span class="n">-Description</span> <span class="s1">&#39;Specify API port. Default: 30006&#39;</span>
+<span class="ln">23</span><span class="p">)</span> <span class="n">-Force</span>
 </code></pre></div><p>Running this script will create a manifest module called cWAPack. Inside the module, a DSC resource BG_WAPackVMRole with a friendly name of WAPackVMRole is created. The schema.mof file for this resource is generated as well.</p>
 <p><img src="/images/wap1.png" alt=""></p>
 <p>You can read more on the file structure and schema.mof file content here: <a href="https://technet.microsoft.com/en-us/library/dn956964.aspx">https://technet.microsoft.com/en-us/library/dn956964.aspx</a></p>
@@ -315,335 +316,335 @@ New-xDscResource -ModuleName cWAPack -Name <span style="color:#e6db74">&#39;BG_W
 <p>Now it’s time to code up the BG_WAPackVMRole resource. Open it up by navigating in the solution project to DSCResources\BG_WAPackVMROle and double click BG_WAPackVMRole.psm1 which will open the file for editing.</p>
 <p>First navigate to the Set-TargetResource function and copy the entire param block. Then overwrite the Get-TargetResource param block by removing its current param block and pasting in the param block from the clipboard. I do this so we can be sure the Get-DscConfiguration cmdlet is able to return all user specified information used for provisioning without the need to query it all out interactively (making Get less involved/heavy). As stated earlier, if you leave it as default, the Get-TargetResource will only have the mandatory parameters assigned.</p>
 <p>Authentication and subscription selection is something every function needs to do. It therefore makes sense to create a little helper function to handle these tasks so we don’t end up with a lot of redundant code. I created a helper function called setup to handle this.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> Setup {
-    <span style="color:#66d9ef">param</span> (
-        $TokenSource,
-        $TokenUrl,
-        $TokenPort,
-        $Credential,
-        $Url,
-        $Port,
-        $SubscriptionId
-    )
-    <span style="color:#66d9ef">try</span> {
-        <span style="color:#66d9ef">if</span> ($TokenSource <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;ADFS&#39;</span>) {
-            Write-Verbose <span style="color:#e6db74">&#34;Acquiring ADFS token from $TokenUrl with credentials: </span>$($Credential.username)<span style="color:#e6db74">&#34;</span>
-            Get-WAPToken -Credential $Credential -URL $TokenUrl -Port $TokenPort -ADFS
-        } <span style="color:#66d9ef">else</span> {
-            Write-Verbose <span style="color:#e6db74">&#34;Acquiring ASP.Net token from $TokenUrl&#34;</span>
-            Get-WAPToken -Credential $Credential -URL $TokenUrl -Port $TokenPort
-        }
-        Connect-WAPAPI -URL $Url -Port $Port    
-    $Subscription = Get-WAPSubscription -Id $SubscriptionId
-    <span style="color:#66d9ef">if</span> ($null <span style="color:#f92672">-eq</span> $SubscriptionId) {
-        <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;Subscription with Id: $SubscriptionId was not found!&#34;</span>
-    }
-    $Subscription | Select-WAPSubscription
-} <span style="color:#66d9ef">catch</span> { 
-    Write-Error -ErrorRecord $_ -ErrorAction Stop
-}
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="n">Setup</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln"> 3</span>        <span class="nv">$TokenSource</span><span class="p">,</span>
+<span class="ln"> 4</span>        <span class="nv">$TokenUrl</span><span class="p">,</span>
+<span class="ln"> 5</span>        <span class="nv">$TokenPort</span><span class="p">,</span>
+<span class="ln"> 6</span>        <span class="nv">$Credential</span><span class="p">,</span>
+<span class="ln"> 7</span>        <span class="nv">$Url</span><span class="p">,</span>
+<span class="ln"> 8</span>        <span class="nv">$Port</span><span class="p">,</span>
+<span class="ln"> 9</span>        <span class="nv">$SubscriptionId</span>
+<span class="ln">10</span>    <span class="p">)</span>
+<span class="ln">11</span>    <span class="k">try</span> <span class="p">{</span>
+<span class="ln">12</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$TokenSource</span> <span class="o">-eq</span> <span class="s1">&#39;ADFS&#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">13</span>            <span class="nb">Write-Verbose</span> <span class="s2">&#34;Acquiring ADFS token from $TokenUrl with credentials: </span><span class="p">$(</span><span class="nv">$Credential</span><span class="p">.</span><span class="n">username</span><span class="p">)</span><span class="s2">&#34;</span>
+<span class="ln">14</span>            <span class="nb">Get-WAPToken</span> <span class="n">-Credential</span> <span class="nv">$Credential</span> <span class="n">-URL</span> <span class="nv">$TokenUrl</span> <span class="n">-Port</span> <span class="nv">$TokenPort</span> <span class="n">-ADFS</span>
+<span class="ln">15</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln">16</span>            <span class="nb">Write-Verbose</span> <span class="s2">&#34;Acquiring ASP.Net token from $TokenUrl&#34;</span>
+<span class="ln">17</span>            <span class="nb">Get-WAPToken</span> <span class="n">-Credential</span> <span class="nv">$Credential</span> <span class="n">-URL</span> <span class="nv">$TokenUrl</span> <span class="n">-Port</span> <span class="nv">$TokenPort</span>
+<span class="ln">18</span>        <span class="p">}</span>
+<span class="ln">19</span>        <span class="nb">Connect-WAPAPI</span> <span class="n">-URL</span> <span class="nv">$Url</span> <span class="n">-Port</span> <span class="nv">$Port</span>    
+<span class="ln">20</span>    <span class="nv">$Subscription</span> <span class="p">=</span> <span class="nb">Get-WAPSubscription</span> <span class="n">-Id</span> <span class="nv">$SubscriptionId</span>
+<span class="ln">21</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$null</span> <span class="o">-eq</span> <span class="nv">$SubscriptionId</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">22</span>        <span class="k">throw</span> <span class="s2">&#34;Subscription with Id: $SubscriptionId was not found!&#34;</span>
+<span class="ln">23</span>    <span class="p">}</span>
+<span class="ln">24</span>    <span class="nv">$Subscription</span> <span class="p">|</span> <span class="nb">Select-WAPSubscription</span>
+<span class="ln">25</span><span class="p">}</span> <span class="k">catch</span> <span class="p">{</span> 
+<span class="ln">26</span>    <span class="nb">Write-Error</span> <span class="n">-ErrorRecord</span> <span class="nv">$_</span> <span class="n">-ErrorAction</span> <span class="n">Stop</span>
+<span class="ln">27</span><span class="p">}</span>
+<span class="ln">28</span><span class="p">}</span>
 </code></pre></div><p>The function has a bunch of parameters. Note that none of the parameters have the mandatory argument. I don’t assign mandatory because as once as you define a parameter as mandatory, you cannot splat a hash table which contains more information then defined in the param block against it anymore (not without specifying a parameter with ValueFromRemainingArguments argument. You can read more about this <a href="https://technet.microsoft.com/en-us/library/hh847743.aspx">here</a>.).</p>
 <p>The function makes use of the WAPTenantPublicAPI module to acquire a JWT token to interact with the Azure Pack API and selecting the subscription to work against. As you can see, this is basically the start of any “orchestration” script to deploy VM Roles with.</p>
 <p>Next we look at the Test-TargetResource function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> Test-TargetResource {
-    [<span style="color:#66d9ef">CmdletBinding</span>()]
-    [OutputType(<span style="color:#66d9ef">[System.Boolean]</span>)]
-    <span style="color:#66d9ef">param</span> (
-        [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-        <span style="color:#66d9ef">[String]</span> $Name,    
-    	[<span style="color:#66d9ef">ValidateSet</span>(<span style="color:#e6db74">&#39;Present&#39;</span>,<span style="color:#e6db74">&#39;Absent&#39;</span>)]
-    	<span style="color:#66d9ef">[String]</span> $Ensure,
-
-   		[<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    	<span style="color:#66d9ef">[String]</span> $Url,
-    	[<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    	<span style="color:#66d9ef">[String]</span> $SubscriptionId,
-
-    	[<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    	<span style="color:#66d9ef">[PSCredential]</span> $Credential,
-
-    	[<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    	<span style="color:#66d9ef">[String]</span> $VMRoleGIName,
-
-    	<span style="color:#66d9ef">[String]</span> $VMRoleGIVersion,
-
-    	<span style="color:#66d9ef">[String]</span> $VMRoleGIPublisher,
-
-    	[<span style="color:#66d9ef">ValidateSet</span>(<span style="color:#e6db74">&#39;Small&#39;</span>,<span style="color:#e6db74">&#39;A7&#39;</span>,<span style="color:#e6db74">&#39;ExtraSmall&#39;</span>,<span style="color:#e6db74">&#39;Large&#39;</span>,<span style="color:#e6db74">&#39;A6&#39;</span>,<span style="color:#e6db74">&#39;Medium&#39;</span>,<span style="color:#e6db74">&#39;ExtraLarge&#39;</span>)]
-    <span style="color:#66d9ef">[String]</span> $VMSize = <span style="color:#e6db74">&#39;Medium&#39;</span>,
-
-    [<span style="color:#66d9ef">ValidateSet</span>(<span style="color:#e6db74">&#39;LatestApplicable&#39;</span>,<span style="color:#e6db74">&#39;LatestApplicableWithFamilyName&#39;</span>,<span style="color:#e6db74">&#39;Specified&#39;</span>)]
-    <span style="color:#66d9ef">[String]</span> $OSDiskSearch = <span style="color:#e6db74">&#39;LatestApplicable&#39;</span>,
-
-    <span style="color:#66d9ef">[String]</span> $OSDiskFamilyName,
-
-    <span style="color:#66d9ef">[String]</span> $OSDiskRelease,
-
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    <span style="color:#66d9ef">[String]</span> $NetworkReference,
-
-    <span style="color:#66d9ef">[Microsoft.Management.Infrastructure.CimInstance[]]</span> $VMRoleParameters,
-
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    [<span style="color:#66d9ef">ValidateSet</span>(<span style="color:#e6db74">&#39;ASPNET&#39;</span>,<span style="color:#e6db74">&#39;ADFS&#39;</span>)]
-    <span style="color:#66d9ef">[String]</span> $TokenSource,
-
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    <span style="color:#66d9ef">[String]</span> $TokenUrl,
-
-    <span style="color:#66d9ef">[UInt16]</span> $TokenPort,
-
-    <span style="color:#66d9ef">[UInt16]</span> $Port
-)
-<span style="color:#66d9ef">try</span> {
-    Setup @PSBoundParameters
-
-    $VMRole = Get-WAPVMRole -CloudServiceName $Name -ErrorAction SilentlyContinue
-
-    <span style="color:#66d9ef">if</span> ($Ensure <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;Present&#39;</span>) {
-        <span style="color:#66d9ef">if</span> ($null <span style="color:#f92672">-ne</span> $VMRole) {
-        <span style="color:#66d9ef">return</span> $true
-        } <span style="color:#66d9ef">else</span> {
-            <span style="color:#66d9ef">return</span> $false
-        }
-    } <span style="color:#66d9ef">else</span> {
-        <span style="color:#66d9ef">if</span> ($null <span style="color:#f92672">-eq</span> $VMRole) {
-            <span style="color:#66d9ef">return</span> $true
-        } <span style="color:#66d9ef">else</span> {
-            <span style="color:#66d9ef">return</span> $false
-        }
-    }
-} <span style="color:#66d9ef">catch</span> {
-    Write-Error -ErrorRecord $_ -ErrorAction Stop
-}
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Test-TargetResource</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
+<span class="ln"> 3</span>    <span class="p">[</span><span class="n">OutputType</span><span class="p">(</span><span class="no">[System.Boolean]</span><span class="p">)]</span>
+<span class="ln"> 4</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln"> 5</span>        <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln"> 6</span>        <span class="no">[String]</span> <span class="nv">$Name</span><span class="p">,</span>    
+<span class="ln"> 7</span>    	<span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;Present&#39;</span><span class="p">,</span><span class="s1">&#39;Absent&#39;</span><span class="p">)]</span>
+<span class="ln"> 8</span>    	<span class="no">[String]</span> <span class="nv">$Ensure</span><span class="p">,</span>
+<span class="ln"> 9</span>
+<span class="ln">10</span>   		<span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln">11</span>    	<span class="no">[String]</span> <span class="nv">$Url</span><span class="p">,</span>
+<span class="ln">12</span>    	<span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln">13</span>    	<span class="no">[String]</span> <span class="nv">$SubscriptionId</span><span class="p">,</span>
+<span class="ln">14</span>
+<span class="ln">15</span>    	<span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln">16</span>    	<span class="no">[PSCredential]</span> <span class="nv">$Credential</span><span class="p">,</span>
+<span class="ln">17</span>
+<span class="ln">18</span>    	<span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln">19</span>    	<span class="no">[String]</span> <span class="nv">$VMRoleGIName</span><span class="p">,</span>
+<span class="ln">20</span>
+<span class="ln">21</span>    	<span class="no">[String]</span> <span class="nv">$VMRoleGIVersion</span><span class="p">,</span>
+<span class="ln">22</span>
+<span class="ln">23</span>    	<span class="no">[String]</span> <span class="nv">$VMRoleGIPublisher</span><span class="p">,</span>
+<span class="ln">24</span>
+<span class="ln">25</span>    	<span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;Small&#39;</span><span class="p">,</span><span class="s1">&#39;A7&#39;</span><span class="p">,</span><span class="s1">&#39;ExtraSmall&#39;</span><span class="p">,</span><span class="s1">&#39;Large&#39;</span><span class="p">,</span><span class="s1">&#39;A6&#39;</span><span class="p">,</span><span class="s1">&#39;Medium&#39;</span><span class="p">,</span><span class="s1">&#39;ExtraLarge&#39;</span><span class="p">)]</span>
+<span class="ln">26</span>    <span class="no">[String]</span> <span class="nv">$VMSize</span> <span class="p">=</span> <span class="s1">&#39;Medium&#39;</span><span class="p">,</span>
+<span class="ln">27</span>
+<span class="ln">28</span>    <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;LatestApplicable&#39;</span><span class="p">,</span><span class="s1">&#39;LatestApplicableWithFamilyName&#39;</span><span class="p">,</span><span class="s1">&#39;Specified&#39;</span><span class="p">)]</span>
+<span class="ln">29</span>    <span class="no">[String]</span> <span class="nv">$OSDiskSearch</span> <span class="p">=</span> <span class="s1">&#39;LatestApplicable&#39;</span><span class="p">,</span>
+<span class="ln">30</span>
+<span class="ln">31</span>    <span class="no">[String]</span> <span class="nv">$OSDiskFamilyName</span><span class="p">,</span>
+<span class="ln">32</span>
+<span class="ln">33</span>    <span class="no">[String]</span> <span class="nv">$OSDiskRelease</span><span class="p">,</span>
+<span class="ln">34</span>
+<span class="ln">35</span>    <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln">36</span>    <span class="no">[String]</span> <span class="nv">$NetworkReference</span><span class="p">,</span>
+<span class="ln">37</span>
+<span class="ln">38</span>    <span class="no">[Microsoft.Management.Infrastructure.CimInstance[]]</span> <span class="nv">$VMRoleParameters</span><span class="p">,</span>
+<span class="ln">39</span>
+<span class="ln">40</span>    <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln">41</span>    <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;ASPNET&#39;</span><span class="p">,</span><span class="s1">&#39;ADFS&#39;</span><span class="p">)]</span>
+<span class="ln">42</span>    <span class="no">[String]</span> <span class="nv">$TokenSource</span><span class="p">,</span>
+<span class="ln">43</span>
+<span class="ln">44</span>    <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln">45</span>    <span class="no">[String]</span> <span class="nv">$TokenUrl</span><span class="p">,</span>
+<span class="ln">46</span>
+<span class="ln">47</span>    <span class="no">[UInt16]</span> <span class="nv">$TokenPort</span><span class="p">,</span>
+<span class="ln">48</span>
+<span class="ln">49</span>    <span class="no">[UInt16]</span> <span class="nv">$Port</span>
+<span class="ln">50</span><span class="p">)</span>
+<span class="ln">51</span><span class="k">try</span> <span class="p">{</span>
+<span class="ln">52</span>    <span class="n">Setup</span> <span class="nv">@PSBoundParameters</span>
+<span class="ln">53</span>
+<span class="ln">54</span>    <span class="nv">$VMRole</span> <span class="p">=</span> <span class="nb">Get-WAPVMRole</span> <span class="n">-CloudServiceName</span> <span class="nv">$Name</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
+<span class="ln">55</span>
+<span class="ln">56</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$Ensure</span> <span class="o">-eq</span> <span class="s1">&#39;Present&#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">57</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$null</span> <span class="o">-ne</span> <span class="nv">$VMRole</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">58</span>        <span class="k">return</span> <span class="nv">$true</span>
+<span class="ln">59</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln">60</span>            <span class="k">return</span> <span class="nv">$false</span>
+<span class="ln">61</span>        <span class="p">}</span>
+<span class="ln">62</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln">63</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$null</span> <span class="o">-eq</span> <span class="nv">$VMRole</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">64</span>            <span class="k">return</span> <span class="nv">$true</span>
+<span class="ln">65</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln">66</span>            <span class="k">return</span> <span class="nv">$false</span>
+<span class="ln">67</span>        <span class="p">}</span>
+<span class="ln">68</span>    <span class="p">}</span>
+<span class="ln">69</span><span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+<span class="ln">70</span>    <span class="nb">Write-Error</span> <span class="n">-ErrorRecord</span> <span class="nv">$_</span> <span class="n">-ErrorAction</span> <span class="n">Stop</span>
+<span class="ln">71</span><span class="p">}</span>
+<span class="ln">72</span><span class="p">}</span>
 </code></pre></div><p>This function is really simple. It starts by splatting the PSBoundParameters against the “Setup” helper function so we have a JWT token and a subscription selected within the current runspace. Then it queries the Azure Pack (Public) Tenant API if a VM Role exists by querying for a VMRole with the specified name. The ErrorAction for this function is defined as SilentlyContinue, this way the VMRole variable will either end up with a VM Role object or with Null. And then, based on the result, either true or false is returned respective to the ensure value. We could implement a complex testing algorithm but I figure this resource would only be used for deployment purposes and not for ensuring idempotency as the resource deployed will have its own lifecycle which will have nothing to do with the DSC configuration it was deployed with. So I keep it simple!</p>
 <p>Next we look at the Set-TargetResource function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> Set-TargetResource {
-    [<span style="color:#66d9ef">CmdletBinding</span>()]
-    <span style="color:#66d9ef">param</span> (
-        [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-        <span style="color:#66d9ef">[String]</span> $Name,   
-    [<span style="color:#66d9ef">ValidateSet</span>(<span style="color:#e6db74">&#39;Present&#39;</span>,<span style="color:#e6db74">&#39;Absent&#39;</span>)]
-    <span style="color:#66d9ef">[String]</span> $Ensure,
-
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    <span style="color:#66d9ef">[String]</span> $Url,
-
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    <span style="color:#66d9ef">[String]</span> $SubscriptionId,
-
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    <span style="color:#66d9ef">[PSCredential]</span> $Credential,
-
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    <span style="color:#66d9ef">[String]</span> $VMRoleGIName,
-
-    <span style="color:#66d9ef">[String]</span> $VMRoleGIVersion,
-
-    <span style="color:#66d9ef">[String]</span> $VMRoleGIPublisher,
-
-    [<span style="color:#66d9ef">ValidateSet</span>(<span style="color:#e6db74">&#39;Small&#39;</span>,<span style="color:#e6db74">&#39;A7&#39;</span>,<span style="color:#e6db74">&#39;ExtraSmall&#39;</span>,<span style="color:#e6db74">&#39;Large&#39;</span>,<span style="color:#e6db74">&#39;A6&#39;</span>,<span style="color:#e6db74">&#39;Medium&#39;</span>,<span style="color:#e6db74">&#39;ExtraLarge&#39;</span>)]
-    <span style="color:#66d9ef">[String]</span> $VMSize = <span style="color:#e6db74">&#39;Medium&#39;</span>,
-
-    [<span style="color:#66d9ef">ValidateSet</span>(<span style="color:#e6db74">&#39;LatestApplicable&#39;</span>,<span style="color:#e6db74">&#39;LatestApplicableWithFamilyName&#39;</span>,<span style="color:#e6db74">&#39;Specified&#39;</span>)]
-    <span style="color:#66d9ef">[String]</span> $OSDiskSearch = <span style="color:#e6db74">&#39;LatestApplicable&#39;</span>,
-
-    <span style="color:#66d9ef">[String]</span> $OSDiskFamilyName,
-
-    <span style="color:#66d9ef">[String]</span> $OSDiskRelease,
-
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    <span style="color:#66d9ef">[String]</span> $NetworkReference,
-
-    <span style="color:#66d9ef">[Microsoft.Management.Infrastructure.CimInstance[]]</span> $VMRoleParameters,
-
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    [<span style="color:#66d9ef">ValidateSet</span>(<span style="color:#e6db74">&#39;ASPNET&#39;</span>,<span style="color:#e6db74">&#39;ADFS&#39;</span>)]
-    <span style="color:#66d9ef">[String]</span> $TokenSource,
-
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    <span style="color:#66d9ef">[String]</span> $TokenUrl,
- 
-    <span style="color:#75715e">#do not define default as functions for ADFS and ASP have different defaults</span>
-    <span style="color:#66d9ef">[UInt16]</span> $TokenPort,
-
-    <span style="color:#66d9ef">[UInt16]</span> $Port = 30006
-)
-
-<span style="color:#66d9ef">try</span> {
-    Setup @PSBoundParameters
-
-    <span style="color:#66d9ef">if</span> ($Ensure <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;Absent&#39;</span>) {
-        Get-WAPCloudService -Name $Name | Remove-WAPCloudService -Force | Out-Null
-    } <span style="color:#66d9ef">else</span> {
-        <span style="color:#75715e">#Get GI with Name</span>
-        $GI = Get-WAPGalleryVMRole -Name $VMRoleGIName
-        <span style="color:#75715e">#If Multiple GI&#39;s returned, check if user specified version and select on that</span>
-        <span style="color:#66d9ef">if</span> ($GI <span style="color:#f92672">-is</span> <span style="color:#66d9ef">[array]</span> <span style="color:#f92672">-and</span> $VMRoleGIVersion) {
-            $GI = Get-WAPGalleryVMRole -Name $VMRoleGIName -Version $VMRoleGIVersion
-        }
-        <span style="color:#75715e">#If Multiple GI&#39;s returned, and version not specified or also returned multiple object, check if user specified Publisher and select on that.</span>
-        <span style="color:#66d9ef">if</span> ($GI <span style="color:#f92672">-is</span> <span style="color:#66d9ef">[array]</span> <span style="color:#f92672">-and</span> $VMRoleGIPublisher) {
-            $GI = $GI | Where-Object -FilterScript {$_.Publisher <span style="color:#f92672">-eq</span> $VMRoleGIPublisher}
-        }
-        <span style="color:#75715e">#If No GI is left, throw error.</span>
-        <span style="color:#66d9ef">if</span> ($null <span style="color:#f92672">-eq</span> $GI) {
-            <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#39;No VM Role Gallery Item found matching user criteria&#39;</span>
-        } <span style="color:#66d9ef">else</span> {
-            $GI | Out-String | Write-Verbose
-        }
-
-        <span style="color:#66d9ef">if</span> ($OSDiskSearch <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;LatestApplicable&#39;</span>) {
-            $OSDisk = $GI | Get-WAPVMRoleOSDisk | 
-                Sort-Object Addedtime -Descending | 
-                    Select-Object -First 1
-        } <span style="color:#66d9ef">elseif</span> ($OSDiskSearch <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;LatestApplicableWithFamilyName&#39;</span>) {
-            $OSDisk = $GI | Get-WAPVMRoleOSDisk | 
-                Where-Object -FilterScript {$_.FamilyName <span style="color:#f92672">-eq</span> $OSDiskFamilyName} | 
-                    Sort-Object Addedtime -Descending | Select-Object -First 1
-        } <span style="color:#66d9ef">elseif</span> ($OSDiskSearch <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;Specified&#39;</span>) {
-            $OSDisk = $GI | Get-WAPVMRoleOSDisk | 
-                Where-Object -FilterScript {$_.FamilyName <span style="color:#f92672">-eq</span> $OSDiskFamilyName <span style="color:#f92672">-and</span> $_.Release <span style="color:#f92672">-eq</span> $OSDiskRelease}
-        }
-        <span style="color:#66d9ef">if</span> ($null <span style="color:#f92672">-eq</span> $OSDisk) {
-            <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#39;No valid OS disk was found matching User provided criteria&#39;</span>
-        }
-        $OSDisk | Out-String | Write-Verbose
-
-        $Net = Get-WAPVMNetwork -Name $NetworkReference
-        <span style="color:#66d9ef">if</span> ($null <span style="color:#f92672">-eq</span> $Net) {
-            <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#39;No valid virtual network was found&#39;</span>
-        }
-        $net | Out-String | Write-Verbose
-
-        $VMProps = New-WAPVMRoleParameterObject -VMRole $GI -OSDisk $OSDisk -VMRoleVMSize $VMSize -VMNetwork $Net
-        <span style="color:#66d9ef">foreach</span> ($P <span style="color:#66d9ef">in</span> $VMRoleParameters) {
-            Add-Member -InputObject $VMProps -MemberType NoteProperty -Name $P.key -Value $P.value -Force
-        }
-        $VMProps | Out-String | Write-Verbose
-
-        New-WAPVMRoleDeployment -VMRole $GI -ParameterObject $VMProps -CloudServiceName $Name | Out-Null
-    }
-} <span style="color:#66d9ef">catch</span> {
-    Write-Error -ErrorRecord $_ -ErrorAction Stop
-}
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">  1</span><span class="k">function</span> <span class="nb">Set-TargetResource</span> <span class="p">{</span>
+<span class="ln">  2</span>    <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
+<span class="ln">  3</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln">  4</span>        <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln">  5</span>        <span class="no">[String]</span> <span class="nv">$Name</span><span class="p">,</span>   
+<span class="ln">  6</span>    <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;Present&#39;</span><span class="p">,</span><span class="s1">&#39;Absent&#39;</span><span class="p">)]</span>
+<span class="ln">  7</span>    <span class="no">[String]</span> <span class="nv">$Ensure</span><span class="p">,</span>
+<span class="ln">  8</span>
+<span class="ln">  9</span>    <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln"> 10</span>    <span class="no">[String]</span> <span class="nv">$Url</span><span class="p">,</span>
+<span class="ln"> 11</span>
+<span class="ln"> 12</span>    <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln"> 13</span>    <span class="no">[String]</span> <span class="nv">$SubscriptionId</span><span class="p">,</span>
+<span class="ln"> 14</span>
+<span class="ln"> 15</span>    <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln"> 16</span>    <span class="no">[PSCredential]</span> <span class="nv">$Credential</span><span class="p">,</span>
+<span class="ln"> 17</span>
+<span class="ln"> 18</span>    <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln"> 19</span>    <span class="no">[String]</span> <span class="nv">$VMRoleGIName</span><span class="p">,</span>
+<span class="ln"> 20</span>
+<span class="ln"> 21</span>    <span class="no">[String]</span> <span class="nv">$VMRoleGIVersion</span><span class="p">,</span>
+<span class="ln"> 22</span>
+<span class="ln"> 23</span>    <span class="no">[String]</span> <span class="nv">$VMRoleGIPublisher</span><span class="p">,</span>
+<span class="ln"> 24</span>
+<span class="ln"> 25</span>    <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;Small&#39;</span><span class="p">,</span><span class="s1">&#39;A7&#39;</span><span class="p">,</span><span class="s1">&#39;ExtraSmall&#39;</span><span class="p">,</span><span class="s1">&#39;Large&#39;</span><span class="p">,</span><span class="s1">&#39;A6&#39;</span><span class="p">,</span><span class="s1">&#39;Medium&#39;</span><span class="p">,</span><span class="s1">&#39;ExtraLarge&#39;</span><span class="p">)]</span>
+<span class="ln"> 26</span>    <span class="no">[String]</span> <span class="nv">$VMSize</span> <span class="p">=</span> <span class="s1">&#39;Medium&#39;</span><span class="p">,</span>
+<span class="ln"> 27</span>
+<span class="ln"> 28</span>    <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;LatestApplicable&#39;</span><span class="p">,</span><span class="s1">&#39;LatestApplicableWithFamilyName&#39;</span><span class="p">,</span><span class="s1">&#39;Specified&#39;</span><span class="p">)]</span>
+<span class="ln"> 29</span>    <span class="no">[String]</span> <span class="nv">$OSDiskSearch</span> <span class="p">=</span> <span class="s1">&#39;LatestApplicable&#39;</span><span class="p">,</span>
+<span class="ln"> 30</span>
+<span class="ln"> 31</span>    <span class="no">[String]</span> <span class="nv">$OSDiskFamilyName</span><span class="p">,</span>
+<span class="ln"> 32</span>
+<span class="ln"> 33</span>    <span class="no">[String]</span> <span class="nv">$OSDiskRelease</span><span class="p">,</span>
+<span class="ln"> 34</span>
+<span class="ln"> 35</span>    <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln"> 36</span>    <span class="no">[String]</span> <span class="nv">$NetworkReference</span><span class="p">,</span>
+<span class="ln"> 37</span>
+<span class="ln"> 38</span>    <span class="no">[Microsoft.Management.Infrastructure.CimInstance[]]</span> <span class="nv">$VMRoleParameters</span><span class="p">,</span>
+<span class="ln"> 39</span>
+<span class="ln"> 40</span>    <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln"> 41</span>    <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;ASPNET&#39;</span><span class="p">,</span><span class="s1">&#39;ADFS&#39;</span><span class="p">)]</span>
+<span class="ln"> 42</span>    <span class="no">[String]</span> <span class="nv">$TokenSource</span><span class="p">,</span>
+<span class="ln"> 43</span>
+<span class="ln"> 44</span>    <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln"> 45</span>    <span class="no">[String]</span> <span class="nv">$TokenUrl</span><span class="p">,</span>
+<span class="ln"> 46</span> 
+<span class="ln"> 47</span>    <span class="c">#do not define default as functions for ADFS and ASP have different defaults</span>
+<span class="ln"> 48</span>    <span class="no">[UInt16]</span> <span class="nv">$TokenPort</span><span class="p">,</span>
+<span class="ln"> 49</span>
+<span class="ln"> 50</span>    <span class="no">[UInt16]</span> <span class="nv">$Port</span> <span class="p">=</span> <span class="n">30006</span>
+<span class="ln"> 51</span><span class="p">)</span>
+<span class="ln"> 52</span>
+<span class="ln"> 53</span><span class="k">try</span> <span class="p">{</span>
+<span class="ln"> 54</span>    <span class="n">Setup</span> <span class="nv">@PSBoundParameters</span>
+<span class="ln"> 55</span>
+<span class="ln"> 56</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$Ensure</span> <span class="o">-eq</span> <span class="s1">&#39;Absent&#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 57</span>        <span class="nb">Get-WAPCloudService</span> <span class="n">-Name</span> <span class="nv">$Name</span> <span class="p">|</span> <span class="nb">Remove-WAPCloudService</span> <span class="n">-Force</span> <span class="p">|</span> <span class="nb">Out-Null</span>
+<span class="ln"> 58</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln"> 59</span>        <span class="c">#Get GI with Name</span>
+<span class="ln"> 60</span>        <span class="nv">$GI</span> <span class="p">=</span> <span class="nb">Get-WAPGalleryVMRole</span> <span class="n">-Name</span> <span class="nv">$VMRoleGIName</span>
+<span class="ln"> 61</span>        <span class="c">#If Multiple GI&#39;s returned, check if user specified version and select on that</span>
+<span class="ln"> 62</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$GI</span> <span class="o">-is</span> <span class="no">[array]</span> <span class="o">-and</span> <span class="nv">$VMRoleGIVersion</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 63</span>            <span class="nv">$GI</span> <span class="p">=</span> <span class="nb">Get-WAPGalleryVMRole</span> <span class="n">-Name</span> <span class="nv">$VMRoleGIName</span> <span class="n">-Version</span> <span class="nv">$VMRoleGIVersion</span>
+<span class="ln"> 64</span>        <span class="p">}</span>
+<span class="ln"> 65</span>        <span class="c">#If Multiple GI&#39;s returned, and version not specified or also returned multiple object, check if user specified Publisher and select on that.</span>
+<span class="ln"> 66</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$GI</span> <span class="o">-is</span> <span class="no">[array]</span> <span class="o">-and</span> <span class="nv">$VMRoleGIPublisher</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 67</span>            <span class="nv">$GI</span> <span class="p">=</span> <span class="nv">$GI</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="n">-FilterScript</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">Publisher</span> <span class="o">-eq</span> <span class="nv">$VMRoleGIPublisher</span><span class="p">}</span>
+<span class="ln"> 68</span>        <span class="p">}</span>
+<span class="ln"> 69</span>        <span class="c">#If No GI is left, throw error.</span>
+<span class="ln"> 70</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$null</span> <span class="o">-eq</span> <span class="nv">$GI</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 71</span>            <span class="k">throw</span> <span class="s1">&#39;No VM Role Gallery Item found matching user criteria&#39;</span>
+<span class="ln"> 72</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln"> 73</span>            <span class="nv">$GI</span> <span class="p">|</span> <span class="nb">Out-String</span> <span class="p">|</span> <span class="nb">Write-Verbose</span>
+<span class="ln"> 74</span>        <span class="p">}</span>
+<span class="ln"> 75</span>
+<span class="ln"> 76</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$OSDiskSearch</span> <span class="o">-eq</span> <span class="s1">&#39;LatestApplicable&#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 77</span>            <span class="nv">$OSDisk</span> <span class="p">=</span> <span class="nv">$GI</span> <span class="p">|</span> <span class="nb">Get-WAPVMRoleOSDisk</span> <span class="p">|</span> 
+<span class="ln"> 78</span>                <span class="nb">Sort-Object</span> <span class="n">Addedtime</span> <span class="n">-Descending</span> <span class="p">|</span> 
+<span class="ln"> 79</span>                    <span class="nb">Select-Object</span> <span class="n">-First</span> <span class="n">1</span>
+<span class="ln"> 80</span>        <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$OSDiskSearch</span> <span class="o">-eq</span> <span class="s1">&#39;LatestApplicableWithFamilyName&#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 81</span>            <span class="nv">$OSDisk</span> <span class="p">=</span> <span class="nv">$GI</span> <span class="p">|</span> <span class="nb">Get-WAPVMRoleOSDisk</span> <span class="p">|</span> 
+<span class="ln"> 82</span>                <span class="nb">Where-Object</span> <span class="n">-FilterScript</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">FamilyName</span> <span class="o">-eq</span> <span class="nv">$OSDiskFamilyName</span><span class="p">}</span> <span class="p">|</span> 
+<span class="ln"> 83</span>                    <span class="nb">Sort-Object</span> <span class="n">Addedtime</span> <span class="n">-Descending</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-First</span> <span class="n">1</span>
+<span class="ln"> 84</span>        <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$OSDiskSearch</span> <span class="o">-eq</span> <span class="s1">&#39;Specified&#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 85</span>            <span class="nv">$OSDisk</span> <span class="p">=</span> <span class="nv">$GI</span> <span class="p">|</span> <span class="nb">Get-WAPVMRoleOSDisk</span> <span class="p">|</span> 
+<span class="ln"> 86</span>                <span class="nb">Where-Object</span> <span class="n">-FilterScript</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">FamilyName</span> <span class="o">-eq</span> <span class="nv">$OSDiskFamilyName</span> <span class="o">-and</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Release</span> <span class="o">-eq</span> <span class="nv">$OSDiskRelease</span><span class="p">}</span>
+<span class="ln"> 87</span>        <span class="p">}</span>
+<span class="ln"> 88</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$null</span> <span class="o">-eq</span> <span class="nv">$OSDisk</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 89</span>            <span class="k">throw</span> <span class="s1">&#39;No valid OS disk was found matching User provided criteria&#39;</span>
+<span class="ln"> 90</span>        <span class="p">}</span>
+<span class="ln"> 91</span>        <span class="nv">$OSDisk</span> <span class="p">|</span> <span class="nb">Out-String</span> <span class="p">|</span> <span class="nb">Write-Verbose</span>
+<span class="ln"> 92</span>
+<span class="ln"> 93</span>        <span class="nv">$Net</span> <span class="p">=</span> <span class="nb">Get-WAPVMNetwork</span> <span class="n">-Name</span> <span class="nv">$NetworkReference</span>
+<span class="ln"> 94</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$null</span> <span class="o">-eq</span> <span class="nv">$Net</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 95</span>            <span class="k">throw</span> <span class="s1">&#39;No valid virtual network was found&#39;</span>
+<span class="ln"> 96</span>        <span class="p">}</span>
+<span class="ln"> 97</span>        <span class="nv">$net</span> <span class="p">|</span> <span class="nb">Out-String</span> <span class="p">|</span> <span class="nb">Write-Verbose</span>
+<span class="ln"> 98</span>
+<span class="ln"> 99</span>        <span class="nv">$VMProps</span> <span class="p">=</span> <span class="nb">New-WAPVMRoleParameterObject</span> <span class="n">-VMRole</span> <span class="nv">$GI</span> <span class="n">-OSDisk</span> <span class="nv">$OSDisk</span> <span class="n">-VMRoleVMSize</span> <span class="nv">$VMSize</span> <span class="n">-VMNetwork</span> <span class="nv">$Net</span>
+<span class="ln">100</span>        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$P</span> <span class="k">in</span> <span class="nv">$VMRoleParameters</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">101</span>            <span class="nb">Add-Member</span> <span class="n">-InputObject</span> <span class="nv">$VMProps</span> <span class="n">-MemberType</span> <span class="n">NoteProperty</span> <span class="n">-Name</span> <span class="nv">$P</span><span class="p">.</span><span class="n">key</span> <span class="n">-Value</span> <span class="nv">$P</span><span class="p">.</span><span class="n">value</span> <span class="n">-Force</span>
+<span class="ln">102</span>        <span class="p">}</span>
+<span class="ln">103</span>        <span class="nv">$VMProps</span> <span class="p">|</span> <span class="nb">Out-String</span> <span class="p">|</span> <span class="nb">Write-Verbose</span>
+<span class="ln">104</span>
+<span class="ln">105</span>        <span class="nb">New-WAPVMRoleDeployment</span> <span class="n">-VMRole</span> <span class="nv">$GI</span> <span class="n">-ParameterObject</span> <span class="nv">$VMProps</span> <span class="n">-CloudServiceName</span> <span class="nv">$Name</span> <span class="p">|</span> <span class="nb">Out-Null</span>
+<span class="ln">106</span>    <span class="p">}</span>
+<span class="ln">107</span><span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+<span class="ln">108</span>    <span class="nb">Write-Error</span> <span class="n">-ErrorRecord</span> <span class="nv">$_</span> <span class="n">-ErrorAction</span> <span class="n">Stop</span>
+<span class="ln">109</span><span class="p">}</span>
+<span class="ln">110</span><span class="p">}</span>
 </code></pre></div><p>This function is a bit more involved. It also starts with the Setup helper function (remember that each function will run in its own runspace when invoked by the LCM, so we don’t share the environment between a Test and a Set). Next, based on the Ensure parameter, it will either start a provisioning or a deletion respectively.  In the case of provisioning, first it will get the Gallery Item on which to base the deployment off. Then it will search for a compatible OS disk (containing the correct Tags). The VM Network will be looked up and then the VMRole parameter object will be generated. Based on user specified hash table in the DSC configuration, this object will be enriched with the required data (we will look at an example deployment a bit later). Finally, the deployment is started.</p>
 <p>Finally, we look at the Get-TargetResource function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> Get-TargetResource {
-    [<span style="color:#66d9ef">CmdletBinding</span>()]
-    [OutputType(<span style="color:#66d9ef">[System.Collections.Hashtable]</span>)]
-    <span style="color:#66d9ef">param</span> (
-        [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-        <span style="color:#66d9ef">[String]</span> $Name,    
-    [<span style="color:#66d9ef">ValidateSet</span>(<span style="color:#e6db74">&#39;Present&#39;</span>,<span style="color:#e6db74">&#39;Absent&#39;</span>)]
-    <span style="color:#66d9ef">[String]</span> $Ensure,
-
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    <span style="color:#66d9ef">[String]</span> $Url,
-
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    <span style="color:#66d9ef">[String]</span> $SubscriptionId,
-
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    <span style="color:#66d9ef">[PSCredential]</span> $Credential,
-
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    <span style="color:#66d9ef">[String]</span> $VMRoleGIName,
-
-    <span style="color:#66d9ef">[String]</span> $VMRoleGIVersion,
-
-    <span style="color:#66d9ef">[String]</span> $VMRoleGIPublisher,
-
-    [<span style="color:#66d9ef">ValidateSet</span>(<span style="color:#e6db74">&#39;Small&#39;</span>,<span style="color:#e6db74">&#39;A7&#39;</span>,<span style="color:#e6db74">&#39;ExtraSmall&#39;</span>,<span style="color:#e6db74">&#39;Large&#39;</span>,<span style="color:#e6db74">&#39;A6&#39;</span>,<span style="color:#e6db74">&#39;Medium&#39;</span>,<span style="color:#e6db74">&#39;ExtraLarge&#39;</span>)]
-    <span style="color:#66d9ef">[String]</span> $VMSize = <span style="color:#e6db74">&#39;Medium&#39;</span>,
-
-    [<span style="color:#66d9ef">ValidateSet</span>(<span style="color:#e6db74">&#39;LatestApplicable&#39;</span>,<span style="color:#e6db74">&#39;LatestApplicableWithFamilyName&#39;</span>,<span style="color:#e6db74">&#39;Specified&#39;</span>)]
-    <span style="color:#66d9ef">[String]</span> $OSDiskSearch = <span style="color:#e6db74">&#39;LatestApplicable&#39;</span>,
-
-    <span style="color:#66d9ef">[String]</span> $OSDiskFamilyName,
-
-    <span style="color:#66d9ef">[String]</span> $OSDiskRelease,
-
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    <span style="color:#66d9ef">[String]</span> $NetworkReference,
-
-    <span style="color:#66d9ef">[Microsoft.Management.Infrastructure.CimInstance[]]</span> $VMRoleParameters,
-
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    [<span style="color:#66d9ef">ValidateSet</span>(<span style="color:#e6db74">&#39;ASPNET&#39;</span>,<span style="color:#e6db74">&#39;ADFS&#39;</span>)]
-    <span style="color:#66d9ef">[String]</span> $TokenSource,
-
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    <span style="color:#66d9ef">[String]</span> $TokenUrl,
- 
-    <span style="color:#75715e">#do not define default as functions for ADFS and ASP have different defaults</span>
-    <span style="color:#66d9ef">[UInt16]</span> $TokenPort,
-
-    <span style="color:#66d9ef">[UInt16]</span> $Port = 30006
-)
-
-Setup @PSBoundParameters
-
-<span style="color:#66d9ef">if</span> (Get-WAPVMRole -CloudServiceName $Name -ErrorAction SilentlyContinue) {
-    $Ensure = <span style="color:#e6db74">&#39;Present&#39;</span>
-} <span style="color:#66d9ef">else</span> {
-    $Ensure = <span style="color:#e6db74">&#39;Absent&#39;</span>
-}
-Add-Member -InputObject $PSBoundParameters -MemberType NoteProperty -Name <span style="color:#e6db74">&#39;Ensure&#39;</span> -Value $Ensure
-$PSBoundParameters.Remove(<span style="color:#e6db74">&#39;Verbose&#39;</span>)
-$PSBoundParameters.Remove(<span style="color:#e6db74">&#39;Debug&#39;</span>)
-Write-Output -InputObject $PSBoundParameters
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Get-TargetResource</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
+<span class="ln"> 3</span>    <span class="p">[</span><span class="n">OutputType</span><span class="p">(</span><span class="no">[System.Collections.Hashtable]</span><span class="p">)]</span>
+<span class="ln"> 4</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln"> 5</span>        <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln"> 6</span>        <span class="no">[String]</span> <span class="nv">$Name</span><span class="p">,</span>    
+<span class="ln"> 7</span>    <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;Present&#39;</span><span class="p">,</span><span class="s1">&#39;Absent&#39;</span><span class="p">)]</span>
+<span class="ln"> 8</span>    <span class="no">[String]</span> <span class="nv">$Ensure</span><span class="p">,</span>
+<span class="ln"> 9</span>
+<span class="ln">10</span>    <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln">11</span>    <span class="no">[String]</span> <span class="nv">$Url</span><span class="p">,</span>
+<span class="ln">12</span>
+<span class="ln">13</span>    <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln">14</span>    <span class="no">[String]</span> <span class="nv">$SubscriptionId</span><span class="p">,</span>
+<span class="ln">15</span>
+<span class="ln">16</span>    <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln">17</span>    <span class="no">[PSCredential]</span> <span class="nv">$Credential</span><span class="p">,</span>
+<span class="ln">18</span>
+<span class="ln">19</span>    <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln">20</span>    <span class="no">[String]</span> <span class="nv">$VMRoleGIName</span><span class="p">,</span>
+<span class="ln">21</span>
+<span class="ln">22</span>    <span class="no">[String]</span> <span class="nv">$VMRoleGIVersion</span><span class="p">,</span>
+<span class="ln">23</span>
+<span class="ln">24</span>    <span class="no">[String]</span> <span class="nv">$VMRoleGIPublisher</span><span class="p">,</span>
+<span class="ln">25</span>
+<span class="ln">26</span>    <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;Small&#39;</span><span class="p">,</span><span class="s1">&#39;A7&#39;</span><span class="p">,</span><span class="s1">&#39;ExtraSmall&#39;</span><span class="p">,</span><span class="s1">&#39;Large&#39;</span><span class="p">,</span><span class="s1">&#39;A6&#39;</span><span class="p">,</span><span class="s1">&#39;Medium&#39;</span><span class="p">,</span><span class="s1">&#39;ExtraLarge&#39;</span><span class="p">)]</span>
+<span class="ln">27</span>    <span class="no">[String]</span> <span class="nv">$VMSize</span> <span class="p">=</span> <span class="s1">&#39;Medium&#39;</span><span class="p">,</span>
+<span class="ln">28</span>
+<span class="ln">29</span>    <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;LatestApplicable&#39;</span><span class="p">,</span><span class="s1">&#39;LatestApplicableWithFamilyName&#39;</span><span class="p">,</span><span class="s1">&#39;Specified&#39;</span><span class="p">)]</span>
+<span class="ln">30</span>    <span class="no">[String]</span> <span class="nv">$OSDiskSearch</span> <span class="p">=</span> <span class="s1">&#39;LatestApplicable&#39;</span><span class="p">,</span>
+<span class="ln">31</span>
+<span class="ln">32</span>    <span class="no">[String]</span> <span class="nv">$OSDiskFamilyName</span><span class="p">,</span>
+<span class="ln">33</span>
+<span class="ln">34</span>    <span class="no">[String]</span> <span class="nv">$OSDiskRelease</span><span class="p">,</span>
+<span class="ln">35</span>
+<span class="ln">36</span>    <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln">37</span>    <span class="no">[String]</span> <span class="nv">$NetworkReference</span><span class="p">,</span>
+<span class="ln">38</span>
+<span class="ln">39</span>    <span class="no">[Microsoft.Management.Infrastructure.CimInstance[]]</span> <span class="nv">$VMRoleParameters</span><span class="p">,</span>
+<span class="ln">40</span>
+<span class="ln">41</span>    <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln">42</span>    <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;ASPNET&#39;</span><span class="p">,</span><span class="s1">&#39;ADFS&#39;</span><span class="p">)]</span>
+<span class="ln">43</span>    <span class="no">[String]</span> <span class="nv">$TokenSource</span><span class="p">,</span>
+<span class="ln">44</span>
+<span class="ln">45</span>    <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln">46</span>    <span class="no">[String]</span> <span class="nv">$TokenUrl</span><span class="p">,</span>
+<span class="ln">47</span> 
+<span class="ln">48</span>    <span class="c">#do not define default as functions for ADFS and ASP have different defaults</span>
+<span class="ln">49</span>    <span class="no">[UInt16]</span> <span class="nv">$TokenPort</span><span class="p">,</span>
+<span class="ln">50</span>
+<span class="ln">51</span>    <span class="no">[UInt16]</span> <span class="nv">$Port</span> <span class="p">=</span> <span class="n">30006</span>
+<span class="ln">52</span><span class="p">)</span>
+<span class="ln">53</span>
+<span class="ln">54</span><span class="n">Setup</span> <span class="nv">@PSBoundParameters</span>
+<span class="ln">55</span>
+<span class="ln">56</span><span class="k">if</span> <span class="p">(</span><span class="nb">Get-WAPVMRole</span> <span class="n">-CloudServiceName</span> <span class="nv">$Name</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">57</span>    <span class="nv">$Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+<span class="ln">58</span><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln">59</span>    <span class="nv">$Ensure</span> <span class="p">=</span> <span class="s1">&#39;Absent&#39;</span>
+<span class="ln">60</span><span class="p">}</span>
+<span class="ln">61</span><span class="nb">Add-Member</span> <span class="n">-InputObject</span> <span class="nv">$PSBoundParameters</span> <span class="n">-MemberType</span> <span class="n">NoteProperty</span> <span class="n">-Name</span> <span class="s1">&#39;Ensure&#39;</span> <span class="n">-Value</span> <span class="nv">$Ensure</span>
+<span class="ln">62</span><span class="nv">$PSBoundParameters</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="s1">&#39;Verbose&#39;</span><span class="p">)</span>
+<span class="ln">63</span><span class="nv">$PSBoundParameters</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="s1">&#39;Debug&#39;</span><span class="p">)</span>
+<span class="ln">64</span><span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="nv">$PSBoundParameters</span>
+<span class="ln">65</span><span class="p">}</span>
 </code></pre></div><p>Again, the setup helper function is called first. Then based upon the VM Role being deployed or not, Ensure is set to Absent or Present and added to the PSBoundParameters. Potentially Verbose and Debug are removed from the PSBoundParameters hash table as this hash table is to be output as the Class object and these parameters are not explicitly defined for the DSC resource class (if we do not do this, the Get-DscConfiguration will error out as the object does not correspond to the class definition). Finally, we send the PSBoundParameters hashtable to the output stream.</p>
 <p>There you have it! Not much work to add on a DSC resource on top of your PowerShell module if you ask me. Save it and put it in your modules directory. Ready to roll.</p>
 <h3 id="deploying-a-vm-role-using-dsc">Deploying a VM Role using DSC</h3>
 <p>The DSC resource module is finished. To make it available for the LCM we need to copy it over to ‘c:\Program Files\WindowsPowerShell\Modules’. Now let’s look at an example configuration script.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">configuration WAPVMRole {
-    <span style="color:#66d9ef">param</span> (
-        <span style="color:#66d9ef">[PSCredential]</span> $Credential
-    )
-    Import-DscResource -ModuleName cWAPack
-    Import-DscResource -ModuleName PSDesiredStateConfiguration
-node $AllNodes.NodeName {
-    WAPackVMRole DSCClient {
-        VMSize = <span style="color:#e6db74">&#39;Medium&#39;</span>
-        Name = <span style="color:#e6db74">&#39;TestDSC&#39;</span>
-        SubscriptionId = <span style="color:#e6db74">&#39;b5a9b263-066b-4a8f-87b4-1b7c90a5bcad&#39;</span>
-        Url = <span style="color:#e6db74">&#39;https://api.bgelens.nl&#39;</span>
-        Credential = $Credential
-        VMRoleGIName = <span style="color:#e6db74">&#39;DSCPullServerClient&#39;</span>
-        OSDiskSearch = <span style="color:#e6db74">&#39;LatestApplicable&#39;</span>
-        NetworkReference = <span style="color:#e6db74">&#39;Internal&#39;</span>
-        TokenSource = <span style="color:#e6db74">&#39;ADFS&#39;</span>
-        TokenUrl = <span style="color:#e6db74">&#39;https://sts.bgelens.nl&#39;</span>
-        TokenPort = 443
-        Ensure = <span style="color:#e6db74">&#39;Present&#39;</span>
-        Port = 443
-        VMRoleParameters = @{
-            VMRoleAdminCredential = <span style="color:#e6db74">&#39;Administrator:P@$Sw0rd!&#39;</span>
-            DSCPullServerClientConfigurationId = <span style="color:#e6db74">&#39;7844f909-1f2e-4770-9c97-7a2e2e5677ae&#39;</span>
-            DSCPullServerClientCredential = <span style="color:#e6db74">&#39;Domain\certreq:Password!&#39;</span>
-        }
-    }
-}
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">configuration</span> <span class="n">WAPVMRole</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln"> 3</span>        <span class="no">[PSCredential]</span> <span class="nv">$Credential</span>
+<span class="ln"> 4</span>    <span class="p">)</span>
+<span class="ln"> 5</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">cWAPack</span>
+<span class="ln"> 6</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">PSDesiredStateConfiguration</span>
+<span class="ln"> 7</span><span class="n">node</span> <span class="nv">$AllNodes</span><span class="p">.</span><span class="n">NodeName</span> <span class="p">{</span>
+<span class="ln"> 8</span>    <span class="n">WAPackVMRole</span> <span class="n">DSCClient</span> <span class="p">{</span>
+<span class="ln"> 9</span>        <span class="n">VMSize</span> <span class="p">=</span> <span class="s1">&#39;Medium&#39;</span>
+<span class="ln">10</span>        <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;TestDSC&#39;</span>
+<span class="ln">11</span>        <span class="n">SubscriptionId</span> <span class="p">=</span> <span class="s1">&#39;b5a9b263-066b-4a8f-87b4-1b7c90a5bcad&#39;</span>
+<span class="ln">12</span>        <span class="n">Url</span> <span class="p">=</span> <span class="s1">&#39;https://api.bgelens.nl&#39;</span>
+<span class="ln">13</span>        <span class="n">Credential</span> <span class="p">=</span> <span class="nv">$Credential</span>
+<span class="ln">14</span>        <span class="n">VMRoleGIName</span> <span class="p">=</span> <span class="s1">&#39;DSCPullServerClient&#39;</span>
+<span class="ln">15</span>        <span class="n">OSDiskSearch</span> <span class="p">=</span> <span class="s1">&#39;LatestApplicable&#39;</span>
+<span class="ln">16</span>        <span class="n">NetworkReference</span> <span class="p">=</span> <span class="s1">&#39;Internal&#39;</span>
+<span class="ln">17</span>        <span class="n">TokenSource</span> <span class="p">=</span> <span class="s1">&#39;ADFS&#39;</span>
+<span class="ln">18</span>        <span class="n">TokenUrl</span> <span class="p">=</span> <span class="s1">&#39;https://sts.bgelens.nl&#39;</span>
+<span class="ln">19</span>        <span class="n">TokenPort</span> <span class="p">=</span> <span class="n">443</span>
+<span class="ln">20</span>        <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+<span class="ln">21</span>        <span class="n">Port</span> <span class="p">=</span> <span class="n">443</span>
+<span class="ln">22</span>        <span class="n">VMRoleParameters</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln">23</span>            <span class="n">VMRoleAdminCredential</span> <span class="p">=</span> <span class="s1">&#39;Administrator:P@$Sw0rd!&#39;</span>
+<span class="ln">24</span>            <span class="n">DSCPullServerClientConfigurationId</span> <span class="p">=</span> <span class="s1">&#39;7844f909-1f2e-4770-9c97-7a2e2e5677ae&#39;</span>
+<span class="ln">25</span>            <span class="n">DSCPullServerClientCredential</span> <span class="p">=</span> <span class="s1">&#39;Domain\certreq:Password!&#39;</span>
+<span class="ln">26</span>        <span class="p">}</span>
+<span class="ln">27</span>    <span class="p">}</span>
+<span class="ln">28</span><span class="p">}</span>
+<span class="ln">29</span><span class="p">}</span>
 </code></pre></div><p>The VM Role parameters are being send to the DSC resource as a hash table. How do we know again what VMRoleParameters we need to pass? It’s all described in Part 2: <a href="/2015/08/07/journey-to-a-windows-azure-pack-vm-role-dsc-resource-powershell-module-usage/">Module usage</a>. Basically, you need to do some investigation up front as you need to interrogate the API and the Gallery Item to know what values you can pass. This VM Role will configure the LCM in the “to be deployed” VM to be a pull client.</p>
 <p>Now let’s call the configuration.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$Cred = New-Object -TypeName pscredential -ArgumentLis @(<span style="color:#e6db74">&#39;ben@bgelens.nl&#39;</span>, (ConvertTo-SecureString -String <span style="color:#e6db74">&#39;MySecurePWD!&#39;</span> -AsPlainText -Force))
-$configdata = @{
-    AllNodes = @(
-        @{
-            NodeName = <span style="color:#e6db74">&#39;localhost&#39;</span>
-            PSDscAllowPlainTextPassword = $true
-            PSDscAllowDomainUser = $true 
-        } 
-    )
-}
-WAPVMRole -ConfigurationData $configdata -Credential $Cred
-Start-DscConfiguration .\WAPVMRole -Wait <span style="color:#960050;background-color:#1e0010">–</span>Verbose
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$Cred</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">-TypeName</span> <span class="n">pscredential</span> <span class="n">-ArgumentLis</span> <span class="p">@(</span><span class="s1">&#39;ben@bgelens.nl&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nb">ConvertTo-SecureString</span> <span class="n">-String</span> <span class="s1">&#39;MySecurePWD!&#39;</span> <span class="n">-AsPlainText</span> <span class="n">-Force</span><span class="p">))</span>
+<span class="ln"> 2</span><span class="nv">$configdata</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln"> 3</span>    <span class="n">AllNodes</span> <span class="p">=</span> <span class="p">@(</span>
+<span class="ln"> 4</span>        <span class="p">@{</span>
+<span class="ln"> 5</span>            <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;localhost&#39;</span>
+<span class="ln"> 6</span>            <span class="n">PSDscAllowPlainTextPassword</span> <span class="p">=</span> <span class="nv">$true</span>
+<span class="ln"> 7</span>            <span class="n">PSDscAllowDomainUser</span> <span class="p">=</span> <span class="nv">$true</span> 
+<span class="ln"> 8</span>        <span class="p">}</span> 
+<span class="ln"> 9</span>    <span class="p">)</span>
+<span class="ln">10</span><span class="p">}</span>
+<span class="ln">11</span><span class="n">WAPVMRole</span> <span class="n">-ConfigurationData</span> <span class="nv">$configdata</span> <span class="n">-Credential</span> <span class="nv">$Cred</span>
+<span class="ln">12</span><span class="nb">Start-DscConfiguration</span> <span class="p">.\</span><span class="n">WAPVMRole</span> <span class="n">-Wait</span> <span class="err">–</span><span class="n">Verbose</span>
 </code></pre></div><p>In this case I generate a Credential object to be used for interacting with the Public Tenant API. As I don’t have a certificate to encrypt the sensitive data within the MOF file with, I create a configuration data hash table and set PSDscAllowPlainTextPassword to True. In WMF 5.0 a new warning will be thrown when you use UPN or Domain\Username for credentials if the configuration targets localhost. To suppress this, I added PSDscAllowDomainUser to the configuration data hash table. Finally, I call the configuration so the MOF file is generated and call Start-DscConfiguration to make it so.</p>
 <p><img src="/images/wap10.png" alt=""></p>
 <p>When viewed from the portal, we see the VM Role being deployed.</p>

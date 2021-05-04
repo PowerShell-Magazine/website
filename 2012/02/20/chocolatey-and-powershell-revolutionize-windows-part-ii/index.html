@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Chocolatey and PowerShell – Revolutionize Windows, Part II</title>
 
 <meta name="description" content="For the most powerful community">
@@ -215,7 +216,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>5 Min To Read
+              <i class="far fa-clock"></i>6 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>20 Feb, 2012
@@ -239,37 +240,37 @@ if (!doNotTrack) {
           <div class="content"><p>In the <a href="/2012/02/15/chocolatey-and-powershell-revolutionize-windows-part-i/">first installment</a> we covered installing both a tool and an application. If the possibilities of Chocolatey have not yet started to solidify for you, hopefully this next segment will.</p>
 <h3 id="stay-up-to-date">Stay Up to Date</h3>
 <p>Chocolatey allows you to keep up to date with the update command. Do you remember how simple the command for install was from the last segment? Update is just as simple. You can run this with either ‘chocolatey update’ or ‘cup’ for short.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; chocolatey update somePackageName
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="n">chocolatey</span> <span class="n">update</span> <span class="n">somePackageName</span>
 </code></pre></div><h3 id="one-update-to-rule-them-all">One Update to Rule Them All</h3>
 <p>Let’s not forget the update command to rule them all. Think of it like windows update, but for everything else. This will update every package you have installed on your machine!</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; cup all
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="n">cup</span> <span class="n">all</span>
 </code></pre></div><h3 id="machine-environment-setup">Machine Environment Setup</h3>
 <p>Another possible scenario where Chocolatey and PowerShell can shine is surrounding a developer set up environment for hacking. When you pull down source code from time to time you will see notes that people have included to tell possible contributors what they need to do to set up the “environment.” Using Chocolatey and some PowerShell you can script that out and install everything they need without having to use some advanced code. For instance, take a look at <a href="https://github.com/davidalpert/nuserve#readme">nuserve</a> on github. You run setup.cmd and it executes a PowerShell script that installs Chocolatey, NuGet, Ruby, DevKit, updates Gems, installs bundler, and then runs the builds. If you don’t think that is a powerful idea, consider that the author of nuserve, <a href="http://blog.spinthemoose.com/">David Alpert</a>, said the script was “all scripted to a one-liner. Genius.” For a second imagine having someone pull down your source and firm up any development discrepancies automatically before they even begin. They didn’t even have to read your readme.</p>
 <h3 id="under-the-hood">Under the Hood</h3>
 <p>Chocolatey uses some ingenuity with PowerShell on top of the already existing NuGet. It itself is about 500 lines of PowerShell code. I am not an expert at PowerShell, just someone who wanted to learn more about the language and hope that it sticks this time. Every time I use PS, I later forget almost everything I’ve learned. PowerShell is very powerful in what it can do – consider that you can actually put PowerShell text on the internet somewhere and run Invoke-Expression after literally downloading it to run a set of PowerShell commands. That’s really powerful when you think about it. The Chocolatey one line install takes advantage of that:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; Invoke-Expression ((New-Object Net.WebClient).DownloadString(<span style="color:#e6db74">&#39;http://bit.ly/psChocInstall&#39;</span>))
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Invoke-Expression</span> <span class="p">((</span><span class="nb">New-Object</span> <span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;http://bit.ly/psChocInstall&#39;</span><span class="p">))</span>
 </code></pre></div><p>Chocolatey puts some batch files on the path that call PowerShell and run the Chocolatey script, passing along the arguments. When Chocolatey runs, it uses NuGet to download packages and work on dependency resolution. Then it searches for and executes the chocolateyInstall.ps1 script if it finds it. It generates a runtime of PowerShell, importing helper modules for the script to use when executing. This allows the script to be very brief (more on this in <strong>Creating Packages</strong>).</p>
 <p>It also looks for executables in the package folder, either there with the package or brought in during the execution of the chocolateyInstall script. When it finds these executables, it creates a batch command reference in a folder on the path so the commands are now available.</p>
 <p>Chocolatey takes advantage of PowerShell’s ability to override commands. When you create packages and you call Write-Host or Write-Error, Chocolatey leverages that to note the information in a log before calling the underlying command. It really leverages the concept of <em>Splatting</em> to do this.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> Write-Host  {
-   <span style="color:#66d9ef">param</span>(
-      [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=0,<span style="color:#66d9ef">ValueFromPipeline</span>=$true)]<span style="color:#66d9ef">[object]</span>$Object,
-      [<span style="color:#66d9ef">Parameter</span>()]<span style="color:#66d9ef">[switch]</span> $NoNewLine,
-      [<span style="color:#66d9ef">Parameter</span>()]<span style="color:#66d9ef">[ConsoleColor]</span> $ForegroundColor,
-      [<span style="color:#66d9ef">Parameter</span>()]<span style="color:#66d9ef">[ConsoleColor]</span> $BackgroundColor,
-      [<span style="color:#66d9ef">Parameter</span>()]<span style="color:#66d9ef">[Object]</span> $Separator
-   )
-   $chocoPath = Split-Path -Parent $helpersPath
-   $chocoInstallLog = Join-Path $chocoPath <span style="color:#e6db74">&#39;chocolateyPSInstall.log&#39;</span>
-   $Object | Out-File -FilePath $chocoInstallLog -Force -Append
-   $oc = Get-Command Write-Host -Module Microsoft.PowerShell.Utility
-   &amp; $oc @PSBoundParameters
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Write-Host</span>  <span class="p">{</span>
+<span class="ln"> 2</span>   <span class="k">param</span><span class="p">(</span>
+<span class="ln"> 3</span>      <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Position</span><span class="p">=</span><span class="n">0</span><span class="p">,</span><span class="k">ValueFromPipeline</span><span class="p">=</span><span class="nv">$true</span><span class="p">)]</span><span class="no">[object]</span><span class="nv">$Object</span><span class="p">,</span>
+<span class="ln"> 4</span>      <span class="p">[</span><span class="k">Parameter</span><span class="p">()]</span><span class="no">[switch]</span> <span class="nv">$NoNewLine</span><span class="p">,</span>
+<span class="ln"> 5</span>      <span class="p">[</span><span class="k">Parameter</span><span class="p">()]</span><span class="no">[ConsoleColor]</span> <span class="nv">$ForegroundColor</span><span class="p">,</span>
+<span class="ln"> 6</span>      <span class="p">[</span><span class="k">Parameter</span><span class="p">()]</span><span class="no">[ConsoleColor]</span> <span class="nv">$BackgroundColor</span><span class="p">,</span>
+<span class="ln"> 7</span>      <span class="p">[</span><span class="k">Parameter</span><span class="p">()]</span><span class="no">[Object]</span> <span class="nv">$Separator</span>
+<span class="ln"> 8</span>   <span class="p">)</span>
+<span class="ln"> 9</span>   <span class="nv">$chocoPath</span> <span class="p">=</span> <span class="nb">Split-Path</span> <span class="n">-Parent</span> <span class="nv">$helpersPath</span>
+<span class="ln">10</span>   <span class="nv">$chocoInstallLog</span> <span class="p">=</span> <span class="nb">Join-Path</span> <span class="nv">$chocoPath</span> <span class="s1">&#39;chocolateyPSInstall.log&#39;</span>
+<span class="ln">11</span>   <span class="nv">$Object</span> <span class="p">|</span> <span class="nb">Out-File</span> <span class="n">-FilePath</span> <span class="nv">$chocoInstallLog</span> <span class="n">-Force</span> <span class="n">-Append</span>
+<span class="ln">12</span>   <span class="nv">$oc</span> <span class="p">=</span> <span class="nb">Get-Command</span> <span class="nb">Write-Host</span> <span class="n">-Module</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">PowerShell</span><span class="p">.</span><span class="n">Utility</span>
+<span class="ln">13</span>   <span class="p">&amp;</span> <span class="nv">$oc</span> <span class="nv">@PSBoundParameters</span>
+<span class="ln">14</span><span class="p">}</span>
 </code></pre></div><p>Notice in the command above how I grab the original command and then pass all of the parameters to it from my function with @PSBoundParameters? It takes my $PSBoundParameters variable and passes it to the function I am calling as parameters. This is great because it saves a lot of branching.</p>
 <h3 id="creating-packages">Creating Packages</h3>
 <p>Remember how we first talked about how easy Chocolatey is to use? Creating packages is simple, too. You can literally create a package to install a full application with a nuspec (NuGet package specifications xml file) and a chocolateyInstall.ps1 file. The nuspec containing the information about the package will take you longer to gather and fill out compared to the time it’ll take you to prepare the download and install of an MSI in the chocolateyInstall.ps1 file. Chocolatey comes with helpers (<a href="https://github.com/chocolatey/chocolatey/wiki/HelpersReference">https://github.com/chocolatey/chocolatey/wiki/HelpersReference</a>) to shorten the work necessary in the chocolateyInstaller.ps1 file.</p>
 <p>Imagine in your mind what it would take to download a file from a known location and then run in administrative mode to install it silently. Have you got a picture of that now? Now here’s how you install StExBar:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; Install-ChocolateyPackage <span style="color:#e6db74">&#39;StExBar&#39;</span> <span style="color:#e6db74">&#39;msi&#39;</span> <span style="color:#e6db74">&#39;/quiet&#39;</span> <span style="color:#e6db74">&#39;http://stexbar.googlecode.com/files/StExBar-1.8.3.msi&#39;</span> <span style="color:#e6db74">&#39;http://stexbar.googlecode.com/files/StExBar64-1.8.3.msi&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Install-ChocolateyPackage</span> <span class="s1">&#39;StExBar&#39;</span> <span class="s1">&#39;msi&#39;</span> <span class="s1">&#39;/quiet&#39;</span> <span class="s1">&#39;http://stexbar.googlecode.com/files/StExBar-1.8.3.msi&#39;</span> <span class="s1">&#39;http://stexbar.googlecode.com/files/StExBar64-1.8.3.msi&#39;</span>
 </code></pre></div><p>Notice the two urls? The optional second one is for 64bit if the application supports that. If there is not a 64bit version, just leave out the second url and Chocolatey handles it.</p>
 <h3 id="videos">Videos</h3>
 <p>There is a short video on YouTube demonstrating how easy it is to create a package. I create one for the <a href="http://windirstat.info/%C2%A0">WinDirStat</a>&rsquo;s package. <a href="http://www.youtube.com/watch?v=Wt_unjS_SUo">http://www.youtube.com/watch?v=Wt_unjS_SUo</a>. You can also take a look at the <a href="https://github.com/chocolatey/chocolatey/wiki/CreatePackages">wiki</a> for a more in depth explanation.</p>

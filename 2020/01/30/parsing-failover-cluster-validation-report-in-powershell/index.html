@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Parsing Failover Cluster Validation Report in PowerShell</title>
 
 <meta name="description" content="For the most powerful community">
@@ -237,54 +238,54 @@ if (!doNotTrack) {
 <p><img src="/images/failover1.png" alt="image"></p>
 <p>As a part of some larger automation that I was building, I needed to parse the validation result into a PowerShell object that can be used later in the orchestration. Parsing HTML isn’t what I needed but a little of digging gave some clues about the XML report that gets generated when we run this command.</p>
 <p>Behind the scenes, the Test-Cluster command generates an XML every time it was run. This XML gets stored at C:\Windows\Temp. Looking at the XML you can easily notice that the schema was really designed to generate the HTML easily. So, it took a few minutes to understand how the tests are categorized and come up with the below script.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">[<span style="color:#66d9ef">CmdletBinding</span>()]
-<span style="color:#66d9ef">param</span>
-(
-    [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Mandatory</span> = $true)]
-    <span style="color:#66d9ef">[String]</span>
-    $ValidationXmlPath
-)
-
-
-$xml = (Get-Content -Path $ValidationXmlPath)
-$channels = $xml.Report.Channel.Channel
-
-$validationResultArray = New-Object -TypeName System.Collections.ArrayList
-
-<span style="color:#66d9ef">foreach</span> ($channel <span style="color:#66d9ef">in</span> $channels)
-{
-    <span style="color:#66d9ef">if</span> ($channel.Type <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;Summary&#39;</span>)
-    {
-        $channelSummaryHash = <span style="color:#66d9ef">[PSCustomObject]</span>@{}
-        $summaryArray = New-Object -TypeName System.Collections.ArrayList
-
-        $channelId = $channel.id
-        $channelName = $channel.ChannelName.<span style="color:#e6db74">&#39;#cdata-section&#39;</span>        
-        
-        <span style="color:#66d9ef">foreach</span> ($summaryChannel <span style="color:#66d9ef">in</span> $channels.Where({$_.SummaryChannel.Value.<span style="color:#e6db74">&#39;#cdata-section&#39;</span> <span style="color:#f92672">-eq</span> $channelId}))
-        {
-            $channelTitle = $summaryChannel.Title.Value.<span style="color:#e6db74">&#39;#cdata-section&#39;</span>
-            $channelResult = $summaryChannel.Result.Value.<span style="color:#e6db74">&#39;#cdata-section&#39;</span>
-            $channelMessage = $summaryChannel.Message.<span style="color:#e6db74">&#39;#cdata-section&#39;</span>
-    
-            $summaryHash = <span style="color:#66d9ef">[PSCustomObject]</span> @{
-                Title = $channelTitle
-                Result = $channelResult
-                Message = $channelMessage
-            }
-    
-            $null = $summaryArray.Add($summaryHash)
-        }
-    
-        $channelSummaryHash | Add-Member -MemberType NoteProperty -Name Category -Value $channelName
-        $channelSummaryHash | Add-Member -MemberType NoteProperty -Name Results -Value $summaryArray
-    
-        $null = $validationResultArray.Add($channelSummaryHash)
-    }
-
-}
-
-<span style="color:#66d9ef">return</span> $validationResultArray
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
+<span class="ln"> 2</span><span class="k">param</span>
+<span class="ln"> 3</span><span class="p">(</span>
+<span class="ln"> 4</span>    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
+<span class="ln"> 5</span>    <span class="no">[String]</span>
+<span class="ln"> 6</span>    <span class="nv">$ValidationXmlPath</span>
+<span class="ln"> 7</span><span class="p">)</span>
+<span class="ln"> 8</span>
+<span class="ln"> 9</span>
+<span class="ln">10</span><span class="nv">$xml</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Get-Content</span> <span class="n">-Path</span> <span class="nv">$ValidationXmlPath</span><span class="p">)</span>
+<span class="ln">11</span><span class="nv">$channels</span> <span class="p">=</span> <span class="nv">$xml</span><span class="p">.</span><span class="n">Report</span><span class="p">.</span><span class="n">Channel</span><span class="p">.</span><span class="n">Channel</span>
+<span class="ln">12</span>
+<span class="ln">13</span><span class="nv">$validationResultArray</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">-TypeName</span> <span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">ArrayList</span>
+<span class="ln">14</span>
+<span class="ln">15</span><span class="k">foreach</span> <span class="p">(</span><span class="nv">$channel</span> <span class="k">in</span> <span class="nv">$channels</span><span class="p">)</span>
+<span class="ln">16</span><span class="p">{</span>
+<span class="ln">17</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$channel</span><span class="p">.</span><span class="nb">Type </span><span class="o">-eq</span> <span class="s1">&#39;Summary&#39;</span><span class="p">)</span>
+<span class="ln">18</span>    <span class="p">{</span>
+<span class="ln">19</span>        <span class="nv">$channelSummaryHash</span> <span class="p">=</span> <span class="no">[PSCustomObject]</span><span class="p">@{}</span>
+<span class="ln">20</span>        <span class="nv">$summaryArray</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">-TypeName</span> <span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">ArrayList</span>
+<span class="ln">21</span>
+<span class="ln">22</span>        <span class="nv">$channelId</span> <span class="p">=</span> <span class="nv">$channel</span><span class="p">.</span><span class="n">id</span>
+<span class="ln">23</span>        <span class="nv">$channelName</span> <span class="p">=</span> <span class="nv">$channel</span><span class="p">.</span><span class="n">ChannelName</span><span class="p">.</span><span class="s1">&#39;#cdata-section&#39;</span>        
+<span class="ln">24</span>        
+<span class="ln">25</span>        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$summaryChannel</span> <span class="k">in</span> <span class="nv">$channels</span><span class="p">.</span><span class="n">Where</span><span class="p">({</span><span class="nv">$_</span><span class="p">.</span><span class="n">SummaryChannel</span><span class="p">.</span><span class="n">Value</span><span class="p">.</span><span class="s1">&#39;#cdata-section&#39;</span> <span class="o">-eq</span> <span class="nv">$channelId</span><span class="p">}))</span>
+<span class="ln">26</span>        <span class="p">{</span>
+<span class="ln">27</span>            <span class="nv">$channelTitle</span> <span class="p">=</span> <span class="nv">$summaryChannel</span><span class="p">.</span><span class="n">Title</span><span class="p">.</span><span class="n">Value</span><span class="p">.</span><span class="s1">&#39;#cdata-section&#39;</span>
+<span class="ln">28</span>            <span class="nv">$channelResult</span> <span class="p">=</span> <span class="nv">$summaryChannel</span><span class="p">.</span><span class="n">Result</span><span class="p">.</span><span class="n">Value</span><span class="p">.</span><span class="s1">&#39;#cdata-section&#39;</span>
+<span class="ln">29</span>            <span class="nv">$channelMessage</span> <span class="p">=</span> <span class="nv">$summaryChannel</span><span class="p">.</span><span class="n">Message</span><span class="p">.</span><span class="s1">&#39;#cdata-section&#39;</span>
+<span class="ln">30</span>    
+<span class="ln">31</span>            <span class="nv">$summaryHash</span> <span class="p">=</span> <span class="no">[PSCustomObject]</span> <span class="p">@{</span>
+<span class="ln">32</span>                <span class="n">Title</span> <span class="p">=</span> <span class="nv">$channelTitle</span>
+<span class="ln">33</span>                <span class="n">Result</span> <span class="p">=</span> <span class="nv">$channelResult</span>
+<span class="ln">34</span>                <span class="n">Message</span> <span class="p">=</span> <span class="nv">$channelMessage</span>
+<span class="ln">35</span>            <span class="p">}</span>
+<span class="ln">36</span>    
+<span class="ln">37</span>            <span class="nv">$null</span> <span class="p">=</span> <span class="nv">$summaryArray</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="nv">$summaryHash</span><span class="p">)</span>
+<span class="ln">38</span>        <span class="p">}</span>
+<span class="ln">39</span>    
+<span class="ln">40</span>        <span class="nv">$channelSummaryHash</span> <span class="p">|</span> <span class="nb">Add-Member</span> <span class="n">-MemberType</span> <span class="n">NoteProperty</span> <span class="n">-Name</span> <span class="n">Category</span> <span class="n">-Value</span> <span class="nv">$channelName</span>
+<span class="ln">41</span>        <span class="nv">$channelSummaryHash</span> <span class="p">|</span> <span class="nb">Add-Member</span> <span class="n">-MemberType</span> <span class="n">NoteProperty</span> <span class="n">-Name</span> <span class="n">Results</span> <span class="n">-Value</span> <span class="nv">$summaryArray</span>
+<span class="ln">42</span>    
+<span class="ln">43</span>        <span class="nv">$null</span> <span class="p">=</span> <span class="nv">$validationResultArray</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="nv">$channelSummaryHash</span><span class="p">)</span>
+<span class="ln">44</span>    <span class="p">}</span>
+<span class="ln">45</span>
+<span class="ln">46</span><span class="p">}</span>
+<span class="ln">47</span>
+<span class="ln">48</span><span class="k">return</span> <span class="nv">$validationResultArray</span>
 </code></pre></div><p>The input to the above script is the XML file that gets generated at C:\Windows\Temp. Once you run the script, you should see the output similar to what is shown below.</p>
 <p><img src="/images/failover2.png" alt="image"></p>
 <p>I have only added the property values that I really need in my scripts but you can look at the XML and then easily modify the above script to add other details as you need.</p>

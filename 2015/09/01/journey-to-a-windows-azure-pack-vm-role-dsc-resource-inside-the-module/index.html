@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Journey to a Windows Azure Pack VM Role DSC Resource: Inside the module</title>
 
 <meta name="description" content="For the most powerful community">
@@ -217,7 +218,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>17 Min To Read
+              <i class="far fa-clock"></i>18 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>01 Sep, 2015
@@ -256,126 +257,126 @@ if (!doNotTrack) {
 }
 </code></pre><p>The Accept part of the header tells the Azure Pack API to return response data as JSON. We want this as the API returns a lot more data when JSON is used. In PowerShell 3.0 this accept header causes an error to be thrown which has been logged on Connect as a bug: <a href="https://connect.microsoft.com/PowerShell/feedback/details/757249/invoke-restmethod-accept-header" target="_blank">Invoke-RestMethod Accept header</a>. Therefore, I decided to require PowerShell 4.0 as the bug was fixed in that release. I could have gone the long route around the issue and create the functionality myself but I figured as the intent is to have a DSC resource, 4.0 would be required anyway.</p>
 <p>To force the PowerShell 4.0 requirement, I added a requires statement in the psm1 file (in case someone decides to load the module directly from this file)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e">#requires -version 4</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="c">#requires -version 4</span>
 </code></pre></div><p>and defined the minimal PowerShellVersion in the module’s manifest (psd1) file.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Minimum version of the Windows PowerShell engine required by this module</span>
-PowerShellVersion = <span style="color:#e6db74">&#39;4.0&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="c"># Minimum version of the Windows PowerShell engine required by this module</span>
+<span class="ln">2</span><span class="n">PowerShellVersion</span> <span class="p">=</span> <span class="s1">&#39;4.0&#39;</span>
 </code></pre></div><h3 id="get-waptoken">Get-WAPToken</h3>
 <p>For Windows Azure Pack there can be 2 providers for the tokens. Either you have the inbox authentication site which generates the JWT tokens if successfully authenticated against the ASP.net membership provider or you have ADFS generating them from an external identity source like Active Directory or Azure Active Directory.  Luckily the Azure Pack team made this one really simple for me. When you install the Azure Pack PowerShell API (a component of Windows Azure Pack installation) a folder will be created “C:\Program Files\Management Service\MgmtSvc-PowerShellAPI\Samples\Authentication” which contain some PowerShell example scripts to get a token from different providers. I took these example scripts and combined them into the Get-WAPToken function.</p>
 <p>The scripts relies on the <a href="https://msdn.microsoft.com/en-us/library/system.servicemodel(v=vs.110).aspx" target="_blank">System.ServiceModel</a> and <a href="https://msdn.microsoft.com/en-us/library/gg145031(v=vs.110).aspx" target="_blank">System.IdentityModel</a> assemblies to be loaded. As I created a function I did not want these assemblies to be loaded every time the function was called so I decided to load these as part of the module being imported.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Add-Type -AssemblyName <span style="color:#e6db74">&#39;System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&#39;</span>
-Add-Type -AssemblyName <span style="color:#e6db74">&#39;System.IdentityModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Add-Type</span> <span class="n">-AssemblyName</span> <span class="s1">&#39;System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&#39;</span>
+<span class="ln">2</span><span class="nb">Add-Type</span> <span class="n">-AssemblyName</span> <span class="s1">&#39;System.IdentityModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&#39;</span>
 </code></pre></div><p>The function will set the Token and Header variables in the “parent” scope. This makes them available for subsequent functions to consume directly instead of the need to pass the data as parameter values.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Set-Variable -Name Headers -Scope 1 -Value @{
-Authorization = <span style="color:#e6db74">&#34;Bearer $Token&#34;</span>
-<span style="color:#e6db74">&#39;x-ms-principal-id&#39;</span> = $Credential.UserName
-Accept = <span style="color:#e6db74">&#39;application/json&#39;</span>
-}
-Set-Variable -Name Token -Value $token -Scope 1
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Set-Variable</span> <span class="n">-Name</span> <span class="n">Headers</span> <span class="n">-Scope</span> <span class="n">1</span> <span class="n">-Value</span> <span class="p">@{</span>
+<span class="ln">2</span><span class="n">Authorization</span> <span class="p">=</span> <span class="s2">&#34;Bearer $Token&#34;</span>
+<span class="ln">3</span><span class="s1">&#39;x-ms-principal-id&#39;</span> <span class="p">=</span> <span class="nv">$Credential</span><span class="p">.</span><span class="n">UserName</span>
+<span class="ln">4</span><span class="n">Accept</span> <span class="p">=</span> <span class="s1">&#39;application/json&#39;</span>
+<span class="ln">5</span><span class="p">}</span>
+<span class="ln">6</span><span class="nb">Set-Variable</span> <span class="n">-Name</span> <span class="n">Token</span> <span class="n">-Value</span> <span class="nv">$token</span> <span class="n">-Scope</span> <span class="n">1</span>
 </code></pre></div><p>I chose this method because almost all subsequent functions need this data. At first I took an alternative route and enriched the output object of functions with this data so I could pipe into the next function without re-specifying the values. In the end this proved to become really messy so I decided to divert from the approach.</p>
 <p>On a side note: <a href="http://hindenes.com/trondsworking/" target="_blank">Trond Hindenes</a> suggested using variables instead of enriched objects through a GitHub <a href="https://github.com/bgelens/WAPTenantPublicAPI/issues/1" target="_blank">issue</a> on my project. How cool is that! Making the move to Git and GitHub is proving to be really valuable so I encourage you, if you are not already doing so, to start looking into source control.</p>
 <h3 id="connect-wapapi">Connect-WAPAPI</h3>
 <p>This function is only used to set variables in the parent scope. We don’t actually connect to Azure Pack but try to see if we get results on a URL. If results are returned, the variables will be set. If an error is thrown instead, the variables will be nulled.</p>
 <p>When the IgnoreSSL switch is set, the variable IgnoreSSL in the parent scope is set to true which means all subsequent functions will ignore certificate errors.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">if</span> ($IgnoreSSL) {
-    Write-Warning -Message <span style="color:#e6db74">&#39;IgnoreSSL switch defined. Certificate errors will be ignored!&#39;</span>
-    <span style="color:#75715e">#Change Certificate Policy to ignore</span>
-    IgnoreSSL  
-    Set-Variable -Name IgnoreSSL -Value $IgnoreSSL -Scope 1
-}
-
-PreFlight
-
-$TestURL = <span style="color:#e6db74">&#39;{0}:{1}/subscriptions/&#39;</span> <span style="color:#f92672">-f</span> $URL,$Port
-Write-Verbose -Message <span style="color:#e6db74">&#34;Constructed Connection URL: $TestURL&#34;</span>
-$Result = Invoke-WebRequest -Uri $TestURL -Headers $Headers -UseBasicParsing -ErrorVariable <span style="color:#e6db74">&#39;ErrCon&#39;</span>
-<span style="color:#66d9ef">if</span> ($Result) {
-    Write-Verbose -Message <span style="color:#e6db74">&#39;Successfully connected&#39;</span>
-    Set-Variable -Name PublicTenantAPIUrl -Value $URL -Scope 1
-    Set-Variable -Name Port -Value $Port -Scope 1
-} <span style="color:#66d9ef">else</span> {
-    Write-Verbose -Message <span style="color:#e6db74">&#39;Connection unsuccessfull&#39;</span> -Verbose
-    Set-Variable -Name PublicTenantAPIUrl -Value $null -Scope 1
-    Set-Variable -Name Port -Value $null -Scope 1
-    <span style="color:#66d9ef">throw</span> $ErrCon
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">if</span> <span class="p">(</span><span class="nv">$IgnoreSSL</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="nb">Write-Warning</span> <span class="n">-Message</span> <span class="s1">&#39;IgnoreSSL switch defined. Certificate errors will be ignored!&#39;</span>
+<span class="ln"> 3</span>    <span class="c">#Change Certificate Policy to ignore</span>
+<span class="ln"> 4</span>    <span class="n">IgnoreSSL</span>  
+<span class="ln"> 5</span>    <span class="nb">Set-Variable</span> <span class="n">-Name</span> <span class="n">IgnoreSSL</span> <span class="n">-Value</span> <span class="nv">$IgnoreSSL</span> <span class="n">-Scope</span> <span class="n">1</span>
+<span class="ln"> 6</span><span class="p">}</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span><span class="n">PreFlight</span>
+<span class="ln"> 9</span>
+<span class="ln">10</span><span class="nv">$TestURL</span> <span class="p">=</span> <span class="s1">&#39;{0}:{1}/subscriptions/&#39;</span> <span class="o">-f</span> <span class="nv">$URL</span><span class="p">,</span><span class="nv">$Port</span>
+<span class="ln">11</span><span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Constructed Connection URL: $TestURL&#34;</span>
+<span class="ln">12</span><span class="nv">$Result</span> <span class="p">=</span> <span class="nb">Invoke-WebRequest</span> <span class="n">-Uri</span> <span class="nv">$TestURL</span> <span class="n">-Headers</span> <span class="nv">$Headers</span> <span class="n">-UseBasicParsing</span> <span class="n">-ErrorVariable</span> <span class="s1">&#39;ErrCon&#39;</span>
+<span class="ln">13</span><span class="k">if</span> <span class="p">(</span><span class="nv">$Result</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">14</span>    <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s1">&#39;Successfully connected&#39;</span>
+<span class="ln">15</span>    <span class="nb">Set-Variable</span> <span class="n">-Name</span> <span class="n">PublicTenantAPIUrl</span> <span class="n">-Value</span> <span class="nv">$URL</span> <span class="n">-Scope</span> <span class="n">1</span>
+<span class="ln">16</span>    <span class="nb">Set-Variable</span> <span class="n">-Name</span> <span class="n">Port</span> <span class="n">-Value</span> <span class="nv">$Port</span> <span class="n">-Scope</span> <span class="n">1</span>
+<span class="ln">17</span><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln">18</span>    <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s1">&#39;Connection unsuccessfull&#39;</span> <span class="n">-Verbose</span>
+<span class="ln">19</span>    <span class="nb">Set-Variable</span> <span class="n">-Name</span> <span class="n">PublicTenantAPIUrl</span> <span class="n">-Value</span> <span class="nv">$null</span> <span class="n">-Scope</span> <span class="n">1</span>
+<span class="ln">20</span>    <span class="nb">Set-Variable</span> <span class="n">-Name</span> <span class="n">Port</span> <span class="n">-Value</span> <span class="nv">$null</span> <span class="n">-Scope</span> <span class="n">1</span>
+<span class="ln">21</span>    <span class="k">throw</span> <span class="nv">$ErrCon</span>
+<span class="ln">22</span><span class="p">}</span>
 </code></pre></div><h3 id="preflight-helper-function">PreFlight (helper function)</h3>
 <p>You might have seen PreFlight in the previous function code. PreFlight is a private function which means it is not exported to the user when the module is loaded. The module exports functions based on the presence of the WAP prefix (<verb><dash><strong>WAP</strong><Noun>), everything else is considered private.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> PreFlight {
-    [<span style="color:#66d9ef">CmdletBinding</span>()]
-    <span style="color:#66d9ef">param</span> (
-        <span style="color:#66d9ef">[Switch]</span> $IncludeConnection,
-        <span style="color:#66d9ef">[Switch]</span> $IncludeSubscription
-    )
-    Write-Verbose -Message <span style="color:#e6db74">&#39;Validating Token Acquired&#39;</span>
-    <span style="color:#66d9ef">if</span> (($null <span style="color:#f92672">-eq</span> $Token) <span style="color:#f92672">-or</span> ($null <span style="color:#f92672">-eq</span> $Headers)) {
-        <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#39;Token was not acquired, run Get-WAPToken first!&#39;</span>
-    }
-
-    Write-Verbose -Message <span style="color:#e6db74">&#39;Validating Token not expired&#39;</span>
-    <span style="color:#66d9ef">if</span> (!(TestJWTClaimNotExpired -Token $Token)) {
-        <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#39;Token has expired, fetch a new one!&#39;</span>
-    }
-
-    <span style="color:#66d9ef">if</span> ($IncludeConnection) {
-        Write-Verbose -Message <span style="color:#e6db74">&#39;Validating if connection is set&#39;</span>
-        <span style="color:#66d9ef">if</span> ($null <span style="color:#f92672">-eq</span> $PublicTenantAPIUrl) {
-            <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#39;No connection has been made to API yet, run Connect-WAPAPI first!&#39;</span>
-        }
-    }
-
-    <span style="color:#66d9ef">if</span> ($IncludeSubscription) {
-        Write-Verbose -Message <span style="color:#e6db74">&#39;Validating if subscription is selected&#39;</span>
-        <span style="color:#66d9ef">if</span> ($null <span style="color:#f92672">-eq</span> $Subscription) {
-            <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#39;No Subscription has been selected yet, run Select-WAPSubscription first!&#39;</span>
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="n">PreFlight</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
+<span class="ln"> 3</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln"> 4</span>        <span class="no">[Switch]</span> <span class="nv">$IncludeConnection</span><span class="p">,</span>
+<span class="ln"> 5</span>        <span class="no">[Switch]</span> <span class="nv">$IncludeSubscription</span>
+<span class="ln"> 6</span>    <span class="p">)</span>
+<span class="ln"> 7</span>    <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s1">&#39;Validating Token Acquired&#39;</span>
+<span class="ln"> 8</span>    <span class="k">if</span> <span class="p">((</span><span class="nv">$null</span> <span class="o">-eq</span> <span class="nv">$Token</span><span class="p">)</span> <span class="o">-or</span> <span class="p">(</span><span class="nv">$null</span> <span class="o">-eq</span> <span class="nv">$Headers</span><span class="p">))</span> <span class="p">{</span>
+<span class="ln"> 9</span>        <span class="k">throw</span> <span class="s1">&#39;Token was not acquired, run Get-WAPToken first!&#39;</span>
+<span class="ln">10</span>    <span class="p">}</span>
+<span class="ln">11</span>
+<span class="ln">12</span>    <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s1">&#39;Validating Token not expired&#39;</span>
+<span class="ln">13</span>    <span class="k">if</span> <span class="p">(!(</span><span class="n">TestJWTClaimNotExpired</span> <span class="n">-Token</span> <span class="nv">$Token</span><span class="p">))</span> <span class="p">{</span>
+<span class="ln">14</span>        <span class="k">throw</span> <span class="s1">&#39;Token has expired, fetch a new one!&#39;</span>
+<span class="ln">15</span>    <span class="p">}</span>
+<span class="ln">16</span>
+<span class="ln">17</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$IncludeConnection</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">18</span>        <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s1">&#39;Validating if connection is set&#39;</span>
+<span class="ln">19</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$null</span> <span class="o">-eq</span> <span class="nv">$PublicTenantAPIUrl</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">20</span>            <span class="k">throw</span> <span class="s1">&#39;No connection has been made to API yet, run Connect-WAPAPI first!&#39;</span>
+<span class="ln">21</span>        <span class="p">}</span>
+<span class="ln">22</span>    <span class="p">}</span>
+<span class="ln">23</span>
+<span class="ln">24</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$IncludeSubscription</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">25</span>        <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s1">&#39;Validating if subscription is selected&#39;</span>
+<span class="ln">26</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$null</span> <span class="o">-eq</span> <span class="nv">$Subscription</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">27</span>            <span class="k">throw</span> <span class="s1">&#39;No Subscription has been selected yet, run Select-WAPSubscription first!&#39;</span>
+<span class="ln">28</span>        <span class="p">}</span>
+<span class="ln">29</span>    <span class="p">}</span>
+<span class="ln">30</span><span class="p">}</span>
 </code></pre></div><p>Because this helper function exists, it saves me from writing a lot of redundant code in other functions as almost all functions need to deal with these checks. These functions now just call this helper function and dependent on their functionality, provide additional switches to it so additional checks are done.</span>The functions job is to check if variables have been assigned data. It throws errors if these are still null. Also, if a token has been acquired, another helper function is called to check if the token is still valid.</p>
 <p>Connect-WAPAPI provides no switches, so only the presence of the Token and Headers variables are checked and the Token is checked for expiration. When a function relies on Connect-WAPAPI to have already ran successfully, it will add the –IncludeConnection switch. And when a function relies on a subscription to be selected as current, it will add the –IncludeSubscription switch.</p>
 <h3 id="testjwtclaimnotexpired-check-token-expiration-helper-function">TestJWTClaimNotExpired (Check token Expiration helper function)</h3>
 <p>This helper function is actually nice to see entirely so I can give some details of what we do here.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> TestJWTClaimNotExpired {
-    <span style="color:#66d9ef">param</span> (
-        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Mandatory</span>,
-                   <span style="color:#66d9ef">ValueFromPipeline</span>,
-                   <span style="color:#66d9ef">ValueFromPipelineByPropertyName</span>)]
-        [ValidateNotNullOrEmpty()]
-        <span style="color:#66d9ef">[String]</span> $Token
-    )
-    <span style="color:#75715e">#based on functions by Shriram MSFT found on technet: https://gallery.technet.microsoft.com/JWT-Token-Decode-637cf001</span>
-    <span style="color:#66d9ef">process</span> {
-        <span style="color:#66d9ef">try</span> {
-            <span style="color:#66d9ef">if</span> ($Token.split(<span style="color:#e6db74">&#39;.&#39;</span>).count <span style="color:#f92672">-ne</span> 3) {
-                <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#39;Invalid token passed, run Get-WAPToken to fetch a new one&#39;</span>
-            }
-
-            $TokenData = $token.Split(<span style="color:#e6db74">&#39;.&#39;</span>)[1] | <span style="color:#66d9ef">ForEach</span>-Object -Process {
-                $data = $_ <span style="color:#f92672">-as</span> <span style="color:#66d9ef">[String]</span>
-                $data = $data.Replace(<span style="color:#e6db74">&#39;-&#39;</span>, <span style="color:#e6db74">&#39;+&#39;</span>).Replace(<span style="color:#e6db74">&#39;_&#39;</span>, <span style="color:#e6db74">&#39;/&#39;</span>)
-                <span style="color:#66d9ef">switch</span> ($data.Length % 4) {
-                    0 { <span style="color:#66d9ef">break</span> }
-                    2 { $data += <span style="color:#e6db74">&#39;==&#39;</span> }
-                    3 { $data += <span style="color:#e6db74">&#39;=&#39;</span> }
-                    <span style="color:#66d9ef">default</span> { <span style="color:#66d9ef">throw</span> New-Object -TypeName ArgumentException -ArgumentList (<span style="color:#e6db74">&#39;data&#39;</span>) }
-                }
-                <span style="color:#66d9ef">[System.Text.Encoding]</span>::UTF8.GetString(<span style="color:#66d9ef">[convert]</span>::FromBase64String($data)) | ConvertFrom-Json
-            }
-
-            <span style="color:#75715e">#JWT Reference Time</span>
-            $Ref = <span style="color:#66d9ef">[datetime]</span>::SpecifyKind((New-Object -TypeName datetime -ArgumentList (<span style="color:#e6db74">&#39;1970&#39;</span>,1,1,0,0,0)),<span style="color:#e6db74">&#39;UTC&#39;</span>)
-            <span style="color:#75715e">#UTC time right now - Reference time gives amount of seconds to check against</span>
-            $CheckSeconds = <span style="color:#66d9ef">[System.Math]</span>::Round((<span style="color:#66d9ef">[datetime]</span>::UtcNow - $Ref).totalseconds)
-            <span style="color:#66d9ef">if</span> ($TokenData.exp <span style="color:#f92672">-gt</span> $CheckSeconds) {
-                Write-Output -InputObject $true
-            } <span style="color:#66d9ef">else</span> {
-                Write-Output -InputObject $false
-            }
-        } <span style="color:#66d9ef">catch</span> {
-            Write-Error -ErrorRecord $_
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="n">TestJWTClaimNotExpired</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln"> 3</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">,</span>
+<span class="ln"> 4</span>                   <span class="k">ValueFromPipeline</span><span class="p">,</span>
+<span class="ln"> 5</span>                   <span class="k">ValueFromPipelineByPropertyName</span><span class="p">)]</span>
+<span class="ln"> 6</span>        <span class="p">[</span><span class="n">ValidateNotNullOrEmpty</span><span class="p">()]</span>
+<span class="ln"> 7</span>        <span class="no">[String]</span> <span class="nv">$Token</span>
+<span class="ln"> 8</span>    <span class="p">)</span>
+<span class="ln"> 9</span>    <span class="c">#based on functions by Shriram MSFT found on technet: https://gallery.technet.microsoft.com/JWT-Token-Decode-637cf001</span>
+<span class="ln">10</span>    <span class="k">process</span> <span class="p">{</span>
+<span class="ln">11</span>        <span class="k">try</span> <span class="p">{</span>
+<span class="ln">12</span>            <span class="k">if</span> <span class="p">(</span><span class="nv">$Token</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">).</span><span class="n">count</span> <span class="o">-ne</span> <span class="n">3</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">13</span>                <span class="k">throw</span> <span class="s1">&#39;Invalid token passed, run Get-WAPToken to fetch a new one&#39;</span>
+<span class="ln">14</span>            <span class="p">}</span>
+<span class="ln">15</span>
+<span class="ln">16</span>            <span class="nv">$TokenData</span> <span class="p">=</span> <span class="nv">$token</span><span class="p">.</span><span class="n">Split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="n">1</span><span class="p">]</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="n">-Process</span> <span class="p">{</span>
+<span class="ln">17</span>                <span class="nv">$data</span> <span class="p">=</span> <span class="nv">$_</span> <span class="o">-as</span> <span class="no">[String]</span>
+<span class="ln">18</span>                <span class="nv">$data</span> <span class="p">=</span> <span class="nv">$data</span><span class="p">.</span><span class="n">Replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">).</span><span class="n">Replace</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="ln">19</span>                <span class="k">switch</span> <span class="p">(</span><span class="nv">$data</span><span class="p">.</span><span class="n">Length</span> <span class="p">%</span> <span class="n">4</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">20</span>                    <span class="n">0</span> <span class="p">{</span> <span class="k">break</span> <span class="p">}</span>
+<span class="ln">21</span>                    <span class="n">2</span> <span class="p">{</span> <span class="nv">$data</span> <span class="p">+=</span> <span class="s1">&#39;==&#39;</span> <span class="p">}</span>
+<span class="ln">22</span>                    <span class="n">3</span> <span class="p">{</span> <span class="nv">$data</span> <span class="p">+=</span> <span class="s1">&#39;=&#39;</span> <span class="p">}</span>
+<span class="ln">23</span>                    <span class="k">default</span> <span class="p">{</span> <span class="k">throw</span> <span class="nb">New-Object</span> <span class="n">-TypeName</span> <span class="n">ArgumentException</span> <span class="n">-ArgumentList</span> <span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">)</span> <span class="p">}</span>
+<span class="ln">24</span>                <span class="p">}</span>
+<span class="ln">25</span>                <span class="no">[System.Text.Encoding]</span><span class="p">::</span><span class="n">UTF8</span><span class="p">.</span><span class="n">GetString</span><span class="p">(</span><span class="no">[convert]</span><span class="p">::</span><span class="n">FromBase64String</span><span class="p">(</span><span class="nv">$data</span><span class="p">))</span> <span class="p">|</span> <span class="nb">ConvertFrom-Json</span>
+<span class="ln">26</span>            <span class="p">}</span>
+<span class="ln">27</span>
+<span class="ln">28</span>            <span class="c">#JWT Reference Time</span>
+<span class="ln">29</span>            <span class="nv">$Ref</span> <span class="p">=</span> <span class="no">[datetime]</span><span class="p">::</span><span class="n">SpecifyKind</span><span class="p">((</span><span class="nb">New-Object</span> <span class="n">-TypeName</span> <span class="n">datetime</span> <span class="n">-ArgumentList</span> <span class="p">(</span><span class="s1">&#39;1970&#39;</span><span class="p">,</span><span class="n">1</span><span class="p">,</span><span class="n">1</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">)),</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+<span class="ln">30</span>            <span class="c">#UTC time right now - Reference time gives amount of seconds to check against</span>
+<span class="ln">31</span>            <span class="nv">$CheckSeconds</span> <span class="p">=</span> <span class="no">[System.Math]</span><span class="p">::</span><span class="n">Round</span><span class="p">((</span><span class="no">[datetime]</span><span class="p">::</span><span class="n">UtcNow</span> <span class="p">-</span> <span class="nv">$Ref</span><span class="p">).</span><span class="n">totalseconds</span><span class="p">)</span>
+<span class="ln">32</span>            <span class="k">if</span> <span class="p">(</span><span class="nv">$TokenData</span><span class="p">.</span><span class="n">exp</span> <span class="o">-gt</span> <span class="nv">$CheckSeconds</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">33</span>                <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="nv">$true</span>
+<span class="ln">34</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln">35</span>                <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="nv">$false</span>
+<span class="ln">36</span>            <span class="p">}</span>
+<span class="ln">37</span>        <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+<span class="ln">38</span>            <span class="nb">Write-Error</span> <span class="n">-ErrorRecord</span> <span class="nv">$_</span>
+<span class="ln">39</span>        <span class="p">}</span>
+<span class="ln">40</span>    <span class="p">}</span>
+<span class="ln">41</span><span class="p">}</span>
 </code></pre></div><p>As you can see, I made a remark I borrowed some code from <a href="https://gallery.technet.microsoft.com/JWT-Token-Decode-637cf001" target="_blank">Shriram</a> who actually created a set of functions to convert a JWT token into a PSCustomObject so it can be analyzed. I modified it to the module’s needs and created a helper function from it. This helper function is called for every API interacting function (PreFlight) to check up front if the JWT token is not expired. This way it is prevented that the API itself throws any error related to the token’s lifetime and we can handle these errors in a uniform way.</p>
 <p>A token looks like this:</p>
 <p><img src="/images/wapmod1.png" alt=""></p>
@@ -387,15 +388,15 @@ $Result = Invoke-WebRequest -Uri $TestURL -Headers $Headers -UseBasicParsing -Er
 <p><img src="/images/wapmod3.png" alt=""></p>
 <p>As you can see my UPN claim is in there as well as a number defining my expiration time (exp).</p>
 <p>JWT token validity is checked by calculating the amount of seconds which have passed from exactly the moment it became the first of January 1970 UTC time. So I set this as the reference time.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$Ref = <span style="color:#66d9ef">[datetime]</span>::SpecifyKind((New-Object -TypeName datetime -ArgumentList (<span style="color:#e6db74">&#39;1970&#39;</span>,1,1,0,0,0)),<span style="color:#e6db74">&#39;UTC&#39;</span>)
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$Ref</span> <span class="p">=</span> <span class="no">[datetime]</span><span class="p">::</span><span class="n">SpecifyKind</span><span class="p">((</span><span class="nb">New-Object</span> <span class="n">-TypeName</span> <span class="n">datetime</span> <span class="n">-ArgumentList</span> <span class="p">(</span><span class="s1">&#39;1970&#39;</span><span class="p">,</span><span class="n">1</span><span class="p">,</span><span class="n">1</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">)),</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
 </code></pre></div><p>Next we need to calculate the amount of seconds which have passed since then.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$CheckSeconds = <span style="color:#66d9ef">[System.Math]</span>::Round((<span style="color:#66d9ef">[datetime]</span>::UtcNow - $Ref).totalseconds)
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$CheckSeconds</span> <span class="p">=</span> <span class="no">[System.Math]</span><span class="p">::</span><span class="n">Round</span><span class="p">((</span><span class="no">[datetime]</span><span class="p">::</span><span class="n">UtcNow</span> <span class="p">-</span> <span class="nv">$Ref</span><span class="p">).</span><span class="n">totalseconds</span><span class="p">)</span>
 </code></pre></div><p>Now we know the amount of seconds passed, all that needs to be done is to check if the exp value of the claim is greater than the amount that passed since 1970. If this is the case, the token is still valid and we return a Boolean of true or else a Boolean of false.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">if</span> ($TokenData.exp <span style="color:#f92672">-gt</span> $CheckSeconds) {
-    Write-Output -InputObject $true
-} <span style="color:#66d9ef">else</span> {
-    Write-Output -InputObject $false
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="k">if</span> <span class="p">(</span><span class="nv">$TokenData</span><span class="p">.</span><span class="n">exp</span> <span class="o">-gt</span> <span class="nv">$CheckSeconds</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="nv">$true</span>
+<span class="ln">3</span><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln">4</span>    <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="nv">$false</span>
+<span class="ln">5</span><span class="p">}</span>
 </code></pre></div><h3 id="get-wapsubscription-and-select-wapsubscription">Get-WAPSubscription and Select-WAPSubscription</h3>
 <p>When we look at the URL constructions of other functions you will see that the subscription id is in every one of them:</p>
 <table>
@@ -429,63 +430,63 @@ $Result = Invoke-WebRequest -Uri $TestURL -Headers $Headers -UseBasicParsing -Er
 </tbody>
 </table>
 <p>This makes sense as the subscription governs everything what has been made available to the user by its association with a plan and potential add-ons.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$URL = <span style="color:#e6db74">&#39;{0}:{1}/subscriptions/&#39;</span> <span style="color:#f92672">-f</span> $PublicTenantAPIUrl,$Port
-Write-Verbose -Message <span style="color:#e6db74">&#34;Constructed Subscription URL: $URL&#34;</span>
-$Subscriptions = Invoke-RestMethod -Uri $URL -Headers $Headers -Method Get
-<span style="color:#66d9ef">foreach</span> ($S <span style="color:#66d9ef">in</span> $Subscriptions) {
-    <span style="color:#66d9ef">if</span> ($PSCmdlet.<span style="color:#66d9ef">ParameterSetName</span> <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;Name&#39;</span> <span style="color:#f92672">-and</span> $S.SubscriptionName <span style="color:#f92672">-ne</span> $Name) {
-        <span style="color:#66d9ef">continue</span>
-    }
-    <span style="color:#66d9ef">if</span> ($PSCmdlet.<span style="color:#66d9ef">ParameterSetName</span> <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;Id&#39;</span> <span style="color:#f92672">-and</span> $S.SubscriptionId <span style="color:#f92672">-ne</span> $Id) {
-        <span style="color:#66d9ef">continue</span>
-    }
-
-    $S.Created = <span style="color:#66d9ef">[datetime]</span>$S.Created
-    Add-Member -InputObject $S -MemberType AliasProperty -Name <span style="color:#e6db74">&#39;Subscription&#39;</span> -Value SubscriptionId
-    $S.PSObject.TypeNames.Insert(0,<span style="color:#e6db74">&#39;WAP.Subscription&#39;</span>)
-    Write-Output -InputObject $S
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$URL</span> <span class="p">=</span> <span class="s1">&#39;{0}:{1}/subscriptions/&#39;</span> <span class="o">-f</span> <span class="nv">$PublicTenantAPIUrl</span><span class="p">,</span><span class="nv">$Port</span>
+<span class="ln"> 2</span><span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Constructed Subscription URL: $URL&#34;</span>
+<span class="ln"> 3</span><span class="nv">$Subscriptions</span> <span class="p">=</span> <span class="nb">Invoke-RestMethod</span> <span class="n">-Uri</span> <span class="nv">$URL</span> <span class="n">-Headers</span> <span class="nv">$Headers</span> <span class="n">-Method</span> <span class="n">Get</span>
+<span class="ln"> 4</span><span class="k">foreach</span> <span class="p">(</span><span class="nv">$S</span> <span class="k">in</span> <span class="nv">$Subscriptions</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 5</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$PSCmdlet</span><span class="p">.</span><span class="k">ParameterSetName</span> <span class="o">-eq</span> <span class="s1">&#39;Name&#39;</span> <span class="o">-and</span> <span class="nv">$S</span><span class="p">.</span><span class="n">SubscriptionName</span> <span class="o">-ne</span> <span class="nv">$Name</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 6</span>        <span class="k">continue</span>
+<span class="ln"> 7</span>    <span class="p">}</span>
+<span class="ln"> 8</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$PSCmdlet</span><span class="p">.</span><span class="k">ParameterSetName</span> <span class="o">-eq</span> <span class="s1">&#39;Id&#39;</span> <span class="o">-and</span> <span class="nv">$S</span><span class="p">.</span><span class="n">SubscriptionId</span> <span class="o">-ne</span> <span class="nv">$Id</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 9</span>        <span class="k">continue</span>
+<span class="ln">10</span>    <span class="p">}</span>
+<span class="ln">11</span>
+<span class="ln">12</span>    <span class="nv">$S</span><span class="p">.</span><span class="n">Created</span> <span class="p">=</span> <span class="no">[datetime]</span><span class="nv">$S</span><span class="p">.</span><span class="n">Created</span>
+<span class="ln">13</span>    <span class="nb">Add-Member</span> <span class="n">-InputObject</span> <span class="nv">$S</span> <span class="n">-MemberType</span> <span class="n">AliasProperty</span> <span class="n">-Name</span> <span class="s1">&#39;Subscription&#39;</span> <span class="n">-Value</span> <span class="n">SubscriptionId</span>
+<span class="ln">14</span>    <span class="nv">$S</span><span class="p">.</span><span class="n">PSObject</span><span class="p">.</span><span class="n">TypeNames</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="s1">&#39;WAP.Subscription&#39;</span><span class="p">)</span>
+<span class="ln">15</span>    <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="nv">$S</span>
+<span class="ln">16</span><span class="p">}</span>
 </code></pre></div><p>When you look at the code of Get-WAPSubscription you see the basis for almost all of the other functions. It first constructs the URL to target, then it runs Invoke-RestMethod with the Get method, capturing the results. By default, most functions have a DefaultParameterSetName of ‘List’. The List parameter set is actually not implemented but this makes it really clear to the coder wat is the intention when no parameters have been provided by the end user. As you can see, filtering on the output is done based on the parameter set in use. When the parameter set in use is the List parameter set, nothing is filtered and everything is returned to the pipeline. When the parameter set is Name on the other hand, only subscriptions which have the correct name will be passed on the pipeline, skipping everything else (the continue keyword moves to the next object in the foreach loop effectively stopping execution on the current object).</p>
 <p>Once the desired subscription is found, we need to provide the other functions with its subscription Id by default. Like with the Headers, Token, API URL and other data, the subscription object is captured in a parent level variable. This is done by Select-WAPSubscription function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">if</span> ($input.count <span style="color:#f92672">-gt</span> 1) {
-    <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#39;Only 1 subscription can be selected. If passed from Get-WAPSubscription, make sure only 1 subscription object is passed on the pipeline&#39;</span>
-}
-
-<span style="color:#66d9ef">if</span> (!($Subscription.pstypenames.Contains(<span style="color:#e6db74">&#39;WAP.Subscription&#39;</span>))) {
-    <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#39;Object bound to Subscription parameter is of the wrong type&#39;</span>
-}
-
-Write-Verbose -Message <span style="color:#e6db74">&#34;Setting current subscription to </span>$($Subscription | Out-String)<span style="color:#e6db74">&#34;</span>
-Set-Variable -Name Subscription -Value $Subscription -Scope 1
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">if</span> <span class="p">(</span><span class="nv">$input</span><span class="p">.</span><span class="n">count</span> <span class="o">-gt</span> <span class="n">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="k">throw</span> <span class="s1">&#39;Only 1 subscription can be selected. If passed from Get-WAPSubscription, make sure only 1 subscription object is passed on the pipeline&#39;</span>
+<span class="ln"> 3</span><span class="p">}</span>
+<span class="ln"> 4</span>
+<span class="ln"> 5</span><span class="k">if</span> <span class="p">(!(</span><span class="nv">$Subscription</span><span class="p">.</span><span class="n">pstypenames</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s1">&#39;WAP.Subscription&#39;</span><span class="p">)))</span> <span class="p">{</span>
+<span class="ln"> 6</span>    <span class="k">throw</span> <span class="s1">&#39;Object bound to Subscription parameter is of the wrong type&#39;</span>
+<span class="ln"> 7</span><span class="p">}</span>
+<span class="ln"> 8</span>
+<span class="ln"> 9</span><span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Setting current subscription to </span><span class="p">$(</span><span class="nv">$Subscription</span> <span class="p">|</span> <span class="nb">Out-String</span><span class="p">)</span><span class="s2">&#34;</span>
+<span class="ln">10</span><span class="nb">Set-Variable</span> <span class="n">-Name</span> <span class="n">Subscription</span> <span class="n">-Value</span> <span class="nv">$Subscription</span> <span class="n">-Scope</span> <span class="n">1</span>
 </code></pre></div><p>Select-WAPSubscription does support pipeline input but does not have a process block. This is done so we are certain the user is absolutely sure which subscription gets selected. The default available input variable is checked for its count and if it’s greater than 1, an error is thrown notifying the user to be more explicit.</p>
 <p>When a usr wants to see which subscription is set, Get-WAPSubscription can be used with the –Current switch. This will output the content of the subscription variable.</p>
 <h3 id="get-wapgalleryvmrole">Get-WAPGalleryVMRole</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$URI = <span style="color:#e6db74">&#39;{0}:{1}/{2}/Gallery/GalleryItems/$/MicrosoftCompute.VMRoleGalleryItem?api-version=2013-03&#39;</span> <span style="color:#f92672">-f</span> $PublicTenantAPIUrl,$Port,$Subscription.SubscriptionId
-Write-Verbose -Message <span style="color:#e6db74">&#34;Constructed Gallery Item URI: $URI&#34;</span>
-$GalleryItems = Invoke-RestMethod -Uri $URI -Headers $Headers -Method Get
-
-<span style="color:#66d9ef">foreach</span> ($G <span style="color:#66d9ef">in</span> $GalleryItems.value) {
-    <span style="color:#66d9ef">if</span> ($PSCmdlet.<span style="color:#66d9ef">ParameterSetName</span> <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;Name&#39;</span> <span style="color:#f92672">-and</span> $G.Name <span style="color:#f92672">-ne</span> $Name) {
-        <span style="color:#66d9ef">continue</span>
-    }
-    <span style="color:#66d9ef">if</span> ($Version <span style="color:#f92672">-and</span> $G.Version <span style="color:#f92672">-ne</span> $Version) {
-        <span style="color:#66d9ef">continue</span>
-    }
-
-    $GIResDEFUri = <span style="color:#e6db74">&#39;{0}:{1}/{2}/{3}/?api-version=2013-03&#39;</span> <span style="color:#f92672">-f</span> $PublicTenantAPIUrl,$Port,$Subscription.SubscriptionId,$G.ResourceDefinitionUrl
-    Write-Verbose -Message <span style="color:#e6db74">&#34;Acquiring ResDef from URI: $GIResDEFUri&#34;</span>
-    $ResDef = Invoke-RestMethod -Uri $GIResDEFUri -Headers $Headers -Method Get
-
-    $GIViewDefUri = <span style="color:#e6db74">&#39;{0}:{1}/{2}/{3}/?api-version=2013-03&#39;</span> <span style="color:#f92672">-f</span> $PublicTenantAPIUrl,$Port,$Subscription.SubscriptionId,$G.ViewDefinitionUrl
-    Write-Verbose -Message <span style="color:#e6db74">&#34;Acquiring ViewDef from URI: $GIResDEFUri&#34;</span>
-    $ViewDef = Invoke-RestMethod -Uri $GIViewDefUri -Headers $Headers -Method Get
-
-    Add-Member -InputObject $G -MemberType NoteProperty -Name ResDef -Value $ResDef
-    Add-Member -InputObject $G -MemberType NoteProperty -Name ViewDef -Value $ViewDef
-    $G.PublishDate = <span style="color:#66d9ef">[datetime]</span>$G.PublishDate
-    $G.PSObject.TypeNames.Insert(0,$G.<span style="color:#e6db74">&#39;odata.type&#39;</span>)
-    Write-Output -InputObject $G
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$URI</span> <span class="p">=</span> <span class="s1">&#39;{0}:{1}/{2}/Gallery/GalleryItems/$/MicrosoftCompute.VMRoleGalleryItem?api-version=2013-03&#39;</span> <span class="o">-f</span> <span class="nv">$PublicTenantAPIUrl</span><span class="p">,</span><span class="nv">$Port</span><span class="p">,</span><span class="nv">$Subscription</span><span class="p">.</span><span class="n">SubscriptionId</span>
+<span class="ln"> 2</span><span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Constructed Gallery Item URI: $URI&#34;</span>
+<span class="ln"> 3</span><span class="nv">$GalleryItems</span> <span class="p">=</span> <span class="nb">Invoke-RestMethod</span> <span class="n">-Uri</span> <span class="nv">$URI</span> <span class="n">-Headers</span> <span class="nv">$Headers</span> <span class="n">-Method</span> <span class="n">Get</span>
+<span class="ln"> 4</span>
+<span class="ln"> 5</span><span class="k">foreach</span> <span class="p">(</span><span class="nv">$G</span> <span class="k">in</span> <span class="nv">$GalleryItems</span><span class="p">.</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 6</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$PSCmdlet</span><span class="p">.</span><span class="k">ParameterSetName</span> <span class="o">-eq</span> <span class="s1">&#39;Name&#39;</span> <span class="o">-and</span> <span class="nv">$G</span><span class="p">.</span><span class="n">Name</span> <span class="o">-ne</span> <span class="nv">$Name</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 7</span>        <span class="k">continue</span>
+<span class="ln"> 8</span>    <span class="p">}</span>
+<span class="ln"> 9</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$Version</span> <span class="o">-and</span> <span class="nv">$G</span><span class="p">.</span><span class="n">Version</span> <span class="o">-ne</span> <span class="nv">$Version</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">10</span>        <span class="k">continue</span>
+<span class="ln">11</span>    <span class="p">}</span>
+<span class="ln">12</span>
+<span class="ln">13</span>    <span class="nv">$GIResDEFUri</span> <span class="p">=</span> <span class="s1">&#39;{0}:{1}/{2}/{3}/?api-version=2013-03&#39;</span> <span class="o">-f</span> <span class="nv">$PublicTenantAPIUrl</span><span class="p">,</span><span class="nv">$Port</span><span class="p">,</span><span class="nv">$Subscription</span><span class="p">.</span><span class="n">SubscriptionId</span><span class="p">,</span><span class="nv">$G</span><span class="p">.</span><span class="n">ResourceDefinitionUrl</span>
+<span class="ln">14</span>    <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Acquiring ResDef from URI: $GIResDEFUri&#34;</span>
+<span class="ln">15</span>    <span class="nv">$ResDef</span> <span class="p">=</span> <span class="nb">Invoke-RestMethod</span> <span class="n">-Uri</span> <span class="nv">$GIResDEFUri</span> <span class="n">-Headers</span> <span class="nv">$Headers</span> <span class="n">-Method</span> <span class="n">Get</span>
+<span class="ln">16</span>
+<span class="ln">17</span>    <span class="nv">$GIViewDefUri</span> <span class="p">=</span> <span class="s1">&#39;{0}:{1}/{2}/{3}/?api-version=2013-03&#39;</span> <span class="o">-f</span> <span class="nv">$PublicTenantAPIUrl</span><span class="p">,</span><span class="nv">$Port</span><span class="p">,</span><span class="nv">$Subscription</span><span class="p">.</span><span class="n">SubscriptionId</span><span class="p">,</span><span class="nv">$G</span><span class="p">.</span><span class="n">ViewDefinitionUrl</span>
+<span class="ln">18</span>    <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Acquiring ViewDef from URI: $GIResDEFUri&#34;</span>
+<span class="ln">19</span>    <span class="nv">$ViewDef</span> <span class="p">=</span> <span class="nb">Invoke-RestMethod</span> <span class="n">-Uri</span> <span class="nv">$GIViewDefUri</span> <span class="n">-Headers</span> <span class="nv">$Headers</span> <span class="n">-Method</span> <span class="n">Get</span>
+<span class="ln">20</span>
+<span class="ln">21</span>    <span class="nb">Add-Member</span> <span class="n">-InputObject</span> <span class="nv">$G</span> <span class="n">-MemberType</span> <span class="n">NoteProperty</span> <span class="n">-Name</span> <span class="n">ResDef</span> <span class="n">-Value</span> <span class="nv">$ResDef</span>
+<span class="ln">22</span>    <span class="nb">Add-Member</span> <span class="n">-InputObject</span> <span class="nv">$G</span> <span class="n">-MemberType</span> <span class="n">NoteProperty</span> <span class="n">-Name</span> <span class="n">ViewDef</span> <span class="n">-Value</span> <span class="nv">$ViewDef</span>
+<span class="ln">23</span>    <span class="nv">$G</span><span class="p">.</span><span class="n">PublishDate</span> <span class="p">=</span> <span class="no">[datetime]</span><span class="nv">$G</span><span class="p">.</span><span class="n">PublishDate</span>
+<span class="ln">24</span>    <span class="nv">$G</span><span class="p">.</span><span class="n">PSObject</span><span class="p">.</span><span class="n">TypeNames</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="nv">$G</span><span class="p">.</span><span class="s1">&#39;odata.type&#39;</span><span class="p">)</span>
+<span class="ln">25</span>    <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="nv">$G</span>
+<span class="ln">26</span><span class="p">}</span>
 </code></pre></div><p>When looking at the code for Get-WAPGalleryVMRole you can see how we ended up with all the information we needed to construct our ResDef JSON with.</p>
 <p>At first the URL is constructed to acquire the GalleryItems. Every item which is returned has a ResourceDefinitionUrl and ViewDefinitionUrl property. The API effectively told us where to find the info we need to deploy the VM Role with. Thankfully making use of the information, two other URLs are constructed and called. The information which is returned is added to the output object by making use of the Add-Member cmdlet before outputting the object on the pipeline. Now other functions, like Get-WAPVMRoleOSDisk and New-WAPVMRoleParameterObject, can make use of the all this data.</p>
 <p><img src="/images/wapmod4.png" alt=""></p>
@@ -496,109 +497,109 @@ $GalleryItems = Invoke-RestMethod -Uri $URI -Headers $Headers -Method Get
 <p>First the View Definition parameters are captured in a variable. Then each parameter is going through a foreach loop. If the -Interactive switch is enabled by the user, he will be prompted to provide values depending on the property to be of the “Option” or “Credential” type and for everything that will be left blank after not matching any of the elseif clauses. When it is not run in “interactive mode”, everything missing will have null as a value.</p>
 <h3 id="new-wapvmroledeployment">New-WAPVMRoleDeployment</h3>
 <p>I want to close this post with the function that handles the most important task, the deployment.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> New-WAPVMRoleDeployment {
-    <span style="color:#75715e">&lt;# </span><span style="color:#e6db74">.SYNOPSIS</span><span style="color:#75715e"> Deploys VM Role to a Cloudservice using Azure Pack TenantPublic or Tenant API. </span><span style="color:#e6db74">.PARAMETER</span><span style="color:#75715e"> CloudServiceName The name of the cloud service to provision to. If it does not exist, it will be created. // Removed the rest to shorten code in blog post #&gt;</span>
-    [<span style="color:#66d9ef">CmdletBinding</span>(SupportsShouldProcess=$true)]
-    [OutputType(<span style="color:#66d9ef">[PSCustomObject]</span>)]
-    <span style="color:#66d9ef">param</span> (
-        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-        [ValidateNotNull()]
-        <span style="color:#66d9ef">[PSCustomObject]</span> $VMRole,
-    [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Mandatory</span>)]
-    [ValidateNotNull()]
-    <span style="color:#66d9ef">[PSCustomObject]</span> $ParameterObject,
-
-    [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Mandatory</span>,
-               <span style="color:#66d9ef">ValueFromPipelineByPropertyName</span>)]
-    [<span style="color:#66d9ef">Alias</span>(<span style="color:#e6db74">&#39;Name&#39;</span>,<span style="color:#e6db74">&#39;VMRoleName&#39;</span>)]
-    [ValidateNotNullOrEmpty()]
-    <span style="color:#66d9ef">[String]</span> $CloudServiceName
-)
-<span style="color:#66d9ef">process</span> {
-    $ErrorActionPreference = <span style="color:#e6db74">&#39;Stop&#39;</span>
-
-    <span style="color:#66d9ef">if</span> (!($VMRole.pstypenames.Contains(<span style="color:#e6db74">&#39;MicrosoftCompute.VMRoleGalleryItem&#39;</span>))) {
-        <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#39;Object bound to VMRole parameter is of the wrong type&#39;</span>
-    }
-
-    <span style="color:#66d9ef">if</span> (!($ParameterObject.pstypenames.Contains(<span style="color:#e6db74">&#39;WAP.ParameterObject&#39;</span>))) {
-        <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#39;Object bound to ParameterObject parameter is of the wrong type&#39;</span>
-    }
-
-    $ParameterObject | Get-Member -MemberType Properties | <span style="color:#66d9ef">ForEach</span>-Object -Process {
-        <span style="color:#66d9ef">if</span> ($null <span style="color:#f92672">-eq</span> $ParameterObject.($_.name)) {
-            <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;ParameterObject property: </span>$($_.name)<span style="color:#e6db74"> is NULL&#34;</span>
-        }
-    }
-
-    <span style="color:#66d9ef">try</span> {
-        <span style="color:#66d9ef">if</span> ($IgnoreSSL) {
-            Write-Warning -Message <span style="color:#e6db74">&#39;IgnoreSSL defined by Connect-WAPAPI, Certificate errors will be ignored!&#39;</span>
-            <span style="color:#75715e">#Change Certificate Policy to ignore</span>
-            IgnoreSSL
-        }
-
-        PreFlight -IncludeConnection -IncludeSubscription
-
-        <span style="color:#66d9ef">if</span> ($PSCmdlet.ShouldProcess($CloudServiceName)) {
-            Write-Verbose -Message <span style="color:#e6db74">&#34;Testing if Cloudservice $CloudServiceName exists&#34;</span>
-
-            <span style="color:#66d9ef">if</span> (!(Get-WAPCloudService -Name $CloudServiceName)) {
-                Write-Verbose -Message <span style="color:#e6db74">&#34;Creating Cloudservice $CloudServiceName as it does not yet exist&#34;</span>
-                New-WAPCloudService -Name $CloudServiceName | Out-Null
-                $New = $true
-            } <span style="color:#66d9ef">else</span> {
-                $New = $false
-            }
-
-            <span style="color:#66d9ef">if</span> (!$New) {
-                Write-Verbose -Message <span style="color:#e6db74">&#34;Testing if VMRole does not already exist within cloud service&#34;</span>
-                <span style="color:#66d9ef">if</span> (Get-WAPCloudService -Name $CloudServiceName | Get-WAPVMRole) {
-                    <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;There is already a VMRole deployed to the CloudService $CloudServiceName. Because this function mimics portal experience, only one VM Role is allowed to exist per CloudService&#34;</span>
-                }
-            }
-
-            <span style="color:#75715e">#Add ResDefConfig JSON to Dictionary</span>
-            $ResDefConfig = New-Object -TypeName <span style="color:#e6db74">&#39;System.Collections.Generic.Dictionary[String,Object]&#39;</span>
-            $ResDefConfig.Add(<span style="color:#e6db74">&#39;Version&#39;</span>,$VMRole.version)
-            $ResDefConfig.Add(<span style="color:#e6db74">&#39;ParameterValues&#39;</span>,($ParameterObject | ConvertTo-Json))
-
-            <span style="color:#75715e"># Set Gallery Item Payload Info</span>
-            $GIPayload = @{
-                InstanceView = $null
-                Substate = $null
-                Name = $CloudServiceName
-                Label = $CloudServiceName
-                ProvisioningState = $null
-                ResourceConfiguration = $ResDefConfig
-                ResourceDefinition = $VMRole.ResDef
-            }
-
-            <span style="color:#75715e"># Convert Gallery Item Payload Info To JSON</span>
-            $GIPayloadJSON = ConvertTo-Json -InputObject $GIPayload -Depth 10
-
-            <span style="color:#75715e"># Deploy VM Role to cloudservice</span>
-            $URI = <span style="color:#e6db74">&#39;{0}:{1}/{2}/CloudServices/{3}/Resources/MicrosoftCompute/VMRoles/?api-version=2013-03&#39;</span> <span style="color:#f92672">-f</span> $PublicTenantAPIUrl,$Port,$Subscription.SubscriptionId,$CloudServiceName
-            Write-Verbose -Message <span style="color:#e6db74">&#34;Constructed VMRole Deploy URI: $URI&#34;</span>
-
-            Write-Verbose -Message <span style="color:#e6db74">&#34;Starting deployment of VMRole $VMRoleName to CloudService $CloudServiceName&#34;</span>
-            $Deploy = Invoke-RestMethod -Uri $URI -Headers $Headers -Method Post -Body $GIPayloadJSON -ContentType <span style="color:#e6db74">&#39;application/json&#39;</span>
-            $Deploy.PSObject.TypeNames.Insert(0,<span style="color:#e6db74">&#39;WAP.VMRole&#39;</span>)
-            Write-Output -InputObject $Deploy
-        }
-    } <span style="color:#66d9ef">catch</span> {
-        <span style="color:#66d9ef">if</span> ($New) {
-             Get-WAPCloudService -Name $CloudServiceName | Remove-WAPCloudService -Force
-        }
-        Write-Error -ErrorRecord $_
-    } <span style="color:#66d9ef">finally</span> {
-        <span style="color:#75715e">#Change Certificate Policy to the original</span>
-        <span style="color:#66d9ef">if</span> ($IgnoreSSL) {
-            <span style="color:#66d9ef">[System.Net.ServicePointManager]</span>::CertificatePolicy = $OriginalCertificatePolicy
-        }
-    }
-}
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">  1</span><span class="k">function</span> <span class="nb">New-WAPVMRoleDeployment</span> <span class="p">{</span>
+<span class="ln">  2</span>    <span class="cm">&lt;# </span><span class="sd">.SYNOPSIS</span><span class="cm"> Deploys VM Role to a Cloudservice using Azure Pack TenantPublic or Tenant API. </span><span class="sd">.PARAMETER</span><span class="cm"> CloudServiceName The name of the cloud service to provision to. If it does not exist, it will be created. // Removed the rest to shorten code in blog post #&gt;</span>
+<span class="ln">  3</span>    <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">(</span><span class="n">SupportsShouldProcess</span><span class="p">=</span><span class="nv">$true</span><span class="p">)]</span>
+<span class="ln">  4</span>    <span class="p">[</span><span class="n">OutputType</span><span class="p">(</span><span class="no">[PSCustomObject]</span><span class="p">)]</span>
+<span class="ln">  5</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln">  6</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln">  7</span>        <span class="p">[</span><span class="n">ValidateNotNull</span><span class="p">()]</span>
+<span class="ln">  8</span>        <span class="no">[PSCustomObject]</span> <span class="nv">$VMRole</span><span class="p">,</span>
+<span class="ln">  9</span>    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+<span class="ln"> 10</span>    <span class="p">[</span><span class="n">ValidateNotNull</span><span class="p">()]</span>
+<span class="ln"> 11</span>    <span class="no">[PSCustomObject]</span> <span class="nv">$ParameterObject</span><span class="p">,</span>
+<span class="ln"> 12</span>
+<span class="ln"> 13</span>    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">,</span>
+<span class="ln"> 14</span>               <span class="k">ValueFromPipelineByPropertyName</span><span class="p">)]</span>
+<span class="ln"> 15</span>    <span class="p">[</span><span class="k">Alias</span><span class="p">(</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span><span class="s1">&#39;VMRoleName&#39;</span><span class="p">)]</span>
+<span class="ln"> 16</span>    <span class="p">[</span><span class="n">ValidateNotNullOrEmpty</span><span class="p">()]</span>
+<span class="ln"> 17</span>    <span class="no">[String]</span> <span class="nv">$CloudServiceName</span>
+<span class="ln"> 18</span><span class="p">)</span>
+<span class="ln"> 19</span><span class="k">process</span> <span class="p">{</span>
+<span class="ln"> 20</span>    <span class="nv">$ErrorActionPreference</span> <span class="p">=</span> <span class="s1">&#39;Stop&#39;</span>
+<span class="ln"> 21</span>
+<span class="ln"> 22</span>    <span class="k">if</span> <span class="p">(!(</span><span class="nv">$VMRole</span><span class="p">.</span><span class="n">pstypenames</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s1">&#39;MicrosoftCompute.VMRoleGalleryItem&#39;</span><span class="p">)))</span> <span class="p">{</span>
+<span class="ln"> 23</span>        <span class="k">throw</span> <span class="s1">&#39;Object bound to VMRole parameter is of the wrong type&#39;</span>
+<span class="ln"> 24</span>    <span class="p">}</span>
+<span class="ln"> 25</span>
+<span class="ln"> 26</span>    <span class="k">if</span> <span class="p">(!(</span><span class="nv">$ParameterObject</span><span class="p">.</span><span class="n">pstypenames</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s1">&#39;WAP.ParameterObject&#39;</span><span class="p">)))</span> <span class="p">{</span>
+<span class="ln"> 27</span>        <span class="k">throw</span> <span class="s1">&#39;Object bound to ParameterObject parameter is of the wrong type&#39;</span>
+<span class="ln"> 28</span>    <span class="p">}</span>
+<span class="ln"> 29</span>
+<span class="ln"> 30</span>    <span class="nv">$ParameterObject</span> <span class="p">|</span> <span class="nb">Get-Member</span> <span class="n">-MemberType</span> <span class="n">Properties</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="n">-Process</span> <span class="p">{</span>
+<span class="ln"> 31</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$null</span> <span class="o">-eq</span> <span class="nv">$ParameterObject</span><span class="p">.(</span><span class="nv">$_</span><span class="p">.</span><span class="n">name</span><span class="p">))</span> <span class="p">{</span>
+<span class="ln"> 32</span>            <span class="k">throw</span> <span class="s2">&#34;ParameterObject property: </span><span class="p">$(</span><span class="nv">$_</span><span class="p">.</span><span class="n">name</span><span class="p">)</span><span class="s2"> is NULL&#34;</span>
+<span class="ln"> 33</span>        <span class="p">}</span>
+<span class="ln"> 34</span>    <span class="p">}</span>
+<span class="ln"> 35</span>
+<span class="ln"> 36</span>    <span class="k">try</span> <span class="p">{</span>
+<span class="ln"> 37</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$IgnoreSSL</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 38</span>            <span class="nb">Write-Warning</span> <span class="n">-Message</span> <span class="s1">&#39;IgnoreSSL defined by Connect-WAPAPI, Certificate errors will be ignored!&#39;</span>
+<span class="ln"> 39</span>            <span class="c">#Change Certificate Policy to ignore</span>
+<span class="ln"> 40</span>            <span class="n">IgnoreSSL</span>
+<span class="ln"> 41</span>        <span class="p">}</span>
+<span class="ln"> 42</span>
+<span class="ln"> 43</span>        <span class="n">PreFlight</span> <span class="n">-IncludeConnection</span> <span class="n">-IncludeSubscription</span>
+<span class="ln"> 44</span>
+<span class="ln"> 45</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$PSCmdlet</span><span class="p">.</span><span class="n">ShouldProcess</span><span class="p">(</span><span class="nv">$CloudServiceName</span><span class="p">))</span> <span class="p">{</span>
+<span class="ln"> 46</span>            <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Testing if Cloudservice $CloudServiceName exists&#34;</span>
+<span class="ln"> 47</span>
+<span class="ln"> 48</span>            <span class="k">if</span> <span class="p">(!(</span><span class="nb">Get-WAPCloudService</span> <span class="n">-Name</span> <span class="nv">$CloudServiceName</span><span class="p">))</span> <span class="p">{</span>
+<span class="ln"> 49</span>                <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Creating Cloudservice $CloudServiceName as it does not yet exist&#34;</span>
+<span class="ln"> 50</span>                <span class="nb">New-WAPCloudService</span> <span class="n">-Name</span> <span class="nv">$CloudServiceName</span> <span class="p">|</span> <span class="nb">Out-Null</span>
+<span class="ln"> 51</span>                <span class="nv">$New</span> <span class="p">=</span> <span class="nv">$true</span>
+<span class="ln"> 52</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln"> 53</span>                <span class="nv">$New</span> <span class="p">=</span> <span class="nv">$false</span>
+<span class="ln"> 54</span>            <span class="p">}</span>
+<span class="ln"> 55</span>
+<span class="ln"> 56</span>            <span class="k">if</span> <span class="p">(!</span><span class="nv">$New</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 57</span>                <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Testing if VMRole does not already exist within cloud service&#34;</span>
+<span class="ln"> 58</span>                <span class="k">if</span> <span class="p">(</span><span class="nb">Get-WAPCloudService</span> <span class="n">-Name</span> <span class="nv">$CloudServiceName</span> <span class="p">|</span> <span class="nb">Get-WAPVMRole</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 59</span>                    <span class="k">throw</span> <span class="s2">&#34;There is already a VMRole deployed to the CloudService $CloudServiceName. Because this function mimics portal experience, only one VM Role is allowed to exist per CloudService&#34;</span>
+<span class="ln"> 60</span>                <span class="p">}</span>
+<span class="ln"> 61</span>            <span class="p">}</span>
+<span class="ln"> 62</span>
+<span class="ln"> 63</span>            <span class="c">#Add ResDefConfig JSON to Dictionary</span>
+<span class="ln"> 64</span>            <span class="nv">$ResDefConfig</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">-TypeName</span> <span class="s1">&#39;System.Collections.Generic.Dictionary[String,Object]&#39;</span>
+<span class="ln"> 65</span>            <span class="nv">$ResDefConfig</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;Version&#39;</span><span class="p">,</span><span class="nv">$VMRole</span><span class="p">.</span><span class="n">version</span><span class="p">)</span>
+<span class="ln"> 66</span>            <span class="nv">$ResDefConfig</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;ParameterValues&#39;</span><span class="p">,(</span><span class="nv">$ParameterObject</span> <span class="p">|</span> <span class="nb">ConvertTo-Json</span><span class="p">))</span>
+<span class="ln"> 67</span>
+<span class="ln"> 68</span>            <span class="c"># Set Gallery Item Payload Info</span>
+<span class="ln"> 69</span>            <span class="nv">$GIPayload</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln"> 70</span>                <span class="n">InstanceView</span> <span class="p">=</span> <span class="nv">$null</span>
+<span class="ln"> 71</span>                <span class="n">Substate</span> <span class="p">=</span> <span class="nv">$null</span>
+<span class="ln"> 72</span>                <span class="n">Name</span> <span class="p">=</span> <span class="nv">$CloudServiceName</span>
+<span class="ln"> 73</span>                <span class="n">Label</span> <span class="p">=</span> <span class="nv">$CloudServiceName</span>
+<span class="ln"> 74</span>                <span class="n">ProvisioningState</span> <span class="p">=</span> <span class="nv">$null</span>
+<span class="ln"> 75</span>                <span class="n">ResourceConfiguration</span> <span class="p">=</span> <span class="nv">$ResDefConfig</span>
+<span class="ln"> 76</span>                <span class="n">ResourceDefinition</span> <span class="p">=</span> <span class="nv">$VMRole</span><span class="p">.</span><span class="n">ResDef</span>
+<span class="ln"> 77</span>            <span class="p">}</span>
+<span class="ln"> 78</span>
+<span class="ln"> 79</span>            <span class="c"># Convert Gallery Item Payload Info To JSON</span>
+<span class="ln"> 80</span>            <span class="nv">$GIPayloadJSON</span> <span class="p">=</span> <span class="nb">ConvertTo-Json</span> <span class="n">-InputObject</span> <span class="nv">$GIPayload</span> <span class="n">-Depth</span> <span class="n">10</span>
+<span class="ln"> 81</span>
+<span class="ln"> 82</span>            <span class="c"># Deploy VM Role to cloudservice</span>
+<span class="ln"> 83</span>            <span class="nv">$URI</span> <span class="p">=</span> <span class="s1">&#39;{0}:{1}/{2}/CloudServices/{3}/Resources/MicrosoftCompute/VMRoles/?api-version=2013-03&#39;</span> <span class="o">-f</span> <span class="nv">$PublicTenantAPIUrl</span><span class="p">,</span><span class="nv">$Port</span><span class="p">,</span><span class="nv">$Subscription</span><span class="p">.</span><span class="n">SubscriptionId</span><span class="p">,</span><span class="nv">$CloudServiceName</span>
+<span class="ln"> 84</span>            <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Constructed VMRole Deploy URI: $URI&#34;</span>
+<span class="ln"> 85</span>
+<span class="ln"> 86</span>            <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Starting deployment of VMRole $VMRoleName to CloudService $CloudServiceName&#34;</span>
+<span class="ln"> 87</span>            <span class="nv">$Deploy</span> <span class="p">=</span> <span class="nb">Invoke-RestMethod</span> <span class="n">-Uri</span> <span class="nv">$URI</span> <span class="n">-Headers</span> <span class="nv">$Headers</span> <span class="n">-Method</span> <span class="n">Post</span> <span class="n">-Body</span> <span class="nv">$GIPayloadJSON</span> <span class="n">-ContentType</span> <span class="s1">&#39;application/json&#39;</span>
+<span class="ln"> 88</span>            <span class="nv">$Deploy</span><span class="p">.</span><span class="n">PSObject</span><span class="p">.</span><span class="n">TypeNames</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="s1">&#39;WAP.VMRole&#39;</span><span class="p">)</span>
+<span class="ln"> 89</span>            <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="nv">$Deploy</span>
+<span class="ln"> 90</span>        <span class="p">}</span>
+<span class="ln"> 91</span>    <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+<span class="ln"> 92</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$New</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 93</span>             <span class="nb">Get-WAPCloudService</span> <span class="n">-Name</span> <span class="nv">$CloudServiceName</span> <span class="p">|</span> <span class="nb">Remove-WAPCloudService</span> <span class="n">-Force</span>
+<span class="ln"> 94</span>        <span class="p">}</span>
+<span class="ln"> 95</span>        <span class="nb">Write-Error</span> <span class="n">-ErrorRecord</span> <span class="nv">$_</span>
+<span class="ln"> 96</span>    <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+<span class="ln"> 97</span>        <span class="c">#Change Certificate Policy to the original</span>
+<span class="ln"> 98</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$IgnoreSSL</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 99</span>            <span class="no">[System.Net.ServicePointManager]</span><span class="p">::</span><span class="n">CertificatePolicy</span> <span class="p">=</span> <span class="nv">$OriginalCertificatePolicy</span>
+<span class="ln">100</span>        <span class="p">}</span>
+<span class="ln">101</span>    <span class="p">}</span>
+<span class="ln">102</span><span class="p">}</span>
+<span class="ln">103</span><span class="p">}</span>
 </code></pre></div><p>The input objects are checked if they contain the correct type information. I added type information to a lot of objects so I could do exactly this. A side benefit I also utilize is that I can use format.ps1xml because of this as well. Many objects returned by the API exist out of a lot of properties which are not directly valuable for the user so I defined custom list views in the format.ps1xml file.</p>
 <p><img src="/images/wapmod7.png" alt=""></p>
 <p>This results in the following view:</p>
@@ -607,29 +608,29 @@ $GalleryItems = Invoke-RestMethod -Uri $URI -Headers $Headers -Method Get
 <p><img src="/images/wapmod9.png" alt=""></p>
 <p>Because the module emulates portal behavior, the subscriptions is checked if a cloud service already exists with the name specified by the user. If this is the case, the cloud service is checked to contain a VM Role deployment and an error is thrown when this is the case. An empty cloud service is fine to continue. When no cloud service exists with the provided name, it is created on the spot.</p>
 <p>Next the body of the API call is created.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e">#Add ResDefConfig JSON to Dictionary</span>
-$ResDefConfig = New-Object -TypeName <span style="color:#e6db74">&#39;System.Collections.Generic.Dictionary[String,Object]&#39;</span>
-$ResDefConfig.Add(<span style="color:#e6db74">&#39;Version&#39;</span>,$VMRole.version)
-$ResDefConfig.Add(<span style="color:#e6db74">&#39;ParameterValues&#39;</span>,($ParameterObject | ConvertTo-Json))
-
-<span style="color:#75715e"># Set Gallery Item Payload Info</span>
-$GIPayload = @{
-    InstanceView = $null
-    Substate = $null
-    Name = $CloudServiceName
-    Label = $CloudServiceName
-    ProvisioningState = $null
-    ResourceConfiguration = $ResDefConfig
-    ResourceDefinition = $VMRole.ResDef
-}
-
-<span style="color:#75715e"># Convert Gallery Item Payload Info To JSON</span>
-$GIPayloadJSON = ConvertTo-Json -InputObject $GIPayload -Depth 10
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="c">#Add ResDefConfig JSON to Dictionary</span>
+<span class="ln"> 2</span><span class="nv">$ResDefConfig</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">-TypeName</span> <span class="s1">&#39;System.Collections.Generic.Dictionary[String,Object]&#39;</span>
+<span class="ln"> 3</span><span class="nv">$ResDefConfig</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;Version&#39;</span><span class="p">,</span><span class="nv">$VMRole</span><span class="p">.</span><span class="n">version</span><span class="p">)</span>
+<span class="ln"> 4</span><span class="nv">$ResDefConfig</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;ParameterValues&#39;</span><span class="p">,(</span><span class="nv">$ParameterObject</span> <span class="p">|</span> <span class="nb">ConvertTo-Json</span><span class="p">))</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span><span class="c"># Set Gallery Item Payload Info</span>
+<span class="ln"> 7</span><span class="nv">$GIPayload</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln"> 8</span>    <span class="n">InstanceView</span> <span class="p">=</span> <span class="nv">$null</span>
+<span class="ln"> 9</span>    <span class="n">Substate</span> <span class="p">=</span> <span class="nv">$null</span>
+<span class="ln">10</span>    <span class="n">Name</span> <span class="p">=</span> <span class="nv">$CloudServiceName</span>
+<span class="ln">11</span>    <span class="n">Label</span> <span class="p">=</span> <span class="nv">$CloudServiceName</span>
+<span class="ln">12</span>    <span class="n">ProvisioningState</span> <span class="p">=</span> <span class="nv">$null</span>
+<span class="ln">13</span>    <span class="n">ResourceConfiguration</span> <span class="p">=</span> <span class="nv">$ResDefConfig</span>
+<span class="ln">14</span>    <span class="n">ResourceDefinition</span> <span class="p">=</span> <span class="nv">$VMRole</span><span class="p">.</span><span class="n">ResDef</span>
+<span class="ln">15</span><span class="p">}</span>
+<span class="ln">16</span>
+<span class="ln">17</span><span class="c"># Convert Gallery Item Payload Info To JSON</span>
+<span class="ln">18</span><span class="nv">$GIPayloadJSON</span> <span class="p">=</span> <span class="nb">ConvertTo-Json</span> <span class="n">-InputObject</span> <span class="nv">$GIPayload</span> <span class="n">-Depth</span> <span class="n">10</span>
 </code></pre></div><p>Then a hash table is constructed which will form the actual body. It contains the justly created dictionary object, original resource definition and the cloud service name provided by the user. Finally, the hash table is converted into JSON (this would be the resdef needed by the Azure New-WAPackVMRole cmdlet).First a dictionary object is created and both the Gallery Item (VMRole) version and the generated parameter object is added to its properties respectively.</p>
 <p>Finally, the VM Role deployment is started and a resulting object is put on the pipeline.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$Deploy = Invoke-RestMethod -Uri $URI -Headers $Headers -Method Post -Body $GIPayloadJSON -ContentType <span style="color:#e6db74">&#39;application/json&#39;</span>
-$Deploy.PSObject.TypeNames.Insert(0,<span style="color:#e6db74">&#39;WAP.VMRole&#39;</span>)
-Write-Output -InputObject $Deploy
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$Deploy</span> <span class="p">=</span> <span class="nb">Invoke-RestMethod</span> <span class="n">-Uri</span> <span class="nv">$URI</span> <span class="n">-Headers</span> <span class="nv">$Headers</span> <span class="n">-Method</span> <span class="n">Post</span> <span class="n">-Body</span> <span class="nv">$GIPayloadJSON</span> <span class="n">-ContentType</span> <span class="s1">&#39;application/json&#39;</span>
+<span class="ln">2</span><span class="nv">$Deploy</span><span class="p">.</span><span class="n">PSObject</span><span class="p">.</span><span class="n">TypeNames</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="s1">&#39;WAP.VMRole&#39;</span><span class="p">)</span>
+<span class="ln">3</span><span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="nv">$Deploy</span>
 </code></pre></div><p>You might have noticed that these are not all the functions available in the module. I think the most important ones are described here that might give you an idea of what investment was needed to create all this.</p>
 <p>Besides this, the reason for this series is to show you how easy it is to create a DSC resource on top of an already developed module and to hopefully make you aware where your investments should be.</p>
 <p>I could have created a DSC resource containing all the code now embodied into this module but then this code would only be usable when a VM Role would be deployed through DSC. Now, because I developed the code as a normal PowerShell module first, the code can not only be used by the DSC resource, but by many other applications as well (e.g. PowerShell session, SMA, etc).</p>

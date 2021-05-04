@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>PSTip: Retrieve scheduled tasks using Schedule.Service COMObject</title>
 
 <meta name="description" content="For the most powerful community">
@@ -215,7 +216,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>2 Min To Read
+              <i class="far fa-clock"></i>3 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>10 Apr, 2015
@@ -234,96 +235,96 @@ if (!doNotTrack) {
             </li>
           </ul>
           <div class="content"><p>In PowerShell 4.0, the Get-ScheduledTask cmdlet was introduced, but unfortunately this cmdlet is not available in older versions of PowerShell. This is where the Schedule.Service COMObject can be useful to enumerate scheduled tasks on a local or remote system. Unfortunately, unlike the Get-ScheduledTask cmdlet using this COMObject requires an elevated PowerShell console with administrative credentials. The following example will list the all tasks in the \ folder of the Task Scheduler and display the Name, Path and State of the tasks:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$Schedule = New-Object -ComObject <span style="color:#e6db74">&#34;Schedule.Service&#34;</span>
-$Schedule.Connect(<span style="color:#e6db74">&#39;localhost&#39;</span>)
-$Folder = $Schedule.GetFolder(<span style="color:#e6db74">&#39;\&#39;</span>)
-$Folder.GetTasks(1) | Select Name,Path,State
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$Schedule</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">-ComObject</span> <span class="s2">&#34;Schedule.Service&#34;</span>
+<span class="ln">2</span><span class="nv">$Schedule</span><span class="p">.</span><span class="n">Connect</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">)</span>
+<span class="ln">3</span><span class="nv">$Folder</span> <span class="p">=</span> <span class="nv">$Schedule</span><span class="p">.</span><span class="n">GetFolder</span><span class="p">(</span><span class="s1">&#39;\&#39;</span><span class="p">)</span>
+<span class="ln">4</span><span class="nv">$Folder</span><span class="p">.</span><span class="n">GetTasks</span><span class="p">(</span><span class="n">1</span><span class="p">)</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">Name</span><span class="p">,</span><span class="n">Path</span><span class="p">,</span><span class="n">State</span>
 </code></pre></div><p>Unfortunately this outputs the state as an integer instead of a string. To resolve this calculated properties in combination with the switch operator will display the user-friendly names:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$Schedule = New-Object -ComObject <span style="color:#e6db74">&#34;Schedule.Service&#34;</span>
-$Schedule.Connect(<span style="color:#e6db74">&#39;localhost&#39;</span>)
-$Folder = $Schedule.GetFolder(<span style="color:#e6db74">&#39;\&#39;</span>)
-$Folder.GetTasks(1) | Select Name,Path,@{
-    Name = <span style="color:#e6db74">&#39;State&#39;</span>
-    Expression = {<span style="color:#66d9ef">switch</span> ($_.State) {
-            0 {<span style="color:#e6db74">&#39;Unknown&#39;</span>}
-            1 {<span style="color:#e6db74">&#39;Disabled&#39;</span>}
-            2 {<span style="color:#e6db74">&#39;Queued&#39;</span>}
-            3 {<span style="color:#e6db74">&#39;Ready&#39;</span>}
-            4 {<span style="color:#e6db74">&#39;Running&#39;</span>}
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$Schedule</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">-ComObject</span> <span class="s2">&#34;Schedule.Service&#34;</span>
+<span class="ln"> 2</span><span class="nv">$Schedule</span><span class="p">.</span><span class="n">Connect</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">)</span>
+<span class="ln"> 3</span><span class="nv">$Folder</span> <span class="p">=</span> <span class="nv">$Schedule</span><span class="p">.</span><span class="n">GetFolder</span><span class="p">(</span><span class="s1">&#39;\&#39;</span><span class="p">)</span>
+<span class="ln"> 4</span><span class="nv">$Folder</span><span class="p">.</span><span class="n">GetTasks</span><span class="p">(</span><span class="n">1</span><span class="p">)</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">Name</span><span class="p">,</span><span class="n">Path</span><span class="p">,@{</span>
+<span class="ln"> 5</span>    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;State&#39;</span>
+<span class="ln"> 6</span>    <span class="n">Expression</span> <span class="p">=</span> <span class="p">{</span><span class="k">switch</span> <span class="p">(</span><span class="nv">$_</span><span class="p">.</span><span class="n">State</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 7</span>            <span class="n">0</span> <span class="p">{</span><span class="s1">&#39;Unknown&#39;</span><span class="p">}</span>
+<span class="ln"> 8</span>            <span class="n">1</span> <span class="p">{</span><span class="s1">&#39;Disabled&#39;</span><span class="p">}</span>
+<span class="ln"> 9</span>            <span class="n">2</span> <span class="p">{</span><span class="s1">&#39;Queued&#39;</span><span class="p">}</span>
+<span class="ln">10</span>            <span class="n">3</span> <span class="p">{</span><span class="s1">&#39;Ready&#39;</span><span class="p">}</span>
+<span class="ln">11</span>            <span class="n">4</span> <span class="p">{</span><span class="s1">&#39;Running&#39;</span><span class="p">}</span>
+<span class="ln">12</span>        <span class="p">}</span>
+<span class="ln">13</span>    <span class="p">}</span>
+<span class="ln">14</span><span class="p">}</span>
 </code></pre></div><p>This still provides only the scheduled tasks that are listed in the root folder. In order to recursively search through all folders additional code will be required. A script that iterates through all folders in the scheduler and displays all tasks is available in the TechNet Script Gallery: <a href="https://gallery.technet.microsoft.com/scriptcenter/Get-Scheduled-tasks-from-3a377294">Get-ScheduledTask</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">param</span>(
-	$computername = <span style="color:#e6db74">&#34;localhost&#34;</span>,
-    <span style="color:#66d9ef">[switch]</span>$RootFolder
-)
-
-<span style="color:#75715e">#region Functions</span>
-<span style="color:#66d9ef">function</span> Get-AllTaskSubFolders {
-    [<span style="color:#66d9ef">cmdletbinding</span>()]
-    <span style="color:#66d9ef">param</span> (
-
-        <span style="color:#75715e"># Set to use $Schedule as default parameter so it automatically list all files</span>
-
-        <span style="color:#75715e"># For current schedule object if it exists.</span>
-
-<span style="color:#960050;background-color:#1e0010">​</span>        $FolderRef = $Schedule.getfolder(<span style="color:#e6db74">&#34;\&#34;</span>)
-<span style="color:#960050;background-color:#1e0010">​</span>    )
-<span style="color:#960050;background-color:#1e0010">​</span>    <span style="color:#66d9ef">if</span> ($FolderRef.Path <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;\&#39;</span>) {
-<span style="color:#960050;background-color:#1e0010">​</span>        $FolderRef
-<span style="color:#960050;background-color:#1e0010">​</span>    }
-<span style="color:#960050;background-color:#1e0010">​</span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> $RootFolder) {
-<span style="color:#960050;background-color:#1e0010">​</span>        $ArrFolders = @()
-<span style="color:#960050;background-color:#1e0010">​</span>        <span style="color:#66d9ef">if</span>(($folders = $folderRef.getfolders(1))) {
-<span style="color:#960050;background-color:#1e0010">​</span>            $folders | <span style="color:#66d9ef">ForEach</span>-Object {
-<span style="color:#960050;background-color:#1e0010">​</span>                $ArrFolders += $_
-<span style="color:#960050;background-color:#1e0010">​</span>                <span style="color:#66d9ef">if</span>($_.getfolders(1)) {
-<span style="color:#960050;background-color:#1e0010">​</span>                    Get-AllTaskSubFolders -FolderRef $_
-<span style="color:#960050;background-color:#1e0010">​</span>                }
-<span style="color:#960050;background-color:#1e0010">​</span>            }
-<span style="color:#960050;background-color:#1e0010">​</span>        }
-<span style="color:#960050;background-color:#1e0010">​</span>        $ArrFolders
-<span style="color:#960050;background-color:#1e0010">​</span>    }
-}
-<span style="color:#75715e">#endregion Functions</span>
-
-<span style="color:#66d9ef">try</span> {
-	$schedule = New-Object <span style="color:#960050;background-color:#1e0010">–</span>ComObject (<span style="color:#e6db74">&#34;Schedule.Service&#34;</span>)
-} <span style="color:#66d9ef">catch</span> {
-	Write-Warning <span style="color:#e6db74">&#34;Schedule.Service COM Object not found, this script requires this object&#34;</span>
-	<span style="color:#66d9ef">return</span>
-}
-
-$Schedule.connect($ComputerName)
-$AllFolders = Get-AllTaskSubFolders
-
-<span style="color:#66d9ef">foreach</span> ($Folder <span style="color:#66d9ef">in</span> $AllFolders) {
-    <span style="color:#66d9ef">if</span> (($Tasks = $Folder.GetTasks(1))) {
-        $Tasks | <span style="color:#66d9ef">Foreach</span>-Object {
-	        New-Object -TypeName PSCustomObject -Property @{
-	          <span style="color:#e6db74">&#39;Name&#39;</span> = $_.name
-                <span style="color:#e6db74">&#39;Path&#39;</span> = $_.path
-                <span style="color:#e6db74">&#39;State&#39;</span> = <span style="color:#66d9ef">switch</span> ($_.State) {
-                    0 {<span style="color:#e6db74">&#39;Unknown&#39;</span>}
-                    1 {<span style="color:#e6db74">&#39;Disabled&#39;</span>}
-                    2 {<span style="color:#e6db74">&#39;Queued&#39;</span>}
-                    3 {<span style="color:#e6db74">&#39;Ready&#39;</span>}
-                    4 {<span style="color:#e6db74">&#39;Running&#39;</span>}
-                    <span style="color:#66d9ef">Default</span> {<span style="color:#e6db74">&#39;Unknown&#39;</span>}
-                }
-                <span style="color:#e6db74">&#39;Enabled&#39;</span> = $_.enabled
-                <span style="color:#e6db74">&#39;LastRunTime&#39;</span> = $_.lastruntime
-                <span style="color:#e6db74">&#39;LastTaskResult&#39;</span> = $_.lasttaskresult
-                <span style="color:#e6db74">&#39;NumberOfMissedRuns&#39;</span> = $_.numberofmissedruns
-                <span style="color:#e6db74">&#39;NextRunTime&#39;</span> = $_.nextruntime
-                <span style="color:#e6db74">&#39;Author&#39;</span> =  ($_.xml).Task.RegistrationInfo.Author
-                <span style="color:#e6db74">&#39;UserId&#39;</span> = ($_.xml).Task.Principals.Principal.UserID
-                <span style="color:#e6db74">&#39;Description&#39;</span> = ($_.xml).Task.RegistrationInfo.Description
-            }
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">param</span><span class="p">(</span>
+<span class="ln"> 2</span>	<span class="nv">$computername</span> <span class="p">=</span> <span class="s2">&#34;localhost&#34;</span><span class="p">,</span>
+<span class="ln"> 3</span>    <span class="no">[switch]</span><span class="nv">$RootFolder</span>
+<span class="ln"> 4</span><span class="p">)</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span><span class="c">#region Functions</span>
+<span class="ln"> 7</span><span class="k">function</span> <span class="nb">Get-AllTaskSubFolders</span> <span class="p">{</span>
+<span class="ln"> 8</span>    <span class="p">[</span><span class="k">cmdletbinding</span><span class="p">()]</span>
+<span class="ln"> 9</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln">10</span>
+<span class="ln">11</span>        <span class="c"># Set to use $Schedule as default parameter so it automatically list all files</span>
+<span class="ln">12</span>
+<span class="ln">13</span>        <span class="c"># For current schedule object if it exists.</span>
+<span class="ln">14</span>
+<span class="ln">15</span><span class="err">​</span>        <span class="nv">$FolderRef</span> <span class="p">=</span> <span class="nv">$Schedule</span><span class="p">.</span><span class="n">getfolder</span><span class="p">(</span><span class="s2">&#34;\&#34;</span><span class="p">)</span>
+<span class="ln">16</span><span class="err">​</span>    <span class="p">)</span>
+<span class="ln">17</span><span class="err">​</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$FolderRef</span><span class="p">.</span><span class="n">Path</span> <span class="o">-eq</span> <span class="s1">&#39;\&#39;</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">18</span><span class="err">​</span>        <span class="nv">$FolderRef</span>
+<span class="ln">19</span><span class="err">​</span>    <span class="p">}</span>
+<span class="ln">20</span><span class="err">​</span>    <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="nv">$RootFolder</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">21</span><span class="err">​</span>        <span class="nv">$ArrFolders</span> <span class="p">=</span> <span class="p">@()</span>
+<span class="ln">22</span><span class="err">​</span>        <span class="k">if</span><span class="p">((</span><span class="nv">$folders</span> <span class="p">=</span> <span class="nv">$folderRef</span><span class="p">.</span><span class="n">getfolders</span><span class="p">(</span><span class="n">1</span><span class="p">)))</span> <span class="p">{</span>
+<span class="ln">23</span><span class="err">​</span>            <span class="nv">$folders</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span>
+<span class="ln">24</span><span class="err">​</span>                <span class="nv">$ArrFolders</span> <span class="p">+=</span> <span class="nv">$_</span>
+<span class="ln">25</span><span class="err">​</span>                <span class="k">if</span><span class="p">(</span><span class="nv">$_</span><span class="p">.</span><span class="n">getfolders</span><span class="p">(</span><span class="n">1</span><span class="p">))</span> <span class="p">{</span>
+<span class="ln">26</span><span class="err">​</span>                    <span class="nb">Get-AllTaskSubFolders</span> <span class="n">-FolderRef</span> <span class="nv">$_</span>
+<span class="ln">27</span><span class="err">​</span>                <span class="p">}</span>
+<span class="ln">28</span><span class="err">​</span>            <span class="p">}</span>
+<span class="ln">29</span><span class="err">​</span>        <span class="p">}</span>
+<span class="ln">30</span><span class="err">​</span>        <span class="nv">$ArrFolders</span>
+<span class="ln">31</span><span class="err">​</span>    <span class="p">}</span>
+<span class="ln">32</span><span class="p">}</span>
+<span class="ln">33</span><span class="c">#endregion Functions</span>
+<span class="ln">34</span>
+<span class="ln">35</span><span class="k">try</span> <span class="p">{</span>
+<span class="ln">36</span>	<span class="nv">$schedule</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="err">–</span><span class="n">ComObject</span> <span class="p">(</span><span class="s2">&#34;Schedule.Service&#34;</span><span class="p">)</span>
+<span class="ln">37</span><span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+<span class="ln">38</span>	<span class="nb">Write-Warning</span> <span class="s2">&#34;Schedule.Service COM Object not found, this script requires this object&#34;</span>
+<span class="ln">39</span>	<span class="k">return</span>
+<span class="ln">40</span><span class="p">}</span>
+<span class="ln">41</span>
+<span class="ln">42</span><span class="nv">$Schedule</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="nv">$ComputerName</span><span class="p">)</span>
+<span class="ln">43</span><span class="nv">$AllFolders</span> <span class="p">=</span> <span class="nb">Get-AllTaskSubFolders</span>
+<span class="ln">44</span>
+<span class="ln">45</span><span class="k">foreach</span> <span class="p">(</span><span class="nv">$Folder</span> <span class="k">in</span> <span class="nv">$AllFolders</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">46</span>    <span class="k">if</span> <span class="p">((</span><span class="nv">$Tasks</span> <span class="p">=</span> <span class="nv">$Folder</span><span class="p">.</span><span class="n">GetTasks</span><span class="p">(</span><span class="n">1</span><span class="p">)))</span> <span class="p">{</span>
+<span class="ln">47</span>        <span class="nv">$Tasks</span> <span class="p">|</span> <span class="k">Foreach</span><span class="n">-Object</span> <span class="p">{</span>
+<span class="ln">48</span>	        <span class="nb">New-Object</span> <span class="n">-TypeName</span> <span class="n">PSCustomObject</span> <span class="n">-Property</span> <span class="p">@{</span>
+<span class="ln">49</span>	          <span class="s1">&#39;Name&#39;</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">name</span>
+<span class="ln">50</span>                <span class="s1">&#39;Path&#39;</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">path</span>
+<span class="ln">51</span>                <span class="s1">&#39;State&#39;</span> <span class="p">=</span> <span class="k">switch</span> <span class="p">(</span><span class="nv">$_</span><span class="p">.</span><span class="n">State</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">52</span>                    <span class="n">0</span> <span class="p">{</span><span class="s1">&#39;Unknown&#39;</span><span class="p">}</span>
+<span class="ln">53</span>                    <span class="n">1</span> <span class="p">{</span><span class="s1">&#39;Disabled&#39;</span><span class="p">}</span>
+<span class="ln">54</span>                    <span class="n">2</span> <span class="p">{</span><span class="s1">&#39;Queued&#39;</span><span class="p">}</span>
+<span class="ln">55</span>                    <span class="n">3</span> <span class="p">{</span><span class="s1">&#39;Ready&#39;</span><span class="p">}</span>
+<span class="ln">56</span>                    <span class="n">4</span> <span class="p">{</span><span class="s1">&#39;Running&#39;</span><span class="p">}</span>
+<span class="ln">57</span>                    <span class="k">Default</span> <span class="p">{</span><span class="s1">&#39;Unknown&#39;</span><span class="p">}</span>
+<span class="ln">58</span>                <span class="p">}</span>
+<span class="ln">59</span>                <span class="s1">&#39;Enabled&#39;</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">enabled</span>
+<span class="ln">60</span>                <span class="s1">&#39;LastRunTime&#39;</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">lastruntime</span>
+<span class="ln">61</span>                <span class="s1">&#39;LastTaskResult&#39;</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">lasttaskresult</span>
+<span class="ln">62</span>                <span class="s1">&#39;NumberOfMissedRuns&#39;</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">numberofmissedruns</span>
+<span class="ln">63</span>                <span class="s1">&#39;NextRunTime&#39;</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">nextruntime</span>
+<span class="ln">64</span>                <span class="s1">&#39;Author&#39;</span> <span class="p">=</span>  <span class="p">(</span><span class="nv">$_</span><span class="p">.</span><span class="n">xml</span><span class="p">).</span><span class="n">Task</span><span class="p">.</span><span class="n">RegistrationInfo</span><span class="p">.</span><span class="n">Author</span>
+<span class="ln">65</span>                <span class="s1">&#39;UserId&#39;</span> <span class="p">=</span> <span class="p">(</span><span class="nv">$_</span><span class="p">.</span><span class="n">xml</span><span class="p">).</span><span class="n">Task</span><span class="p">.</span><span class="n">Principals</span><span class="p">.</span><span class="n">Principal</span><span class="p">.</span><span class="n">UserID</span>
+<span class="ln">66</span>                <span class="s1">&#39;Description&#39;</span> <span class="p">=</span> <span class="p">(</span><span class="nv">$_</span><span class="p">.</span><span class="n">xml</span><span class="p">).</span><span class="n">Task</span><span class="p">.</span><span class="n">RegistrationInfo</span><span class="p">.</span><span class="n">Description</span>
+<span class="ln">67</span>            <span class="p">}</span>
+<span class="ln">68</span>        <span class="p">}</span>
+<span class="ln">69</span>    <span class="p">}</span>
+<span class="ln">70</span><span class="p">}</span>
 </code></pre></div></div>
         </article>
         

@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Finding Old Files</title>
 
 <meta name="description" content="For the most powerful community">
@@ -234,43 +235,43 @@ if (!doNotTrack) {
             </li>
           </ul>
           <div class="content"><p>When it comes to finding old files in PowerShell we have several options, all in which involve subtracting DateTime objects or using comparison operators. For example, if we want to remove all files older than 14 days, we can test if the LastWriteTime property of each FileInfo object is greater than a DateTime objects which has been subtracted 14 days:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; $date = (Get-Date).AddDays(-14)
-PS&gt; Get-ChildItem -Path D:\Temp -Recurse |
-    Where-Object {<span style="color:#f92672">-not</span> $_.PsIsContainer <span style="color:#f92672">-and</span> $_.LastWriteTime <span style="color:#f92672">-lt</span> $date } |
-    Remove-Item -WhatIf
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nv">$date</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Get-Date</span><span class="p">).</span><span class="n">AddDays</span><span class="p">(-</span><span class="n">14</span><span class="p">)</span>
+<span class="ln">2</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-ChildItem</span> <span class="n">-Path</span> <span class="n">D:</span><span class="p">\</span><span class="n">Temp</span> <span class="n">-Recurse</span> <span class="p">|</span>
+<span class="ln">3</span>    <span class="nb">Where-Object</span> <span class="p">{</span><span class="o">-not</span> <span class="nv">$_</span><span class="p">.</span><span class="n">PsIsContainer</span> <span class="o">-and</span> <span class="nv">$_</span><span class="p">.</span><span class="n">LastWriteTime</span> <span class="o">-lt</span> <span class="nv">$date</span> <span class="p">}</span> <span class="p">|</span>
+<span class="ln">4</span>    <span class="nb">Remove-Item</span> <span class="n">-WhatIf</span>
 </code></pre></div><p>In the above example we initialize $date to a date in the past and test against it inside Where-Object.  When the older file is found, based on its LastWriteTime property, it is passed through to the Remove-Item cmdlet.</p>
 <p>However, this doesn’t tell as the age of the file. We can produce a list of old files and create a new calculated property that will calculate the age:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; $age = @{Name=<span style="color:#e6db74">&#39;Age(Days)&#39;</span>;Expression={((Get-Date) - $_.LastWriteTime).Days}}
-PS&gt; Get-ChildItem | Select-Object -Property Name,FullName,$age
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nv">$age</span> <span class="p">=</span> <span class="p">@{</span><span class="n">Name</span><span class="p">=</span><span class="s1">&#39;Age(Days)&#39;</span><span class="p">;</span><span class="n">Expression</span><span class="p">={((</span><span class="nb">Get-Date</span><span class="p">)</span> <span class="p">-</span> <span class="nv">$_</span><span class="p">.</span><span class="n">LastWriteTime</span><span class="p">).</span><span class="n">Days</span><span class="p">}}</span>
+<span class="ln">2</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-ChildItem</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-Property</span> <span class="n">Name</span><span class="p">,</span><span class="n">FullName</span><span class="p">,</span><span class="nv">$age</span>
 </code></pre></div><p>Now we get a 3-column output with an age of each file system object (including directories).</p>
 <p>The expression we are using subtracts the LastWriteTime value of each file from the current date, which produces a TimeSpan object, and then we call its Days property to get the result.</p>
 <p>But, did you know that you can also pipe file system objects to the New-TimeSpan cmdlet and it will give you the same result?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; Get-ChildItem -Path $env:WINDIR\system.ini | New-TimeSpan
-
-Days              <span style="color:#960050;background-color:#1e0010">:</span> 137
-Hours             <span style="color:#960050;background-color:#1e0010">:</span> 4
-Minutes           <span style="color:#960050;background-color:#1e0010">:</span> 34
-Seconds           <span style="color:#960050;background-color:#1e0010">:</span> 54
-Milliseconds      <span style="color:#960050;background-color:#1e0010">:</span> 274
-Ticks             <span style="color:#960050;background-color:#1e0010">:</span> 118532942742544
-TotalDays         <span style="color:#960050;background-color:#1e0010">:</span> 137.190905952019
-TotalHours        <span style="color:#960050;background-color:#1e0010">:</span> 3292.58174284844
-TotalMinutes      <span style="color:#960050;background-color:#1e0010">:</span> 197554.904570907
-TotalSeconds      <span style="color:#960050;background-color:#1e0010">:</span> 11853294.2742544
-TotalMilliseconds <span style="color:#960050;background-color:#1e0010">:</span> 11853294274.2544
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-ChildItem</span> <span class="n">-Path</span> <span class="nv">$env:WINDIR</span><span class="p">\</span><span class="n">system</span><span class="p">.</span><span class="n">ini</span> <span class="p">|</span> <span class="nb">New-TimeSpan</span>
+<span class="ln"> 2</span>
+<span class="ln"> 3</span><span class="n">Days</span>              <span class="err">:</span> <span class="n">137</span>
+<span class="ln"> 4</span><span class="n">Hours</span>             <span class="err">:</span> <span class="n">4</span>
+<span class="ln"> 5</span><span class="n">Minutes</span>           <span class="err">:</span> <span class="n">34</span>
+<span class="ln"> 6</span><span class="n">Seconds</span>           <span class="err">:</span> <span class="n">54</span>
+<span class="ln"> 7</span><span class="n">Milliseconds</span>      <span class="err">:</span> <span class="n">274</span>
+<span class="ln"> 8</span><span class="n">Ticks</span>             <span class="err">:</span> <span class="n">118532942742544</span>
+<span class="ln"> 9</span><span class="n">TotalDays</span>         <span class="err">:</span> <span class="n">137</span><span class="p">.</span><span class="n">190905952019</span>
+<span class="ln">10</span><span class="n">TotalHours</span>        <span class="err">:</span> <span class="n">3292</span><span class="p">.</span><span class="n">58174284844</span>
+<span class="ln">11</span><span class="n">TotalMinutes</span>      <span class="err">:</span> <span class="n">197554</span><span class="p">.</span><span class="n">904570907</span>
+<span class="ln">12</span><span class="n">TotalSeconds</span>      <span class="err">:</span> <span class="n">11853294</span><span class="p">.</span><span class="n">2742544</span>
+<span class="ln">13</span><span class="n">TotalMilliseconds</span> <span class="err">:</span> <span class="n">11853294274</span><span class="p">.</span><span class="n">2544</span>
 </code></pre></div><p>As you can see, system.ini is 137 days old. So, how does this work? Let’s take a close look of the Start parameter of New-TimeSpan:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; (Get-Command New-TimeSpan).Parameters[<span style="color:#e6db74">&#39;Start&#39;</span>]            
-
-Name            <span style="color:#960050;background-color:#1e0010">:</span> Start
-ParameterType   <span style="color:#960050;background-color:#1e0010">:</span> System.DateTime
-ParameterSets   <span style="color:#960050;background-color:#1e0010">:</span> {<span style="color:#66d9ef">[Date, System.Management.Automation.ParameterSetMetadata]</span>}
-IsDynamic       <span style="color:#960050;background-color:#1e0010">:</span> False
-Aliases         <span style="color:#960050;background-color:#1e0010">:</span> {LastWriteTime}
-Attributes      <span style="color:#960050;background-color:#1e0010">:</span> {System.Management.Automation.AliasAttribute, Date}
-SwitchParameter <span style="color:#960050;background-color:#1e0010">:</span> False
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="p">(</span><span class="nb">Get-Command</span> <span class="nb">New-TimeSpan</span><span class="p">).</span><span class="n">Parameters</span><span class="p">[</span><span class="s1">&#39;Start&#39;</span><span class="p">]</span>            
+<span class="ln">2</span>
+<span class="ln">3</span><span class="n">Name</span>            <span class="err">:</span> <span class="nb">Start
+</span><span class="ln">4</span><span class="nb"></span><span class="n">ParameterType</span>   <span class="err">:</span> <span class="n">System</span><span class="p">.</span><span class="n">DateTime</span>
+<span class="ln">5</span><span class="n">ParameterSets</span>   <span class="err">:</span> <span class="p">{</span><span class="no">[Date, System.Management.Automation.ParameterSetMetadata]</span><span class="p">}</span>
+<span class="ln">6</span><span class="n">IsDynamic</span>       <span class="err">:</span> <span class="n">False</span>
+<span class="ln">7</span><span class="n">Aliases</span>         <span class="err">:</span> <span class="p">{</span><span class="n">LastWriteTime</span><span class="p">}</span>
+<span class="ln">8</span><span class="n">Attributes</span>      <span class="err">:</span> <span class="p">{</span><span class="n">System</span><span class="p">.</span><span class="n">Management</span><span class="p">.</span><span class="n">Automation</span><span class="p">.</span><span class="n">AliasAttribute</span><span class="p">,</span> <span class="n">Date</span><span class="p">}</span>
+<span class="ln">9</span><span class="n">SwitchParameter</span> <span class="err">:</span> <span class="n">False</span>
 </code></pre></div><p>The Aliases member has the LastWriteTime alias defined, meaning that if an incoming object has a property of that name it will be automatically bind to the Start parameter. Pretty neat. So, based on the above we can also write a shorter expression:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; $age = @{Name=<span style="color:#e6db74">&#39;Age(Days)&#39;</span>;Expression={($_ | New-TimeSpan).Days}}
-PS&gt; Get-ChildItem | Select-Object -Property Name,FullName,$age
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nv">$age</span> <span class="p">=</span> <span class="p">@{</span><span class="n">Name</span><span class="p">=</span><span class="s1">&#39;Age(Days)&#39;</span><span class="p">;</span><span class="n">Expression</span><span class="p">={(</span><span class="nv">$_</span> <span class="p">|</span> <span class="nb">New-TimeSpan</span><span class="p">).</span><span class="n">Days</span><span class="p">}}</span>
+<span class="ln">2</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-ChildItem</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-Property</span> <span class="n">Name</span><span class="p">,</span><span class="n">FullName</span><span class="p">,</span><span class="nv">$age</span>
 </code></pre></div></div>
         </article>
         

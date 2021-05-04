@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Managing scheduled tasks in your environment – Part I</title>
 
 <meta name="description" content="For the most powerful community">
@@ -239,82 +240,82 @@ if (!doNotTrack) {
           <div class="content"><p>In Part 1 of the series, I will look at getting information on the scheduled tasks running in your environment. One of the things I see a lot in our company is that a lot of scheduled tasks get created on different servers, for one reason or another, but very often these tasks are quickly forgotten.</p>
 <p>We kept seeing files show up in a directory they were not supposed to be in, and when we deleted them, they magically reappear after some time.  That led me to believe that it was a scheduled task that was the culprit. So I thought, it was time to get an overview of what scheduled tasks were running in our environment. I had to figure out how to query all the servers in our environment and enumerate enabled scheduled tasks.</p>
 <p>I looked at several different ways of getting this information, but in the end I settled on using the built-in schtasks.exe utility and wrapping it in PowerShell function for automation. I started looking at the command line switches for schtasks.exe.  I experimented with the different output formats until I noticed that there was an option to output in CSV format, and as you may already know PowerShell has built-in cmdlets  for working with CSV files. So, I ended up doing:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; schtasks.exe /query /V /FO CSV | ConvertFrom-Csv
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="n">schtasks</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">query</span> <span class="p">/</span><span class="n">V</span> <span class="p">/</span><span class="n">FO</span> <span class="n">CSV</span> <span class="p">|</span> <span class="nb">ConvertFrom-Csv</span>
 </code></pre></div><p>This returned a collection of PSCustomObjects that contained information about all the scheduled tasks on my local system. This is all for a single system, but we have 200+ servers, so some more automation was required. The schtasks.exe also supports getting information from remote machines using the /s switch, so that made it rather easy to create a loop that goes through a list of servers. The schtasks.exe works against down-level operating systems back to Windows 2000.</p>
 <p>Another thing I had to consider was how to design my script and what data I should return. Should I return all the information schtasks.exe /query /V /FO CSV gave me, or just a subset of it? I decided to return all 28 properties of each scheduled task.  With 28 properties, I quickly decided not to manually create a PSObject, and use Add-Member to populate its properties, but to use a new feature native to PowerShell v2 —the option to supply a hash table of properties to the New-Object cmdlet. To simplify the example, I assume that a list containing server names are available and is named servers.txt.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> Get-ScheduledTask
-{
-    [<span style="color:#66d9ef">CmdletBinding</span>()]
-    <span style="color:#66d9ef">param</span>
-    (
-        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Mandatory</span> = $true, <span style="color:#66d9ef">ValueFromPipeline</span> = $true, <span style="color:#66d9ef">ValueFromPipelineByPropertyName</span> = $true)]
-        <span style="color:#66d9ef">[String[]]</span>
-        $ComputerName,
-    
-        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Mandatory</span> = $false)]
-        <span style="color:#66d9ef">[String[]]</span>
-        $RunAsUser,
-
-        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Mandatory</span> = $false)]
-        <span style="color:#66d9ef">[String[]]</span>
-        $TaskName,
-
-        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Mandatory</span> = $false)]
-        [<span style="color:#66d9ef">alias</span>(<span style="color:#e6db74">&#34;WS&#34;</span>)]
-        <span style="color:#66d9ef">[Switch]</span>
-        $WithSpace
-    )
-
-    <span style="color:#66d9ef">Begin</span>
-    {
-        $Script:Tasks = @()
-    }
-
-    <span style="color:#66d9ef">Process</span> {
-        $schtask = schtasks.exe /query /s $ComputerName /V /FO CSV | ConvertFrom-Csv
-        Write-Verbose <span style="color:#e6db74">&#34;Getting scheduled Tasks from: $ComputerName&#34;</span>
-
-        <span style="color:#66d9ef">if</span> ($schtask)
-        {
-            <span style="color:#66d9ef">foreach</span>($sch <span style="color:#66d9ef">in</span> $schtask)
-            {
-                <span style="color:#66d9ef">if</span> ($sch.<span style="color:#e6db74">&#34;Run As User&#34;</span> <span style="color:#f92672">-match</span> <span style="color:#e6db74">&#34;</span>$($RunAsUser)<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">-and</span> $sch.TaskName <span style="color:#f92672">-match</span> <span style="color:#e6db74">&#34;</span>$($TaskName)<span style="color:#e6db74">&#34;</span>)
-                {
-                    Write-Verbose <span style="color:#e6db74">&#34;$Computername ($sch.TaskName).replace(&#39;\&#39;,&#39;&#39;) $sch.&#39;Run As User&#39;&#34;</span>
-                    $sch | Get-Member -MemberType Properties | <span style="color:#66d9ef">ForEach</span> -Begin { $hash = @{}} -Process {
-                        <span style="color:#66d9ef">if</span> ($WithSpace)
-                        {
-                            ($hash.($_.Name)) = $sch.($_.Name)
-                        }
-                        <span style="color:#66d9ef">else</span>
-                        {
-                            ($hash.($($_.Name).replace(<span style="color:#e6db74">&#34; &#34;</span>,<span style="color:#e6db74">&#34;&#34;</span>))) = $sch.($_.Name)
-                        }
-                    } -End {
-                        $Script:Tasks += (New-Object -TypeName PSObject -Property $hash)
-                    }
-                }
-            }
-        }
-    }
-
-    <span style="color:#66d9ef">End</span> {
-        $Script:Tasks
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Get-ScheduledTask</span>
+<span class="ln"> 2</span><span class="p">{</span>
+<span class="ln"> 3</span>    <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
+<span class="ln"> 4</span>    <span class="k">param</span>
+<span class="ln"> 5</span>    <span class="p">(</span>
+<span class="ln"> 6</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">,</span> <span class="k">ValueFromPipeline</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">,</span> <span class="k">ValueFromPipelineByPropertyName</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
+<span class="ln"> 7</span>        <span class="no">[String[]]</span>
+<span class="ln"> 8</span>        <span class="nv">$ComputerName</span><span class="p">,</span>
+<span class="ln"> 9</span>    
+<span class="ln">10</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$false</span><span class="p">)]</span>
+<span class="ln">11</span>        <span class="no">[String[]]</span>
+<span class="ln">12</span>        <span class="nv">$RunAsUser</span><span class="p">,</span>
+<span class="ln">13</span>
+<span class="ln">14</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$false</span><span class="p">)]</span>
+<span class="ln">15</span>        <span class="no">[String[]]</span>
+<span class="ln">16</span>        <span class="nv">$TaskName</span><span class="p">,</span>
+<span class="ln">17</span>
+<span class="ln">18</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$false</span><span class="p">)]</span>
+<span class="ln">19</span>        <span class="p">[</span><span class="k">alias</span><span class="p">(</span><span class="s2">&#34;WS&#34;</span><span class="p">)]</span>
+<span class="ln">20</span>        <span class="no">[Switch]</span>
+<span class="ln">21</span>        <span class="nv">$WithSpace</span>
+<span class="ln">22</span>    <span class="p">)</span>
+<span class="ln">23</span>
+<span class="ln">24</span>    <span class="k">Begin</span>
+<span class="ln">25</span>    <span class="p">{</span>
+<span class="ln">26</span>        <span class="nv">$Script:Tasks</span> <span class="p">=</span> <span class="p">@()</span>
+<span class="ln">27</span>    <span class="p">}</span>
+<span class="ln">28</span>
+<span class="ln">29</span>    <span class="k">Process</span> <span class="p">{</span>
+<span class="ln">30</span>        <span class="nv">$schtask</span> <span class="p">=</span> <span class="n">schtasks</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">query</span> <span class="p">/</span><span class="n">s</span> <span class="nv">$ComputerName</span> <span class="p">/</span><span class="n">V</span> <span class="p">/</span><span class="n">FO</span> <span class="n">CSV</span> <span class="p">|</span> <span class="nb">ConvertFrom-Csv</span>
+<span class="ln">31</span>        <span class="nb">Write-Verbose</span> <span class="s2">&#34;Getting scheduled Tasks from: $ComputerName&#34;</span>
+<span class="ln">32</span>
+<span class="ln">33</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$schtask</span><span class="p">)</span>
+<span class="ln">34</span>        <span class="p">{</span>
+<span class="ln">35</span>            <span class="k">foreach</span><span class="p">(</span><span class="nv">$sch</span> <span class="k">in</span> <span class="nv">$schtask</span><span class="p">)</span>
+<span class="ln">36</span>            <span class="p">{</span>
+<span class="ln">37</span>                <span class="k">if</span> <span class="p">(</span><span class="nv">$sch</span><span class="p">.</span><span class="s2">&#34;Run As User&#34;</span> <span class="o">-match</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$RunAsUser</span><span class="p">)</span><span class="s2">&#34;</span> <span class="o">-and</span> <span class="nv">$sch</span><span class="p">.</span><span class="n">TaskName</span> <span class="o">-match</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$TaskName</span><span class="p">)</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="ln">38</span>                <span class="p">{</span>
+<span class="ln">39</span>                    <span class="nb">Write-Verbose</span> <span class="s2">&#34;$Computername ($sch.TaskName).replace(&#39;\&#39;,&#39;&#39;) $sch.&#39;Run As User&#39;&#34;</span>
+<span class="ln">40</span>                    <span class="nv">$sch</span> <span class="p">|</span> <span class="nb">Get-Member</span> <span class="n">-MemberType</span> <span class="n">Properties</span> <span class="p">|</span> <span class="k">ForEach</span> <span class="n">-Begin</span> <span class="p">{</span> <span class="nv">$hash</span> <span class="p">=</span> <span class="p">@{}}</span> <span class="n">-Process</span> <span class="p">{</span>
+<span class="ln">41</span>                        <span class="k">if</span> <span class="p">(</span><span class="nv">$WithSpace</span><span class="p">)</span>
+<span class="ln">42</span>                        <span class="p">{</span>
+<span class="ln">43</span>                            <span class="p">(</span><span class="nv">$hash</span><span class="p">.(</span><span class="nv">$_</span><span class="p">.</span><span class="n">Name</span><span class="p">))</span> <span class="p">=</span> <span class="nv">$sch</span><span class="p">.(</span><span class="nv">$_</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span>
+<span class="ln">44</span>                        <span class="p">}</span>
+<span class="ln">45</span>                        <span class="k">else</span>
+<span class="ln">46</span>                        <span class="p">{</span>
+<span class="ln">47</span>                            <span class="p">(</span><span class="nv">$hash</span><span class="p">.($(</span><span class="nv">$_</span><span class="p">.</span><span class="n">Name</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">)))</span> <span class="p">=</span> <span class="nv">$sch</span><span class="p">.(</span><span class="nv">$_</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span>
+<span class="ln">48</span>                        <span class="p">}</span>
+<span class="ln">49</span>                    <span class="p">}</span> <span class="n">-End</span> <span class="p">{</span>
+<span class="ln">50</span>                        <span class="nv">$Script:Tasks</span> <span class="p">+=</span> <span class="p">(</span><span class="nb">New-Object</span> <span class="n">-TypeName</span> <span class="n">PSObject</span> <span class="n">-Property</span> <span class="nv">$hash</span><span class="p">)</span>
+<span class="ln">51</span>                    <span class="p">}</span>
+<span class="ln">52</span>                <span class="p">}</span>
+<span class="ln">53</span>            <span class="p">}</span>
+<span class="ln">54</span>        <span class="p">}</span>
+<span class="ln">55</span>    <span class="p">}</span>
+<span class="ln">56</span>
+<span class="ln">57</span>    <span class="k">End</span> <span class="p">{</span>
+<span class="ln">58</span>        <span class="nv">$Script:Tasks</span>
+<span class="ln">59</span>    <span class="p">}</span>
+<span class="ln">60</span><span class="p">}</span>
 </code></pre></div><p>The script accepts pipeline input, so you can do something like:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; Get-Content c:\servers.txt | Get-ScheduledTask | Out-GridView
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Content</span> <span class="n">c:</span><span class="p">\</span><span class="n">servers</span><span class="p">.</span><span class="n">txt</span> <span class="p">|</span> <span class="nb">Get-ScheduledTask</span> <span class="p">|</span> <span class="nb">Out-GridView</span>
 </code></pre></div><p>If you want  to get only scheduled tasks that are run under the Administrator account you could do something like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; Get-Content c:\servers.txt | Get-ScheduledTask <span style="color:#960050;background-color:#1e0010">–</span>RunAsUser administrator | Out-GridView
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Content</span> <span class="n">c:</span><span class="p">\</span><span class="n">servers</span><span class="p">.</span><span class="n">txt</span> <span class="p">|</span> <span class="nb">Get-ScheduledTask</span> <span class="err">–</span><span class="n">RunAsUser</span> <span class="n">administrator</span> <span class="p">|</span> <span class="nb">Out-GridView</span>
 </code></pre></div><p>The above example will list all scheduled tasks running under an account containing the word “Administrator”.  If you want to get only scheduled tasks where the task name contains “FileXfer”:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; Get-Content c:\servers.txt | Get-ScheduledTask <span style="color:#960050;background-color:#1e0010">–</span>TaskName FileXfer | Out-GridView
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Content</span> <span class="n">c:</span><span class="p">\</span><span class="n">servers</span><span class="p">.</span><span class="n">txt</span> <span class="p">|</span> <span class="nb">Get-ScheduledTask</span> <span class="err">–</span><span class="n">TaskName</span> <span class="n">FileXfer</span> <span class="p">|</span> <span class="nb">Out-GridView</span>
 </code></pre></div><p>You can of course also combine the two:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; Get-Content c:\servers.txt | Get-ScheduledTask <span style="color:#960050;background-color:#1e0010">–</span>TaskName FileXfer <span style="color:#960050;background-color:#1e0010">–</span>RunAsUser administrator
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Content</span> <span class="n">c:</span><span class="p">\</span><span class="n">servers</span><span class="p">.</span><span class="n">txt</span> <span class="p">|</span> <span class="nb">Get-ScheduledTask</span> <span class="err">–</span><span class="n">TaskName</span> <span class="n">FileXfer</span> <span class="err">–</span><span class="n">RunAsUser</span> <span class="n">administrator</span>
 </code></pre></div><p>A few things to notice though is that since the properties that are returned are generated “on-the-fly” using the names used by schtasks.exe, some of them contain spaces.  Property names should almost never contain spaces, so by default I remove all spaces in the properties, before I create the hash table. A property returned from schtasks.exe called “Run As User” ends up being RunAsUser instead. I have added an option to keep the spaces by supplying the parameter -WithSpace, it will make your output easier to read, if you for instance pipe it to Out-GridView</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; Get-Content c:\servers.txt | Get-ScheduledTask | Select TaskName <span style="color:#e6db74">&#34;RunAsUser&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Content</span> <span class="n">c:</span><span class="p">\</span><span class="n">servers</span><span class="p">.</span><span class="n">txt</span> <span class="p">|</span> <span class="nb">Get-ScheduledTask</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">TaskName</span> <span class="s2">&#34;RunAsUser&#34;</span>
 </code></pre></div><p>In the above examples the –RunAsUser parameter looks at the property called “RunAsUser”. But it is only called that in the English versions of the operating system.  So, if you are not running this on a machine running English version of the operating system, you will need to manually modify the script to your local locale.</p>
 <p>Last but not least, both the -RunAsUser and -TaskName parameters use regular expressions to match a user and a task name, so, for instance, if you are looking for a scheduled tasks called like CopyJob1, CopyJob2 you can do:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; Get-ScheduledTask <span style="color:#960050;background-color:#1e0010">–</span>TaskName CopyJob\d  <span style="color:#75715e">#\d is regex for a single digit</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-ScheduledTask</span> <span class="err">–</span><span class="n">TaskName</span> <span class="n">CopyJob</span><span class="p">\</span><span class="n">d</span>  <span class="c">#\d is regex for a single digit</span>
 </code></pre></div><p>Regular expressions are a whole book for themselves, so I will not go into details on it here.  Now we have seen how to collect information about scheduled tasks in your environment, but what if you want to change something on existing scheduled tasks? As I mentioned earlier, we tend to see quite a few scheduled tasks in our environment, and sometimes they get created to run under admin accounts (The quick and dirty way of getting things done).</p>
 <p>Our company policy states that admin accounts have to have their passwords changed every 3 months. So we looked for a way to automate those changes as well.</p>
 </div>

@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>How to find out what’s new in PowerShell vNext</title>
 
 <meta name="description" content="For the most powerful community">
@@ -241,54 +242,54 @@ if (!doNotTrack) {
 <p>For some reason, some cmdlets do not have a value in the Parameters column.</p>
 <p>To resolve this I modified the expression to get the parameters and added a second call to Get-Command.</p>
 <p>The new expression I used (post code is updated as well as the result).  @mjolinor, thanks :for the comment!</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Get-Command -Module Microsoft.PowerShell.\*, Microsoft.WSMan.\* | Select-Object -Property Name,@{Name=<span style="color:#e6db74">&#39;Parameters&#39;</span>;Expression={(Get-Command $_).Parameters.Keys}}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Get-Command</span> <span class="n">-Module</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">PowerShell</span><span class="p">.\*,</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">WSMan</span><span class="p">.\*</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-Property</span> <span class="n">Name</span><span class="p">,@{</span><span class="n">Name</span><span class="p">=</span><span class="s1">&#39;Parameters&#39;</span><span class="p">;</span><span class="n">Expression</span><span class="p">={(</span><span class="nb">Get-Command</span> <span class="nv">$_</span><span class="p">).</span><span class="n">Parameters</span><span class="p">.</span><span class="n">Keys</span><span class="p">}}</span>
 </code></pre></div><p>The old expression was: <code>;Expression={$_.Parameters.Keys}}</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># run in v2, export all core cmdlets, name and parameters</span>
-Get-Command -Module Microsoft.PowerShell.*, Microsoft.WSMan.* | Select-Object -Property Name, @{Name=<span style="color:#960050;background-color:#1e0010">’</span>Parameters<span style="color:#960050;background-color:#1e0010">’</span>;Expression={(Get-Command $_).Parameters.Keys}} | Export-Clixml .\v2.xml
-
-<span style="color:#75715e"># run in v3, export all core cmdlets, name and parameters&lt;/span&gt;</span>
-Get-Command -Module Microsoft.PowerShell.*, Microsoft.WSMan.* | Select-Object -Property Name ,@{Name=<span style="color:#960050;background-color:#1e0010">’</span>Parameters<span style="color:#960050;background-color:#1e0010">’</span>;Expression={(Get-Command $_).Parameters.Keys}} | Export-Clixml .\v3.xml
-
-<span style="color:#75715e"># run either in v2 or v3 console&lt;/span&gt;</span>
-$v2 = Import-CliXml .\v2.xml | Sort-Object -Property Name
-$v3 = Import-CliXml .\v3.xml | Sort-Object -Property Name
-
-Compare-Object $v2 $v3 -Property Name -IncludeEqual -PassThru | <span style="color:#66d9ef">ForEach</span>-Object {
-    $Command = $_
-
-    <span style="color:#66d9ef">if</span>($_.SideIndicator <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;==&#39;</span>)
-    {
-        $Command=$_
-
-        $cv2 = $v2 | Where-Object { $_.Name <span style="color:#f92672">-eq</span> $Command.Name} | Select-Object -ExpandProperty Parameters
-        $cv3 = $v3 | Where-Object { $_.Name <span style="color:#f92672">-eq</span> $Command.Name} | Select-Object -ExpandProperty Parameters
-
-        $compare = Compare-Object $cv2 $cv3
-
-        <span style="color:#66d9ef">if</span> ($compare)
-        {
-            <span style="color:#66d9ef">try</span>
-            {
-                $NewParameters = $compare | Where-Object { $_.SideIndicator <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;=&gt;&#39;</span> } | <span style="color:#66d9ef">ForEach</span>-Object { $_.InputObject + <span style="color:#e6db74">&#39; (+)&#39;</span>}
-                $RemovedParameters = $compare | Where-Object { $_.SideIndicator <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;=&lt;&#39;</span> } | <span style="color:#66d9ef">ForEach</span>-Object { $_.InputObject + <span style="color:#e6db74">&#39; (-)&#39;</span>}
-
-                <span style="color:#e6db74">&#34;</span>$($command.Name)<span style="color:#e6db74"> (!)&#34;</span>
-                $NewParameters + $RemovedParameters | Sort-Object | <span style="color:#66d9ef">ForEach</span>-Object { <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">`t</span><span style="color:#e6db74">$_&#34;</span> }
-                <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">&#34;</span>
-            }
-            <span style="color:#66d9ef">catch</span>{}
-        }
-    }
-    <span style="color:#66d9ef">elseif</span> ($_.SideIndicator <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;=&gt;&#39;</span>)
-    {
-        <span style="color:#e6db74">&#34;</span>$($Command.name)<span style="color:#e6db74"> (+)</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">&#34;</span>
-    }
-    <span style="color:#66d9ef">else</span>
-    {
-        <span style="color:#e6db74">&#34;($Command.name) (-)</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">&#34;</span>
-
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="c"># run in v2, export all core cmdlets, name and parameters</span>
+<span class="ln"> 2</span><span class="nb">Get-Command</span> <span class="n">-Module</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">PowerShell</span><span class="p">.*,</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">WSMan</span><span class="p">.*</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-Property</span> <span class="n">Name</span><span class="p">,</span> <span class="p">@{</span><span class="n">Name</span><span class="p">=</span><span class="err">’</span><span class="n">Parameters</span><span class="err">’</span><span class="p">;</span><span class="n">Expression</span><span class="p">={(</span><span class="nb">Get-Command</span> <span class="nv">$_</span><span class="p">).</span><span class="n">Parameters</span><span class="p">.</span><span class="n">Keys</span><span class="p">}}</span> <span class="p">|</span> <span class="nb">Export-Clixml</span> <span class="p">.\</span><span class="n">v2</span><span class="p">.</span><span class="n">xml</span>
+<span class="ln"> 3</span>
+<span class="ln"> 4</span><span class="c"># run in v3, export all core cmdlets, name and parameters&lt;/span&gt;</span>
+<span class="ln"> 5</span><span class="nb">Get-Command</span> <span class="n">-Module</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">PowerShell</span><span class="p">.*,</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">WSMan</span><span class="p">.*</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-Property</span> <span class="n">Name</span> <span class="p">,@{</span><span class="n">Name</span><span class="p">=</span><span class="err">’</span><span class="n">Parameters</span><span class="err">’</span><span class="p">;</span><span class="n">Expression</span><span class="p">={(</span><span class="nb">Get-Command</span> <span class="nv">$_</span><span class="p">).</span><span class="n">Parameters</span><span class="p">.</span><span class="n">Keys</span><span class="p">}}</span> <span class="p">|</span> <span class="nb">Export-Clixml</span> <span class="p">.\</span><span class="n">v3</span><span class="p">.</span><span class="n">xml</span>
+<span class="ln"> 6</span>
+<span class="ln"> 7</span><span class="c"># run either in v2 or v3 console&lt;/span&gt;</span>
+<span class="ln"> 8</span><span class="nv">$v2</span> <span class="p">=</span> <span class="nb">Import-CliXml</span> <span class="p">.\</span><span class="n">v2</span><span class="p">.</span><span class="n">xml</span> <span class="p">|</span> <span class="nb">Sort-Object</span> <span class="n">-Property</span> <span class="n">Name</span>
+<span class="ln"> 9</span><span class="nv">$v3</span> <span class="p">=</span> <span class="nb">Import-CliXml</span> <span class="p">.\</span><span class="n">v3</span><span class="p">.</span><span class="n">xml</span> <span class="p">|</span> <span class="nb">Sort-Object</span> <span class="n">-Property</span> <span class="n">Name</span>
+<span class="ln">10</span>
+<span class="ln">11</span><span class="nb">Compare-Object</span> <span class="nv">$v2</span> <span class="nv">$v3</span> <span class="n">-Property</span> <span class="n">Name</span> <span class="n">-IncludeEqual</span> <span class="n">-PassThru</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span>
+<span class="ln">12</span>    <span class="nv">$Command</span> <span class="p">=</span> <span class="nv">$_</span>
+<span class="ln">13</span>
+<span class="ln">14</span>    <span class="k">if</span><span class="p">(</span><span class="nv">$_</span><span class="p">.</span><span class="n">SideIndicator</span> <span class="o">-eq</span> <span class="s1">&#39;==&#39;</span><span class="p">)</span>
+<span class="ln">15</span>    <span class="p">{</span>
+<span class="ln">16</span>        <span class="nv">$Command</span><span class="p">=</span><span class="nv">$_</span>
+<span class="ln">17</span>
+<span class="ln">18</span>        <span class="nv">$cv2</span> <span class="p">=</span> <span class="nv">$v2</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Name</span> <span class="o">-eq</span> <span class="nv">$Command</span><span class="p">.</span><span class="n">Name</span><span class="p">}</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-ExpandProperty</span> <span class="n">Parameters</span>
+<span class="ln">19</span>        <span class="nv">$cv3</span> <span class="p">=</span> <span class="nv">$v3</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Name</span> <span class="o">-eq</span> <span class="nv">$Command</span><span class="p">.</span><span class="n">Name</span><span class="p">}</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-ExpandProperty</span> <span class="n">Parameters</span>
+<span class="ln">20</span>
+<span class="ln">21</span>        <span class="nv">$compare</span> <span class="p">=</span> <span class="nb">Compare-Object</span> <span class="nv">$cv2</span> <span class="nv">$cv3</span>
+<span class="ln">22</span>
+<span class="ln">23</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$compare</span><span class="p">)</span>
+<span class="ln">24</span>        <span class="p">{</span>
+<span class="ln">25</span>            <span class="k">try</span>
+<span class="ln">26</span>            <span class="p">{</span>
+<span class="ln">27</span>                <span class="nv">$NewParameters</span> <span class="p">=</span> <span class="nv">$compare</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">SideIndicator</span> <span class="o">-eq</span> <span class="s1">&#39;=&gt;&#39;</span> <span class="p">}</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">InputObject</span> <span class="p">+</span> <span class="s1">&#39; (+)&#39;</span><span class="p">}</span>
+<span class="ln">28</span>                <span class="nv">$RemovedParameters</span> <span class="p">=</span> <span class="nv">$compare</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">SideIndicator</span> <span class="o">-eq</span> <span class="s1">&#39;=&lt;&#39;</span> <span class="p">}</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">InputObject</span> <span class="p">+</span> <span class="s1">&#39; (-)&#39;</span><span class="p">}</span>
+<span class="ln">29</span>
+<span class="ln">30</span>                <span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$command</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span><span class="s2"> (!)&#34;</span>
+<span class="ln">31</span>                <span class="nv">$NewParameters</span> <span class="p">+</span> <span class="nv">$RemovedParameters</span> <span class="p">|</span> <span class="nb">Sort-Object</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span> <span class="s2">&#34;</span><span class="se">`t</span><span class="s2">$_&#34;</span> <span class="p">}</span>
+<span class="ln">32</span>                <span class="s2">&#34;</span><span class="se">`n</span><span class="s2">&#34;</span>
+<span class="ln">33</span>            <span class="p">}</span>
+<span class="ln">34</span>            <span class="k">catch</span><span class="p">{}</span>
+<span class="ln">35</span>        <span class="p">}</span>
+<span class="ln">36</span>    <span class="p">}</span>
+<span class="ln">37</span>    <span class="k">elseif</span> <span class="p">(</span><span class="nv">$_</span><span class="p">.</span><span class="n">SideIndicator</span> <span class="o">-eq</span> <span class="s1">&#39;=&gt;&#39;</span><span class="p">)</span>
+<span class="ln">38</span>    <span class="p">{</span>
+<span class="ln">39</span>        <span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$Command</span><span class="p">.</span><span class="n">name</span><span class="p">)</span><span class="s2"> (+)</span><span class="se">`n</span><span class="s2">&#34;</span>
+<span class="ln">40</span>    <span class="p">}</span>
+<span class="ln">41</span>    <span class="k">else</span>
+<span class="ln">42</span>    <span class="p">{</span>
+<span class="ln">43</span>        <span class="s2">&#34;($Command.name) (-)</span><span class="se">`n</span><span class="s2">&#34;</span>
+<span class="ln">44</span>
+<span class="ln">45</span>    <span class="p">}</span>
+<span class="ln">46</span><span class="p">}</span>
 </code></pre></div><p>Result legend: <code>! = Changed, + = New, and - = Removed</code></p>
 </div>
         </article>

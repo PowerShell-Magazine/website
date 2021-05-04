@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Azure DevTest Labs Artifact for installing PowerShell Core</title>
 
 <meta name="description" content="For the most powerful community">
@@ -255,108 +256,108 @@ if (!doNotTrack) {
 <p>Click Add. This artifact installation might take a few minutes and once complete, you can access the install script verbose logs.</p>
 <p><img src="/images/adtl5.png" alt=""></p>
 <p>This is it. You can, of course, install these artifacts (Windows or Linux) at the time of Azure DTL VM provisioning itself. And, you can do this deployment via an ARM template as well.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    <span style="color:#f92672">&#34;$schema&#34;</span>: <span style="color:#e6db74">&#34;https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json&#34;</span>,
-    <span style="color:#f92672">&#34;contentVersion&#34;</span>: <span style="color:#e6db74">&#34;1.0.0.0&#34;</span>,
-    <span style="color:#f92672">&#34;parameters&#34;</span>: {
-        <span style="color:#f92672">&#34;newVMName&#34;</span>: {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
-            <span style="color:#f92672">&#34;defaultValue&#34;</span>: <span style="color:#e6db74">&#34;PSCore1601&#34;</span>
-        },
-        <span style="color:#f92672">&#34;labName&#34;</span>: {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
-            <span style="color:#f92672">&#34;defaultValue&#34;</span>: <span style="color:#e6db74">&#34;PSMagDTL&#34;</span>
-        },
-        <span style="color:#f92672">&#34;size&#34;</span>: {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
-            <span style="color:#f92672">&#34;defaultValue&#34;</span>: <span style="color:#e6db74">&#34;Standard_A6&#34;</span>
-        },
-        <span style="color:#f92672">&#34;userName&#34;</span>: {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
-            <span style="color:#f92672">&#34;defaultValue&#34;</span>: <span style="color:#e6db74">&#34;ravikanth&#34;</span>
-        },
-        <span style="color:#f92672">&#34;password&#34;</span>: {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;securestring&#34;</span>
-        },
-        <span style="color:#f92672">&#34;PowerShell_Core_a.k.a_PowerShell_6_packageUrl&#34;</span>: {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
-            <span style="color:#f92672">&#34;defaultValue&#34;</span>: <span style="color:#e6db74">&#34;https://github.com/PowerShell/PowerShell/releases/download/v6.0.0/PowerShell-6.0.0-win-x64.msi&#34;</span>
-        },
-        <span style="color:#f92672">&#34;PowerShell_Core_a.k.a_PowerShell_6_installCRuntime&#34;</span>: {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;bool&#34;</span>,
-            <span style="color:#f92672">&#34;defaultValue&#34;</span>: <span style="color:#66d9ef">false</span>
-        },
-        <span style="color:#f92672">&#34;labVirtualNetworkName&#34;</span> : {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>
-        },
-        <span style="color:#f92672">&#34;labSubnetName&#34;</span> : {
-            <span style="color:#f92672">&#34;type&#34;</span> : <span style="color:#e6db74">&#34;string&#34;</span>        
-        }        
-    },
-    <span style="color:#f92672">&#34;variables&#34;</span>: {
-        <span style="color:#f92672">&#34;labVirtualNetworkId&#34;</span>: <span style="color:#e6db74">&#34;[resourceId(&#39;Microsoft.DevTestLab/labs/virtualnetworks&#39;, parameters(&#39;labName&#39;), parameters(&#39;labVirtualNetworkName&#39;))]&#34;</span>,
-        <span style="color:#f92672">&#34;vmId&#34;</span>: <span style="color:#e6db74">&#34;[resourceId (&#39;Microsoft.DevTestLab/labs/virtualmachines&#39;, parameters(&#39;labName&#39;), parameters(&#39;newVMName&#39;))]&#34;</span>,
-        <span style="color:#f92672">&#34;vmName&#34;</span>: <span style="color:#e6db74">&#34;[concat(parameters(&#39;labName&#39;), &#39;/&#39;, parameters(&#39;newVMName&#39;))]&#34;</span>
-    },
-    <span style="color:#f92672">&#34;resources&#34;</span>: [
-        {
-            <span style="color:#f92672">&#34;apiVersion&#34;</span>: <span style="color:#e6db74">&#34;2017-04-26-preview&#34;</span>,
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Microsoft.DevTestLab/labs/virtualmachines&#34;</span>,
-            <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;[variables(&#39;vmName&#39;)]&#34;</span>,
-            <span style="color:#f92672">&#34;location&#34;</span>: <span style="color:#e6db74">&#34;[resourceGroup().location]&#34;</span>,
-            <span style="color:#f92672">&#34;properties&#34;</span>: {
-                <span style="color:#f92672">&#34;labVirtualNetworkId&#34;</span>: <span style="color:#e6db74">&#34;[variables(&#39;labVirtualNetworkId&#39;)]&#34;</span>,
-                <span style="color:#f92672">&#34;notes&#34;</span>: <span style="color:#e6db74">&#34;Windows Server 2016 Datacenter&#34;</span>,
-                <span style="color:#f92672">&#34;galleryImageReference&#34;</span>: {
-                    <span style="color:#f92672">&#34;offer&#34;</span>: <span style="color:#e6db74">&#34;WindowsServer&#34;</span>,
-                    <span style="color:#f92672">&#34;publisher&#34;</span>: <span style="color:#e6db74">&#34;MicrosoftWindowsServer&#34;</span>,
-                    <span style="color:#f92672">&#34;sku&#34;</span>: <span style="color:#e6db74">&#34;2016-Datacenter&#34;</span>,
-                    <span style="color:#f92672">&#34;osType&#34;</span>: <span style="color:#e6db74">&#34;Windows&#34;</span>,
-                    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;latest&#34;</span>
-                },
-                <span style="color:#f92672">&#34;size&#34;</span>: <span style="color:#e6db74">&#34;[parameters(&#39;size&#39;)]&#34;</span>,
-                <span style="color:#f92672">&#34;userName&#34;</span>: <span style="color:#e6db74">&#34;[parameters(&#39;userName&#39;)]&#34;</span>,
-                <span style="color:#f92672">&#34;password&#34;</span>: <span style="color:#e6db74">&#34;[parameters(&#39;password&#39;)]&#34;</span>,
-                <span style="color:#f92672">&#34;isAuthenticationWithSshKey&#34;</span>: <span style="color:#66d9ef">false</span>,
-                <span style="color:#f92672">&#34;artifacts&#34;</span>: [
-                    {
-                        <span style="color:#f92672">&#34;artifactId&#34;</span>: <span style="color:#e6db74">&#34;[resourceId(&#39;Microsoft.DevTestLab/labs/artifactSources/artifacts&#39;, parameters(&#39;labName&#39;), &#39;privaterepo596&#39;, &#39;windows-powershellcore&#39;)]&#34;</span>,
-                        <span style="color:#f92672">&#34;parameters&#34;</span>: [
-                            {
-                                <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;packageUrl&#34;</span>,
-                                <span style="color:#f92672">&#34;value&#34;</span>: <span style="color:#e6db74">&#34;[parameters(&#39;PowerShell_Core_a.k.a_PowerShell_6_packageUrl&#39;)]&#34;</span>
-                            },
-                            {
-                                <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;installCRuntime&#34;</span>,
-                                <span style="color:#f92672">&#34;value&#34;</span>: <span style="color:#e6db74">&#34;[parameters(&#39;PowerShell_Core_a.k.a_PowerShell_6_installCRuntime&#39;)]&#34;</span>
-                            }
-                        ]
-                    }
-                ],
-                <span style="color:#f92672">&#34;labSubnetName&#34;</span>: <span style="color:#e6db74">&#34;[parameters(&#39;labSubnetName&#39;)]&#34;</span>,
-                <span style="color:#f92672">&#34;disallowPublicIpAddress&#34;</span>: <span style="color:#66d9ef">true</span>,
-                <span style="color:#f92672">&#34;storageType&#34;</span>: <span style="color:#e6db74">&#34;Standard&#34;</span>,
-                <span style="color:#f92672">&#34;allowClaim&#34;</span>: <span style="color:#66d9ef">false</span>,
-                <span style="color:#f92672">&#34;networkInterface&#34;</span>: {
-                    <span style="color:#f92672">&#34;sharedPublicIpAddressConfiguration&#34;</span>: {
-                        <span style="color:#f92672">&#34;inboundNatRules&#34;</span>: [
-                            {
-                                <span style="color:#f92672">&#34;transportProtocol&#34;</span>: <span style="color:#e6db74">&#34;tcp&#34;</span>,
-                                <span style="color:#f92672">&#34;backendPort&#34;</span>: <span style="color:#ae81ff">3389</span>
-                            }
-                        ]
-                    }
-                }
-            }
-        }
-    ],
-    <span style="color:#f92672">&#34;outputs&#34;</span>: {
-        <span style="color:#f92672">&#34;labVMId&#34;</span>: {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>,
-            <span style="color:#f92672">&#34;value&#34;</span>: <span style="color:#e6db74">&#34;[variables(&#39;vmId&#39;)]&#34;</span>
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="ln">  1</span><span class="p">{</span>
+<span class="ln">  2</span>    <span class="nt">&#34;$schema&#34;</span><span class="p">:</span> <span class="s2">&#34;https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json&#34;</span><span class="p">,</span>
+<span class="ln">  3</span>    <span class="nt">&#34;contentVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0.0.0&#34;</span><span class="p">,</span>
+<span class="ln">  4</span>    <span class="nt">&#34;parameters&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln">  5</span>        <span class="nt">&#34;newVMName&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln">  6</span>            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
+<span class="ln">  7</span>            <span class="nt">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s2">&#34;PSCore1601&#34;</span>
+<span class="ln">  8</span>        <span class="p">},</span>
+<span class="ln">  9</span>        <span class="nt">&#34;labName&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln"> 10</span>            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
+<span class="ln"> 11</span>            <span class="nt">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s2">&#34;PSMagDTL&#34;</span>
+<span class="ln"> 12</span>        <span class="p">},</span>
+<span class="ln"> 13</span>        <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln"> 14</span>            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
+<span class="ln"> 15</span>            <span class="nt">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s2">&#34;Standard_A6&#34;</span>
+<span class="ln"> 16</span>        <span class="p">},</span>
+<span class="ln"> 17</span>        <span class="nt">&#34;userName&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln"> 18</span>            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
+<span class="ln"> 19</span>            <span class="nt">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s2">&#34;ravikanth&#34;</span>
+<span class="ln"> 20</span>        <span class="p">},</span>
+<span class="ln"> 21</span>        <span class="nt">&#34;password&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln"> 22</span>            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;securestring&#34;</span>
+<span class="ln"> 23</span>        <span class="p">},</span>
+<span class="ln"> 24</span>        <span class="nt">&#34;PowerShell_Core_a.k.a_PowerShell_6_packageUrl&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln"> 25</span>            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
+<span class="ln"> 26</span>            <span class="nt">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s2">&#34;https://github.com/PowerShell/PowerShell/releases/download/v6.0.0/PowerShell-6.0.0-win-x64.msi&#34;</span>
+<span class="ln"> 27</span>        <span class="p">},</span>
+<span class="ln"> 28</span>        <span class="nt">&#34;PowerShell_Core_a.k.a_PowerShell_6_installCRuntime&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln"> 29</span>            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;bool&#34;</span><span class="p">,</span>
+<span class="ln"> 30</span>            <span class="nt">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="kc">false</span>
+<span class="ln"> 31</span>        <span class="p">},</span>
+<span class="ln"> 32</span>        <span class="nt">&#34;labVirtualNetworkName&#34;</span> <span class="p">:</span> <span class="p">{</span>
+<span class="ln"> 33</span>            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span>
+<span class="ln"> 34</span>        <span class="p">},</span>
+<span class="ln"> 35</span>        <span class="nt">&#34;labSubnetName&#34;</span> <span class="p">:</span> <span class="p">{</span>
+<span class="ln"> 36</span>            <span class="nt">&#34;type&#34;</span> <span class="p">:</span> <span class="s2">&#34;string&#34;</span>        
+<span class="ln"> 37</span>        <span class="p">}</span>        
+<span class="ln"> 38</span>    <span class="p">},</span>
+<span class="ln"> 39</span>    <span class="nt">&#34;variables&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln"> 40</span>        <span class="nt">&#34;labVirtualNetworkId&#34;</span><span class="p">:</span> <span class="s2">&#34;[resourceId(&#39;Microsoft.DevTestLab/labs/virtualnetworks&#39;, parameters(&#39;labName&#39;), parameters(&#39;labVirtualNetworkName&#39;))]&#34;</span><span class="p">,</span>
+<span class="ln"> 41</span>        <span class="nt">&#34;vmId&#34;</span><span class="p">:</span> <span class="s2">&#34;[resourceId (&#39;Microsoft.DevTestLab/labs/virtualmachines&#39;, parameters(&#39;labName&#39;), parameters(&#39;newVMName&#39;))]&#34;</span><span class="p">,</span>
+<span class="ln"> 42</span>        <span class="nt">&#34;vmName&#34;</span><span class="p">:</span> <span class="s2">&#34;[concat(parameters(&#39;labName&#39;), &#39;/&#39;, parameters(&#39;newVMName&#39;))]&#34;</span>
+<span class="ln"> 43</span>    <span class="p">},</span>
+<span class="ln"> 44</span>    <span class="nt">&#34;resources&#34;</span><span class="p">:</span> <span class="p">[</span>
+<span class="ln"> 45</span>        <span class="p">{</span>
+<span class="ln"> 46</span>            <span class="nt">&#34;apiVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;2017-04-26-preview&#34;</span><span class="p">,</span>
+<span class="ln"> 47</span>            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;Microsoft.DevTestLab/labs/virtualmachines&#34;</span><span class="p">,</span>
+<span class="ln"> 48</span>            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;[variables(&#39;vmName&#39;)]&#34;</span><span class="p">,</span>
+<span class="ln"> 49</span>            <span class="nt">&#34;location&#34;</span><span class="p">:</span> <span class="s2">&#34;[resourceGroup().location]&#34;</span><span class="p">,</span>
+<span class="ln"> 50</span>            <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln"> 51</span>                <span class="nt">&#34;labVirtualNetworkId&#34;</span><span class="p">:</span> <span class="s2">&#34;[variables(&#39;labVirtualNetworkId&#39;)]&#34;</span><span class="p">,</span>
+<span class="ln"> 52</span>                <span class="nt">&#34;notes&#34;</span><span class="p">:</span> <span class="s2">&#34;Windows Server 2016 Datacenter&#34;</span><span class="p">,</span>
+<span class="ln"> 53</span>                <span class="nt">&#34;galleryImageReference&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln"> 54</span>                    <span class="nt">&#34;offer&#34;</span><span class="p">:</span> <span class="s2">&#34;WindowsServer&#34;</span><span class="p">,</span>
+<span class="ln"> 55</span>                    <span class="nt">&#34;publisher&#34;</span><span class="p">:</span> <span class="s2">&#34;MicrosoftWindowsServer&#34;</span><span class="p">,</span>
+<span class="ln"> 56</span>                    <span class="nt">&#34;sku&#34;</span><span class="p">:</span> <span class="s2">&#34;2016-Datacenter&#34;</span><span class="p">,</span>
+<span class="ln"> 57</span>                    <span class="nt">&#34;osType&#34;</span><span class="p">:</span> <span class="s2">&#34;Windows&#34;</span><span class="p">,</span>
+<span class="ln"> 58</span>                    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;latest&#34;</span>
+<span class="ln"> 59</span>                <span class="p">},</span>
+<span class="ln"> 60</span>                <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="s2">&#34;[parameters(&#39;size&#39;)]&#34;</span><span class="p">,</span>
+<span class="ln"> 61</span>                <span class="nt">&#34;userName&#34;</span><span class="p">:</span> <span class="s2">&#34;[parameters(&#39;userName&#39;)]&#34;</span><span class="p">,</span>
+<span class="ln"> 62</span>                <span class="nt">&#34;password&#34;</span><span class="p">:</span> <span class="s2">&#34;[parameters(&#39;password&#39;)]&#34;</span><span class="p">,</span>
+<span class="ln"> 63</span>                <span class="nt">&#34;isAuthenticationWithSshKey&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+<span class="ln"> 64</span>                <span class="nt">&#34;artifacts&#34;</span><span class="p">:</span> <span class="p">[</span>
+<span class="ln"> 65</span>                    <span class="p">{</span>
+<span class="ln"> 66</span>                        <span class="nt">&#34;artifactId&#34;</span><span class="p">:</span> <span class="s2">&#34;[resourceId(&#39;Microsoft.DevTestLab/labs/artifactSources/artifacts&#39;, parameters(&#39;labName&#39;), &#39;privaterepo596&#39;, &#39;windows-powershellcore&#39;)]&#34;</span><span class="p">,</span>
+<span class="ln"> 67</span>                        <span class="nt">&#34;parameters&#34;</span><span class="p">:</span> <span class="p">[</span>
+<span class="ln"> 68</span>                            <span class="p">{</span>
+<span class="ln"> 69</span>                                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;packageUrl&#34;</span><span class="p">,</span>
+<span class="ln"> 70</span>                                <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;[parameters(&#39;PowerShell_Core_a.k.a_PowerShell_6_packageUrl&#39;)]&#34;</span>
+<span class="ln"> 71</span>                            <span class="p">},</span>
+<span class="ln"> 72</span>                            <span class="p">{</span>
+<span class="ln"> 73</span>                                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;installCRuntime&#34;</span><span class="p">,</span>
+<span class="ln"> 74</span>                                <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;[parameters(&#39;PowerShell_Core_a.k.a_PowerShell_6_installCRuntime&#39;)]&#34;</span>
+<span class="ln"> 75</span>                            <span class="p">}</span>
+<span class="ln"> 76</span>                        <span class="p">]</span>
+<span class="ln"> 77</span>                    <span class="p">}</span>
+<span class="ln"> 78</span>                <span class="p">],</span>
+<span class="ln"> 79</span>                <span class="nt">&#34;labSubnetName&#34;</span><span class="p">:</span> <span class="s2">&#34;[parameters(&#39;labSubnetName&#39;)]&#34;</span><span class="p">,</span>
+<span class="ln"> 80</span>                <span class="nt">&#34;disallowPublicIpAddress&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="ln"> 81</span>                <span class="nt">&#34;storageType&#34;</span><span class="p">:</span> <span class="s2">&#34;Standard&#34;</span><span class="p">,</span>
+<span class="ln"> 82</span>                <span class="nt">&#34;allowClaim&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+<span class="ln"> 83</span>                <span class="nt">&#34;networkInterface&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln"> 84</span>                    <span class="nt">&#34;sharedPublicIpAddressConfiguration&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln"> 85</span>                        <span class="nt">&#34;inboundNatRules&#34;</span><span class="p">:</span> <span class="p">[</span>
+<span class="ln"> 86</span>                            <span class="p">{</span>
+<span class="ln"> 87</span>                                <span class="nt">&#34;transportProtocol&#34;</span><span class="p">:</span> <span class="s2">&#34;tcp&#34;</span><span class="p">,</span>
+<span class="ln"> 88</span>                                <span class="nt">&#34;backendPort&#34;</span><span class="p">:</span> <span class="mi">3389</span>
+<span class="ln"> 89</span>                            <span class="p">}</span>
+<span class="ln"> 90</span>                        <span class="p">]</span>
+<span class="ln"> 91</span>                    <span class="p">}</span>
+<span class="ln"> 92</span>                <span class="p">}</span>
+<span class="ln"> 93</span>            <span class="p">}</span>
+<span class="ln"> 94</span>        <span class="p">}</span>
+<span class="ln"> 95</span>    <span class="p">],</span>
+<span class="ln"> 96</span>    <span class="nt">&#34;outputs&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln"> 97</span>        <span class="nt">&#34;labVMId&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="ln"> 98</span>            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
+<span class="ln"> 99</span>            <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;[variables(&#39;vmId&#39;)]&#34;</span>
+<span class="ln">100</span>        <span class="p">}</span>
+<span class="ln">101</span>    <span class="p">}</span>
+<span class="ln">102</span><span class="p">}</span>
 </code></pre></div><p>At the end of this template deployment, you will have a Windows Server 2016 VM with PowerShell Core installed.</p>
 </div>
         </article>

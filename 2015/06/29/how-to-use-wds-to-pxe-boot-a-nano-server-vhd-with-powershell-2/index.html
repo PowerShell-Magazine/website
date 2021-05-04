@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>How to use WDS to PXE Boot a Nano Server VHD with PowerShell</title>
 
 <meta name="description" content="For the most powerful community">
@@ -215,7 +216,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>8 Min To Read
+              <i class="far fa-clock"></i>9 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>29 Jun, 2015
@@ -258,287 +259,287 @@ if (!doNotTrack) {
 </ol>
 <h4 id="step-1"><strong>Step 1</strong></h4>
 <p>Prepare the Internal switch on Hyper-V and assign it a static IP address.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Create an internal switch on Hyper-V</span>
-($VMswitch = New-VMSwitch -Name <span style="color:#e6db74">&#34;Internal-Test&#34;</span> -SwitchType Internal)
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="c"># Create an internal switch on Hyper-V</span>
+<span class="ln">2</span><span class="p">(</span><span class="nv">$VMswitch</span> <span class="p">=</span> <span class="nb">New-VMSwitch</span> <span class="n">-Name</span> <span class="s2">&#34;Internal-Test&#34;</span> <span class="n">-SwitchType</span> <span class="n">Internal</span><span class="p">)</span>
 </code></pre></div><p><img src="/images/wds1.jpg" alt=""></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Set a static IP address on Hyper-V switch</span>
-Get-NetAdapter |
-   Where Name <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#34;vEthernet (</span>$($VMswitch.Name)<span style="color:#e6db74">)&#34;</span> |
-   Where InterfaceDescription <span style="color:#f92672">-match</span> <span style="color:#e6db74">&#34;Hyper-V\sVirtual\sEthernet Adapter&#34;</span> |
-   New-NetIPAddress -IPAddress 10.0.0.1 -PrefixLength 24
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="c"># Set a static IP address on Hyper-V switch</span>
+<span class="ln">2</span><span class="nb">Get-NetAdapter</span> <span class="p">|</span>
+<span class="ln">3</span>   <span class="nb">Where </span><span class="n">Name</span> <span class="o">-eq</span> <span class="s2">&#34;vEthernet (</span><span class="p">$(</span><span class="nv">$VMswitch</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span><span class="s2">)&#34;</span> <span class="p">|</span>
+<span class="ln">4</span>   <span class="nb">Where </span><span class="n">InterfaceDescription</span> <span class="o">-match</span> <span class="s2">&#34;Hyper-V\sVirtual\sEthernet Adapter&#34;</span> <span class="p">|</span>
+<span class="ln">5</span>   <span class="nb">New-NetIPAddress</span> <span class="n">-IPAddress</span> <span class="n">10</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span> <span class="n">-PrefixLength</span> <span class="n">24</span>
 </code></pre></div><p><img src="/images/wds2.jpg" alt=""></p>
 <p>I’ve downloaded the required ISO into the Downloads folder of the logged on user. I’ll store it as a variable to be able to use it later on.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Set the path to ISO</span>
-$iso  = $ExecutionContext.SessionState.Path.
-GetUnresolvedProviderPathFromPSPath(<span style="color:#e6db74">&#39;~/downloads/en_windows_server_technical_preview_2_x64_dvd_6687981.iso&#39;</span>)
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="c"># Set the path to ISO</span>
+<span class="ln">2</span><span class="nv">$iso</span>  <span class="p">=</span> <span class="nv">$ExecutionContext</span><span class="p">.</span><span class="n">SessionState</span><span class="p">.</span><span class="n">Path</span><span class="p">.</span>
+<span class="ln">3</span><span class="n">GetUnresolvedProviderPathFromPSPath</span><span class="p">(</span><span class="s1">&#39;~/downloads/en_windows_server_technical_preview_2_x64_dvd_6687981.iso&#39;</span><span class="p">)</span>
 </code></pre></div><p>NB: The path is expanded and there’s no check whether the file exists or not.</p>
 <p>Let’s make sure that the integrity of the file is fine.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Integrity check of ISO file</span>
-<span style="color:#66d9ef">if</span> (
- (Get-FileHash -Path $ISO -Algorithm SHA256 -ErrorAction SilentlyContinue).Hash <span style="color:#f92672">-eq</span>
- <span style="color:#e6db74">&#39;D8D841393F661E30D448D2E6CBCEE20A94D9A57A94695B64EE76CA6B0910F849&#39;</span>
-){
- Write-Information -Msg <span style="color:#e6db74">&#34;Got the correct Technical Preview 2 ISO file&#34;</span> -InfA 2
-} <span style="color:#66d9ef">else</span> {
- Write-Warning -Message <span style="color:#e6db74">&#34;Don&#39;t have the correct ISO of the Technical Preview 2&#34;</span>
- <span style="color:#66d9ef">break</span>
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="c"># Integrity check of ISO file</span>
+<span class="ln"> 2</span><span class="k">if</span> <span class="p">(</span>
+<span class="ln"> 3</span> <span class="p">(</span><span class="nb">Get-FileHash</span> <span class="n">-Path</span> <span class="nv">$ISO</span> <span class="n">-Algorithm</span> <span class="n">SHA256</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span><span class="p">).</span><span class="n">Hash</span> <span class="o">-eq</span>
+<span class="ln"> 4</span> <span class="s1">&#39;D8D841393F661E30D448D2E6CBCEE20A94D9A57A94695B64EE76CA6B0910F849&#39;</span>
+<span class="ln"> 5</span><span class="p">){</span>
+<span class="ln"> 6</span> <span class="nb">Write-Information</span> <span class="n">-Msg</span> <span class="s2">&#34;Got the correct Technical Preview 2 ISO file&#34;</span> <span class="n">-InfA</span> <span class="n">2</span>
+<span class="ln"> 7</span><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln"> 8</span> <span class="nb">Write-Warning</span> <span class="n">-Message</span> <span class="s2">&#34;Don&#39;t have the correct ISO of the Technical Preview 2&#34;</span>
+<span class="ln"> 9</span> <span class="k">break</span>
+<span class="ln">10</span><span class="p">}</span>
 </code></pre></div><p>The <em>Msg</em> parameter name is the alias for <em>MessageData</em> and <em>InfA</em> is the alias for <em>InformationAction</em>.</p>
 <p><img src="/images/wds3.jpg" alt=""></p>
 <p>Let’s also prepare a Nano.vhd file that will be copied to the DC1 disk and proposed as an installation image by the PXE server.</p>
 <p>To create this Nano.vhd file, you can either follow the <a href="https://msdn.microsoft.com/en-us/library/mt126167.aspx?f=255&amp;MSPPError=-2147217396">Getting Started with Nano Server</a> guide, or you can use the new <a href="http://blogs.technet.com/b/nanoserver/archive/2015/06/16/powershell-script-to-build-your-nano-server-image.aspx">PowerShell Script to build your Nano Server Image</a>. I’ll use the latter.</p>
 <p>That said, first download the required scripts:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Download scripts requirements</span>
-
-@(
- @{
- URI = <span style="color:#e6db74">&#39;http://blogs.technet.com/cfs-filesystemfile.ashx/__key/telligent-evolution-components-attachments/01-10474-00-00-03-65-09-88/NanoServer.ps1&#39;</span>;
- SHA1 = <span style="color:#e6db74">&#39;27C00A02B49F3565783051B95D82498F17F74D57&#39;</span> ;
- },
- @{
- URI = <span style="color:#e6db74">&#39;https://gallery.technet.microsoft.com/scriptcenter/Convert-WindowsImageps1-0fe23a8f/file/59237/7/Convert-WindowsImage.ps1&#39;</span>;
- SHA1 = <span style="color:#e6db74">&#39;4B91A8ED09BD1E9DB5C63C8F63BB2BA83567917C&#39;</span> ;
- }
-) | <span style="color:#66d9ef">ForEach</span>-Object -Process {
-     $f = (<span style="color:#66d9ef">[system.uri]</span>$($_.URI)).Segments[-1] ;
-     $o = (Join-Path ~/Downloads -ChildPath $f) ;
-     <span style="color:#66d9ef">if</span>(<span style="color:#f92672">-not</span>((Get-FileHash -Path $o -Algorithm SHA1 -ErrorAction SilentlyContinue).Hash <span style="color:#f92672">-eq</span> $_.SHA1)) {
-         <span style="color:#66d9ef">try</span> {
-            $null = Invoke-WebRequest -Uri $($_.URI) -OutFile $o -ErrorAction Stop
-            Unblock-File $o -ErrorAction Stop
-            Write-Information -Msg <span style="color:#e6db74">&#34;Successfully downloaded the correct version of $f file&#34;</span> -InfA 2
-         } <span style="color:#66d9ef">catch</span> {
-            Write-Warning -Message <span style="color:#e6db74">&#34;There was a problem downloading the $f file&#34;</span>
-         }
-     } <span style="color:#66d9ef">else</span> {
-         Write-Information -Msg <span style="color:#e6db74">&#34;Successfully found the correct version of $f file&#34;</span> -InfA 2
-     }
-}
-
-
-<span style="color:#75715e"># Dot-sourcing functions inside a script</span>
-. ~/Downloads/Convert-WindowsImage.ps1
-<span style="color:#75715e"># Fix hard-coded path in the script</span>
-(Get-Content -Path ~/Downloads/NanoServer.ps1 -ReadCount 1 -ErrorAction Stop) <span style="color:#f92672">-replace</span>
-<span style="color:#66d9ef">[regex]</span>::Escape(<span style="color:#e6db74">&#39;. .\Convert-WindowsImage.ps1&#39;</span>),<span style="color:#e6db74">&#34;&#34;</span> |
-Set-Content -Path ~/Downloads/NanoServer.ps1 -Encoding UTF8 -ErrorAction Stop
-
-<span style="color:#75715e"># Load the modified version</span>
-. ~/Downloads/NanoServer.ps1
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="c"># Download scripts requirements</span>
+<span class="ln"> 2</span>
+<span class="ln"> 3</span><span class="p">@(</span>
+<span class="ln"> 4</span> <span class="p">@{</span>
+<span class="ln"> 5</span> <span class="n">URI</span> <span class="p">=</span> <span class="s1">&#39;http://blogs.technet.com/cfs-filesystemfile.ashx/__key/telligent-evolution-components-attachments/01-10474-00-00-03-65-09-88/NanoServer.ps1&#39;</span><span class="p">;</span>
+<span class="ln"> 6</span> <span class="n">SHA1</span> <span class="p">=</span> <span class="s1">&#39;27C00A02B49F3565783051B95D82498F17F74D57&#39;</span> <span class="p">;</span>
+<span class="ln"> 7</span> <span class="p">},</span>
+<span class="ln"> 8</span> <span class="p">@{</span>
+<span class="ln"> 9</span> <span class="n">URI</span> <span class="p">=</span> <span class="s1">&#39;https://gallery.technet.microsoft.com/scriptcenter/Convert-WindowsImageps1-0fe23a8f/file/59237/7/Convert-WindowsImage.ps1&#39;</span><span class="p">;</span>
+<span class="ln">10</span> <span class="n">SHA1</span> <span class="p">=</span> <span class="s1">&#39;4B91A8ED09BD1E9DB5C63C8F63BB2BA83567917C&#39;</span> <span class="p">;</span>
+<span class="ln">11</span> <span class="p">}</span>
+<span class="ln">12</span><span class="p">)</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="n">-Process</span> <span class="p">{</span>
+<span class="ln">13</span>     <span class="nv">$f</span> <span class="p">=</span> <span class="p">(</span><span class="no">[system.uri]</span><span class="p">$(</span><span class="nv">$_</span><span class="p">.</span><span class="n">URI</span><span class="p">)).</span><span class="n">Segments</span><span class="p">[-</span><span class="n">1</span><span class="p">]</span> <span class="p">;</span>
+<span class="ln">14</span>     <span class="nv">$o</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Join-Path</span> <span class="p">~/</span><span class="n">Downloads</span> <span class="n">-ChildPath</span> <span class="nv">$f</span><span class="p">)</span> <span class="p">;</span>
+<span class="ln">15</span>     <span class="k">if</span><span class="p">(</span><span class="o">-not</span><span class="p">((</span><span class="nb">Get-FileHash</span> <span class="n">-Path</span> <span class="nv">$o</span> <span class="n">-Algorithm</span> <span class="n">SHA1</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span><span class="p">).</span><span class="n">Hash</span> <span class="o">-eq</span> <span class="nv">$_</span><span class="p">.</span><span class="n">SHA1</span><span class="p">))</span> <span class="p">{</span>
+<span class="ln">16</span>         <span class="k">try</span> <span class="p">{</span>
+<span class="ln">17</span>            <span class="nv">$null</span> <span class="p">=</span> <span class="nb">Invoke-WebRequest</span> <span class="n">-Uri</span> <span class="p">$(</span><span class="nv">$_</span><span class="p">.</span><span class="n">URI</span><span class="p">)</span> <span class="n">-OutFile</span> <span class="nv">$o</span> <span class="n">-ErrorAction</span> <span class="n">Stop</span>
+<span class="ln">18</span>            <span class="nb">Unblock-File</span> <span class="nv">$o</span> <span class="n">-ErrorAction</span> <span class="n">Stop</span>
+<span class="ln">19</span>            <span class="nb">Write-Information</span> <span class="n">-Msg</span> <span class="s2">&#34;Successfully downloaded the correct version of $f file&#34;</span> <span class="n">-InfA</span> <span class="n">2</span>
+<span class="ln">20</span>         <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+<span class="ln">21</span>            <span class="nb">Write-Warning</span> <span class="n">-Message</span> <span class="s2">&#34;There was a problem downloading the $f file&#34;</span>
+<span class="ln">22</span>         <span class="p">}</span>
+<span class="ln">23</span>     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln">24</span>         <span class="nb">Write-Information</span> <span class="n">-Msg</span> <span class="s2">&#34;Successfully found the correct version of $f file&#34;</span> <span class="n">-InfA</span> <span class="n">2</span>
+<span class="ln">25</span>     <span class="p">}</span>
+<span class="ln">26</span><span class="p">}</span>
+<span class="ln">27</span>
+<span class="ln">28</span>
+<span class="ln">29</span><span class="c"># Dot-sourcing functions inside a script</span>
+<span class="ln">30</span><span class="p">.</span> <span class="p">~/</span><span class="n">Downloads</span><span class="p">/</span><span class="nb">Convert-WindowsImage</span><span class="p">.</span><span class="n">ps1</span>
+<span class="ln">31</span><span class="c"># Fix hard-coded path in the script</span>
+<span class="ln">32</span><span class="p">(</span><span class="nb">Get-Content</span> <span class="n">-Path</span> <span class="p">~/</span><span class="n">Downloads</span><span class="p">/</span><span class="n">NanoServer</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-ReadCount</span> <span class="n">1</span> <span class="n">-ErrorAction</span> <span class="n">Stop</span><span class="p">)</span> <span class="o">-replace</span>
+<span class="ln">33</span><span class="no">[regex]</span><span class="p">::</span><span class="n">Escape</span><span class="p">(</span><span class="s1">&#39;. .\Convert-WindowsImage.ps1&#39;</span><span class="p">),</span><span class="s2">&#34;&#34;</span> <span class="p">|</span>
+<span class="ln">34</span><span class="nb">Set-Content</span> <span class="n">-Path</span> <span class="p">~/</span><span class="n">Downloads</span><span class="p">/</span><span class="n">NanoServer</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Encoding</span> <span class="n">UTF8</span> <span class="n">-ErrorAction</span> <span class="n">Stop</span>
+<span class="ln">35</span>
+<span class="ln">36</span><span class="c"># Load the modified version</span>
+<span class="ln">37</span><span class="p">.</span> <span class="p">~/</span><span class="n">Downloads</span><span class="p">/</span><span class="n">NanoServer</span><span class="p">.</span><span class="n">ps1</span>
 </code></pre></div><p><img src="/images/wds4.jpg" alt=""></p>
 <p><strong>Step 2</strong></p>
 <p>To provision the Domain Controller, I’ll use 3 techniques: the post-installation script setupcomplete.cmd that runs at the end of the specialize phase, the unattend.xml file, and PowerShell Desired Configuration to achieve the equivalent of a DCPromo. The main idea here is to move all artifacts (DSC modules, boot.wim, the prepared nano.vhd file…) required for configuring both the Domain Controller and WDS (Windows Deployment Services) into the VHD of the domain controller.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Mount ISO</span>
-Mount-DiskImage -ImagePath $iso -StorageType ISO -Access ReadOnly -PassThru
-$dl = (Get-DiskImage -ImagePath $iso | Get-Volume).DriveLetter
-
-<span style="color:#75715e"># Define VM Name</span>
-$VM = <span style="color:#e6db74">&#34;DC1-test&#34;</span>
-
-<span style="color:#75715e"># Set parent VHD</span>
-$ServerVHD = (Join-Path -Path ((Get-VMHost).VirtualHardDiskPath) -ChildPath <span style="color:#e6db74">&#34;$VM.vhd&#34;</span>)
-
-<span style="color:#75715e"># Create parent VHD</span>
-<span style="color:#75715e"># Convert the WIM file to a VHD using the loaded Convert-WindowsImage function</span>
-
-<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span>(Test-Path -Path $ServerVHD -PathType Leaf)) {
-    Convert-WindowsImage -Sourcepath  <span style="color:#e6db74">&#34;</span>$($dl)<span style="color:#e6db74">:\sources\install.wim&#34;</span> `
-    -VHD $ServerVHD `
-    -VHDformat VHD -Edition <span style="color:#e6db74">&#34;Windows Server 2012 R2 SERVERSTANDARD&#34;</span> `
-    -VHDPartitionStyle MBR -Verbose<span style="color:#960050;background-color:#1e0010">:</span>$true
-}
-Write-Information -Msg <span style="color:#e6db74">&#34;Created parent VHD: size = </span>$(<span style="color:#e6db74">&#39;{0:N2} GB&#39;</span> <span style="color:#f92672">-f</span> ((Get-Item $ServerVHD).Length/1GB))<span style="color:#e6db74">&#34;</span> -InfA 2
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="c"># Mount ISO</span>
+<span class="ln"> 2</span><span class="nb">Mount-DiskImage</span> <span class="n">-ImagePath</span> <span class="nv">$iso</span> <span class="n">-StorageType</span> <span class="n">ISO</span> <span class="n">-Access</span> <span class="n">ReadOnly</span> <span class="n">-PassThru</span>
+<span class="ln"> 3</span><span class="nv">$dl</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Get-DiskImage</span> <span class="n">-ImagePath</span> <span class="nv">$iso</span> <span class="p">|</span> <span class="nb">Get-Volume</span><span class="p">).</span><span class="n">DriveLetter</span>
+<span class="ln"> 4</span>
+<span class="ln"> 5</span><span class="c"># Define VM Name</span>
+<span class="ln"> 6</span><span class="nv">$VM</span> <span class="p">=</span> <span class="s2">&#34;DC1-test&#34;</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span><span class="c"># Set parent VHD</span>
+<span class="ln"> 9</span><span class="nv">$ServerVHD</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Join-Path</span> <span class="n">-Path</span> <span class="p">((</span><span class="nb">Get-VMHost</span><span class="p">).</span><span class="n">VirtualHardDiskPath</span><span class="p">)</span> <span class="n">-ChildPath</span> <span class="s2">&#34;$VM.vhd&#34;</span><span class="p">)</span>
+<span class="ln">10</span>
+<span class="ln">11</span><span class="c"># Create parent VHD</span>
+<span class="ln">12</span><span class="c"># Convert the WIM file to a VHD using the loaded Convert-WindowsImage function</span>
+<span class="ln">13</span>
+<span class="ln">14</span><span class="k">if</span> <span class="p">(</span><span class="o">-not</span><span class="p">(</span><span class="nb">Test-Path</span> <span class="n">-Path</span> <span class="nv">$ServerVHD</span> <span class="n">-PathType</span> <span class="n">Leaf</span><span class="p">))</span> <span class="p">{</span>
+<span class="ln">15</span>    <span class="nb">Convert-WindowsImage</span> <span class="n">-Sourcepath</span>  <span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$dl</span><span class="p">)</span><span class="s2">:\sources\install.wim&#34;</span> <span class="p">`</span>
+<span class="ln">16</span>    <span class="n">-VHD</span> <span class="nv">$ServerVHD</span> <span class="p">`</span>
+<span class="ln">17</span>    <span class="n">-VHDformat</span> <span class="n">VHD</span> <span class="n">-Edition</span> <span class="s2">&#34;Windows Server 2012 R2 SERVERSTANDARD&#34;</span> <span class="p">`</span>
+<span class="ln">18</span>    <span class="n">-VHDPartitionStyle</span> <span class="n">MBR</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$true</span>
+<span class="ln">19</span><span class="p">}</span>
+<span class="ln">20</span><span class="nb">Write-Information</span> <span class="n">-Msg</span> <span class="s2">&#34;Created parent VHD: size = </span><span class="p">$(</span><span class="s1">&#39;{0:N2} GB&#39;</span> <span class="o">-f</span> <span class="p">((</span><span class="nb">Get-Item</span> <span class="nv">$ServerVHD</span><span class="p">).</span><span class="n">Length</span><span class="p">/</span><span class="n">1GB</span><span class="p">))</span><span class="s2">&#34;</span> <span class="n">-InfA</span> <span class="n">2</span>
 </code></pre></div><p><img src="/images/wds6.jpg" alt=""></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Create child VHD</span>
-$cvp = (Join-Path -Path ((Get-VMHost).VirtualHardDiskPath) -ChildPath <span style="color:#e6db74">&#34;$VM-child.vhd&#34;</span>)
-$childVHD = New-VHD -Path $cvp -ParentPath $ServerVHD -Differencing
-
-<span style="color:#75715e"># Create a VM Gen 1</span>
-New-VM -Name $VM -MemoryStartupBytes 2048MB -NoVHD -SwitchName Internal-Test -Generation 1
-
-<span style="color:#75715e"># Attach disk</span>
-Get-VM $VM | Add-VMHardDiskDrive -Path $childVHD.Path
-
-<span style="color:#75715e"># Increase processor count for DC</span>
-Get-VM $VM | Set-VMProcessor -Count 2
-
-<span style="color:#75715e"># Mount the VHD</span>
-$cm = Mount-VHD -Path $childVHD.Path -Passthru
-$cml = (Get-Disk $cm.DiskNumber | Get-Partition | Where DriveLetter | Select -First 1).DriveLetter
-
-<span style="color:#75715e"># Prepare a Nano VHD with the new script</span>
-$bdir = Join-Path (Split-Path $iso -Parent) -ChildPath <span style="color:#e6db74">&#34;Base&#34;</span>
-<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span>(Test-Path -Path $bdir -PathType Container)) {
-    mkdir $bdir
-}
-
-$admincred = Get-Credential -Message <span style="color:#e6db74">&#39;Admin password of your Nano image&#39;</span> -UserName <span style="color:#e6db74">&#39;Administrator&#39;</span>
-$nnHT = @{
-   ComputerName = <span style="color:#e6db74">&#39;Nano-PXE&#39;</span> ;
-   MediaPath = <span style="color:#e6db74">&#34;</span>$($dl)<span style="color:#e6db74">:\&#34;</span> ;
-   BasePath = $bdir ;              <span style="color:#75715e"># The location for the copy of the source media</span>
-   TargetPath = <span style="color:#e6db74">&#34;$bdir\Target&#34;</span> ;   <span style="color:#75715e"># The location of the final, modified image</span>
-   Language = <span style="color:#e6db74">&#39;en-US&#39;</span> ;            <span style="color:#75715e"># The language locale of the packages</span>
-   GuestDrivers = $true ;          <span style="color:#75715e"># Add the Guest Drivers package (enables integration of Nano Server with Hyper-V when running as a guest).</span>
-   EnableIPDisplayOnBoot = $true ; <span style="color:#75715e"># Configures the image to show the output of &#39;ipconfig&#39; on every boot</span>
-   AdministratorPassword =  $admincred.Password ;
-}
-
-New-NanoServerImage @nnHT
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="c"># Create child VHD</span>
+<span class="ln"> 2</span><span class="nv">$cvp</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Join-Path</span> <span class="n">-Path</span> <span class="p">((</span><span class="nb">Get-VMHost</span><span class="p">).</span><span class="n">VirtualHardDiskPath</span><span class="p">)</span> <span class="n">-ChildPath</span> <span class="s2">&#34;$VM-child.vhd&#34;</span><span class="p">)</span>
+<span class="ln"> 3</span><span class="nv">$childVHD</span> <span class="p">=</span> <span class="nb">New-VHD</span> <span class="n">-Path</span> <span class="nv">$cvp</span> <span class="n">-ParentPath</span> <span class="nv">$ServerVHD</span> <span class="n">-Differencing</span>
+<span class="ln"> 4</span>
+<span class="ln"> 5</span><span class="c"># Create a VM Gen 1</span>
+<span class="ln"> 6</span><span class="nb">New-VM</span> <span class="n">-Name</span> <span class="nv">$VM</span> <span class="n">-MemoryStartupBytes</span> <span class="n">2048MB</span> <span class="n">-NoVHD</span> <span class="n">-SwitchName</span> <span class="n">Internal-Test</span> <span class="n">-Generation</span> <span class="n">1</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span><span class="c"># Attach disk</span>
+<span class="ln"> 9</span><span class="nb">Get-VM</span> <span class="nv">$VM</span> <span class="p">|</span> <span class="nb">Add-VMHardDiskDrive</span> <span class="n">-Path</span> <span class="nv">$childVHD</span><span class="p">.</span><span class="n">Path</span>
+<span class="ln">10</span>
+<span class="ln">11</span><span class="c"># Increase processor count for DC</span>
+<span class="ln">12</span><span class="nb">Get-VM</span> <span class="nv">$VM</span> <span class="p">|</span> <span class="nb">Set-VMProcessor</span> <span class="n">-Count</span> <span class="n">2</span>
+<span class="ln">13</span>
+<span class="ln">14</span><span class="c"># Mount the VHD</span>
+<span class="ln">15</span><span class="nv">$cm</span> <span class="p">=</span> <span class="nb">Mount-VHD</span> <span class="n">-Path</span> <span class="nv">$childVHD</span><span class="p">.</span><span class="n">Path</span> <span class="n">-Passthru</span>
+<span class="ln">16</span><span class="nv">$cml</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Get-Disk</span> <span class="nv">$cm</span><span class="p">.</span><span class="n">DiskNumber</span> <span class="p">|</span> <span class="nb">Get-Partition</span> <span class="p">|</span> <span class="nb">Where </span><span class="n">DriveLetter</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">-First</span> <span class="n">1</span><span class="p">).</span><span class="n">DriveLetter</span>
+<span class="ln">17</span>
+<span class="ln">18</span><span class="c"># Prepare a Nano VHD with the new script</span>
+<span class="ln">19</span><span class="nv">$bdir</span> <span class="p">=</span> <span class="nb">Join-Path</span> <span class="p">(</span><span class="nb">Split-Path</span> <span class="nv">$iso</span> <span class="n">-Parent</span><span class="p">)</span> <span class="n">-ChildPath</span> <span class="s2">&#34;Base&#34;</span>
+<span class="ln">20</span><span class="k">if</span> <span class="p">(</span><span class="o">-not</span><span class="p">(</span><span class="nb">Test-Path</span> <span class="n">-Path</span> <span class="nv">$bdir</span> <span class="n">-PathType</span> <span class="n">Container</span><span class="p">))</span> <span class="p">{</span>
+<span class="ln">21</span>    <span class="n">mkdir</span> <span class="nv">$bdir</span>
+<span class="ln">22</span><span class="p">}</span>
+<span class="ln">23</span>
+<span class="ln">24</span><span class="nv">$admincred</span> <span class="p">=</span> <span class="nb">Get-Credential</span> <span class="n">-Message</span> <span class="s1">&#39;Admin password of your Nano image&#39;</span> <span class="n">-UserName</span> <span class="s1">&#39;Administrator&#39;</span>
+<span class="ln">25</span><span class="nv">$nnHT</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln">26</span>   <span class="n">ComputerName</span> <span class="p">=</span> <span class="s1">&#39;Nano-PXE&#39;</span> <span class="p">;</span>
+<span class="ln">27</span>   <span class="n">MediaPath</span> <span class="p">=</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$dl</span><span class="p">)</span><span class="s2">:\&#34;</span> <span class="p">;</span>
+<span class="ln">28</span>   <span class="n">BasePath</span> <span class="p">=</span> <span class="nv">$bdir</span> <span class="p">;</span>              <span class="c"># The location for the copy of the source media</span>
+<span class="ln">29</span>   <span class="n">TargetPath</span> <span class="p">=</span> <span class="s2">&#34;$bdir\Target&#34;</span> <span class="p">;</span>   <span class="c"># The location of the final, modified image</span>
+<span class="ln">30</span>   <span class="n">Language</span> <span class="p">=</span> <span class="s1">&#39;en-US&#39;</span> <span class="p">;</span>            <span class="c"># The language locale of the packages</span>
+<span class="ln">31</span>   <span class="n">GuestDrivers</span> <span class="p">=</span> <span class="nv">$true</span> <span class="p">;</span>          <span class="c"># Add the Guest Drivers package (enables integration of Nano Server with Hyper-V when running as a guest).</span>
+<span class="ln">32</span>   <span class="n">EnableIPDisplayOnBoot</span> <span class="p">=</span> <span class="nv">$true</span> <span class="p">;</span> <span class="c"># Configures the image to show the output of &#39;ipconfig&#39; on every boot</span>
+<span class="ln">33</span>   <span class="n">AdministratorPassword</span> <span class="p">=</span>  <span class="nv">$admincred</span><span class="p">.</span><span class="n">Password</span> <span class="p">;</span>
+<span class="ln">34</span><span class="p">}</span>
+<span class="ln">35</span>
+<span class="ln">36</span><span class="nb">New-NanoServerImage</span> <span class="nv">@nnHT</span>
 </code></pre></div><p><img src="/images/wds5.jpg" alt=""></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Setupcomplete.cmd file</span>
-
-$s = <span style="color:#e6db74">@&#39;
-</span><span style="color:#e6db74">@echo off
-</span><span style="color:#e6db74">:: Define a static IP for the DC
-</span><span style="color:#e6db74">netsh int ip set address name=&#34;Ethernet&#34; source=static address=10.0.0.10/24 gateway=10.0.0.1
-</span><span style="color:#e6db74">:: Configure the DNS client
-</span><span style="color:#e6db74">netsh dns set dnsservers name=&#34;Ethernet&#34; source=static address=10.0.0.10 validate=no
-</span><span style="color:#e6db74">&#39;@</span>
-
-mkdir <span style="color:#e6db74">&#34;</span>$($cml)<span style="color:#e6db74">:\Windows\Setup\Scripts&#34;</span>
-$s | Out-File -FilePath  <span style="color:#e6db74">&#34;</span>$($cml)<span style="color:#e6db74">:\Windows\Setup\Scripts\setupcomplete.cmd&#34;</span> -Encoding ASCII
-
-<span style="color:#75715e"># Unattend.xml</span>
-
-$unattendDC1 = <span style="color:#e6db74">@&#39;
-</span><span style="color:#e6db74">&lt;xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;&gt;
-</span><span style="color:#e6db74">&lt;unattend xmlns=&#34;urn:schemas-microsoft-com:unattend&#34;&gt;
-</span><span style="color:#e6db74">&lt;settings pass=&#34;oobeSystem&#34;&gt;
-</span><span style="color:#e6db74">&lt;component name=&#34;Microsoft-Windows-Shell-Setup&#34; processorArchitecture=&#34;amd64&#34; publicKeyToken=&#34;31bf3856ad364e35&#34; language=&#34;neutral&#34; versionScope=&#34;nonSxS&#34; xmlns:wcm=&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;&gt;
-</span><span style="color:#e6db74">&lt;UserAccounts&gt;
-</span><span style="color:#e6db74">&lt;AdministratorPassword&gt;
-</span><span style="color:#e6db74">&lt;Value&gt;UABAAHMAcwB3ADAAcgBkAEEAZABtAGkAbgBpAHMAdAByAGEAdABvAHIAUABhAHMAcwB3AG8AcgBkAA==&lt;/Value&gt;
-</span><span style="color:#e6db74">&lt;PlainText&amp;gt;false&amp;lt;/PlainText&gt;
-</span><span style="color:#e6db74">&lt;/AdministratorPassword&gt;
-</span><span style="color:#e6db74">&lt;/UserAccounts&gt;
-</span><span style="color:#e6db74">&lt;RegisteredOwner&gt;Tuva user&lt;/RegisteredOwner&gt;
-</span><span style="color:#e6db74">&lt;RegisteredOrganization&amp;gt;NanoRocks&amp;lt;/RegisteredOrganization&gt;
-</span><span style="color:#e6db74">&lt;/component&gt;
-</span><span style="color:#e6db74">&lt;component name=&#34;Microsoft-Windows-International-Core&#34; processorArchitecture=&#34;amd64&#34; publicKeyToken=&#34;31bf3856ad364e35&#34; language=&#34;neutral&#34; versionScope=&#34;nonSxS&#34; xmlns:wcm=&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;&gt;
-</span><span style="color:#e6db74">&lt;SystemLocale&amp;gt;en-US&amp;lt;/SystemLocale&gt;
-</span><span style="color:#e6db74">&lt;InputLocale&amp;gt;0409:0000040c&amp;lt;/InputLocale&gt;
-</span><span style="color:#e6db74">&lt;UILanguage&amp;gt;en-US&amp;lt;/UILanguage&gt;
-</span><span style="color:#e6db74">&lt;UserLocale&amp;gt;en-US&amp;lt;/UserLocale&gt;
-</span><span style="color:#e6db74">&lt;/component&gt;
-</span><span style="color:#e6db74">&lt;/settings&gt;
-</span><span style="color:#e6db74">&lt;settings pass=&#34;specialize&#34;&gt;
-</span><span style="color:#e6db74">&lt;component name=&#34;Microsoft-Windows-Shell-Setup&#34; processorArchitecture=&#34;amd64&#34; publicKeyToken=&#34;31bf3856ad364e35&#34; language=&#34;neutral&#34; versionScope=&#34;nonSxS&#34; xmlns:wcm=&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;&gt;
-</span><span style="color:#e6db74">&lt;ComputerName&amp;gt;DC1-test&amp;lt;/ComputerName&gt;
-</span><span style="color:#e6db74">&lt;/component&gt;
-</span><span style="color:#e6db74">&lt;component name=&#34;Microsoft-Windows-DNS-Client&#34; processorArchitecture=&#34;amd64&#34; publicKeyToken=&#34;31bf3856ad364e35&#34; language=&#34;neutral&#34; versionScope=&#34;nonSxS&#34; xmlns:wcm=&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;&gt;
-</span><span style="color:#e6db74">&lt;DNSSuffixSearchOrder&gt;
-</span><span style="color:#e6db74">&lt;DomainName wcm:action=&#34;add&#34; wcm:keyValue=&#34;1&#34;&amp;gt;10.0.0.10&amp;lt;/DomainName&gt;
-</span><span style="color:#e6db74">&lt;/DNSSuffixSearchOrder&gt;
-</span><span style="color:#e6db74">&lt;/component&gt;
-</span><span style="color:#e6db74">&lt;component name=&#34;Microsoft-Windows-UnattendedJoin&#34; processorArchitecture=&#34;amd64&#34; publicKeyToken=&#34;31bf3856ad364e35&#34; language=&#34;neutral&#34; versionScope=&#34;nonSxS&#34; xmlns:wcm=&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;&gt;
-</span><span style="color:#e6db74">&lt;Identification&gt;
-</span><span style="color:#e6db74">&lt;JoinWorkgroup&gt;test.local&amp;lt;/JoinWorkgroup&gt;
-</span><span style="color:#e6db74">&lt;/Identification&gt;
-</span><span style="color:#e6db74">&lt;/component&gt;
-</span><span style="color:#e6db74">&lt;/settings&gt;
-</span><span style="color:#e6db74">&lt;cpi:offlineImage cpi:source=&#34;wim:c:/iso.6687981/sources/install.wim#Windows Server 2012 R2 SERVERSTANDARDCORE&#34; xmlns:cpi=&#34;urn:schemas-microsoft-com:cpi&#34; /&gt;
-</span><span style="color:#e6db74">&lt;/unattend&gt;
-</span><span style="color:#e6db74">&#39;@</span>
-
-$unattendDC1 | Out-File -FilePath <span style="color:#e6db74">&#34;</span>$($cml)<span style="color:#e6db74">:\Unattend.xml&#34;</span> -Encoding UTF8
-
-<span style="color:#75715e"># Get required DSC resource</span>
-
-<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> (Get-Module -ListAvailable -Name xActiveDirectory)) {
-    Find-Module -Name xActiveDirectory -Repository PSGallery | Install-Module -Verbose
-}
-
-<span style="color:#75715e"># Define environment</span>
-$ConfigData = @{
-   AllNodes = @(
-     @{
-        NodeName = <span style="color:#e6db74">&#39;localhost&#39;</span>;
-        PSDscAllowPlainTextPassword = $true;
-        RequiredFeatures = @(
-          @{ Name = <span style="color:#e6db74">&#39;DHCP&#39;</span>}
-          @{ Name = <span style="color:#e6db74">&#39;DNS&#39;</span>}
-          @{ Name = <span style="color:#e6db74">&#39;WDS&#39;</span>}
-          @{ Name = <span style="color:#e6db74">&#39;RSAT-DHCP&#39;</span>}
-          @{ Name = <span style="color:#e6db74">&#39;RSAT-DNS-Server&#39;</span>}
-          @{ Name = <span style="color:#e6db74">&#39;WDS-AdminPack&#39;</span>}
-       )
-
-   DCAdminPassword = New-Object pscredential -ArgumentList <span style="color:#e6db74">&#39;nanorocks\administrator&#39;</span>,
-   (ConvertTo-SecureString -String <span style="color:#e6db74">&#39;P@ssw0rd&#39;</span> -Force -AsPlainText)
-   SafeAdminPassword = New-Object pscredential -ArgumentList <span style="color:#e6db74">&#39;Password Only&#39;</span>,
-   (ConvertTo-SecureString -String <span style="color:#e6db74">&#39;Azerty@123&#39;</span> -Force -AsPlainText)
-}
-
-  )
-}
-
-<span style="color:#75715e"># DSC config</span>
-
-Configuration DCConfig {
-     <span style="color:#66d9ef">Param</span>()
-     Import-DscResource -ModuleName xActiveDirectory
-     Node localhost {
-        LocalConfigurationManager {
-           RebootNodeIfNeeded = $true;
-        }
-	WindowsFeature ADDS {
-       Name = <span style="color:#e6db74">&#39;AD-Domain-Services&#39;</span>;
-       Ensure = <span style="color:#e6db74">&#39;Present&#39;</span>;
-    }
-
-<span style="color:#66d9ef">foreach</span> ($f <span style="color:#66d9ef">in</span> $Node.RequiredFeatures)
-{
-    WindowsFeature $f.Name
-    {
-         Name = $f.Name ;
-         Ensure = <span style="color:#e6db74">&#39;Present&#39;</span>;
-    }
- }
-
- xADDomain DSDC1 {
-    DomainName = <span style="color:#e6db74">&#39;nanorocks.local&#39;</span>;
-    DomainAdministratorCredential = $Node.DCAdminPassword
-    SafemodeAdministratorPassword = $Node.SafeAdminPassword
-    DependsOn = <span style="color:#e6db74">&#39;[WindowsFeature]ADDS&#39;</span>;
- }
-
-}
-}
-
-<span style="color:#75715e"># Compile config into MOF file</span>
-
-<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span>(Test-Path -Path ~/Documents/DSC) ){ mkdir ~/Documents/DSC }
-DCConfig -outputPath ~/Documents/DSC -ConfigurationData $ConfigData
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">  1</span><span class="c"># Setupcomplete.cmd file</span>
+<span class="ln">  2</span>
+<span class="ln">  3</span><span class="nv">$s</span> <span class="p">=</span> <span class="sh">@&#39;
+</span><span class="ln">  4</span><span class="sh">@echo off
+</span><span class="ln">  5</span><span class="sh">:: Define a static IP for the DC
+</span><span class="ln">  6</span><span class="sh">netsh int ip set address name=&#34;Ethernet&#34; source=static address=10.0.0.10/24 gateway=10.0.0.1
+</span><span class="ln">  7</span><span class="sh">:: Configure the DNS client
+</span><span class="ln">  8</span><span class="sh">netsh dns set dnsservers name=&#34;Ethernet&#34; source=static address=10.0.0.10 validate=no
+</span><span class="ln">  9</span><span class="sh">&#39;@</span>
+<span class="ln"> 10</span>
+<span class="ln"> 11</span><span class="n">mkdir</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$cml</span><span class="p">)</span><span class="s2">:\Windows\Setup\Scripts&#34;</span>
+<span class="ln"> 12</span><span class="nv">$s</span> <span class="p">|</span> <span class="nb">Out-File</span> <span class="n">-FilePath</span>  <span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$cml</span><span class="p">)</span><span class="s2">:\Windows\Setup\Scripts\setupcomplete.cmd&#34;</span> <span class="n">-Encoding</span> <span class="n">ASCII</span>
+<span class="ln"> 13</span>
+<span class="ln"> 14</span><span class="c"># Unattend.xml</span>
+<span class="ln"> 15</span>
+<span class="ln"> 16</span><span class="nv">$unattendDC1</span> <span class="p">=</span> <span class="sh">@&#39;
+</span><span class="ln"> 17</span><span class="sh">&lt;xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;&gt;
+</span><span class="ln"> 18</span><span class="sh">&lt;unattend xmlns=&#34;urn:schemas-microsoft-com:unattend&#34;&gt;
+</span><span class="ln"> 19</span><span class="sh">&lt;settings pass=&#34;oobeSystem&#34;&gt;
+</span><span class="ln"> 20</span><span class="sh">&lt;component name=&#34;Microsoft-Windows-Shell-Setup&#34; processorArchitecture=&#34;amd64&#34; publicKeyToken=&#34;31bf3856ad364e35&#34; language=&#34;neutral&#34; versionScope=&#34;nonSxS&#34; xmlns:wcm=&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;&gt;
+</span><span class="ln"> 21</span><span class="sh">&lt;UserAccounts&gt;
+</span><span class="ln"> 22</span><span class="sh">&lt;AdministratorPassword&gt;
+</span><span class="ln"> 23</span><span class="sh">&lt;Value&gt;UABAAHMAcwB3ADAAcgBkAEEAZABtAGkAbgBpAHMAdAByAGEAdABvAHIAUABhAHMAcwB3AG8AcgBkAA==&lt;/Value&gt;
+</span><span class="ln"> 24</span><span class="sh">&lt;PlainText&amp;gt;false&amp;lt;/PlainText&gt;
+</span><span class="ln"> 25</span><span class="sh">&lt;/AdministratorPassword&gt;
+</span><span class="ln"> 26</span><span class="sh">&lt;/UserAccounts&gt;
+</span><span class="ln"> 27</span><span class="sh">&lt;RegisteredOwner&gt;Tuva user&lt;/RegisteredOwner&gt;
+</span><span class="ln"> 28</span><span class="sh">&lt;RegisteredOrganization&amp;gt;NanoRocks&amp;lt;/RegisteredOrganization&gt;
+</span><span class="ln"> 29</span><span class="sh">&lt;/component&gt;
+</span><span class="ln"> 30</span><span class="sh">&lt;component name=&#34;Microsoft-Windows-International-Core&#34; processorArchitecture=&#34;amd64&#34; publicKeyToken=&#34;31bf3856ad364e35&#34; language=&#34;neutral&#34; versionScope=&#34;nonSxS&#34; xmlns:wcm=&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;&gt;
+</span><span class="ln"> 31</span><span class="sh">&lt;SystemLocale&amp;gt;en-US&amp;lt;/SystemLocale&gt;
+</span><span class="ln"> 32</span><span class="sh">&lt;InputLocale&amp;gt;0409:0000040c&amp;lt;/InputLocale&gt;
+</span><span class="ln"> 33</span><span class="sh">&lt;UILanguage&amp;gt;en-US&amp;lt;/UILanguage&gt;
+</span><span class="ln"> 34</span><span class="sh">&lt;UserLocale&amp;gt;en-US&amp;lt;/UserLocale&gt;
+</span><span class="ln"> 35</span><span class="sh">&lt;/component&gt;
+</span><span class="ln"> 36</span><span class="sh">&lt;/settings&gt;
+</span><span class="ln"> 37</span><span class="sh">&lt;settings pass=&#34;specialize&#34;&gt;
+</span><span class="ln"> 38</span><span class="sh">&lt;component name=&#34;Microsoft-Windows-Shell-Setup&#34; processorArchitecture=&#34;amd64&#34; publicKeyToken=&#34;31bf3856ad364e35&#34; language=&#34;neutral&#34; versionScope=&#34;nonSxS&#34; xmlns:wcm=&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;&gt;
+</span><span class="ln"> 39</span><span class="sh">&lt;ComputerName&amp;gt;DC1-test&amp;lt;/ComputerName&gt;
+</span><span class="ln"> 40</span><span class="sh">&lt;/component&gt;
+</span><span class="ln"> 41</span><span class="sh">&lt;component name=&#34;Microsoft-Windows-DNS-Client&#34; processorArchitecture=&#34;amd64&#34; publicKeyToken=&#34;31bf3856ad364e35&#34; language=&#34;neutral&#34; versionScope=&#34;nonSxS&#34; xmlns:wcm=&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;&gt;
+</span><span class="ln"> 42</span><span class="sh">&lt;DNSSuffixSearchOrder&gt;
+</span><span class="ln"> 43</span><span class="sh">&lt;DomainName wcm:action=&#34;add&#34; wcm:keyValue=&#34;1&#34;&amp;gt;10.0.0.10&amp;lt;/DomainName&gt;
+</span><span class="ln"> 44</span><span class="sh">&lt;/DNSSuffixSearchOrder&gt;
+</span><span class="ln"> 45</span><span class="sh">&lt;/component&gt;
+</span><span class="ln"> 46</span><span class="sh">&lt;component name=&#34;Microsoft-Windows-UnattendedJoin&#34; processorArchitecture=&#34;amd64&#34; publicKeyToken=&#34;31bf3856ad364e35&#34; language=&#34;neutral&#34; versionScope=&#34;nonSxS&#34; xmlns:wcm=&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;&gt;
+</span><span class="ln"> 47</span><span class="sh">&lt;Identification&gt;
+</span><span class="ln"> 48</span><span class="sh">&lt;JoinWorkgroup&gt;test.local&amp;lt;/JoinWorkgroup&gt;
+</span><span class="ln"> 49</span><span class="sh">&lt;/Identification&gt;
+</span><span class="ln"> 50</span><span class="sh">&lt;/component&gt;
+</span><span class="ln"> 51</span><span class="sh">&lt;/settings&gt;
+</span><span class="ln"> 52</span><span class="sh">&lt;cpi:offlineImage cpi:source=&#34;wim:c:/iso.6687981/sources/install.wim#Windows Server 2012 R2 SERVERSTANDARDCORE&#34; xmlns:cpi=&#34;urn:schemas-microsoft-com:cpi&#34; /&gt;
+</span><span class="ln"> 53</span><span class="sh">&lt;/unattend&gt;
+</span><span class="ln"> 54</span><span class="sh">&#39;@</span>
+<span class="ln"> 55</span>
+<span class="ln"> 56</span><span class="nv">$unattendDC1</span> <span class="p">|</span> <span class="nb">Out-File</span> <span class="n">-FilePath</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$cml</span><span class="p">)</span><span class="s2">:\Unattend.xml&#34;</span> <span class="n">-Encoding</span> <span class="n">UTF8</span>
+<span class="ln"> 57</span>
+<span class="ln"> 58</span><span class="c"># Get required DSC resource</span>
+<span class="ln"> 59</span>
+<span class="ln"> 60</span><span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="p">(</span><span class="nb">Get-Module</span> <span class="n">-ListAvailable</span> <span class="n">-Name</span> <span class="n">xActiveDirectory</span><span class="p">))</span> <span class="p">{</span>
+<span class="ln"> 61</span>    <span class="nb">Find-Module</span> <span class="n">-Name</span> <span class="n">xActiveDirectory</span> <span class="n">-Repository</span> <span class="n">PSGallery</span> <span class="p">|</span> <span class="nb">Install-Module</span> <span class="n">-Verbose</span>
+<span class="ln"> 62</span><span class="p">}</span>
+<span class="ln"> 63</span>
+<span class="ln"> 64</span><span class="c"># Define environment</span>
+<span class="ln"> 65</span><span class="nv">$ConfigData</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln"> 66</span>   <span class="n">AllNodes</span> <span class="p">=</span> <span class="p">@(</span>
+<span class="ln"> 67</span>     <span class="p">@{</span>
+<span class="ln"> 68</span>        <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+<span class="ln"> 69</span>        <span class="n">PSDscAllowPlainTextPassword</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">;</span>
+<span class="ln"> 70</span>        <span class="n">RequiredFeatures</span> <span class="p">=</span> <span class="p">@(</span>
+<span class="ln"> 71</span>          <span class="p">@{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;DHCP&#39;</span><span class="p">}</span>
+<span class="ln"> 72</span>          <span class="p">@{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;DNS&#39;</span><span class="p">}</span>
+<span class="ln"> 73</span>          <span class="p">@{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;WDS&#39;</span><span class="p">}</span>
+<span class="ln"> 74</span>          <span class="p">@{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;RSAT-DHCP&#39;</span><span class="p">}</span>
+<span class="ln"> 75</span>          <span class="p">@{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;RSAT-DNS-Server&#39;</span><span class="p">}</span>
+<span class="ln"> 76</span>          <span class="p">@{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;WDS-AdminPack&#39;</span><span class="p">}</span>
+<span class="ln"> 77</span>       <span class="p">)</span>
+<span class="ln"> 78</span>
+<span class="ln"> 79</span>   <span class="n">DCAdminPassword</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">pscredential</span> <span class="n">-ArgumentList</span> <span class="s1">&#39;nanorocks\administrator&#39;</span><span class="p">,</span>
+<span class="ln"> 80</span>   <span class="p">(</span><span class="nb">ConvertTo-SecureString</span> <span class="n">-String</span> <span class="s1">&#39;P@ssw0rd&#39;</span> <span class="n">-Force</span> <span class="n">-AsPlainText</span><span class="p">)</span>
+<span class="ln"> 81</span>   <span class="n">SafeAdminPassword</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">pscredential</span> <span class="n">-ArgumentList</span> <span class="s1">&#39;Password Only&#39;</span><span class="p">,</span>
+<span class="ln"> 82</span>   <span class="p">(</span><span class="nb">ConvertTo-SecureString</span> <span class="n">-String</span> <span class="s1">&#39;Azerty@123&#39;</span> <span class="n">-Force</span> <span class="n">-AsPlainText</span><span class="p">)</span>
+<span class="ln"> 83</span><span class="p">}</span>
+<span class="ln"> 84</span>
+<span class="ln"> 85</span>  <span class="p">)</span>
+<span class="ln"> 86</span><span class="p">}</span>
+<span class="ln"> 87</span>
+<span class="ln"> 88</span><span class="c"># DSC config</span>
+<span class="ln"> 89</span>
+<span class="ln"> 90</span><span class="n">Configuration</span> <span class="n">DCConfig</span> <span class="p">{</span>
+<span class="ln"> 91</span>     <span class="k">Param</span><span class="p">()</span>
+<span class="ln"> 92</span>     <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">xActiveDirectory</span>
+<span class="ln"> 93</span>     <span class="n">Node</span> <span class="n">localhost</span> <span class="p">{</span>
+<span class="ln"> 94</span>        <span class="n">LocalConfigurationManager</span> <span class="p">{</span>
+<span class="ln"> 95</span>           <span class="n">RebootNodeIfNeeded</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">;</span>
+<span class="ln"> 96</span>        <span class="p">}</span>
+<span class="ln"> 97</span>	<span class="n">WindowsFeature</span> <span class="n">ADDS</span> <span class="p">{</span>
+<span class="ln"> 98</span>       <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;AD-Domain-Services&#39;</span><span class="p">;</span>
+<span class="ln"> 99</span>       <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span><span class="p">;</span>
+<span class="ln">100</span>    <span class="p">}</span>
+<span class="ln">101</span>
+<span class="ln">102</span><span class="k">foreach</span> <span class="p">(</span><span class="nv">$f</span> <span class="k">in</span> <span class="nv">$Node</span><span class="p">.</span><span class="n">RequiredFeatures</span><span class="p">)</span>
+<span class="ln">103</span><span class="p">{</span>
+<span class="ln">104</span>    <span class="n">WindowsFeature</span> <span class="nv">$f</span><span class="p">.</span><span class="n">Name</span>
+<span class="ln">105</span>    <span class="p">{</span>
+<span class="ln">106</span>         <span class="n">Name</span> <span class="p">=</span> <span class="nv">$f</span><span class="p">.</span><span class="n">Name</span> <span class="p">;</span>
+<span class="ln">107</span>         <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span><span class="p">;</span>
+<span class="ln">108</span>    <span class="p">}</span>
+<span class="ln">109</span> <span class="p">}</span>
+<span class="ln">110</span>
+<span class="ln">111</span> <span class="n">xADDomain</span> <span class="n">DSDC1</span> <span class="p">{</span>
+<span class="ln">112</span>    <span class="n">DomainName</span> <span class="p">=</span> <span class="s1">&#39;nanorocks.local&#39;</span><span class="p">;</span>
+<span class="ln">113</span>    <span class="n">DomainAdministratorCredential</span> <span class="p">=</span> <span class="nv">$Node</span><span class="p">.</span><span class="n">DCAdminPassword</span>
+<span class="ln">114</span>    <span class="n">SafemodeAdministratorPassword</span> <span class="p">=</span> <span class="nv">$Node</span><span class="p">.</span><span class="n">SafeAdminPassword</span>
+<span class="ln">115</span>    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[WindowsFeature]ADDS&#39;</span><span class="p">;</span>
+<span class="ln">116</span> <span class="p">}</span>
+<span class="ln">117</span>
+<span class="ln">118</span><span class="p">}</span>
+<span class="ln">119</span><span class="p">}</span>
+<span class="ln">120</span>
+<span class="ln">121</span><span class="c"># Compile config into MOF file</span>
+<span class="ln">122</span>
+<span class="ln">123</span><span class="k">if</span> <span class="p">(</span><span class="o">-not</span><span class="p">(</span><span class="nb">Test-Path</span> <span class="n">-Path</span> <span class="p">~/</span><span class="n">Documents</span><span class="p">/</span><span class="n">DSC</span><span class="p">)</span> <span class="p">){</span> <span class="n">mkdir</span> <span class="p">~/</span><span class="n">Documents</span><span class="p">/</span><span class="n">DSC</span> <span class="p">}</span>
+<span class="ln">124</span><span class="n">DCConfig</span> <span class="n">-outputPath</span> <span class="p">~/</span><span class="n">Documents</span><span class="p">/</span><span class="n">DSC</span> <span class="n">-ConfigurationData</span> <span class="nv">$ConfigData</span>
 </code></pre></div><p><img src="/images/wds7.jpg" alt=""></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Copy DSC resource</span>
-$cHT = @{
-    Path = <span style="color:#e6db74">&#39;C:\Program Files\WindowsPowerShell\Modules\xActiveDirectory&#39;</span>;
-    Destination = <span style="color:#e6db74">&#34;</span>$($cml)<span style="color:#e6db74">:\Program Files\WindowsPowerShell\Modules\xActiveDirectory&#34;</span>
-}
-
-Copy-Item @cHT -Recurse -Force
-<span style="color:#75715e"># Copy DSC config</span>
-Copy-Item -Path ~/documents/DSC/*.mof -Destination <span style="color:#e6db74">&#34;</span>$($cml)<span style="color:#e6db74">:\Users\Public\Documents&#34;</span>
-<span style="color:#75715e"># Copy original boot image from ISO</span>
-Copy-Item -Path <span style="color:#e6db74">&#34;</span>$($dl)<span style="color:#e6db74">:\Sources\boot.wim&#34;</span> -Destination <span style="color:#e6db74">&#34;</span>$($cml)<span style="color:#e6db74">:\Users\Public\Documents&#34;</span>
-<span style="color:#75715e"># Copy prepared Nano.vhd</span>
-Copy-Item -Path <span style="color:#e6db74">&#34;$bdir\Target\*.VHD&#34;</span> -Destination <span style="color:#e6db74">&#34;</span>$($cml)<span style="color:#e6db74">:\Users\Public\Documents&#34;</span>
-<span style="color:#75715e"># Unmount ISO file</span>
-Get-DiskImage -ImagePath $iso | Dismount-DiskImage
-<span style="color:#75715e"># Unmount VHD</span>
-Dismount-VHD -Path $childVHD.Path
-Start-Vm -VMName $vm
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="c"># Copy DSC resource</span>
+<span class="ln"> 2</span><span class="nv">$cHT</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln"> 3</span>    <span class="n">Path</span> <span class="p">=</span> <span class="s1">&#39;C:\Program Files\WindowsPowerShell\Modules\xActiveDirectory&#39;</span><span class="p">;</span>
+<span class="ln"> 4</span>    <span class="n">Destination</span> <span class="p">=</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$cml</span><span class="p">)</span><span class="s2">:\Program Files\WindowsPowerShell\Modules\xActiveDirectory&#34;</span>
+<span class="ln"> 5</span><span class="p">}</span>
+<span class="ln"> 6</span>
+<span class="ln"> 7</span><span class="nb">Copy-Item</span> <span class="nv">@cHT</span> <span class="n">-Recurse</span> <span class="n">-Force</span>
+<span class="ln"> 8</span><span class="c"># Copy DSC config</span>
+<span class="ln"> 9</span><span class="nb">Copy-Item</span> <span class="n">-Path</span> <span class="p">~/</span><span class="n">documents</span><span class="p">/</span><span class="n">DSC</span><span class="p">/*.</span><span class="n">mof</span> <span class="n">-Destination</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$cml</span><span class="p">)</span><span class="s2">:\Users\Public\Documents&#34;</span>
+<span class="ln">10</span><span class="c"># Copy original boot image from ISO</span>
+<span class="ln">11</span><span class="nb">Copy-Item</span> <span class="n">-Path</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$dl</span><span class="p">)</span><span class="s2">:\Sources\boot.wim&#34;</span> <span class="n">-Destination</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$cml</span><span class="p">)</span><span class="s2">:\Users\Public\Documents&#34;</span>
+<span class="ln">12</span><span class="c"># Copy prepared Nano.vhd</span>
+<span class="ln">13</span><span class="nb">Copy-Item</span> <span class="n">-Path</span> <span class="s2">&#34;$bdir\Target\*.VHD&#34;</span> <span class="n">-Destination</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$cml</span><span class="p">)</span><span class="s2">:\Users\Public\Documents&#34;</span>
+<span class="ln">14</span><span class="c"># Unmount ISO file</span>
+<span class="ln">15</span><span class="nb">Get-DiskImage</span> <span class="n">-ImagePath</span> <span class="nv">$iso</span> <span class="p">|</span> <span class="nb">Dismount-DiskImage</span>
+<span class="ln">16</span><span class="c"># Unmount VHD</span>
+<span class="ln">17</span><span class="nb">Dismount-VHD</span> <span class="n">-Path</span> <span class="nv">$childVHD</span><span class="p">.</span><span class="n">Path</span>
+<span class="ln">18</span><span class="nb">Start-Vm</span> <span class="n">-VMName</span> <span class="nv">$vm</span>
 </code></pre></div><p>After a few minutes, the operating system of the Domain Controller is ready.</p>
 <p><img src="/images/wds8.jpg" alt=""></p>
 <h4 id="step-3"><strong>Step 3</strong></h4>
 <p>Let’s promote it as DC with the DSC (Desired State Configuration)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># DCPromo over PowerShell Direct</span>
-Invoke-Command -VMName $VM -Credential (Get-Credential <span style="color:#e6db74">&#39;test.local\administrator&#39;</span>) -ScriptBlock {
-    Set-DscLocalConfigurationManager C:\Users\Public\Documents
-    Start-DscConfiguration C:\Users\Public\Documents -Verbose -Wait
-    exit
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="c"># DCPromo over PowerShell Direct</span>
+<span class="ln">2</span><span class="nb">Invoke-Command</span> <span class="n">-VMName</span> <span class="nv">$VM</span> <span class="n">-Credential</span> <span class="p">(</span><span class="nb">Get-Credential</span> <span class="s1">&#39;test.local\administrator&#39;</span><span class="p">)</span> <span class="n">-ScriptBlock</span> <span class="p">{</span>
+<span class="ln">3</span>    <span class="nb">Set-DscLocalConfigurationManager</span> <span class="n">C:</span><span class="p">\</span><span class="n">Users</span><span class="p">\</span><span class="n">Public</span><span class="p">\</span><span class="n">Documents</span>
+<span class="ln">4</span>    <span class="nb">Start-DscConfiguration</span> <span class="n">C:</span><span class="p">\</span><span class="n">Users</span><span class="p">\</span><span class="n">Public</span><span class="p">\</span><span class="n">Documents</span> <span class="n">-Verbose</span> <span class="n">-Wait</span>
+<span class="ln">5</span>    <span class="n">exit</span>
+<span class="ln">6</span><span class="p">}</span>
 </code></pre></div><p><img src="/images/wds9.jpg" alt=""></p>
 <p><img src="/images/wds10.jpg" alt=""></p>
 <p><img src="/images/wds11.jpg" alt=""></p>
@@ -546,42 +547,42 @@ Invoke-Command -VMName $VM -Credential (Get-Credential <span style="color:#e6db7
 <p>As I’m on a Windows 10 Hyper-V, I can leverage PowerShell Direct recently introduced, so that I don’t rely on the network stack.</p>
 <p><img src="/images/wds13.jpg" alt=""></p>
 <p>Once the DC has rebooted, I can start configuring the features I provisioned:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Post-install</span>
-Invoke-Command -VMName $VM -Credential (Get-Credential <span style="color:#e6db74">&#39;nanorocks\administrator&#39;</span>) -ScriptBlock {
-    <span style="color:#75715e"># DHCP configuration</span>
-
-    <span style="color:#75715e"># Authorize</span>
-
-    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span>(Get-DhcpServerInDC | Where DnsName <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#34;</span>$($env:computername)<span style="color:#e6db74">.</span>$($env:USERDNSDOMAIN)<span style="color:#e6db74">&#34;</span>)) {
-        Add-DhcpServerInDC
-    } <span style="color:#66d9ef">else</span> {
-        Get-DhcpServerInDC
-    }
-
-    <span style="color:#75715e"># Scope</span>
-    Add-DhcpServerv4Scope -StartRange 10.0.0.20 -EndRange 10.0.0.100 -Name <span style="color:#e6db74">&#34;Nano scope&#34;</span> -State Active -SubnetMask 255.255.255.0
-
-    <span style="color:#75715e"># Activate (done with Add-DhcpServerv4Scope -State param</span>
-    <span style="color:#75715e"># WDS</span>
-    mkdir C:\RemoteInstall
-    wdsutil /verbose /progress /initialize-server /RemInst<span style="color:#960050;background-color:#1e0010">:</span>c:\RemoteInstall <span style="color:#75715e"># /Authorize</span>
-    wdsutil /start-server
-    wdsutil /verbose /progress /set-server /AnswerClients<span style="color:#960050;background-color:#1e0010">:</span>ALL
-    Import-WdsBootImage -Path C:\Users\Public\Documents\boot.wim
-    dir C:\Users\Public\Documents\*.vhd | Import-WdsInstallImage
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="c"># Post-install</span>
+<span class="ln"> 2</span><span class="nb">Invoke-Command</span> <span class="n">-VMName</span> <span class="nv">$VM</span> <span class="n">-Credential</span> <span class="p">(</span><span class="nb">Get-Credential</span> <span class="s1">&#39;nanorocks\administrator&#39;</span><span class="p">)</span> <span class="n">-ScriptBlock</span> <span class="p">{</span>
+<span class="ln"> 3</span>    <span class="c"># DHCP configuration</span>
+<span class="ln"> 4</span>
+<span class="ln"> 5</span>    <span class="c"># Authorize</span>
+<span class="ln"> 6</span>
+<span class="ln"> 7</span>    <span class="k">if</span> <span class="p">(</span><span class="o">-not</span><span class="p">(</span><span class="nb">Get-DhcpServerInDC</span> <span class="p">|</span> <span class="nb">Where </span><span class="n">DnsName</span> <span class="o">-eq</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$env:computername</span><span class="p">)</span><span class="s2">.</span><span class="p">$(</span><span class="nv">$env:USERDNSDOMAIN</span><span class="p">)</span><span class="s2">&#34;</span><span class="p">))</span> <span class="p">{</span>
+<span class="ln"> 8</span>        <span class="nb">Add-DhcpServerInDC</span>
+<span class="ln"> 9</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln">10</span>        <span class="nb">Get-DhcpServerInDC</span>
+<span class="ln">11</span>    <span class="p">}</span>
+<span class="ln">12</span>
+<span class="ln">13</span>    <span class="c"># Scope</span>
+<span class="ln">14</span>    <span class="nb">Add-DhcpServerv4Scope</span> <span class="n">-StartRange</span> <span class="n">10</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">20</span> <span class="n">-EndRange</span> <span class="n">10</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">100</span> <span class="n">-Name</span> <span class="s2">&#34;Nano scope&#34;</span> <span class="n">-State</span> <span class="n">Active</span> <span class="n">-SubnetMask</span> <span class="n">255</span><span class="p">.</span><span class="n">255</span><span class="p">.</span><span class="n">255</span><span class="p">.</span><span class="n">0</span>
+<span class="ln">15</span>
+<span class="ln">16</span>    <span class="c"># Activate (done with Add-DhcpServerv4Scope -State param</span>
+<span class="ln">17</span>    <span class="c"># WDS</span>
+<span class="ln">18</span>    <span class="n">mkdir</span> <span class="n">C:</span><span class="p">\</span><span class="n">RemoteInstall</span>
+<span class="ln">19</span>    <span class="n">wdsutil</span> <span class="p">/</span><span class="n">verbose</span> <span class="p">/</span><span class="n">progress</span> <span class="p">/</span><span class="nb">initialize-server</span> <span class="p">/</span><span class="n">RemInst</span><span class="err">:</span><span class="n">c:</span><span class="p">\</span><span class="n">RemoteInstall</span> <span class="c"># /Authorize</span>
+<span class="ln">20</span>    <span class="n">wdsutil</span> <span class="p">/</span><span class="nb">start-server</span>
+<span class="ln">21</span>    <span class="n">wdsutil</span> <span class="p">/</span><span class="n">verbose</span> <span class="p">/</span><span class="n">progress</span> <span class="p">/</span><span class="nb">set-server</span> <span class="p">/</span><span class="n">AnswerClients</span><span class="err">:</span><span class="n">ALL</span>
+<span class="ln">22</span>    <span class="nb">Import-WdsBootImage</span> <span class="n">-Path</span> <span class="n">C:</span><span class="p">\</span><span class="n">Users</span><span class="p">\</span><span class="n">Public</span><span class="p">\</span><span class="n">Documents</span><span class="p">\</span><span class="n">boot</span><span class="p">.</span><span class="n">wim</span>
+<span class="ln">23</span>    <span class="nb">dir </span><span class="n">C:</span><span class="p">\</span><span class="n">Users</span><span class="p">\</span><span class="n">Public</span><span class="p">\</span><span class="n">Documents</span><span class="p">\*.</span><span class="n">vhd</span> <span class="p">|</span> <span class="nb">Import-WdsInstallImage</span>
+<span class="ln">24</span><span class="p">}</span>
 </code></pre></div><h4 id="step-4"><strong>Step 4</strong></h4>
 <p>Let’s now create a new VM. To be able to boot over PXE on a Generation 1 virtual machine its network adapter should be a legacy network card.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Create test VM Generation 1 and add legacy network card for PXE boot</span>
-$testVM = <span style="color:#e6db74">&#39;Nano-test-pxe&#39;</span>
-New-VHD -Path (Join-Path -Path ((Get-VMHost).VirtualHardDiskPath) -ChildPath <span style="color:#e6db74">&#34;</span>$($testVM)<span style="color:#e6db74">.vhdx&#34;</span>) -Dynamic -SizeBytes 127GB
-New-VM -VMName $testVM -Generation 1 -MemoryStartupBytes 1024MB -NoVHD -SwitchName Internal-test |
-Remove-VMNetworkAdapter
-Get-VM -VMName $testVM |
-Add-VMNetworkAdapter -IsLegacy<span style="color:#960050;background-color:#1e0010">:</span>$true -SwitchName <span style="color:#e6db74">&#39;Internal-test&#39;</span>
-Get-VM -VMName $testVM |
-Add-VMHardDiskDrive -Path  (Join-Path -Path ((Get-VMHost).VirtualHardDiskPath) -ChildPath <span style="color:#e6db74">&#34;</span>$($testVM)<span style="color:#e6db74">.vhdx&#34;</span>)
-Start-VM -VMName $testVM
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="c"># Create test VM Generation 1 and add legacy network card for PXE boot</span>
+<span class="ln"> 2</span><span class="nv">$testVM</span> <span class="p">=</span> <span class="s1">&#39;Nano-test-pxe&#39;</span>
+<span class="ln"> 3</span><span class="nb">New-VHD</span> <span class="n">-Path</span> <span class="p">(</span><span class="nb">Join-Path</span> <span class="n">-Path</span> <span class="p">((</span><span class="nb">Get-VMHost</span><span class="p">).</span><span class="n">VirtualHardDiskPath</span><span class="p">)</span> <span class="n">-ChildPath</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$testVM</span><span class="p">)</span><span class="s2">.vhdx&#34;</span><span class="p">)</span> <span class="n">-Dynamic</span> <span class="n">-SizeBytes</span> <span class="n">127GB</span>
+<span class="ln"> 4</span><span class="nb">New-VM</span> <span class="n">-VMName</span> <span class="nv">$testVM</span> <span class="n">-Generation</span> <span class="n">1</span> <span class="n">-MemoryStartupBytes</span> <span class="n">1024MB</span> <span class="n">-NoVHD</span> <span class="n">-SwitchName</span> <span class="n">Internal-test</span> <span class="p">|</span>
+<span class="ln"> 5</span><span class="nb">Remove-VMNetworkAdapter</span>
+<span class="ln"> 6</span><span class="nb">Get-VM</span> <span class="n">-VMName</span> <span class="nv">$testVM</span> <span class="p">|</span>
+<span class="ln"> 7</span><span class="nb">Add-VMNetworkAdapter</span> <span class="n">-IsLegacy</span><span class="err">:</span><span class="nv">$true</span> <span class="n">-SwitchName</span> <span class="s1">&#39;Internal-test&#39;</span>
+<span class="ln"> 8</span><span class="nb">Get-VM</span> <span class="n">-VMName</span> <span class="nv">$testVM</span> <span class="p">|</span>
+<span class="ln"> 9</span><span class="nb">Add-VMHardDiskDrive</span> <span class="n">-Path</span>  <span class="p">(</span><span class="nb">Join-Path</span> <span class="n">-Path</span> <span class="p">((</span><span class="nb">Get-VMHost</span><span class="p">).</span><span class="n">VirtualHardDiskPath</span><span class="p">)</span> <span class="n">-ChildPath</span> <span class="s2">&#34;</span><span class="p">$(</span><span class="nv">$testVM</span><span class="p">)</span><span class="s2">.vhdx&#34;</span><span class="p">)</span>
+<span class="ln">10</span><span class="nb">Start-VM</span> <span class="n">-VMName</span> <span class="nv">$testVM</span>
 </code></pre></div><p><img src="/images/wds14.jpg" alt=""></p>
 <p><img src="/images/wds15.jpg" alt=""></p>
 <h4 id="step-5"><strong>Step 5</strong></h4>

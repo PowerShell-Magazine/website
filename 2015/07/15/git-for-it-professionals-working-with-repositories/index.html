@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Git for IT Professionals: Working with Repositories</title>
 
 <meta name="description" content="For the most powerful community">
@@ -262,7 +263,7 @@ if (!doNotTrack) {
 <p>When we use <em>git commit</em> command, we are expected to specify the commit message. If that was not provided as a part of the command line arguments, the default VIM editor gets opened for prompting the message.</p>
 <p><strong>Note:</strong> If you are not a big fan of VIM and instead want to use PowerShell ISE as the editor for these messages, you can change it in the Git configuration settings using <em>git config core.editor powershell_ise.exe</em> command.</p>
 <p>If you want to avoid this prompt, you can specify the <em>–m</em> switch. For example,</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">git commit -m <span style="color:#e6db74">&#39;This is my first commit&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s1">&#39;This is my first commit&#39;</span>
 </code></pre></div><p>Once the commit is complete, you will see output similar to the below.</p>
 <p><img src="/images/git27.png" alt=""></p>
 <p>If you have followed the steps so far and completed a <em>git commit</em>, congratulations! You just followed the end to end flow for creating your first version controlled repository.</p>

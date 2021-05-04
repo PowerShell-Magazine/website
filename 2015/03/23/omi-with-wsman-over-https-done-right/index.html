@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>OMI with WSMan over HTTPS: Done right.</title>
 
 <meta name="description" content="For the most powerful community">
@@ -237,79 +238,79 @@ if (!doNotTrack) {
             </li>
           </ul>
           <div class="content"><p>When you install OMI for the first time, a pair of keys is generated for you. When an automated process is used, the only option that will “just work” is to generate self-signed certificate. The logical next step is to convince your machine that it should connect to OMI server even though it doesn&rsquo;t really trust this certificate. Therefore most of examples that use CIM connection to OMI server you will find will look like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$paramCimOption = @{
-    UseSsl = $true 
-    SkipCACheck = $true 
-    SkipCNCheck = $true 
-    SkipRevocationCheck = $true
-}
-$opt = New-CimSessionOption @paramCimOption
-$paramCimSession = @{
-    Credential = $cred 
-    ComputerName = <span style="color:#e6db74">&#39;192.168.3.20&#39;</span> 
-    Authentication = <span style="color:#e6db74">&#39;Basic&#39;</span> 
-    SessionOption = $opt 
-}
-$demo1 = New-CimSession @paramCimSession
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$paramCimOption</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln"> 2</span>    <span class="n">UseSsl</span> <span class="p">=</span> <span class="nv">$true</span> 
+<span class="ln"> 3</span>    <span class="n">SkipCACheck</span> <span class="p">=</span> <span class="nv">$true</span> 
+<span class="ln"> 4</span>    <span class="n">SkipCNCheck</span> <span class="p">=</span> <span class="nv">$true</span> 
+<span class="ln"> 5</span>    <span class="n">SkipRevocationCheck</span> <span class="p">=</span> <span class="nv">$true</span>
+<span class="ln"> 6</span><span class="p">}</span>
+<span class="ln"> 7</span><span class="nv">$opt</span> <span class="p">=</span> <span class="nb">New-CimSessionOption</span> <span class="nv">@paramCimOption</span>
+<span class="ln"> 8</span><span class="nv">$paramCimSession</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln"> 9</span>    <span class="n">Credential</span> <span class="p">=</span> <span class="nv">$cred</span> 
+<span class="ln">10</span>    <span class="n">ComputerName</span> <span class="p">=</span> <span class="s1">&#39;192.168.3.20&#39;</span> 
+<span class="ln">11</span>    <span class="n">Authentication</span> <span class="p">=</span> <span class="s1">&#39;Basic&#39;</span> 
+<span class="ln">12</span>    <span class="n">SessionOption</span> <span class="p">=</span> <span class="nv">$opt</span> 
+<span class="ln">13</span><span class="p">}</span>
+<span class="ln">14</span><span class="nv">$demo1</span> <span class="p">=</span> <span class="nb">New-CimSession</span> <span class="nv">@paramCimSession</span>
 </code></pre></div><p>Good for very basic demos but if you consider using OMI and/or Linux DSC in the production environment you shouldn&rsquo;t depend on automatically generated, self-signed certificate. The whole point of communication over HTTPS is that both devices on each side of the wire know and trust each other. With self-signed certificates it becomes false-protection, a security not applied.</p>
 <p>If you have internal PKI, it’s relatively straight-forward to create proper, domain-wide trusted certificate for any network device. Existence of the internal PKI should be a safe assumption: any organization that uses SSL and doesn&rsquo;t have own PKI is either wasting money on 3rd-party certificates or is “doing it wrong” for any SSL-based application.</p>
 <p>First thing we have to do is to generate certificate request and private key on Linux machine. To achieve this we will use <em>openssl</em> command. To avoid prompts we will provide all parameters inline. To call commands on Linux we will use Posh-SSH module, described <a href="/2014/07/03/posh-ssh-open-source-ssh-powershell-module/" target="_blank">here</a>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$ssh = New-SSHSession -ComputerName DSCTest.bielawscy.com -AcceptKey $true -Credential $root
-$command = -join @(
-    <span style="color:#e6db74">&#39;openssl req -new -newkey rsa:4096 -nodes&#39;</span>,
-    <span style="color:#e6db74">&#39; -subj &#34;/C=PL/L=Koszalin/O=Bielawscy/CN=DSCTest.bielawscy.com&#34;&#39;</span>,
-    <span style="color:#e6db74">&#39; -keyout omikey.pem -out omi.req -passout pass:s3cr3t!&#39;</span>
-)
-Invoke-SSHCommand -SSHSession $ssh -Command $command | <span style="color:#66d9ef">ForEach</span>-Object Error
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$ssh</span> <span class="p">=</span> <span class="nb">New-SSHSession</span> <span class="n">-ComputerName</span> <span class="n">DSCTest</span><span class="p">.</span><span class="n">bielawscy</span><span class="p">.</span><span class="n">com</span> <span class="n">-AcceptKey</span> <span class="nv">$true</span> <span class="n">-Credential</span> <span class="nv">$root</span>
+<span class="ln">2</span><span class="nv">$command</span> <span class="p">=</span> <span class="n">-join</span> <span class="p">@(</span>
+<span class="ln">3</span>    <span class="s1">&#39;openssl req -new -newkey rsa:4096 -nodes&#39;</span><span class="p">,</span>
+<span class="ln">4</span>    <span class="s1">&#39; -subj &#34;/C=PL/L=Koszalin/O=Bielawscy/CN=DSCTest.bielawscy.com&#34;&#39;</span><span class="p">,</span>
+<span class="ln">5</span>    <span class="s1">&#39; -keyout omikey.pem -out omi.req -passout pass:s3cr3t!&#39;</span>
+<span class="ln">6</span><span class="p">)</span>
+<span class="ln">7</span><span class="nb">Invoke-SSHCommand</span> <span class="n">-SSHSession</span> <span class="nv">$ssh</span> <span class="n">-Command</span> <span class="nv">$command</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="n">Error</span>
 </code></pre></div><p>Request file (omi.req) needs to be copied from Linux box to our Windows system. There are many methods to achieve this; we will use another part of Posh-SSH module, <em>Get-SCPFile</em> command. Just to be sure we are using correct file we will first remove any files with base name <em>omi</em> already present in the <em>c:\temp</em> folder:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Remove-Item -Path c:\temp\omi.* -ErrorAction SilentlyContinue
-$getFile = @{
-    ComputerName = <span style="color:#e6db74">&#39;DSCTest.bielawscy.com&#39;</span> 
-    Credential = $root 
-    LocalFile = <span style="color:#e6db74">&#39;c:\temp\omi.req&#39;</span> 
-    RemoteFile = <span style="color:#e6db74">&#39;omi.req&#39;</span>
-}
-Get-SCPFile @getFile
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Remove-Item</span> <span class="n">-Path</span> <span class="n">c:</span><span class="p">\</span><span class="n">temp</span><span class="p">\</span><span class="n">omi</span><span class="p">.*</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
+<span class="ln">2</span><span class="nv">$getFile</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln">3</span>    <span class="n">ComputerName</span> <span class="p">=</span> <span class="s1">&#39;DSCTest.bielawscy.com&#39;</span> 
+<span class="ln">4</span>    <span class="n">Credential</span> <span class="p">=</span> <span class="nv">$root</span> 
+<span class="ln">5</span>    <span class="n">LocalFile</span> <span class="p">=</span> <span class="s1">&#39;c:\temp\omi.req&#39;</span> 
+<span class="ln">6</span>    <span class="n">RemoteFile</span> <span class="p">=</span> <span class="s1">&#39;omi.req&#39;</span>
+<span class="ln">7</span><span class="p">}</span>
+<span class="ln">8</span><span class="nb">Get-SCPFile</span> <span class="nv">@getFile</span>
 </code></pre></div><p>Next step requires communication with an internal CA. We will use traditional <em>certreq.exe</em> tool to perform this operation:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">certreq -submit -attrib <span style="color:#e6db74">&#34;CertificateTemplate:SSL&#34;</span> -config CA.bielawscy.com<span style="color:#ae81ff">\b</span>ielawscy-CA-CA c:<span style="color:#ae81ff">\t</span>emp<span style="color:#ae81ff">\o</span>mi.req c:<span style="color:#ae81ff">\t</span>emp<span style="color:#ae81ff">\o</span>mi.crt
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>certreq -submit -attrib <span class="s2">&#34;CertificateTemplate:SSL&#34;</span> -config CA.bielawscy.com<span class="se">\b</span>ielawscy-CA-CA c:<span class="se">\t</span>emp<span class="se">\o</span>mi.req c:<span class="se">\t</span>emp<span class="se">\o</span>mi.crt
 </code></pre></div><blockquote>
 <p>The procedure to request/issue certificate may differ in your environment: in my case I had certificate template &ldquo;SSL&rdquo; available for me that suits the requirements of OMI certificate and I had necessary rights to get the final certificate immediately.</p>
 </blockquote>
 <p>Next step is to copy the certificate back to our OMI server. For that we will use Posh-SSH again, this time <em>Set-SCPFile</em> cmdlet to copy a local file to the remote system:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$setFile = @{
-    ComputerName = <span style="color:#e6db74">&#39;DSCTest.bielawscy.com&#39;</span> 
-    Credential = $root 
-    LocalFile = <span style="color:#e6db74">&#39;c:\temp\omi.crt&#39;</span> 
-    RemoteFile  = <span style="color:#e6db74">&#39;omi.crt&#39;</span>
-}
-Set-SCPFile @setFile
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$setFile</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln">2</span>    <span class="n">ComputerName</span> <span class="p">=</span> <span class="s1">&#39;DSCTest.bielawscy.com&#39;</span> 
+<span class="ln">3</span>    <span class="n">Credential</span> <span class="p">=</span> <span class="nv">$root</span> 
+<span class="ln">4</span>    <span class="n">LocalFile</span> <span class="p">=</span> <span class="s1">&#39;c:\temp\omi.crt&#39;</span> 
+<span class="ln">5</span>    <span class="n">RemoteFile</span>  <span class="p">=</span> <span class="s1">&#39;omi.crt&#39;</span>
+<span class="ln">6</span><span class="p">}</span>
+<span class="ln">7</span><span class="nb">Set-SCPFile</span> <span class="nv">@setFile</span>
 </code></pre></div><p>We have our certificate ready, but the file format does not match the one used for the private key. We need to convert it to the correct format using <em>openssl</em> command. With the both files ready we can copy existing files (just in case) to separate folder, replace certificate with the one we trust and restart OMI server:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$commands = @(
-    <span style="color:#e6db74">&#39;openssl x509 -in omi.crt -out omi.pem -outform PEM&#39;</span>,
-    <span style="color:#e6db74">&#39;mkdir self-signed&#39;</span>,
-    <span style="color:#e6db74">&#39;cp /opt/omi-1.0.8/etc/ssl/certs/omi* self-signed/&#39;</span>,
-    <span style="color:#e6db74">&#39;cp ~/omi*.pem /opt/omi-1.0.8/etc/ssl/certs/&#39;</span>,
-    <span style="color:#e6db74">&#39;systemctl restart omi&#39;</span>
-)
-<span style="color:#66d9ef">foreach</span> ($command <span style="color:#66d9ef">in</span> $commands) {
-    $exit = Invoke-SSHCommand -SSHSession $ssh -Command $command
-    <span style="color:#66d9ef">if</span> ($exit.ExitStatus <span style="color:#f92672">-gt</span> 0) {
-        $exit.Error
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$commands</span> <span class="p">=</span> <span class="p">@(</span>
+<span class="ln"> 2</span>    <span class="s1">&#39;openssl x509 -in omi.crt -out omi.pem -outform PEM&#39;</span><span class="p">,</span>
+<span class="ln"> 3</span>    <span class="s1">&#39;mkdir self-signed&#39;</span><span class="p">,</span>
+<span class="ln"> 4</span>    <span class="s1">&#39;cp /opt/omi-1.0.8/etc/ssl/certs/omi* self-signed/&#39;</span><span class="p">,</span>
+<span class="ln"> 5</span>    <span class="s1">&#39;cp ~/omi*.pem /opt/omi-1.0.8/etc/ssl/certs/&#39;</span><span class="p">,</span>
+<span class="ln"> 6</span>    <span class="s1">&#39;systemctl restart omi&#39;</span>
+<span class="ln"> 7</span><span class="p">)</span>
+<span class="ln"> 8</span><span class="k">foreach</span> <span class="p">(</span><span class="nv">$command</span> <span class="k">in</span> <span class="nv">$commands</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 9</span>    <span class="nv">$exit</span> <span class="p">=</span> <span class="nb">Invoke-SSHCommand</span> <span class="n">-SSHSession</span> <span class="nv">$ssh</span> <span class="n">-Command</span> <span class="nv">$command</span>
+<span class="ln">10</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$exit</span><span class="p">.</span><span class="n">ExitStatus</span> <span class="o">-gt</span> <span class="n">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">11</span>        <span class="nv">$exit</span><span class="p">.</span><span class="n">Error</span>
+<span class="ln">12</span>    <span class="p">}</span>
+<span class="ln">13</span><span class="p">}</span>
 </code></pre></div><blockquote>
 <p>The command used to restart OMI service depends on the tool that is used to control the services on the Linux box. In my case (CentOS 7) it was <em>systemd/systemctl</em>.</p>
 </blockquote>
 <p>Our OMI server is using a proper certificate, so we should be able to connect to it without any of the switches that we’ve used before to accept self-signed certificate. Once connected, we ask for instance of <em>OMI_Identify</em>, to make sure we are talking to the correct server:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$paramCimSession = @{
-    ComputerName = <span style="color:#e6db74">&#39;DSCTest.bielawscy.com&#39;</span> 
-    Credential = $root 
-    Authentication = <span style="color:#e6db74">&#39;Basic&#39;</span> 
-    SessionOption = New-CimSessionOption -UseSsl
-}
-
-$cimSession = New-CimSession @paramCimSession
-Get-CimInstance -CimSession $cimSession -ClassName OMI_Identify -Namespace root\OMI
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$paramCimSession</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln">2</span>    <span class="n">ComputerName</span> <span class="p">=</span> <span class="s1">&#39;DSCTest.bielawscy.com&#39;</span> 
+<span class="ln">3</span>    <span class="n">Credential</span> <span class="p">=</span> <span class="nv">$root</span> 
+<span class="ln">4</span>    <span class="n">Authentication</span> <span class="p">=</span> <span class="s1">&#39;Basic&#39;</span> 
+<span class="ln">5</span>    <span class="n">SessionOption</span> <span class="p">=</span> <span class="nb">New-CimSessionOption</span> <span class="n">-UseSsl</span>
+<span class="ln">6</span><span class="p">}</span>
+<span class="ln">7</span>
+<span class="ln">8</span><span class="nv">$cimSession</span> <span class="p">=</span> <span class="nb">New-CimSession</span> <span class="nv">@paramCimSession</span>
+<span class="ln">9</span><span class="nb">Get-CimInstance</span> <span class="n">-CimSession</span> <span class="nv">$cimSession</span> <span class="n">-ClassName</span> <span class="n">OMI_Identify</span> <span class="n">-Namespace</span> <span class="n">root</span><span class="p">\</span><span class="n">OMI</span>
 </code></pre></div></div>
         </article>
         

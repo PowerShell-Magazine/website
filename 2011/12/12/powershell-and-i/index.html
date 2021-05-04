@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>PowerShell and I</title>
 
 <meta name="description" content="For the most powerful community">
@@ -243,15 +244,15 @@ if (!doNotTrack) {
 <li>Open applications, etc</li>
 </ul>
 <p>As Ben said, PowerShell is straight forward and simple to learn. All I needed was some focus and enthusiasm to learn. My first script was, starting a stopped service but with some simple logic.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$a = Get-Service WinRM            
-<span style="color:#66d9ef">if</span>($a.Status <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#34;Stopped&#34;</span>)
-{
-	$a.Start()
-}
-<span style="color:#66d9ef">elseIf</span>($a.Status <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#34;Running&#34;</span>)
-{
-	echo $a.Name <span style="color:#e6db74">&#34;is running&#34;</span>
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$a</span> <span class="p">=</span> <span class="nb">Get-Service</span> <span class="n">WinRM</span>            
+<span class="ln">2</span><span class="k">if</span><span class="p">(</span><span class="nv">$a</span><span class="p">.</span><span class="n">Status</span> <span class="o">-eq</span> <span class="s2">&#34;Stopped&#34;</span><span class="p">)</span>
+<span class="ln">3</span><span class="p">{</span>
+<span class="ln">4</span>	<span class="nv">$a</span><span class="p">.</span><span class="n">Start</span><span class="p">()</span>
+<span class="ln">5</span><span class="p">}</span>
+<span class="ln">6</span><span class="k">elseIf</span><span class="p">(</span><span class="nv">$a</span><span class="p">.</span><span class="n">Status</span> <span class="o">-eq</span> <span class="s2">&#34;Running&#34;</span><span class="p">)</span>
+<span class="ln">7</span><span class="p">{</span>
+<span class="ln">8</span>	<span class="nb">echo </span><span class="nv">$a</span><span class="p">.</span><span class="n">Name</span> <span class="s2">&#34;is running&#34;</span>
+<span class="ln">9</span><span class="p">}</span>
 </code></pre></div><p>PowerShell scripting seemed easy to me and I finally wrote a 100-line script and posted it on PowerShell.com. There were 73 downloads and I even got an email from a user of this script and he said that he liked it and thanked me for the script. This was the first kick! I told to myself, yes, I am scripter! And, I was very happy.</p>
 <p>The “PowerShell community”, are a group of great IT guys and very nice people! Everyone I met or interacted with – <a href="http://www.scriptingguys.com/">Ed Wilson</a>, <a href="http://PowerShay.com">Shay Levy</a>, and many more – inspired me a lot. Ed helped me create the New Delhi PowerShell User Group and Shay helps almost every day and answered all my questions!</p>
 <p>If I have to describe the PowerShell community in a single phrase, I’d say “they are the best”!</p>

@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>#PSTip Using PowerShell runspaces to find unassigned IPv4 addresses</title>
 
 <meta name="description" content="For the most powerful community">
@@ -237,48 +238,48 @@ if (!doNotTrack) {
           <div class="content"><p><strong>Note</strong>: This tip requires PowerShell 2.0 or later.</p>
 <p>We often come across infrastructure configuration scenarios where we need to find a free IP address before assigning the same to a server in an automated manner. However, when the given IP range that is provided is large, it may take longer to complete the free IP scanning. There are many tips and articles written around this topic. There are a few articles that suggest using background jobs and throttling of background jobs. Fellow PowerShell MVP Boe Prox has published a great article on <a href="http://learn-powershell.net/2012/05/13/using-background-runspaces-instead-of-psjobs-for-better-performance/">differences between PowerShell jobs and runspaces</a>. This prompted me to write a function using PowerShell runspaces to get the free IPv4 addresses in a given network range.</p>
 <p>If you understand PowerShell runspaces, the following function is self-explanatory. If you are new to PowerShell runspaces, I recommend reading a <a href="http://learn-powershell.net/tag/runspace/">series of articles on this by Boe</a>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">Function</span> Get-AvailableIPv4Address {
-    <span style="color:#66d9ef">param</span> (
-        <span style="color:#66d9ef">[System.Collections.ArrayList]</span> $IPRange
-    )
-    $MaxThreads = 30
-    $ScriptBlock = {
-        <span style="color:#66d9ef">Param</span> (
-        <span style="color:#66d9ef">[String]</span>$IPAddress
-        )
-        Test-Connection -ComputerName $IPAddress -Count 1 -Quiet
-    }
-
-    $RunspacePool = <span style="color:#66d9ef">[RunspaceFactory]</span>::CreateRunspacePool(1,$MaxThreads)
-    $RunspacePool.Open()
-    $Jobs = @()
-
-    $IPRange | % {
-       $Job = ::Create().AddScript($ScriptBlock).AddArgument($_)
-       $Job.RunspacePool = $RunspacePool
-       $Jobs += New-Object PSObject -Property @{
-          IPAddress = $_
-          Pipe = $Job
-          Result = $Job.BeginInvoke()
-       }
-    }
-
-    <span style="color:#66d9ef">While</span> ( $Jobs.Result.IsCompleted <span style="color:#f92672">-contains</span> $false) {
-        Start-Sleep -Seconds 1
-    }
-
-    $Results = @()
-    <span style="color:#66d9ef">ForEach</span> ($Job <span style="color:#66d9ef">in</span> $Jobs)
-    {
-        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> $Job.Pipe.EndInvoke($Job.Result)) {
-            $job.IPAddress
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">Function</span> <span class="nb">Get-AvailableIPv4Address</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln"> 3</span>        <span class="no">[System.Collections.ArrayList]</span> <span class="nv">$IPRange</span>
+<span class="ln"> 4</span>    <span class="p">)</span>
+<span class="ln"> 5</span>    <span class="nv">$MaxThreads</span> <span class="p">=</span> <span class="n">30</span>
+<span class="ln"> 6</span>    <span class="nv">$ScriptBlock</span> <span class="p">=</span> <span class="p">{</span>
+<span class="ln"> 7</span>        <span class="k">Param</span> <span class="p">(</span>
+<span class="ln"> 8</span>        <span class="no">[String]</span><span class="nv">$IPAddress</span>
+<span class="ln"> 9</span>        <span class="p">)</span>
+<span class="ln">10</span>        <span class="nb">Test-Connection</span> <span class="n">-ComputerName</span> <span class="nv">$IPAddress</span> <span class="n">-Count</span> <span class="n">1</span> <span class="n">-Quiet</span>
+<span class="ln">11</span>    <span class="p">}</span>
+<span class="ln">12</span>
+<span class="ln">13</span>    <span class="nv">$RunspacePool</span> <span class="p">=</span> <span class="no">[RunspaceFactory]</span><span class="p">::</span><span class="n">CreateRunspacePool</span><span class="p">(</span><span class="n">1</span><span class="p">,</span><span class="nv">$MaxThreads</span><span class="p">)</span>
+<span class="ln">14</span>    <span class="nv">$RunspacePool</span><span class="p">.</span><span class="n">Open</span><span class="p">()</span>
+<span class="ln">15</span>    <span class="nv">$Jobs</span> <span class="p">=</span> <span class="p">@()</span>
+<span class="ln">16</span>
+<span class="ln">17</span>    <span class="nv">$IPRange</span> <span class="p">|</span> <span class="p">%</span> <span class="p">{</span>
+<span class="ln">18</span>       <span class="nv">$Job</span> <span class="p">=</span> <span class="p">::</span><span class="n">Create</span><span class="p">().</span><span class="n">AddScript</span><span class="p">(</span><span class="nv">$ScriptBlock</span><span class="p">).</span><span class="n">AddArgument</span><span class="p">(</span><span class="nv">$_</span><span class="p">)</span>
+<span class="ln">19</span>       <span class="nv">$Job</span><span class="p">.</span><span class="n">RunspacePool</span> <span class="p">=</span> <span class="nv">$RunspacePool</span>
+<span class="ln">20</span>       <span class="nv">$Jobs</span> <span class="p">+=</span> <span class="nb">New-Object</span> <span class="n">PSObject</span> <span class="n">-Property</span> <span class="p">@{</span>
+<span class="ln">21</span>          <span class="n">IPAddress</span> <span class="p">=</span> <span class="nv">$_</span>
+<span class="ln">22</span>          <span class="n">Pipe</span> <span class="p">=</span> <span class="nv">$Job</span>
+<span class="ln">23</span>          <span class="n">Result</span> <span class="p">=</span> <span class="nv">$Job</span><span class="p">.</span><span class="n">BeginInvoke</span><span class="p">()</span>
+<span class="ln">24</span>       <span class="p">}</span>
+<span class="ln">25</span>    <span class="p">}</span>
+<span class="ln">26</span>
+<span class="ln">27</span>    <span class="k">While</span> <span class="p">(</span> <span class="nv">$Jobs</span><span class="p">.</span><span class="n">Result</span><span class="p">.</span><span class="n">IsCompleted</span> <span class="o">-contains</span> <span class="nv">$false</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">28</span>        <span class="nb">Start-Sleep</span> <span class="n">-Seconds</span> <span class="n">1</span>
+<span class="ln">29</span>    <span class="p">}</span>
+<span class="ln">30</span>
+<span class="ln">31</span>    <span class="nv">$Results</span> <span class="p">=</span> <span class="p">@()</span>
+<span class="ln">32</span>    <span class="k">ForEach</span> <span class="p">(</span><span class="nv">$Job</span> <span class="k">in</span> <span class="nv">$Jobs</span><span class="p">)</span>
+<span class="ln">33</span>    <span class="p">{</span>
+<span class="ln">34</span>        <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="nv">$Job</span><span class="p">.</span><span class="n">Pipe</span><span class="p">.</span><span class="n">EndInvoke</span><span class="p">(</span><span class="nv">$Job</span><span class="p">.</span><span class="n">Result</span><span class="p">))</span> <span class="p">{</span>
+<span class="ln">35</span>            <span class="nv">$job</span><span class="p">.</span><span class="n">IPAddress</span>
+<span class="ln">36</span>        <span class="p">}</span>
+<span class="ln">37</span>    <span class="p">}</span>
+<span class="ln">38</span><span class="p">}</span>
 </code></pre></div><p>Here is an example of how you use this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$IPRange = New-Object System.Collections.ArrayList
-1 .. 254 | % { $IPRange.Add(<span style="color:#e6db74">&#34;192.168.10.$_&#34;</span>) | Out-Null }
-$IPRange = @(Get-AvailableIPv4Address -IPRange $IPRange)
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$IPRange</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">ArrayList</span>
+<span class="ln">2</span><span class="n">1</span> <span class="p">..</span> <span class="n">254</span> <span class="p">|</span> <span class="p">%</span> <span class="p">{</span> <span class="nv">$IPRange</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s2">&#34;192.168.10.$_&#34;</span><span class="p">)</span> <span class="p">|</span> <span class="nb">Out-Null</span> <span class="p">}</span>
+<span class="ln">3</span><span class="nv">$IPRange</span> <span class="p">=</span> <span class="p">@(</span><span class="nb">Get-AvailableIPv4Address</span> <span class="n">-IPRange</span> <span class="nv">$IPRange</span><span class="p">)</span>
 </code></pre></div></div>
         </article>
         

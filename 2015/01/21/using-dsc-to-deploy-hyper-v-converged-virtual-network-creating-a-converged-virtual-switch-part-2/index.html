@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Using DSC to deploy Hyper-V converged virtual network – Creating a converged virtual switch (Part 2)</title>
 
 <meta name="description" content="For the most powerful community">
@@ -249,31 +250,31 @@ if (!doNotTrack) {
 <p><img src="/images/cVMSwitch-1.png" alt=""></p>
 <p>The <em>Name</em> property is a mandatory one which identifies the VM switch and the <em>Type</em> property defines the type of switch – External or Internal or Private – to be created. The <em>AllowManagementOS</em> boolean property can be used to specify if a VM network adapter in the management OS or root partition should be created. The <em>MinimumBandwidthMode</em> property defines how the bandwidth reservation must be done. If you specify Absolute, the subsequent VM network adapter settings can be used to specify the absolute bandwidth reservation (in mbps). By using Weight as the <em>MinimumBandwidthMode</em>, you can specify a percentage value as the bandwidth reservation for the VM network adapters. We will see more about this in the next article. Finally, the <em>NetAdapterName</em> can be used to specify which host network adapter should be used to create an external VM switch. In our demonstration, this is the <em>HostTeam</em> adapter created using the <em>cNetworkTeam</em> resource.</p>
 <p>Let us see the configuration script that creates the external converged VM switch for us.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Configuration DemoNetworkTeam {
-   Import-DscResource -Module cWindowsOS -Name cNetworkTeam
-   Import-DscResource -Module cHyper-V -Name cVMSwitch
-
-   Node Localhost {
-         <span style="color:#75715e">#Create Network Team named HostTeam and add NIC1 and NIC2 as members</span>
-         cNetworkTeam NetworkTeam {
-             Name = <span style="color:#e6db74">&#39;HostTeam&#39;</span>
-             TeamingMode = <span style="color:#e6db74">&#39;SwitchIndependent&#39;</span>
-             LoadBalancingAlgorithm = <span style="color:#e6db74">&#39;HyperVPort&#39;</span>
-             TeamMembers = <span style="color:#e6db74">&#39;NIC1&#39;</span>,<span style="color:#e6db74">&#39;NIC2&#39;</span>
-             Ensure = <span style="color:#e6db74">&#39;Present&#39;</span>
-         }     
-         <span style="color:#75715e">#Create a VM Switch from HostTeam adapter and set the Bandwidth mode to weight</span>
-         cVMSwitch HostSwitch {
-             Name = <span style="color:#e6db74">&#39;HostSwitch&#39;</span>
-             Type = <span style="color:#e6db74">&#39;External&#39;</span>
-             AllowManagementOS = $true
-             MinimumBandwidthMode = <span style="color:#e6db74">&#39;Weight&#39;</span>
-             NetAdapterName = <span style="color:#e6db74">&#39;HostTeam&#39;</span>
-             Ensure = <span style="color:#e6db74">&#39;Present&#39;</span>
-             DependsOn = <span style="color:#e6db74">&#39;[cNetworkTeam]NetworkTeam&#39;</span>
-         }
-	}
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Configuration</span> <span class="n">DemoNetworkTeam</span> <span class="p">{</span>
+<span class="ln"> 2</span>   <span class="nb">Import-DscResource</span> <span class="n">-Module</span> <span class="n">cWindowsOS</span> <span class="n">-Name</span> <span class="n">cNetworkTeam</span>
+<span class="ln"> 3</span>   <span class="nb">Import-DscResource</span> <span class="n">-Module</span> <span class="n">cHyper-V</span> <span class="n">-Name</span> <span class="n">cVMSwitch</span>
+<span class="ln"> 4</span>
+<span class="ln"> 5</span>   <span class="n">Node</span> <span class="n">Localhost</span> <span class="p">{</span>
+<span class="ln"> 6</span>         <span class="c">#Create Network Team named HostTeam and add NIC1 and NIC2 as members</span>
+<span class="ln"> 7</span>         <span class="n">cNetworkTeam</span> <span class="n">NetworkTeam</span> <span class="p">{</span>
+<span class="ln"> 8</span>             <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostTeam&#39;</span>
+<span class="ln"> 9</span>             <span class="n">TeamingMode</span> <span class="p">=</span> <span class="s1">&#39;SwitchIndependent&#39;</span>
+<span class="ln">10</span>             <span class="n">LoadBalancingAlgorithm</span> <span class="p">=</span> <span class="s1">&#39;HyperVPort&#39;</span>
+<span class="ln">11</span>             <span class="n">TeamMembers</span> <span class="p">=</span> <span class="s1">&#39;NIC1&#39;</span><span class="p">,</span><span class="s1">&#39;NIC2&#39;</span>
+<span class="ln">12</span>             <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+<span class="ln">13</span>         <span class="p">}</span>     
+<span class="ln">14</span>         <span class="c">#Create a VM Switch from HostTeam adapter and set the Bandwidth mode to weight</span>
+<span class="ln">15</span>         <span class="n">cVMSwitch</span> <span class="n">HostSwitch</span> <span class="p">{</span>
+<span class="ln">16</span>             <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostSwitch&#39;</span>
+<span class="ln">17</span>             <span class="nb">Type </span><span class="p">=</span> <span class="s1">&#39;External&#39;</span>
+<span class="ln">18</span>             <span class="n">AllowManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
+<span class="ln">19</span>             <span class="n">MinimumBandwidthMode</span> <span class="p">=</span> <span class="s1">&#39;Weight&#39;</span>
+<span class="ln">20</span>             <span class="n">NetAdapterName</span> <span class="p">=</span> <span class="s1">&#39;HostTeam&#39;</span>
+<span class="ln">21</span>             <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+<span class="ln">22</span>             <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cNetworkTeam]NetworkTeam&#39;</span>
+<span class="ln">23</span>         <span class="p">}</span>
+<span class="ln">24</span>	<span class="p">}</span>
+<span class="ln">25</span><span class="p">}</span>
 </code></pre></div><p>In the above configuration, I have included both network team and the VM switch creation. I have also added the <em>DependsOn</em> property in the <em>HostSwitch</em> configuration to specify that the VM switch should be created only if the network team named <em>HostTeam</em> exists. Since I set the <em>MinimumBandwidthMode</em> to Weight, subsequent VM network adapter creation must specify the percentage of bandwidth reserve instead of absolute value.</p>
 <p><img src="/images/cVMSwitch-2.png" alt=""></p>
 <p>This is it. For the converged virtual network, we have created the network team and the VM switch. In the later articles, we will see how to create the VM network adapters in the management OS and complete the converged virtual network configuration.</p>

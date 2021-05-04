@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Git for IT Professionals: Life Cycle of Repository Files</title>
 
 <meta name="description" content="For the most powerful community">
@@ -244,7 +245,7 @@ if (!doNotTrack) {
 <p>Part 3 – Git for IT Professionals: Life Cycle of Repository Files (this article)</p>
 <p>In the previous part, we walked-through creating our first repository and adding files to it and finally committing the files to the repository. This was a simple and basic workflow to get started with Git. In the process, I had mentioned about tracked and untracked files and staged and unstaged files and so on. For a beginner, it is important to understand the life cycle of version-controlled files in a Git repository. This is what we will discuss in this part of the series. Similar to the other part of the series, we will use an example walk-thorough to understand the concepts. I recommend trying out the commands as you read the article.</p>
 <p>For this article, we will start by creating a new repository with no files in it.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">git init FirstRepo
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">git</span> <span class="n">init</span> <span class="n">FirstRepo</span>
 </code></pre></div><p>This initializes an empty Git repository under the home directory of the logged in user. Running <em>git status</em> inside the repository reveals that there are no files that are tracked.</p>
 <p><img src="/images/git31.png" alt=""></p>
 <p>Let us add a few files here. PowerShell scripts, of course. I chose to copy a few readymade scripts I have into this repository directory directly.</p>

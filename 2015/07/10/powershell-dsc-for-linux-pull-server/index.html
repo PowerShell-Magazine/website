@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>PowerShell DSC for Linux: Pull Server</title>
 
 <meta name="description" content="For the most powerful community">
@@ -238,172 +239,172 @@ if (!doNotTrack) {
           </ul>
           <div class="content"><p>Initial release of PowerShell DSC for Linux had one big gap: it supported only pushing the configuration to the node. And even though this mode is good enough for demos or basic proof of concept, it doesn’t seem like a proper solution for production environment. The first official version of PowerShell DSC for Linux supports both modes of configuration delivery–Push and Pull. In this part of the series, we will take a look at setting up Linux to pull configuration from single and multiple pull servers.</p>
 <p>When we author DSC configuration for Linux, we can use both WMF4 and WMF5. Same applies to meta-configurations used to set up Local Configuration Manager (LCM) settings. In both versions we have to set LCM <em>RefreshMode</em> to <em>Pull</em> and define/list download managers. First, we will take a look at configuration for LCM defined using WMF4 syntax:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Configuration LinuxPull {
-    <span style="color:#66d9ef">param</span> (
-        <span style="color:#66d9ef">[String]</span>$ComputerName,
-        <span style="color:#66d9ef">[guid]</span>$Id
-    )    
-    node $ComputerName {
-        LocalConfigurationManager {
-            RefreshMode = <span style="color:#e6db74">&#39;Pull&#39;</span>
-            ConfigurationID = $id.Guid
-            ConfigurationMode = <span style="color:#e6db74">&#39;ApplyAndAutocorrect&#39;</span>
-            DownloadManagerName = <span style="color:#e6db74">&#39;WebDownloadManager&#39;</span>
-            DownloadManagerCustomData = @{
-                ServerUrl =
-                  <span style="color:#e6db74">&#39;https://pull.monad.net:8080/PSDSCPullServer/PSDSCPullServer.svc&#39;</span>
-            }
-            RebootNodeIfNeeded = $true
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Configuration</span> <span class="n">LinuxPull</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln"> 3</span>        <span class="no">[String]</span><span class="nv">$ComputerName</span><span class="p">,</span>
+<span class="ln"> 4</span>        <span class="no">[guid]</span><span class="nv">$Id</span>
+<span class="ln"> 5</span>    <span class="p">)</span>    
+<span class="ln"> 6</span>    <span class="n">node</span> <span class="nv">$ComputerName</span> <span class="p">{</span>
+<span class="ln"> 7</span>        <span class="n">LocalConfigurationManager</span> <span class="p">{</span>
+<span class="ln"> 8</span>            <span class="n">RefreshMode</span> <span class="p">=</span> <span class="s1">&#39;Pull&#39;</span>
+<span class="ln"> 9</span>            <span class="n">ConfigurationID</span> <span class="p">=</span> <span class="nv">$id</span><span class="p">.</span><span class="n">Guid</span>
+<span class="ln">10</span>            <span class="n">ConfigurationMode</span> <span class="p">=</span> <span class="s1">&#39;ApplyAndAutocorrect&#39;</span>
+<span class="ln">11</span>            <span class="n">DownloadManagerName</span> <span class="p">=</span> <span class="s1">&#39;WebDownloadManager&#39;</span>
+<span class="ln">12</span>            <span class="n">DownloadManagerCustomData</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln">13</span>                <span class="n">ServerUrl</span> <span class="p">=</span>
+<span class="ln">14</span>                  <span class="s1">&#39;https://pull.monad.net:8080/PSDSCPullServer/PSDSCPullServer.svc&#39;</span>
+<span class="ln">15</span>            <span class="p">}</span>
+<span class="ln">16</span>            <span class="n">RebootNodeIfNeeded</span> <span class="p">=</span> <span class="nv">$true</span>
+<span class="ln">17</span>        <span class="p">}</span>
+<span class="ln">18</span>    <span class="p">}</span>
+<span class="ln">19</span><span class="p">}</span>
 </code></pre></div><p>Configuration using WMF5 (based on <a href="http://blogs.msdn.com/b/powershell/archive/2015/04/29/windows-management-framework-5-0-preview-april-2015-is-now-available.aspx" target="_blank">April 2015 preview</a>) is slightly different mainly because of separation of global settings and configuration for download managers and attribute that we need to apply to the configuration in order to distinguish it from “normal” configuration:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">[DSCLocalConfigurationManager()]
-configuration LinuxPullv5 {
-    <span style="color:#66d9ef">param</span> (
-        <span style="color:#66d9ef">[String]</span>$ComputerName,
-        <span style="color:#66d9ef">[guid]</span>$Id
-    )
-    node $ComputerName {
-        Settings {
-            RefreshMode = <span style="color:#e6db74">&#39;Pull&#39;</span>
-            ConfigurationID = $id.Guid
-            ConfigurationMode = <span style="color:#e6db74">&#39;ApplyAndAutocorrect&#39;</span>
-        }
-        ConfigurationRepositoryWeb main {
-            ServerURL = <span style="color:#e6db74">&#39;https://pull.monad.net:8080/PSDSCPullServer.svc&#39;</span>
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="p">[</span><span class="n">DSCLocalConfigurationManager</span><span class="p">()]</span>
+<span class="ln"> 2</span><span class="n">configuration</span> <span class="n">LinuxPullv5</span> <span class="p">{</span>
+<span class="ln"> 3</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln"> 4</span>        <span class="no">[String]</span><span class="nv">$ComputerName</span><span class="p">,</span>
+<span class="ln"> 5</span>        <span class="no">[guid]</span><span class="nv">$Id</span>
+<span class="ln"> 6</span>    <span class="p">)</span>
+<span class="ln"> 7</span>    <span class="n">node</span> <span class="nv">$ComputerName</span> <span class="p">{</span>
+<span class="ln"> 8</span>        <span class="n">Settings</span> <span class="p">{</span>
+<span class="ln"> 9</span>            <span class="n">RefreshMode</span> <span class="p">=</span> <span class="s1">&#39;Pull&#39;</span>
+<span class="ln">10</span>            <span class="n">ConfigurationID</span> <span class="p">=</span> <span class="nv">$id</span><span class="p">.</span><span class="n">Guid</span>
+<span class="ln">11</span>            <span class="n">ConfigurationMode</span> <span class="p">=</span> <span class="s1">&#39;ApplyAndAutocorrect&#39;</span>
+<span class="ln">12</span>        <span class="p">}</span>
+<span class="ln">13</span>        <span class="n">ConfigurationRepositoryWeb</span> <span class="n">main</span> <span class="p">{</span>
+<span class="ln">14</span>            <span class="n">ServerURL</span> <span class="p">=</span> <span class="s1">&#39;https://pull.monad.net:8080/PSDSCPullServer.svc&#39;</span>
+<span class="ln">15</span>        <span class="p">}</span>
+<span class="ln">16</span>    <span class="p">}</span>
+<span class="ln">17</span><span class="p">}</span>
 </code></pre></div><p>As a next step, we have to generate MOF document for our node and save it to the correct location together with matching checksum file. For testing purposes we will use <em>hello world</em> configuration to avoid any kind of issues with configuration itself:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Configuration TestPull {
-    <span style="color:#66d9ef">param</span> (
-        <span style="color:#66d9ef">[String]</span>$ComputerName
-    )
-    Import-DscResource -ModuleName nx
-    node $ComputerName {
-        nxFile Test {
-            DestinationPath = <span style="color:#e6db74">&#39;/tmp/pull&#39;</span>
-            Contents = <span style="color:#e6db74">&#34;Hello World!</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">&#34;</span>
-        }
-    }
-}
-TestPull -ComputerName $id.Guid -OutputPath $mainConfig
-New-DscChecksum -Path $mainConfig -Force
-LinuxPullv5 -ComputerName PSMag.monad.net -Id $id
-Set-DscLocalConfigurationManager -Path .\LinuxPullv5 -CimSession $linuxCim -Verbose
-Update-DscConfiguration -CimSession $linuxCim -Wait
-cURL failed to perform on this base url<span style="color:#960050;background-color:#1e0010">:</span> pull.monad.net with this error message<span style="color:#960050;background-color:#1e0010">:</span> Peer certificate cannot be authenticated with given CA certificates.
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Configuration</span> <span class="n">TestPull</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln"> 3</span>        <span class="no">[String]</span><span class="nv">$ComputerName</span>
+<span class="ln"> 4</span>    <span class="p">)</span>
+<span class="ln"> 5</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">nx</span>
+<span class="ln"> 6</span>    <span class="n">node</span> <span class="nv">$ComputerName</span> <span class="p">{</span>
+<span class="ln"> 7</span>        <span class="n">nxFile</span> <span class="n">Test</span> <span class="p">{</span>
+<span class="ln"> 8</span>            <span class="n">DestinationPath</span> <span class="p">=</span> <span class="s1">&#39;/tmp/pull&#39;</span>
+<span class="ln"> 9</span>            <span class="n">Contents</span> <span class="p">=</span> <span class="s2">&#34;Hello World!</span><span class="se">`n</span><span class="s2">&#34;</span>
+<span class="ln">10</span>        <span class="p">}</span>
+<span class="ln">11</span>    <span class="p">}</span>
+<span class="ln">12</span><span class="p">}</span>
+<span class="ln">13</span><span class="n">TestPull</span> <span class="n">-ComputerName</span> <span class="nv">$id</span><span class="p">.</span><span class="n">Guid</span> <span class="n">-OutputPath</span> <span class="nv">$mainConfig</span>
+<span class="ln">14</span><span class="nb">New-DscChecksum</span> <span class="n">-Path</span> <span class="nv">$mainConfig</span> <span class="n">-Force</span>
+<span class="ln">15</span><span class="n">LinuxPullv5</span> <span class="n">-ComputerName</span> <span class="n">PSMag</span><span class="p">.</span><span class="n">monad</span><span class="p">.</span><span class="n">net</span> <span class="n">-Id</span> <span class="nv">$id</span>
+<span class="ln">16</span><span class="nb">Set-DscLocalConfigurationManager</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">LinuxPullv5</span> <span class="n">-CimSession</span> <span class="nv">$linuxCim</span> <span class="n">-Verbose</span>
+<span class="ln">17</span><span class="nb">Update-DscConfiguration</span> <span class="n">-CimSession</span> <span class="nv">$linuxCim</span> <span class="n">-Wait</span>
+<span class="ln">18</span><span class="nb">cURL </span><span class="n">failed</span> <span class="n">to</span> <span class="n">perform</span> <span class="n">on</span> <span class="n">this</span> <span class="n">base</span> <span class="n">url</span><span class="err">:</span> <span class="n">pull</span><span class="p">.</span><span class="n">monad</span><span class="p">.</span><span class="n">net</span> <span class="n">with</span> <span class="n">this</span> <span class="n">error</span> <span class="n">message</span><span class="err">:</span> <span class="n">Peer</span> <span class="n">certificate</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">authenticated</span> <span class="n">with</span> <span class="n">given</span> <span class="n">CA</span> <span class="n">certificates</span><span class="p">.</span>
 </code></pre></div><p>The result we get should not be too surprising for anybody who worked with Pull servers. We told our Linux node to talk to Pull server using HTTPS. The problem is that we didn’t do anything to make sure that Linux trusts the certificate on our Pull server. If nodes are only Windows and domain-joined that can be handled easily with group policies. Release notes for PowerShell DSC for Linux suggest to walk around this problem by forcing cURL to trust our certificate. What I would recommend instead is to configure Linux to trust our Enterprise CA (I’m making assumption that you already use it for certificates on Pull servers). It gives us extra advantage that if we ever decide to change the Pull server, or use more than one, we don’t have to repeat all the steps necessary to convince cURL to trust it. I suspect procedure may differ between distributions; the one I followed is for CentOS (assuming <em>monad-ca-ca.cer</em> is locally saved certificate file for our enterprise CA):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$certFile = @{
-    LocalFile = <span style="color:#e6db74">&#39;.\monad-ca-ca.cer&#39;</span> 
-    RemotePath = <span style="color:#e6db74">&#39;/etc/pki/ca-trust/source/anchors/&#39;</span> 
-    Credential = $root 
-    ComputerName = <span style="color:#e6db74">&#39;PSMag.monad.net&#39;</span>
-}
-Set-SCPFile @certFile
-$ssh = New-SSHSession -ComputerName PSMag.monad.net -Credential $root
-$PSDefaultParameterValues.<span style="color:#e6db74">&#39;Invoke-SSHCommand:SSHSession&#39;</span> = $ssh
-Invoke-SSHCommand -Command <span style="color:#e6db74">&#39;update-ca-trust enable&#39;</span>
-Invoke-SSHCommand -Command <span style="color:#e6db74">&#39;update-ca-trust extract&#39;</span>
-Invoke-SSHCommand -Command <span style="color:#e6db74">&#39;/opt/omi/bin/ConsistencyInvoker&#39;</span>
-Invoke-SSHCommand -Command <span style="color:#e6db74">&#39;cat /tmp/pull&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$certFile</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln"> 2</span>    <span class="n">LocalFile</span> <span class="p">=</span> <span class="s1">&#39;.\monad-ca-ca.cer&#39;</span> 
+<span class="ln"> 3</span>    <span class="n">RemotePath</span> <span class="p">=</span> <span class="s1">&#39;/etc/pki/ca-trust/source/anchors/&#39;</span> 
+<span class="ln"> 4</span>    <span class="n">Credential</span> <span class="p">=</span> <span class="nv">$root</span> 
+<span class="ln"> 5</span>    <span class="n">ComputerName</span> <span class="p">=</span> <span class="s1">&#39;PSMag.monad.net&#39;</span>
+<span class="ln"> 6</span><span class="p">}</span>
+<span class="ln"> 7</span><span class="nb">Set-SCPFile</span> <span class="nv">@certFile</span>
+<span class="ln"> 8</span><span class="nv">$ssh</span> <span class="p">=</span> <span class="nb">New-SSHSession</span> <span class="n">-ComputerName</span> <span class="n">PSMag</span><span class="p">.</span><span class="n">monad</span><span class="p">.</span><span class="n">net</span> <span class="n">-Credential</span> <span class="nv">$root</span>
+<span class="ln"> 9</span><span class="nv">$PSDefaultParameterValues</span><span class="p">.</span><span class="s1">&#39;Invoke-SSHCommand:SSHSession&#39;</span> <span class="p">=</span> <span class="nv">$ssh</span>
+<span class="ln">10</span><span class="nb">Invoke-SSHCommand</span> <span class="n">-Command</span> <span class="s1">&#39;update-ca-trust enable&#39;</span>
+<span class="ln">11</span><span class="nb">Invoke-SSHCommand</span> <span class="n">-Command</span> <span class="s1">&#39;update-ca-trust extract&#39;</span>
+<span class="ln">12</span><span class="nb">Invoke-SSHCommand</span> <span class="n">-Command</span> <span class="s1">&#39;/opt/omi/bin/ConsistencyInvoker&#39;</span>
+<span class="ln">13</span><span class="nb">Invoke-SSHCommand</span> <span class="n">-Command</span> <span class="s1">&#39;cat /tmp/pull&#39;</span>
 </code></pre></div><p><strong>Note</strong>: I have used <a href="https://github.com/darkoperator/Posh-SSH" target="_blank">Posh-SSH</a> module to copy files/invoke commands, you can read more about it <a href="/2014/07/03/posh-ssh-open-source-ssh-powershell-module/" target="_blank">here</a>.</p>
 <p>If our certificate was added to ca-trust we should be able to see content of our <em>hello world</em> file. If that didn’t help reading logs and observing behavior of omiserver run interactively may give us clues why it still fails.</p>
 <p>I’ve mentioned using more than one Pull server few times already. There is very good reason for that: PowerShell DSC for Linux not only supports Pull server, it also supports partial configurations. You can read more about partial configurations in one of the previous <a href="/2014/10/02/partial-dsc-configurations-in-windows-management-framework-wmf-5-0/" target="_blank">articles written by Ravi</a>. Long story short: partial configurations enable scenarios where separation of roles and taking pieces of configuration from different Pull servers (potentially owned by different teams) is necessary. The way partial configuration work evolves: when I tried to apply patterns from Ravi’s post with current version it failed. The procedure I had to follow:</p>
 <ul>
 <li>create configuration that contains two Pull servers and two partial configurations</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">[DSCLocalConfigurationManager()]
-configuration PartialConfiguration {
-    <span style="color:#66d9ef">param</span> (
-        <span style="color:#66d9ef">[String]</span>$ComputerName,
-        <span style="color:#66d9ef">[guid]</span>$Id
-    )
-    node $ComputerName {
-        Settings {
-            RefreshMode = <span style="color:#e6db74">&#39;Pull&#39;</span>
-	        ConfigurationID = $id.Guid
-            ConfigurationMode = <span style="color:#e6db74">&#39;ApplyAndAutocorrect&#39;</span>
-        }
-        ConfigurationRepositoryWeb pull {
-          ServerURL = <span style="color:#e6db74">&#39;https://pull.monad.net:8080/PSDSCPullServer.svc&#39;</span>
-        }
-        ConfigurationRepositoryWeb partial {
-            ServerURL = <span style="color:#e6db74">&#39;https://partial.monad.net:8080/PSDSCPullServer.svc&#39;</span>
-        }
-        PartialConfiguration base {
-            ConfigurationSource = <span style="color:#e6db74">&#39;[ConfigurationRepositoryWeb]pull&#39;</span>
-        }
-        PartialConfiguration details {
-            ConfigurationSource = <span style="color:#e6db74">&#39;[ConfigurationRepositoryWeb]partial&#39;</span>
-            DependsOn = <span style="color:#e6db74">&#39;[PartialConfiguration]base&#39;</span>
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="p">[</span><span class="n">DSCLocalConfigurationManager</span><span class="p">()]</span>
+<span class="ln"> 2</span><span class="n">configuration</span> <span class="n">PartialConfiguration</span> <span class="p">{</span>
+<span class="ln"> 3</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln"> 4</span>        <span class="no">[String]</span><span class="nv">$ComputerName</span><span class="p">,</span>
+<span class="ln"> 5</span>        <span class="no">[guid]</span><span class="nv">$Id</span>
+<span class="ln"> 6</span>    <span class="p">)</span>
+<span class="ln"> 7</span>    <span class="n">node</span> <span class="nv">$ComputerName</span> <span class="p">{</span>
+<span class="ln"> 8</span>        <span class="n">Settings</span> <span class="p">{</span>
+<span class="ln"> 9</span>            <span class="n">RefreshMode</span> <span class="p">=</span> <span class="s1">&#39;Pull&#39;</span>
+<span class="ln">10</span>	        <span class="n">ConfigurationID</span> <span class="p">=</span> <span class="nv">$id</span><span class="p">.</span><span class="n">Guid</span>
+<span class="ln">11</span>            <span class="n">ConfigurationMode</span> <span class="p">=</span> <span class="s1">&#39;ApplyAndAutocorrect&#39;</span>
+<span class="ln">12</span>        <span class="p">}</span>
+<span class="ln">13</span>        <span class="n">ConfigurationRepositoryWeb</span> <span class="n">pull</span> <span class="p">{</span>
+<span class="ln">14</span>          <span class="n">ServerURL</span> <span class="p">=</span> <span class="s1">&#39;https://pull.monad.net:8080/PSDSCPullServer.svc&#39;</span>
+<span class="ln">15</span>        <span class="p">}</span>
+<span class="ln">16</span>        <span class="n">ConfigurationRepositoryWeb</span> <span class="n">partial</span> <span class="p">{</span>
+<span class="ln">17</span>            <span class="n">ServerURL</span> <span class="p">=</span> <span class="s1">&#39;https://partial.monad.net:8080/PSDSCPullServer.svc&#39;</span>
+<span class="ln">18</span>        <span class="p">}</span>
+<span class="ln">19</span>        <span class="n">PartialConfiguration</span> <span class="n">base</span> <span class="p">{</span>
+<span class="ln">20</span>            <span class="n">ConfigurationSource</span> <span class="p">=</span> <span class="s1">&#39;[ConfigurationRepositoryWeb]pull&#39;</span>
+<span class="ln">21</span>        <span class="p">}</span>
+<span class="ln">22</span>        <span class="n">PartialConfiguration</span> <span class="n">details</span> <span class="p">{</span>
+<span class="ln">23</span>            <span class="n">ConfigurationSource</span> <span class="p">=</span> <span class="s1">&#39;[ConfigurationRepositoryWeb]partial&#39;</span>
+<span class="ln">24</span>            <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[PartialConfiguration]base&#39;</span>
+<span class="ln">25</span>        <span class="p">}</span>
+<span class="ln">26</span>    <span class="p">}</span>
+<span class="ln">27</span><span class="p">}</span>
 </code></pre></div><ul>
 <li>create two configurations with the names matching LCM partial configurations and drop generated MOFs to Pull servers (I didn’t change file’s’ names)</li>
 <li>generate checksums for both files</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Configuration base {
-    <span style="color:#66d9ef">param</span> (
-        <span style="color:#66d9ef">[String]</span>$ComputerName
-    )
-    Import-DscResource -ModuleName nx
-    node $ComputerName {
-        nxFile test {
-            DestinationPath = <span style="color:#e6db74">&#39;/tmp/pull&#39;</span>
-            Contents = <span style="color:#e6db74">&#34;I&#39;m from Pull server!</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">&#34;</span>
-        }
-    }
-}
-base -ComputerName $id.Guid -OutputPath $mainConfig
-New-DscChecksum -Path $mainConfig -Force
-
-Configuration details {
-    <span style="color:#66d9ef">param</span> (
-        <span style="color:#66d9ef">[String]</span>$ComputerName
-    )
-    Import-DscResource -ModuleName nx
-    node $ComputerName {
-        nxFile test2 {
-            DestinationPath = <span style="color:#e6db74">&#39;/tmp/partial&#39;</span>
-            Contents = <span style="color:#e6db74">&#34;I&#39;m just partial!</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">&#34;</span>
-        }
-    }
-}
-details -ComputerName $id.Guid -OutputPath $partialConfig 
-New-DscChecksum -Path $partialConfig -Force
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Configuration</span> <span class="n">base</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln"> 3</span>        <span class="no">[String]</span><span class="nv">$ComputerName</span>
+<span class="ln"> 4</span>    <span class="p">)</span>
+<span class="ln"> 5</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">nx</span>
+<span class="ln"> 6</span>    <span class="n">node</span> <span class="nv">$ComputerName</span> <span class="p">{</span>
+<span class="ln"> 7</span>        <span class="n">nxFile</span> <span class="n">test</span> <span class="p">{</span>
+<span class="ln"> 8</span>            <span class="n">DestinationPath</span> <span class="p">=</span> <span class="s1">&#39;/tmp/pull&#39;</span>
+<span class="ln"> 9</span>            <span class="n">Contents</span> <span class="p">=</span> <span class="s2">&#34;I&#39;m from Pull server!</span><span class="se">`n</span><span class="s2">&#34;</span>
+<span class="ln">10</span>        <span class="p">}</span>
+<span class="ln">11</span>    <span class="p">}</span>
+<span class="ln">12</span><span class="p">}</span>
+<span class="ln">13</span><span class="n">base</span> <span class="n">-ComputerName</span> <span class="nv">$id</span><span class="p">.</span><span class="n">Guid</span> <span class="n">-OutputPath</span> <span class="nv">$mainConfig</span>
+<span class="ln">14</span><span class="nb">New-DscChecksum</span> <span class="n">-Path</span> <span class="nv">$mainConfig</span> <span class="n">-Force</span>
+<span class="ln">15</span>
+<span class="ln">16</span><span class="n">Configuration</span> <span class="n">details</span> <span class="p">{</span>
+<span class="ln">17</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln">18</span>        <span class="no">[String]</span><span class="nv">$ComputerName</span>
+<span class="ln">19</span>    <span class="p">)</span>
+<span class="ln">20</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">nx</span>
+<span class="ln">21</span>    <span class="n">node</span> <span class="nv">$ComputerName</span> <span class="p">{</span>
+<span class="ln">22</span>        <span class="n">nxFile</span> <span class="n">test2</span> <span class="p">{</span>
+<span class="ln">23</span>            <span class="n">DestinationPath</span> <span class="p">=</span> <span class="s1">&#39;/tmp/partial&#39;</span>
+<span class="ln">24</span>            <span class="n">Contents</span> <span class="p">=</span> <span class="s2">&#34;I&#39;m just partial!</span><span class="se">`n</span><span class="s2">&#34;</span>
+<span class="ln">25</span>        <span class="p">}</span>
+<span class="ln">26</span>    <span class="p">}</span>
+<span class="ln">27</span><span class="p">}</span>
+<span class="ln">28</span><span class="n">details</span> <span class="n">-ComputerName</span> <span class="nv">$id</span><span class="p">.</span><span class="n">Guid</span> <span class="n">-OutputPath</span> <span class="nv">$partialConfig</span> 
+<span class="ln">29</span><span class="nb">New-DscChecksum</span> <span class="n">-Path</span> <span class="nv">$partialConfig</span> <span class="n">-Force</span>
 </code></pre></div><ul>
 <li>configure LCM with previously created meta MOF document</li>
 </ul>
 <p>I was using April preview of WMF5, so before doing last step I had to modify generated MOF. My client was saving partial configurations as an array, LCM was expecting singleton. Here is simple function I’ve used to clean up MOF and code I’ve used to generate, update and implement it:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> Update-MetaDocument {
-    <span style="color:#66d9ef">param</span> (
-        [<span style="color:#66d9ef">Parameter</span>(
-            <span style="color:#66d9ef">ValueFromPipeline</span>,
-            <span style="color:#66d9ef">Mandatory</span>
-        )]
-        [ValidateScript({
-            Test-Path -Path $_
-        })]
-        <span style="color:#66d9ef">[String]</span>$Path
-    )
-    <span style="color:#66d9ef">process</span> {
-        $body = Get-Content @PSBoundParameters -Raw
-        $body <span style="color:#f92672">-replace</span>  <span style="color:#e6db74">&#39;(?s)(ConfigurationSource = )\{([^}]*)};&#39;</span>, <span style="color:#e6db74">&#39;$1 $2;&#39;</span> | 
-            Set-Content @PSBoundParameters -Force
-    }
-}
-PartialConfiguration -ComputerName PSMag.monad.net -Id $Id | Update-MetaDocument
-Set-DscLocalConfigurationManager -CimSession $linuxCim -Path .\PartialConfiguration
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Update-MetaDocument</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="k">param</span> <span class="p">(</span>
+<span class="ln"> 3</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span>
+<span class="ln"> 4</span>            <span class="k">ValueFromPipeline</span><span class="p">,</span>
+<span class="ln"> 5</span>            <span class="k">Mandatory</span>
+<span class="ln"> 6</span>        <span class="p">)]</span>
+<span class="ln"> 7</span>        <span class="p">[</span><span class="n">ValidateScript</span><span class="p">({</span>
+<span class="ln"> 8</span>            <span class="nb">Test-Path</span> <span class="n">-Path</span> <span class="nv">$_</span>
+<span class="ln"> 9</span>        <span class="p">})]</span>
+<span class="ln">10</span>        <span class="no">[String]</span><span class="nv">$Path</span>
+<span class="ln">11</span>    <span class="p">)</span>
+<span class="ln">12</span>    <span class="k">process</span> <span class="p">{</span>
+<span class="ln">13</span>        <span class="nv">$body</span> <span class="p">=</span> <span class="nb">Get-Content</span> <span class="nv">@PSBoundParameters</span> <span class="n">-Raw</span>
+<span class="ln">14</span>        <span class="nv">$body</span> <span class="o">-replace</span>  <span class="s1">&#39;(?s)(ConfigurationSource = )\{([^}]*)};&#39;</span><span class="p">,</span> <span class="s1">&#39;$1 $2;&#39;</span> <span class="p">|</span> 
+<span class="ln">15</span>            <span class="nb">Set-Content</span> <span class="nv">@PSBoundParameters</span> <span class="n">-Force</span>
+<span class="ln">16</span>    <span class="p">}</span>
+<span class="ln">17</span><span class="p">}</span>
+<span class="ln">18</span><span class="n">PartialConfiguration</span> <span class="n">-ComputerName</span> <span class="n">PSMag</span><span class="p">.</span><span class="n">monad</span><span class="p">.</span><span class="n">net</span> <span class="n">-Id</span> <span class="nv">$Id</span> <span class="p">|</span> <span class="nb">Update-MetaDocument</span>
+<span class="ln">19</span><span class="nb">Set-DscLocalConfigurationManager</span> <span class="n">-CimSession</span> <span class="nv">$linuxCim</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">PartialConfiguration</span>
 </code></pre></div><p>Note: if you are using February preview of WMF5 cleaning up MOF document shouldn’t be necessary. Schema for meta-configuration of LCM changed between these two versions and PowerShell DSC for Linux was is currently based on earlier version.</p>
 <p>After completing these steps and updating configuration on the Linux node I could see both files on the disk with expected content:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">[root@PSMag ~]<span style="color:#75715e"># ConsistencyInvoker</span>
-[root@PSMag ~]<span style="color:#75715e"># cat /tmp/pull</span>
-I<span style="color:#e6db74">&#39;m from Pull server!
-</span><span style="color:#e6db74">[root@PSMag ~]# cat /tmp/partial
-</span><span style="color:#e6db74">I&#39;</span>m just partial!
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="p">[</span><span class="n">root</span><span class="nv">@PSMag</span> <span class="p">~]</span><span class="c"># ConsistencyInvoker</span>
+<span class="ln">2</span><span class="p">[</span><span class="n">root</span><span class="nv">@PSMag</span> <span class="p">~]</span><span class="c"># cat /tmp/pull</span>
+<span class="ln">3</span><span class="n">I</span><span class="s1">&#39;m from Pull server!
+</span><span class="ln">4</span><span class="s1">[root@PSMag ~]# cat /tmp/partial
+</span><span class="ln">5</span><span class="s1">I&#39;</span><span class="n">m</span> <span class="n">just</span> <span class="n">partial</span><span class="p">!</span>
 </code></pre></div><p>As you can see PowerShell DSC for Linux matured a lot since its initial release. I must also say that team is more responsive at the moment. I reported an <a href="https://github.com/MSFTOSSMgmt/WPSDSCLinux/issues/18" target="_blank">issue</a> with the current version (related to Polish characters in the MOF document and using UTF8-encoded MOF) and I was able to apply a patch that fixes this problem few days later. You can find this patch in a <a href="" target="_blank">separate branch</a> on GitHub repo for PowerShell DSC for Linux. For me that change is as important as all the features added in the current release: being able to report problems and receive fixes for them between releases is very important for any early adopter. I would love to be able to contribute to the project and there is opportunity for that too: for now it’s just resources written in native code (you can read about it in <a href="https://github.com/MSFTOSSMgmt/WPSDSCLinux/tree/Fix-UnicodeStrings" target="_blank">Linux DSC announcement on PowerShell team blog</a>), but I hope it will extend to Python-based resources and the core product soon. Keeping all that in mind I’m more confident than before that PowerShell DSC for Linux is something we should start to consider as a solution for managing Linux systems.</p>
 </div>
         </article>

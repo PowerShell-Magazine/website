@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>PSRemotely – Framework to Enable Remote Operations Validation</title>
 
 <meta name="description" content="For the most powerful community">
@@ -216,7 +217,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>8 Min To Read
+              <i class="far fa-clock"></i>9 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>07 Apr, 2017
@@ -257,75 +258,75 @@ if (!doNotTrack) {
 <h3 id="using-pester">Using Pester</h3>
 <p>We moved away from using standalone scripts for the operations validation and started converting our scripts into Pester tests. It is not surprising to see that many operations people find it easier to relate to using Pester for Ops validation, since we have been doing this validation for ages manually. Pester just makes it easy to automate all of it.</p>
 <p>For example, in our solution each compute node gets three NIC cards, pre-deployment script configures them. If we had to test whether the network adapter’s configuration was indeed correct, it would look something like below using Pester:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Describe <span style="color:#e6db74">&#34;TestIPConfiguration&#34;</span> {
-    It <span style="color:#e6db74">&#34;Should have a valid IP address on the Management NIC&#34;</span> {
-        (Get-NetIPAddress -AddressFamily IPv4 -InterfaceAlias <span style="color:#e6db74">&#39;vEthernet(Management)&#39;</span> | Select-Object -ExpandProperty IPAddress) |
-            Should be <span style="color:#e6db74">&#39;10.10.10.1&#39;</span> 
-    }
-	It <span style="color:#e6db74">&#34;Should have a valid IP address on the Storage1 NIC&#34;</span> {
-   		(Get-NetIPAddress -AddressFamily IPv4 -InterfaceAlias <span style="color:#e6db74">&#39;vEthernet(Storage1)&#39;</span> | Select-Object -	ExpandProperty IPAddress) |
-        Should be <span style="color:#e6db74">&#39;10.20.10.1&#39;</span>  
-	}
-
-	It <span style="color:#e6db74">&#34;Should have a valid IP address on the Storage2 NIC&#34;</span> {
-    	(Get-NetIPAddress -AddressFamily IPv4 -InterfaceAlias <span style="color:#e6db74">&#39;vEthernet(Storage1)&#39;</span> | Select-Object -	ExpandProperty IPAddress) |
-        Should be <span style="color:#e6db74">&#39;10.30.10.1&#39;</span>  
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Describe</span> <span class="s2">&#34;TestIPConfiguration&#34;</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="n">It</span> <span class="s2">&#34;Should have a valid IP address on the Management NIC&#34;</span> <span class="p">{</span>
+<span class="ln"> 3</span>        <span class="p">(</span><span class="nb">Get-NetIPAddress</span> <span class="n">-AddressFamily</span> <span class="n">IPv4</span> <span class="n">-InterfaceAlias</span> <span class="s1">&#39;vEthernet(Management)&#39;</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-ExpandProperty</span> <span class="n">IPAddress</span><span class="p">)</span> <span class="p">|</span>
+<span class="ln"> 4</span>            <span class="n">Should</span> <span class="n">be</span> <span class="s1">&#39;10.10.10.1&#39;</span> 
+<span class="ln"> 5</span>    <span class="p">}</span>
+<span class="ln"> 6</span>	<span class="n">It</span> <span class="s2">&#34;Should have a valid IP address on the Storage1 NIC&#34;</span> <span class="p">{</span>
+<span class="ln"> 7</span>   		<span class="p">(</span><span class="nb">Get-NetIPAddress</span> <span class="n">-AddressFamily</span> <span class="n">IPv4</span> <span class="n">-InterfaceAlias</span> <span class="s1">&#39;vEthernet(Storage1)&#39;</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="p">-</span>	<span class="n">ExpandProperty</span> <span class="n">IPAddress</span><span class="p">)</span> <span class="p">|</span>
+<span class="ln"> 8</span>        <span class="n">Should</span> <span class="n">be</span> <span class="s1">&#39;10.20.10.1&#39;</span>  
+<span class="ln"> 9</span>	<span class="p">}</span>
+<span class="ln">10</span>
+<span class="ln">11</span>	<span class="n">It</span> <span class="s2">&#34;Should have a valid IP address on the Storage2 NIC&#34;</span> <span class="p">{</span>
+<span class="ln">12</span>    	<span class="p">(</span><span class="nb">Get-NetIPAddress</span> <span class="n">-AddressFamily</span> <span class="n">IPv4</span> <span class="n">-InterfaceAlias</span> <span class="s1">&#39;vEthernet(Storage1)&#39;</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="p">-</span>	<span class="n">ExpandProperty</span> <span class="n">IPAddress</span><span class="p">)</span> <span class="p">|</span>
+<span class="ln">13</span>        <span class="n">Should</span> <span class="n">be</span> <span class="s1">&#39;10.30.10.1&#39;</span>  
+<span class="ln">14</span><span class="p">}</span>
 </code></pre></div><h3 id="using-poshspec--pester">Using PoshSpec &amp; Pester</h3>
 <p>PoshSpec added yet another layer of abstraction on our infrastructure tests by adding yet another DSL.</p>
 <p>Below is how our tests started looking with usage of Pester and PoshSpec.</p>
 <p><strong>Note</strong> – For validation of IPv4 Address, another keyword named IPv4Address was added to PoshSpec which would essentially call Get-NetIPAddress and spit out the IPv4 address assigned on the NIC interface with specified alias.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Describe <span style="color:#e6db74">&#34;TestIPConfiguration&#34;</span> {
-    Context <span style="color:#e6db74">&#34;Validate the Management NIC &#34;</span> {
-        IPv4Address <span style="color:#e6db74">&#39;vEthernet(Management)&#39;</span> {Should be <span style="color:#e6db74">&#39;10.10.10.1&#39;</span>} 
-    }
-
-   Context <span style="color:#e6db74">&#34;Validate the Storage1 NIC&#34;</span> {
-        IPv4Address <span style="color:#e6db74">&#39;vEthernet(Storage1)&#39;</span> {Should be <span style="color:#e6db74">&#39;10.20.10.1&#39;</span>} 
-    }
-	Context <span style="color:#e6db74">&#34;Validate the Storage2 NIC&#34;</span> {
-    	IPv4Address <span style="color:#e6db74">&#39;vEthernet(Storage2)&#39;</span> {Should be <span style="color:#e6db74">&#39;10.30.10.1&#39;</span>}
-	}
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Describe</span> <span class="s2">&#34;TestIPConfiguration&#34;</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="n">Context</span> <span class="s2">&#34;Validate the Management NIC &#34;</span> <span class="p">{</span>
+<span class="ln"> 3</span>        <span class="n">IPv4Address</span> <span class="s1">&#39;vEthernet(Management)&#39;</span> <span class="p">{</span><span class="n">Should</span> <span class="n">be</span> <span class="s1">&#39;10.10.10.1&#39;</span><span class="p">}</span> 
+<span class="ln"> 4</span>    <span class="p">}</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span>   <span class="n">Context</span> <span class="s2">&#34;Validate the Storage1 NIC&#34;</span> <span class="p">{</span>
+<span class="ln"> 7</span>        <span class="n">IPv4Address</span> <span class="s1">&#39;vEthernet(Storage1)&#39;</span> <span class="p">{</span><span class="n">Should</span> <span class="n">be</span> <span class="s1">&#39;10.20.10.1&#39;</span><span class="p">}</span> 
+<span class="ln"> 8</span>    <span class="p">}</span>
+<span class="ln"> 9</span>	<span class="n">Context</span> <span class="s2">&#34;Validate the Storage2 NIC&#34;</span> <span class="p">{</span>
+<span class="ln">10</span>    	<span class="n">IPv4Address</span> <span class="s1">&#39;vEthernet(Storage2)&#39;</span> <span class="p">{</span><span class="n">Should</span> <span class="n">be</span> <span class="s1">&#39;10.30.10.1&#39;</span><span class="p">}</span>
+<span class="ln">11</span>	<span class="p">}</span>
+<span class="ln">12</span><span class="p">}</span>
 </code></pre></div><p>By using Pester and PoshSpec to write tests, it sure made maintaining these tests easy, but we still have a problem at</p>
 <p>hand.  How do we target our above tests to all the nodes in the solution?</p>
 <h3 id="remotely3"><a href="https://github.com/PowerShell/Remotely">Remotely</a>??</h3>
 <p>At some point <a href="https://ravichaganti.com">Ravi</a> was <a href="https://github.com/rchaganti/Remotely">tinkering</a> with this particular PowerShell module and suggested to take a look at it. It was promising to begin with as he added support for passing Credential hash to Remotely. We would have to specify a hash table with the computer name as key and credential as value to Remotely and it would take care of connecting to those nodes, executing the script block in the remote runspace. At this point things started falling in place for what we had in mind. Our tests started looking nice and concise:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$CredHash = @{
-    <span style="color:#e6db74">&#39;ComputeNode1&#39;</span> = Get-Credential
-    <span style="color:#e6db74">&#39;ComputeNode2&#39;</span> = Get-Credential
-}
-Describe <span style="color:#e6db74">&#34;TestIPConfiguration&#34;</span> {
-    Context <span style="color:#e6db74">&#34;Validate the Management NIC &#34;</span> {
-       Remotely ComputeNode1, ComputeNode2 {IPv4Address <span style="color:#e6db74">&#39;vEthernet(Management)&#39;</span> {Should be <span style="color:#e6db74">&#39;10.10.10.1&#39;</span>}} 
-    }
-
-   Context <span style="color:#e6db74">&#34;Validate the Storage1 NIC&#34;</span> {
-        Remotely ComputeNode1, ComputeNode2 {IPv4Address <span style="color:#e6db74">&#39;vEthernet(Storage1)&#39;</span> {Should be <span style="color:#e6db74">&#39;10.20.10.1&#39;</span>}} 
-    }
-
-    Context <span style="color:#e6db74">&#34;Validate the Storage2 NIC&#34;</span> {
-        Remotely ComputeNode1, ComputeNode2 {IPv4Address <span style="color:#e6db74">&#39;vEthernet(Storage2)&#39;</span> {Should be <span style="color:#e6db74">&#39;10.30.10.1&#39;</span>}} 
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$CredHash</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln"> 2</span>    <span class="s1">&#39;ComputeNode1&#39;</span> <span class="p">=</span> <span class="nb">Get-Credential</span>
+<span class="ln"> 3</span>    <span class="s1">&#39;ComputeNode2&#39;</span> <span class="p">=</span> <span class="nb">Get-Credential</span>
+<span class="ln"> 4</span><span class="p">}</span>
+<span class="ln"> 5</span><span class="n">Describe</span> <span class="s2">&#34;TestIPConfiguration&#34;</span> <span class="p">{</span>
+<span class="ln"> 6</span>    <span class="n">Context</span> <span class="s2">&#34;Validate the Management NIC &#34;</span> <span class="p">{</span>
+<span class="ln"> 7</span>       <span class="n">Remotely</span> <span class="n">ComputeNode1</span><span class="p">,</span> <span class="n">ComputeNode2</span> <span class="p">{</span><span class="n">IPv4Address</span> <span class="s1">&#39;vEthernet(Management)&#39;</span> <span class="p">{</span><span class="n">Should</span> <span class="n">be</span> <span class="s1">&#39;10.10.10.1&#39;</span><span class="p">}}</span> 
+<span class="ln"> 8</span>    <span class="p">}</span>
+<span class="ln"> 9</span>
+<span class="ln">10</span>   <span class="n">Context</span> <span class="s2">&#34;Validate the Storage1 NIC&#34;</span> <span class="p">{</span>
+<span class="ln">11</span>        <span class="n">Remotely</span> <span class="n">ComputeNode1</span><span class="p">,</span> <span class="n">ComputeNode2</span> <span class="p">{</span><span class="n">IPv4Address</span> <span class="s1">&#39;vEthernet(Storage1)&#39;</span> <span class="p">{</span><span class="n">Should</span> <span class="n">be</span> <span class="s1">&#39;10.20.10.1&#39;</span><span class="p">}}</span> 
+<span class="ln">12</span>    <span class="p">}</span>
+<span class="ln">13</span>
+<span class="ln">14</span>    <span class="n">Context</span> <span class="s2">&#34;Validate the Storage2 NIC&#34;</span> <span class="p">{</span>
+<span class="ln">15</span>        <span class="n">Remotely</span> <span class="n">ComputeNode1</span><span class="p">,</span> <span class="n">ComputeNode2</span> <span class="p">{</span><span class="n">IPv4Address</span> <span class="s1">&#39;vEthernet(Storage2)&#39;</span> <span class="p">{</span><span class="n">Should</span> <span class="n">be</span> <span class="s1">&#39;10.30.10.1&#39;</span><span class="p">}}</span> 
+<span class="ln">16</span>    <span class="p">}</span>
+<span class="ln">17</span><span class="p">}</span>
 </code></pre></div><p>Soon we realized that the Assertions above e.g. {Should Be ’10.10.10.1’} are to be dynamically created by reading the manifest XML file which drives the whole deployment. It contains what is the expected configuration on the remote nodes.</p>
 <p>We wanted our tests to be generic so that we could target them to all nodes part of the solution. We were looking to have our tests organized like below, where of course a node-specific details e.g. $ManagementIPv4Address etc. would be read from the manifest file and created on the fly either on the local machine or remote node :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$CredHash = @{
-    <span style="color:#e6db74">&#39;ComputeNode1&#39;</span> = Get-Credential
-    <span style="color:#e6db74">&#39;ComputeNode2&#39;</span> = Get-Credential
-}
-Describe <span style="color:#e6db74">&#34;TestIPConfiguration&#34;</span> {
-    Context <span style="color:#e6db74">&#34;Validate the Management NIC &#34;</span> {
-       Remotely ComputeNode1, ComputeNode2 {IPv4Address <span style="color:#e6db74">&#39;vEthernet(Management)&#39;</span> {Should be  $ManagementIPv4Address}} 
-    }
-
-   Context <span style="color:#e6db74">&#34;Validate the Storage1 NIC&#34;</span> {
-        Remotely ComputeNode1, ComputeNode2 {IPv4Address <span style="color:#e6db74">&#39;vEthernet(Storage1)&#39;</span> {Should be $Storage1IPv4Address}} 
-    }
-    Context <span style="color:#e6db74">&#34;Validate the  Storage2 NIC&#34;</span> {
-        Remotely ComputeNode1, ComputeNode2 {IPv4Address <span style="color:#e6db74">&#39;vEthernet(Storage2)&#39;</span> {Should be $Storage2IPv4Address}}  
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$CredHash</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln"> 2</span>    <span class="s1">&#39;ComputeNode1&#39;</span> <span class="p">=</span> <span class="nb">Get-Credential</span>
+<span class="ln"> 3</span>    <span class="s1">&#39;ComputeNode2&#39;</span> <span class="p">=</span> <span class="nb">Get-Credential</span>
+<span class="ln"> 4</span><span class="p">}</span>
+<span class="ln"> 5</span><span class="n">Describe</span> <span class="s2">&#34;TestIPConfiguration&#34;</span> <span class="p">{</span>
+<span class="ln"> 6</span>    <span class="n">Context</span> <span class="s2">&#34;Validate the Management NIC &#34;</span> <span class="p">{</span>
+<span class="ln"> 7</span>       <span class="n">Remotely</span> <span class="n">ComputeNode1</span><span class="p">,</span> <span class="n">ComputeNode2</span> <span class="p">{</span><span class="n">IPv4Address</span> <span class="s1">&#39;vEthernet(Management)&#39;</span> <span class="p">{</span><span class="n">Should</span> <span class="n">be</span>  <span class="nv">$ManagementIPv4Address</span><span class="p">}}</span> 
+<span class="ln"> 8</span>    <span class="p">}</span>
+<span class="ln"> 9</span>
+<span class="ln">10</span>   <span class="n">Context</span> <span class="s2">&#34;Validate the Storage1 NIC&#34;</span> <span class="p">{</span>
+<span class="ln">11</span>        <span class="n">Remotely</span> <span class="n">ComputeNode1</span><span class="p">,</span> <span class="n">ComputeNode2</span> <span class="p">{</span><span class="n">IPv4Address</span> <span class="s1">&#39;vEthernet(Storage1)&#39;</span> <span class="p">{</span><span class="n">Should</span> <span class="n">be</span> <span class="nv">$Storage1IPv4Address</span><span class="p">}}</span> 
+<span class="ln">12</span>    <span class="p">}</span>
+<span class="ln">13</span>    <span class="n">Context</span> <span class="s2">&#34;Validate the  Storage2 NIC&#34;</span> <span class="p">{</span>
+<span class="ln">14</span>        <span class="n">Remotely</span> <span class="n">ComputeNode1</span><span class="p">,</span> <span class="n">ComputeNode2</span> <span class="p">{</span><span class="n">IPv4Address</span> <span class="s1">&#39;vEthernet(Storage2)&#39;</span> <span class="p">{</span><span class="n">Should</span> <span class="n">be</span> <span class="nv">$Storage2IPv4Address</span><span class="p">}}</span>  
+<span class="ln">15</span>    <span class="p">}</span>
+<span class="ln">16</span><span class="p">}</span>
 </code></pre></div><p>The above syntax looks quite descriptive and decouples the validation tests and environment details too.</p>
 <p>But there were some downsides to the above approach.</p>
 <ul>
@@ -370,54 +371,54 @@ Describe <span style="color:#e6db74">&#34;TestIPConfiguration&#34;</span> {
 </ul>
 <p>And, <a href="https://github.com/DexterPOSH/PSRemotely">PSRemotely</a> was born!</p>
 <p>So after a lot of discussions with Ravi, I finally got insight on how the remote operations validation DSL should look like:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$CredentialHash = @{
-    <span style="color:#e6db74">&#39;ComputeNode1&#39;</span> = Get-Credential
-    <span style="color:#75715e">#&#39;ComputeNode2&#39; = Import-CliXML # If a node is missed here, current user creds are used with PSRemoting</span>
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$CredentialHash</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln">2</span>    <span class="s1">&#39;ComputeNode1&#39;</span> <span class="p">=</span> <span class="nb">Get-Credential</span>
+<span class="ln">3</span>    <span class="c">#&#39;ComputeNode2&#39; = Import-CliXML # If a node is missed here, current user creds are used with PSRemoting</span>
+<span class="ln">4</span><span class="p">}</span>
 </code></pre></div><p>Configuration data, can be generated separately or specified from a .psd1 or .json file</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">$ConfigData</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">@</span>{
-    <span style="color:#960050;background-color:#1e0010">AllNodes</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">@(</span>
-        <span style="color:#960050;background-color:#1e0010">@{</span>
-            <span style="color:#960050;background-color:#1e0010">NodeName</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">&#39;*&#39;</span> 
-            <span style="color:#960050;background-color:#1e0010">DomainFQDN</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">&#39;dexter.lab&#39;</span>
-        }<span style="color:#960050;background-color:#1e0010">,</span>
-        <span style="color:#960050;background-color:#1e0010">@</span>{
-            <span style="color:#960050;background-color:#1e0010">NodeName</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#f92672">&#34;ComputeNode1&#34;</span>
-            <span style="color:#960050;background-color:#1e0010">ManagementIPv</span><span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">Address</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#ae81ff">10.10</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#ae81ff">10.1</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
-            <span style="color:#960050;background-color:#1e0010">Storage</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">IPv</span><span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">Address</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#ae81ff">10.20</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#ae81ff">10.1</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
-            <span style="color:#960050;background-color:#1e0010">Storage</span><span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">IPv</span><span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">Address</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#ae81ff">10.30</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#ae81ff">10.1</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
-            <span style="color:#960050;background-color:#1e0010">Type</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">&#39;Compute&#39;</span>
-        }<span style="color:#960050;background-color:#1e0010">,</span>
-        <span style="color:#960050;background-color:#1e0010">@</span>{
-            <span style="color:#960050;background-color:#1e0010">NodeName</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#f92672">&#34;ComputeNode2&#34;</span>
-            <span style="color:#960050;background-color:#1e0010">ManagementIPv</span><span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">Address</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#ae81ff">10.10</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#ae81ff">10.2</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
-            <span style="color:#960050;background-color:#1e0010">Storage</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">IPv</span><span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">Address</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#ae81ff">10.20</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#ae81ff">10.2</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
-            <span style="color:#960050;background-color:#1e0010">Storage</span><span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">IPv</span><span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">Address</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#ae81ff">10.30</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#ae81ff">10.2</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
-            <span style="color:#960050;background-color:#1e0010">Type</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#960050;background-color:#1e0010">&#39;Compute&#39;</span>
-        }
-    <span style="color:#960050;background-color:#1e0010">)</span>
-<span style="color:#960050;background-color:#1e0010">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="ln"> 1</span><span class="err">$ConfigData</span> <span class="err">=</span> <span class="err">@</span><span class="p">{</span>
+<span class="ln"> 2</span>    <span class="err">AllNodes</span> <span class="err">=</span> <span class="err">@(</span>
+<span class="ln"> 3</span>        <span class="err">@{</span>
+<span class="ln"> 4</span>            <span class="err">NodeName</span> <span class="err">=</span> <span class="err">&#39;*&#39;</span> 
+<span class="ln"> 5</span>            <span class="err">DomainFQDN</span> <span class="err">=</span> <span class="err">&#39;dexter.lab&#39;</span>
+<span class="ln"> 6</span>        <span class="p">}</span><span class="err">,</span>
+<span class="ln"> 7</span>        <span class="err">@</span><span class="p">{</span>
+<span class="ln"> 8</span>            <span class="err">NodeName</span> <span class="err">=</span> <span class="nt">&#34;ComputeNode1&#34;</span>
+<span class="ln"> 9</span>            <span class="err">ManagementIPv</span><span class="mi">4</span><span class="err">Address</span> <span class="err">=</span> <span class="err">&#39;</span><span class="mf">10.10</span><span class="err">.</span><span class="mf">10.1</span><span class="err">&#39;</span>
+<span class="ln">10</span>            <span class="err">Storage</span><span class="mi">1</span><span class="err">IPv</span><span class="mi">4</span><span class="err">Address</span> <span class="err">=</span> <span class="err">&#39;</span><span class="mf">10.20</span><span class="err">.</span><span class="mf">10.1</span><span class="err">&#39;</span>
+<span class="ln">11</span>            <span class="err">Storage</span><span class="mi">2</span><span class="err">IPv</span><span class="mi">4</span><span class="err">Address</span> <span class="err">=</span> <span class="err">&#39;</span><span class="mf">10.30</span><span class="err">.</span><span class="mf">10.1</span><span class="err">&#39;</span>
+<span class="ln">12</span>            <span class="err">Type</span> <span class="err">=</span> <span class="err">&#39;Compute&#39;</span>
+<span class="ln">13</span>        <span class="p">}</span><span class="err">,</span>
+<span class="ln">14</span>        <span class="err">@</span><span class="p">{</span>
+<span class="ln">15</span>            <span class="err">NodeName</span> <span class="err">=</span> <span class="nt">&#34;ComputeNode2&#34;</span>
+<span class="ln">16</span>            <span class="err">ManagementIPv</span><span class="mi">4</span><span class="err">Address</span> <span class="err">=</span> <span class="err">&#39;</span><span class="mf">10.10</span><span class="err">.</span><span class="mf">10.2</span><span class="err">&#39;</span>
+<span class="ln">17</span>            <span class="err">Storage</span><span class="mi">1</span><span class="err">IPv</span><span class="mi">4</span><span class="err">Address</span> <span class="err">=</span> <span class="err">&#39;</span><span class="mf">10.20</span><span class="err">.</span><span class="mf">10.2</span><span class="err">&#39;</span>
+<span class="ln">18</span>            <span class="err">Storage</span><span class="mi">2</span><span class="err">IPv</span><span class="mi">4</span><span class="err">Address</span> <span class="err">=</span> <span class="err">&#39;</span><span class="mf">10.30</span><span class="err">.</span><span class="mf">10.2</span><span class="err">&#39;</span>
+<span class="ln">19</span>            <span class="err">Type</span> <span class="err">=</span> <span class="err">&#39;Compute&#39;</span>
+<span class="ln">20</span>        <span class="p">}</span>
+<span class="ln">21</span>    <span class="err">)</span>
+<span class="ln">22</span><span class="err">}</span>
 </code></pre></div><p>PSRemotely tests, specify CredentialHash and Configuration data to the PSRemotely</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PSRemotely -ConfigurationData $ConfigData -CredentialHash $CredentialHash {
-    Node $AllNodes.Where({$_.Type <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;Compute&#39;</span>}).NodeName {
-        <span style="color:#75715e">#Below are the existing Pester/PoshSpec-based tests, with changes on how node specific data is supplied</span>
-
-        Describe <span style="color:#e6db74">&#39;TestIPConfiguration&#39;</span> -Tag IP {
-            Context <span style="color:#e6db74">&#34;Validate the Management NIC&#34;</span> {
-                    <span style="color:#75715e"># pre-deployment script always creates NICs with these names</span>
-                    IPv4Address <span style="color:#e6db74">&#39;vEthernet(Management)&#39;</span> {Should be  $Node.ManagementIPv4Address}
-            }
-
-            Context <span style="color:#e6db74">&#34;Validate the Storage1 NIC&#34;</span> {
-                IPv4Address <span style="color:#e6db74">&#39;vEthernet(Storage1)&#39;</span> {Should be $Node.Storage1IPv4Address} 
-            }
-
-            Context <span style="color:#e6db74">&#34;Validate the Storage2 NIC&#34;</span> {
-                IPv4Address <span style="color:#e6db74">&#39;vEthernet(Storage2)&#39;</span> {Should be $Node.Storage2IPv4Address}
-            }
-        }       
-	}
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">PSRemotely</span> <span class="n">-ConfigurationData</span> <span class="nv">$ConfigData</span> <span class="n">-CredentialHash</span> <span class="nv">$CredentialHash</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="n">Node</span> <span class="nv">$AllNodes</span><span class="p">.</span><span class="n">Where</span><span class="p">({</span><span class="nv">$_</span><span class="p">.</span><span class="nb">Type </span><span class="o">-eq</span> <span class="s1">&#39;Compute&#39;</span><span class="p">}).</span><span class="n">NodeName</span> <span class="p">{</span>
+<span class="ln"> 3</span>        <span class="c">#Below are the existing Pester/PoshSpec-based tests, with changes on how node specific data is supplied</span>
+<span class="ln"> 4</span>
+<span class="ln"> 5</span>        <span class="n">Describe</span> <span class="s1">&#39;TestIPConfiguration&#39;</span> <span class="n">-Tag</span> <span class="n">IP</span> <span class="p">{</span>
+<span class="ln"> 6</span>            <span class="n">Context</span> <span class="s2">&#34;Validate the Management NIC&#34;</span> <span class="p">{</span>
+<span class="ln"> 7</span>                    <span class="c"># pre-deployment script always creates NICs with these names</span>
+<span class="ln"> 8</span>                    <span class="n">IPv4Address</span> <span class="s1">&#39;vEthernet(Management)&#39;</span> <span class="p">{</span><span class="n">Should</span> <span class="n">be</span>  <span class="nv">$Node</span><span class="p">.</span><span class="n">ManagementIPv4Address</span><span class="p">}</span>
+<span class="ln"> 9</span>            <span class="p">}</span>
+<span class="ln">10</span>
+<span class="ln">11</span>            <span class="n">Context</span> <span class="s2">&#34;Validate the Storage1 NIC&#34;</span> <span class="p">{</span>
+<span class="ln">12</span>                <span class="n">IPv4Address</span> <span class="s1">&#39;vEthernet(Storage1)&#39;</span> <span class="p">{</span><span class="n">Should</span> <span class="n">be</span> <span class="nv">$Node</span><span class="p">.</span><span class="n">Storage1IPv4Address</span><span class="p">}</span> 
+<span class="ln">13</span>            <span class="p">}</span>
+<span class="ln">14</span>
+<span class="ln">15</span>            <span class="n">Context</span> <span class="s2">&#34;Validate the Storage2 NIC&#34;</span> <span class="p">{</span>
+<span class="ln">16</span>                <span class="n">IPv4Address</span> <span class="s1">&#39;vEthernet(Storage2)&#39;</span> <span class="p">{</span><span class="n">Should</span> <span class="n">be</span> <span class="nv">$Node</span><span class="p">.</span><span class="n">Storage2IPv4Address</span><span class="p">}</span>
+<span class="ln">17</span>            <span class="p">}</span>
+<span class="ln">18</span>        <span class="p">}</span>       
+<span class="ln">19</span>	<span class="p">}</span>
+<span class="ln">20</span><span class="p">}</span>
 </code></pre></div><p>After having a clear idea on the features required in the framework and how we wanted the DSL to look like, I started working on it. This post has set up the context on why we began working on something entirely new from scratch.</p>
 <p>Join me in the second post where I try to explain how to use <a href="https://github.com/DexterPOSH/PSRemotely">PSRemotely</a> to target remote nodes for operations validation.</p>
 </div>

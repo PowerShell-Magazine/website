@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Weekly Module Spotlight: Polaris</title>
 
 <meta name="description" content="For the most powerful community">
@@ -215,7 +216,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>2 Min To Read
+              <i class="far fa-clock"></i>3 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>03 Sep, 2019
@@ -236,46 +237,46 @@ if (!doNotTrack) {
           <div class="content"><p>I create HTTP REST APIs a lot in my proof-of-concept work and I generally use the <a href="https://docs.microsoft.com/en-us/dotnet/api/system.net.httplistener?view=netframework-4.8">.NET HTTPListener</a> class for this purpose. Using this class we can create simple and programmatically controlled HTTP listeners. For some quick prototype this totally makes sense as it is inbox and there is no need for any external modules or libraries. However, creating complex endpoints won’t be easy. This is where <a href="https://github.com/PowerShell/Polaris">Polaris</a> plays a role.</p>
 <p>Polaris is a cross-platform, minimalist web framework for PowerShell. This is an experimental module but stable enough to try it out. Before you can try out the examples, install Polaris module from <a href="https://www.powershellgallery.com/packages/Polaris/">PS Gallery</a>.</p>
 <p>Here is a quick example of how we create a HTTP endpoint.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">New-PolarisGetRoute -Path <span style="color:#e6db74">&#34;/helloworld&#34;</span> -Scriptblock {
-    $Response.Send(<span style="color:#e6db74">&#39;Hello World!&#39;</span>)
-}
-
-Start-Polaris
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">New-PolarisGetRoute</span> <span class="n">-Path</span> <span class="s2">&#34;/helloworld&#34;</span> <span class="n">-Scriptblock</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="nv">$Response</span><span class="p">.</span><span class="n">Send</span><span class="p">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
+<span class="ln">3</span><span class="p">}</span>
+<span class="ln">4</span>
+<span class="ln">5</span><span class="nb">Start-Polaris</span>
 </code></pre></div><p>Once these commands are executed, if you access http://localhost:8080/helloworld in a browser, you will see ‘Hello World!’ returned as response. In the above example, there is just one endpoint or route. This implements HTTP GET method. Whenever this route gets accessed, the PowerShell commands specified as an argument to <em>-Scriptblock</em> parameter gets invoked. In this example, we are just using the <em>$Response</em> automatic variable that Polaris provides and use the <em>.Send()</em> method to send the response back to browser.</p>
 <p>Similar to this, you can create other HTTP routes as well for POST, PUT, DELETE, and so on. In the next example, you will see how we can combine what <a href="https://www.powershellmagazine.com/2019/08/21/weekly-module-spotlight-pshtml/">PSHTML provides with Polaris</a>.</p>
 <p>Save the following script as content.ps1 in a folder of your choice.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">html {
-    head {
-        title <span style="color:#e6db74">&#34;Example 2&#34;</span>
-    }
-    
-    body {
-        h1 {<span style="color:#e6db74">&#34;This is just an example of using PSHTML as view engine for Polaris&#34;</span>}
-    
-        $Languages = @(<span style="color:#e6db74">&#34;PowerShell&#34;</span>,<span style="color:#e6db74">&#34;Python&#34;</span>,<span style="color:#e6db74">&#34;CSharp&#34;</span>,<span style="color:#e6db74">&#34;Bash&#34;</span>)
-    
-        <span style="color:#e6db74">&#34;My Favorite language are:&#34;</span>
-        ul{
-          <span style="color:#66d9ef">foreach</span>($language <span style="color:#66d9ef">in</span> $Languages){
-               li {
-                    $Language
-               }
-           }
-        }
-    }
-    
-    Footer {
-        h6 <span style="color:#e6db74">&#34;This is h1 Title in Footer&#34;</span>
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">html</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="n">head</span> <span class="p">{</span>
+<span class="ln"> 3</span>        <span class="n">title</span> <span class="s2">&#34;Example 2&#34;</span>
+<span class="ln"> 4</span>    <span class="p">}</span>
+<span class="ln"> 5</span>    
+<span class="ln"> 6</span>    <span class="n">body</span> <span class="p">{</span>
+<span class="ln"> 7</span>        <span class="n">h1</span> <span class="p">{</span><span class="s2">&#34;This is just an example of using PSHTML as view engine for Polaris&#34;</span><span class="p">}</span>
+<span class="ln"> 8</span>    
+<span class="ln"> 9</span>        <span class="nv">$Languages</span> <span class="p">=</span> <span class="p">@(</span><span class="s2">&#34;PowerShell&#34;</span><span class="p">,</span><span class="s2">&#34;Python&#34;</span><span class="p">,</span><span class="s2">&#34;CSharp&#34;</span><span class="p">,</span><span class="s2">&#34;Bash&#34;</span><span class="p">)</span>
+<span class="ln">10</span>    
+<span class="ln">11</span>        <span class="s2">&#34;My Favorite language are:&#34;</span>
+<span class="ln">12</span>        <span class="n">ul</span><span class="p">{</span>
+<span class="ln">13</span>          <span class="k">foreach</span><span class="p">(</span><span class="nv">$language</span> <span class="k">in</span> <span class="nv">$Languages</span><span class="p">){</span>
+<span class="ln">14</span>               <span class="n">li</span> <span class="p">{</span>
+<span class="ln">15</span>                    <span class="nv">$Language</span>
+<span class="ln">16</span>               <span class="p">}</span>
+<span class="ln">17</span>           <span class="p">}</span>
+<span class="ln">18</span>        <span class="p">}</span>
+<span class="ln">19</span>    <span class="p">}</span>
+<span class="ln">20</span>    
+<span class="ln">21</span>    <span class="n">Footer</span> <span class="p">{</span>
+<span class="ln">22</span>        <span class="n">h6</span> <span class="s2">&#34;This is h1 Title in Footer&#34;</span>
+<span class="ln">23</span>    <span class="p">}</span>
+<span class="ln">24</span><span class="p">}</span>
 </code></pre></div><p>The following script is the route that we need to create for displaying the HTML content from the above script.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">New-PolarisGetRoute -Path <span style="color:#e6db74">&#34;/languages&#34;</span> -Scriptblock {
-    $response.SetContentType(<span style="color:#e6db74">&#39;text/html&#39;</span>)
-    $html = . <span style="color:#e6db74">&#34;C:\scripts\content.ps1&#34;</span>
-    $response.Send($html)
-}
-
-Start-Polaris -Port 8080
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">New-PolarisGetRoute</span> <span class="n">-Path</span> <span class="s2">&#34;/languages&#34;</span> <span class="n">-Scriptblock</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="nv">$response</span><span class="p">.</span><span class="n">SetContentType</span><span class="p">(</span><span class="s1">&#39;text/html&#39;</span><span class="p">)</span>
+<span class="ln">3</span>    <span class="nv">$html</span> <span class="p">=</span> <span class="p">.</span> <span class="s2">&#34;C:\scripts\content.ps1&#34;</span>
+<span class="ln">4</span>    <span class="nv">$response</span><span class="p">.</span><span class="n">Send</span><span class="p">(</span><span class="nv">$html</span><span class="p">)</span>
+<span class="ln">5</span><span class="p">}</span>
+<span class="ln">6</span>
+<span class="ln">7</span><span class="nb">Start-Polaris</span> <span class="n">-Port</span> <span class="n">8080</span>
 </code></pre></div><p>Once you start Polaris and load the routes, you can access http://localhost:8080 to see the content generated from a PS1 script. It should be like this!</p>
 <p><img src="/images/polaris1.png" alt="image"></p>
 <p>Hope you got a hang of what you can achieve with PSHTML and Polaris combined. I have built dashboards with simply this combination and nothing more. In the future posts, I will show one such example from my demo at PowerShell Conference Europe 2019.</p>

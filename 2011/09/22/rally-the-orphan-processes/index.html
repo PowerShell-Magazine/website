@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Rally the orphan processes</title>
 
 <meta name="description" content="For the most powerful community">
@@ -215,7 +216,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>4 Min To Read
+              <i class="far fa-clock"></i>5 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>22 Sep, 2011
@@ -244,72 +245,72 @@ if (!doNotTrack) {
 </ul>
 <p>Finally, any process object that goes through the filter is piped and bound to the Get-Process cmdlet via its ProcessID value. This way we have the list of orphan System.Diagnostics.Process objects.</p>
 <p>Here is the Get-OrphanProcess script:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># WMI class instace to convert WMI time to DateTime</span>
-$wmi = <span style="color:#66d9ef">[WMI]</span>
-
-<span style="color:#75715e"># retrieve and filter running processes</span>
-Get-WmiObject Win32_Process | Where-Object {
-    <span style="color:#75715e"># attempt to retrieve the piped process&#39; parent process</span>
-    $parent = Get-WmiObject Win32_Process -Filter <span style="color:#e6db74">&#34;ProcessID=&#39;</span>$($_.ParentProcessID)<span style="color:#e6db74">&#39;&#34;</span>
-
-    <span style="color:#75715e"># get the piped process, as well as its parent&#39;s, creation time</span>
-    $creationDate, $parentCreationDate = $(
-        <span style="color:#75715e"># if piped process has a parent and its parent is running</span>
-        <span style="color:#66d9ef">if</span> ($_.ParentProcessID <span style="color:#f92672">-and</span> $parent)
-        {
-            <span style="color:#75715e"># convert their the WMI creation time to DateTime</span>
-            $wmi.ConvertToDateTime($_.CreationDate),$wmi.ConvertToDateTime($parent.CreationDate)
-
-        }
-        <span style="color:#66d9ef">else</span>
-        {
-            <span style="color:#75715e"># return Null</span>
-            $null, $null
-        }
-    )
-    
-    <span style="color:#75715e"># filter piped process through if its parent process is not running or</span>
-    <span style="color:#75715e"># its creation time happened before the parent process was started</span>
-    <span style="color:#f92672">-not</span> $parent <span style="color:#f92672">-or</span> $creationDate <span style="color:#f92672">-lt</span> $parentCreationDate
-
-    <span style="color:#75715e"># pipe the filtered process to Get-Process binding it via its ProcessID</span>
-} | Get-Process -ID { $_.ProcessID}
-
-<span style="color:#75715e"># clean up</span>
-Remove-Variable wmi, parent,creationDate, parentCreationDate
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="c"># WMI class instace to convert WMI time to DateTime</span>
+<span class="ln"> 2</span><span class="nv">$wmi</span> <span class="p">=</span> <span class="no">[WMI]</span>
+<span class="ln"> 3</span>
+<span class="ln"> 4</span><span class="c"># retrieve and filter running processes</span>
+<span class="ln"> 5</span><span class="nb">Get-WmiObject</span> <span class="n">Win32_Process</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span>
+<span class="ln"> 6</span>    <span class="c"># attempt to retrieve the piped process&#39; parent process</span>
+<span class="ln"> 7</span>    <span class="nv">$parent</span> <span class="p">=</span> <span class="nb">Get-WmiObject</span> <span class="n">Win32_Process</span> <span class="n">-Filter</span> <span class="s2">&#34;ProcessID=&#39;</span><span class="p">$(</span><span class="nv">$_</span><span class="p">.</span><span class="n">ParentProcessID</span><span class="p">)</span><span class="s2">&#39;&#34;</span>
+<span class="ln"> 8</span>
+<span class="ln"> 9</span>    <span class="c"># get the piped process, as well as its parent&#39;s, creation time</span>
+<span class="ln">10</span>    <span class="nv">$creationDate</span><span class="p">,</span> <span class="nv">$parentCreationDate</span> <span class="p">=</span> <span class="p">$(</span>
+<span class="ln">11</span>        <span class="c"># if piped process has a parent and its parent is running</span>
+<span class="ln">12</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$_</span><span class="p">.</span><span class="n">ParentProcessID</span> <span class="o">-and</span> <span class="nv">$parent</span><span class="p">)</span>
+<span class="ln">13</span>        <span class="p">{</span>
+<span class="ln">14</span>            <span class="c"># convert their the WMI creation time to DateTime</span>
+<span class="ln">15</span>            <span class="nv">$wmi</span><span class="p">.</span><span class="n">ConvertToDateTime</span><span class="p">(</span><span class="nv">$_</span><span class="p">.</span><span class="n">CreationDate</span><span class="p">),</span><span class="nv">$wmi</span><span class="p">.</span><span class="n">ConvertToDateTime</span><span class="p">(</span><span class="nv">$parent</span><span class="p">.</span><span class="n">CreationDate</span><span class="p">)</span>
+<span class="ln">16</span>
+<span class="ln">17</span>        <span class="p">}</span>
+<span class="ln">18</span>        <span class="k">else</span>
+<span class="ln">19</span>        <span class="p">{</span>
+<span class="ln">20</span>            <span class="c"># return Null</span>
+<span class="ln">21</span>            <span class="nv">$null</span><span class="p">,</span> <span class="nv">$null</span>
+<span class="ln">22</span>        <span class="p">}</span>
+<span class="ln">23</span>    <span class="p">)</span>
+<span class="ln">24</span>    
+<span class="ln">25</span>    <span class="c"># filter piped process through if its parent process is not running or</span>
+<span class="ln">26</span>    <span class="c"># its creation time happened before the parent process was started</span>
+<span class="ln">27</span>    <span class="o">-not</span> <span class="nv">$parent</span> <span class="o">-or</span> <span class="nv">$creationDate</span> <span class="o">-lt</span> <span class="nv">$parentCreationDate</span>
+<span class="ln">28</span>
+<span class="ln">29</span>    <span class="c"># pipe the filtered process to Get-Process binding it via its ProcessID</span>
+<span class="ln">30</span><span class="p">}</span> <span class="p">|</span> <span class="nb">Get-Process</span> <span class="n">-ID</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">ProcessID</span><span class="p">}</span>
+<span class="ln">31</span>
+<span class="ln">32</span><span class="c"># clean up</span>
+<span class="ln">33</span><span class="nb">Remove-Variable</span> <span class="n">wmi</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span><span class="n">creationDate</span><span class="p">,</span> <span class="n">parentCreationDate</span>
 </code></pre></div><p>Now that we have a list of <em>the</em> <em>orphan ones</em>, we can filter further and do with them what we find appropriate. To kill or not to kill, that is the question.</p>
 <p>Let me demonstrate. Let’s suppose the Get-OrphanProcess.ps1 script is located in C:\Scripts (it could be anywhere, really, just change the call to the script in the sample code accordingly); we will use it to retrieve an <em>orphan calc process</em> we will start from a non-interactive PowerShell session that will also output its process ID before it exits. Here is the code and the output it returned. Try it!</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">&amp; {
-    $VerbosePreference = <span style="color:#e6db74">&#39;Continue&#39;</span>
-    Stop-Process -Name calc -ErrorAction SilentlyContinue
-    $parentProcessId = PowerShell -NoProfile -NonInteractive -Command {$pid; Start-Process -FilePath calc.exe}
-    $orphanCalcId = (Get-Process -Name calc).Id
-    $orphanCalcParentId = (Get-WmiObject Win32_Process -Filter <span style="color:#e6db74">&#34;ProcessID = &#39;&#39;$orphanCalcId&#39;&#34;</span>).ParentProcessID
-    Write-Verbose <span style="color:#e6db74">&#34;Parent or spawner process ID: $parentProcessId&#34;</span>
-    Write-Verbose <span style="color:#e6db74">&#34;Orphan calc&#39;s parent process ID: $orphanCalcParentId&#34;</span>
-    Write-Verbose <span style="color:#e6db74">&#34;Are they equal?’ </span>$($parentProcessId <span style="color:#f92672">-eq</span> $orphanCalcParentId)<span style="color:#e6db74">&#34;</span>
-    Write-Verbose <span style="color:#e6db74">&#34;Orphan calc&#39;s process ID: $orphanCalcId&#34;</span>
-    Write-Verbose <span style="color:#e6db74">&#39;Starting another calc process&#39;</span>
-    Start-Process -FilePath calc.exe
-    Write-Verbose <span style="color:#e6db74">&#39;Here are the running calc processes. One is an orphan process.&#39;</span>
-    Get-Process -Name calc
-    Write-Verbose <span style="color:#e6db74">&#39;Here is the orphan calc process.&#39;</span>
-    C:\Scripts\Get-OrphanProcess.ps1 | Where-Object {$_.ProcessName <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#39;calc&#39;</span>}
-}
-
-VERBOSE<span style="color:#960050;background-color:#1e0010">:</span> Parent or spawner <span style="color:#66d9ef">process</span> ID<span style="color:#960050;background-color:#1e0010">:</span> 7448
-VERBOSE<span style="color:#960050;background-color:#1e0010">:</span> Orphan calc<span style="color:#e6db74">&#39;s parent process ID: 7448
-</span><span style="color:#e6db74">VERBOSE: Are they equal?&#39;</span> True
-VERBOSE<span style="color:#960050;background-color:#1e0010">:</span> Orphan calc<span style="color:#960050;background-color:#1e0010">&#39;</span>s <span style="color:#66d9ef">process</span> ID<span style="color:#960050;background-color:#1e0010">:</span> 2312
-VERBOSE<span style="color:#960050;background-color:#1e0010">:</span> Starting another calc <span style="color:#66d9ef">process</span>
-VERBOSE<span style="color:#960050;background-color:#1e0010">:</span> Here are the running calc processes. One is an orphan <span style="color:#66d9ef">process</span>.
-Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id ProcessName
--------  ------    -----      ----- -----   ------     -- -----------
-      69      14     6860      12132    85     0.03   2312 calc      
-      38       6     1584       3388    60     0.02   3116 calc 
-      
-VERBOSE<span style="color:#960050;background-color:#1e0010">:</span> Here is the orphan calc <span style="color:#66d9ef">process</span>.
-      74      19     7344      13628    83     0.05   2312 calc
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="p">&amp;</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="nv">$VerbosePreference</span> <span class="p">=</span> <span class="s1">&#39;Continue&#39;</span>
+<span class="ln"> 3</span>    <span class="nb">Stop-Process</span> <span class="n">-Name</span> <span class="n">calc</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
+<span class="ln"> 4</span>    <span class="nv">$parentProcessId</span> <span class="p">=</span> <span class="n">PowerShell</span> <span class="n">-NoProfile</span> <span class="n">-NonInteractive</span> <span class="n">-Command</span> <span class="p">{</span><span class="nv">$pid</span><span class="p">;</span> <span class="nb">Start-Process</span> <span class="n">-FilePath</span> <span class="n">calc</span><span class="p">.</span><span class="n">exe</span><span class="p">}</span>
+<span class="ln"> 5</span>    <span class="nv">$orphanCalcId</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Get-Process</span> <span class="n">-Name</span> <span class="n">calc</span><span class="p">).</span><span class="n">Id</span>
+<span class="ln"> 6</span>    <span class="nv">$orphanCalcParentId</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Get-WmiObject</span> <span class="n">Win32_Process</span> <span class="n">-Filter</span> <span class="s2">&#34;ProcessID = &#39;&#39;$orphanCalcId&#39;&#34;</span><span class="p">).</span><span class="n">ParentProcessID</span>
+<span class="ln"> 7</span>    <span class="nb">Write-Verbose</span> <span class="s2">&#34;Parent or spawner process ID: $parentProcessId&#34;</span>
+<span class="ln"> 8</span>    <span class="nb">Write-Verbose</span> <span class="s2">&#34;Orphan calc&#39;s parent process ID: $orphanCalcParentId&#34;</span>
+<span class="ln"> 9</span>    <span class="nb">Write-Verbose</span> <span class="s2">&#34;Are they equal?’ </span><span class="p">$(</span><span class="nv">$parentProcessId</span> <span class="o">-eq</span> <span class="nv">$orphanCalcParentId</span><span class="p">)</span><span class="s2">&#34;</span>
+<span class="ln">10</span>    <span class="nb">Write-Verbose</span> <span class="s2">&#34;Orphan calc&#39;s process ID: $orphanCalcId&#34;</span>
+<span class="ln">11</span>    <span class="nb">Write-Verbose</span> <span class="s1">&#39;Starting another calc process&#39;</span>
+<span class="ln">12</span>    <span class="nb">Start-Process</span> <span class="n">-FilePath</span> <span class="n">calc</span><span class="p">.</span><span class="n">exe</span>
+<span class="ln">13</span>    <span class="nb">Write-Verbose</span> <span class="s1">&#39;Here are the running calc processes. One is an orphan process.&#39;</span>
+<span class="ln">14</span>    <span class="nb">Get-Process</span> <span class="n">-Name</span> <span class="n">calc</span>
+<span class="ln">15</span>    <span class="nb">Write-Verbose</span> <span class="s1">&#39;Here is the orphan calc process.&#39;</span>
+<span class="ln">16</span>    <span class="n">C:</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="nb">Get-OrphanProcess</span><span class="p">.</span><span class="n">ps1</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">ProcessName</span> <span class="o">-eq</span> <span class="s1">&#39;calc&#39;</span><span class="p">}</span>
+<span class="ln">17</span><span class="p">}</span>
+<span class="ln">18</span>
+<span class="ln">19</span><span class="n">VERBOSE</span><span class="err">:</span> <span class="n">Parent</span> <span class="n">or</span> <span class="n">spawner</span> <span class="k">process</span> <span class="n">ID</span><span class="err">:</span> <span class="n">7448</span>
+<span class="ln">20</span><span class="n">VERBOSE</span><span class="err">:</span> <span class="n">Orphan</span> <span class="n">calc</span><span class="s1">&#39;s parent process ID: 7448
+</span><span class="ln">21</span><span class="s1">VERBOSE: Are they equal?&#39;</span> <span class="n">True</span>
+<span class="ln">22</span><span class="n">VERBOSE</span><span class="err">:</span> <span class="n">Orphan</span> <span class="n">calc</span><span class="err">&#39;</span><span class="n">s</span> <span class="k">process</span> <span class="n">ID</span><span class="err">:</span> <span class="n">2312</span>
+<span class="ln">23</span><span class="n">VERBOSE</span><span class="err">:</span> <span class="n">Starting</span> <span class="n">another</span> <span class="n">calc</span> <span class="k">process</span>
+<span class="ln">24</span><span class="n">VERBOSE</span><span class="err">:</span> <span class="n">Here</span> <span class="n">are</span> <span class="n">the</span> <span class="n">running</span> <span class="n">calc</span> <span class="n">processes</span><span class="p">.</span> <span class="n">One</span> <span class="n">is</span> <span class="n">an</span> <span class="n">orphan</span> <span class="k">process</span><span class="p">.</span>
+<span class="ln">25</span><span class="n">Handles</span>  <span class="n">NPM</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>    <span class="n">PM</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>      <span class="n">WS</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="n">VM</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>   <span class="n">CPU</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>     <span class="n">Id</span> <span class="n">ProcessName</span>
+<span class="ln">26</span><span class="p">-------</span>  <span class="p">------</span>    <span class="p">-----</span>      <span class="p">-----</span> <span class="p">-----</span>   <span class="p">------</span>     <span class="p">--</span> <span class="p">-----------</span>
+<span class="ln">27</span>      <span class="n">69</span>      <span class="n">14</span>     <span class="n">6860</span>      <span class="n">12132</span>    <span class="n">85</span>     <span class="n">0</span><span class="p">.</span><span class="n">03</span>   <span class="n">2312</span> <span class="n">calc</span>      
+<span class="ln">28</span>      <span class="n">38</span>       <span class="n">6</span>     <span class="n">1584</span>       <span class="n">3388</span>    <span class="n">60</span>     <span class="n">0</span><span class="p">.</span><span class="n">02</span>   <span class="n">3116</span> <span class="n">calc</span> 
+<span class="ln">29</span>      
+<span class="ln">30</span><span class="n">VERBOSE</span><span class="err">:</span> <span class="n">Here</span> <span class="n">is</span> <span class="n">the</span> <span class="n">orphan</span> <span class="n">calc</span> <span class="k">process</span><span class="p">.</span>
+<span class="ln">31</span>      <span class="n">74</span>      <span class="n">19</span>     <span class="n">7344</span>      <span class="n">13628</span>    <span class="n">83</span>     <span class="n">0</span><span class="p">.</span><span class="n">05</span>   <span class="n">2312</span> <span class="n">calc</span>
 </code></pre></div></div>
         </article>
         

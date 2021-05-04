@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Using PowerShell for generating dynamic folders in Royal TS</title>
 
 <meta name="description" content="For the most powerful community">
@@ -259,24 +260,24 @@ _ – If checked, Royal TS will save (cache) the contents of this dynamic folder
 </ul>
 <p>By default, none of the two options is enabled.</p>
 <p>In order to populate the dynamic folder with our own data using PowerShell, we can build custom objects with the necessary properties:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">[PSCustomObject]</span>@{
-        Name                   = $PSItem.Name
-        Type                   = <span style="color:#e6db74">&#39;RemoteDesktopConnection&#39;</span>
-        ComputerName           = $PSItem.Name
-        CredentialName         = <span style="color:#e6db74">&#39;DOMAIN\username&#39;</span>
-        Path                   = MySubfolder
-    }
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="no">[PSCustomObject]</span><span class="p">@{</span>
+<span class="ln">2</span>        <span class="n">Name</span>                   <span class="p">=</span> <span class="nv">$PSItem</span><span class="p">.</span><span class="n">Name</span>
+<span class="ln">3</span>        <span class="nb">Type </span>                  <span class="p">=</span> <span class="s1">&#39;RemoteDesktopConnection&#39;</span>
+<span class="ln">4</span>        <span class="n">ComputerName</span>           <span class="p">=</span> <span class="nv">$PSItem</span><span class="p">.</span><span class="n">Name</span>
+<span class="ln">5</span>        <span class="n">CredentialName</span>         <span class="p">=</span> <span class="s1">&#39;DOMAIN\username&#39;</span>
+<span class="ln">6</span>        <span class="n">Path</span>                   <span class="p">=</span> <span class="n">MySubfolder</span>
+<span class="ln">7</span>    <span class="p">}</span>
 </code></pre></div><p>This example creates an object to be used with a Remote Desktop Connection. If you want to build other connection types, see the documentation for <a href="https://support.royalapplications.com/support/solutions/articles/17000070210">RoyalJSON and Dynamic Folders</a>.</p>
 <p>Next, we need to put all the objects we have created in a hash table called ‘Objects’, as this is what the RoyalJSON format expects:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$RoyalTSObjects = @{}
-$null = $RoyalTSObjects.Add(<span style="color:#e6db74">&#39;Objects&#39;</span>,$Servers)
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$RoyalTSObjects</span> <span class="p">=</span> <span class="p">@{}</span>
+<span class="ln">2</span><span class="nv">$null</span> <span class="p">=</span> <span class="nv">$RoyalTSObjects</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;Objects&#39;</span><span class="p">,</span><span class="nv">$Servers</span><span class="p">)</span>
 </code></pre></div><p>The final piece is to convert the hash table to JSON format, which is very convenient to do in PowerShell:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$RoyalTSObjects | ConvertTo-Json
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$RoyalTSObjects</span> <span class="p">|</span> <span class="nb">ConvertTo-Json</span>
 </code></pre></div><p>As you can see, for a PowerShell user it is very straightforward to build a script for dynamically populating a folder with connection objects in Royal TS.</p>
 <p>We can populate it with any data we can retrieve from PowerShell.</p>
 <p>We will start by looking at an example on how to accomplish this using Active Directory as the data source.</p>
 <p>You need to install Remote Server Administration Tools (RSAT) in order to leverage the Active Directory module for PowerShell from a workstation. Starting with Windows 10 October 2018 Update, RSAT is included as a set of “Features on Demand” in Windows 10 itself. From PowerShell, it can be installed using this command:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Add-WindowsCapability -Online -Name Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Add-WindowsCapability</span> <span class="n">-Online</span> <span class="n">-Name</span> <span class="n">Rsat</span><span class="p">.</span><span class="n">ActiveDirectory</span><span class="p">.</span><span class="n">DS-LDS</span><span class="p">.</span><span class="n">Tools</span><span class="p">~~~~</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>
 </code></pre></div><p>A Royal TS community member has created a <a href="https://www.youtube.com/watch?v=pKurlGhMfoQ">YouTube video</a> explaining more details about retrieving data from Active Directory for building a dynamic folder in Royal TS, such as building the Dynamic Folder sub folder structure based on the Organizational Unit structure the computer objects is retrieved from.</p>
 <p>You can use your existing skills for retrieving the computer accounts you want from Active Directory. I am re-using an existing function I have created called Get-ServerFromAD. This will retrieve computer accounts with an operating system name starting with Windows Server*, exclude Cluster Name Objects and include computer accounts which have logged on during the last number of days specified (30 is the default).</p>
 <p>You can find the complete script <a href="https://github.com/janegilring/PSCommunity/blob/master/Royal%20TS/Dynamic%20Folder%20Scripts/Get-ServerFromAD.ps1">here</a>.</p>

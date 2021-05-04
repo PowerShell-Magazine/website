@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Containerizing a web application</title>
 
 <meta name="description" content="For the most powerful community">
@@ -319,36 +320,36 @@ if (!doNotTrack) {
 <p>Next, we are downloading and installing the .NET Core Windows Server Hosting bundle like we did when running the application on a native operating system.</p>
 <p>PowerShellGet is used to download the UniversalDashboard module.</p>
 <p>The last step is to copy the dashboard.ps1 and licence.lic files as well as exposing the port the website is running on.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">cd <span style="color:#e6db74">&#34;~\Git\PSCommunity\Containers\PowerShell Universal Dashboard&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">cd </span><span class="s2">&#34;~\Git\PSCommunity\Containers\PowerShell Universal Dashboard&#34;</span>
 </code></pre></div><blockquote>
 <p>Note: Remember to switch to Windows Containers before building the docker file (Linux is the default after installing Docker for Windows)</p>
 </blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">docker build WindowsServerCoreDemoWebsite -t psmag<span style="color:#960050;background-color:#1e0010">:</span>demowebsite --no-cache
-docker build NanoDemoWebsite -t psmag<span style="color:#960050;background-color:#1e0010">:</span>nanodemowebsite --no-cache
-
-<span style="color:#75715e">#region 1 Windows Server Core</span>
-$ContainerID = docker run -d --rm psmag<span style="color:#960050;background-color:#1e0010">:</span>demowebsite
-$ContainerIP = docker inspect <span style="color:#f92672">-f</span> <span style="color:#e6db74">&#34;{{ .NetworkSettings.Networks.nat.IPAddress }}&#34;</span> $ContainerID
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">docker</span> <span class="n">build</span> <span class="n">WindowsServerCoreDemoWebsite</span> <span class="n">-t</span> <span class="n">psmag</span><span class="err">:</span><span class="n">demowebsite</span> <span class="p">-</span><span class="n">-no-cache</span>
+<span class="ln">2</span><span class="n">docker</span> <span class="n">build</span> <span class="n">NanoDemoWebsite</span> <span class="n">-t</span> <span class="n">psmag</span><span class="err">:</span><span class="n">nanodemowebsite</span> <span class="p">-</span><span class="n">-no-cache</span>
+<span class="ln">3</span>
+<span class="ln">4</span><span class="c">#region 1 Windows Server Core</span>
+<span class="ln">5</span><span class="nv">$ContainerID</span> <span class="p">=</span> <span class="n">docker</span> <span class="n">run</span> <span class="n">-d</span> <span class="p">-</span><span class="n">-rm</span> <span class="n">psmag</span><span class="err">:</span><span class="n">demowebsite</span>
+<span class="ln">6</span><span class="nv">$ContainerIP</span> <span class="p">=</span> <span class="n">docker</span> <span class="n">inspect</span> <span class="o">-f</span> <span class="s2">&#34;{{ .NetworkSettings.Networks.nat.IPAddress }}&#34;</span> <span class="nv">$ContainerID</span>
 </code></pre></div><p>Verify that the website is up and running.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Start-Process -FilePath iexplore.exe -ArgumentList http<span style="color:#960050;background-color:#1e0010">:</span>//$ContainerIP/register/123
-Start-Process -FilePath chrome.exe -ArgumentList http<span style="color:#960050;background-color:#1e0010">:</span>//$ContainerIP/register/123
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Start-Process</span> <span class="n">-FilePath</span> <span class="n">iexplore</span><span class="p">.</span><span class="n">exe</span> <span class="n">-ArgumentList</span> <span class="n">http</span><span class="err">:</span><span class="p">//</span><span class="nv">$ContainerIP</span><span class="p">/</span><span class="n">register</span><span class="p">/</span><span class="n">123</span>
+<span class="ln">2</span><span class="nb">Start-Process</span> <span class="n">-FilePath</span> <span class="n">chrome</span><span class="p">.</span><span class="n">exe</span> <span class="n">-ArgumentList</span> <span class="n">http</span><span class="err">:</span><span class="p">//</span><span class="nv">$ContainerIP</span><span class="p">/</span><span class="n">register</span><span class="p">/</span><span class="n">123</span>
 </code></pre></div><p>Optionally, connect to a container instance interactively to inspect the environment. The IIS image have a service monitor as an entrypint, thus we need to override this to get into the container interactively</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">docker run --entrypoint=powershell -it psmag<span style="color:#960050;background-color:#1e0010">:</span>demowebsite
-
-docker stop $ContainerID
-
-<span style="color:#75715e">#endregion</span>
-
-<span style="color:#75715e">#region 2 Nano Server 1709</span>
-$ContainerID = docker run -d --rm psmag<span style="color:#960050;background-color:#1e0010">:</span>nanodemowebsite
-$ContainerIP = docker inspect <span style="color:#f92672">-f</span> <span style="color:#e6db74">&#34;{{ .NetworkSettings.Networks.nat.IPAddress }}&#34;</span> $ContainerID
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">docker</span> <span class="n">run</span> <span class="p">-</span><span class="n">-entrypoint</span><span class="p">=</span><span class="n">powershell</span> <span class="n">-it</span> <span class="n">psmag</span><span class="err">:</span><span class="n">demowebsite</span>
+<span class="ln">2</span>
+<span class="ln">3</span><span class="n">docker</span> <span class="n">stop</span> <span class="nv">$ContainerID</span>
+<span class="ln">4</span>
+<span class="ln">5</span><span class="c">#endregion</span>
+<span class="ln">6</span>
+<span class="ln">7</span><span class="c">#region 2 Nano Server 1709</span>
+<span class="ln">8</span><span class="nv">$ContainerID</span> <span class="p">=</span> <span class="n">docker</span> <span class="n">run</span> <span class="n">-d</span> <span class="p">-</span><span class="n">-rm</span> <span class="n">psmag</span><span class="err">:</span><span class="n">nanodemowebsite</span>
+<span class="ln">9</span><span class="nv">$ContainerIP</span> <span class="p">=</span> <span class="n">docker</span> <span class="n">inspect</span> <span class="o">-f</span> <span class="s2">&#34;{{ .NetworkSettings.Networks.nat.IPAddress }}&#34;</span> <span class="nv">$ContainerID</span>
 </code></pre></div><p>Verify that the website is up and running.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Start-Process -FilePath iexplore.exe -ArgumentList http<span style="color:#960050;background-color:#1e0010">:</span>//$ContainerIP/register/123
-Start-Process -FilePath chrome.exe -ArgumentList http<span style="color:#960050;background-color:#1e0010">:</span>//$ContainerIP/register/123
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Start-Process</span> <span class="n">-FilePath</span> <span class="n">iexplore</span><span class="p">.</span><span class="n">exe</span> <span class="n">-ArgumentList</span> <span class="n">http</span><span class="err">:</span><span class="p">//</span><span class="nv">$ContainerIP</span><span class="p">/</span><span class="n">register</span><span class="p">/</span><span class="n">123</span>
+<span class="ln">2</span><span class="nb">Start-Process</span> <span class="n">-FilePath</span> <span class="n">chrome</span><span class="p">.</span><span class="n">exe</span> <span class="n">-ArgumentList</span> <span class="n">http</span><span class="err">:</span><span class="p">//</span><span class="nv">$ContainerIP</span><span class="p">/</span><span class="n">register</span><span class="p">/</span><span class="n">123</span>
 </code></pre></div><p>Optionally, connect to the container instance interactively to inspect the environment</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">docker exec -ti $ContainerID pwsh <span style="color:#75715e">#pwsh for Nano/powershell for Server Core</span>
-docker stop $ContainerID
-<span style="color:#75715e">#endregion</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">docker</span> <span class="n">exec</span> <span class="n">-ti</span> <span class="nv">$ContainerID</span> <span class="n">pwsh</span> <span class="c">#pwsh for Nano/powershell for Server Core</span>
+<span class="ln">2</span><span class="n">docker</span> <span class="n">stop</span> <span class="nv">$ContainerID</span>
+<span class="ln">3</span><span class="c">#endregion</span>
 </code></pre></div><p>When the Dockerfile is ready, we can user docker.exe to build a container image (line 4-5).</p>
 <p>When the image is successfully built, we are ready to test it by starting a container instance using our new image (line 8).</p>
 <p>If you have made modifications to dashboard.ps1 or simply want the latest version of the UniversalDashboard module, re-run the docker build command and the image will be updated with any changes.</p>

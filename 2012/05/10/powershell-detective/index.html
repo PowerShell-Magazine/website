@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>PowerShell Detective</title>
 
 <meta name="description" content="For the most powerful community">
@@ -259,83 +260,83 @@ if (!doNotTrack) {
 <li>pick up expression from pipeline, to support easy injection of previously run commands</li>
 </ul>
 <p>I also decided that I’m fine with chopping off some other options that I hardly use (but it should not be hard to implement them later) like listener options. No more silence when you specify wrong name and no more silence when you forget to select listener. Also, pure traces without some commands output mixed here and there. So here you go, early beta of PowerShell Detective module. 😉</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> Trace-Expression {
-  [<span style="color:#66d9ef">CmdletBinding</span>(DefaultParameterSetName = <span style="color:#e6db74">&#39;Host&#39;</span>)]
-  <span style="color:#66d9ef">param</span> (
-    <span style="color:#75715e"># ScriptBlock that will be traced</span>
-	[<span style="color:#66d9ef">Parameter</span>(
-		<span style="color:#66d9ef">ValueFromPipeline</span> = $true,
-		<span style="color:#66d9ef">Mandatory</span> = $true,
-		<span style="color:#66d9ef">HelpMessage</span> = <span style="color:#e6db74">&#39;Expression to be traced&#39;</span>
-	)]
-	<span style="color:#66d9ef">[ScriptBlock]</span>$Expression,
-
-	<span style="color:#75715e"># Name of the Trace Source(s) to be traced</span>
-    [<span style="color:#66d9ef">Parameter</span>(
-        <span style="color:#66d9ef">Mandatory</span> = $true,
-        <span style="color:#66d9ef">HelpMessage</span> = <span style="color:#e6db74">&#39;Name of trace, see Get-TraceSource for valid values&#39;</span>
-    )]
-    [ValidateScript({
-        Get-TraceSource -Name $_ -ErrorAction Stop
-    })]
-    <span style="color:#66d9ef">[string[]]</span>$Name,
-
-	<span style="color:#75715e"># Option to leave only trace information</span>
-	<span style="color:#75715e"># without actual expression results.</span>
-	<span style="color:#66d9ef">[switch]</span>$Quiet,
-
-	<span style="color:#75715e"># Path to file. If specified - trace will be sent to file instead of host.</span>
-    [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">ParameterSetName</span> = <span style="color:#e6db74">&#39;File&#39;</span>)]
-    [ValidateScript({
-        Test-Path $_ -IsValid
-    })]
-    <span style="color:#66d9ef">[string]</span>$FilePath
-  )
-
-  <span style="color:#66d9ef">begin</span> {
-    <span style="color:#66d9ef">if</span> ($FilePath) {
-        <span style="color:#75715e"># assume we want to overwrite trace file</span>
-        $PSBoundParameters.Force = $true
-    } <span style="color:#66d9ef">else</span> {
-        $PSBoundParameters.PSHost = $true
-    }
-    <span style="color:#66d9ef">if</span> ($Quiet) {
-        $Out = Get-Command Out-Null
-        $PSBoundParameters.Remove(<span style="color:#e6db74">&#39;Quiet&#39;</span>) | Out-Null
-    } <span style="color:#66d9ef">else</span> {
-        $Out = Get-Command Out-Default
-    }
-  }
-
-  <span style="color:#66d9ef">process</span> {
-    Trace-Command @PSBoundParameters | &amp; $Out
-  }
-}
-
-PS&gt; New-Alias -Name tre -Value Trace-Expression
-PS&gt; Export-ModuleMember -Function * -Alias *
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Trace-Expression</span> <span class="p">{</span>
+<span class="ln"> 2</span>  <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">(</span><span class="n">DefaultParameterSetName</span> <span class="p">=</span> <span class="s1">&#39;Host&#39;</span><span class="p">)]</span>
+<span class="ln"> 3</span>  <span class="k">param</span> <span class="p">(</span>
+<span class="ln"> 4</span>    <span class="c"># ScriptBlock that will be traced</span>
+<span class="ln"> 5</span>	<span class="p">[</span><span class="k">Parameter</span><span class="p">(</span>
+<span class="ln"> 6</span>		<span class="k">ValueFromPipeline</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">,</span>
+<span class="ln"> 7</span>		<span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">,</span>
+<span class="ln"> 8</span>		<span class="k">HelpMessage</span> <span class="p">=</span> <span class="s1">&#39;Expression to be traced&#39;</span>
+<span class="ln"> 9</span>	<span class="p">)]</span>
+<span class="ln">10</span>	<span class="no">[ScriptBlock]</span><span class="nv">$Expression</span><span class="p">,</span>
+<span class="ln">11</span>
+<span class="ln">12</span>	<span class="c"># Name of the Trace Source(s) to be traced</span>
+<span class="ln">13</span>    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span>
+<span class="ln">14</span>        <span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">,</span>
+<span class="ln">15</span>        <span class="k">HelpMessage</span> <span class="p">=</span> <span class="s1">&#39;Name of trace, see Get-TraceSource for valid values&#39;</span>
+<span class="ln">16</span>    <span class="p">)]</span>
+<span class="ln">17</span>    <span class="p">[</span><span class="n">ValidateScript</span><span class="p">({</span>
+<span class="ln">18</span>        <span class="nb">Get-TraceSource</span> <span class="n">-Name</span> <span class="nv">$_</span> <span class="n">-ErrorAction</span> <span class="n">Stop</span>
+<span class="ln">19</span>    <span class="p">})]</span>
+<span class="ln">20</span>    <span class="no">[string[]]</span><span class="nv">$Name</span><span class="p">,</span>
+<span class="ln">21</span>
+<span class="ln">22</span>	<span class="c"># Option to leave only trace information</span>
+<span class="ln">23</span>	<span class="c"># without actual expression results.</span>
+<span class="ln">24</span>	<span class="no">[switch]</span><span class="nv">$Quiet</span><span class="p">,</span>
+<span class="ln">25</span>
+<span class="ln">26</span>	<span class="c"># Path to file. If specified - trace will be sent to file instead of host.</span>
+<span class="ln">27</span>    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">ParameterSetName</span> <span class="p">=</span> <span class="s1">&#39;File&#39;</span><span class="p">)]</span>
+<span class="ln">28</span>    <span class="p">[</span><span class="n">ValidateScript</span><span class="p">({</span>
+<span class="ln">29</span>        <span class="nb">Test-Path</span> <span class="nv">$_</span> <span class="n">-IsValid</span>
+<span class="ln">30</span>    <span class="p">})]</span>
+<span class="ln">31</span>    <span class="no">[string]</span><span class="nv">$FilePath</span>
+<span class="ln">32</span>  <span class="p">)</span>
+<span class="ln">33</span>
+<span class="ln">34</span>  <span class="k">begin</span> <span class="p">{</span>
+<span class="ln">35</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$FilePath</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">36</span>        <span class="c"># assume we want to overwrite trace file</span>
+<span class="ln">37</span>        <span class="nv">$PSBoundParameters</span><span class="p">.</span><span class="n">Force</span> <span class="p">=</span> <span class="nv">$true</span>
+<span class="ln">38</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln">39</span>        <span class="nv">$PSBoundParameters</span><span class="p">.</span><span class="n">PSHost</span> <span class="p">=</span> <span class="nv">$true</span>
+<span class="ln">40</span>    <span class="p">}</span>
+<span class="ln">41</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$Quiet</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">42</span>        <span class="nv">$Out</span> <span class="p">=</span> <span class="nb">Get-Command</span> <span class="nb">Out-Null</span>
+<span class="ln">43</span>        <span class="nv">$PSBoundParameters</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="s1">&#39;Quiet&#39;</span><span class="p">)</span> <span class="p">|</span> <span class="nb">Out-Null</span>
+<span class="ln">44</span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln">45</span>        <span class="nv">$Out</span> <span class="p">=</span> <span class="nb">Get-Command</span> <span class="nb">Out-Default</span>
+<span class="ln">46</span>    <span class="p">}</span>
+<span class="ln">47</span>  <span class="p">}</span>
+<span class="ln">48</span>
+<span class="ln">49</span>  <span class="k">process</span> <span class="p">{</span>
+<span class="ln">50</span>    <span class="nb">Trace-Command</span> <span class="nv">@PSBoundParameters</span> <span class="p">|</span> <span class="p">&amp;</span> <span class="nv">$Out</span>
+<span class="ln">51</span>  <span class="p">}</span>
+<span class="ln">52</span><span class="p">}</span>
+<span class="ln">53</span>
+<span class="ln">54</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">New-Alias</span> <span class="n">-Name</span> <span class="n">tre</span> <span class="n">-Value</span> <span class="nb">Trace-Expression</span>
+<span class="ln">55</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Export-ModuleMember</span> <span class="n">-Function</span> <span class="p">*</span> <span class="n">-Alias</span> <span class="p">*</span>
 </code></pre></div><h3 id="answer-found">Answer found</h3>
 <p>I like to know what is going on behind the scenes. That’s why I use Trace-Command quite often. It helped me very much in the past when I had problem with understanding how Foreach-Object works. What was the issue?</p>
 <p>Well, I had no idea why …</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; 1..5 | <span style="color:#66d9ef">ForEach</span>-Object { <span style="color:#e6db74">&#39;begin&#39;</span> } { <span style="color:#e6db74">&#34;process: $_&#34;</span> } { <span style="color:#e6db74">&#39;end&#39;</span> }
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="n">1</span><span class="p">..</span><span class="n">5</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span> <span class="s1">&#39;begin&#39;</span> <span class="p">}</span> <span class="p">{</span> <span class="s2">&#34;process: $_&#34;</span> <span class="p">}</span> <span class="p">{</span> <span class="s1">&#39;end&#39;</span> <span class="p">}</span>
 </code></pre></div><p>… works and why both –Begin and –End parameters are positional. PowerShell help will tell you that this is not the case. If you use Trace-Expression, you will soon find out that documentation is right, but is not precise in describing how cmdlet as a whole works. It misses very important piece: parameter –Process will take ValueFromRemainingArguments (same way $args does in functions without param block) and if there are more than one – it will try to distribute them between begin, process and end block. First part can be easy traced:</p>
 <p><img src="/images/PSDetective3.png" alt=""></p>
 <p>I was not able to find second part (distribution of script blocks) with Trace. But you can guess what is going on because you can get the same result if you make sure all script blocks will be passed to -Process parameter:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">PS&gt; 1..5 | <span style="color:#66d9ef">ForEach</span>-Object -Process { <span style="color:#e6db74">&#39;begin&#39;</span> }, { <span style="color:#e6db74">&#34;process: $_&#34;</span> }, { <span style="color:#e6db74">&#39;end&#39;</span> }
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="n">1</span><span class="p">..</span><span class="n">5</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="n">-Process</span> <span class="p">{</span> <span class="s1">&#39;begin&#39;</span> <span class="p">},</span> <span class="p">{</span> <span class="s2">&#34;process: $_&#34;</span> <span class="p">},</span> <span class="p">{</span> <span class="s1">&#39;end&#39;</span> <span class="p">}</span>
 </code></pre></div><p>I blogged <a href="http://becomelotr.wordpress.com/2011/05/22/magic-of-foreach-object/">about this</a> but found the answer in Bruce Payette’s PowerShell in Action few weeks later. But that incident made me confident that if there are some PowerShell behaviours I don’t understand immediately, then using *Trace* command may provide an explanation. It helped me when I was trying to find out why function that had no Get-Process command in it was complaining about wrong syntax used with this cmdlet.</p>
 <p>Let’s reproduce this issue first:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">&lt;pre&gt;<span style="color:#66d9ef">function</span> Get-Foo {
-   <span style="color:#66d9ef">param</span> (
-    [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">ValueFromPipeline</span> = $true)]
-    <span style="color:#66d9ef">[string]</span>$Bar
-  )
-
-  $Foo = 2
-
-  <span style="color:#66d9ef">process</span> {
-    $Bar
-  }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="p">&lt;</span><span class="n">pre</span><span class="p">&gt;</span><span class="k">function</span> <span class="nb">Get-Foo</span> <span class="p">{</span>
+<span class="ln"> 2</span>   <span class="k">param</span> <span class="p">(</span>
+<span class="ln"> 3</span>    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">ValueFromPipeline</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
+<span class="ln"> 4</span>    <span class="no">[string]</span><span class="nv">$Bar</span>
+<span class="ln"> 5</span>  <span class="p">)</span>
+<span class="ln"> 6</span>
+<span class="ln"> 7</span>  <span class="nv">$Foo</span> <span class="p">=</span> <span class="n">2</span>
+<span class="ln"> 8</span>
+<span class="ln"> 9</span>  <span class="k">process</span> <span class="p">{</span>
+<span class="ln">10</span>    <span class="nv">$Bar</span>
+<span class="ln">11</span>  <span class="p">}</span>
+<span class="ln">12</span><span class="p">}</span>
 </code></pre></div><p>More experienced users will probably spot an issue immediately in this code, but real example was more complex than this one. What will happen if we use it?</p>
 <p><img src="/images/PSDetective4.png" alt=""></p>
 <p>This was starting point. Obviously, you won’t find any Get-Process in my code, so where did this error come from? At first, I’ve traced everything to understand why it works like that. Eventually I found root cause of this behaviour.</p>

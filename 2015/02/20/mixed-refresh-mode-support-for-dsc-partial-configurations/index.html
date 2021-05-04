@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Mixed refresh mode support for DSC partial configurations</title>
 
 <meta name="description" content="For the most powerful community">
@@ -215,7 +216,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>5 Min To Read
+              <i class="far fa-clock"></i>6 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>20 Feb, 2015
@@ -247,97 +248,97 @@ if (!doNotTrack) {
 <p>Going back to the scenario illustrated in the diagram, I want the target node to get the OS configuration from using push while the SQL configuration fragment will be pulled and it depends on the OS configuration fragment.</p>
 <p>The following scripts demonstrate the partial configuration fragments &ndash; OSConfig and SQLConfig. To try the following configuration scripts as-is, you will need the resources from the <a href="https://gallery.technet.microsoft.com/scriptcenter/DSC-Resource-Kit-All-c449312d">DSC Resource Kit</a>.</p>
 <h3 id="os-configuration">OS Configuration</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$ConfigData = @{
-   AllNodes = @(
-      @{ NodeName = <span style="color:#e6db74">&#39;*&#39;</span>; PsDscAllowPlainTextPassword = $true },
-      @{ NodeName = <span style="color:#e6db74">&#39;a5f86baf-f17f-4778-8944-9cc99ec9f992&#39;</span> }
-   )
-}
-   Configuration OSConfig {
-    <span style="color:#66d9ef">Param</span> (
-       $Credential
-    )
-       Import-DscResource -ModuleName xComputerManagement
-       Node $AllNodes.NodeName {
-        xComputer ADJoin {
-           Name = <span style="color:#e6db74">&#39;WMF5-2&#39;</span>
-           DomainName = <span style="color:#e6db74">&#39;sccloud.lab&#39;</span>
-           Credential = $Credential
-        }
-    }
-}
-OSConfig -ConfigurationData $ConfigData -Credential (Get-Credential) -OutputPath <span style="color:#e6db74">&#39;C:\SMBPull&#39;</span>
-New-DSCCheckSum -ConfigurationPath <span style="color:#e6db74">&#39;C:\SMBPull&#39;</span> -OutPath <span style="color:#e6db74">&#39;C:\SMBPull&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$ConfigData</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln"> 2</span>   <span class="n">AllNodes</span> <span class="p">=</span> <span class="p">@(</span>
+<span class="ln"> 3</span>      <span class="p">@{</span> <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;*&#39;</span><span class="p">;</span> <span class="n">PsDscAllowPlainTextPassword</span> <span class="p">=</span> <span class="nv">$true</span> <span class="p">},</span>
+<span class="ln"> 4</span>      <span class="p">@{</span> <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;a5f86baf-f17f-4778-8944-9cc99ec9f992&#39;</span> <span class="p">}</span>
+<span class="ln"> 5</span>   <span class="p">)</span>
+<span class="ln"> 6</span><span class="p">}</span>
+<span class="ln"> 7</span>   <span class="n">Configuration</span> <span class="n">OSConfig</span> <span class="p">{</span>
+<span class="ln"> 8</span>    <span class="k">Param</span> <span class="p">(</span>
+<span class="ln"> 9</span>       <span class="nv">$Credential</span>
+<span class="ln">10</span>    <span class="p">)</span>
+<span class="ln">11</span>       <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">xComputerManagement</span>
+<span class="ln">12</span>       <span class="n">Node</span> <span class="nv">$AllNodes</span><span class="p">.</span><span class="n">NodeName</span> <span class="p">{</span>
+<span class="ln">13</span>        <span class="n">xComputer</span> <span class="n">ADJoin</span> <span class="p">{</span>
+<span class="ln">14</span>           <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;WMF5-2&#39;</span>
+<span class="ln">15</span>           <span class="n">DomainName</span> <span class="p">=</span> <span class="s1">&#39;sccloud.lab&#39;</span>
+<span class="ln">16</span>           <span class="n">Credential</span> <span class="p">=</span> <span class="nv">$Credential</span>
+<span class="ln">17</span>        <span class="p">}</span>
+<span class="ln">18</span>    <span class="p">}</span>
+<span class="ln">19</span><span class="p">}</span>
+<span class="ln">20</span><span class="n">OSConfig</span> <span class="n">-ConfigurationData</span> <span class="nv">$ConfigData</span> <span class="n">-Credential</span> <span class="p">(</span><span class="nb">Get-Credential</span><span class="p">)</span> <span class="n">-OutputPath</span> <span class="s1">&#39;C:\SMBPull&#39;</span>
+<span class="ln">21</span><span class="nb">New-DSCCheckSum</span> <span class="n">-ConfigurationPath</span> <span class="s1">&#39;C:\SMBPull&#39;</span> <span class="n">-OutPath</span> <span class="s1">&#39;C:\SMBPull&#39;</span>
 </code></pre></div><p>In this configuration fragment, I am using the hostname as the nodename. So, the generated MOF will be named as <hostname>.mof. Since this fragment is being pushed the target system, we don’t have to use the <GUID>.mof format here or need MOF checksum.</p>
 <h3 id="sql-configuration">SQL Configuration</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$ConfigData = @{
-   AllNodes = @(
-       @{ NodeName = <span style="color:#e6db74">&#39;*&#39;</span>; PsDscAllowPlainTextPassword = $true },
-       @{ NodeName = <span style="color:#e6db74">&#39;WMF5-2&#39;</span> }
-   )
-}
-   Configuration SQLConfig {
-   <span style="color:#66d9ef">Param</span> (
-       $Credential
-   )
-      Import-DscResource -ModuleName xSqlPS
-      Node $AllNodes.NodeName {
-       WindowsFeature NET35 {
-           Name = <span style="color:#e6db74">&#39;NET-Framework-Core&#39;</span>
-           Source = <span style="color:#e6db74">&#39;D:\Sources\Sxs&#39;</span>
-           Ensure = <span style="color:#e6db74">&#39;Present&#39;</span>
-       }
-         xSqlServerInstall SQLInstall {
-           InstanceName = <span style="color:#e6db74">&#39;SQLDemo&#39;</span>
-           SourcePath = <span style="color:#e6db74">&#39;E:\&#39;</span>
-           Features= <span style="color:#e6db74">&#39;SQLEngine,SSMS&#39;</span>
-           SqlAdministratorCredential = $credential
-           DependsOn = <span style="color:#e6db74">&#39;[WindowsFeature]NET35&#39;</span>
-       }
-   }
-}
-SQLConfig -ConfigurationData $ConfigData -Credential (Get-Credential) -OutputPath <span style="color:#e6db74">&#39;C:\SMBPull&#39;</span>
-New-DSCCheckSum -ConfigurationPath <span style="color:#e6db74">&#39;C:\SMBPull&#39;</span> -OutPath <span style="color:#e6db74">&#39;C:\SMBPull&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$ConfigData</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln"> 2</span>   <span class="n">AllNodes</span> <span class="p">=</span> <span class="p">@(</span>
+<span class="ln"> 3</span>       <span class="p">@{</span> <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;*&#39;</span><span class="p">;</span> <span class="n">PsDscAllowPlainTextPassword</span> <span class="p">=</span> <span class="nv">$true</span> <span class="p">},</span>
+<span class="ln"> 4</span>       <span class="p">@{</span> <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;WMF5-2&#39;</span> <span class="p">}</span>
+<span class="ln"> 5</span>   <span class="p">)</span>
+<span class="ln"> 6</span><span class="p">}</span>
+<span class="ln"> 7</span>   <span class="n">Configuration</span> <span class="n">SQLConfig</span> <span class="p">{</span>
+<span class="ln"> 8</span>   <span class="k">Param</span> <span class="p">(</span>
+<span class="ln"> 9</span>       <span class="nv">$Credential</span>
+<span class="ln">10</span>   <span class="p">)</span>
+<span class="ln">11</span>      <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">xSqlPS</span>
+<span class="ln">12</span>      <span class="n">Node</span> <span class="nv">$AllNodes</span><span class="p">.</span><span class="n">NodeName</span> <span class="p">{</span>
+<span class="ln">13</span>       <span class="n">WindowsFeature</span> <span class="n">NET35</span> <span class="p">{</span>
+<span class="ln">14</span>           <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;NET-Framework-Core&#39;</span>
+<span class="ln">15</span>           <span class="n">Source</span> <span class="p">=</span> <span class="s1">&#39;D:\Sources\Sxs&#39;</span>
+<span class="ln">16</span>           <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+<span class="ln">17</span>       <span class="p">}</span>
+<span class="ln">18</span>         <span class="n">xSqlServerInstall</span> <span class="n">SQLInstall</span> <span class="p">{</span>
+<span class="ln">19</span>           <span class="n">InstanceName</span> <span class="p">=</span> <span class="s1">&#39;SQLDemo&#39;</span>
+<span class="ln">20</span>           <span class="n">SourcePath</span> <span class="p">=</span> <span class="s1">&#39;E:\&#39;</span>
+<span class="ln">21</span>           <span class="n">Features</span><span class="p">=</span> <span class="s1">&#39;SQLEngine,SSMS&#39;</span>
+<span class="ln">22</span>           <span class="n">SqlAdministratorCredential</span> <span class="p">=</span> <span class="nv">$credential</span>
+<span class="ln">23</span>           <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[WindowsFeature]NET35&#39;</span>
+<span class="ln">24</span>       <span class="p">}</span>
+<span class="ln">25</span>   <span class="p">}</span>
+<span class="ln">26</span><span class="p">}</span>
+<span class="ln">27</span><span class="n">SQLConfig</span> <span class="n">-ConfigurationData</span> <span class="nv">$ConfigData</span> <span class="n">-Credential</span> <span class="p">(</span><span class="nb">Get-Credential</span><span class="p">)</span> <span class="n">-OutputPath</span> <span class="s1">&#39;C:\SMBPull&#39;</span>
+<span class="ln">28</span><span class="nb">New-DSCCheckSum</span> <span class="n">-ConfigurationPath</span> <span class="s1">&#39;C:\SMBPull&#39;</span> <span class="n">-OutPath</span> <span class="s1">&#39;C:\SMBPull&#39;</span>
 </code></pre></div><p>In the case of SQL configuration, we are using the GUID as the node name. The same GUID will be later configured as the ConfigurationID within the LCM settings. This configuration script assumes that you have OS setup files available at D: and SQL setup files at E:.</p>
 <p>Here is how the LCM meta-configuration of the target system looks for this scenario.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">[DSCLocalConfigurationManager()]
-configuration PartialConfigDemo
-{
-    Node WMF5-2
-    {
-        Settings
-        {
-            RefreshMode = <span style="color:#e6db74">&#39;Pull&#39;</span>
-            ConfigurationID = <span style="color:#e6db74">&#39;a5f86baf-f17f-4778-8944-9cc99ec9f992&#39;</span>
-            RebootNodeIfNeeded = $true
-        }
-           ConfigurationRepositoryShare SMBPull
-        {
-            SourcePath = <span style="color:#e6db74">&#39;\\WMF5-1\SMBPull&#39;</span>
-            Name = <span style="color:#e6db74">&#39;SMBPull&#39;</span>
-        }
-           PartialConfiguration OSConfig
-        {
-            Description = <span style="color:#e6db74">&#39;Configuration for the Base OS&#39;</span>
-            ConfigurationSource = <span style="color:#e6db74">&#39;[ConfigurationRepositoryShare]SMBPull&#39;</span>
-            RefreshMode = <span style="color:#e6db74">&#39;Pull&#39;</span>
-        }
-           PartialConfiguration SQLConfig
-        {
-            Description = <span style="color:#e6db74">&#39;Configuration for the SQL Server&#39;</span>
-            DependsOn = <span style="color:#e6db74">&#39;[PartialConfiguration]OSConfig&#39;</span>
-            RefreshMode = <span style="color:#e6db74">&#39;Push&#39;</span>
-        }
-    }
-}
-PartialConfigDemo
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="p">[</span><span class="n">DSCLocalConfigurationManager</span><span class="p">()]</span>
+<span class="ln"> 2</span><span class="n">configuration</span> <span class="n">PartialConfigDemo</span>
+<span class="ln"> 3</span><span class="p">{</span>
+<span class="ln"> 4</span>    <span class="n">Node</span> <span class="n">WMF5</span><span class="p">-</span><span class="n">2</span>
+<span class="ln"> 5</span>    <span class="p">{</span>
+<span class="ln"> 6</span>        <span class="n">Settings</span>
+<span class="ln"> 7</span>        <span class="p">{</span>
+<span class="ln"> 8</span>            <span class="n">RefreshMode</span> <span class="p">=</span> <span class="s1">&#39;Pull&#39;</span>
+<span class="ln"> 9</span>            <span class="n">ConfigurationID</span> <span class="p">=</span> <span class="s1">&#39;a5f86baf-f17f-4778-8944-9cc99ec9f992&#39;</span>
+<span class="ln">10</span>            <span class="n">RebootNodeIfNeeded</span> <span class="p">=</span> <span class="nv">$true</span>
+<span class="ln">11</span>        <span class="p">}</span>
+<span class="ln">12</span>           <span class="n">ConfigurationRepositoryShare</span> <span class="n">SMBPull</span>
+<span class="ln">13</span>        <span class="p">{</span>
+<span class="ln">14</span>            <span class="n">SourcePath</span> <span class="p">=</span> <span class="s1">&#39;\\WMF5-1\SMBPull&#39;</span>
+<span class="ln">15</span>            <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;SMBPull&#39;</span>
+<span class="ln">16</span>        <span class="p">}</span>
+<span class="ln">17</span>           <span class="n">PartialConfiguration</span> <span class="n">OSConfig</span>
+<span class="ln">18</span>        <span class="p">{</span>
+<span class="ln">19</span>            <span class="n">Description</span> <span class="p">=</span> <span class="s1">&#39;Configuration for the Base OS&#39;</span>
+<span class="ln">20</span>            <span class="n">ConfigurationSource</span> <span class="p">=</span> <span class="s1">&#39;[ConfigurationRepositoryShare]SMBPull&#39;</span>
+<span class="ln">21</span>            <span class="n">RefreshMode</span> <span class="p">=</span> <span class="s1">&#39;Pull&#39;</span>
+<span class="ln">22</span>        <span class="p">}</span>
+<span class="ln">23</span>           <span class="n">PartialConfiguration</span> <span class="n">SQLConfig</span>
+<span class="ln">24</span>        <span class="p">{</span>
+<span class="ln">25</span>            <span class="n">Description</span> <span class="p">=</span> <span class="s1">&#39;Configuration for the SQL Server&#39;</span>
+<span class="ln">26</span>            <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[PartialConfiguration]OSConfig&#39;</span>
+<span class="ln">27</span>            <span class="n">RefreshMode</span> <span class="p">=</span> <span class="s1">&#39;Push&#39;</span>
+<span class="ln">28</span>        <span class="p">}</span>
+<span class="ln">29</span>    <span class="p">}</span>
+<span class="ln">30</span><span class="p">}</span>
+<span class="ln">31</span><span class="n">PartialConfigDemo</span>
 </code></pre></div><p>As you see in this meta-configuration document, I have set the LCM RefreshMode to Pull. This is the global setting for LCM in general. For each partial configuration I have a RefreshMode setting again. For the OSConfig partial configuration, it is set to <em>Push</em> and <em>Pull</em> for the SQLConfig fragment. Remember that the ConfigurationSource setting within the partial configuration is mandatory if the RefreshMode for that partial configuration is set to Pull. Otherwise, you don’t need ConfigurationSource setting.</p>
 <h3 id="enacting-configuration-with-mixed-refresh-modes">Enacting configuration with mixed refresh modes</h3>
 <p>When all partial configurations are set to <em>Pull</em> refresh mode, the configuration gets enacted during a consistency check or by calling the Update-DscConfiguration cmdlet. However, this process is a bit different when using mixed refresh modes. In our scenario, when we the consistency check kicks in or the Update-DscConfiguration is called, LCM finds that SQL configuration can be pulled over but it depends on OS configuration fragment that is set to push. The SQL configuration fragment cannot be enacted unless the OS configuration is complete. If we try to push the OS configuration fragment using the Start-DscConfiguration cmdlet, you will see an error that partial configurations cannot be pushed this way. Instead, you have to first publish the OS configuration fragment to the partial configuration store using the Publish-DscConfiguration cmdlet.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Publish-DscConfiguration -ComputerName WMF5-2 -Path C:\SMBPull -Verbose -Force
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Publish-DscConfiguration</span> <span class="n">-ComputerName</span> <span class="n">WMF5</span><span class="p">-</span><span class="n">2</span> <span class="n">-Path</span> <span class="n">C:</span><span class="p">\</span><span class="n">SMBPull</span> <span class="n">-Verbose</span> <span class="n">-Force</span>
 </code></pre></div><p><img src="/images/8.png" alt=""></p>
 <p>When this step is complete, the published configuration can be enacted by specifying the <em>-UseExisting</em> switch parameter with the <em>Start-DscConfiguration</em> cmdlet.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Start-DscConfiguration -ComputerName WMF5-2 -Verbose -Wait -UseExisting
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Start-DscConfiguration</span> <span class="n">-ComputerName</span> <span class="n">WMF5</span><span class="p">-</span><span class="n">2</span> <span class="n">-Verbose</span> <span class="n">-Wait</span> <span class="n">-UseExisting</span>
 </code></pre></div><p><img src="/images/9.png" alt=""></p>
 <p>The above screenshot shows the output of the enact process. If you observe closely, DSC tries to get the remaining partial fragments from the Pull server. Since an updated fragment already exists on my system, it is not pulled again.</p>
 </div>

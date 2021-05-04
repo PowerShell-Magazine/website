@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Secrets Management in PowerShell</title>
 
 <meta name="description" content="For the most powerful community">
@@ -235,10 +236,10 @@ if (!doNotTrack) {
           </ul>
           <div class="content"><p>In any method of automation secrets management is a very critical part. You wouldn&rsquo;t want to store the plain-text credentials needed for your automation to carry on the orchestration tasks. Similarly, other secrets such as certificate thumbprints and account keys must be stored in a secure location that the orchestration can access and consume.</p>
 <p>Within PowerShell, we have always used the built-in credential manager to store such secrets. There are a bunch of modules out there on <a href="http://www.vpnbug.com/%C2%A0">VPNbug</a> Gallery that you can readily use.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Find-Module -Name <span style="color:#e6db74">&#34;*Credential*&#34;</span>, <span style="color:#e6db74">&#34;*Secret*&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Find-Module</span> <span class="n">-Name</span> <span class="s2">&#34;*Credential*&#34;</span><span class="p">,</span> <span class="s2">&#34;*Secret*&#34;</span>
 </code></pre></div><p>There are also modules that are wrappers around 3rd party vaults such as <a href="https://www.vaultproject.io/%C2%A0">Hashicorp Vault</a> or <a href="https://github.com/neosmart/SecureStore">SecureStore</a>. However, there was nothing that was officially supported by Microsoft (Azure Vault doesn&rsquo;t count for secrets management in PowerShell) or PowerShell team until now.</p>
 <p>At Ignite 2019, PowerShell team introduced <a href="https://myignite.techcommunity.microsoft.com/sessions/83981?source=sessions">secrets management</a> in PowerShell. Today, <a href="https://devblogs.microsoft.com/powershell/secrets-management-development-release/">PowerShell team announced a development release version</a> of a module for PowerShell secrets management.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Install-Module -Name Microsoft.PowerShell.SecretsManagement -AllowPrerelease
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">PowerShell</span><span class="p">.</span><span class="n">SecretsManagement</span> <span class="n">-AllowPrerelease</span>
 </code></pre></div><p><img src="/images/secmgmt1.png" alt="image"></p>
 <p>This module uses the built-in credential manager for secrets management and provides the above commands for that purpose. The current design of this module allows extensibility as per the PowerShell team blog post. Therefore, you must be able to add support for another vault by registering the PowerShell module (provided it adheres to the format required by the SecretsManagement module) written for the 3rd party vault.</p>
 <p>I have been using some existing modules for secret management in my build and deployment automation. I mostly use the built-in Credential Manager for this purpose. In fact, I demonstrated how I use this in <a href="https://github.com/rchaganti/garuda">Garuda framework</a>. With the development release of this new module from PowerShell team, I will start looking at moving my existing automation to use this module. The one advantage I see here is the extensibility nature of the module. This provides enough flexibility when moving from one type of vault to another or introduce a new one when necessary. Looking forward to see what the community comes up here.</p>

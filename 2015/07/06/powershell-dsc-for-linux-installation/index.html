@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>PowerShell DSC for Linux: Installation</title>
 
 <meta name="description" content="For the most powerful community">
@@ -239,28 +240,28 @@ if (!doNotTrack) {
           <div class="content"><p>First version of PowerShell DSC for Linux is released. We <a href="/2015/05/14/powershell-dsc-for-linux-released/" target="_blank">announced that</a> and promised to come back to that subject. It’s time to fulfil that promise. In this article, first part of update series, we will focus on new features and bug fixes related to installation.</p>
 <p>The first good news is that now both OMI and PowerShell DSC for Linux can be installed on the systems that use <em>deb</em> or <em>rpm</em> packages. This removes requirement of installing development packages previously necessary to compile both products on every node that we want deploy DSC to. Package for OMI can be found at the <a href="https://collaboration.opengroup.org/omi/documents.php?action=show&#038;dcat=&#038;gdid=32721" target="_blank">Open Group page</a> and packages for DSC are distributed in <a href="http://www.microsoft.com/en-us/download/details.aspx?id=46919" target="_blank">MSI file available on Microsoft Download Center</a>. If we do not own any local package repository, we can install these packages using command for local installation, after we manually download the packages to the Linux box.</p>
 <p>Here is an example for distributions that are using <em>yum</em> as a package manager:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum -y localinstall packages/omiserver-1.0.8.ssl_100.x64.rpm
-yum -y localinstall package/dsc-1.0.0-320.ssl_100.x64.rpm
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="ln">1</span>yum -y localinstall packages/omiserver-1.0.8.ssl_100.x64.rpm
+<span class="ln">2</span>yum -y localinstall package/dsc-1.0.0-320.ssl_100.x64.rpm
 </code></pre></div><p>The only change we have to perform is to open ports on firewall to allow inbound WS-Man traffic. For example, when using CentOS 7 with firewalld we would need to call <em>firewall-cmd</em>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">firewall-cmd --add-port<span style="color:#f92672">=</span>5986/tcp --permanent
-firewall-cmd --reload
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>firewall-cmd --add-port<span class="o">=</span>5986/tcp --permanent
+<span class="ln">2</span>firewall-cmd --reload
 </code></pre></div><p>We have to also enable the OMI server service; even though it is started after installation, it won’t run automatically after reboot:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#f92672">[</span>root@PSMag ~<span style="color:#f92672">]</span><span style="color:#75715e"># systemctl status omiserver</span>
-omiserver.service - OMI CIM Server
-   Loaded: loaded <span style="color:#f92672">(</span>/usr/lib/systemd/system/omiserver.service; disabled<span style="color:#f92672">)</span>
-   Active: inactive <span style="color:#f92672">(</span>dead<span style="color:#f92672">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="o">[</span>root@PSMag ~<span class="o">]</span><span class="c1"># systemctl status omiserver</span>
+<span class="ln">2</span>omiserver.service - OMI CIM Server
+<span class="ln">3</span>   Loaded: loaded <span class="o">(</span>/usr/lib/systemd/system/omiserver.service<span class="p">;</span> disabled<span class="o">)</span>
+<span class="ln">4</span>   Active: inactive <span class="o">(</span>dead<span class="o">)</span>
 </code></pre></div><p>The method used to enable the service also depends on distribution/service’s controller. In case of systemd used by CentOS 7, we would have to use systemctl enable/start commands to get OMI server up and running:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">systemctl enable omiserver
-systemctl start omiservers
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>systemctl <span class="nb">enable</span> omiserver
+<span class="ln">2</span>systemctl start omiservers
 </code></pre></div><p>I would also suggest to get proper certificate for SSL connections. More details on how to achieve that can be found in one of the <a href="/2015/03/23/omi-with-wsman-over-https-done-right/" target="_blank">previous OMI articles</a> in the PowerShell Magazine.</p>
 <p>The difference between installing OMI/DSC using packages is that the path to OMI is different than the one we got by default when we installed OMI from the sources. In the current version of the package <em>OMI_HOME</em> points to <em>/opt/omi</em>.</p>
 <p>Installing OMI from sources is still an option. Unfortunately, installation process in this scenario hasn’t improved much. We still have to make sure that we have sources for both OMI and DSC structured in a fashion that <em>make</em> scripts from DSC expect. There is also one extra requirement for DSC–curl libraries. For example, if we would like to install DSC on a system running CentOS, we would have to request libcurl-devel package:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">yum -y install libcurl-devel
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>yum -y install libcurl-devel
 </code></pre></div><p>Another thing added in this version is the configuration script for DSC. We need to make sure it has proper rights before we can call it (we will use <em>chmod</em> for that). The list of parameters available for configure is limited, but we need to run it first before we can install DSC:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">chmod <span style="color:#ae81ff">755</span> configure
-./configure
-make
-make reg
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>chmod <span class="m">755</span> configure
+<span class="ln">2</span>./configure
+<span class="ln">3</span>make
+<span class="ln">4</span>make reg
 </code></pre></div><p>In either case, the major problem we observed around installation in CTP version was fixed in this release–ConsistencyInvoker is not only copied to the right location during <em>make reg</em> (you can read about the problem <a href="/2015/02/23/working-with-powershell-dsc-for-linux-part-1/" target="_blank">here</a>), it also works as expected and will fix configuration drift if we decide to do so in Local Configuration Manager setting.</p>
 <p>There are a few important changes in the way DSC providers are structured in version 1.0. Previously all Python scripts used by providers were not designed for any specific Python version. That has changed and if we want to make sure any update to Python script works for any version of Python installed on the box, we have to modify 3 scripts per resource. There are three options present:</p>
 <ul>

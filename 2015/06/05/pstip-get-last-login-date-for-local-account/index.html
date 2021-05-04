@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>#PSTip Get last login date for local account</title>
 
 <meta name="description" content="For the most powerful community">
@@ -215,7 +216,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>1 Min To Read
+              <i class="far fa-clock"></i>2 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>05 Jun, 2015
@@ -234,65 +235,65 @@ if (!doNotTrack) {
             </li>
           </ul>
           <div class="content"><p>Using the ADSI type accelerator in combination with WinNT provider we can retrieve the last logon time for a local account from the local SAM account database:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">(<span style="color:#66d9ef">[ADSI]</span><span style="color:#e6db74">&#34;WinNT://computer/jaapbrasser&#34;</span>).lastlogin
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="p">(</span><span class="no">[ADSI]</span><span class="s2">&#34;WinNT://computer/jaapbrasser&#34;</span><span class="p">).</span><span class="n">lastlogin</span>
 </code></pre></div><p>I created a function for this specific purpose to simply get this information from local or remote systems; the function is available in the Microsoft TechNet Script Gallery: <a href="https://gallery.technet.microsoft.com/Get-LocalLastLogonTime-Get-b23c97c6">Get-LocalLastLogonTime</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> Get-LocalLastLogonTime {
-    <span style="color:#66d9ef">param</span>(
-    [<span style="color:#66d9ef">Parameter</span>(
-            <span style="color:#66d9ef">Mandatory</span>,
-            <span style="color:#66d9ef">ValueFromPipeline</span>,
-            <span style="color:#66d9ef">ValueFromPipelineByPropertyName</span>,
-            <span style="color:#66d9ef">Position</span>=0
-    )]
-    <span style="color:#66d9ef">[string[]]</span>
-        $ComputerName,
-    [<span style="color:#66d9ef">Parameter</span>(
-            <span style="color:#66d9ef">Mandatory</span>
-    )]
-    <span style="color:#66d9ef">[string[]]</span>
-        $UserName
-    )
-
-    <span style="color:#66d9ef">begin</span> {
-        $SelectSplat = @{
-            Property = @(<span style="color:#e6db74">&#39;ComputerName&#39;</span>,<span style="color:#e6db74">&#39;UserName&#39;</span>,<span style="color:#e6db74">&#39;LastLogin&#39;</span>,<span style="color:#e6db74">&#39;Error&#39;</span>)
-        }
-    }
-
-    <span style="color:#66d9ef">process</span> {
-        <span style="color:#66d9ef">foreach</span> ($Computer <span style="color:#66d9ef">in</span> $ComputerName) {
-            <span style="color:#66d9ef">if</span> (Test-Connection -ComputerName $Computer -Count 1 -Quiet) {
-                <span style="color:#66d9ef">foreach</span> ($User <span style="color:#66d9ef">in</span> $UserName) {
-                    $ObjectSplat = @{
-                        ComputerName = $Computer
-                        UserName = $User
-                        Error = $null
-                        LastLogin = $null
-                    }
-                    $CurrentUser = $null
-                    $CurrentUser = <span style="color:#66d9ef">try</span> {(<span style="color:#66d9ef">[ADSI]</span><span style="color:#e6db74">&#34;WinNT://$computer/$user&#34;</span>)} <span style="color:#66d9ef">catch</span> {}
-                    <span style="color:#66d9ef">if</span> ($CurrentUser.Properties.LastLogin) {
-                        $ObjectSplat.LastLogin = <span style="color:#66d9ef">try</span> {
-                                            <span style="color:#66d9ef">[datetime]</span>(-join $CurrentUser.Properties.LastLogin)
-                                        } <span style="color:#66d9ef">catch</span> {
-                                            -join $CurrentUser.Properties.LastLogin
-                                        }
-                    } <span style="color:#66d9ef">elseif</span> ($CurrentUser.Properties.Name) {
-                    } <span style="color:#66d9ef">else</span> {
-                        $ObjectSplat.Error = <span style="color:#e6db74">&#39;User not found&#39;</span>
-                    }
-                    New-Object -TypeName PSCustomObject -Property $ObjectSplat | Select-Object @SelectSplat
-                }
-            } <span style="color:#66d9ef">else</span> {
-                $ObjectSplat = @{
-                    ComputerName = $Computer
-                    Error = <span style="color:#e6db74">&#39;Ping failed&#39;</span>
-                }
-                New-Object -TypeName PSCustomObject -Property $ObjectSplat | Select-Object @SelectSplat
-            }
-        }
-    }
-} 
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Get-LocalLastLogonTime</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="k">param</span><span class="p">(</span>
+<span class="ln"> 3</span>    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span>
+<span class="ln"> 4</span>            <span class="k">Mandatory</span><span class="p">,</span>
+<span class="ln"> 5</span>            <span class="k">ValueFromPipeline</span><span class="p">,</span>
+<span class="ln"> 6</span>            <span class="k">ValueFromPipelineByPropertyName</span><span class="p">,</span>
+<span class="ln"> 7</span>            <span class="k">Position</span><span class="p">=</span><span class="n">0</span>
+<span class="ln"> 8</span>    <span class="p">)]</span>
+<span class="ln"> 9</span>    <span class="no">[string[]]</span>
+<span class="ln">10</span>        <span class="nv">$ComputerName</span><span class="p">,</span>
+<span class="ln">11</span>    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span>
+<span class="ln">12</span>            <span class="k">Mandatory</span>
+<span class="ln">13</span>    <span class="p">)]</span>
+<span class="ln">14</span>    <span class="no">[string[]]</span>
+<span class="ln">15</span>        <span class="nv">$UserName</span>
+<span class="ln">16</span>    <span class="p">)</span>
+<span class="ln">17</span>
+<span class="ln">18</span>    <span class="k">begin</span> <span class="p">{</span>
+<span class="ln">19</span>        <span class="nv">$SelectSplat</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln">20</span>            <span class="n">Property</span> <span class="p">=</span> <span class="p">@(</span><span class="s1">&#39;ComputerName&#39;</span><span class="p">,</span><span class="s1">&#39;UserName&#39;</span><span class="p">,</span><span class="s1">&#39;LastLogin&#39;</span><span class="p">,</span><span class="s1">&#39;Error&#39;</span><span class="p">)</span>
+<span class="ln">21</span>        <span class="p">}</span>
+<span class="ln">22</span>    <span class="p">}</span>
+<span class="ln">23</span>
+<span class="ln">24</span>    <span class="k">process</span> <span class="p">{</span>
+<span class="ln">25</span>        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$Computer</span> <span class="k">in</span> <span class="nv">$ComputerName</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">26</span>            <span class="k">if</span> <span class="p">(</span><span class="nb">Test-Connection</span> <span class="n">-ComputerName</span> <span class="nv">$Computer</span> <span class="n">-Count</span> <span class="n">1</span> <span class="n">-Quiet</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">27</span>                <span class="k">foreach</span> <span class="p">(</span><span class="nv">$User</span> <span class="k">in</span> <span class="nv">$UserName</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">28</span>                    <span class="nv">$ObjectSplat</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln">29</span>                        <span class="n">ComputerName</span> <span class="p">=</span> <span class="nv">$Computer</span>
+<span class="ln">30</span>                        <span class="n">UserName</span> <span class="p">=</span> <span class="nv">$User</span>
+<span class="ln">31</span>                        <span class="n">Error</span> <span class="p">=</span> <span class="nv">$null</span>
+<span class="ln">32</span>                        <span class="n">LastLogin</span> <span class="p">=</span> <span class="nv">$null</span>
+<span class="ln">33</span>                    <span class="p">}</span>
+<span class="ln">34</span>                    <span class="nv">$CurrentUser</span> <span class="p">=</span> <span class="nv">$null</span>
+<span class="ln">35</span>                    <span class="nv">$CurrentUser</span> <span class="p">=</span> <span class="k">try</span> <span class="p">{(</span><span class="no">[ADSI]</span><span class="s2">&#34;WinNT://$computer/$user&#34;</span><span class="p">)}</span> <span class="k">catch</span> <span class="p">{}</span>
+<span class="ln">36</span>                    <span class="k">if</span> <span class="p">(</span><span class="nv">$CurrentUser</span><span class="p">.</span><span class="n">Properties</span><span class="p">.</span><span class="n">LastLogin</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">37</span>                        <span class="nv">$ObjectSplat</span><span class="p">.</span><span class="n">LastLogin</span> <span class="p">=</span> <span class="k">try</span> <span class="p">{</span>
+<span class="ln">38</span>                                            <span class="no">[datetime]</span><span class="p">(</span><span class="n">-join</span> <span class="nv">$CurrentUser</span><span class="p">.</span><span class="n">Properties</span><span class="p">.</span><span class="n">LastLogin</span><span class="p">)</span>
+<span class="ln">39</span>                                        <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+<span class="ln">40</span>                                            <span class="n">-join</span> <span class="nv">$CurrentUser</span><span class="p">.</span><span class="n">Properties</span><span class="p">.</span><span class="n">LastLogin</span>
+<span class="ln">41</span>                                        <span class="p">}</span>
+<span class="ln">42</span>                    <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$CurrentUser</span><span class="p">.</span><span class="n">Properties</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">43</span>                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln">44</span>                        <span class="nv">$ObjectSplat</span><span class="p">.</span><span class="n">Error</span> <span class="p">=</span> <span class="s1">&#39;User not found&#39;</span>
+<span class="ln">45</span>                    <span class="p">}</span>
+<span class="ln">46</span>                    <span class="nb">New-Object</span> <span class="n">-TypeName</span> <span class="n">PSCustomObject</span> <span class="n">-Property</span> <span class="nv">$ObjectSplat</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="nv">@SelectSplat</span>
+<span class="ln">47</span>                <span class="p">}</span>
+<span class="ln">48</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="ln">49</span>                <span class="nv">$ObjectSplat</span> <span class="p">=</span> <span class="p">@{</span>
+<span class="ln">50</span>                    <span class="n">ComputerName</span> <span class="p">=</span> <span class="nv">$Computer</span>
+<span class="ln">51</span>                    <span class="n">Error</span> <span class="p">=</span> <span class="s1">&#39;Ping failed&#39;</span>
+<span class="ln">52</span>                <span class="p">}</span>
+<span class="ln">53</span>                <span class="nb">New-Object</span> <span class="n">-TypeName</span> <span class="n">PSCustomObject</span> <span class="n">-Property</span> <span class="nv">$ObjectSplat</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="nv">@SelectSplat</span>
+<span class="ln">54</span>            <span class="p">}</span>
+<span class="ln">55</span>        <span class="p">}</span>
+<span class="ln">56</span>    <span class="p">}</span>
+<span class="ln">57</span><span class="p">}</span> 
 </code></pre></div></div>
         </article>
         

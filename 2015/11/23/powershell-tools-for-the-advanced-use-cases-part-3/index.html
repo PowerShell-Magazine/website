@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>PowerShell Tools For The Advanced Use Cases – part 3</title>
 
 <meta name="description" content="For the most powerful community">
@@ -279,23 +280,23 @@ if (!doNotTrack) {
 <p><img src="/images/advtools3.png" alt=""></p>
 <p>Save the changes.</p>
 <p>Make sure that you have one step in your build stage that executes Pester and outputs the XML to the path configured above. I’m using the following PowerShell code to ensure this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">try</span> {
-    Import-Module -Name Pester -ErrorAction Stop
-    $checkoutdir = <span style="color:#e6db74">&#34;%system.teamcity.build.checkoutDir%&#34;</span>
-    $pester_xml = Join-Path $checkoutdir pester_xml.xml
-    $result = Invoke-Pester -OutputFile $pester_xml -OutputFormat NUnitXml -PassThru -Strict `
-    -ErrorAction Stop
-
-    <span style="color:#66d9ef">if</span> ($result.FailedCount <span style="color:#f92672">-gt</span> 0) {
-       <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;{0} tests did not pass&#34;</span> <span style="color:#f92672">-f</span> $result.FailedCount
-    }
-}
-
-<span style="color:#66d9ef">catch</span> {
-    $msg = $_
-    Write-Error -ErrorRecord $msg
-    exit 1
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">try</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="nb">Import-Module</span> <span class="n">-Name</span> <span class="n">Pester</span> <span class="n">-ErrorAction</span> <span class="n">Stop</span>
+<span class="ln"> 3</span>    <span class="nv">$checkoutdir</span> <span class="p">=</span> <span class="s2">&#34;%system.teamcity.build.checkoutDir%&#34;</span>
+<span class="ln"> 4</span>    <span class="nv">$pester_xml</span> <span class="p">=</span> <span class="nb">Join-Path</span> <span class="nv">$checkoutdir</span> <span class="n">pester_xml</span><span class="p">.</span><span class="n">xml</span>
+<span class="ln"> 5</span>    <span class="nv">$result</span> <span class="p">=</span> <span class="nb">Invoke-Pester</span> <span class="n">-OutputFile</span> <span class="nv">$pester_xml</span> <span class="n">-OutputFormat</span> <span class="n">NUnitXml</span> <span class="n">-PassThru</span> <span class="n">-Strict</span> <span class="p">`</span>
+<span class="ln"> 6</span>    <span class="n">-ErrorAction</span> <span class="n">Stop</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span><span class="p">.</span><span class="n">FailedCount</span> <span class="o">-gt</span> <span class="n">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 9</span>       <span class="k">throw</span> <span class="s2">&#34;{0} tests did not pass&#34;</span> <span class="o">-f</span> <span class="nv">$result</span><span class="p">.</span><span class="n">FailedCount</span>
+<span class="ln">10</span>    <span class="p">}</span>
+<span class="ln">11</span><span class="p">}</span>
+<span class="ln">12</span>
+<span class="ln">13</span><span class="k">catch</span> <span class="p">{</span>
+<span class="ln">14</span>    <span class="nv">$msg</span> <span class="p">=</span> <span class="nv">$_</span>
+<span class="ln">15</span>    <span class="nb">Write-Error</span> <span class="n">-ErrorRecord</span> <span class="nv">$msg</span>
+<span class="ln">16</span>    <span class="n">exit</span> <span class="n">1</span>
+<span class="ln">17</span><span class="p">}</span>
 </code></pre></div><p>With these settings you will be able to view the following information on every build summary:</p>
 <p><img src="/images/advtools4.png" alt=""></p>
 <p>TeamCity can even tell if tests failed because of new errors or if that error has already been encountered before. Very powerful.</p>

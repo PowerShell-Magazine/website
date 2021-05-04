@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
+<link rel="stylesheet" href="/css/syntax.css">
 <title>Pester Result Reporting With Suggestions And XSL Support</title>
 
 <meta name="description" content="For the most powerful community">
@@ -215,7 +216,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>5 Min To Read
+              <i class="far fa-clock"></i>6 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>25 Jul, 2019
@@ -240,135 +241,135 @@ if (!doNotTrack) {
 <p>This article uses a custom version of Pester which is not an official version yet. This custom version of Pester with these changes is currently available <a href="https://github.com/kvprasoon/Pester/tree/remark">here</a>.</p>
 <p>Pester is used both as an unit testing framework as well as an operational validation tool. In both the use cases, output report plays an important role in presenting the test results. This article is about the output report with and added capability.</p>
 <p>Below is a Pester test script with few tests.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">param</span>(
-    [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Mandatory</span> = $True)]
-    <span style="color:#66d9ef">[string]</span>$ConfigPath
-)
-
-$Config = Get-Content -Path $ConfigPath | ConvertFrom-Json
-Describe <span style="color:#e6db74">&#34;Describing validation tests post deployment&#34;</span> {
-    Context <span style="color:#e6db74">&#34;Post deployment validation tests for services&#34;</span> {
-        BeforeAll {
-            $Config.service.expectedconfiguration | <span style="color:#66d9ef">ForEach</span>-Object -Process {
-                $Name = $_.Name
-                $Status = $_.Status
-                $StartMode = $_.StartMode
-                $Service = Get-Service -Name $Name
-    
-                it <span style="color:#e6db74">&#34;Service $Name status should be $Status&#34;</span> {
-                    $Service.Status | Should -Be $Status
-                } 
-    
-                it <span style="color:#e6db74">&#34;Service $Name startmode should be $StartMode&#34;</span> {
-                    $Service.StartType | Should -Be $StartMode
-                } 
-            }
-        }
-    }
-    
-    Context <span style="color:#e6db74">&#34;Post deployment validation tests for folder permission&#34;</span> {
-        $Config.folderpermission.expectedconfiguration | <span style="color:#66d9ef">ForEach</span>-Object -Process {
-            $User = $_.user
-            $Permission = $_.permission
-            $Path = $_.path
-            it <span style="color:#e6db74">&#34;user $User should have $Permission permission on path $Path&#34;</span> {
-                $Access = (Get-Acl -Path $Path).Access | Where-Object -FilterScript { $_.IdentityReference <span style="color:#f92672">-eq</span> $User }
-                $Access.FileSystemRights | Should -Contain $Permission
-            } 
-        }
-    }
-    
-    Context <span style="color:#e6db74">&#34;Post deployment validation tests for firewall rule&#34;</span> {
-        $Config.firewallrule.expectedconfiguration | <span style="color:#66d9ef">ForEach</span>-Object -Process {
-            $Rulename = $_.rulename
-            $Direction = $_.direction
-            $Rule = Get-NetFirewallRule -Name $RuleName -ErrorAction SilentlyContinue
-    
-            it <span style="color:#e6db74">&#34;A Firewall rule with name $RuleName should be available&#34;</span> {
-                $Rule | Should <span style="color:#f92672">-Not</span> -BeNullOrEmpty
-            } 
-    
-            it <span style="color:#e6db74">&#34;Firewall rule $RuleName should be allowed for $Direction connection&#34;</span> {
-                $Rule.Direction | Should <span style="color:#f92672">-Not</span> $Direction
-            } 
-        }
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">param</span><span class="p">(</span>
+<span class="ln"> 2</span>    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$True</span><span class="p">)]</span>
+<span class="ln"> 3</span>    <span class="no">[string]</span><span class="nv">$ConfigPath</span>
+<span class="ln"> 4</span><span class="p">)</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span><span class="nv">$Config</span> <span class="p">=</span> <span class="nb">Get-Content</span> <span class="n">-Path</span> <span class="nv">$ConfigPath</span> <span class="p">|</span> <span class="nb">ConvertFrom-Json</span>
+<span class="ln"> 7</span><span class="n">Describe</span> <span class="s2">&#34;Describing validation tests post deployment&#34;</span> <span class="p">{</span>
+<span class="ln"> 8</span>    <span class="n">Context</span> <span class="s2">&#34;Post deployment validation tests for services&#34;</span> <span class="p">{</span>
+<span class="ln"> 9</span>        <span class="n">BeforeAll</span> <span class="p">{</span>
+<span class="ln">10</span>            <span class="nv">$Config</span><span class="p">.</span><span class="n">service</span><span class="p">.</span><span class="n">expectedconfiguration</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="n">-Process</span> <span class="p">{</span>
+<span class="ln">11</span>                <span class="nv">$Name</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Name</span>
+<span class="ln">12</span>                <span class="nv">$Status</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Status</span>
+<span class="ln">13</span>                <span class="nv">$StartMode</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">StartMode</span>
+<span class="ln">14</span>                <span class="nv">$Service</span> <span class="p">=</span> <span class="nb">Get-Service</span> <span class="n">-Name</span> <span class="nv">$Name</span>
+<span class="ln">15</span>    
+<span class="ln">16</span>                <span class="n">it</span> <span class="s2">&#34;Service $Name status should be $Status&#34;</span> <span class="p">{</span>
+<span class="ln">17</span>                    <span class="nv">$Service</span><span class="p">.</span><span class="n">Status</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">-Be</span> <span class="nv">$Status</span>
+<span class="ln">18</span>                <span class="p">}</span> 
+<span class="ln">19</span>    
+<span class="ln">20</span>                <span class="n">it</span> <span class="s2">&#34;Service $Name startmode should be $StartMode&#34;</span> <span class="p">{</span>
+<span class="ln">21</span>                    <span class="nv">$Service</span><span class="p">.</span><span class="n">StartType</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">-Be</span> <span class="nv">$StartMode</span>
+<span class="ln">22</span>                <span class="p">}</span> 
+<span class="ln">23</span>            <span class="p">}</span>
+<span class="ln">24</span>        <span class="p">}</span>
+<span class="ln">25</span>    <span class="p">}</span>
+<span class="ln">26</span>    
+<span class="ln">27</span>    <span class="n">Context</span> <span class="s2">&#34;Post deployment validation tests for folder permission&#34;</span> <span class="p">{</span>
+<span class="ln">28</span>        <span class="nv">$Config</span><span class="p">.</span><span class="n">folderpermission</span><span class="p">.</span><span class="n">expectedconfiguration</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="n">-Process</span> <span class="p">{</span>
+<span class="ln">29</span>            <span class="nv">$User</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">user</span>
+<span class="ln">30</span>            <span class="nv">$Permission</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">permission</span>
+<span class="ln">31</span>            <span class="nv">$Path</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">path</span>
+<span class="ln">32</span>            <span class="n">it</span> <span class="s2">&#34;user $User should have $Permission permission on path $Path&#34;</span> <span class="p">{</span>
+<span class="ln">33</span>                <span class="nv">$Access</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Get-Acl</span> <span class="n">-Path</span> <span class="nv">$Path</span><span class="p">).</span><span class="n">Access</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="n">-FilterScript</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">IdentityReference</span> <span class="o">-eq</span> <span class="nv">$User</span> <span class="p">}</span>
+<span class="ln">34</span>                <span class="nv">$Access</span><span class="p">.</span><span class="n">FileSystemRights</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">-Contain</span> <span class="nv">$Permission</span>
+<span class="ln">35</span>            <span class="p">}</span> 
+<span class="ln">36</span>        <span class="p">}</span>
+<span class="ln">37</span>    <span class="p">}</span>
+<span class="ln">38</span>    
+<span class="ln">39</span>    <span class="n">Context</span> <span class="s2">&#34;Post deployment validation tests for firewall rule&#34;</span> <span class="p">{</span>
+<span class="ln">40</span>        <span class="nv">$Config</span><span class="p">.</span><span class="n">firewallrule</span><span class="p">.</span><span class="n">expectedconfiguration</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="n">-Process</span> <span class="p">{</span>
+<span class="ln">41</span>            <span class="nv">$Rulename</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">rulename</span>
+<span class="ln">42</span>            <span class="nv">$Direction</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">direction</span>
+<span class="ln">43</span>            <span class="nv">$Rule</span> <span class="p">=</span> <span class="nb">Get-NetFirewallRule</span> <span class="n">-Name</span> <span class="nv">$RuleName</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
+<span class="ln">44</span>    
+<span class="ln">45</span>            <span class="n">it</span> <span class="s2">&#34;A Firewall rule with name $RuleName should be available&#34;</span> <span class="p">{</span>
+<span class="ln">46</span>                <span class="nv">$Rule</span> <span class="p">|</span> <span class="n">Should</span> <span class="o">-Not</span> <span class="n">-BeNullOrEmpty</span>
+<span class="ln">47</span>            <span class="p">}</span> 
+<span class="ln">48</span>    
+<span class="ln">49</span>            <span class="n">it</span> <span class="s2">&#34;Firewall rule $RuleName should be allowed for $Direction connection&#34;</span> <span class="p">{</span>
+<span class="ln">50</span>                <span class="nv">$Rule</span><span class="p">.</span><span class="n">Direction</span> <span class="p">|</span> <span class="n">Should</span> <span class="o">-Not</span> <span class="nv">$Direction</span>
+<span class="ln">51</span>            <span class="p">}</span> 
+<span class="ln">52</span>        <span class="p">}</span>
+<span class="ln">53</span>    <span class="p">}</span>
+<span class="ln">54</span><span class="p">}</span>
 </code></pre></div><p>Data for above test script is shown below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">{
-    <span style="color:#e6db74">&#34;service&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
-        <span style="color:#e6db74">&#34;suggestion&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
-            <span style="color:#e6db74">&#34;startmode&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;Open PowerShell as administrator and run &#39;Set-Service -Name {0} -StartType {1}&#39;&#34;</span>,
-            <span style="color:#e6db74">&#34;status&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;Make the service &#39;{0}&#39; in {1} state.&#34;</span>
-        },
-        <span style="color:#e6db74">&#34;expectedconfiguration&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> [
-            {
-                <span style="color:#e6db74">&#34;name&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;BITS&#34;</span>,
-                <span style="color:#e6db74">&#34;status&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;running&#34;</span>,
-                <span style="color:#e6db74">&#34;startmode&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;automatic&#34;</span>
-            },
-            {
-                <span style="color:#e6db74">&#34;name&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;wuauserv&#34;</span>,
-                <span style="color:#e6db74">&#34;status&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;running&#34;</span>,
-                <span style="color:#e6db74">&#34;startmode&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;automatic&#34;</span>
-            }
-        ]
-    },
-    <span style="color:#e6db74">&#34;folderpermission&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
-        <span style="color:#e6db74">&#34;suggestion&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
-            <span style="color:#e6db74">&#34;message&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;Give {0} permission for {1} user on {2} folder.&#34;</span>
-        },
-        <span style="color:#e6db74">&#34;expectedconfiguration&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> [
-            {
-                <span style="color:#e6db74">&#34;path&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;c:\\Deployment\\config&#34;</span>,
-                <span style="color:#e6db74">&#34;user&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;RDFC\\Test&#34;</span>,
-                <span style="color:#e6db74">&#34;permission&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;FullControl&#34;</span>
-            },
-            {
-                <span style="color:#e6db74">&#34;path&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;c:\\Deployment\\files&#34;</span>,
-                <span style="color:#e6db74">&#34;user&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;RDFC\\kvprasoon&#34;</span>,
-                <span style="color:#e6db74">&#34;permission&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;FullControl&#34;</span>
-            }
-        ]
-    },
-    <span style="color:#e6db74">&#34;firewallrule&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
-        <span style="color:#e6db74">&#34;suggestion&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
-            <span style="color:#e6db74">&#34;rulename&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;Open wf.msc and create an {0} rule with name &#39;{1}&#39;.&#34;</span>,
-            <span style="color:#e6db74">&#34;direction&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;Open wf.msc and create the firewall rule &#39;{0}&#39; for {1} connection.&#34;</span>
-        },
-        <span style="color:#e6db74">&#34;expectedconfiguration&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> [
-            {
-                <span style="color:#e6db74">&#34;rulename&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;Rule1&#34;</span>,
-                <span style="color:#e6db74">&#34;direction&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;Inbound&#34;</span>
-            },
-            {
-                <span style="color:#e6db74">&#34;rulename&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;Rule2&#34;</span>,
-                <span style="color:#e6db74">&#34;direction&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;Outbound&#34;</span>
-            }
-        ]
-    }
-}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="p">{</span>
+<span class="ln"> 2</span>    <span class="s2">&#34;service&#34;</span><span class="err">:</span> <span class="p">{</span>
+<span class="ln"> 3</span>        <span class="s2">&#34;suggestion&#34;</span><span class="err">:</span> <span class="p">{</span>
+<span class="ln"> 4</span>            <span class="s2">&#34;startmode&#34;</span><span class="err">:</span> <span class="s2">&#34;Open PowerShell as administrator and run &#39;Set-Service -Name {0} -StartType {1}&#39;&#34;</span><span class="p">,</span>
+<span class="ln"> 5</span>            <span class="s2">&#34;status&#34;</span><span class="err">:</span> <span class="s2">&#34;Make the service &#39;{0}&#39; in {1} state.&#34;</span>
+<span class="ln"> 6</span>        <span class="p">},</span>
+<span class="ln"> 7</span>        <span class="s2">&#34;expectedconfiguration&#34;</span><span class="err">:</span> <span class="p">[</span>
+<span class="ln"> 8</span>            <span class="p">{</span>
+<span class="ln"> 9</span>                <span class="s2">&#34;name&#34;</span><span class="err">:</span> <span class="s2">&#34;BITS&#34;</span><span class="p">,</span>
+<span class="ln">10</span>                <span class="s2">&#34;status&#34;</span><span class="err">:</span> <span class="s2">&#34;running&#34;</span><span class="p">,</span>
+<span class="ln">11</span>                <span class="s2">&#34;startmode&#34;</span><span class="err">:</span> <span class="s2">&#34;automatic&#34;</span>
+<span class="ln">12</span>            <span class="p">},</span>
+<span class="ln">13</span>            <span class="p">{</span>
+<span class="ln">14</span>                <span class="s2">&#34;name&#34;</span><span class="err">:</span> <span class="s2">&#34;wuauserv&#34;</span><span class="p">,</span>
+<span class="ln">15</span>                <span class="s2">&#34;status&#34;</span><span class="err">:</span> <span class="s2">&#34;running&#34;</span><span class="p">,</span>
+<span class="ln">16</span>                <span class="s2">&#34;startmode&#34;</span><span class="err">:</span> <span class="s2">&#34;automatic&#34;</span>
+<span class="ln">17</span>            <span class="p">}</span>
+<span class="ln">18</span>        <span class="p">]</span>
+<span class="ln">19</span>    <span class="p">},</span>
+<span class="ln">20</span>    <span class="s2">&#34;folderpermission&#34;</span><span class="err">:</span> <span class="p">{</span>
+<span class="ln">21</span>        <span class="s2">&#34;suggestion&#34;</span><span class="err">:</span> <span class="p">{</span>
+<span class="ln">22</span>            <span class="s2">&#34;message&#34;</span><span class="err">:</span> <span class="s2">&#34;Give {0} permission for {1} user on {2} folder.&#34;</span>
+<span class="ln">23</span>        <span class="p">},</span>
+<span class="ln">24</span>        <span class="s2">&#34;expectedconfiguration&#34;</span><span class="err">:</span> <span class="p">[</span>
+<span class="ln">25</span>            <span class="p">{</span>
+<span class="ln">26</span>                <span class="s2">&#34;path&#34;</span><span class="err">:</span> <span class="s2">&#34;c:\\Deployment\\config&#34;</span><span class="p">,</span>
+<span class="ln">27</span>                <span class="s2">&#34;user&#34;</span><span class="err">:</span> <span class="s2">&#34;RDFC\\Test&#34;</span><span class="p">,</span>
+<span class="ln">28</span>                <span class="s2">&#34;permission&#34;</span><span class="err">:</span> <span class="s2">&#34;FullControl&#34;</span>
+<span class="ln">29</span>            <span class="p">},</span>
+<span class="ln">30</span>            <span class="p">{</span>
+<span class="ln">31</span>                <span class="s2">&#34;path&#34;</span><span class="err">:</span> <span class="s2">&#34;c:\\Deployment\\files&#34;</span><span class="p">,</span>
+<span class="ln">32</span>                <span class="s2">&#34;user&#34;</span><span class="err">:</span> <span class="s2">&#34;RDFC\\kvprasoon&#34;</span><span class="p">,</span>
+<span class="ln">33</span>                <span class="s2">&#34;permission&#34;</span><span class="err">:</span> <span class="s2">&#34;FullControl&#34;</span>
+<span class="ln">34</span>            <span class="p">}</span>
+<span class="ln">35</span>        <span class="p">]</span>
+<span class="ln">36</span>    <span class="p">},</span>
+<span class="ln">37</span>    <span class="s2">&#34;firewallrule&#34;</span><span class="err">:</span> <span class="p">{</span>
+<span class="ln">38</span>        <span class="s2">&#34;suggestion&#34;</span><span class="err">:</span> <span class="p">{</span>
+<span class="ln">39</span>            <span class="s2">&#34;rulename&#34;</span><span class="err">:</span> <span class="s2">&#34;Open wf.msc and create an {0} rule with name &#39;{1}&#39;.&#34;</span><span class="p">,</span>
+<span class="ln">40</span>            <span class="s2">&#34;direction&#34;</span><span class="err">:</span> <span class="s2">&#34;Open wf.msc and create the firewall rule &#39;{0}&#39; for {1} connection.&#34;</span>
+<span class="ln">41</span>        <span class="p">},</span>
+<span class="ln">42</span>        <span class="s2">&#34;expectedconfiguration&#34;</span><span class="err">:</span> <span class="p">[</span>
+<span class="ln">43</span>            <span class="p">{</span>
+<span class="ln">44</span>                <span class="s2">&#34;rulename&#34;</span><span class="err">:</span> <span class="s2">&#34;Rule1&#34;</span><span class="p">,</span>
+<span class="ln">45</span>                <span class="s2">&#34;direction&#34;</span><span class="err">:</span> <span class="s2">&#34;Inbound&#34;</span>
+<span class="ln">46</span>            <span class="p">},</span>
+<span class="ln">47</span>            <span class="p">{</span>
+<span class="ln">48</span>                <span class="s2">&#34;rulename&#34;</span><span class="err">:</span> <span class="s2">&#34;Rule2&#34;</span><span class="p">,</span>
+<span class="ln">49</span>                <span class="s2">&#34;direction&#34;</span><span class="err">:</span> <span class="s2">&#34;Outbound&#34;</span>
+<span class="ln">50</span>            <span class="p">}</span>
+<span class="ln">51</span>        <span class="p">]</span>
+<span class="ln">52</span>    <span class="p">}</span>
+<span class="ln">53</span><span class="p">}</span>
 </code></pre></div><p>In a nutshell, the above pester test script will test Service status, file system permissions, and firewall rules by reading the data from the JSON configuration file.</p>
 <p>You can execute the test as shown below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Invoke-Pester -Script @{Path = <span style="color:#e6db74">&#39;C:\temp\OpsValidation.tests.ps1&#39;</span> ; Parameters = @{ConfigPath = <span style="color:#e6db74">&#39;c:\temp\OpsValidationConfig.json&#39;</span>}}
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Invoke-Pester</span> <span class="n">-Script</span> <span class="p">@{</span><span class="n">Path</span> <span class="p">=</span> <span class="s1">&#39;C:\temp\OpsValidation.tests.ps1&#39;</span> <span class="p">;</span> <span class="n">Parameters</span> <span class="p">=</span> <span class="p">@{</span><span class="n">ConfigPath</span> <span class="p">=</span> <span class="s1">&#39;c:\temp\OpsValidationConfig.json&#39;</span><span class="p">}}</span>
 </code></pre></div><p>This will show the test result in the console with summary.</p>
 <p><img src="/images/remark1.png" alt="image"></p>
 <p>When comes to the reporting side, Invoke-Pester has parameters which will create a [nunit][1] based XML test result file. Nunit XML reports are mostly rendered using a report reader or by converting it to html format. There are many tools in the market that convert Nunit XML to nice UI reports. [Reportunit][2] (now [extent-reports][3]) is my favorite. But this tool uses jquery and CSS which are referenced online, hence made me to think about adding this capability to Pester. Since the report is in XML format, my choice was to go with [XSLT][4]. In short, <em>XSL is a steroid for XML</em>. This article doesn’t cover anything on how it transforms XML to HTML. [Here][5] is a simple example for creating an XSL targeting an XML. Now we know that XSL can transform an XML to HTML but how to add this in the Nunit report generated by Pester. This is done by adding a new parameter to accept the XSL path and putting it as a stylesheet reference in XML generated by pester. I’ve named the parameter as <strong>–XSLPath.</strong> Below is an example execution with the XSL path.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Invoke-Pester -Script @{Path = <span style="color:#e6db74">&#39;C:\temp\OpsValidation.tests.ps1&#39;</span> ; Parameters = @{ConfigPath = <span style="color:#e6db74">&#39;c:\temp\OpsValidationConfig.json&#39;</span>}} -OutputFile c:\temp\OpsValidation.xml -OutputFormat NUnitXml -XSLPath c:\temp\OpsValidation.xsl
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Invoke-Pester</span> <span class="n">-Script</span> <span class="p">@{</span><span class="n">Path</span> <span class="p">=</span> <span class="s1">&#39;C:\temp\OpsValidation.tests.ps1&#39;</span> <span class="p">;</span> <span class="n">Parameters</span> <span class="p">=</span> <span class="p">@{</span><span class="n">ConfigPath</span> <span class="p">=</span> <span class="s1">&#39;c:\temp\OpsValidationConfig.json&#39;</span><span class="p">}}</span> <span class="n">-OutputFile</span> <span class="n">c:</span><span class="p">\</span><span class="n">temp</span><span class="p">\</span><span class="n">OpsValidation</span><span class="p">.</span><span class="n">xml</span> <span class="n">-OutputFormat</span> <span class="n">NUnitXml</span> <span class="n">-XSLPath</span> <span class="n">c:</span><span class="p">\</span><span class="n">temp</span><span class="p">\</span><span class="n">OpsValidation</span><span class="p">.</span><span class="n">xsl</span>
 </code></pre></div><p>Once executed, open the XML report using a web browser to see the magic !</p>
 <p>So far so good! But here comes the interesting part of this article.</p>
 <p>We are now able to have a report in html, hence it is easy to see the test failures (human beings are interested in analyzing failures than success !) in a web browser. How about adding some suggestions/remarks for the end user/support engineers to fix the issue and make the test pass?</p>
 <p>Well then that has to be done for each testcase. Yes for each test cases. This is done by adding a new parameter to the <strong>it</strong> function in Pester.</p>
 <p>Below is an example with the suggestion feature.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">it <span style="color:#e6db74">&#34;Service BITS status should be Running&#34;</span> {
-     $Service.Status | Should -Be <span style="color:#e6db74">&#34;Running&#34;</span>
- } -Remark <span style="color:#e6db74">&#34;Open services.msc and start BITS service&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">it</span> <span class="s2">&#34;Service BITS status should be Running&#34;</span> <span class="p">{</span>
+<span class="ln">2</span>     <span class="nv">$Service</span><span class="p">.</span><span class="n">Status</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">-Be</span> <span class="s2">&#34;Running&#34;</span>
+<span class="ln">3</span> <span class="p">}</span> <span class="n">-Remark</span> <span class="s2">&#34;Open services.msc and start BITS service&#34;</span>
 </code></pre></div><p>But there is a caveat, we can add a parameter to the It function, but how to add this remark in the report XML. The report XML is in nunit format and it has predefined layout. The test result layout has to be followed in the report and therefore any Nunit report readers can parse the result.</p>
 <p>Well, Pester report doesn’t use all the attributes of the nunit test result layout and I found the <strong>Label</strong> attribute as a candidate for adding remarks. So with the remark support for testcases, below is the final pester test script.</p>
 <p>Script: <a href="https://gist.github.com/kvprasoon/bec40fa50d6975fcdafa6536b61cf1aa">https://gist.github.com/kvprasoon/bec40fa50d6975fcdafa6536b61cf1aa</a></p>
 <p>Test Configuration: <a href="https://gist.github.com/kvprasoon/2dd5fc64eec0653e4bdde6a18da526ff">https://gist.github.com/kvprasoon/2dd5fc64eec0653e4bdde6a18da526ff</a></p>
 <p>Lets execute and see the report with suggestions.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Invoke-Pester -Script @{Path = <span style="color:#e6db74">&#39;C:\temp\OpsValidation.tests.ps1&#39;</span> ; Parameters = @{ConfigPath = <span style="color:#e6db74">&#39;c:\temp\OpsValidationConfig.json&#39;</span>}} -OutputFile c:\temp\OpsValidation.xml -OutputFormat NUnitXml -XSLPath c:\temp\OpsValidation.xsl
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Invoke-Pester</span> <span class="n">-Script</span> <span class="p">@{</span><span class="n">Path</span> <span class="p">=</span> <span class="s1">&#39;C:\temp\OpsValidation.tests.ps1&#39;</span> <span class="p">;</span> <span class="n">Parameters</span> <span class="p">=</span> <span class="p">@{</span><span class="n">ConfigPath</span> <span class="p">=</span> <span class="s1">&#39;c:\temp\OpsValidationConfig.json&#39;</span><span class="p">}}</span> <span class="n">-OutputFile</span> <span class="n">c:</span><span class="p">\</span><span class="n">temp</span><span class="p">\</span><span class="n">OpsValidation</span><span class="p">.</span><span class="n">xml</span> <span class="n">-OutputFormat</span> <span class="n">NUnitXml</span> <span class="n">-XSLPath</span> <span class="n">c:</span><span class="p">\</span><span class="n">temp</span><span class="p">\</span><span class="n">OpsValidation</span><span class="p">.</span><span class="n">xsl</span>
 </code></pre></div><p>After opening the generated report in a web browser.</p>
 <p><img src="/images/remark2.png" alt="image"></p>
 <p>If you want to explore and see the code changes, Pester with these changes is currently available <a href="https://github.com/kvprasoon/Pester/tree/remark">here</a>.</p>
