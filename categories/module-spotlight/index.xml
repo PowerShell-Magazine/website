@@ -6,10 +6,19 @@
     <description>Recent content in Module Spotlight on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 May 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 04 May 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://powershellmagazine.com/categories/module-spotlight/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Make your code faster with Profiler</title>
+      <link>https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/</link>
+      <pubDate>Tue, 04 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/</guid>
+      <description>Making PowerShell code faster has always been a difficult task. There are few DOs and DON&amp;rsquo;Ts of writing fast PowerShell code, but until now there was not a good way to measure what is actually happening.</description>
+    </item>
     
     <item>
       <title>Announcing PowerShell Magazine author toolkit v1.0</title>

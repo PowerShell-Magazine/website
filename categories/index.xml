@@ -6,7 +6,7 @@
     <description>Recent content in Categories on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 May 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 04 May 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://powershellmagazine.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,27 @@
     <item>
       <title>Module Spotlight</title>
       <link>https://powershellmagazine.com/categories/module-spotlight/</link>
-      <pubDate>Mon, 03 May 2021 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 04 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://powershellmagazine.com/categories/module-spotlight/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Performance</title>
+      <link>https://powershellmagazine.com/categories/performance/</link>
+      <pubDate>Tue, 04 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://powershellmagazine.com/categories/performance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Profiler</title>
+      <link>https://powershellmagazine.com/categories/profiler/</link>
+      <pubDate>Tue, 04 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://powershellmagazine.com/categories/profiler/</guid>
       <description></description>
     </item>
     
@@ -863,15 +881,6 @@
       <pubDate>Mon, 28 Nov 2011 23:25:33 +0000</pubDate>
       
       <guid>https://powershellmagazine.com/categories/call-for-authors/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Performance</title>
-      <link>https://powershellmagazine.com/categories/performance/</link>
-      <pubDate>Tue, 15 Nov 2011 07:27:15 +0000</pubDate>
-      
-      <guid>https://powershellmagazine.com/categories/performance/</guid>
       <description></description>
     </item>
     
