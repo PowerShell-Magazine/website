@@ -235,7 +235,77 @@ if (!doNotTrack) {
             </li>
           </ul>
           <div class="content"><p>If you have ever worked with the Test-Cluster command in the failover clustering module, you will know that this command generates an HTML report. This is visually good, for like IT managers, but not very appealing to people are automating infrastructure build process. There is no way this command provides any passthru type of functionality through which it returns the result object that can be easily parsed or used in PowerShell.</p>
-<p><img src="/images/failover1.png" alt="image"></p>
+<p>
+<link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
+<div class="box" >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="/images/failover1.png" />
+    </div>
+    <a href="/images/failover1.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+ 
+
+
+
+  
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="/js/load-photoswipe.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js" integrity="sha256-UplRCs9v4KXVJvVY+p+RSo5Q4ilAUXh7kpjyIP5odyc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js" integrity="sha256-PWHOlUzc96pMc8ThwRIXPn8yH4NOLu42RQ0b9SpnpFk=" crossorigin="anonymous"></script>
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+</p>
 <p>As a part of some larger automation that I was building, I needed to parse the validation result into a PowerShell object that can be used later in the orchestration. Parsing HTML isn’t what I needed but a little of digging gave some clues about the XML report that gets generated when we run this command.</p>
 <p>Behind the scenes, the Test-Cluster command generates an XML every time it was run. This XML gets stored at C:\Windows\Temp. Looking at the XML you can easily notice that the schema was really designed to generate the HTML easily. So, it took a few minutes to understand how the tests are categorized and come up with the below script.</p>
 <div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
@@ -287,7 +357,17 @@ if (!doNotTrack) {
 <span class="ln">47</span>
 <span class="ln">48</span><span class="k">return</span> <span class="nv">$validationResultArray</span>
 </code></pre></div><p>The input to the above script is the XML file that gets generated at C:\Windows\Temp. Once you run the script, you should see the output similar to what is shown below.</p>
-<p><img src="/images/failover2.png" alt="image"></p>
+
+
+<div class="box" >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="/images/failover2.png" />
+    </div>
+    <a href="/images/failover2.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
 <p>I have only added the property values that I really need in my scripts but you can look at the XML and then easily modify the above script to add other details as you need.</p>
 <p>Comment on this <a href="https://gist.github.com/rchaganti/b4fc88f1615c6810b2c46b647ae4fe96">Gist</a> if you have any suggestions or have you version of the script.</p>
 </div>

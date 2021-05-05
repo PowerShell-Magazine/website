@@ -391,26 +391,106 @@ if (!doNotTrack) {
 <span class="ln">11</span><span class="k">Alias</span>           <span class="n">RawEntry</span> <span class="p">-&gt;</span> <span class="nb">New-PSArmEntry</span>                         <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
 <span class="ln">12</span><span class="k">Alias</span>           <span class="n">Resource</span> <span class="p">-&gt;</span> <span class="nb">New-PSArmResource</span>                      <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
 </code></pre></div><p>With <code>Arm</code> keyword, you can specify an optional <code>Name</code> parameter which will be used as a name of the deployment within the template. For the resource definition, you use the <code>Resource</code> keyword. You must specify a <code>Name</code> to be used for the resource you want to provision, <code>Namespace</code> of the resource, <code>ApiVersion</code>, and <code>Type</code>.  As you enter arguments for these four parameters, you will see that PowerShell dynamically adds some more parameters based on the type of resource you intend to provision.</p>
-<p><img src="/images/psarmresourceparam.png" alt=""></p>
+<p>
+<link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
+<div class="box" >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="/images/psarmresourceparam.png" />
+    </div>
+    <a href="/images/psarmresourceparam.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+ 
+
+
+
+  
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="/js/load-photoswipe.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js" integrity="sha256-UplRCs9v4KXVJvVY+p+RSo5Q4ilAUXh7kpjyIP5odyc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js" integrity="sha256-PWHOlUzc96pMc8ThwRIXPn8yH4NOLu42RQ0b9SpnpFk=" crossorigin="anonymous"></script>
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+</p>
 <p>For example, as you see in the above screenshot, as soon as I added the <code>Type</code> parameter and its argument, I get <code>Kind</code> and <code>Tags</code> as the dynamic parameters. You can, then, use the <code>ArmSku</code> keyword to specify the SKU of the resource that you intend to provision. In case of a storage account, this can be set to Standard_LRS or any other supported value. Each Azure resource may need some more additional properties for resource provisioning and configuration. You can use the <code>properties</code> keyword for this purpose. PSArm gives you the auto-completion of property names within the <code>properties</code> block.</p>
-<p><img src="/images/psaramresourceprop.png" alt=""></p>
+
+
+<div class="box" >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="/images/psaramresourceprop.png" />
+    </div>
+    <a href="/images/psaramresourceprop.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
 <p>Finally, the <code>output</code> keyword can be used to retrieve properties required from the deployed resource objects. This keyword takes <code>Name</code>, <code>Type</code>, and <code>Value</code> as parameters.</p>
 <h3 id="first-psarm-script">First PSArm Script</h3>
 <p>Here is a complete PSArm script for provisioning a simple storage account.</p>
 <div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Arm</span> <span class="n">-Name</span> <span class="n">myFirstTemplate</span> <span class="n">-Body</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="n">Resource</span> <span class="s1">&#39;mypsarmsaccount&#39;</span> <span class="p">`</span>
+<span class="ln"> 2</span>    <span class="n">Resource</span> <span class="s1">&#39;mypsarmsaccount&#39;</span> <span class="p">`</span>
 <span class="ln"> 3</span>             <span class="n">-Namespace</span> <span class="s1">&#39;Microsoft.Storage&#39;</span> <span class="p">`</span>
 <span class="ln"> 4</span>             <span class="n">-Type</span> <span class="s1">&#39;storageAccounts&#39;</span> <span class="p">`</span>
 <span class="ln"> 5</span>             <span class="n">-apiVersion</span> <span class="s1">&#39;2019-06-01&#39;</span> <span class="p">`</span>
 <span class="ln"> 6</span>             <span class="n">-Kind</span> <span class="s1">&#39;StorageV2&#39;</span> <span class="p">`</span>
 <span class="ln"> 7</span>             <span class="n">-Location</span> <span class="s1">&#39;WestUS&#39;</span> <span class="p">{</span>
-<span class="ln"> 8</span>        <span class="n">ArmSku</span> <span class="s1">&#39;Standard_LRS&#39;</span>
-<span class="ln"> 9</span>        <span class="n">Properties</span> <span class="p">{</span>
-<span class="ln">10</span>            <span class="n">accessTier</span> <span class="s1">&#39;Hot&#39;</span>
-<span class="ln">11</span>        <span class="p">}</span>
-<span class="ln">12</span>    <span class="p">}</span>
+<span class="ln"> 8</span>        <span class="n">ArmSku</span> <span class="s1">&#39;Standard_LRS&#39;</span>
+<span class="ln"> 9</span>        <span class="n">Properties</span> <span class="p">{</span>
+<span class="ln">10</span>            <span class="n">accessTier</span> <span class="s1">&#39;Hot&#39;</span>
+<span class="ln">11</span>        <span class="p">}</span>
+<span class="ln">12</span>    <span class="p">}</span>
 <span class="ln">13</span>
-<span class="ln">14</span>    <span class="n">Output</span> <span class="s1">&#39;storageResourceId&#39;</span> <span class="n">-Type</span> <span class="s1">&#39;string&#39;</span> <span class="n">-Value</span> <span class="p">(</span><span class="n">ResourceId</span> <span class="s1">&#39;Microsoft.Storage/storageAccounts&#39;</span> <span class="p">(</span><span class="n">Concat</span> <span class="s1">&#39;myPsArmSaccount&#39;</span><span class="p">))</span>
+<span class="ln">14</span>	<span class="n">Output</span> <span class="s1">&#39;storageResourceId&#39;</span> <span class="n">-Type</span> <span class="s1">&#39;string&#39;</span> <span class="n">-Value</span> <span class="p">(</span><span class="n">ResourceId</span> <span class="s1">&#39;Microsoft.Storage/storageAccounts&#39;</span> <span class="p">(</span><span class="n">Concat</span> <span class="s1">&#39;myPsArmSaccount&#39;</span><span class="p">))</span>
 <span class="ln">15</span><span class="p">}</span>
 </code></pre></div><p>Make a note of the <code>ResourceId</code> and <code>Concat</code> functions used along with the <code>output</code> keyword. PSArm has public function parity with what is offered in ARM template language. You can save this script with a <code>.psarm.ps1</code> extension and generate the ARM template JSON using the <code>Publish-PSArmTemplate</code> cmdlet that PSArm module provides.</p>
 <div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Publish-PSArmTemplate</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">firstTemplate</span><span class="p">.</span><span class="n">psarm</span><span class="p">.</span><span class="n">ps1</span> <span class="p">`</span>

@@ -319,15 +319,6 @@ As part of my work in an engineering team, I am tasked with writing scripts whic
     </item>
     
     <item>
-      <title>PowerSploit</title>
-      <link>https://powershellmagazine.com/2014/07/08/powersploit/</link>
-      <pubDate>Tue, 08 Jul 2014 16:00:53 +0000</pubDate>
-      
-      <guid>https://powershellmagazine.com/2014/07/08/powersploit/</guid>
-      <description>PowerSploit is an offensive security framework for penetration testers and reverse engineers. It was born out of the realization that PowerShell was the ideal post-exploitation utility in Windows due to its ability to perform a wide range of administrative and low-level tasks all without the need to drop malicious executables to disk, thus, evading antivirus products with ease.</description>
-    </item>
-    
-    <item>
       <title>Posh-SSH: Open Source SSH PowerShell Module</title>
       <link>https://powershellmagazine.com/2014/07/03/posh-ssh-open-source-ssh-powershell-module/</link>
       <pubDate>Thu, 03 Jul 2014 17:15:48 +0000</pubDate>

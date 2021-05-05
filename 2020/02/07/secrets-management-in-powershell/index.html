@@ -240,7 +240,77 @@ if (!doNotTrack) {
 </code></pre></div><p>There are also modules that are wrappers around 3rd party vaults such as <a href="https://www.vaultproject.io/%C2%A0">Hashicorp Vault</a> or <a href="https://github.com/neosmart/SecureStore">SecureStore</a>. However, there was nothing that was officially supported by Microsoft (Azure Vault doesn&rsquo;t count for secrets management in PowerShell) or PowerShell team until now.</p>
 <p>At Ignite 2019, PowerShell team introduced <a href="https://myignite.techcommunity.microsoft.com/sessions/83981?source=sessions">secrets management</a> in PowerShell. Today, <a href="https://devblogs.microsoft.com/powershell/secrets-management-development-release/">PowerShell team announced a development release version</a> of a module for PowerShell secrets management.</p>
 <div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">PowerShell</span><span class="p">.</span><span class="n">SecretsManagement</span> <span class="n">-AllowPrerelease</span>
-</code></pre></div><p><img src="/images/secmgmt1.png" alt="image"></p>
+</code></pre></div><p>
+<link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
+<div class="box" >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="/images/secmgmt1.png" />
+    </div>
+    <a href="/images/secmgmt1.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+ 
+
+
+
+  
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="/js/load-photoswipe.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js" integrity="sha256-UplRCs9v4KXVJvVY+p+RSo5Q4ilAUXh7kpjyIP5odyc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js" integrity="sha256-PWHOlUzc96pMc8ThwRIXPn8yH4NOLu42RQ0b9SpnpFk=" crossorigin="anonymous"></script>
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+</p>
 <p>This module uses the built-in credential manager for secrets management and provides the above commands for that purpose. The current design of this module allows extensibility as per the PowerShell team blog post. Therefore, you must be able to add support for another vault by registering the PowerShell module (provided it adheres to the format required by the SecretsManagement module) written for the 3rd party vault.</p>
 <p>I have been using some existing modules for secret management in my build and deployment automation. I mostly use the built-in Credential Manager for this purpose. In fact, I demonstrated how I use this in <a href="https://github.com/rchaganti/garuda">Garuda framework</a>. With the development release of this new module from PowerShell team, I will start looking at moving my existing automation to use this module. The one advantage I see here is the extensibility nature of the module. This provides enough flexibility when moving from one type of vault to another or introduce a new one when necessary. Looking forward to see what the community comes up here.</p>
 </div>

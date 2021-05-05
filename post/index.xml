@@ -2329,15 +2329,6 @@ PowerShell is designed to operate on objects. But, what can we do if all we have
     </item>
     
     <item>
-      <title>PowerSploit</title>
-      <link>https://powershellmagazine.com/2014/07/08/powersploit/</link>
-      <pubDate>Tue, 08 Jul 2014 16:00:53 +0000</pubDate>
-      
-      <guid>https://powershellmagazine.com/2014/07/08/powersploit/</guid>
-      <description>PowerSploit is an offensive security framework for penetration testers and reverse engineers. It was born out of the realization that PowerShell was the ideal post-exploitation utility in Windows due to its ability to perform a wide range of administrative and low-level tasks all without the need to drop malicious executables to disk, thus, evading antivirus products with ease.</description>
-    </item>
-    
-    <item>
       <title>#PSTip Finding if a system has PowerShell 4.0 or later</title>
       <link>https://powershellmagazine.com/2014/07/07/pstip-finding-if-a-system-has-powershell-4-0-or-later/</link>
       <pubDate>Mon, 07 Jul 2014 18:00:22 +0000</pubDate>
