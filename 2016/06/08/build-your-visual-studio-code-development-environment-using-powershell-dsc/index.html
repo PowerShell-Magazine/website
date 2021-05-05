@@ -255,76 +255,76 @@ if (!doNotTrack) {
 <li><a href="https://github.com/rchaganti/DSCResources/tree/master/vscode/DSCResources/vscodeextension">vscodeextention</a> is used to manage VS Code extensions.</li>
 </ul>
 <p>Before you can use any of these resources in a configuration script, you must first import the vscode module or a specific resource from this module.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Import-DscResource</span> <span class="n">-Module</span> <span class="n">vscode</span>
-<span class="ln">2</span><span class="nb">Import-DscResource</span> <span class="n">-Module</span> <span class="n">vscode</span> <span class="n">-Name</span> <span class="n">vscodesetup</span>
-<span class="ln">3</span><span class="nb">Import-DscResource</span> <span class="n">-Name</span> <span class="n">vscodeextension</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Import-DscResource</span> <span class="n">-Module</span> <span class="n">vscode</span>
+<span class="nb">Import-DscResource</span> <span class="n">-Module</span> <span class="n">vscode</span> <span class="n">-Name</span> <span class="n">vscodesetup</span>
+<span class="nb">Import-DscResource</span> <span class="n">-Name</span> <span class="n">vscodeextension</span>
 </code></pre></div><h3 id="using-vscodesetup-resource">Using vscodesetup resource</h3>
 <p>The <em>vscodesetup</em> resource can be used to install Microsoft Visual Studio Code editor.</p>
 <p><img src="/images/vscode1.png" alt=""></p>
 <p>When using this resource, both the <em>IsSingleInstance</em> and the <em>Path</em> must be specified. The <em>IsSingleInstance</em> can only have ‘Yes’ as a possible valid value. This is done to ensure that this resource gets used only once in the configuration document. The <em>Path</em> property takes the path to VS Code setup file. This can be downloaded from <a href="https://go.microsoft.com/fwlink/?LinkID=623230">https://go.microsoft.com/fwlink/?LinkID=623230</a>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">VSCodeSetup</span> <span class="n">VSCodeSetup</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="n">IsSingleInstance</span> <span class="p">=</span> <span class="s1">&#39;yes&#39;</span>
-<span class="ln">3</span>    <span class="n">Path</span> <span class="p">=</span> <span class="s1">&#39;C:\temp\vscodesetup.exe&#39;</span>
-<span class="ln">4</span>    <span class="n">PsDscRunAsCredential</span> <span class="p">=</span> <span class="nv">$Credential</span>
-<span class="ln">5</span>    <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
-<span class="ln">6</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">VSCodeSetup</span> <span class="n">VSCodeSetup</span> <span class="p">{</span>
+    <span class="n">IsSingleInstance</span> <span class="p">=</span> <span class="s1">&#39;yes&#39;</span>
+    <span class="n">Path</span> <span class="p">=</span> <span class="s1">&#39;C:\temp\vscodesetup.exe&#39;</span>
+    <span class="n">PsDscRunAsCredential</span> <span class="p">=</span> <span class="nv">$Credential</span>
+    <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+<span class="p">}</span>
 </code></pre></div><p>The <em>PsDscRunAsCredential</em> is important because VS Code installation process creates the .vscode folder that stores all extensions under the logged-in user’s homepath. Without this, this folder gets created at the root of system drive. So, using_PsDscRunAsCredential_, you need to pass the current user credentials.</p>
 <h3 id="using-vscodeextension-resource">Using vscodeextension resource</h3>
 <p>The <em>vscodeextension</em> can be used to install new VS Code extensions from the marketplace. At this point in time, this relies on the command line provided by VS Code but I am exploring other alternatives. Therefore, only VS Code version 1.2.0 onwards is supported for installing VS Code extensions using this resource.</p>
 <p><img src="/images/vscode2.png" alt=""></p>
 <p>The only mandatory property in this resource is the <em>Name</em> property. You can use this to provide the name of the VS Code extension. Instead of dividing this into two properties like Publisher and Name, I decided to merge both of them into the _Name_property. Therefore the value to this property must be of the form <em>Publisher.ExtensionName</em>. You can find this from the marketplace URL for the extension. Using this method, you can be sure that you are always installing the right extension.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">vscodeextension</span> <span class="n">PowerShellExtension</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;ms-vscode.PowerShell&#39;</span>
-<span class="ln">3</span>    <span class="n">PsDscRunAsCredential</span> <span class="p">=</span> <span class="nv">$Credential</span>
-<span class="ln">4</span>    <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
-<span class="ln">5</span>    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[vscodesetup]VSCodeSetup&#39;</span>
-<span class="ln">6</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">vscodeextension</span> <span class="n">PowerShellExtension</span> <span class="p">{</span>
+    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;ms-vscode.PowerShell&#39;</span>
+    <span class="n">PsDscRunAsCredential</span> <span class="p">=</span> <span class="nv">$Credential</span>
+    <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[vscodesetup]VSCodeSetup&#39;</span>
+<span class="p">}</span>
 </code></pre></div><p>Like the <em>vscodesetup</em> resource configuration, this resource requires <em>PsDscRunAsCredential</em> to ensure the extension gets installed for the current user. Make a note that when using credentials in DSC configuration scripts, you must encrypt them using certificates. If the certificates cannot be deployed in a test or development environment, you can use the_<a href="/2013/09/26/using-the-credential-attribute-of-dsc-file-resource/">PsDscAllowPlainTextPassword</a>_ attribute in the DSC configuration data. Remember that this is not recommended in production environment.</p>
 <p>Here is an example configuration document that installs VS Code and a couple of extensions.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$ConfigurationData</span> <span class="p">=</span> <span class="p">@{</span>
-<span class="ln"> 2</span>    <span class="n">AllNodes</span> <span class="p">=</span> 
-<span class="ln"> 3</span>    <span class="p">@(</span>
-<span class="ln"> 4</span>        <span class="p">@{</span>
-<span class="ln"> 5</span>            <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;*&#39;</span>
-<span class="ln"> 6</span>            <span class="n">PSDscAllowPlainTextPassword</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln"> 7</span>        <span class="p">},</span>
-<span class="ln"> 8</span>        <span class="p">@{</span>
-<span class="ln"> 9</span>            <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;localhost&#39;</span>
-<span class="ln">10</span>        <span class="p">}</span>
-<span class="ln">11</span>    <span class="p">)</span>
-<span class="ln">12</span><span class="p">}</span>
-<span class="ln">13</span>
-<span class="ln">14</span><span class="n">Configuration</span> <span class="n">VSCodeConfig</span> <span class="p">{</span>
-<span class="ln">15</span>    <span class="k">param</span> <span class="p">(</span>
-<span class="ln">16</span>        <span class="no">[pscredential]</span> <span class="nv">$Credential</span>
-<span class="ln">17</span>    <span class="p">)</span>
-<span class="ln">18</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">VSCode</span>
-<span class="ln">19</span>
-<span class="ln">20</span>    <span class="n">Node</span> <span class="nv">$AllNodes</span><span class="p">.</span><span class="n">NodeName</span> <span class="p">{</span>
-<span class="ln">21</span>        <span class="n">VSCodeSetup</span> <span class="n">VSCodeSetup</span> <span class="p">{</span>
-<span class="ln">22</span>            <span class="n">IsSingleInstance</span> <span class="p">=</span> <span class="s1">&#39;yes&#39;</span>
-<span class="ln">23</span>            <span class="n">Path</span> <span class="p">=</span> <span class="s1">&#39;C:\temp\vscodesetup.exe&#39;</span>
-<span class="ln">24</span>            <span class="n">PsDscRunAsCredential</span> <span class="p">=</span> <span class="nv">$Credential</span>
-<span class="ln">25</span>            <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
-<span class="ln">26</span>        <span class="p">}</span>
-<span class="ln">27</span>
-<span class="ln">28</span>        <span class="n">vscodeextension</span> <span class="n">PowerShellExtension</span> <span class="p">{</span>
-<span class="ln">29</span>            <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;ms-vscode.PowerShell&#39;</span>
-<span class="ln">30</span>            <span class="n">PsDscRunAsCredential</span> <span class="p">=</span> <span class="nv">$Credential</span>
-<span class="ln">31</span>            <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
-<span class="ln">32</span>            <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[vscodesetup]VSCodeSetup&#39;</span>
-<span class="ln">33</span>        <span class="p">}</span>
-<span class="ln">34</span>
-<span class="ln">35</span>        <span class="n">vscodeextension</span> <span class="n">CPPExtension</span> <span class="p">{</span>
-<span class="ln">36</span>            <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;ms-vscode.cpptools&#39;</span>
-<span class="ln">37</span>            <span class="n">PsDscRunAsCredential</span> <span class="p">=</span> <span class="nv">$Credential</span>
-<span class="ln">38</span>            <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
-<span class="ln">39</span>            <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[vscodesetup]VSCodeSetup&#39;</span>
-<span class="ln">40</span>        <span class="p">}</span>
-<span class="ln">41</span>    <span class="p">}</span>
-<span class="ln">42</span><span class="p">}</span>
-<span class="ln">43</span>
-<span class="ln">44</span><span class="n">VSCodeConfig</span> <span class="n">-ConfigurationData</span> <span class="nv">$ConfigurationData</span> <span class="n">-Credential</span> <span class="p">(</span><span class="nb">Get-Credential</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$ConfigurationData</span> <span class="p">=</span> <span class="p">@{</span>
+    <span class="n">AllNodes</span> <span class="p">=</span> 
+    <span class="p">@(</span>
+        <span class="p">@{</span>
+            <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;*&#39;</span>
+            <span class="n">PSDscAllowPlainTextPassword</span> <span class="p">=</span> <span class="nv">$true</span>
+        <span class="p">},</span>
+        <span class="p">@{</span>
+            <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;localhost&#39;</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">Configuration</span> <span class="n">VSCodeConfig</span> <span class="p">{</span>
+    <span class="k">param</span> <span class="p">(</span>
+        <span class="no">[pscredential]</span> <span class="nv">$Credential</span>
+    <span class="p">)</span>
+    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">VSCode</span>
+
+    <span class="n">Node</span> <span class="nv">$AllNodes</span><span class="p">.</span><span class="n">NodeName</span> <span class="p">{</span>
+        <span class="n">VSCodeSetup</span> <span class="n">VSCodeSetup</span> <span class="p">{</span>
+            <span class="n">IsSingleInstance</span> <span class="p">=</span> <span class="s1">&#39;yes&#39;</span>
+            <span class="n">Path</span> <span class="p">=</span> <span class="s1">&#39;C:\temp\vscodesetup.exe&#39;</span>
+            <span class="n">PsDscRunAsCredential</span> <span class="p">=</span> <span class="nv">$Credential</span>
+            <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+        <span class="p">}</span>
+
+        <span class="n">vscodeextension</span> <span class="n">PowerShellExtension</span> <span class="p">{</span>
+            <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;ms-vscode.PowerShell&#39;</span>
+            <span class="n">PsDscRunAsCredential</span> <span class="p">=</span> <span class="nv">$Credential</span>
+            <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+            <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[vscodesetup]VSCodeSetup&#39;</span>
+        <span class="p">}</span>
+
+        <span class="n">vscodeextension</span> <span class="n">CPPExtension</span> <span class="p">{</span>
+            <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;ms-vscode.cpptools&#39;</span>
+            <span class="n">PsDscRunAsCredential</span> <span class="p">=</span> <span class="nv">$Credential</span>
+            <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+            <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[vscodesetup]VSCodeSetup&#39;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">VSCodeConfig</span> <span class="n">-ConfigurationData</span> <span class="nv">$ConfigurationData</span> <span class="n">-Credential</span> <span class="p">(</span><span class="nb">Get-Credential</span><span class="p">)</span>
 </code></pre></div><h3 id="8todo"><a href="https://github.com/rchaganti/DSCResources/tree/master/vscode#todo"></a>TODO</h3>
 <p>There are certainly a few things I want to improve in this and also add more resources for customizing VS Code environment. I also want to explore if there is a better way to install extensions instead of using the command line provided with version 1.2.0.</p>
 </div>

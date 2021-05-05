@@ -243,56 +243,56 @@ if (!doNotTrack) {
 <p>The <em>Invoke-Expression</em> cmdlet can be evil if you don’t know what’s inside the hash table string and can cause serious security issues. There are of course other methods such as a method I used in my <a href="http://www.powershellgallery.com/packages/PSBookmark">PSBookmark</a> module. I just put the hash table string in a .PS1 file and dot-source the PS1 to create an object. However, there are other better ways to achieve this.</p>
 <h3 id="using-argument-transformation">Using Argument Transformation</h3>
 <p>With PowerShell 4.0 we don’t need all these. For PowerShell DSC, Microsoft introduced a new attribute called _ArgumentToConfigurationDataTransformation_<span class="pl-ent">. This is used when compiling a DSC configuration. Here is how I use it.</span></p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Get-ConfigurationDataAsObject</span>
-<span class="ln"> 2</span><span class="p">{</span>
-<span class="ln"> 3</span>    <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
-<span class="ln"> 4</span>    <span class="k">Param</span> <span class="p">(</span>
-<span class="ln"> 5</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
-<span class="ln"> 6</span>        <span class="p">[</span><span class="n">Microsoft</span><span class="p">.</span><span class="n">PowerShell</span><span class="p">.</span><span class="n">DesiredStateConfiguration</span><span class="p">.</span><span class="n">ArgumentToConfigurationDataTransformation</span><span class="p">()]</span>
-<span class="ln"> 7</span>        <span class="no">[hashtable]</span> <span class="nv">$ConfigurationData</span>    
-<span class="ln"> 8</span>    <span class="p">)</span>
-<span class="ln"> 9</span>    <span class="k">return</span> <span class="nv">$ConfigurationData</span>
-<span class="ln">10</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Get-ConfigurationDataAsObject</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
+    <span class="k">Param</span> <span class="p">(</span>
+        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+        <span class="p">[</span><span class="n">Microsoft</span><span class="p">.</span><span class="n">PowerShell</span><span class="p">.</span><span class="n">DesiredStateConfiguration</span><span class="p">.</span><span class="n">ArgumentToConfigurationDataTransformation</span><span class="p">()]</span>
+        <span class="no">[hashtable]</span> <span class="nv">$ConfigurationData</span>    
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="nv">$ConfigurationData</span>
+<span class="p">}</span>
 </code></pre></div><p>The beauty of this method is that you can supply a .PSD1 file path and the contents (valid hash table string) gets transformed into an object.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nb">PS </span><span class="n">C:</span><span class="p">\&gt;</span> <span class="nb">Get-ConfigurationDataAsObject</span> <span class="n">-ConfigurationData</span> <span class="n">C:</span><span class="p">\</span><span class="n">Documents</span><span class="p">\</span><span class="n">Github</span><span class="p">\</span><span class="n">PSBookmark</span><span class="p">\</span><span class="n">PSBookmark</span><span class="p">.</span><span class="n">psd1</span> <span class="n">-Verbose</span>
-<span class="ln"> 2</span>
-<span class="ln"> 3</span><span class="n">Name</span>                           <span class="n">Value</span>
-<span class="ln"> 4</span><span class="p">----</span>                           <span class="p">-----</span>
-<span class="ln"> 5</span><span class="n">Copyright</span>                      <span class="n">All</span> <span class="n">Rights</span> <span class="n">Reserved</span>                                                   
-<span class="ln"> 6</span><span class="n">Description</span>                    <span class="n">Adds</span> <span class="n">the</span> <span class="n">capability</span> <span class="n">to</span> <span class="n">create</span> <span class="n">location</span> <span class="n">bookmarks</span> <span class="k">for</span> <span class="n">easier</span> <span class="n">access</span><span class="p">.</span>
-<span class="ln"> 7</span><span class="n">PrivateData</span>                    <span class="p">{</span><span class="n">PSData</span><span class="p">}</span>
-<span class="ln"> 8</span><span class="n">CompanyName</span>                    <span class="n">PowerShell</span> <span class="n">Magazine</span>
-<span class="ln"> 9</span><span class="n">GUID</span>                           <span class="n">298a7c5c-d670</span><span class="p">-</span><span class="n">4093-bae2</span><span class="p">-</span><span class="n">0d6c2935a182</span>
-<span class="ln">10</span><span class="n">Author</span>                         <span class="n">Ravikanth</span> <span class="n">Chaganti</span>
-<span class="ln">11</span><span class="n">FunctionsToExport</span>              <span class="p">{</span><span class="nb">Save-LocationBookmark</span><span class="p">,</span> <span class="nb">Set-LocationBookmarkAsPWD</span><span class="p">,</span> <span class="nb">Get-LocationBookmark</span><span class="p">,</span> <span class="nb">Remove-LocationBookm</span><span class="p">...</span>
-<span class="ln">12</span><span class="n">VariablesToExport</span>              <span class="p">*</span>
-<span class="ln">13</span><span class="n">RootModule</span>                     <span class="n">PSBookmark</span><span class="p">.</span><span class="n">psm1</span>
-<span class="ln">14</span><span class="n">AliasesToExport</span>                <span class="p">{</span><span class="n">goto</span><span class="p">,</span> <span class="n">save</span><span class="p">,</span> <span class="n">glb</span><span class="p">,</span> <span class="n">rlb</span><span class="p">}</span>
-<span class="ln">15</span><span class="n">CmdletsToExport</span>                <span class="p">*</span>
-<span class="ln">16</span><span class="n">ModuleVersion</span>                  <span class="n">1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="n">C:</span><span class="p">\&gt;</span> <span class="nb">Get-ConfigurationDataAsObject</span> <span class="n">-ConfigurationData</span> <span class="n">C:</span><span class="p">\</span><span class="n">Documents</span><span class="p">\</span><span class="n">Github</span><span class="p">\</span><span class="n">PSBookmark</span><span class="p">\</span><span class="n">PSBookmark</span><span class="p">.</span><span class="n">psd1</span> <span class="n">-Verbose</span>
+
+<span class="n">Name</span>                           <span class="n">Value</span>
+<span class="p">----</span>                           <span class="p">-----</span>
+<span class="n">Copyright</span>                      <span class="n">All</span> <span class="n">Rights</span> <span class="n">Reserved</span>                                                   
+<span class="n">Description</span>                    <span class="n">Adds</span> <span class="n">the</span> <span class="n">capability</span> <span class="n">to</span> <span class="n">create</span> <span class="n">location</span> <span class="n">bookmarks</span> <span class="k">for</span> <span class="n">easier</span> <span class="n">access</span><span class="p">.</span>
+<span class="n">PrivateData</span>                    <span class="p">{</span><span class="n">PSData</span><span class="p">}</span>
+<span class="n">CompanyName</span>                    <span class="n">PowerShell</span> <span class="n">Magazine</span>
+<span class="n">GUID</span>                           <span class="n">298a7c5c-d670</span><span class="p">-</span><span class="n">4093-bae2</span><span class="p">-</span><span class="n">0d6c2935a182</span>
+<span class="n">Author</span>                         <span class="n">Ravikanth</span> <span class="n">Chaganti</span>
+<span class="n">FunctionsToExport</span>              <span class="p">{</span><span class="nb">Save-LocationBookmark</span><span class="p">,</span> <span class="nb">Set-LocationBookmarkAsPWD</span><span class="p">,</span> <span class="nb">Get-LocationBookmark</span><span class="p">,</span> <span class="nb">Remove-LocationBookm</span><span class="p">...</span>
+<span class="n">VariablesToExport</span>              <span class="p">*</span>
+<span class="n">RootModule</span>                     <span class="n">PSBookmark</span><span class="p">.</span><span class="n">psm1</span>
+<span class="n">AliasesToExport</span>                <span class="p">{</span><span class="n">goto</span><span class="p">,</span> <span class="n">save</span><span class="p">,</span> <span class="n">glb</span><span class="p">,</span> <span class="n">rlb</span><span class="p">}</span>
+<span class="n">CmdletsToExport</span>                <span class="p">*</span>
+<span class="n">ModuleVersion</span>                  <span class="n">1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span>
 </code></pre></div><h3 id="using-ast">Using AST</h3>
 <p>Converting a hashtable string to an object can be done using AST as well. The following code snippet shows that.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$script</span> <span class="p">=</span> <span class="s1">&#39;C:\documents\Github\psbookmark\psbookmark.psd1&#39;</span>
-<span class="ln">2</span><span class="nv">$scriptAST</span> <span class="p">=</span> <span class="no">[System.Management.Automation.Language.Parser]</span><span class="p">::</span><span class="n">ParseFile</span><span class="p">(</span><span class="nv">$script</span><span class="p">,</span><span class="no">[ref]</span><span class="nv">$null</span><span class="p">,</span><span class="no">[ref]</span><span class="nv">$null</span><span class="p">)</span>
-<span class="ln">3</span><span class="nv">$hashTables</span> <span class="p">=</span> <span class="nv">$scriptAST</span><span class="p">.</span><span class="n">FindAll</span><span class="p">({</span><span class="nv">$args</span><span class="p">[</span><span class="n">0</span><span class="p">]</span> <span class="o">-is</span> <span class="no">[System.Management.Automation.Language.HashtableAst]</span><span class="p">},</span> <span class="nv">$true</span><span class="p">)</span>
-<span class="ln">4</span><span class="nv">$hashTables</span><span class="p">[</span><span class="n">0</span><span class="p">].</span><span class="n">SafeGetValue</span><span class="p">()</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$script</span> <span class="p">=</span> <span class="s1">&#39;C:\documents\Github\psbookmark\psbookmark.psd1&#39;</span>
+<span class="nv">$scriptAST</span> <span class="p">=</span> <span class="no">[System.Management.Automation.Language.Parser]</span><span class="p">::</span><span class="n">ParseFile</span><span class="p">(</span><span class="nv">$script</span><span class="p">,</span><span class="no">[ref]</span><span class="nv">$null</span><span class="p">,</span><span class="no">[ref]</span><span class="nv">$null</span><span class="p">)</span>
+<span class="nv">$hashTables</span> <span class="p">=</span> <span class="nv">$scriptAST</span><span class="p">.</span><span class="n">FindAll</span><span class="p">({</span><span class="nv">$args</span><span class="p">[</span><span class="n">0</span><span class="p">]</span> <span class="o">-is</span> <span class="no">[System.Management.Automation.Language.HashtableAst]</span><span class="p">},</span> <span class="nv">$true</span><span class="p">)</span>
+<span class="nv">$hashTables</span><span class="p">[</span><span class="n">0</span><span class="p">].</span><span class="n">SafeGetValue</span><span class="p">()</span>
 </code></pre></div><h3 id="finally-using-the-import-powershelldatafile-cmdlet">Finally, using the Import-PowerShellDataFile cmdlet</h3>
 <p>In PowerShell 5.0, there is a new cmdlet called <em>Import-PowerShellDataFile</em> which wraps the AST way of generating an object from the hashtable string.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nb">PS </span><span class="n">C:</span><span class="p">\&gt;</span> <span class="nb">Import-PowerShellDataFile</span> <span class="n">-Path</span> <span class="s1">&#39;C:\documents\Github\psbookmark\psbookmark.psd1&#39;</span>
-<span class="ln"> 2</span><span class="n">Name</span>                           <span class="n">Value</span> 
-<span class="ln"> 3</span><span class="p">----</span>                           <span class="p">-----</span>
-<span class="ln"> 4</span><span class="n">Copyright</span>                      <span class="n">All</span> <span class="n">Rights</span> <span class="n">Reserved</span> 
-<span class="ln"> 5</span><span class="n">Description</span>                    <span class="n">Adds</span> <span class="n">the</span> <span class="n">capability</span> <span class="n">to</span> <span class="n">create</span> <span class="n">location</span> <span class="n">bookmarks</span> <span class="k">for</span> <span class="n">easier</span> <span class="n">access</span><span class="p">.</span>   
-<span class="ln"> 6</span><span class="n">PrivateData</span>                    <span class="p">{</span><span class="n">PSData</span><span class="p">}</span>
-<span class="ln"> 7</span><span class="n">CompanyName</span>                    <span class="n">PowerShell</span> <span class="n">Magazine</span>                   
-<span class="ln"> 8</span><span class="n">GUID</span>                           <span class="n">298a7c5c-d670</span><span class="p">-</span><span class="n">4093-bae2</span><span class="p">-</span><span class="n">0d6c2935a182</span>       
-<span class="ln"> 9</span><span class="n">Author</span>                         <span class="n">Ravikanth</span> <span class="n">Chaganti</span>
-<span class="ln">10</span><span class="n">FunctionsToExport</span>              <span class="p">{</span><span class="nb">Save-LocationBookmark</span><span class="p">,</span> <span class="nb">Set-LocationBookmarkAsPWD</span><span class="p">,</span> <span class="nb">Get-LocationBookmark</span><span class="p">,</span> <span class="nb">Remove-LocationBookmark</span><span class="p">}</span>                         
-<span class="ln">11</span><span class="n">VariablesToExport</span>              <span class="p">*</span>                         
-<span class="ln">12</span><span class="n">RootModule</span>                     <span class="n">PSBookmark</span><span class="p">.</span><span class="n">psm1</span>                        
-<span class="ln">13</span><span class="n">AliasesToExport</span>                <span class="p">{</span><span class="n">goto</span><span class="p">,</span> <span class="n">save</span><span class="p">,</span> <span class="n">glb</span><span class="p">,</span> <span class="n">rlb</span><span class="p">}</span>          
-<span class="ln">14</span><span class="n">CmdletsToExport</span>                <span class="p">*</span>     
-<span class="ln">15</span><span class="n">ModuleVersion</span>                  <span class="n">1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="n">C:</span><span class="p">\&gt;</span> <span class="nb">Import-PowerShellDataFile</span> <span class="n">-Path</span> <span class="s1">&#39;C:\documents\Github\psbookmark\psbookmark.psd1&#39;</span>
+<span class="n">Name</span>                           <span class="n">Value</span> 
+<span class="p">----</span>                           <span class="p">-----</span>
+<span class="n">Copyright</span>                      <span class="n">All</span> <span class="n">Rights</span> <span class="n">Reserved</span> 
+<span class="n">Description</span>                    <span class="n">Adds</span> <span class="n">the</span> <span class="n">capability</span> <span class="n">to</span> <span class="n">create</span> <span class="n">location</span> <span class="n">bookmarks</span> <span class="k">for</span> <span class="n">easier</span> <span class="n">access</span><span class="p">.</span>   
+<span class="n">PrivateData</span>                    <span class="p">{</span><span class="n">PSData</span><span class="p">}</span>
+<span class="n">CompanyName</span>                    <span class="n">PowerShell</span> <span class="n">Magazine</span>                   
+<span class="n">GUID</span>                           <span class="n">298a7c5c-d670</span><span class="p">-</span><span class="n">4093-bae2</span><span class="p">-</span><span class="n">0d6c2935a182</span>       
+<span class="n">Author</span>                         <span class="n">Ravikanth</span> <span class="n">Chaganti</span>
+<span class="n">FunctionsToExport</span>              <span class="p">{</span><span class="nb">Save-LocationBookmark</span><span class="p">,</span> <span class="nb">Set-LocationBookmarkAsPWD</span><span class="p">,</span> <span class="nb">Get-LocationBookmark</span><span class="p">,</span> <span class="nb">Remove-LocationBookmark</span><span class="p">}</span>                         
+<span class="n">VariablesToExport</span>              <span class="p">*</span>                         
+<span class="n">RootModule</span>                     <span class="n">PSBookmark</span><span class="p">.</span><span class="n">psm1</span>                        
+<span class="n">AliasesToExport</span>                <span class="p">{</span><span class="n">goto</span><span class="p">,</span> <span class="n">save</span><span class="p">,</span> <span class="n">glb</span><span class="p">,</span> <span class="n">rlb</span><span class="p">}</span>          
+<span class="n">CmdletsToExport</span>                <span class="p">*</span>     
+<span class="n">ModuleVersion</span>                  <span class="n">1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span>
 </code></pre></div><p> </p>
 </div>
         </article>

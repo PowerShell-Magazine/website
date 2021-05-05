@@ -248,10 +248,10 @@ if (!doNotTrack) {
 <p><img src="/images/bits1.png" alt=""></p>
 <p>This means we can leverage the benefits of BITS from PowerShell, as an alternative to using, for example, Invoke-WebRequest.</p>
 <p>Previously, using cmdlets in the BITS module was not supported when invoked via PowerShell remoting. Let’s verify this on Windows 10 build 1511:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="n">CLIENT-JR</span><span class="p">-</span><span class="n">02</span> <span class="n">-ScriptBlock</span> <span class="p">{</span>
-<span class="ln">2</span>  <span class="nb">Write-Output</span> <span class="s2">&#34;Testing remote BITS on PowerShell version </span><span class="p">$(</span><span class="nv">$PSVersionTable</span><span class="p">.</span><span class="n">PSVersion</span><span class="p">.</span><span class="n">ToString</span><span class="p">())</span><span class="s2">&#34;</span>
-<span class="ln">3</span>    <span class="nb">Start-BitsTransfer</span> <span class="n">-Source</span> <span class="s1">&#39;https://github.com/janegilring/PSVersion/archive/master.zip&#39;</span> <span class="n">-Destination</span> <span class="nv">$env:TEMP</span> <span class="n">-Asynchronous</span>
-<span class="ln">4</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="n">CLIENT-JR</span><span class="p">-</span><span class="n">02</span> <span class="n">-ScriptBlock</span> <span class="p">{</span>
+  <span class="nb">Write-Output</span> <span class="s2">&#34;Testing remote BITS on PowerShell version </span><span class="p">$(</span><span class="nv">$PSVersionTable</span><span class="p">.</span><span class="n">PSVersion</span><span class="p">.</span><span class="n">ToString</span><span class="p">())</span><span class="s2">&#34;</span>
+    <span class="nb">Start-BitsTransfer</span> <span class="n">-Source</span> <span class="s1">&#39;https://github.com/janegilring/PSVersion/archive/master.zip&#39;</span> <span class="n">-Destination</span> <span class="nv">$env:TEMP</span> <span class="n">-Asynchronous</span>
+<span class="p">}</span>
 </code></pre></div><p><img src="/images/bits2.png" alt=""></p>
 <p>We got an error message stating <em>“The remote use of BITS is not supported. For more information about BITS, see the MSDN documentation at</em> <a href="http://go.microsoft.com/FWLINK/?LinkId=140888"><em>http://go.microsoft.com/FWLINK/?LinkId=140888</em></a><em>”</em>.</p>
 <p>There is also a Microsoft Connect <a href="https://connect.microsoft.com/PowerShell/feedback/details/743030/make-it-easier-to-use-bits-with-powershell-remoting">item</a> logged regarding this issue.</p>

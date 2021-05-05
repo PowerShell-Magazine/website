@@ -244,7 +244,7 @@ if (!doNotTrack) {
 <h4 id="enter-psscriptanalyzer">Enter PSScriptAnalyzer</h4>
 <p>If you have done any work on Linux or with other scripting/development languages before then you might have come across <em>linters</em>. Pylint, yaml-lint, puppet-lint, json-lint, rubocop, these are all examples of very mature style guide checks for several languages that are not born on Windows, but also apply to use case scenarios on Windows, so do check them out.</p>
 <p>However, none of them checks PowerShell style. There were some tools around in the past, but now Microsoft has released the new version of PSScriptAnalyzer to their PowerShell Gallery.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Find-Module</span> <span class="n">-Name</span> <span class="n">PSScriptAnalyzer</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">Version</span><span class="p">,</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Description</span> <span class="p">|</span> <span class="nb">Format-List</span> <span class="p">*</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Find-Module</span> <span class="n">-Name</span> <span class="n">PSScriptAnalyzer</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">Version</span><span class="p">,</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Description</span> <span class="p">|</span> <span class="nb">Format-List</span> <span class="p">*</span>
 </code></pre></div><p><img src="/images/advtools11.png" alt=""></p>
 <p>The module is hosted on the PowerShell Gallery and can easily be installed via PowerShellGet: <em>Install-Module -Name PSScriptAnalyzer</em></p>
 <p>The PSScriptAnalyzer module comes with two commands:</p>
@@ -260,31 +260,31 @@ if (!doNotTrack) {
 <h4 id="add-it-to-your-ci-build">Add it to your CI build</h4>
 <p>You don’t want to build/package code that isn’t up to anyone’s standards, right? There are two ways of achieving a nice code quality in your environment. One is fully-automated, the other one is half-automated.</p>
 <p>I use TeamCity CI in my lab to do Continuous Integration builds every time I commit code to some of my repositories. However, I don’t want to have anything built or even uploaded to the Internet if there’s something wrong with my code. That is why I have added this little snippet of code as one of the very first steps into my CI pipeline:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">try</span> <span class="p">{</span>
-<span class="ln"> 2</span>   <span class="nb">Import-Module</span> <span class="n">-Name</span> <span class="n">PSScriptAnalyzer</span> <span class="n">-ErrorAction</span> <span class="n">Stop</span>
-<span class="ln"> 3</span><span class="p">}</span>
-<span class="ln"> 4</span><span class="k">catch</span> <span class="p">{</span>
-<span class="ln"> 5</span>    <span class="nb">Write-Error</span> <span class="n">-Message</span> <span class="nv">$_</span>
-<span class="ln"> 6</span>    <span class="n">exit</span> <span class="n">1</span>
-<span class="ln"> 7</span><span class="p">}</span>
-<span class="ln"> 8</span>
-<span class="ln"> 9</span>
-<span class="ln">10</span><span class="k">try</span> <span class="p">{</span>
-<span class="ln">11</span>     <span class="nv">$rules</span> <span class="p">=</span> <span class="nb">Get-ScriptAnalyzerRule</span> <span class="n">-Severity</span> <span class="n">Warning</span><span class="p">,</span><span class="n">Error</span> <span class="n">-ErrorAction</span> <span class="n">Stop</span>
-<span class="ln">12</span>     <span class="nv">$results</span> <span class="p">=</span> <span class="nb">Invoke-ScriptAnalyzer</span> <span class="n">-Path</span> <span class="s2">&#34;C:\Program Files\WindowsPowerShell\Modules\$Module&#34;</span> <span class="n">-IncludeRule</span> <span class="nv">$rules</span><span class="p">.</span><span class="n">RuleName</span> <span class="n">-Recurse</span> <span class="n">-ErrorAction</span> <span class="n">Stop</span>
-<span class="ln">13</span>     <span class="nv">$results</span>
-<span class="ln">14</span><span class="p">}</span>
-<span class="ln">15</span><span class="k">catch</span> <span class="p">{</span>
-<span class="ln">16</span>     <span class="nb">Write-Error</span> <span class="n">-Message</span> <span class="nv">$_</span>
-<span class="ln">17</span>     <span class="n">exit</span> <span class="n">1</span>
-<span class="ln">18</span><span class="p">}</span>
-<span class="ln">19</span><span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="p">.</span><span class="n">Count</span> <span class="o">-gt</span> <span class="n">0</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">20</span>     <span class="nb">Write-Host</span> <span class="s2">&#34;Analysis of your code threw </span><span class="p">$(</span><span class="nv">$results</span><span class="p">.</span><span class="n">Count</span><span class="p">)</span><span class="s2"> warnings or errors. Please go back and check your code.&#34;</span>
-<span class="ln">21</span>     <span class="n">exit</span> <span class="n">1</span>
-<span class="ln">22</span><span class="p">}</span>
-<span class="ln">23</span><span class="k">else</span> <span class="p">{</span>
-<span class="ln">24</span>     <span class="nb">Write-Host</span> <span class="s1">&#39;Awesome code! No issues found!&#39;</span>
-<span class="ln">25</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">try</span> <span class="p">{</span>
+   <span class="nb">Import-Module</span> <span class="n">-Name</span> <span class="n">PSScriptAnalyzer</span> <span class="n">-ErrorAction</span> <span class="n">Stop</span>
+<span class="p">}</span>
+<span class="k">catch</span> <span class="p">{</span>
+    <span class="nb">Write-Error</span> <span class="n">-Message</span> <span class="nv">$_</span>
+    <span class="n">exit</span> <span class="n">1</span>
+<span class="p">}</span>
+
+
+<span class="k">try</span> <span class="p">{</span>
+     <span class="nv">$rules</span> <span class="p">=</span> <span class="nb">Get-ScriptAnalyzerRule</span> <span class="n">-Severity</span> <span class="n">Warning</span><span class="p">,</span><span class="n">Error</span> <span class="n">-ErrorAction</span> <span class="n">Stop</span>
+     <span class="nv">$results</span> <span class="p">=</span> <span class="nb">Invoke-ScriptAnalyzer</span> <span class="n">-Path</span> <span class="s2">&#34;C:\Program Files\WindowsPowerShell\Modules\$Module&#34;</span> <span class="n">-IncludeRule</span> <span class="nv">$rules</span><span class="p">.</span><span class="n">RuleName</span> <span class="n">-Recurse</span> <span class="n">-ErrorAction</span> <span class="n">Stop</span>
+     <span class="nv">$results</span>
+<span class="p">}</span>
+<span class="k">catch</span> <span class="p">{</span>
+     <span class="nb">Write-Error</span> <span class="n">-Message</span> <span class="nv">$_</span>
+     <span class="n">exit</span> <span class="n">1</span>
+<span class="p">}</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="p">.</span><span class="n">Count</span> <span class="o">-gt</span> <span class="n">0</span><span class="p">)</span> <span class="p">{</span>
+     <span class="nb">Write-Host</span> <span class="s2">&#34;Analysis of your code threw </span><span class="p">$(</span><span class="nv">$results</span><span class="p">.</span><span class="n">Count</span><span class="p">)</span><span class="s2"> warnings or errors. Please go back and check your code.&#34;</span>
+     <span class="n">exit</span> <span class="n">1</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+     <span class="nb">Write-Host</span> <span class="s1">&#39;Awesome code! No issues found!&#39;</span>
+<span class="p">}</span>
 </code></pre></div><p>This code lets the build fail if there are any issues found with it. Very handy, right? This way every commit to this repository’s branch is automatically checked for issues and if any are found, the developer is informed straight away.</p>
 <p>But, what if you don’t even want to start building every time, but want to catch issues even earlier on?</p>
 <h4 id="git-pre-commit-hooks">Git Pre-Commit hooks</h4>
@@ -295,26 +295,26 @@ if (!doNotTrack) {
 <p><img src="/images/advtools14.png" alt=""></p>
 <p>That directory has a subdirectory with all possible hooks, even with samples. And they are all bash shell scripts. No worries! That’s easy.</p>
 <p>Create two new files in there. Pre-commit (no file extension!!!)</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="c">#!/bin/sh</span>
-<span class="ln"> 2</span><span class="nb">echo
-</span><span class="ln"> 3</span><span class="nb"></span><span class="n">exec</span> <span class="n">powershell</span><span class="p">.</span><span class="n">exe</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="s1">&#39;.\.git\hooks\pre-commit-hook.ps1&#39;</span>
-<span class="ln"> 4</span><span class="n">exit</span>
-<span class="ln"> 5</span>
-<span class="ln"> 6</span><span class="n">pre-commit-hook</span><span class="p">.</span><span class="n">ps1</span>
-<span class="ln"> 7</span><span class="nb">Write-Host</span> <span class="s1">&#39;Starting Script Analyzer&#39;</span>
-<span class="ln"> 8</span><span class="k">try</span> <span class="p">{</span>
-<span class="ln"> 9</span>    <span class="nv">$results</span> <span class="p">=</span> <span class="nb">Invoke-ScriptAnalyzer</span> <span class="n">-Path</span> <span class="p">.</span>
-<span class="ln">10</span>    <span class="nv">$results</span>
-<span class="ln">11</span><span class="p">}</span>
-<span class="ln">12</span><span class="k">catch</span> <span class="p">{</span>
-<span class="ln">13</span>    <span class="nb">Write-Error</span> <span class="n">-Message</span> <span class="nv">$_</span>
-<span class="ln">14</span>    <span class="n">exit</span> <span class="n">1</span>
-<span class="ln">15</span><span class="p">}</span>
-<span class="ln">16</span>
-<span class="ln">17</span><span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="p">.</span><span class="n">Count</span> <span class="o">-gt</span> <span class="n">0</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">18</span>    <span class="nb">Write-Error</span> <span class="s2">&#34;Analysis of your code threw </span><span class="p">$(</span><span class="nv">$results</span><span class="p">.</span><span class="n">Count</span><span class="p">)</span><span class="s2"> warnings or errors. Please go back and check your code.&#34;</span>
-<span class="ln">19</span>    <span class="n">exit</span> <span class="n">1</span>
-<span class="ln">20</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c">#!/bin/sh</span>
+<span class="nb">echo
+</span><span class="nb"></span><span class="n">exec</span> <span class="n">powershell</span><span class="p">.</span><span class="n">exe</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="s1">&#39;.\.git\hooks\pre-commit-hook.ps1&#39;</span>
+<span class="n">exit</span>
+
+<span class="n">pre-commit-hook</span><span class="p">.</span><span class="n">ps1</span>
+<span class="nb">Write-Host</span> <span class="s1">&#39;Starting Script Analyzer&#39;</span>
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nv">$results</span> <span class="p">=</span> <span class="nb">Invoke-ScriptAnalyzer</span> <span class="n">-Path</span> <span class="p">.</span>
+    <span class="nv">$results</span>
+<span class="p">}</span>
+<span class="k">catch</span> <span class="p">{</span>
+    <span class="nb">Write-Error</span> <span class="n">-Message</span> <span class="nv">$_</span>
+    <span class="n">exit</span> <span class="n">1</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$results</span><span class="p">.</span><span class="n">Count</span> <span class="o">-gt</span> <span class="n">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">Write-Error</span> <span class="s2">&#34;Analysis of your code threw </span><span class="p">$(</span><span class="nv">$results</span><span class="p">.</span><span class="n">Count</span><span class="p">)</span><span class="s2"> warnings or errors. Please go back and check your code.&#34;</span>
+    <span class="n">exit</span> <span class="n">1</span>
+<span class="p">}</span>
 </code></pre></div><p>Now commit something. It will now check your code for violations of style best practices. Feel free to change this snippet to your liking. If your code is stylish enough, it gets committed, if not, fix it, and come back.</p>
 <p><img src="/images/advtools15.png" alt=""></p>
 <p>In the next part of this two-part series I am going to do quite a bit of testing and validation. Stay tuned.</p>

@@ -216,7 +216,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>3 Min To Read
+              <i class="far fa-clock"></i>2 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>28 Jun, 2017
@@ -250,26 +250,26 @@ if (!doNotTrack) {
 <p>To address this need, I added PreDeploy scripts under diagnostics tests for each composite resource.</p>
 <p><img src="/images/infra1.png" alt=""></p>
 <p>The PreDeploy folder is where all my pre-deployment tests are stored. Here is the pre-deployment test script for the SET team.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Describe</span> <span class="s1">&#39;Predeploy tests for Hyper-V Deployment with Switch Embedded Teaming and related network Configuration&#39;</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="n">Context</span> <span class="s2">&#34;Operating System verison tests&#34;</span> <span class="p">{</span>
-<span class="ln"> 3</span>        <span class="nv">$OS</span> <span class="p">=</span> <span class="nb">Get-CimInstance</span> <span class="n">-Class</span> <span class="n">Win32_OperatingSystem</span>
-<span class="ln"> 4</span>        <span class="n">It</span> <span class="s2">&#34;Should have the OSType as WinNT&#34;</span> <span class="p">{</span>
-<span class="ln"> 5</span>            <span class="nv">$OS</span><span class="p">.</span><span class="n">OSType</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="n">18</span>
-<span class="ln"> 6</span>        <span class="p">}</span>
-<span class="ln"> 7</span>        <span class="n">It</span> <span class="s2">&#34;Should have server 2016 installed&#34;</span> <span class="p">{</span>
-<span class="ln"> 8</span>           <span class="nv">$OS</span><span class="p">.</span><span class="n">Caption</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">BeLike</span> <span class="s1">&#39;*Server 2016*&#39;</span>
-<span class="ln"> 9</span>        <span class="p">}</span>        
-<span class="ln">10</span>    <span class="p">}</span>
-<span class="ln">11</span>
-<span class="ln">12</span>    <span class="n">Context</span> <span class="s1">&#39;Network adapters should exist&#39;</span> <span class="p">{</span>
-<span class="ln">13</span>        <span class="k">Foreach</span> <span class="p">(</span><span class="nv">$adapter</span> <span class="k">in</span> <span class="nv">$configurationData</span><span class="p">.</span><span class="n">AllNodes</span><span class="p">.</span><span class="n">NetAdapterName</span><span class="p">)</span>
-<span class="ln">14</span>        <span class="p">{</span>
-<span class="ln">15</span>            <span class="n">It</span> <span class="s2">&#34;Network adapter named &#39;$adapter&#39; should exist&#34;</span> <span class="p">{</span>
-<span class="ln">16</span>                <span class="nb">Get-NetAdapter</span> <span class="n">-Name</span> <span class="nv">$adapter</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Not</span> <span class="n">BeNullOrEmpty</span>
-<span class="ln">17</span>            <span class="p">}</span>
-<span class="ln">18</span>        <span class="p">}</span>
-<span class="ln">19</span>    <span class="p">}</span>
-<span class="ln">20</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Describe</span> <span class="s1">&#39;Predeploy tests for Hyper-V Deployment with Switch Embedded Teaming and related network Configuration&#39;</span> <span class="p">{</span>
+    <span class="n">Context</span> <span class="s2">&#34;Operating System verison tests&#34;</span> <span class="p">{</span>
+        <span class="nv">$OS</span> <span class="p">=</span> <span class="nb">Get-CimInstance</span> <span class="n">-Class</span> <span class="n">Win32_OperatingSystem</span>
+        <span class="n">It</span> <span class="s2">&#34;Should have the OSType as WinNT&#34;</span> <span class="p">{</span>
+            <span class="nv">$OS</span><span class="p">.</span><span class="n">OSType</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="n">18</span>
+        <span class="p">}</span>
+        <span class="n">It</span> <span class="s2">&#34;Should have server 2016 installed&#34;</span> <span class="p">{</span>
+           <span class="nv">$OS</span><span class="p">.</span><span class="n">Caption</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">BeLike</span> <span class="s1">&#39;*Server 2016*&#39;</span>
+        <span class="p">}</span>        
+    <span class="p">}</span>
+
+    <span class="n">Context</span> <span class="s1">&#39;Network adapters should exist&#39;</span> <span class="p">{</span>
+        <span class="k">Foreach</span> <span class="p">(</span><span class="nv">$adapter</span> <span class="k">in</span> <span class="nv">$configurationData</span><span class="p">.</span><span class="n">AllNodes</span><span class="p">.</span><span class="n">NetAdapterName</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">It</span> <span class="s2">&#34;Network adapter named &#39;$adapter&#39; should exist&#34;</span> <span class="p">{</span>
+                <span class="nb">Get-NetAdapter</span> <span class="n">-Name</span> <span class="nv">$adapter</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Not</span> <span class="n">BeNullOrEmpty</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>In the above test scripts, we check that the OS version is indeed Windows Server 2016 to ensure SET configuration can be deployed. Also, we check for the presence of physical network adapters listed in the configuration data to ensure that the SET configuration completes with no errors.</p>
 <p><img src="/images/infra2.png" alt=""></p>
 <p>The above flow summarizes the deployment workflow. We execute the pre-deployment tests first and perform deployment only once these tests are all successful. Once the deployment is complete, we run either comprehensive or simple operations tests and put the system into operations only when these tests are successful.</p>

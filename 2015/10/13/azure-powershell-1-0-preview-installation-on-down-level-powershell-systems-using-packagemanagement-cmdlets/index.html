@@ -243,14 +243,14 @@ if (!doNotTrack) {
 <p>Once you download and install this <em>PackageManagement</em> preview on PowerShell 3.0 or 4.0 systems, you will get access to cmdlets such as <em>Find-Module</em> and <em>Install-Module</em>.</p>
 <p>Here is <em>$PSVersionTable</em> from my system.</p>
 <p><img src="/images/azposh2.png" alt=""></p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Find-Module</span> <span class="n">-Name</span> <span class="n">Azure</span><span class="p">*</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Find-Module</span> <span class="n">-Name</span> <span class="n">Azure</span><span class="p">*</span>
 </code></pre></div><p><img src="/images/azposh3.png" alt=""></p>
 <blockquote>
 <p><strong>Note:</strong> The above command will return Azure related modules written by community as well and not just Azure SDK team.</p>
 </blockquote>
 <p>Let’s go ahead and install all modules with <em>AzureRM</em> prefix (24 of them at the time of writing!)</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$AzureModules</span> <span class="p">=</span> <span class="nb">Find-Module</span> <span class="n">-Name</span> <span class="n">AzureRM</span><span class="p">*</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-Expand</span> <span class="n">Name</span>
-<span class="ln">2</span><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="nv">$AzureModules</span> <span class="n">-Force</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$AzureModules</span> <span class="p">=</span> <span class="nb">Find-Module</span> <span class="n">-Name</span> <span class="n">AzureRM</span><span class="p">*</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-Expand</span> <span class="n">Name</span>
+<span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="nv">$AzureModules</span> <span class="n">-Force</span>
 </code></pre></div><p>Or, you can install only <em>AzureRM</em> module using the <em>Install-Module</em> cmdlet and then use the <em>Install-AzureRM</em> cmdlet to install remaining Azure Resource Manager modules. This cmdlet is an alias for the <em>Update-AzureRM</em> cmdlet.</p>
 <p>Finally, verify that all the <em>AzureRM</em> modules got installed and the cmdlets are available.</p>
 <p><img src="/images/azposh4.png" alt=""></p>

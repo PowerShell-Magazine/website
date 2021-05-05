@@ -239,36 +239,36 @@ if (!doNotTrack) {
 <p><strong>Pull</strong> mode enables a more centralized way of delivery configuration and resource modules to target nodes. You can either deploy the DSC service feature and configure a REST-based endpoint for pull mode or use a simple SMB file share to stage configuration documents and resource modules. In WMF 5.0, it is possible for a target node to get a subset of configuration from a REST-based pull service and the remaining from a SMB file share.</p>
 <p>With February preview release, you can also mix Push and Pull mode of configuration delivery on the same target node when using the <a href="/2014/10/02/partial-dsc-configurations-in-windows-management-framework-wmf-5-0/">partial configurations feature</a>. More on this later.</p>
 <p>There is an additional RefreshMode setting available starting with the February preview. This setting is called &lsquo;Disabled&rsquo;. What it does? As you may have correctly guessed, it disables any kind of document processing. We can use the Set-DscLocalConfigurationManager to set RefreshMode to Disabled.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="p">[</span><span class="n">DscLocalConfigurationManager</span><span class="p">()]</span>
-<span class="ln"> 2</span><span class="n">Configuration</span> <span class="n">Meta</span> <span class="p">{</span>
-<span class="ln"> 3</span>    <span class="n">Node</span> <span class="n">WMF5</span><span class="p">-</span><span class="n">2</span> <span class="p">{</span>
-<span class="ln"> 4</span>       <span class="n">Settings</span> <span class="p">{</span>
-<span class="ln"> 5</span>           <span class="n">RefreshMode</span> <span class="p">=</span> <span class="s2">&#34;Disabled&#34;</span>
-<span class="ln"> 6</span>       <span class="p">}</span>
-<span class="ln"> 7</span>    <span class="p">}</span>
-<span class="ln"> 8</span><span class="p">}</span>
-<span class="ln"> 9</span>
-<span class="ln">10</span><span class="n">Meta</span>
-<span class="ln">11</span>
-<span class="ln">12</span><span class="nv">$CimSession</span> <span class="p">=</span> <span class="nb">New-CimSession</span> <span class="n">-ComputerName</span> <span class="n">WMF5</span><span class="p">-</span><span class="n">2</span>
-<span class="ln">13</span><span class="nb">Set-DscLocalConfigurationManager</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">Meta</span> <span class="n">-CimSession</span> <span class="nv">$CimSession</span>
-<span class="ln">14</span><span class="nb">Get-DscLocalConfigurationManager</span> <span class="n">-CimSession</span> <span class="nv">$CimSession</span>
-<span class="ln">15</span><span class="nb">Remove-CimSession</span> <span class="n">-CimSession</span> <span class="nv">$CimSession</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">[</span><span class="n">DscLocalConfigurationManager</span><span class="p">()]</span>
+<span class="n">Configuration</span> <span class="n">Meta</span> <span class="p">{</span>
+    <span class="n">Node</span> <span class="n">WMF5</span><span class="p">-</span><span class="n">2</span> <span class="p">{</span>
+       <span class="n">Settings</span> <span class="p">{</span>
+           <span class="n">RefreshMode</span> <span class="p">=</span> <span class="s2">&#34;Disabled&#34;</span>
+       <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">Meta</span>
+
+<span class="nv">$CimSession</span> <span class="p">=</span> <span class="nb">New-CimSession</span> <span class="n">-ComputerName</span> <span class="n">WMF5</span><span class="p">-</span><span class="n">2</span>
+<span class="nb">Set-DscLocalConfigurationManager</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">Meta</span> <span class="n">-CimSession</span> <span class="nv">$CimSession</span>
+<span class="nb">Get-DscLocalConfigurationManager</span> <span class="n">-CimSession</span> <span class="nv">$CimSession</span>
+<span class="nb">Remove-CimSession</span> <span class="n">-CimSession</span> <span class="nv">$CimSession</span>
 </code></pre></div><p>This will disable any configuration document processing on the target node.</p>
 <p><img src="/images/1.png" alt=""></p>
 <p>When the RefreshMode is set to Disabled, you can&rsquo;t push the configuration using the Start-DscConfiguration cmdlet which makes perfect sense.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Configuration</span> <span class="n">DemoRefreshMode</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="n">Node</span> <span class="n">WMF5</span><span class="p">-</span><span class="n">2</span> <span class="p">{</span>
-<span class="ln"> 3</span>       <span class="n">File</span> <span class="n">DemoFile</span> <span class="p">{</span>
-<span class="ln"> 4</span>          <span class="n">DestinationPath</span> <span class="p">=</span> <span class="s1">&#39;C:\DemoRefreshMode&#39;</span>
-<span class="ln"> 5</span>          <span class="nb">Type </span><span class="p">=</span> <span class="s1">&#39;Directory&#39;</span>
-<span class="ln"> 6</span>          <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
-<span class="ln"> 7</span>       <span class="p">}</span>
-<span class="ln"> 8</span>   <span class="p">}</span>
-<span class="ln"> 9</span><span class="p">}</span>
-<span class="ln">10</span><span class="n">DemoRefreshMode</span>
-<span class="ln">11</span>
-<span class="ln">12</span><span class="nb">Start-DscConfiguration</span> <span class="n">-ComputerName</span> <span class="n">WMF5</span><span class="p">-</span><span class="n">2</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">DemoRefreshMode</span> <span class="n">-Verbose</span> <span class="n">-Wait</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Configuration</span> <span class="n">DemoRefreshMode</span> <span class="p">{</span>
+    <span class="n">Node</span> <span class="n">WMF5</span><span class="p">-</span><span class="n">2</span> <span class="p">{</span>
+       <span class="n">File</span> <span class="n">DemoFile</span> <span class="p">{</span>
+          <span class="n">DestinationPath</span> <span class="p">=</span> <span class="s1">&#39;C:\DemoRefreshMode&#39;</span>
+          <span class="nb">Type </span><span class="p">=</span> <span class="s1">&#39;Directory&#39;</span>
+          <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+       <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">DemoRefreshMode</span>
+
+<span class="nb">Start-DscConfiguration</span> <span class="n">-ComputerName</span> <span class="n">WMF5</span><span class="p">-</span><span class="n">2</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">DemoRefreshMode</span> <span class="n">-Verbose</span> <span class="n">-Wait</span>
 </code></pre></div><p><img src="/images/2.png" alt=""></p>
 <p>You cannot force the push mode using <em>-Force</em> switch parameter on the Start-DscConfiguration cmdlet. So, why do we need something like this?</p>
 <p>Remember, DSC is not just a configuration management toolset. It is a configuration management platform. The already popular configuration management tools such as Chef, Puppet, and others are expected to leverage DSC for configuration management on Windows OS. When you have a 3rd party equivalent of LCM sitting on the same system managing configuration based on its own policies, you don’t want LCM to come in its way and start doing consistency checks on a periodic basis. That does not make sense. Disabling any document processing by setting LCM <em>RefreshMode</em> is the right way here. If we cannot use Push or Pull methods, how the 3rd party configuration managers are supposed to use DSC to enact resource configuration?</p>
@@ -282,34 +282,34 @@ if (!doNotTrack) {
 <p>How DSC uses a resource methods? It first runs the <em>Test-TargetResource</em> function to see if the resource is already in desired state. If not, it runs the <em>Set-TargetResource</em> function. The <em>Get-TargetResource</em> is used only when you run the <em>Get-DscConfiguration</em> cmdlet. Any 3rd party configuration manager trying to use DSC for Windows OS configuration management should ideally use the same workflow.</p>
 <p><img src="/images/4.png" alt=""></p>
 <p>In the scenario that I showed in the configuration script at the beginning, I first need to test if the folder already exists on the target system.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$Params</span> <span class="p">=</span> <span class="p">@{</span>
-<span class="ln"> 2</span>   <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;File&#39;</span>
-<span class="ln"> 3</span>   <span class="n">Property</span> <span class="p">=</span> <span class="p">@{</span><span class="s1">&#39;DestinationPath&#39;</span><span class="p">=</span><span class="s1">&#39;C:\DemoRefreshMode&#39;</span><span class="p">;</span> <span class="nb">Type </span><span class="p">=</span> <span class="s1">&#39;Directory&#39;</span><span class="p">;</span> <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span><span class="p">}</span>
-<span class="ln"> 4</span>   <span class="n">Verbose</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln"> 5</span><span class="p">}</span>
-<span class="ln"> 6</span>
-<span class="ln"> 7</span><span class="nv">$TestResult</span> <span class="p">=</span> <span class="nb">Invoke-DscResource</span> <span class="nv">@Params</span> <span class="n">-Method</span> <span class="n">Test</span>
-<span class="ln"> 8</span><span class="k">If</span> <span class="p">(</span><span class="o">-not</span> <span class="nv">$testResult</span><span class="p">.</span><span class="n">InDesiredState</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 9</span>   <span class="nb">Invoke-DscResource</span> <span class="n">-Method</span> <span class="nb">Set </span><span class="nv">@Params</span>
-<span class="ln">10</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$Params</span> <span class="p">=</span> <span class="p">@{</span>
+   <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;File&#39;</span>
+   <span class="n">Property</span> <span class="p">=</span> <span class="p">@{</span><span class="s1">&#39;DestinationPath&#39;</span><span class="p">=</span><span class="s1">&#39;C:\DemoRefreshMode&#39;</span><span class="p">;</span> <span class="nb">Type </span><span class="p">=</span> <span class="s1">&#39;Directory&#39;</span><span class="p">;</span> <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span><span class="p">}</span>
+   <span class="n">Verbose</span> <span class="p">=</span> <span class="nv">$true</span>
+<span class="p">}</span>
+
+<span class="nv">$TestResult</span> <span class="p">=</span> <span class="nb">Invoke-DscResource</span> <span class="nv">@Params</span> <span class="n">-Method</span> <span class="n">Test</span>
+<span class="k">If</span> <span class="p">(</span><span class="o">-not</span> <span class="nv">$testResult</span><span class="p">.</span><span class="n">InDesiredState</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nb">Invoke-DscResource</span> <span class="n">-Method</span> <span class="nb">Set </span><span class="nv">@Params</span>
+<span class="p">}</span>
 </code></pre></div><p><img src="/images/5.png" alt=""></p>
 <p>In the verbose output, we see ‘DirectResourceAccess’ as the configuration name. Since we don’t have a configuration document where a configuration name is defined, DSC internally adds ‘DirectResourceAccess’ as the configuration name and calls the CIM method. There is no way to target this cmdlet to a remote system. There is no -ComputerName or -CimSession parameter which means the cmdlet needs to be executed either locally on a target system or use the Invoke-Command cmdlet.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$ScriptBlock</span> <span class="p">=</span> <span class="p">{</span>
-<span class="ln"> 2</span>   <span class="nv">$Params</span> <span class="p">=</span> <span class="p">@{</span>
-<span class="ln"> 3</span>      <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;File&#39;</span>
-<span class="ln"> 4</span>      <span class="n">Property</span> <span class="p">=</span> <span class="p">@{</span><span class="s1">&#39;DestinationPath&#39;</span><span class="p">=</span><span class="s1">&#39;C:\DemoRefreshMode&#39;</span><span class="p">;</span> <span class="nb">Type </span><span class="p">=</span> <span class="s1">&#39;Directory&#39;</span><span class="p">;</span> <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span><span class="p">}</span>
-<span class="ln"> 5</span>      <span class="n">Verbose</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln"> 6</span>   <span class="p">}</span>
-<span class="ln"> 7</span>
-<span class="ln"> 8</span>
-<span class="ln"> 9</span>   <span class="nv">$TestResult</span> <span class="p">=</span> <span class="nb">Invoke-DscResource</span> <span class="nv">@Params</span> <span class="n">-Method</span> <span class="n">Test</span>
-<span class="ln">10</span>
-<span class="ln">11</span>   <span class="k">If</span> <span class="p">(</span><span class="o">-not</span> <span class="nv">$testResult</span><span class="p">.</span><span class="n">InDesiredState</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">12</span>      <span class="nb">Invoke-DscResource</span> <span class="n">-Method</span> <span class="nb">Set </span><span class="nv">@Params</span>
-<span class="ln">13</span>   <span class="p">}</span>
-<span class="ln">14</span><span class="p">}</span>
-<span class="ln">15</span>
-<span class="ln">16</span><span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="n">WMF5</span><span class="p">-</span><span class="n">2</span> <span class="n">-ScriptBlock</span> <span class="nv">$ScriptBlock</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$ScriptBlock</span> <span class="p">=</span> <span class="p">{</span>
+   <span class="nv">$Params</span> <span class="p">=</span> <span class="p">@{</span>
+      <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;File&#39;</span>
+      <span class="n">Property</span> <span class="p">=</span> <span class="p">@{</span><span class="s1">&#39;DestinationPath&#39;</span><span class="p">=</span><span class="s1">&#39;C:\DemoRefreshMode&#39;</span><span class="p">;</span> <span class="nb">Type </span><span class="p">=</span> <span class="s1">&#39;Directory&#39;</span><span class="p">;</span> <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span><span class="p">}</span>
+      <span class="n">Verbose</span> <span class="p">=</span> <span class="nv">$true</span>
+   <span class="p">}</span>
+
+
+   <span class="nv">$TestResult</span> <span class="p">=</span> <span class="nb">Invoke-DscResource</span> <span class="nv">@Params</span> <span class="n">-Method</span> <span class="n">Test</span>
+
+   <span class="k">If</span> <span class="p">(</span><span class="o">-not</span> <span class="nv">$testResult</span><span class="p">.</span><span class="n">InDesiredState</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nb">Invoke-DscResource</span> <span class="n">-Method</span> <span class="nb">Set </span><span class="nv">@Params</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="n">WMF5</span><span class="p">-</span><span class="n">2</span> <span class="n">-ScriptBlock</span> <span class="nv">$ScriptBlock</span>
 </code></pre></div><p>This requires PowerShell remoting. In case, you do not have PowerShell remoting enabled, you can directly call the CIM method in the PSDesiredStateConfiguration namespace. The MSFT_DscLocalConfigurationManager class contains three new methods &ndash; ResourceGet, ResourceSet, and ResourceTest. These three methods can be invoked over a CIM session to perform the same task as the Invoke-DscResource cmdlet.</p>
 <p><img src="/images/6.png" alt=""></p>
 <p>These CIM methods require more explanation and I will talk about it in a separate article. Stay tuned!</p>

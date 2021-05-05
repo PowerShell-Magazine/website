@@ -243,83 +243,83 @@ if (!doNotTrack) {
           <div class="content"><p>Linux is a system that stores configuration in text files. As a result, <em>nxFile</em> should be considered one of two most powerful resources offered in the CTP release. With the option to create and modify files on Linux box, we should be able to change or create configuration for services, modify default environment, configure networking, configure ssh authorized_keys for a given user to name just a few examples. On top of that, this resource can be used to deploy and configure web sites and other, less frequently used applications. In this article, we will take a look at few example definitions that take advantage of <em>nxFile</em> resource. We will also look at one pitfall that may be important while using it and a way to walk around it. Last but not least we will take a look at one bug and a way to fix it.</p>
 <p>Using file resource to configure services is the best option when service has a concept of “included” configuration. This means that we can create a file from scratch and “main” configuration document will load it during startup of the service. If service doesn’t support it and uses single file then replacing it with the one created with DSC may be tricky (unless there is really good reason to prevent any changes to this configuration file). In our example, we will use three <em>nxFile</em> resource items to create very simple web application with virtual hostname.</p>
 <p>First thing we have to do is creating virtual host configuration in /etc/httpd/config.d folder with extension conf. Name is not important for the service, but it makes sense to name the file the same as virtual hostname that we want to describe in it:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">nxFile</span> <span class="n">vhostConfig</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="n">DestinationPath</span> <span class="p">=</span> <span class="s1">&#39;/etc/httpd/conf.d/bielawscy.conf&#39;</span>
-<span class="ln"> 3</span>    <span class="n">Contents</span> <span class="p">=</span> <span class="sh">@&#39;
-</span><span class="ln"> 4</span><span class="sh">&lt;VirtualHost *:80&gt;
-</span><span class="ln"> 5</span><span class="sh">    ServerName www.bielawscy.com
-</span><span class="ln"> 6</span><span class="sh">    ServerAdmin webmaster@bielawscy.com
-</span><span class="ln"> 7</span><span class="sh">    ErrorLog /var/log/httpd/bielawscy.err
-</span><span class="ln"> 8</span><span class="sh">    CustomLog /var/log/httpd/bielawscy.log combined
-</span><span class="ln"> 9</span><span class="sh">    DocumentRoot /var/www/bielawscy.com
-</span><span class="ln">10</span><span class="sh">    &lt;Directory &#34;/var/www/bielawscy.com&#34;&gt;
-</span><span class="ln">11</span><span class="sh">        Order allow,deny
-</span><span class="ln">12</span><span class="sh">        Allow from all
-</span><span class="ln">13</span><span class="sh">	&lt;/Directory&gt;
-</span><span class="ln">14</span><span class="sh">&lt;/VirtualHost&gt;
-</span><span class="ln">15</span><span class="sh">&#39;@</span>
-<span class="ln">16</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">nxFile</span> <span class="n">vhostConfig</span> <span class="p">{</span>
+    <span class="n">DestinationPath</span> <span class="p">=</span> <span class="s1">&#39;/etc/httpd/conf.d/bielawscy.conf&#39;</span>
+    <span class="n">Contents</span> <span class="p">=</span> <span class="sh">@&#39;
+</span><span class="sh">&lt;VirtualHost *:80&gt;
+</span><span class="sh">    ServerName www.bielawscy.com
+</span><span class="sh">    ServerAdmin webmaster@bielawscy.com
+</span><span class="sh">    ErrorLog /var/log/httpd/bielawscy.err
+</span><span class="sh">    CustomLog /var/log/httpd/bielawscy.log combined
+</span><span class="sh">    DocumentRoot /var/www/bielawscy.com
+</span><span class="sh">    &lt;Directory &#34;/var/www/bielawscy.com&#34;&gt;
+</span><span class="sh">        Order allow,deny
+</span><span class="sh">        Allow from all
+</span><span class="sh">	&lt;/Directory&gt;
+</span><span class="sh">&lt;/VirtualHost&gt;
+</span><span class="sh">&#39;@</span>
+<span class="p">}</span>
 </code></pre></div><p>Once we have configuration defined, we need to create folder and root document with appropriate masks/content:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">nxFile</span> <span class="n">documentRoot</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="n">DestinationPath</span> <span class="p">=</span> <span class="s1">&#39;/var/www/bielawscy.com&#39;</span>
-<span class="ln"> 3</span>    <span class="nb">Type </span><span class="p">=</span> <span class="s1">&#39;Directory&#39;</span>
-<span class="ln"> 4</span>    <span class="n">Mode</span> <span class="p">=</span> <span class="n">755</span>
-<span class="ln"> 5</span><span class="p">}</span>
-<span class="ln"> 6</span>
-<span class="ln"> 7</span><span class="n">nxFile</span> <span class="n">index</span> <span class="p">{</span>
-<span class="ln"> 8</span>    <span class="n">DestinationPath</span> <span class="p">=</span> <span class="s1">&#39;/var/www/bielawscy.com/index.html&#39;</span>
-<span class="ln"> 9</span>    <span class="n">Mode</span> <span class="p">=</span> <span class="n">644</span>
-<span class="ln">10</span>    <span class="n">Contents</span> <span class="p">=</span> <span class="sh">@&#39;
-</span><span class="ln">11</span><span class="sh">&lt;html&gt;
-</span><span class="ln">12</span><span class="sh">    &lt;head&gt;
-</span><span class="ln">13</span><span class="sh">        &lt;title&gt;Welcome to www.bielawscy.com!&lt;/title&gt;
-</span><span class="ln">14</span><span class="sh">    &lt;/head&gt;
-</span><span class="ln">15</span><span class="sh">	&lt;body&gt;
-</span><span class="ln">16</span><span class="sh">        &lt;h1&gt;Welcome to BIELAWSCY.COM!&lt;/h1&gt;
-</span><span class="ln">17</span><span class="sh">	&lt;/body&gt;
-</span><span class="ln">18</span><span class="sh">&lt;/html&gt;
-</span><span class="ln">19</span><span class="sh">&#39;@</span>
-<span class="ln">20</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">nxFile</span> <span class="n">documentRoot</span> <span class="p">{</span>
+    <span class="n">DestinationPath</span> <span class="p">=</span> <span class="s1">&#39;/var/www/bielawscy.com&#39;</span>
+    <span class="nb">Type </span><span class="p">=</span> <span class="s1">&#39;Directory&#39;</span>
+    <span class="n">Mode</span> <span class="p">=</span> <span class="n">755</span>
+<span class="p">}</span>
+
+<span class="n">nxFile</span> <span class="n">index</span> <span class="p">{</span>
+    <span class="n">DestinationPath</span> <span class="p">=</span> <span class="s1">&#39;/var/www/bielawscy.com/index.html&#39;</span>
+    <span class="n">Mode</span> <span class="p">=</span> <span class="n">644</span>
+    <span class="n">Contents</span> <span class="p">=</span> <span class="sh">@&#39;
+</span><span class="sh">&lt;html&gt;
+</span><span class="sh">    &lt;head&gt;
+</span><span class="sh">        &lt;title&gt;Welcome to www.bielawscy.com!&lt;/title&gt;
+</span><span class="sh">    &lt;/head&gt;
+</span><span class="sh">	&lt;body&gt;
+</span><span class="sh">        &lt;h1&gt;Welcome to BIELAWSCY.COM!&lt;/h1&gt;
+</span><span class="sh">	&lt;/body&gt;
+</span><span class="sh">&lt;/html&gt;
+</span><span class="sh">&#39;@</span>
+<span class="p">}</span>
 </code></pre></div><p>To activate this change we would need <em>nxScript</em>: Apache configuration would have to be updated and there is no build-in way to achieve this without some plumbing on the user side.</p>
 <p>Environment for the users is defined by various profiles. Global profile is stored in <em>/etc/profile</em> but in a way similar to extending Apache configuration, we can “inject” our configuration by creating separate file in <em>/etc/profile.d</em> folder. For example, if we want to define <em>OMI_HOME</em> variable and make sure that folder where OMI was installed is part of the <em>PATH</em> variable we would need to add following <em>nxFile</em> item to our configuration:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">nxFile</span> <span class="n">omiPath</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="n">DestinationPath</span> <span class="p">=</span> <span class="s1">&#39;/etc/profile.d/omipath.sh&#39;</span>
-<span class="ln">3</span>    <span class="n">Contents</span> <span class="p">=</span> <span class="sh">@&#39;
-</span><span class="ln">4</span><span class="sh">PATH=$PATH:/opt/omi-1.0.8/bin
-</span><span class="ln">5</span><span class="sh">export OMI_HOME=/opt/omi-1.0.8
-</span><span class="ln">6</span><span class="sh">&#39;@</span>
-<span class="ln">7</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">nxFile</span> <span class="n">omiPath</span> <span class="p">{</span>
+    <span class="n">DestinationPath</span> <span class="p">=</span> <span class="s1">&#39;/etc/profile.d/omipath.sh&#39;</span>
+    <span class="n">Contents</span> <span class="p">=</span> <span class="sh">@&#39;
+</span><span class="sh">PATH=$PATH:/opt/omi-1.0.8/bin
+</span><span class="sh">export OMI_HOME=/opt/omi-1.0.8
+</span><span class="sh">&#39;@</span>
+<span class="p">}</span>
 </code></pre></div><p>One problem that I identified while working with this resource is related to encoding. So far our files were not using any characters that could cause encoding problems. Example configuration that includes Polish letters:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">nxFile</span> <span class="n">webPolish</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="n">DestinationPath</span> <span class="p">=</span> <span class="s1">&#39;/var/www/html/index.html&#39;</span>
-<span class="ln"> 3</span>    <span class="n">Contents</span> <span class="p">=</span> <span class="sh">@&#39;
-</span><span class="ln"> 4</span><span class="sh">
-</span><span class="ln"> 5</span><span class="sh">&lt;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.1//EN&#34; &#34;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&#34;&gt;
-</span><span class="ln"> 6</span><span class="sh">&lt;head&gt;
-</span><span class="ln"> 7</span><span class="sh">    &lt;title&gt;Linux DSC page on CentOS&lt;/title&gt;
-</span><span class="ln"> 8</span><span class="sh">    &lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=UTF-8&#34; /&gt;
-</span><span class="ln"> 9</span><span class="sh">    &lt;style type=&#34;text/css&#34;&gt;
-</span><span class="ln">10</span><span class="sh">(...)
-</span><span class="ln">11</span><span class="sh">    &lt;/style&gt;
-</span><span class="ln">12</span><span class="sh">        &lt;/head&gt;
-</span><span class="ln">13</span><span class="sh">
-</span><span class="ln">14</span><span class="sh">&lt;body&gt;
-</span><span class="ln">15</span><span class="sh">(...)
-</span><span class="ln">16</span><span class="sh">    &lt;h2&gt;Zażółć gęślą jaźń - UTF8 is necessary here!
-</span><span class="ln">17</span><span class="sh">&lt;/body&gt;
-</span><span class="ln">18</span><span class="sh">&lt;/html&gt;
-</span><span class="ln">19</span><span class="sh">&#39;@</span>
-<span class="ln">20</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">nxFile</span> <span class="n">webPolish</span> <span class="p">{</span>
+    <span class="n">DestinationPath</span> <span class="p">=</span> <span class="s1">&#39;/var/www/html/index.html&#39;</span>
+    <span class="n">Contents</span> <span class="p">=</span> <span class="sh">@&#39;
+</span><span class="sh">
+</span><span class="sh">&lt;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.1//EN&#34; &#34;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&#34;&gt;
+</span><span class="sh">&lt;head&gt;
+</span><span class="sh">    &lt;title&gt;Linux DSC page on CentOS&lt;/title&gt;
+</span><span class="sh">    &lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=UTF-8&#34; /&gt;
+</span><span class="sh">    &lt;style type=&#34;text/css&#34;&gt;
+</span><span class="sh">(...)
+</span><span class="sh">    &lt;/style&gt;
+</span><span class="sh">        &lt;/head&gt;
+</span><span class="sh">
+</span><span class="sh">&lt;body&gt;
+</span><span class="sh">(...)
+</span><span class="sh">    &lt;h2&gt;Zażółć gęślą jaźń - UTF8 is necessary here!
+</span><span class="sh">&lt;/body&gt;
+</span><span class="sh">&lt;/html&gt;
+</span><span class="sh">&#39;@</span>
+<span class="p">}</span>
 </code></pre></div><p>Resulting MOF document (at least in my tests) was created using Little Endian encoding. If you are using DSC on Windows nodes only than it won’t bother you. But Linux (or at least: Linux DSC) doesn’t work with MOF encoded like that. When you try to apply this configuration to Linux node you can expect following error message:</p>
 <p>Buffer is not supported. Check encoding and length of the buffer</p>
 <p>To work around this problem we have to add extra step before applying the configuration. We have to open MOF document and save it again using correct encoding. In my experience both UTF8 and UTF8 without BOM work fine. There is a better solution though. Instead of hardcoding content of files in our configuration document we can use external source and download entire folder directly to target location:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">nxFile</span> <span class="n">pageSource</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="n">SourcePath</span> <span class="p">=</span> <span class="s1">&#39;/mnt/www/Symisun&#39;</span>
-<span class="ln">3</span>    <span class="n">DestinationPath</span> <span class="p">=</span> <span class="s1">&#39;/var/www/bielawscy.com&#39;</span>
-<span class="ln">4</span>    <span class="nb">Type </span><span class="p">=</span> <span class="s1">&#39;Directory&#39;</span>
-<span class="ln">5</span>    <span class="n">Force</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln">6</span>    <span class="n">Recurse</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln">7</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">nxFile</span> <span class="n">pageSource</span> <span class="p">{</span>
+    <span class="n">SourcePath</span> <span class="p">=</span> <span class="s1">&#39;/mnt/www/Symisun&#39;</span>
+    <span class="n">DestinationPath</span> <span class="p">=</span> <span class="s1">&#39;/var/www/bielawscy.com&#39;</span>
+    <span class="nb">Type </span><span class="p">=</span> <span class="s1">&#39;Directory&#39;</span>
+    <span class="n">Force</span> <span class="p">=</span> <span class="nv">$true</span>
+    <span class="n">Recurse</span> <span class="p">=</span> <span class="nv">$true</span>
+<span class="p">}</span>
 </code></pre></div><p>We are using SMB share as a source (mounted under /mnt/www). That gives us a flexibility and easy way to deploy entire application, rather than deploying individual files one by one. Unfortunately, this is the moment when we may trip on a bug I mentioned at the beginning. If you would try to apply this configuration it will fail with the error message that I wouldn’t consider helpful:</p>
 <p>Loading the instance document from the pending location did not succeed.</p>
 <p>Logs on Linux side don’t reveal anything. Based on my previous experience I was suspecting that the problem is related to schema: if MOF created on Windows box is not recognized correctly on Linux box, than that’s the error message you can expect. Eventually I identified the cause. Schema MOF for <em>nxFile</em> provider is different in nx module that we use on Windows and the one used by DSC on Linux. I knew something was wrong with both <em>Recurse</em> and <em>Force</em> property (removing these properties was enough to prevent error from happening) and sure enough, these properties are defined differently on Windows and Linux:</p>

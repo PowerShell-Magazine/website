@@ -253,18 +253,18 @@ if (!doNotTrack) {
 <p>The <em>cNetworkTeam</em> resource has two mandatory properties. Using the <em>Name</em> property, you can specify the name of the host team. The <em>TeamMembers</em> property is used to specify all the network connections that should be a part of the host team.</p>
 <p>The <em>LoadBalancingAlgorigthm</em> is set by default to <em>HyperVPort</em>. The other possible values are <em>Dynamic</em>, <em>IPAddresses</em>, <em>MacAddresses</em>, and <em>TransportPorts</em>. The <em>TeamingMode</em> is by default set to <em>SwitchIndependent</em> and can be modified to either <em>LACP</em> or <em>Static</em>.</p>
 <p>In my scenario, to create a host team, I am using the following configuration script. Remember that you need to use the <em>Import-DscResource</em> dynamic keyword in the configuration to load the resources from the resource module.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Configuration</span> <span class="n">HyperVConvergedNet</span> <span class="p">{</span>
-<span class="ln"> 2</span>   <span class="nb">Import-DscResource</span> <span class="n">-Module</span> <span class="n">cWindowsOS</span> <span class="n">-Name</span> <span class="n">cNetworkTeam</span>
-<span class="ln"> 3</span>   <span class="n">Node</span> <span class="n">Localhost</span> <span class="p">{</span>
-<span class="ln"> 4</span>          <span class="n">cNetworkTeam</span> <span class="n">NetworkTeam</span> <span class="p">{</span>
-<span class="ln"> 5</span>          <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostTeam&#39;</span>
-<span class="ln"> 6</span>          <span class="n">TeamingMode</span> <span class="p">=</span> <span class="s1">&#39;SwitchIndependent&#39;</span>
-<span class="ln"> 7</span>          <span class="n">LoadBalancingAlgorithm</span> <span class="p">=</span> <span class="s1">&#39;HyperVPort&#39;</span>
-<span class="ln"> 8</span>          <span class="n">TeamMembers</span> <span class="p">=</span> <span class="s1">&#39;NIC1&#39;</span><span class="p">,</span><span class="s1">&#39;NIC2&#39;</span>
-<span class="ln"> 9</span>          <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
-<span class="ln">10</span>      <span class="p">}</span>
-<span class="ln">11</span>   <span class="p">}</span>
-<span class="ln">12</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Configuration</span> <span class="n">HyperVConvergedNet</span> <span class="p">{</span>
+   <span class="nb">Import-DscResource</span> <span class="n">-Module</span> <span class="n">cWindowsOS</span> <span class="n">-Name</span> <span class="n">cNetworkTeam</span>
+   <span class="n">Node</span> <span class="n">Localhost</span> <span class="p">{</span>
+          <span class="n">cNetworkTeam</span> <span class="n">NetworkTeam</span> <span class="p">{</span>
+          <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostTeam&#39;</span>
+          <span class="n">TeamingMode</span> <span class="p">=</span> <span class="s1">&#39;SwitchIndependent&#39;</span>
+          <span class="n">LoadBalancingAlgorithm</span> <span class="p">=</span> <span class="s1">&#39;HyperVPort&#39;</span>
+          <span class="n">TeamMembers</span> <span class="p">=</span> <span class="s1">&#39;NIC1&#39;</span><span class="p">,</span><span class="s1">&#39;NIC2&#39;</span>
+          <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>When you apply this configuration, a host team gets created.</p>
 <p><img src="/images/cnet3.png" alt=""></p>
 <p>In tomorrow’s article, we will see how we can create a Hyper-V VM switch that is capable of converged networking using <a href="https://github.com/rchaganti/DSCResources/tree/master/cHyper-V/DSCResources/cVMSwitch">cVMSwitch</a> DSC resource.</p>

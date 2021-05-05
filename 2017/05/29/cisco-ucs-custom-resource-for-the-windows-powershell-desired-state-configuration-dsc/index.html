@@ -216,7 +216,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>9 Min To Read
+              <i class="far fa-clock"></i>8 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>29 May, 2017
@@ -277,164 +277,164 @@ if (!doNotTrack) {
 <h3 id="ucssyncmowithreference-custom-resource">UcsSyncMoWithReference Custom Resource</h3>
 <p>If you have more than one UCS domain in your datacenter and want to maintain a baseline configuration across all the UCS domains use the UcsSyncMoWithReference resource.</p>
 <p>You can create a configuration using this resource by specifying the Distinguished Name (DN) of the Managed Object (MO) that needs to be synced.  Here is an example of how you can sync a Service Profile, Service Profile Template, and LDAP Groups.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">UcsSyncMoWithReference</span> <span class="n">SyncServiceProfile</span>
-<span class="ln"> 2</span><span class="p">{</span>
-<span class="ln"> 3</span>    <span class="n">UcsCredentials</span> <span class="p">=</span> <span class="nv">$ucsCredential</span>
-<span class="ln"> 4</span>    <span class="n">UcsConnectionString</span> <span class="p">=</span> <span class="nv">$ucsConnString</span>
-<span class="ln"> 5</span>    <span class="n">RefUcsCredentials</span> <span class="p">=</span> <span class="nv">$refUcsCredential</span>
-<span class="ln"> 6</span>    <span class="n">RefUcsConnectionString</span> <span class="p">=</span> <span class="nv">$refUcsConString</span>
-<span class="ln"> 7</span>    <span class="n">Ensure</span><span class="p">=</span><span class="s2">&#34;Present&#34;</span>
-<span class="ln"> 8</span>    <span class="n">Identifier</span> <span class="p">=</span><span class="s2">&#34;2&#34;</span>
-<span class="ln"> 9</span>    <span class="n">Hierarchy</span><span class="p">=</span><span class="nv">$true</span>
-<span class="ln">10</span>    <span class="n">Dn</span> <span class="p">=</span> <span class="s2">&#34;org-root/ls-SPExchangeServer&#34;</span>
-<span class="ln">11</span><span class="p">}</span> 
-<span class="ln">12</span>
-<span class="ln">13</span><span class="n">UcsSyncMoWithReference</span> <span class="n">SyncSpTemplate</span>
-<span class="ln">14</span><span class="p">{</span>
-<span class="ln">15</span>    <span class="n">UcsCredentials</span> <span class="p">=</span> <span class="nv">$ucsCredential</span>
-<span class="ln">16</span>    <span class="n">UcsConnectionString</span> <span class="p">=</span> <span class="nv">$ucsConnString</span>
-<span class="ln">17</span>    <span class="n">RefUcsCredentials</span> <span class="p">=</span> <span class="nv">$refUcsCredential</span>
-<span class="ln">18</span>    <span class="n">RefUcsConnectionString</span> <span class="p">=</span> <span class="nv">$refUcsConString</span>
-<span class="ln">19</span>    <span class="n">Ensure</span><span class="p">=</span><span class="s2">&#34;Present&#34;</span>
-<span class="ln">20</span>    <span class="n">Identifier</span> <span class="p">=</span><span class="s2">&#34;3&#34;</span>
-<span class="ln">21</span>    <span class="n">Hierarchy</span><span class="p">=</span><span class="nv">$true</span>
-<span class="ln">22</span>    <span class="n">Dn</span> <span class="p">=</span> <span class="s2">&#34;org-root/ls-SPTSqlServer&#34;</span>
-<span class="ln">23</span><span class="p">}</span>
-<span class="ln">24</span>
-<span class="ln">25</span><span class="n">UcsSyncMoWithReference</span> <span class="n">SyncLDAPGroups</span>
-<span class="ln">26</span><span class="p">{</span>
-<span class="ln">27</span>    <span class="n">UcsCredentials</span> <span class="p">=</span> <span class="nv">$ucsCredential</span>
-<span class="ln">28</span>    <span class="n">UcsConnectionString</span> <span class="p">=</span> <span class="nv">$ucsConnString</span>
-<span class="ln">29</span>    <span class="n">RefUcsCredentials</span> <span class="p">=</span> <span class="nv">$RefUcsCredential</span>
-<span class="ln">30</span>    <span class="n">RefUcsConnectionString</span> <span class="p">=</span> <span class="nv">$refUcsConString</span>
-<span class="ln">31</span>    <span class="n">Ensure</span><span class="p">=</span><span class="s2">&#34;Present&#34;</span>
-<span class="ln">32</span>    <span class="n">Identifier</span> <span class="p">=</span><span class="s2">&#34;4&#34;</span>
-<span class="ln">33</span>    <span class="n">DeleteNotPresent</span><span class="p">=</span><span class="nv">$true</span>
-<span class="ln">34</span>
-<span class="ln">35</span>     <span class="c">#Sync all the LDAP groups by specifying the DN and Hierarchy true</span>
-<span class="ln">36</span>     <span class="n">Hierarchy</span><span class="p">=</span><span class="nv">$true</span>
-<span class="ln">37</span>     <span class="n">Dn</span><span class="p">=</span><span class="s2">&#34;sys/ldap-ext&#34;</span>        
-<span class="ln">38</span> <span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">UcsSyncMoWithReference</span> <span class="n">SyncServiceProfile</span>
+<span class="p">{</span>
+    <span class="n">UcsCredentials</span> <span class="p">=</span> <span class="nv">$ucsCredential</span>
+    <span class="n">UcsConnectionString</span> <span class="p">=</span> <span class="nv">$ucsConnString</span>
+    <span class="n">RefUcsCredentials</span> <span class="p">=</span> <span class="nv">$refUcsCredential</span>
+    <span class="n">RefUcsConnectionString</span> <span class="p">=</span> <span class="nv">$refUcsConString</span>
+    <span class="n">Ensure</span><span class="p">=</span><span class="s2">&#34;Present&#34;</span>
+    <span class="n">Identifier</span> <span class="p">=</span><span class="s2">&#34;2&#34;</span>
+    <span class="n">Hierarchy</span><span class="p">=</span><span class="nv">$true</span>
+    <span class="n">Dn</span> <span class="p">=</span> <span class="s2">&#34;org-root/ls-SPExchangeServer&#34;</span>
+<span class="p">}</span> 
+
+<span class="n">UcsSyncMoWithReference</span> <span class="n">SyncSpTemplate</span>
+<span class="p">{</span>
+    <span class="n">UcsCredentials</span> <span class="p">=</span> <span class="nv">$ucsCredential</span>
+    <span class="n">UcsConnectionString</span> <span class="p">=</span> <span class="nv">$ucsConnString</span>
+    <span class="n">RefUcsCredentials</span> <span class="p">=</span> <span class="nv">$refUcsCredential</span>
+    <span class="n">RefUcsConnectionString</span> <span class="p">=</span> <span class="nv">$refUcsConString</span>
+    <span class="n">Ensure</span><span class="p">=</span><span class="s2">&#34;Present&#34;</span>
+    <span class="n">Identifier</span> <span class="p">=</span><span class="s2">&#34;3&#34;</span>
+    <span class="n">Hierarchy</span><span class="p">=</span><span class="nv">$true</span>
+    <span class="n">Dn</span> <span class="p">=</span> <span class="s2">&#34;org-root/ls-SPTSqlServer&#34;</span>
+<span class="p">}</span>
+
+<span class="n">UcsSyncMoWithReference</span> <span class="n">SyncLDAPGroups</span>
+<span class="p">{</span>
+    <span class="n">UcsCredentials</span> <span class="p">=</span> <span class="nv">$ucsCredential</span>
+    <span class="n">UcsConnectionString</span> <span class="p">=</span> <span class="nv">$ucsConnString</span>
+    <span class="n">RefUcsCredentials</span> <span class="p">=</span> <span class="nv">$RefUcsCredential</span>
+    <span class="n">RefUcsConnectionString</span> <span class="p">=</span> <span class="nv">$refUcsConString</span>
+    <span class="n">Ensure</span><span class="p">=</span><span class="s2">&#34;Present&#34;</span>
+    <span class="n">Identifier</span> <span class="p">=</span><span class="s2">&#34;4&#34;</span>
+    <span class="n">DeleteNotPresent</span><span class="p">=</span><span class="nv">$true</span>
+
+     <span class="c">#Sync all the LDAP groups by specifying the DN and Hierarchy true</span>
+     <span class="n">Hierarchy</span><span class="p">=</span><span class="nv">$true</span>
+     <span class="n">Dn</span><span class="p">=</span><span class="s2">&#34;sys/ldap-ext&#34;</span>        
+ <span class="p">}</span>
 </code></pre></div><p>In the above example I have specified the DN of the SP, SP Template, and the LDAP group. By specifying Ensure=”Present” the UcsSyncMoWithReference resource ensures that the MOs are created on the UCS domain. You can also specify what action to take in case if there are additional MOs than compared to the MOs present on the reference UCS. If you want to delete the additional MOs, you need to specify DeleteNotPresent= $true as done in the LDAP sync configuration in the above example.  Refer to UCS Manager PowerTool User Guide for more details on the properties of the Resource.</p>
 <h3 id="ucsmanagedobject-custom-resource">UcsManagedObject Custom Resource</h3>
 <p>This is a generic resource provided to configure any MO in UCS Manager. To use this resource, you need to be familiar with the MO definitions and properties. One way to make use of this resource is by generating this configuration automatically as explained in the earlier section.  If you are writing the configuration manually refer to the <a href="http://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/sw/api/b_ucs_api_book.html">UCS Manager XML API Programmer’s Guide</a>.  Below is an example configuration of creating an Org in the UCS Manager. There are few key things to consider while creating the configuration, you need to specify the DN, XML API Class ID, and the Property Map.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">UcsManagedObject</span> <span class="n">CreateOrganisationDemo</span>
-<span class="ln"> 2</span><span class="p">{</span>
-<span class="ln"> 3</span>    <span class="n">Ensure</span> <span class="p">=</span> <span class="s2">&#34;Present&#34;</span>
-<span class="ln"> 4</span>    <span class="n">ModifyPresent</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln"> 5</span>    <span class="n">ClassId</span><span class="p">=</span> <span class="s2">&#34;orgOrg&#34;</span>
-<span class="ln"> 6</span>    <span class="n">Dn</span> <span class="p">=</span> <span class="s2">&#34;org-root/org-DSCDemoOrg&#34;</span>
-<span class="ln"> 7</span>    <span class="n">PropertyMap</span><span class="p">=</span> <span class="s2">&#34;Descr = test for DSC with certificate </span><span class="se">`n</span><span class="s2">Name = DSCDemoOrg&#34;</span>
-<span class="ln"> 8</span>    <span class="n">UcsCredentials</span> <span class="p">=</span> <span class="nv">$ucsCredential</span>
-<span class="ln"> 9</span>    <span class="n">UcsConnectionString</span> <span class="p">=</span> <span class="nv">$connectionString</span>
-<span class="ln">10</span>    <span class="n">Identifier</span> <span class="p">=</span> <span class="s2">&#34;2&#34;</span>
-<span class="ln">11</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">UcsManagedObject</span> <span class="n">CreateOrganisationDemo</span>
+<span class="p">{</span>
+    <span class="n">Ensure</span> <span class="p">=</span> <span class="s2">&#34;Present&#34;</span>
+    <span class="n">ModifyPresent</span> <span class="p">=</span> <span class="nv">$true</span>
+    <span class="n">ClassId</span><span class="p">=</span> <span class="s2">&#34;orgOrg&#34;</span>
+    <span class="n">Dn</span> <span class="p">=</span> <span class="s2">&#34;org-root/org-DSCDemoOrg&#34;</span>
+    <span class="n">PropertyMap</span><span class="p">=</span> <span class="s2">&#34;Descr = test for DSC with certificate </span><span class="se">`n</span><span class="s2">Name = DSCDemoOrg&#34;</span>
+    <span class="n">UcsCredentials</span> <span class="p">=</span> <span class="nv">$ucsCredential</span>
+    <span class="n">UcsConnectionString</span> <span class="p">=</span> <span class="nv">$connectionString</span>
+    <span class="n">Identifier</span> <span class="p">=</span> <span class="s2">&#34;2&#34;</span>
+<span class="p">}</span>
 </code></pre></div><p>You need to specify the properties of the managed object as key value pairs using the below format</p>
 <p><code>&lt;key1&gt;=&lt;value1&gt; &lt;key&gt;=&lt;value2&gt;</code></p>
 <h3 id="ucsscript-custom-resource">UcsScript Custom Resource</h3>
 <p>This is a generic resource provided to execute UCS Manager PowerTool cmdlets in a script. You can use this resource in cases where the configuration is complex and needs to be written as a script. You can also generate the configuration automatically for this resource as explained earlier.  Below is an example configuration of renaming a Service Profile.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">UcsScript</span> <span class="n">RenameServiceProfileDemo</span>
-<span class="ln">2</span><span class="p">{</span>
-<span class="ln">3</span>    <span class="n">Ensure</span> <span class="p">=</span> <span class="s2">&#34;Present&#34;</span>
-<span class="ln">4</span>    <span class="n">Dn</span> <span class="p">=</span> <span class="s2">&#34;org-root/ls-dscdemo&#34;</span>
-<span class="ln">5</span>    <span class="n">Script</span> <span class="p">=</span> <span class="s2">&#34;Get-UcsOrg -Level root | Get-UcsServiceProfile -Name &#39;TestSP&#39; -LimitScope | Rename-UcsServiceProfile -NewName &#39;dscdemo&#39; &#34;</span>
-<span class="ln">6</span>    <span class="n">UcsCredentials</span> <span class="p">=</span> <span class="nv">$ucsCredential</span>
-<span class="ln">7</span>    <span class="n">UcsConnectionString</span> <span class="p">=</span> <span class="nv">$connectionString</span>
-<span class="ln">8</span>    <span class="n">Identifier</span> <span class="p">=</span><span class="s2">&#34;1&#34;</span>
-<span class="ln">9</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">UcsScript</span> <span class="n">RenameServiceProfileDemo</span>
+<span class="p">{</span>
+    <span class="n">Ensure</span> <span class="p">=</span> <span class="s2">&#34;Present&#34;</span>
+    <span class="n">Dn</span> <span class="p">=</span> <span class="s2">&#34;org-root/ls-dscdemo&#34;</span>
+    <span class="n">Script</span> <span class="p">=</span> <span class="s2">&#34;Get-UcsOrg -Level root | Get-UcsServiceProfile -Name &#39;TestSP&#39; -LimitScope | Rename-UcsServiceProfile -NewName &#39;dscdemo&#39; &#34;</span>
+    <span class="n">UcsCredentials</span> <span class="p">=</span> <span class="nv">$ucsCredential</span>
+    <span class="n">UcsConnectionString</span> <span class="p">=</span> <span class="nv">$connectionString</span>
+    <span class="n">Identifier</span> <span class="p">=</span><span class="s2">&#34;1&#34;</span>
+<span class="p">}</span>
 </code></pre></div><p>If the configuration script is complex you can specify multiple DNs in a comma separated format.</p>
 <h3 id="configuration-example">Configuration Example</h3>
 <p>This section details how you can put together all the things in a DSC configuration document.</p>
 <p>For all the examples mentioned above you need to specify environment settings, UCS Connection details and Credentials.</p>
 <p>UCS connection string needs to be specified in the following format.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">Name</span><span class="p">=&lt;</span><span class="n">ipAddress</span><span class="p">&gt;</span> <span class="p">[`</span><span class="n">nNoSsl</span><span class="p">=&lt;</span><span class="n">bool</span><span class="p">&gt;][`</span><span class="n">nPort</span><span class="p">=&lt;</span><span class="n">ushort</span><span class="p">&gt;]</span> <span class="p">[`</span><span class="n">nProxyAddress</span><span class="p">=&lt;</span><span class="n">proxyAddress</span><span class="p">&gt;]</span> <span class="p">[`</span><span class="n">nUseProxyDefaultCredentials</span><span class="p">=&lt;</span><span class="n">bool</span><span class="p">&gt;]</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Name</span><span class="p">=&lt;</span><span class="n">ipAddress</span><span class="p">&gt;</span> <span class="p">[`</span><span class="n">nNoSsl</span><span class="p">=&lt;</span><span class="n">bool</span><span class="p">&gt;][`</span><span class="n">nPort</span><span class="p">=&lt;</span><span class="n">ushort</span><span class="p">&gt;]</span> <span class="p">[`</span><span class="n">nProxyAddress</span><span class="p">=&lt;</span><span class="n">proxyAddress</span><span class="p">&gt;]</span> <span class="p">[`</span><span class="n">nUseProxyDefaultCredentials</span><span class="p">=&lt;</span><span class="n">bool</span><span class="p">&gt;]</span>
 </code></pre></div><p>UCS Manager credentials needs to be specified as a PSCredential object. You can use certificates for encrypting the credentials to keep it secure. For information on using certificates for encryption refer to <a href="https://msdn.microsoft.com/en-us/powershell/dsc/securemof" target="_blank" rel="noopener noreferrer">Microsoft DSC documentation</a>.</p>
 <p>Below is an example configuration which has all the details.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$ConfigData</span><span class="p">=</span>    <span class="p">@{</span>
-<span class="ln"> 2</span>        <span class="n">AllNodes</span> <span class="p">=</span> <span class="p">@(</span>    
-<span class="ln"> 3</span>                        <span class="p">@{</span> 
-<span class="ln"> 4</span>                            <span class="c"># The name of the node we are describing</span>
-<span class="ln"> 5</span>                            <span class="n">NodeName</span> <span class="p">=</span><span class="s2">&#34;10.105.219.128&#34;</span>
-<span class="ln"> 6</span>                            <span class="c"># The path to the .cer file containing the</span>
-<span class="ln"> 7</span>                            <span class="c"># public key of the Encryption Certificate</span>
-<span class="ln"> 8</span>                            <span class="c"># used to encrypt credentials for this node</span>
-<span class="ln"> 9</span>                             <span class="n">CertificateFile</span> <span class="p">=</span> <span class="s2">&#34;C:\Certificate\MyCertificate.cer&#34;</span>
-<span class="ln">10</span>
-<span class="ln">11</span>
-<span class="ln">12</span>                            <span class="c"># The thumbprint of the Encryption Certificate</span>
-<span class="ln">13</span>                            <span class="c"># used to decrypt the credentials on target node</span>
-<span class="ln">14</span>                            <span class="n">Thumbprint</span> <span class="p">=</span> <span class="s2">&#34;558CF40844CDC6303D25494FB007189F75BEE060&#34;</span>
-<span class="ln">15</span>                        <span class="p">};</span>
-<span class="ln">16</span>                    <span class="p">);</span>   
-<span class="ln">17</span><span class="p">}</span> 
-<span class="ln">18</span>
-<span class="ln">19</span><span class="n">Configuration</span> <span class="n">AutoGeneratedConfig</span>
-<span class="ln">20</span><span class="p">{</span>
-<span class="ln">21</span>    <span class="k">param</span>
-<span class="ln">22</span>    <span class="p">(</span>
-<span class="ln">23</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$true</span><span class="p">)]</span>
-<span class="ln">24</span>        <span class="no">[PsCredential]</span> <span class="nv">$ucsCredential</span><span class="p">,</span>
-<span class="ln">25</span>
-<span class="ln">26</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$true</span><span class="p">)]</span>
-<span class="ln">27</span>        <span class="no">[string]</span> <span class="nv">$connectionString</span>
-<span class="ln">28</span>    <span class="p">)</span>
-<span class="ln">29</span>    
-<span class="ln">30</span>        <span class="nb">Import-DSCResource</span> <span class="n">-ModuleName</span> <span class="n">Cisco</span><span class="p">.</span><span class="n">Ucs</span><span class="p">.</span><span class="n">DesiredStateConfiguration</span>
-<span class="ln">31</span>  
-<span class="ln">32</span>      <span class="n">Node</span> <span class="s2">&#34;10.105.219.128&#34;</span>
-<span class="ln">33</span>      <span class="p">{</span>   
-<span class="ln">34</span>            <span class="n">LocalConfigurationManager</span>
-<span class="ln">35</span>            <span class="p">{</span>
-<span class="ln">36</span>                <span class="n">CertificateId</span> <span class="p">=</span> <span class="nv">$node</span><span class="p">.</span><span class="n">Thumbprint</span>
-<span class="ln">37</span>                <span class="n">ConfigurationMode</span> <span class="p">=</span> <span class="s1">&#39;ApplyOnly&#39;</span>
-<span class="ln">38</span>               <span class="n">RefreshMode</span> <span class="p">=</span> <span class="s1">&#39;Push&#39;</span>
-<span class="ln">39</span>               
-<span class="ln">40</span>            <span class="p">}</span> 
-<span class="ln">41</span>    
-<span class="ln">42</span>            <span class="n">UcsManagedObject</span> <span class="n">UcsManagedObject1</span>
-<span class="ln">43</span>            <span class="p">{</span>
-<span class="ln">44</span>                <span class="n">Ensure</span> <span class="p">=</span> <span class="s2">&#34;Present&#34;</span>
-<span class="ln">45</span>                <span class="n">ModifyPresent</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln">46</span>                <span class="n">ClassId</span><span class="p">=</span> <span class="s2">&#34;equipmentLocatorLed&#34;</span>
-<span class="ln">47</span>                <span class="n">Dn</span> <span class="p">=</span> <span class="s2">&#34;sys/chassis-1/blade-1/locator-led&#34;</span>
-<span class="ln">48</span>                <span class="n">PropertyMap</span><span class="p">=</span> <span class="s2">&#34;Id = 1 </span><span class="se">`n</span><span class="s2">BoardType = single </span><span class="se">`n</span><span class="s2">AdminState = on&#34;</span>
-<span class="ln">49</span>                <span class="n">UcsCredentials</span> <span class="p">=</span> <span class="nv">$ucsCredential</span>
-<span class="ln">50</span>                <span class="n">UcsConnectionString</span> <span class="p">=</span> <span class="nv">$connectionString</span>
-<span class="ln">51</span>                <span class="n">Identifier</span> <span class="p">=</span> <span class="s2">&#34;1&#34;</span>
-<span class="ln">52</span>            <span class="p">}</span>
-<span class="ln">53</span>
-<span class="ln">54</span>
-<span class="ln">55</span>           <span class="n">UcsManagedObject</span> <span class="n">ucsManagedobject2</span>
-<span class="ln">56</span>           <span class="p">{</span>
-<span class="ln">57</span>               <span class="n">Ensure</span> <span class="p">=</span> <span class="s2">&#34;Present&#34;</span>
-<span class="ln">58</span>               <span class="n">ModifyPresent</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln">59</span>               <span class="n">ClassId</span><span class="p">=</span> <span class="s2">&#34;orgOrg&#34;</span>
-<span class="ln">60</span>               <span class="n">Dn</span> <span class="p">=</span> <span class="s2">&#34;org-root/org-SubOrg2&#34;</span>
-<span class="ln">61</span>               <span class="n">PropertyMap</span><span class="p">=</span> <span class="s2">&#34;Descr = test for DSC with certificate </span><span class="se">`n</span><span class="s2">Name = SubOrg2&#34;</span>
-<span class="ln">62</span>               <span class="n">UcsCredentials</span> <span class="p">=</span> <span class="nv">$ucsCredential</span>
-<span class="ln">63</span>               <span class="n">UcsConnectionString</span> <span class="p">=</span> <span class="nv">$connectionString</span>
-<span class="ln">64</span>               <span class="n">Identifier</span> <span class="p">=</span> <span class="s2">&#34;2&#34;</span>
-<span class="ln">65</span>           <span class="p">}</span>
-<span class="ln">66</span>      <span class="p">}</span>
-<span class="ln">67</span> <span class="p">}</span>
-<span class="ln">68</span>
-<span class="ln">69</span><span class="k">try</span>
-<span class="ln">70</span><span class="p">{</span>
-<span class="ln">71</span>	<span class="p">${</span><span class="n">Error</span><span class="p">}.</span><span class="n">Clear</span><span class="p">()</span>
-<span class="ln">72</span>    <span class="nv">$credential</span> <span class="p">=</span> <span class="nb">Get-Credential</span>
-<span class="ln">73</span>
-<span class="ln">74</span>    <span class="n">AutoGeneratedConfig</span>  <span class="n">-ConfigurationData</span> <span class="nv">$ConfigData</span> <span class="p">`</span>
-<span class="ln">75</span>                         <span class="n">-ucsCredential</span> <span class="nv">$credential</span> <span class="p">`</span>
-<span class="ln">76</span>                         <span class="n">-connectionString</span> <span class="s2">&#34;Name=10.65.183.5&#34;</span> <span class="p">`</span>
-<span class="ln">77</span>                         <span class="n">-OutputPath</span> <span class="s2">&#34;C:\DscDemo\AutoGeneratedConfig&#34;</span>  
-<span class="ln">78</span><span class="p">}</span>
-<span class="ln">79</span><span class="k">Catch</span>
-<span class="ln">80</span><span class="p">{</span>
-<span class="ln">81</span>    <span class="nb">Write-Host</span> <span class="p">${</span><span class="n">Error</span><span class="p">}</span>
-<span class="ln">82</span>    <span class="n">exit</span>
-<span class="ln">83</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$ConfigData</span><span class="p">=</span>    <span class="p">@{</span>
+        <span class="n">AllNodes</span> <span class="p">=</span> <span class="p">@(</span>    
+                        <span class="p">@{</span> 
+                            <span class="c"># The name of the node we are describing</span>
+                            <span class="n">NodeName</span> <span class="p">=</span><span class="s2">&#34;10.105.219.128&#34;</span>
+                            <span class="c"># The path to the .cer file containing the</span>
+                            <span class="c"># public key of the Encryption Certificate</span>
+                            <span class="c"># used to encrypt credentials for this node</span>
+                             <span class="n">CertificateFile</span> <span class="p">=</span> <span class="s2">&#34;C:\Certificate\MyCertificate.cer&#34;</span>
+
+
+                            <span class="c"># The thumbprint of the Encryption Certificate</span>
+                            <span class="c"># used to decrypt the credentials on target node</span>
+                            <span class="n">Thumbprint</span> <span class="p">=</span> <span class="s2">&#34;558CF40844CDC6303D25494FB007189F75BEE060&#34;</span>
+                        <span class="p">};</span>
+                    <span class="p">);</span>   
+<span class="p">}</span> 
+
+<span class="n">Configuration</span> <span class="n">AutoGeneratedConfig</span>
+<span class="p">{</span>
+    <span class="k">param</span>
+    <span class="p">(</span>
+        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$true</span><span class="p">)]</span>
+        <span class="no">[PsCredential]</span> <span class="nv">$ucsCredential</span><span class="p">,</span>
+
+        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$true</span><span class="p">)]</span>
+        <span class="no">[string]</span> <span class="nv">$connectionString</span>
+    <span class="p">)</span>
+    
+        <span class="nb">Import-DSCResource</span> <span class="n">-ModuleName</span> <span class="n">Cisco</span><span class="p">.</span><span class="n">Ucs</span><span class="p">.</span><span class="n">DesiredStateConfiguration</span>
+  
+      <span class="n">Node</span> <span class="s2">&#34;10.105.219.128&#34;</span>
+      <span class="p">{</span>   
+            <span class="n">LocalConfigurationManager</span>
+            <span class="p">{</span>
+                <span class="n">CertificateId</span> <span class="p">=</span> <span class="nv">$node</span><span class="p">.</span><span class="n">Thumbprint</span>
+                <span class="n">ConfigurationMode</span> <span class="p">=</span> <span class="s1">&#39;ApplyOnly&#39;</span>
+               <span class="n">RefreshMode</span> <span class="p">=</span> <span class="s1">&#39;Push&#39;</span>
+               
+            <span class="p">}</span> 
+    
+            <span class="n">UcsManagedObject</span> <span class="n">UcsManagedObject1</span>
+            <span class="p">{</span>
+                <span class="n">Ensure</span> <span class="p">=</span> <span class="s2">&#34;Present&#34;</span>
+                <span class="n">ModifyPresent</span> <span class="p">=</span> <span class="nv">$true</span>
+                <span class="n">ClassId</span><span class="p">=</span> <span class="s2">&#34;equipmentLocatorLed&#34;</span>
+                <span class="n">Dn</span> <span class="p">=</span> <span class="s2">&#34;sys/chassis-1/blade-1/locator-led&#34;</span>
+                <span class="n">PropertyMap</span><span class="p">=</span> <span class="s2">&#34;Id = 1 </span><span class="se">`n</span><span class="s2">BoardType = single </span><span class="se">`n</span><span class="s2">AdminState = on&#34;</span>
+                <span class="n">UcsCredentials</span> <span class="p">=</span> <span class="nv">$ucsCredential</span>
+                <span class="n">UcsConnectionString</span> <span class="p">=</span> <span class="nv">$connectionString</span>
+                <span class="n">Identifier</span> <span class="p">=</span> <span class="s2">&#34;1&#34;</span>
+            <span class="p">}</span>
+
+
+           <span class="n">UcsManagedObject</span> <span class="n">ucsManagedobject2</span>
+           <span class="p">{</span>
+               <span class="n">Ensure</span> <span class="p">=</span> <span class="s2">&#34;Present&#34;</span>
+               <span class="n">ModifyPresent</span> <span class="p">=</span> <span class="nv">$true</span>
+               <span class="n">ClassId</span><span class="p">=</span> <span class="s2">&#34;orgOrg&#34;</span>
+               <span class="n">Dn</span> <span class="p">=</span> <span class="s2">&#34;org-root/org-SubOrg2&#34;</span>
+               <span class="n">PropertyMap</span><span class="p">=</span> <span class="s2">&#34;Descr = test for DSC with certificate </span><span class="se">`n</span><span class="s2">Name = SubOrg2&#34;</span>
+               <span class="n">UcsCredentials</span> <span class="p">=</span> <span class="nv">$ucsCredential</span>
+               <span class="n">UcsConnectionString</span> <span class="p">=</span> <span class="nv">$connectionString</span>
+               <span class="n">Identifier</span> <span class="p">=</span> <span class="s2">&#34;2&#34;</span>
+           <span class="p">}</span>
+      <span class="p">}</span>
+ <span class="p">}</span>
+
+<span class="k">try</span>
+<span class="p">{</span>
+	<span class="p">${</span><span class="n">Error</span><span class="p">}.</span><span class="n">Clear</span><span class="p">()</span>
+    <span class="nv">$credential</span> <span class="p">=</span> <span class="nb">Get-Credential</span>
+
+    <span class="n">AutoGeneratedConfig</span>  <span class="n">-ConfigurationData</span> <span class="nv">$ConfigData</span> <span class="p">`</span>
+                         <span class="n">-ucsCredential</span> <span class="nv">$credential</span> <span class="p">`</span>
+                         <span class="n">-connectionString</span> <span class="s2">&#34;Name=10.65.183.5&#34;</span> <span class="p">`</span>
+                         <span class="n">-OutputPath</span> <span class="s2">&#34;C:\DscDemo\AutoGeneratedConfig&#34;</span>  
+<span class="p">}</span>
+<span class="k">Catch</span>
+<span class="p">{</span>
+    <span class="nb">Write-Host</span> <span class="p">${</span><span class="n">Error</span><span class="p">}</span>
+    <span class="n">exit</span>
+<span class="p">}</span>
 </code></pre></div><p>When you run this script PowerShell will generate the corresponding MOF files. You can deploy the configuration based on the LCM configuration mode. If it is set to Push mode, then you can enact the configuration using the below syntax.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Start-DscConfiguration</span> <span class="n">-Path</span> <span class="s2">&#34;C:\DscDemo\AutoGeneratedConfig\&#34;</span> <span class="n">-Wait</span> <span class="n">-Verbose</span> <span class="n">-force</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Start-DscConfiguration</span> <span class="n">-Path</span> <span class="s2">&#34;C:\DscDemo\AutoGeneratedConfig\&#34;</span> <span class="n">-Wait</span> <span class="n">-Verbose</span> <span class="n">-force</span>
 </code></pre></div></div>
         </article>
         

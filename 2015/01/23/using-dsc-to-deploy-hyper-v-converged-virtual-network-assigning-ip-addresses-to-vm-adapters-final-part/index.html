@@ -216,7 +216,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>5 Min To Read
+              <i class="far fa-clock"></i>4 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>23 Jan, 2015
@@ -247,164 +247,164 @@ if (!doNotTrack) {
 <p>To complete this task, we need the <em>xIPAddress</em> and <em>xDnsServerAddress</em> DSC resources from the <a href="https://gallery.technet.microsoft.com/scriptcenter/xNetworking-Module-818b3583"><em>xNetworking</em></a> module in the DSC resource kit.</p>
 <p>In the scenario that we are working on, we need static IP addresses assigned to each of the adapters in the management OS. Also, the host management adapter requires DNS server address so that we can use that network connection to Active Directory and other infrastructure services.</p>
 <p>Here is the configuration that I pushed to the Hyper-V server to configure IP addresses for each of the network adapters in the management OS.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">xIPAddress</span> <span class="n">MgmtAddress</span>
-<span class="ln"> 2</span><span class="p">{</span>
-<span class="ln"> 3</span>    <span class="n">IPAddress</span> <span class="p">=</span> <span class="s2">&#34;100.194.14.114&#34;</span>
-<span class="ln"> 4</span>    <span class="n">InterfaceAlias</span> <span class="p">=</span> <span class="s2">&#34;vEthernet (HostSwitch)&#34;</span>
-<span class="ln"> 5</span>    <span class="n">SubnetMask</span> <span class="p">=</span> <span class="n">23</span>
-<span class="ln"> 6</span>    <span class="n">DefaultGateway</span> <span class="p">=</span> <span class="s1">&#39;100.194.14.1&#39;</span>
-<span class="ln"> 7</span>    <span class="n">AddressFamily</span> <span class="p">=</span> <span class="s2">&#34;IPV4&#34;</span>
-<span class="ln"> 8</span><span class="p">}</span>
-<span class="ln"> 9</span>
-<span class="ln">10</span><span class="n">xDNSServerAddress</span> <span class="n">MgmtDNS</span> <span class="p">{</span>
-<span class="ln">11</span>    <span class="n">InterfaceAlias</span> <span class="p">=</span> <span class="s1">&#39;vEthernet (HostSwitch)&#39;</span>
-<span class="ln">12</span>    <span class="n">Address</span> <span class="p">=</span> <span class="s1">&#39;100.194.14.87&#39;</span>
-<span class="ln">13</span>    <span class="n">AddressFamily</span> <span class="p">=</span> <span class="s1">&#39;IPV4&#39;</span>
-<span class="ln">14</span><span class="p">}</span>
-<span class="ln">15</span>
-<span class="ln">16</span><span class="n">xIPAddress</span> <span class="n">ClusterAddress</span>
-<span class="ln">17</span><span class="p">{</span>
-<span class="ln">18</span>    <span class="n">IPAddress</span> <span class="p">=</span> <span class="s2">&#34;172.168.1.114&#34;</span>
-<span class="ln">19</span>    <span class="n">InterfaceAlias</span> <span class="p">=</span> <span class="s2">&#34;vEthernet (HostCluster)&#34;</span>
-<span class="ln">20</span>    <span class="n">SubnetMask</span> <span class="p">=</span> <span class="n">16</span>
-<span class="ln">21</span>    <span class="n">AddressFamily</span> <span class="p">=</span> <span class="s2">&#34;IPV4&#34;</span>
-<span class="ln">22</span><span class="p">}</span>
-<span class="ln">23</span>
-<span class="ln">24</span><span class="n">xIPAddress</span> <span class="n">LMAddress</span>
-<span class="ln">25</span><span class="p">{</span>
-<span class="ln">26</span>    <span class="n">IPAddress</span> <span class="p">=</span> <span class="s2">&#34;192.168.1.114&#34;</span>
-<span class="ln">27</span>    <span class="n">InterfaceAlias</span> <span class="p">=</span> <span class="s2">&#34;vEthernet (HostLiveMigration)&#34;</span>
-<span class="ln">28</span>    <span class="n">SubnetMask</span> <span class="p">=</span> <span class="n">24</span>
-<span class="ln">29</span>    <span class="n">AddressFamily</span> <span class="p">=</span> <span class="s2">&#34;IPV4&#34;</span>
-<span class="ln">30</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">xIPAddress</span> <span class="n">MgmtAddress</span>
+<span class="p">{</span>
+    <span class="n">IPAddress</span> <span class="p">=</span> <span class="s2">&#34;100.194.14.114&#34;</span>
+    <span class="n">InterfaceAlias</span> <span class="p">=</span> <span class="s2">&#34;vEthernet (HostSwitch)&#34;</span>
+    <span class="n">SubnetMask</span> <span class="p">=</span> <span class="n">23</span>
+    <span class="n">DefaultGateway</span> <span class="p">=</span> <span class="s1">&#39;100.194.14.1&#39;</span>
+    <span class="n">AddressFamily</span> <span class="p">=</span> <span class="s2">&#34;IPV4&#34;</span>
+<span class="p">}</span>
+
+<span class="n">xDNSServerAddress</span> <span class="n">MgmtDNS</span> <span class="p">{</span>
+    <span class="n">InterfaceAlias</span> <span class="p">=</span> <span class="s1">&#39;vEthernet (HostSwitch)&#39;</span>
+    <span class="n">Address</span> <span class="p">=</span> <span class="s1">&#39;100.194.14.87&#39;</span>
+    <span class="n">AddressFamily</span> <span class="p">=</span> <span class="s1">&#39;IPV4&#39;</span>
+<span class="p">}</span>
+
+<span class="n">xIPAddress</span> <span class="n">ClusterAddress</span>
+<span class="p">{</span>
+    <span class="n">IPAddress</span> <span class="p">=</span> <span class="s2">&#34;172.168.1.114&#34;</span>
+    <span class="n">InterfaceAlias</span> <span class="p">=</span> <span class="s2">&#34;vEthernet (HostCluster)&#34;</span>
+    <span class="n">SubnetMask</span> <span class="p">=</span> <span class="n">16</span>
+    <span class="n">AddressFamily</span> <span class="p">=</span> <span class="s2">&#34;IPV4&#34;</span>
+<span class="p">}</span>
+
+<span class="n">xIPAddress</span> <span class="n">LMAddress</span>
+<span class="p">{</span>
+    <span class="n">IPAddress</span> <span class="p">=</span> <span class="s2">&#34;192.168.1.114&#34;</span>
+    <span class="n">InterfaceAlias</span> <span class="p">=</span> <span class="s2">&#34;vEthernet (HostLiveMigration)&#34;</span>
+    <span class="n">SubnetMask</span> <span class="p">=</span> <span class="n">24</span>
+    <span class="n">AddressFamily</span> <span class="p">=</span> <span class="s2">&#34;IPV4&#34;</span>
+<span class="p">}</span>
 </code></pre></div><p>This completes the configuration of IP addresses and DNS addresses for the network adapters. The host management adapter needs the gateway and DNS server addresses. We don’t have to configure those settings for the cluster and live migration networks.</p>
 <p>Make note of the value provided for the <em>InterfaceAlias</em> property. This is not just the network adapter name we used so far but the name of the adapter as you see in network connections. For example, vEthernet (HostSwitch) should be the interface alias for the HostSwitch adapter.</p>
 <p><img src="/images/cIPAddress.png" alt=""></p>
 <p>The following snippet provides the complete resource configuration for creating Hyper-V converged virtual network.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">  1</span><span class="n">Configuration</span> <span class="n">DemoNetworkTeam</span> <span class="p">{</span>
-<span class="ln">  2</span>    <span class="nb">Import-DscResource</span> <span class="n">-Module</span> <span class="n">cWindowsOS</span> <span class="n">-Name</span> <span class="n">cNetworkTeam</span>
-<span class="ln">  3</span>    <span class="nb">Import-DscResource</span> <span class="n">-Module</span> <span class="n">cHyper-V</span> <span class="n">-Name</span> <span class="n">cVMSwitch</span><span class="p">,</span> <span class="n">cVMNetworkAdapter</span><span class="p">,</span> <span class="n">cVMNetworkAdapterSettings</span><span class="p">,</span> <span class="n">cVMNetworkAdapterVlan</span>
-<span class="ln">  4</span>    <span class="nb">Import-DscResource</span> <span class="n">-Module</span> <span class="n">xNetworking</span> <span class="n">-Name</span> <span class="n">MSFT_xIPAddress</span><span class="p">,</span> <span class="n">MSFT_xDNSServerAddress</span>
-<span class="ln">  5</span>
-<span class="ln">  6</span><span class="n">Node</span> <span class="n">Localhost</span> <span class="p">{</span>
-<span class="ln">  7</span>    <span class="n">cNetworkTeam</span> <span class="n">NetworkTeam</span> <span class="p">{</span>
-<span class="ln">  8</span>        <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostTeam&#39;</span>
-<span class="ln">  9</span>        <span class="n">TeamingMode</span> <span class="p">=</span> <span class="s1">&#39;SwitchIndependent&#39;</span>
-<span class="ln"> 10</span>        <span class="n">LoadBalancingAlgorithm</span> <span class="p">=</span> <span class="s1">&#39;HyperVPort&#39;</span>
-<span class="ln"> 11</span>        <span class="n">TeamMembers</span> <span class="p">=</span> <span class="s1">&#39;NIC1&#39;</span><span class="p">,</span><span class="s1">&#39;NIC2&#39;</span>
-<span class="ln"> 12</span>        <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
-<span class="ln"> 13</span>    <span class="p">}</span>
-<span class="ln"> 14</span>
-<span class="ln"> 15</span><span class="n">cVMSwitch</span> <span class="n">HostSwitch</span> <span class="p">{</span>
-<span class="ln"> 16</span>    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostSwitch&#39;</span>
-<span class="ln"> 17</span>    <span class="nb">Type </span><span class="p">=</span> <span class="s1">&#39;External&#39;</span>
-<span class="ln"> 18</span>    <span class="n">AllowManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln"> 19</span>    <span class="n">MinimumBandwidthMode</span> <span class="p">=</span> <span class="s1">&#39;Weight&#39;</span>
-<span class="ln"> 20</span>    <span class="n">NetAdapterName</span> <span class="p">=</span> <span class="s1">&#39;HostTeam&#39;</span>
-<span class="ln"> 21</span>    <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
-<span class="ln"> 22</span>    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cNetworkTeam]NetworkTeam&#39;</span>
-<span class="ln"> 23</span><span class="p">}</span>
-<span class="ln"> 24</span>
-<span class="ln"> 25</span><span class="n">cVMNetworkAdapterSettings</span> <span class="n">HostSwitchSettings</span> <span class="p">{</span>
-<span class="ln"> 26</span>    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostSwitch&#39;</span>
-<span class="ln"> 27</span>    <span class="n">SwitchName</span> <span class="p">=</span> <span class="s1">&#39;HostSwitch&#39;</span>
-<span class="ln"> 28</span>    <span class="n">ManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln"> 29</span>    <span class="n">MinimumBandwidthWeight</span> <span class="p">=</span> <span class="n">10</span>
-<span class="ln"> 30</span>    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cVMSwitch]HostSwitch&#39;</span>
-<span class="ln"> 31</span><span class="p">}</span>
-<span class="ln"> 32</span>
-<span class="ln"> 33</span><span class="n">cVMNetworkAdapterVlan</span> <span class="n">HostSwitchVlan</span> <span class="p">{</span>
-<span class="ln"> 34</span>    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostSwitch&#39;</span>
-<span class="ln"> 35</span>    <span class="n">ManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln"> 36</span>    <span class="n">AdapterMode</span> <span class="p">=</span> <span class="s1">&#39;Access&#39;</span>
-<span class="ln"> 37</span>    <span class="n">VlanId</span> <span class="p">=</span> <span class="n">10</span>
-<span class="ln"> 38</span>    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cVMSwitch]HostSwitch&#39;</span>
-<span class="ln"> 39</span><span class="p">}</span>
-<span class="ln"> 40</span>
-<span class="ln"> 41</span><span class="n">cVMNetworkAdapter</span> <span class="n">HostCluster</span> <span class="p">{</span>
-<span class="ln"> 42</span>    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostCluster&#39;</span>
-<span class="ln"> 43</span>    <span class="n">SwitchName</span> <span class="p">=</span> <span class="s1">&#39;HostSwitch&#39;</span>
-<span class="ln"> 44</span>    <span class="n">ManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln"> 45</span>    <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
-<span class="ln"> 46</span>    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cVMSwitch]HostSwitch&#39;</span>
-<span class="ln"> 47</span><span class="p">}</span>
-<span class="ln"> 48</span>
-<span class="ln"> 49</span><span class="n">cVMNetworkAdapterSettings</span> <span class="n">HostClusterSettings</span> <span class="p">{</span>
-<span class="ln"> 50</span>    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostCluster&#39;</span>
-<span class="ln"> 51</span>    <span class="n">SwitchName</span> <span class="p">=</span> <span class="s1">&#39;HostSwitch&#39;</span>
-<span class="ln"> 52</span>    <span class="n">ManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln"> 53</span>    <span class="n">MinimumBandwidthWeight</span> <span class="p">=</span> <span class="n">20</span>
-<span class="ln"> 54</span>    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cVMSwitch]HostSwitch&#39;</span><span class="p">,</span><span class="s1">&#39;[cVMNetworkAdapter]HostCluster&#39;</span>
-<span class="ln"> 55</span><span class="p">}</span>
-<span class="ln"> 56</span>
-<span class="ln"> 57</span><span class="n">cVMNetworkAdapterVlan</span> <span class="n">HostClusterVlan</span> <span class="p">{</span>
-<span class="ln"> 58</span>    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostCluster&#39;</span>
-<span class="ln"> 59</span>    <span class="n">ManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln"> 60</span>    <span class="n">AdapterMode</span> <span class="p">=</span> <span class="s1">&#39;Access&#39;</span>
-<span class="ln"> 61</span>    <span class="n">VlanId</span> <span class="p">=</span> <span class="n">20</span>
-<span class="ln"> 62</span>    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cVMSwitch]HostSwitch&#39;</span><span class="p">,</span><span class="s1">&#39;[cVMNetworkAdapter]HostCluster&#39;</span>
-<span class="ln"> 63</span><span class="p">}</span>
-<span class="ln"> 64</span>
-<span class="ln"> 65</span><span class="n">cVMNetworkAdapter</span> <span class="n">HostLiveMigration</span> <span class="p">{</span>
-<span class="ln"> 66</span>    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostLiveMigration&#39;</span>
-<span class="ln"> 67</span>    <span class="n">SwitchName</span> <span class="p">=</span> <span class="s1">&#39;HostSwitch&#39;</span>
-<span class="ln"> 68</span>    <span class="n">ManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln"> 69</span>    <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
-<span class="ln"> 70</span>    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cVMSwitch]HostSwitch&#39;</span>
-<span class="ln"> 71</span><span class="p">}</span>
-<span class="ln"> 72</span>
-<span class="ln"> 73</span><span class="n">cVMNetworkAdapterSettings</span> <span class="n">HostLiveMigrationSettings</span> <span class="p">{</span>
-<span class="ln"> 74</span>    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostLiveMigration&#39;</span>
-<span class="ln"> 75</span>    <span class="n">SwitchName</span> <span class="p">=</span> <span class="s1">&#39;HostSwitch&#39;</span>
-<span class="ln"> 76</span>    <span class="n">ManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln"> 77</span>    <span class="n">MinimumBandwidthWeight</span> <span class="p">=</span> <span class="n">30</span>
-<span class="ln"> 78</span>    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cVMSwitch]HostSwitch&#39;</span><span class="p">,</span><span class="s1">&#39;[cVMNetworkAdapter]HostLiveMigration&#39;</span>
-<span class="ln"> 79</span><span class="p">}</span>
-<span class="ln"> 80</span>
-<span class="ln"> 81</span><span class="n">cVMNetworkAdapterVlan</span> <span class="n">HostLiveMigrationVlan</span> <span class="p">{</span>
-<span class="ln"> 82</span>    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostLiveMigration&#39;</span>
-<span class="ln"> 83</span>    <span class="n">ManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln"> 84</span>    <span class="n">AdapterMode</span> <span class="p">=</span> <span class="s1">&#39;Access&#39;</span>
-<span class="ln"> 85</span>    <span class="n">VlanId</span> <span class="p">=</span> <span class="n">30</span>
-<span class="ln"> 86</span>    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cVMSwitch]HostSwitch&#39;</span><span class="p">,</span><span class="s1">&#39;[cVMNetworkAdapter]HostLiveMigration&#39;</span>
-<span class="ln"> 87</span><span class="p">}</span>
-<span class="ln"> 88</span>
-<span class="ln"> 89</span><span class="n">xIPAddress</span> <span class="n">MgmtAddress</span>
-<span class="ln"> 90</span><span class="p">{</span>
-<span class="ln"> 91</span>    <span class="n">IPAddress</span> <span class="p">=</span> <span class="s2">&#34;100.194.14.114&#34;</span>
-<span class="ln"> 92</span>    <span class="n">InterfaceAlias</span> <span class="p">=</span> <span class="s2">&#34;vEthernet (HostSwitch)&#34;</span>
-<span class="ln"> 93</span>    <span class="n">SubnetMask</span> <span class="p">=</span> <span class="n">23</span>
-<span class="ln"> 94</span>    <span class="n">DefaultGateway</span> <span class="p">=</span> <span class="s1">&#39;100.194.14.1&#39;</span>
-<span class="ln"> 95</span>    <span class="n">AddressFamily</span> <span class="p">=</span> <span class="s2">&#34;IPV4&#34;</span>
-<span class="ln"> 96</span><span class="p">}</span>
-<span class="ln"> 97</span>
-<span class="ln"> 98</span><span class="n">xDNSServerAddress</span> <span class="n">MgmtDNS</span> <span class="p">{</span>
-<span class="ln"> 99</span>    <span class="n">InterfaceAlias</span> <span class="p">=</span> <span class="s1">&#39;vEthernet (HostSwitch)&#39;</span>
-<span class="ln">100</span>    <span class="n">Address</span> <span class="p">=</span> <span class="s1">&#39;100.194.14.87&#39;</span>
-<span class="ln">101</span>    <span class="n">AddressFamily</span> <span class="p">=</span> <span class="s1">&#39;IPV4&#39;</span>
-<span class="ln">102</span><span class="p">}</span>
-<span class="ln">103</span>
-<span class="ln">104</span><span class="n">xIPAddress</span> <span class="n">ClusterAddress</span>
-<span class="ln">105</span><span class="p">{</span>
-<span class="ln">106</span>   <span class="n">IPAddress</span> <span class="p">=</span> <span class="s2">&#34;172.168.1.114&#34;</span>
-<span class="ln">107</span>   <span class="n">InterfaceAlias</span> <span class="p">=</span> <span class="s2">&#34;vEthernet (HostCluster)&#34;</span>
-<span class="ln">108</span>   <span class="n">SubnetMask</span> <span class="p">=</span> <span class="n">16</span>
-<span class="ln">109</span>   <span class="n">AddressFamily</span> <span class="p">=</span> <span class="s2">&#34;IPV4&#34;</span>
-<span class="ln">110</span><span class="p">}</span>
-<span class="ln">111</span>
-<span class="ln">112</span><span class="n">xIPAddress</span> <span class="n">LMAddress</span>
-<span class="ln">113</span><span class="p">{</span>
-<span class="ln">114</span>    <span class="n">IPAddress</span> <span class="p">=</span> <span class="s2">&#34;192.168.1.114&#34;</span>
-<span class="ln">115</span>    <span class="n">InterfaceAlias</span> <span class="p">=</span> <span class="s2">&#34;vEthernet (HostLiveMigration)&#34;</span>
-<span class="ln">116</span>    <span class="n">SubnetMask</span> <span class="p">=</span> <span class="n">24</span>
-<span class="ln">117</span>    <span class="n">AddressFamily</span> <span class="p">=</span> <span class="s2">&#34;IPV4&#34;</span>
-<span class="ln">118</span><span class="p">}</span>
-<span class="ln">119</span>
-<span class="ln">120</span><span class="p">}</span>
-<span class="ln">121</span>
-<span class="ln">122</span><span class="p">}</span>
-<span class="ln">123</span>
-<span class="ln">124</span><span class="n">DemoNetworkTeam</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Configuration</span> <span class="n">DemoNetworkTeam</span> <span class="p">{</span>
+    <span class="nb">Import-DscResource</span> <span class="n">-Module</span> <span class="n">cWindowsOS</span> <span class="n">-Name</span> <span class="n">cNetworkTeam</span>
+    <span class="nb">Import-DscResource</span> <span class="n">-Module</span> <span class="n">cHyper-V</span> <span class="n">-Name</span> <span class="n">cVMSwitch</span><span class="p">,</span> <span class="n">cVMNetworkAdapter</span><span class="p">,</span> <span class="n">cVMNetworkAdapterSettings</span><span class="p">,</span> <span class="n">cVMNetworkAdapterVlan</span>
+    <span class="nb">Import-DscResource</span> <span class="n">-Module</span> <span class="n">xNetworking</span> <span class="n">-Name</span> <span class="n">MSFT_xIPAddress</span><span class="p">,</span> <span class="n">MSFT_xDNSServerAddress</span>
+
+<span class="n">Node</span> <span class="n">Localhost</span> <span class="p">{</span>
+    <span class="n">cNetworkTeam</span> <span class="n">NetworkTeam</span> <span class="p">{</span>
+        <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostTeam&#39;</span>
+        <span class="n">TeamingMode</span> <span class="p">=</span> <span class="s1">&#39;SwitchIndependent&#39;</span>
+        <span class="n">LoadBalancingAlgorithm</span> <span class="p">=</span> <span class="s1">&#39;HyperVPort&#39;</span>
+        <span class="n">TeamMembers</span> <span class="p">=</span> <span class="s1">&#39;NIC1&#39;</span><span class="p">,</span><span class="s1">&#39;NIC2&#39;</span>
+        <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+    <span class="p">}</span>
+
+<span class="n">cVMSwitch</span> <span class="n">HostSwitch</span> <span class="p">{</span>
+    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostSwitch&#39;</span>
+    <span class="nb">Type </span><span class="p">=</span> <span class="s1">&#39;External&#39;</span>
+    <span class="n">AllowManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
+    <span class="n">MinimumBandwidthMode</span> <span class="p">=</span> <span class="s1">&#39;Weight&#39;</span>
+    <span class="n">NetAdapterName</span> <span class="p">=</span> <span class="s1">&#39;HostTeam&#39;</span>
+    <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cNetworkTeam]NetworkTeam&#39;</span>
+<span class="p">}</span>
+
+<span class="n">cVMNetworkAdapterSettings</span> <span class="n">HostSwitchSettings</span> <span class="p">{</span>
+    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostSwitch&#39;</span>
+    <span class="n">SwitchName</span> <span class="p">=</span> <span class="s1">&#39;HostSwitch&#39;</span>
+    <span class="n">ManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
+    <span class="n">MinimumBandwidthWeight</span> <span class="p">=</span> <span class="n">10</span>
+    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cVMSwitch]HostSwitch&#39;</span>
+<span class="p">}</span>
+
+<span class="n">cVMNetworkAdapterVlan</span> <span class="n">HostSwitchVlan</span> <span class="p">{</span>
+    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostSwitch&#39;</span>
+    <span class="n">ManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
+    <span class="n">AdapterMode</span> <span class="p">=</span> <span class="s1">&#39;Access&#39;</span>
+    <span class="n">VlanId</span> <span class="p">=</span> <span class="n">10</span>
+    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cVMSwitch]HostSwitch&#39;</span>
+<span class="p">}</span>
+
+<span class="n">cVMNetworkAdapter</span> <span class="n">HostCluster</span> <span class="p">{</span>
+    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostCluster&#39;</span>
+    <span class="n">SwitchName</span> <span class="p">=</span> <span class="s1">&#39;HostSwitch&#39;</span>
+    <span class="n">ManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
+    <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cVMSwitch]HostSwitch&#39;</span>
+<span class="p">}</span>
+
+<span class="n">cVMNetworkAdapterSettings</span> <span class="n">HostClusterSettings</span> <span class="p">{</span>
+    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostCluster&#39;</span>
+    <span class="n">SwitchName</span> <span class="p">=</span> <span class="s1">&#39;HostSwitch&#39;</span>
+    <span class="n">ManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
+    <span class="n">MinimumBandwidthWeight</span> <span class="p">=</span> <span class="n">20</span>
+    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cVMSwitch]HostSwitch&#39;</span><span class="p">,</span><span class="s1">&#39;[cVMNetworkAdapter]HostCluster&#39;</span>
+<span class="p">}</span>
+
+<span class="n">cVMNetworkAdapterVlan</span> <span class="n">HostClusterVlan</span> <span class="p">{</span>
+    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostCluster&#39;</span>
+    <span class="n">ManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
+    <span class="n">AdapterMode</span> <span class="p">=</span> <span class="s1">&#39;Access&#39;</span>
+    <span class="n">VlanId</span> <span class="p">=</span> <span class="n">20</span>
+    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cVMSwitch]HostSwitch&#39;</span><span class="p">,</span><span class="s1">&#39;[cVMNetworkAdapter]HostCluster&#39;</span>
+<span class="p">}</span>
+
+<span class="n">cVMNetworkAdapter</span> <span class="n">HostLiveMigration</span> <span class="p">{</span>
+    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostLiveMigration&#39;</span>
+    <span class="n">SwitchName</span> <span class="p">=</span> <span class="s1">&#39;HostSwitch&#39;</span>
+    <span class="n">ManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
+    <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cVMSwitch]HostSwitch&#39;</span>
+<span class="p">}</span>
+
+<span class="n">cVMNetworkAdapterSettings</span> <span class="n">HostLiveMigrationSettings</span> <span class="p">{</span>
+    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostLiveMigration&#39;</span>
+    <span class="n">SwitchName</span> <span class="p">=</span> <span class="s1">&#39;HostSwitch&#39;</span>
+    <span class="n">ManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
+    <span class="n">MinimumBandwidthWeight</span> <span class="p">=</span> <span class="n">30</span>
+    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cVMSwitch]HostSwitch&#39;</span><span class="p">,</span><span class="s1">&#39;[cVMNetworkAdapter]HostLiveMigration&#39;</span>
+<span class="p">}</span>
+
+<span class="n">cVMNetworkAdapterVlan</span> <span class="n">HostLiveMigrationVlan</span> <span class="p">{</span>
+    <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;HostLiveMigration&#39;</span>
+    <span class="n">ManagementOS</span> <span class="p">=</span> <span class="nv">$true</span>
+    <span class="n">AdapterMode</span> <span class="p">=</span> <span class="s1">&#39;Access&#39;</span>
+    <span class="n">VlanId</span> <span class="p">=</span> <span class="n">30</span>
+    <span class="n">DependsOn</span> <span class="p">=</span> <span class="s1">&#39;[cVMSwitch]HostSwitch&#39;</span><span class="p">,</span><span class="s1">&#39;[cVMNetworkAdapter]HostLiveMigration&#39;</span>
+<span class="p">}</span>
+
+<span class="n">xIPAddress</span> <span class="n">MgmtAddress</span>
+<span class="p">{</span>
+    <span class="n">IPAddress</span> <span class="p">=</span> <span class="s2">&#34;100.194.14.114&#34;</span>
+    <span class="n">InterfaceAlias</span> <span class="p">=</span> <span class="s2">&#34;vEthernet (HostSwitch)&#34;</span>
+    <span class="n">SubnetMask</span> <span class="p">=</span> <span class="n">23</span>
+    <span class="n">DefaultGateway</span> <span class="p">=</span> <span class="s1">&#39;100.194.14.1&#39;</span>
+    <span class="n">AddressFamily</span> <span class="p">=</span> <span class="s2">&#34;IPV4&#34;</span>
+<span class="p">}</span>
+
+<span class="n">xDNSServerAddress</span> <span class="n">MgmtDNS</span> <span class="p">{</span>
+    <span class="n">InterfaceAlias</span> <span class="p">=</span> <span class="s1">&#39;vEthernet (HostSwitch)&#39;</span>
+    <span class="n">Address</span> <span class="p">=</span> <span class="s1">&#39;100.194.14.87&#39;</span>
+    <span class="n">AddressFamily</span> <span class="p">=</span> <span class="s1">&#39;IPV4&#39;</span>
+<span class="p">}</span>
+
+<span class="n">xIPAddress</span> <span class="n">ClusterAddress</span>
+<span class="p">{</span>
+   <span class="n">IPAddress</span> <span class="p">=</span> <span class="s2">&#34;172.168.1.114&#34;</span>
+   <span class="n">InterfaceAlias</span> <span class="p">=</span> <span class="s2">&#34;vEthernet (HostCluster)&#34;</span>
+   <span class="n">SubnetMask</span> <span class="p">=</span> <span class="n">16</span>
+   <span class="n">AddressFamily</span> <span class="p">=</span> <span class="s2">&#34;IPV4&#34;</span>
+<span class="p">}</span>
+
+<span class="n">xIPAddress</span> <span class="n">LMAddress</span>
+<span class="p">{</span>
+    <span class="n">IPAddress</span> <span class="p">=</span> <span class="s2">&#34;192.168.1.114&#34;</span>
+    <span class="n">InterfaceAlias</span> <span class="p">=</span> <span class="s2">&#34;vEthernet (HostLiveMigration)&#34;</span>
+    <span class="n">SubnetMask</span> <span class="p">=</span> <span class="n">24</span>
+    <span class="n">AddressFamily</span> <span class="p">=</span> <span class="s2">&#34;IPV4&#34;</span>
+<span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="n">DemoNetworkTeam</span>
 </code></pre></div><p>This brings us to the end of this series of articles on using DSC for creating Hyper-V converged virtual network. If you have any feedback or see any issues with the DSC resource modules, feel free to create a discussion or issue on Github. I will be more than happy to help you and make these resource modules better.</p>
 </div>
         </article>

@@ -261,28 +261,28 @@ if (!doNotTrack) {
 <p>As a result of this strong — but not entirely consistent — correlation, it is generally a simple task to translate SQL queries into WQL queries.</p>
 <h3 id="lazy-properties">Lazy Properties</h3>
 <p>Certain ConfigMgr WMI classes will have properties marked with a WMI qualifier called “lazy.” If a property is marked lazy, then it means that the property’s value will not be returned in an enumeration of WMI class instances. In this case, to retrieve the property’s value, you must first determine the specific WMI instance you want, and obtain a reference to that instance directly using its WMI path. I’ve found that the easiest method of achieving this is to enumerate the instances of a given WMI class until a condition I am interested in is met, and then use the [wmi] type accelerator to access the WMI instance using its __PATH system property.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$SccmUpdateLists</span> <span class="p">=</span> <span class="nb">Get-WmiObject</span> <span class="n">-Namespace</span> <span class="n">root</span><span class="p">\</span><span class="n">sms</span><span class="p">\</span><span class="n">site_lab</span> <span class="p">`</span>
-<span class="ln"> 2</span>            <span class="n">-Class</span> <span class="n">SMS_AuthorizationList</span> <span class="err">–</span><span class="n">ComputerName</span> <span class="n">sccm01</span>
-<span class="ln"> 3</span>
-<span class="ln"> 4</span><span class="k">foreach</span> <span class="p">(</span><span class="nv">$SccmUpdateList</span> <span class="k">in</span> <span class="nv">$SccmUpdateLists</span><span class="p">)</span>
-<span class="ln"> 5</span><span class="p">{</span>
-<span class="ln"> 6</span>   <span class="k">if</span> <span class="p">(</span><span class="nv">$SccmUpdateList</span><span class="p">.</span><span class="n">LocalizedDisplayName</span> <span class="o">-eq</span> <span class="err">‘</span><span class="n">My</span> <span class="n">Update</span> <span class="n">List</span><span class="err">’</span><span class="p">)</span>
-<span class="ln"> 7</span>   <span class="p">{</span>
-<span class="ln"> 8</span>      <span class="nv">$SccmUpdateList</span> <span class="p">=</span> <span class="no">[wmi]</span><span class="err">”</span><span class="p">$(</span><span class="nv">$SccmUpdateList</span><span class="p">.</span><span class="n">__PATH</span><span class="p">)</span><span class="err">”</span>
-<span class="ln"> 9</span>   <span class="p">}</span>
-<span class="ln">10</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$SccmUpdateLists</span> <span class="p">=</span> <span class="nb">Get-WmiObject</span> <span class="n">-Namespace</span> <span class="n">root</span><span class="p">\</span><span class="n">sms</span><span class="p">\</span><span class="n">site_lab</span> <span class="p">`</span>
+            <span class="n">-Class</span> <span class="n">SMS_AuthorizationList</span> <span class="err">–</span><span class="n">ComputerName</span> <span class="n">sccm01</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$SccmUpdateList</span> <span class="k">in</span> <span class="nv">$SccmUpdateLists</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="k">if</span> <span class="p">(</span><span class="nv">$SccmUpdateList</span><span class="p">.</span><span class="n">LocalizedDisplayName</span> <span class="o">-eq</span> <span class="err">‘</span><span class="n">My</span> <span class="n">Update</span> <span class="n">List</span><span class="err">’</span><span class="p">)</span>
+   <span class="p">{</span>
+      <span class="nv">$SccmUpdateList</span> <span class="p">=</span> <span class="no">[wmi]</span><span class="err">”</span><span class="p">$(</span><span class="nv">$SccmUpdateList</span><span class="p">.</span><span class="n">__PATH</span><span class="p">)</span><span class="err">”</span>
+   <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>On my personal blog at <a href="http://trevorsullivan.net/">http://trevorsullivan.net</a>, I have an article that talks about lazy properties in depth and also describes how to identify which classes have lazy properties, and exactly which properties they are.</p>
 <h3 id="configmgr-specific-wql-keywords">ConfigMgr-specific WQL Keywords</h3>
 <p>Another unique attribute of the ConfigMgr WMI provider is the support for additional WQL keywords. The most notable and probably most commonly used keyword that you’ll get accustomed to using is the JOIN keyword. Since the ConfigMgr provider does not use CIM_REFERENCE types with association classes to join other data classes together, it’s up to you to use a common identifier to join data classes together. For ConfigMgr hardware inventory classes, you’ll generally join in the ResourceID property, and other objects use different common identifiers, such as UpdateID for software updates objects.</p>
 <p>Here is an example of using the JOIN keyword:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nv">$MyQuery</span> <span class="p">=</span> <span class="p">@</span><span class="s2">&#34;&#34;</span>
-<span class="ln">2</span>
-<span class="ln">3</span><span class="p">&gt;&gt;</span> <span class="nb">select </span><span class="p">*</span> <span class="n">from</span> <span class="n">SMS_G_System_Computer_System</span>
-<span class="ln">4</span><span class="p">&gt;&gt;</span> <span class="n">JOIN</span> <span class="n">SMS_G_System_Disk</span> <span class="n">on</span>
-<span class="ln">5</span><span class="p">&gt;&gt;</span> <span class="n">SMS_G_System_Computer_System</span><span class="p">.</span><span class="n">ResourceID</span> <span class="p">=</span> <span class="n">SMS_G_System_Disk</span><span class="p">.</span><span class="n">ResourceID</span>
-<span class="ln">6</span><span class="p">&gt;&gt;</span> <span class="p">@</span>
-<span class="ln">7</span>
-<span class="ln">8</span><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-WmiObject</span> <span class="n">-Namespace</span> <span class="n">root</span><span class="p">\</span><span class="n">sms</span><span class="p">\</span><span class="n">site_lab</span> <span class="n">-Query</span> <span class="nv">$MyQuery</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nv">$MyQuery</span> <span class="p">=</span> <span class="p">@</span><span class="s2">&#34;&#34;</span>
+
+<span class="p">&gt;&gt;</span> <span class="nb">select </span><span class="p">*</span> <span class="n">from</span> <span class="n">SMS_G_System_Computer_System</span>
+<span class="p">&gt;&gt;</span> <span class="n">JOIN</span> <span class="n">SMS_G_System_Disk</span> <span class="n">on</span>
+<span class="p">&gt;&gt;</span> <span class="n">SMS_G_System_Computer_System</span><span class="p">.</span><span class="n">ResourceID</span> <span class="p">=</span> <span class="n">SMS_G_System_Disk</span><span class="p">.</span><span class="n">ResourceID</span>
+<span class="p">&gt;&gt;</span> <span class="p">@</span>
+
+<span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-WmiObject</span> <span class="n">-Namespace</span> <span class="n">root</span><span class="p">\</span><span class="n">sms</span><span class="p">\</span><span class="n">site_lab</span> <span class="n">-Query</span> <span class="nv">$MyQuery</span>
 </code></pre></div><p>Rather than typing the query by hand, you can optionally use the query builder in the ConfigMgr collection editor window, to assist you with visually building certain inventory-related queries. Once the desired query is built, you can simply hit the “Show query language” button to display the WQL code, which you can then copy/paste into your PowerShell script.</p>
 <h3 id="event-management">Event Management</h3>
 <p>One of the more powerful (and lesser known) functions of WMI is the ability for you to subscribe to and respond to events. Since the ConfigMgr API is built on WMI, we automatically get this functionality for free. Although ConfigMgr generates certain status messages to notify administrators of changes to objects in the hierarchy, it is not comprehensive. In situations where these status messages do not get generated, it may be necessary to subscribe for WMI events in order to get the desired change notifications.</p>

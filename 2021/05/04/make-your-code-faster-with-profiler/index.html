@@ -345,14 +345,14 @@ if (!doNotTrack) {
 <h3 id="profiling-your-own-script">Profiling your own script</h3>
 <p>You can do the same for your code. Just install <a href="https://www.powershellgallery.com/packages/Profiler">Profiler from PSGallery</a>, it is compatible with PowerShell 7 and 5.</p>
 <p>And then run your script:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$trace</span> <span class="p">=</span> <span class="nb">Trace-Script</span> <span class="n">-ScriptBlock</span> <span class="p">{</span> <span class="p">&amp;</span> <span class="n">MyScript</span><span class="p">.</span><span class="n">ps1</span> <span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$trace</span> <span class="p">=</span> <span class="nb">Trace-Script</span> <span class="n">-ScriptBlock</span> <span class="p">{</span> <span class="p">&amp;</span> <span class="n">MyScript</span><span class="p">.</span><span class="n">ps1</span> <span class="p">}</span>
 </code></pre></div><p>A module function:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$trace</span> <span class="p">=</span> <span class="nb">Trace-Script</span> <span class="n">-ScriptBlock</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nb">Import-Module</span> <span class="n">Planets</span>
-<span class="ln">3</span>    <span class="nb">Get-Planet</span>
-<span class="ln">4</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$trace</span> <span class="p">=</span> <span class="nb">Trace-Script</span> <span class="n">-ScriptBlock</span> <span class="p">{</span>
+    <span class="nb">Import-Module</span> <span class="n">Planets</span>
+    <span class="nb">Get-Planet</span>
+<span class="p">}</span>
 </code></pre></div><p>Or your profile:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">pwsh</span> <span class="n">-NoProfile</span> <span class="n">-NoExit</span> <span class="p">{</span> <span class="nv">$trace</span> <span class="p">=</span> <span class="nb">Trace-Script</span> <span class="p">{</span> <span class="p">.</span> <span class="nv">$Profile</span> <span class="p">}</span> <span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">pwsh</span> <span class="n">-NoProfile</span> <span class="n">-NoExit</span> <span class="p">{</span> <span class="nv">$trace</span> <span class="p">=</span> <span class="nb">Trace-Script</span> <span class="p">{</span> <span class="p">.</span> <span class="nv">$Profile</span> <span class="p">}</span> <span class="p">}</span>
 </code></pre></div><p>Once profiler finishes running, you will have the trace in your <code>$trace</code> variable and you can start by looking at <code>$trace.Top50Duration | Format-Table</code>:</p>
 
 
@@ -382,11 +382,11 @@ if (!doNotTrack) {
 <p>You can see that the slowest call is <code>$QuickAccess.Namespace(&quot;shell:::{679f85cb-0220-4080-b29b-5540cc05aab6}&quot;).Items() | ...</code>, this is part of zlocation module and takes 214ms, that is ~15% of the whole import.</p>
 <h4 id="duration-vs-selfduration">Duration vs SelfDuration</h4>
 <p>To illustrate the difference between Duration and SelfDuration better, here is a function that calls Start-Sleep:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$trace</span> <span class="p">=</span> <span class="nb">Trace-Script</span> <span class="p">{</span> 
-<span class="ln">2</span>    <span class="k">function</span> <span class="n">f</span> <span class="p">()</span> <span class="p">{</span> <span class="nb">Start-Sleep</span> <span class="n">-Seconds</span> <span class="n">1</span> <span class="p">}</span>
-<span class="ln">3</span>    <span class="n">f</span>
-<span class="ln">4</span><span class="p">}</span>
-<span class="ln">5</span><span class="nv">$trace</span><span class="p">.</span><span class="n">Top50Duration</span> <span class="p">|</span> <span class="nb">Format-Table</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$trace</span> <span class="p">=</span> <span class="nb">Trace-Script</span> <span class="p">{</span> 
+    <span class="k">function</span> <span class="n">f</span> <span class="p">()</span> <span class="p">{</span> <span class="nb">Start-Sleep</span> <span class="n">-Seconds</span> <span class="n">1</span> <span class="p">}</span>
+    <span class="n">f</span>
+<span class="p">}</span>
+<span class="nv">$trace</span><span class="p">.</span><span class="n">Top50Duration</span> <span class="p">|</span> <span class="nb">Format-Table</span>
 </code></pre></div>
 
 <div class="box" >

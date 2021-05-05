@@ -235,9 +235,9 @@ if (!doNotTrack) {
             </li>
           </ul>
           <div class="content"><p>By using the Windows() method and the LocationURL and LocationName properties we can programmatically determine which folder is open in File Explorer.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$ShellApp</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">-ComObject</span> <span class="n">Shell</span><span class="p">.</span><span class="n">Application</span>
-<span class="ln">2</span><span class="nv">$ShellApp</span><span class="p">.</span><span class="n">Windows</span><span class="p">()</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">Name</span> <span class="o">-eq</span> <span class="s1">&#39;File Explorer&#39;</span><span class="p">}</span> <span class="p">|</span> 
-<span class="ln">3</span><span class="nb">Select-Object</span> <span class="n">LocationName</span><span class="p">,</span><span class="n">LocationURL</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$ShellApp</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">-ComObject</span> <span class="n">Shell</span><span class="p">.</span><span class="n">Application</span>
+<span class="nv">$ShellApp</span><span class="p">.</span><span class="n">Windows</span><span class="p">()</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">Name</span> <span class="o">-eq</span> <span class="s1">&#39;File Explorer&#39;</span><span class="p">}</span> <span class="p">|</span> 
+<span class="nb">Select-Object</span> <span class="n">LocationName</span><span class="p">,</span><span class="n">LocationURL</span>
 </code></pre></div><p>The Where-Object statement is required to filter out results from Internet Explorer. If you are interested in all results including the open Internet Explorer windows and tabs the Where-Object statement can be omitted.</p>
 </div>
         </article>

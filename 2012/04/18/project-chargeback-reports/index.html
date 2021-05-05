@@ -246,16 +246,16 @@ if (!doNotTrack) {
 <p>To keep the example script simple, we only retrieve two metrics. But it should be obvious that you can easily expand the script to retrieve and calculate numerous other metrics.</p>
 <h3 id="who-to-send-it-to">Who to send it to?</h3>
 <p>The <em>ProjectOwner</em> custom attribute contains an Active Directory <em>Display Name</em> value. With an AdsiSearcher call, the script can easily find the email address of the user and send him the report by email.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$dcName</span> <span class="p">=</span> <span class="s2">&#34;TEST&#34;</span>
-<span class="ln">2</span><span class="nv">$displayName</span> <span class="p">=</span> <span class="nv">$projectOwner</span>
-<span class="ln">3</span><span class="nv">$adDomain</span> <span class="p">=</span> <span class="no">[adsi]</span><span class="p">(</span><span class="s2">&#34;LDAP://&#34;</span> <span class="p">+</span> <span class="nv">$dcName</span> <span class="p">+</span> <span class="s2">&#34;:389/dc=mycorp,dc=com&#34;</span><span class="p">)</span>
-<span class="ln">4</span><span class="nv">$adSearch</span> <span class="p">=</span> <span class="no">[adsisearcher]</span><span class="nv">$adDomain</span>
-<span class="ln">5</span><span class="nv">$adSearch</span><span class="p">.</span><span class="k">Filter</span> <span class="p">=</span> <span class="s1">&#39;(&amp;(objectClass=User)(name=&#39;</span> <span class="p">+</span> <span class="nv">$displayName</span> <span class="p">+</span> <span class="s1">&#39;))&#39;</span>
-<span class="ln">6</span><span class="nv">$result</span> <span class="p">=</span> <span class="nv">$adSearch</span><span class="p">.</span><span class="n">FindOne</span><span class="p">()</span>
-<span class="ln">7</span><span class="nv">$mailAddress</span> <span class="p">=</span> <span class="nv">$result</span><span class="p">.</span><span class="n">Properties</span><span class="p">[</span><span class="s2">&#34;mail&#34;</span><span class="p">][</span><span class="n">0</span><span class="p">]</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$dcName</span> <span class="p">=</span> <span class="s2">&#34;TEST&#34;</span>
+<span class="nv">$displayName</span> <span class="p">=</span> <span class="nv">$projectOwner</span>
+<span class="nv">$adDomain</span> <span class="p">=</span> <span class="no">[adsi]</span><span class="p">(</span><span class="s2">&#34;LDAP://&#34;</span> <span class="p">+</span> <span class="nv">$dcName</span> <span class="p">+</span> <span class="s2">&#34;:389/dc=mycorp,dc=com&#34;</span><span class="p">)</span>
+<span class="nv">$adSearch</span> <span class="p">=</span> <span class="no">[adsisearcher]</span><span class="nv">$adDomain</span>
+<span class="nv">$adSearch</span><span class="p">.</span><span class="k">Filter</span> <span class="p">=</span> <span class="s1">&#39;(&amp;(objectClass=User)(name=&#39;</span> <span class="p">+</span> <span class="nv">$displayName</span> <span class="p">+</span> <span class="s1">&#39;))&#39;</span>
+<span class="nv">$result</span> <span class="p">=</span> <span class="nv">$adSearch</span><span class="p">.</span><span class="n">FindOne</span><span class="p">()</span>
+<span class="nv">$mailAddress</span> <span class="p">=</span> <span class="nv">$result</span><span class="p">.</span><span class="n">Properties</span><span class="p">[</span><span class="s2">&#34;mail&#34;</span><span class="p">][</span><span class="n">0</span><span class="p">]</span>
 </code></pre></div><p>With the <a href="http://www.quest.com/powershell/activeroles-server.aspx">Quest’s AD snapin</a> the code required to find the email address becomes a lot easier.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$user</span> <span class="p">=</span> <span class="nb">Get-QADUser</span> <span class="n">-DisplayName</span> <span class="nv">$projectOwner</span>
-<span class="ln">2</span><span class="nv">$emailAddress</span> <span class="p">=</span> <span class="nv">$user</span><span class="p">.</span><span class="n">Email</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$user</span> <span class="p">=</span> <span class="nb">Get-QADUser</span> <span class="n">-DisplayName</span> <span class="nv">$projectOwner</span>
+<span class="nv">$emailAddress</span> <span class="p">=</span> <span class="nv">$user</span><span class="p">.</span><span class="n">Email</span>
 </code></pre></div><p>Management wants the report , that is send to the Project Owner, to look something like this</p>
 <p><img src="/images/Luc_02.png" alt=""></p>
 <p>To avoid cluttering the script, the report shows the data in its simplest form. You can of course go out of your way and send the report as an HTML mail, using style sheets and all.</p>

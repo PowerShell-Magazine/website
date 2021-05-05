@@ -258,33 +258,33 @@ if (!doNotTrack) {
 <p>Before we get started, understand that Git is the underlying version control system for many providers such as GitHub. Understand that GitHub is a Git hosting service and not version control system itself. The GitHub client for Windows provides an easy to use GUI to work with version controlled repositories hosted locally or on GitHub. There are many other GUI clients that provide the capability similar to GitHub for Windows and help connect to a central Git server in your own organization. In this series of articles, at least in the first few parts, we will use only the Git command line interfaces (CLI) to work with Git repositories locally or remotely. This helps us understand the concepts well and makes it easy to transition to GUI when needed. Also, understand that the GUI clients provide only a subset of functionality available at the command line.</p>
 <p>You can get Git command line when you install GitHub for Windows. However, we will use the Git download from <a href="http://git-scm.com/download/win">git-scm.com</a>. This is always ahead from the Git version that comes with any of the GUI clients.</p>
 <p>Once you have downloaded the Git client setup file, you can install it silently using the command line parameters.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$GitPath</span> <span class="p">=</span> <span class="s1">&#39;C:\temp\Git-1.9.5-preview20150319.exe&#39;</span>
-<span class="ln">2</span><span class="nb">Start-Process</span> <span class="n">-FilePath</span> <span class="nv">$GitPath</span> <span class="n">-ArgumentList</span> <span class="s1">&#39;/SILENT /LOG=&#34;C:\Temp\GitClient.log&#34;&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$GitPath</span> <span class="p">=</span> <span class="s1">&#39;C:\temp\Git-1.9.5-preview20150319.exe&#39;</span>
+<span class="nb">Start-Process</span> <span class="n">-FilePath</span> <span class="nv">$GitPath</span> <span class="n">-ArgumentList</span> <span class="s1">&#39;/SILENT /LOG=&#34;C:\Temp\GitClient.log&#34;&#39;</span>
 </code></pre></div><p>After the install, on my Windows 8.1 system, I see three entries when I search for Git.</p>
 <p><img src="/images/git11.png" alt=""></p>
 <p>Git GUI is a minimal GUI client that provides a way to create new repository or open an existing repository or clone a repository. We won’t use this at all. Git Bash is the command console that we will use the most in this series of articles. This is where we will run all the Git commands to create and manage repositories. .gitconfig is related to the discussion that we will have now.</p>
 <h3 id="configuring-git-environment">Configuring Git environment</h3>
 <p>One of the first things that we must do before we do anything with Git client is to tell Git our identity. This is done using the <em>git config</em> command. Run the following commands at the Git Bash console.</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>git config --global user.name <span class="s1">&#39;Your Name&#39;</span>
-<span class="ln">2</span>git config --global user.email <span class="s1">&#39;Your Email&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">git config --global user.name <span class="s1">&#39;Your Name&#39;</span>
+git config --global user.email <span class="s1">&#39;Your Email&#39;</span>
 </code></pre></div><p>This identity information gets used when you create repositories. Now, observe the command line. We have used the <em>–global</em> flag. This flag indicates that we want to update the .gitconfig file in the home directory of the current user. What if we want to apply this information to all users on this system? We need to use the <em>–system</em> flag instead of <em>–global</em>. And, what if we want to customize this identity information for a specific repository on the system? When you are inside the repository directory, run <em>git config</em> with no <em>–global</em> or <em>–system</em> flags. Think of these gitconfig files as the PowerShell profiles. There are available at various levels. So, which one takes precedence?</p>
 <p><img src="/images/git12.png" alt=""></p>
 <p>The inner-most layer in the above picture takes precedence over the outer layers. The Git config files are used to configure settings that impact the way you work with repositories. Therefore, it is important to understand this order of precedence. We can test this very easily! Run the following commands at the Git Bash console.</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln"> 1</span><span class="c1">#Set system-wide identity</span>
-<span class="ln"> 2</span>git config --system user.name <span class="s1">&#39;Test User 1&#39;</span>
-<span class="ln"> 3</span>git config --system user.email <span class="s1">&#39;TestUser1@TestGit.com&#39;</span>
-<span class="ln"> 4</span>
-<span class="ln"> 5</span><span class="c1">#Set current user identity</span>
-<span class="ln"> 6</span>git config --global user.name <span class="s1">&#39;Test User 2&#39;</span>
-<span class="ln"> 7</span>git config --global user.email <span class="s1">&#39;TestUser2@TestGit.com&#39;</span>
-<span class="ln"> 8</span>
-<span class="ln"> 9</span><span class="c1">#Create a repository</span>
-<span class="ln">10</span>git init testrespository
-<span class="ln">11</span><span class="nb">cd</span> testrespository/
-<span class="ln">12</span>
-<span class="ln">13</span><span class="c1">#Set local user identity</span>
-<span class="ln">14</span>git config --local user.name <span class="s1">&#39;Test User 3&#39;</span>
-<span class="ln">15</span>git config --local user.email <span class="s1">&#39;TestUser3@TestGit.com&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#Set system-wide identity</span>
+git config --system user.name <span class="s1">&#39;Test User 1&#39;</span>
+git config --system user.email <span class="s1">&#39;TestUser1@TestGit.com&#39;</span>
+
+<span class="c1">#Set current user identity</span>
+git config --global user.name <span class="s1">&#39;Test User 2&#39;</span>
+git config --global user.email <span class="s1">&#39;TestUser2@TestGit.com&#39;</span>
+
+<span class="c1">#Create a repository</span>
+git init testrespository
+<span class="nb">cd</span> testrespository/
+
+<span class="c1">#Set local user identity</span>
+git config --local user.name <span class="s1">&#39;Test User 3&#39;</span>
+git config --local user.email <span class="s1">&#39;TestUser3@TestGit.com&#39;</span>
 </code></pre></div><p>We can see all the settings in the order of precedence by using <em>git config –list</em> command.</p>
 <p><img src="/images/git13.png" alt=""></p>
 <p>You can see in the above picture that the settings configure inside the Git repository appear at the end and therefore take precedence over the other levels of configuration. The git config command has several other options which we will learn throughout this entire series.</p>

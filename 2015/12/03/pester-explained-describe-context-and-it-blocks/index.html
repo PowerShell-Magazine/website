@@ -209,7 +209,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>8 Min To Read
+              <i class="far fa-clock"></i>7 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>03 Dec, 2015
@@ -234,109 +234,109 @@ if (!doNotTrack) {
 <p>Last time, we looked at how assertions work in theory, and how they are implemented in Pester. This gave us the foundation to understand how tests are failed, but in order to fail a test we first need to run it. So this time we will have a closer look at It, Context, and Describe and will create our own Test runner.</p>
 <h3 id="poor-mans-test-runner">Poor man’s test runner</h3>
 <p>In the simplest case, you do not need much to run test script code. Actually, we already did it in the first article where we tested our Assert-Equal assertion.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Assert-Equal</span> <span class="p">(</span><span class="nv">$Expected</span><span class="p">,</span> <span class="nv">$Actual</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 2</span>   <span class="k">if</span> <span class="p">(</span><span class="nv">$Actual</span> <span class="o">-ne</span> <span class="nv">$Expected</span><span class="p">)</span>
-<span class="ln"> 3</span>   <span class="p">{</span>  
-<span class="ln"> 4</span>      <span class="k">throw</span> <span class="s2">&#34;Value &#39;$Expected&#39; was expected, but was &#39;$Actual&#39;&#34;</span>
-<span class="ln"> 5</span>   <span class="p">}</span>
-<span class="ln"> 6</span><span class="p">}</span>
-<span class="ln"> 7</span>
-<span class="ln"> 8</span><span class="nv">$expected</span> <span class="p">=</span> <span class="n">8</span>
-<span class="ln"> 9</span><span class="nv">$actual</span> <span class="p">=</span> <span class="n">4</span>
-<span class="ln">10</span><span class="nb">Assert-Equal</span> <span class="n">-actual</span> <span class="nv">$actual</span> <span class="n">-expected</span> <span class="nv">$expected</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Assert-Equal</span> <span class="p">(</span><span class="nv">$Expected</span><span class="p">,</span> <span class="nv">$Actual</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">if</span> <span class="p">(</span><span class="nv">$Actual</span> <span class="o">-ne</span> <span class="nv">$Expected</span><span class="p">)</span>
+   <span class="p">{</span>  
+      <span class="k">throw</span> <span class="s2">&#34;Value &#39;$Expected&#39; was expected, but was &#39;$Actual&#39;&#34;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$expected</span> <span class="p">=</span> <span class="n">8</span>
+<span class="nv">$actual</span> <span class="p">=</span> <span class="n">4</span>
+<span class="nb">Assert-Equal</span> <span class="n">-actual</span> <span class="nv">$actual</span> <span class="n">-expected</span> <span class="nv">$expected</span>
 </code></pre></div><p>We simply take a piece of code and wait for it to fail or pass. So technically, we do not need a test runner, but it makes our lives a lot easier. It takes care of looking up all tests in a test suite, shows a nicely colored and formatted output, and enables us to organize our tests a little better.</p>
 <h3 id="making-our-own-test-runner">Making our own test runner</h3>
 <p>The main reason to have a test runner, though, is to be able to run all tests in the test suite even if some of them fail. To be able to do that we need to catch any exception and translate it to textual output or some other harmless type of output.</p>
 <p>In the Assert-Throw assertion, we already did something very similar. We captured an exception so the user could not see it. To do that we used a try-catch block and wrapped it in a function like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Assert-Throw</span> <span class="p">(</span><span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 2</span>   <span class="nv">$exceptionWasThrown</span> <span class="p">=</span> <span class="nv">$False</span>
-<span class="ln"> 3</span>   <span class="k">try</span>
-<span class="ln"> 4</span>   <span class="p">{</span>
-<span class="ln"> 5</span>       <span class="p">&amp;</span><span class="nv">$ScriptBlock</span>
-<span class="ln"> 6</span>   <span class="p">}</span>
-<span class="ln"> 7</span>   <span class="k">catch</span>
-<span class="ln"> 8</span>   <span class="p">{</span>
-<span class="ln"> 9</span>       <span class="nv">$exceptionWasThrown</span> <span class="p">=</span> <span class="nv">$True</span>
-<span class="ln">10</span>   <span class="p">}</span>
-<span class="ln">11</span>
-<span class="ln">12</span>   <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="nv">$exceptionWasThrown</span><span class="p">)</span>
-<span class="ln">13</span>   <span class="p">{</span>
-<span class="ln">14</span>       <span class="k">throw</span> <span class="s1">&#39;Expected an exception to be thrown but no exception was thrown.&#39;</span>
-<span class="ln">15</span>   <span class="p">}</span>
-<span class="ln">16</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Assert-Throw</span> <span class="p">(</span><span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nv">$exceptionWasThrown</span> <span class="p">=</span> <span class="nv">$False</span>
+   <span class="k">try</span>
+   <span class="p">{</span>
+       <span class="p">&amp;</span><span class="nv">$ScriptBlock</span>
+   <span class="p">}</span>
+   <span class="k">catch</span>
+   <span class="p">{</span>
+       <span class="nv">$exceptionWasThrown</span> <span class="p">=</span> <span class="nv">$True</span>
+   <span class="p">}</span>
+
+   <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="nv">$exceptionWasThrown</span><span class="p">)</span>
+   <span class="p">{</span>
+       <span class="k">throw</span> <span class="s1">&#39;Expected an exception to be thrown but no exception was thrown.&#39;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>We are going to use a very similar approach for our test runner. Only this time we will output the exception that we captured, and we will output name of the current test as well:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Test-Case</span> <span class="p">(</span><span class="no">[String]</span><span class="nv">$Name</span><span class="p">,</span> <span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="k">try</span> 
-<span class="ln"> 3</span>    <span class="p">{</span>
-<span class="ln"> 4</span>       <span class="p">&amp;</span><span class="nv">$ScriptBlock</span>
-<span class="ln"> 5</span>       <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Green</span> <span class="s2">&#34;${Name}: Test passed.&#34;</span>
-<span class="ln"> 6</span>    <span class="p">}</span>
-<span class="ln"> 7</span>    <span class="k">catch</span> <span class="no">[Exception]</span>
-<span class="ln"> 8</span>    <span class="p">{</span>
-<span class="ln"> 9</span>        <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Red</span> <span class="s2">&#34;${Name}: Test failed because $_&#34;</span>
-<span class="ln">10</span>    <span class="p">}</span>
-<span class="ln">11</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Test-Case</span> <span class="p">(</span><span class="no">[String]</span><span class="nv">$Name</span><span class="p">,</span> <span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> 
+    <span class="p">{</span>
+       <span class="p">&amp;</span><span class="nv">$ScriptBlock</span>
+       <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Green</span> <span class="s2">&#34;${Name}: Test passed.&#34;</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="no">[Exception]</span>
+    <span class="p">{</span>
+        <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Red</span> <span class="s2">&#34;${Name}: Test failed because $_&#34;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>In the Test-Case function we are taking a piece of code wrapped in a ScriptBlock. We execute this code using the &amp; invocation operator and wait for it to either succeed or fail. By failing, we specifically mean that an exception was thrown. When an exception is thrown, for example by an assertion function, the code jumps inside of the catch block and outputs a red message to screen to notify us that the test code failed.</p>
 <p>If no exception is thrown the code will write a green message, that lets us know that our code did not fail, which means that our test passed.</p>
 <h3 id="create-a-suite-of-tests">Create a suite of tests</h3>
 <p>Now we are ready to take what we learned so far and create a suite of two tests:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Assert-Equal</span> <span class="p">(</span><span class="nv">$Expected</span><span class="p">,</span> <span class="nv">$Actual</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$Actual</span> <span class="o">-ne</span> <span class="nv">$Expected</span><span class="p">)</span> 
-<span class="ln"> 3</span>    <span class="p">{</span>
-<span class="ln"> 4</span>        <span class="k">throw</span> <span class="s2">&#34;Value &#39;$Expected&#39; was expected, but was &#39;$Actual&#39;&#34;</span>
-<span class="ln"> 5</span>    <span class="p">}</span>
-<span class="ln"> 6</span><span class="p">}</span>
-<span class="ln"> 7</span>
-<span class="ln"> 8</span><span class="k">function</span> <span class="nb">Test-Case</span> <span class="p">(</span><span class="no">[String]</span><span class="nv">$Name</span><span class="p">,</span> <span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 9</span>    <span class="k">try</span> 
-<span class="ln">10</span>    <span class="p">{</span>
-<span class="ln">11</span>       <span class="p">&amp;</span><span class="nv">$ScriptBlock</span>
-<span class="ln">12</span>       <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Green</span> <span class="s2">&#34;${Name}: Test passed.&#34;</span>
-<span class="ln">13</span>    <span class="p">}</span>
-<span class="ln">14</span>    <span class="k">catch</span> <span class="no">[Exception]</span>
-<span class="ln">15</span>    <span class="p">{</span>
-<span class="ln">16</span>        <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Red</span> <span class="s2">&#34;${Name}: Test failed because $_&#34;</span>
-<span class="ln">17</span>    <span class="p">}</span>
-<span class="ln">18</span><span class="p">}</span>
-<span class="ln">19</span>
-<span class="ln">20</span><span class="nb">Test-Case</span> <span class="s2">&#34;Eight is four&#34;</span> <span class="p">{</span> 
-<span class="ln">21</span>    <span class="nv">$expected</span> <span class="p">=</span> <span class="n">8</span>
-<span class="ln">22</span>    <span class="nv">$actual</span> <span class="p">=</span> <span class="n">4</span>
-<span class="ln">23</span>    <span class="nb">Assert-Equal</span> <span class="n">-actual</span> <span class="nv">$actual</span> <span class="n">-expected</span> <span class="nv">$expected</span>
-<span class="ln">24</span><span class="p">}</span>
-<span class="ln">25</span>
-<span class="ln">26</span><span class="nb">Test-Case</span> <span class="s2">&#34;Ten is ten&#34;</span> <span class="p">{</span> 
-<span class="ln">27</span>    <span class="nv">$expected</span> <span class="p">=</span> <span class="n">10</span>
-<span class="ln">28</span>    <span class="nv">$actual</span> <span class="p">=</span> <span class="n">10</span>
-<span class="ln">29</span>
-<span class="ln">30</span>    <span class="nb">Assert-Equal</span> <span class="n">-actual</span> <span class="nv">$actual</span> <span class="n">-expected</span> <span class="nv">$expected</span>
-<span class="ln">31</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Assert-Equal</span> <span class="p">(</span><span class="nv">$Expected</span><span class="p">,</span> <span class="nv">$Actual</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$Actual</span> <span class="o">-ne</span> <span class="nv">$Expected</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="k">throw</span> <span class="s2">&#34;Value &#39;$Expected&#39; was expected, but was &#39;$Actual&#39;&#34;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nb">Test-Case</span> <span class="p">(</span><span class="no">[String]</span><span class="nv">$Name</span><span class="p">,</span> <span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> 
+    <span class="p">{</span>
+       <span class="p">&amp;</span><span class="nv">$ScriptBlock</span>
+       <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Green</span> <span class="s2">&#34;${Name}: Test passed.&#34;</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="no">[Exception]</span>
+    <span class="p">{</span>
+        <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Red</span> <span class="s2">&#34;${Name}: Test failed because $_&#34;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nb">Test-Case</span> <span class="s2">&#34;Eight is four&#34;</span> <span class="p">{</span> 
+    <span class="nv">$expected</span> <span class="p">=</span> <span class="n">8</span>
+    <span class="nv">$actual</span> <span class="p">=</span> <span class="n">4</span>
+    <span class="nb">Assert-Equal</span> <span class="n">-actual</span> <span class="nv">$actual</span> <span class="n">-expected</span> <span class="nv">$expected</span>
+<span class="p">}</span>
+
+<span class="nb">Test-Case</span> <span class="s2">&#34;Ten is ten&#34;</span> <span class="p">{</span> 
+    <span class="nv">$expected</span> <span class="p">=</span> <span class="n">10</span>
+    <span class="nv">$actual</span> <span class="p">=</span> <span class="n">10</span>
+
+    <span class="nb">Assert-Equal</span> <span class="n">-actual</span> <span class="nv">$actual</span> <span class="n">-expected</span> <span class="nv">$expected</span>
+<span class="p">}</span>
 </code></pre></div><p>Which outputs:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">Eight</span> <span class="n">is</span> <span class="n">four</span><span class="err">:</span> <span class="n">Test</span> <span class="n">failed</span> <span class="n">because</span> <span class="n">Value</span> <span class="s1">&#39;8&#39;</span> <span class="n">was</span> <span class="n">expected</span><span class="p">,</span> <span class="n">but</span> <span class="n">was</span> <span class="s1">&#39;4&#39;</span>
-<span class="ln">2</span><span class="n">Ten</span> <span class="n">is</span> <span class="n">ten</span><span class="err">:</span> <span class="n">Test</span> <span class="n">passed</span><span class="p">.</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Eight</span> <span class="n">is</span> <span class="n">four</span><span class="err">:</span> <span class="n">Test</span> <span class="n">failed</span> <span class="n">because</span> <span class="n">Value</span> <span class="s1">&#39;8&#39;</span> <span class="n">was</span> <span class="n">expected</span><span class="p">,</span> <span class="n">but</span> <span class="n">was</span> <span class="s1">&#39;4&#39;</span>
+<span class="n">Ten</span> <span class="n">is</span> <span class="n">ten</span><span class="err">:</span> <span class="n">Test</span> <span class="n">passed</span><span class="p">.</span>
 </code></pre></div><p>Pay attention to the output. You can see that both tests run even though the first test failed. We just created our own test runner!</p>
 <h3 id="it">It</h3>
 <p>The Test-Case function is roughly equivalent to the “It” function of Pester. “It” hosts a single test and prevents any failed test from failing the whole suite.</p>
 <p>The <a href="https://github.com/pester/Pester/blob/master/Functions/It.ps1">actual implementation of It</a> is riddled with input validation, testing the framework state, skipping tests, making them pending and so on, but the basic idea is still the same. Look at the implementation of <a href="https://github.com/pester/Pester/blob/master/Functions/It.ps1#L247">Invoke-Test</a> function and you will find the familiar pattern.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$errorRecord</span> <span class="p">=</span> <span class="nv">$null</span>
-<span class="ln"> 2</span><span class="k">try</span>
-<span class="ln"> 3</span><span class="p">{</span>
-<span class="ln"> 4</span>    <span class="nb">Invoke-TestCaseSetupBlocks</span>
-<span class="ln"> 5</span>    <span class="k">do</span>
-<span class="ln"> 6</span>    <span class="p">{</span>
-<span class="ln"> 7</span>        <span class="nv">$null</span> <span class="p">=</span> <span class="p">&amp;</span> <span class="nv">$ScriptBlock</span> <span class="nv">@Parameters</span>
-<span class="ln"> 8</span>    <span class="p">}</span> <span class="k">until</span> <span class="p">(</span><span class="nv">$true</span><span class="p">)</span>
-<span class="ln"> 9</span><span class="p">}</span>
-<span class="ln">10</span><span class="k">catch</span>
-<span class="ln">11</span><span class="p">{</span>
-<span class="ln">12</span>    <span class="nv">$errorRecord</span> <span class="p">=</span> <span class="nv">$_</span>
-<span class="ln">13</span><span class="p">}</span>
-<span class="ln">14</span><span class="k">finally</span>
-<span class="ln">15</span><span class="p">{</span>
-<span class="ln">16</span>    <span class="p">...</span>
-<span class="ln">17</span><span class="p">}</span>
-<span class="ln">18</span>
-<span class="ln">19</span><span class="nv">$result</span> <span class="p">=</span> <span class="nb">Get-PesterResult</span> <span class="n">-ErrorRecord</span> <span class="nv">$errorRecord</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$errorRecord</span> <span class="p">=</span> <span class="nv">$null</span>
+<span class="k">try</span>
+<span class="p">{</span>
+    <span class="nb">Invoke-TestCaseSetupBlocks</span>
+    <span class="k">do</span>
+    <span class="p">{</span>
+        <span class="nv">$null</span> <span class="p">=</span> <span class="p">&amp;</span> <span class="nv">$ScriptBlock</span> <span class="nv">@Parameters</span>
+    <span class="p">}</span> <span class="k">until</span> <span class="p">(</span><span class="nv">$true</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="k">catch</span>
+<span class="p">{</span>
+    <span class="nv">$errorRecord</span> <span class="p">=</span> <span class="nv">$_</span>
+<span class="p">}</span>
+<span class="k">finally</span>
+<span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+
+<span class="nv">$result</span> <span class="p">=</span> <span class="nb">Get-PesterResult</span> <span class="n">-ErrorRecord</span> <span class="nv">$errorRecord</span>
 </code></pre></div><h3 id="more-interesting-bits-of-it">More interesting bits of It</h3>
 <p>There are few more interesting bits in Pester’s It function. Those are not important to understanding the framework as a whole, but the It function implements so much that I feel obligated to describe at least some of those.</p>
 <ul>
@@ -348,111 +348,111 @@ if (!doNotTrack) {
 </ul>
 <h3 id="context-and-describe">Context and Describe</h3>
 <p>The Context and Describe are mainly the so-called syntactic sugar, a language construct that helps us explain our intentions better. They also let us organize the code in per-feature and per-use-case groups. Context and Describe differ slightly in Pester, but we will disregard those minor differences and will implement both groups by a single function.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Test-Block</span> <span class="p">(</span><span class="no">[String]</span><span class="nv">$Name</span><span class="p">,</span> <span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="k">try</span> 
-<span class="ln"> 3</span>    <span class="p">{</span>
-<span class="ln"> 4</span>        <span class="nv">$Global:IndentationLevel</span><span class="p">++</span>
-<span class="ln"> 5</span>        <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Magenta</span> <span class="p">(</span><span class="n">Indent-Line</span> <span class="s2">&#34;Block $Name&#34;</span><span class="p">)</span>
-<span class="ln"> 6</span>        <span class="p">&amp;</span><span class="nv">$ScriptBlock</span>
-<span class="ln"> 7</span>    <span class="p">}</span>
-<span class="ln"> 8</span>    <span class="k">catch</span> <span class="no">[Exception]</span>
-<span class="ln"> 9</span>    <span class="p">{</span>
-<span class="ln">10</span>        <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Red</span> <span class="p">(</span><span class="n">Indent-Line</span> <span class="s2">&#34;${Name}: Run failed in block because $_&#34;</span><span class="p">)</span>
-<span class="ln">11</span>    <span class="p">}</span>
-<span class="ln">12</span>    <span class="k">finally</span>
-<span class="ln">13</span>    <span class="p">{</span>
-<span class="ln">14</span>        <span class="nv">$Global:IndentationLevel</span><span class="p">--</span>
-<span class="ln">15</span>    <span class="p">}</span>
-<span class="ln">16</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Test-Block</span> <span class="p">(</span><span class="no">[String]</span><span class="nv">$Name</span><span class="p">,</span> <span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> 
+    <span class="p">{</span>
+        <span class="nv">$Global:IndentationLevel</span><span class="p">++</span>
+        <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Magenta</span> <span class="p">(</span><span class="n">Indent-Line</span> <span class="s2">&#34;Block $Name&#34;</span><span class="p">)</span>
+        <span class="p">&amp;</span><span class="nv">$ScriptBlock</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="no">[Exception]</span>
+    <span class="p">{</span>
+        <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Red</span> <span class="p">(</span><span class="n">Indent-Line</span> <span class="s2">&#34;${Name}: Run failed in block because $_&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">finally</span>
+    <span class="p">{</span>
+        <span class="nv">$Global:IndentationLevel</span><span class="p">--</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>The Test-Block again uses the familiar try-catch pattern. This is not by accident. Any code can be provided in the $ScriptBlock. This means that the code in Test-Block might fail, and we need to protect our test runner from that. We do not want exceptions to prevent us from running all test blocks.</p>
 <p>Apart from that, we also thrown in some nice indentation. The indentation level is stored in a global variable and simply translated to tabulator spacing.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$Global:IndentationLevel</span> <span class="p">=</span> <span class="n">0</span>
-<span class="ln"> 2</span>
-<span class="ln"> 3</span><span class="k">function</span> <span class="nb">Assert-Equal</span> <span class="p">(</span><span class="nv">$Expected</span><span class="p">,</span> <span class="nv">$Actual</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 4</span>   <span class="k">if</span> <span class="p">(</span><span class="nv">$Actual</span> <span class="o">-ne</span> <span class="nv">$Expected</span><span class="p">)</span>
-<span class="ln"> 5</span>   <span class="p">{</span>
-<span class="ln"> 6</span>       <span class="k">throw</span> <span class="s2">&#34;Value &#39;$Expected&#39; was expected, but was &#39;$Actual&#39;&#34;</span>
-<span class="ln"> 7</span>   <span class="p">}</span>
-<span class="ln"> 8</span><span class="p">}</span>
-<span class="ln"> 9</span>
-<span class="ln">10</span><span class="k">function</span> <span class="nb">Test-Case</span> <span class="p">(</span><span class="no">[String]</span><span class="nv">$Name</span><span class="p">,</span> <span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">11</span>   <span class="k">try</span>
-<span class="ln">12</span>   <span class="p">{</span>
-<span class="ln">13</span>       <span class="nv">$Global:IndentationLevel</span><span class="p">++</span>
-<span class="ln">14</span>       <span class="p">&amp;</span><span class="nv">$ScriptBlock</span>
-<span class="ln">15</span>      <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Green</span> <span class="p">(</span><span class="n">Indent-Line</span> <span class="s2">&#34;${Name}: Test passed.&#34;</span><span class="p">)</span>
-<span class="ln">16</span>   <span class="p">}</span>
-<span class="ln">17</span>
-<span class="ln">18</span>   <span class="k">catch</span> <span class="no">[Exception]</span>
-<span class="ln">19</span>   <span class="p">{</span>
-<span class="ln">20</span>       <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Red</span> <span class="p">(</span><span class="n">Indent-Line</span> <span class="s2">&#34;${Name}: Test failed because $_&#34;</span><span class="p">)</span>
-<span class="ln">21</span>   <span class="p">}</span>
-<span class="ln">22</span>
-<span class="ln">23</span>   <span class="k">finally</span>
-<span class="ln">24</span>   <span class="p">{</span>
-<span class="ln">25</span>       <span class="nv">$Global:IndentationLevel</span><span class="p">--</span>
-<span class="ln">26</span>   <span class="p">}</span>
-<span class="ln">27</span><span class="p">}</span>
-<span class="ln">28</span>
-<span class="ln">29</span><span class="k">function</span> <span class="nb">Test-Block</span> <span class="p">(</span><span class="no">[String]</span><span class="nv">$Name</span><span class="p">,</span> <span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">30</span>   <span class="k">try</span>
-<span class="ln">31</span>   <span class="p">{</span>
-<span class="ln">32</span>       <span class="nv">$Global:IndentationLevel</span><span class="p">++</span>
-<span class="ln">33</span>       <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Magenta</span> <span class="p">(</span><span class="n">Indent-Line</span> <span class="s2">&#34;Block $Name&#34;</span><span class="p">)</span>
-<span class="ln">34</span>       <span class="p">&amp;</span><span class="nv">$ScriptBlock</span>
-<span class="ln">35</span>   <span class="p">}</span>
-<span class="ln">36</span>
-<span class="ln">37</span>   <span class="k">catch</span> <span class="no">[Exception]</span>
-<span class="ln">38</span>   <span class="p">{</span>
-<span class="ln">39</span>       <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Red</span> <span class="p">(</span><span class="n">Indent-Line</span> <span class="s2">&#34;${Name}: Run failed in block because $_&#34;</span><span class="p">)</span>
-<span class="ln">40</span>   <span class="p">}</span>
-<span class="ln">41</span>
-<span class="ln">42</span>   <span class="k">finally</span>
-<span class="ln">43</span>   <span class="p">{</span>
-<span class="ln">44</span>       <span class="nv">$Global:IndentationLevel</span><span class="p">--</span>
-<span class="ln">45</span>   <span class="p">}</span>
-<span class="ln">46</span><span class="p">}</span>
-<span class="ln">47</span>
-<span class="ln">48</span><span class="k">function</span> <span class="n">Indent-Line</span>
-<span class="ln">49</span><span class="p">{</span>
-<span class="ln">50</span>   <span class="k">param</span> <span class="p">(</span>
-<span class="ln">51</span>       <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$true</span><span class="p">,</span><span class="k">ValueFromPipeline</span><span class="p">=</span><span class="nv">$true</span><span class="p">)]</span>
-<span class="ln">52</span>       <span class="no">[String[]]</span>
-<span class="ln">53</span>       <span class="nv">$Line</span>
-<span class="ln">54</span>   <span class="p">)</span>
-<span class="ln">55</span>
-<span class="ln">56</span>   <span class="k">begin</span> <span class="p">{</span>
-<span class="ln">57</span>       <span class="nv">$indent</span> <span class="p">=</span> <span class="nv">$Global:IndentationLevel</span> <span class="p">-</span> <span class="n">1</span>
-<span class="ln">58</span>   <span class="p">}</span>
-<span class="ln">59</span>
-<span class="ln">60</span>   <span class="k">process</span> <span class="p">{</span>
-<span class="ln">61</span>       <span class="k">foreach</span><span class="p">(</span><span class="nv">$l</span> <span class="k">in</span> <span class="nv">$Line</span><span class="p">)</span> <span class="p">{</span>  
-<span class="ln">62</span>           <span class="s2">&#34;</span><span class="se">`t</span><span class="s2">&#34;</span> <span class="p">*</span> <span class="nv">$indent</span> <span class="p">+</span> <span class="nv">$l</span>
-<span class="ln">63</span>       <span class="p">}</span>
-<span class="ln">64</span>   <span class="p">}</span>
-<span class="ln">65</span><span class="p">}</span>
-<span class="ln">66</span>
-<span class="ln">67</span><span class="nb">Test-Block</span> <span class="s2">&#34;Describe&#34;</span> <span class="p">{</span>
-<span class="ln">68</span>   <span class="nb">Test-Block</span> <span class="s2">&#34;Context&#34;</span> <span class="p">{</span>
-<span class="ln">69</span>       <span class="nb">Test-Case</span> <span class="s2">&#34;Eight is four&#34;</span> <span class="p">{</span>
-<span class="ln">70</span>          <span class="nv">$expected</span> <span class="p">=</span> <span class="n">8</span>
-<span class="ln">71</span>          <span class="nv">$actual</span> <span class="p">=</span> <span class="n">4</span>
-<span class="ln">72</span>          <span class="nb">Assert-Equal</span> <span class="n">-actual</span> <span class="nv">$actual</span> <span class="n">-expected</span> <span class="nv">$expected</span>
-<span class="ln">73</span>       <span class="p">}</span>
-<span class="ln">74</span>
-<span class="ln">75</span>       <span class="nb">Test-Case</span> <span class="s2">&#34;Ten is ten&#34;</span> <span class="p">{</span>
-<span class="ln">76</span>          <span class="nv">$expected</span> <span class="p">=</span> <span class="n">10</span>
-<span class="ln">77</span>          <span class="nv">$actual</span> <span class="p">=</span> <span class="n">10</span>
-<span class="ln">78</span>          <span class="nb">Assert-Equal</span> <span class="n">-actual</span> <span class="nv">$actual</span> <span class="n">-expected</span> <span class="nv">$expected</span>
-<span class="ln">79</span>       <span class="p">}</span>
-<span class="ln">80</span>   <span class="p">}</span>
-<span class="ln">81</span>
-<span class="ln">82</span>   <span class="nb">Test-Block</span> <span class="s2">&#34;Context 2&#34;</span> <span class="p">{</span>
-<span class="ln">83</span>       <span class="nb">Test-Case</span> <span class="s2">&#34;I will fail&#34;</span> <span class="p">{</span>
-<span class="ln">84</span>           <span class="k">throw</span>
-<span class="ln">85</span>       <span class="p">}</span>
-<span class="ln">86</span>   <span class="p">}</span>
-<span class="ln">87</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$Global:IndentationLevel</span> <span class="p">=</span> <span class="n">0</span>
+
+<span class="k">function</span> <span class="nb">Assert-Equal</span> <span class="p">(</span><span class="nv">$Expected</span><span class="p">,</span> <span class="nv">$Actual</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">if</span> <span class="p">(</span><span class="nv">$Actual</span> <span class="o">-ne</span> <span class="nv">$Expected</span><span class="p">)</span>
+   <span class="p">{</span>
+       <span class="k">throw</span> <span class="s2">&#34;Value &#39;$Expected&#39; was expected, but was &#39;$Actual&#39;&#34;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nb">Test-Case</span> <span class="p">(</span><span class="no">[String]</span><span class="nv">$Name</span><span class="p">,</span> <span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">try</span>
+   <span class="p">{</span>
+       <span class="nv">$Global:IndentationLevel</span><span class="p">++</span>
+       <span class="p">&amp;</span><span class="nv">$ScriptBlock</span>
+      <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Green</span> <span class="p">(</span><span class="n">Indent-Line</span> <span class="s2">&#34;${Name}: Test passed.&#34;</span><span class="p">)</span>
+   <span class="p">}</span>
+
+   <span class="k">catch</span> <span class="no">[Exception]</span>
+   <span class="p">{</span>
+       <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Red</span> <span class="p">(</span><span class="n">Indent-Line</span> <span class="s2">&#34;${Name}: Test failed because $_&#34;</span><span class="p">)</span>
+   <span class="p">}</span>
+
+   <span class="k">finally</span>
+   <span class="p">{</span>
+       <span class="nv">$Global:IndentationLevel</span><span class="p">--</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nb">Test-Block</span> <span class="p">(</span><span class="no">[String]</span><span class="nv">$Name</span><span class="p">,</span> <span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">try</span>
+   <span class="p">{</span>
+       <span class="nv">$Global:IndentationLevel</span><span class="p">++</span>
+       <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Magenta</span> <span class="p">(</span><span class="n">Indent-Line</span> <span class="s2">&#34;Block $Name&#34;</span><span class="p">)</span>
+       <span class="p">&amp;</span><span class="nv">$ScriptBlock</span>
+   <span class="p">}</span>
+
+   <span class="k">catch</span> <span class="no">[Exception]</span>
+   <span class="p">{</span>
+       <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Red</span> <span class="p">(</span><span class="n">Indent-Line</span> <span class="s2">&#34;${Name}: Run failed in block because $_&#34;</span><span class="p">)</span>
+   <span class="p">}</span>
+
+   <span class="k">finally</span>
+   <span class="p">{</span>
+       <span class="nv">$Global:IndentationLevel</span><span class="p">--</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="n">Indent-Line</span>
+<span class="p">{</span>
+   <span class="k">param</span> <span class="p">(</span>
+       <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$true</span><span class="p">,</span><span class="k">ValueFromPipeline</span><span class="p">=</span><span class="nv">$true</span><span class="p">)]</span>
+       <span class="no">[String[]]</span>
+       <span class="nv">$Line</span>
+   <span class="p">)</span>
+
+   <span class="k">begin</span> <span class="p">{</span>
+       <span class="nv">$indent</span> <span class="p">=</span> <span class="nv">$Global:IndentationLevel</span> <span class="p">-</span> <span class="n">1</span>
+   <span class="p">}</span>
+
+   <span class="k">process</span> <span class="p">{</span>
+       <span class="k">foreach</span><span class="p">(</span><span class="nv">$l</span> <span class="k">in</span> <span class="nv">$Line</span><span class="p">)</span> <span class="p">{</span>  
+           <span class="s2">&#34;</span><span class="se">`t</span><span class="s2">&#34;</span> <span class="p">*</span> <span class="nv">$indent</span> <span class="p">+</span> <span class="nv">$l</span>
+       <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nb">Test-Block</span> <span class="s2">&#34;Describe&#34;</span> <span class="p">{</span>
+   <span class="nb">Test-Block</span> <span class="s2">&#34;Context&#34;</span> <span class="p">{</span>
+       <span class="nb">Test-Case</span> <span class="s2">&#34;Eight is four&#34;</span> <span class="p">{</span>
+          <span class="nv">$expected</span> <span class="p">=</span> <span class="n">8</span>
+          <span class="nv">$actual</span> <span class="p">=</span> <span class="n">4</span>
+          <span class="nb">Assert-Equal</span> <span class="n">-actual</span> <span class="nv">$actual</span> <span class="n">-expected</span> <span class="nv">$expected</span>
+       <span class="p">}</span>
+
+       <span class="nb">Test-Case</span> <span class="s2">&#34;Ten is ten&#34;</span> <span class="p">{</span>
+          <span class="nv">$expected</span> <span class="p">=</span> <span class="n">10</span>
+          <span class="nv">$actual</span> <span class="p">=</span> <span class="n">10</span>
+          <span class="nb">Assert-Equal</span> <span class="n">-actual</span> <span class="nv">$actual</span> <span class="n">-expected</span> <span class="nv">$expected</span>
+       <span class="p">}</span>
+   <span class="p">}</span>
+
+   <span class="nb">Test-Block</span> <span class="s2">&#34;Context 2&#34;</span> <span class="p">{</span>
+       <span class="nb">Test-Case</span> <span class="s2">&#34;I will fail&#34;</span> <span class="p">{</span>
+           <span class="k">throw</span>
+       <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p><img src="/images/pesterit.png" alt=""></p>
 <h3 id="summary">Summary</h3>
 <p>This concludes our review of Describe, Context and It. Hopefully you saw that a test runner is very simple at its core. Both Test-Case and Test-Block use very similar code. They execute input ScriptBlock and handle every possible exception.</p>

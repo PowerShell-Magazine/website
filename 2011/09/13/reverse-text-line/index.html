@@ -237,8 +237,8 @@ if (!doNotTrack) {
           <div class="content"><h3 id="problem">Problem</h3>
 <p>Reverse a line of text without the use of Array&rsquo;s Reverse method, Array indices, Array notation, pipelines or loop statements.</p>
 <h3 id="solution">Solution</h3>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$str</span> <span class="p">=</span> <span class="s1">&#39;!ereh saw yorliK&#39;</span>
-<span class="ln">2</span><span class="n">-join</span> <span class="p">(</span><span class="nb">New-Object</span> <span class="n">RegEx</span> <span class="p">.,</span> <span class="n">RightToLeft</span><span class="p">).</span><span class="n">Matches</span><span class="p">(</span><span class="nv">$str</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$str</span> <span class="p">=</span> <span class="s1">&#39;!ereh saw yorliK&#39;</span>
+<span class="n">-join</span> <span class="p">(</span><span class="nb">New-Object</span> <span class="n">RegEx</span> <span class="p">.,</span> <span class="n">RightToLeft</span><span class="p">).</span><span class="n">Matches</span><span class="p">(</span><span class="nv">$str</span><span class="p">)</span>
 </code></pre></div><p>Set the RightToLeft option to an “all-characters-in-a-line” matching Regular Expression and pass the line of text to its Matches method. This will return all the characters in the line from the end to the start of the line. Then, use the Join operator to return the reversed text.</p>
 <hr style="color: #d8d8d8; height: 1px;" />
 <p id="psmagWinner0" style="background: #B2FEE1; text-align: center;">

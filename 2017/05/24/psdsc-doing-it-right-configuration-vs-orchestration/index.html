@@ -243,35 +243,35 @@ if (!doNotTrack) {
 <p><img src="/images/dscorch1.png" alt=""></p>
 <p>The flowchart above is about deploying OS through automated processes in my lab. This is very high-level and abstracted. Notice the step before complete OS deploy. We need to set the bare metal system to perform one time PXE boot so that the WDS server kick starts the WinPE boot and completes required OS deployment steps. In a scenario where you have artifacts developed for even bare metal configuration, it is certainly possible to put this one time PXE boot also as a resource configuration. After all, it is just BIOS attribute configuration.</p>
 <p>I have put together an example for this.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$configData</span> <span class="p">=</span> 
-<span class="ln"> 2</span><span class="p">@{</span>
-<span class="ln"> 3</span>    <span class="n">AllNodes</span> <span class="p">=</span> 
-<span class="ln"> 4</span>    <span class="p">@(</span>
-<span class="ln"> 5</span>        <span class="p">@{</span>
-<span class="ln"> 6</span>            <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;localhost&#39;</span>
-<span class="ln"> 7</span>            <span class="n">PSDscAllowPlainTextPassword</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln"> 8</span>        <span class="p">}</span>
-<span class="ln"> 9</span>    <span class="p">)</span>
-<span class="ln">10</span><span class="p">}</span>
-<span class="ln">11</span>
-<span class="ln">12</span><span class="n">Configuration</span> <span class="n">PEPXEBootDemo</span>
-<span class="ln">13</span><span class="p">{</span>
-<span class="ln">14</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">DellPEWsManTools</span> <span class="n">-Name</span> <span class="n">PEOneTimeBoot</span>
-<span class="ln">15</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">PSDesiredStateConfiguration</span>
-<span class="ln">16</span>
-<span class="ln">17</span>    <span class="n">Node</span> <span class="nv">$AllNodes</span><span class="p">.</span><span class="n">NodeName</span> <span class="p">{</span>
-<span class="ln">18</span>        <span class="n">PEOneTimeBoot</span> <span class="n">PEPXEBootDemo</span>
-<span class="ln">19</span>        <span class="p">{</span>
-<span class="ln">20</span>            <span class="n">Id</span> <span class="p">=</span> <span class="s1">&#39;Node17-UniqueBoot&#39;</span>
-<span class="ln">21</span>            <span class="n">DRACIPAddress</span> <span class="p">=</span> <span class="s1">&#39;172.16.100.17&#39;</span>
-<span class="ln">22</span>            <span class="n">DRACCredential</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Get-Credential</span><span class="p">)</span>
-<span class="ln">23</span>            <span class="n">OneTimeBootMode</span> <span class="p">=</span> <span class="s1">&#39;Enabled&#39;</span>
-<span class="ln">24</span>            <span class="n">OneTimeBootDevice</span> <span class="p">=</span> <span class="s1">&#39;NIC.PxeDevice.1-1&#39;</span>
-<span class="ln">25</span>        <span class="p">}</span>
-<span class="ln">26</span>    <span class="p">}</span>
-<span class="ln">27</span><span class="p">}</span>
-<span class="ln">28</span>
-<span class="ln">29</span><span class="n">PEPXEBootDemo</span> <span class="n">-ConfigurationData</span> <span class="nv">$configData</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$configData</span> <span class="p">=</span> 
+<span class="p">@{</span>
+    <span class="n">AllNodes</span> <span class="p">=</span> 
+    <span class="p">@(</span>
+        <span class="p">@{</span>
+            <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;localhost&#39;</span>
+            <span class="n">PSDscAllowPlainTextPassword</span> <span class="p">=</span> <span class="nv">$true</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">Configuration</span> <span class="n">PEPXEBootDemo</span>
+<span class="p">{</span>
+    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">DellPEWsManTools</span> <span class="n">-Name</span> <span class="n">PEOneTimeBoot</span>
+    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">PSDesiredStateConfiguration</span>
+
+    <span class="n">Node</span> <span class="nv">$AllNodes</span><span class="p">.</span><span class="n">NodeName</span> <span class="p">{</span>
+        <span class="n">PEOneTimeBoot</span> <span class="n">PEPXEBootDemo</span>
+        <span class="p">{</span>
+            <span class="n">Id</span> <span class="p">=</span> <span class="s1">&#39;Node17-UniqueBoot&#39;</span>
+            <span class="n">DRACIPAddress</span> <span class="p">=</span> <span class="s1">&#39;172.16.100.17&#39;</span>
+            <span class="n">DRACCredential</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Get-Credential</span><span class="p">)</span>
+            <span class="n">OneTimeBootMode</span> <span class="p">=</span> <span class="s1">&#39;Enabled&#39;</span>
+            <span class="n">OneTimeBootDevice</span> <span class="p">=</span> <span class="s1">&#39;NIC.PxeDevice.1-1&#39;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">PEPXEBootDemo</span> <span class="n">-ConfigurationData</span> <span class="nv">$configData</span>
 </code></pre></div><p>The above configuration document uses the <em>PEOneTimeBoot</em> resource from the <em>DellPEWSManTools</em> resource module. The <em>PEOneTimeBoot</em> is a proxy DSC resource.</p>
 <p>Here is what it does when we enact this configuration.</p>
 <p><img src="/images/dscorch2.png" alt=""></p>

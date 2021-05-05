@@ -244,48 +244,48 @@ if (!doNotTrack) {
 <p>I packaged this DSC resource into a module of its own and published in my Github account.</p>
 <h3 id="configurationdsc-resource-module">ConfigurationDSC resource module</h3>
 <p>Through the <a href="https://github.com/rchaganti/ConfigurationDsc">ConfigurationDSC</a> resource module, I plan to combine various resources that help in managing DSC based configurations in deployment pipeline. At this point in time, there is only one resource, <a href="https://github.com/rchaganti/ConfigurationDsc/tree/master/DscResources/ConfigurationVersion">ConfigurationVersion</a>, which helps in tracking the version of the configuration document. Here is an example of a configuration document with the <em>ConfigurationVersion</em> DSC resource.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Configuration</span> <span class="n">VersionedConfiguration</span>
-<span class="ln"> 2</span><span class="p">{</span>
-<span class="ln"> 3</span>    <span class="k">param</span>
-<span class="ln"> 4</span>    <span class="p">(</span>
-<span class="ln"> 5</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
-<span class="ln"> 6</span>        <span class="no">[String]</span> <span class="nv">$ConfigurationName</span><span class="p">,</span>
-<span class="ln"> 7</span>
-<span class="ln"> 8</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
-<span class="ln"> 9</span>        <span class="no">[String]</span> <span class="nv">$ConfigurationVersion</span>
-<span class="ln">10</span>    <span class="p">)</span>
-<span class="ln">11</span>
-<span class="ln">12</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">PSDesiredStateConfiguration</span> <span class="n">-ModuleVersion</span> <span class="n">1</span><span class="p">.</span><span class="n">1</span>
-<span class="ln">13</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">ConfigurationDsc</span> <span class="n">-ModuleVersion</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span>
-<span class="ln">14</span>
-<span class="ln">15</span>    <span class="n">ConfigurationVersion</span> <span class="n">WebServerConfiguration</span>
-<span class="ln">16</span>    <span class="p">{</span>
-<span class="ln">17</span>        <span class="n">Name</span> <span class="p">=</span> <span class="nv">$ConfigurationName</span>
-<span class="ln">18</span>        <span class="n">Version</span> <span class="p">=</span> <span class="nv">$ConfigurationVersion</span>
-<span class="ln">19</span>    <span class="p">}</span>
-<span class="ln">20</span>
-<span class="ln">21</span>    <span class="n">WindowsFeature</span> <span class="n">WebServer</span>
-<span class="ln">22</span>    <span class="p">{</span>
-<span class="ln">23</span>        <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;Web-Server&#39;</span>
-<span class="ln">24</span>        <span class="n">IncludeAllSubFeature</span> <span class="p">=</span> <span class="nv">$true</span>
-<span class="ln">25</span>        <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
-<span class="ln">26</span>    <span class="p">}</span>
-<span class="ln">27</span><span class="p">}</span>
-<span class="ln">28</span>
-<span class="ln">29</span><span class="n">VersionedConfiguration</span> <span class="n">-ConfigurationName</span> <span class="s1">&#39;WebServerConfig&#39;</span> <span class="n">-ConfigurationVersion</span> <span class="s1">&#39;1.0.0.0&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Configuration</span> <span class="n">VersionedConfiguration</span>
+<span class="p">{</span>
+    <span class="k">param</span>
+    <span class="p">(</span>
+        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
+        <span class="no">[String]</span> <span class="nv">$ConfigurationName</span><span class="p">,</span>
+
+        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
+        <span class="no">[String]</span> <span class="nv">$ConfigurationVersion</span>
+    <span class="p">)</span>
+
+    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">PSDesiredStateConfiguration</span> <span class="n">-ModuleVersion</span> <span class="n">1</span><span class="p">.</span><span class="n">1</span>
+    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">ConfigurationDsc</span> <span class="n">-ModuleVersion</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span>
+
+    <span class="n">ConfigurationVersion</span> <span class="n">WebServerConfiguration</span>
+    <span class="p">{</span>
+        <span class="n">Name</span> <span class="p">=</span> <span class="nv">$ConfigurationName</span>
+        <span class="n">Version</span> <span class="p">=</span> <span class="nv">$ConfigurationVersion</span>
+    <span class="p">}</span>
+
+    <span class="n">WindowsFeature</span> <span class="n">WebServer</span>
+    <span class="p">{</span>
+        <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;Web-Server&#39;</span>
+        <span class="n">IncludeAllSubFeature</span> <span class="p">=</span> <span class="nv">$true</span>
+        <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">VersionedConfiguration</span> <span class="n">-ConfigurationName</span> <span class="s1">&#39;WebServerConfig&#39;</span> <span class="n">-ConfigurationVersion</span> <span class="s1">&#39;1.0.0.0&#39;</span>
 </code></pre></div><p>Once this configuration is enacted, I can use the <code>Get-DscConfiguration</code> cmdlet to find the version of the node configuration.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Get-DscConfiguration</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">CimClassName</span> <span class="o">-eq</span> <span class="s1">&#39;ConfigurationVersion&#39;</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">-ExpandProperty</span> <span class="n">Version</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-DscConfiguration</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">CimClassName</span> <span class="o">-eq</span> <span class="s1">&#39;ConfigurationVersion&#39;</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">-ExpandProperty</span> <span class="n">Version</span>
 </code></pre></div><p>What I have shown here is only a workaround. This approach has both pros and cons. I rather want this added into the existing DSC feature set. If you see a compiled MOF, it has a few configuration meta properties. For example, from the above example, the compiled MOF has the following instance of the <code>MSFT_ConfigurationDocument</code> class in the MOF.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">instance</span> <span class="n">of</span> <span class="n">OMI_ConfigurationDocument</span>
-<span class="ln"> 2</span><span class="p">{</span>
-<span class="ln"> 3</span>    <span class="n">Version</span><span class="p">=</span><span class="s2">&#34;2.0.0&#34;</span><span class="p">;</span>
-<span class="ln"> 4</span>    <span class="n">MinimumCompatibleVersion</span> <span class="p">=</span> <span class="s2">&#34;1.0.0&#34;</span><span class="p">;</span>
-<span class="ln"> 5</span>    <span class="n">CompatibleVersionAdditionalProperties</span><span class="p">=</span> <span class="p">{</span><span class="s2">&#34;Omi_BaseResource:ConfigurationName&#34;</span><span class="p">};</span>
-<span class="ln"> 6</span>    <span class="n">Author</span><span class="p">=</span><span class="s2">&#34;Administrator&#34;</span><span class="p">;</span>
-<span class="ln"> 7</span>    <span class="n">GenerationDate</span><span class="p">=</span><span class="s2">&#34;01/05/2018 11:07:56&#34;</span><span class="p">;</span>
-<span class="ln"> 8</span>    <span class="n">GenerationHost</span><span class="p">=</span><span class="s2">&#34;MGMT01&#34;</span><span class="p">;</span>
-<span class="ln"> 9</span>    <span class="n">Name</span><span class="p">=</span><span class="s2">&#34;VersionedConfiguration&#34;</span><span class="p">;</span>
-<span class="ln">10</span><span class="p">};</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">instance</span> <span class="n">of</span> <span class="n">OMI_ConfigurationDocument</span>
+<span class="p">{</span>
+    <span class="n">Version</span><span class="p">=</span><span class="s2">&#34;2.0.0&#34;</span><span class="p">;</span>
+    <span class="n">MinimumCompatibleVersion</span> <span class="p">=</span> <span class="s2">&#34;1.0.0&#34;</span><span class="p">;</span>
+    <span class="n">CompatibleVersionAdditionalProperties</span><span class="p">=</span> <span class="p">{</span><span class="s2">&#34;Omi_BaseResource:ConfigurationName&#34;</span><span class="p">};</span>
+    <span class="n">Author</span><span class="p">=</span><span class="s2">&#34;Administrator&#34;</span><span class="p">;</span>
+    <span class="n">GenerationDate</span><span class="p">=</span><span class="s2">&#34;01/05/2018 11:07:56&#34;</span><span class="p">;</span>
+    <span class="n">GenerationHost</span><span class="p">=</span><span class="s2">&#34;MGMT01&#34;</span><span class="p">;</span>
+    <span class="n">Name</span><span class="p">=</span><span class="s2">&#34;VersionedConfiguration&#34;</span><span class="p">;</span>
+<span class="p">};</span>
 </code></pre></div><p>It would be ideal for us to be able to add the configuration version from the source / version control system to this instance of <code>OMI_ConfigurationDocument</code>. I created an user voice item for this: <a href="https://windowsserver.uservoice.com/forums/301869-powershell/suggestions/32825272-enable-configuration-version-tracking-for-compiled">https://windowsserver.uservoice.com/forums/301869-powershell/suggestions/32825272-enable-configuration-version-tracking-for-compiled</a></p>
 <p>Go ahead and it vote it up if you think this will be useful in your infrastructure as well.</p>
 </div>

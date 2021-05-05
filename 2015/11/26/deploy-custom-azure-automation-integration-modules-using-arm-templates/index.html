@@ -251,93 +251,93 @@ if (!doNotTrack) {
 <p>The first two methods are straightforward. I will show you the ARM template way of doing this. Btw, this is not new and has been there for a while. If you look at some of the modules on PowerShell Gallery, you will see an option to “Deploy to Azure Automation”.</p>
 <p><img src="/images/aadeploy1.png" alt=""></p>
 <p>When you click on this button within the PowerShell Gallery page for the module, an ARM template gets deployed. In this article, I will show you how to build this ARM template yourself and deploy your custom integration modules so that you can make this a part of larger ARM template deployment process. To get started, here is the ARM template to deploy <a href="https://github.com/rchaganti/armseries/blob/master/MyModule.zip">my custom module</a>. This module is just for demonstration purpose and it has no useful activities.</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="ln"> 1</span><span class="p">{</span>
-<span class="ln"> 2</span>  <span class="nt">&#34;$schema&#34;</span><span class="p">:</span> <span class="s2">&#34;http://schemas.microsoft.org/azure/deploymentTemplate?api-version=2015-01-01#&#34;</span><span class="p">,</span>
-<span class="ln"> 3</span>  <span class="nt">&#34;contentVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0&#34;</span><span class="p">,</span>
-<span class="ln"> 4</span>  <span class="nt">&#34;parameters&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="ln"> 5</span>    <span class="nt">&#34;New or existing Automation account&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="ln"> 6</span>      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
-<span class="ln"> 7</span>      <span class="nt">&#34;allowedValues&#34;</span><span class="p">:</span> <span class="p">[</span>
-<span class="ln"> 8</span>        <span class="s2">&#34;New&#34;</span><span class="p">,</span>
-<span class="ln"> 9</span>        <span class="s2">&#34;Existing&#34;</span>
-<span class="ln">10</span>      <span class="p">],</span>
-<span class="ln">11</span>      <span class="nt">&#34;metadata&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="ln">12</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;Select whether you want to create a new Automation account or use an existing account. WARNING: if you select NEW but use an Automation account name that already exists in your subscription, you will not be notified that your account is being updated. The pricing tier for the account will be set to free and any tags on the account will be erased.&#34;</span>
-<span class="ln">13</span>      <span class="p">}</span>
-<span class="ln">14</span>    <span class="p">},</span>
-<span class="ln">15</span>    <span class="nt">&#34;Automation Account Name&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="ln">16</span>      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
-<span class="ln">17</span>      <span class="nt">&#34;metadata&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="ln">18</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;The module will be imported to this Automation account. If you want to import your module to an existing account, make sure the resource group matches and you have entered the correct name. The account name must be between 6 to 50 characters, and can contain only letters, numbers, and hyphens.&#34;</span>
-<span class="ln">19</span>      <span class="p">}</span>
-<span class="ln">20</span>    <span class="p">},</span>
-<span class="ln">21</span>    <span class="nt">&#34;Automation Account Location&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="ln">22</span>      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
-<span class="ln">23</span>      <span class="nt">&#34;metadata&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="ln">24</span>        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;The location to deploy the Automation account in. If you select an existing account, the location field will not be used.&#34;</span>
-<span class="ln">25</span>      <span class="p">}</span>
-<span class="ln">26</span>    <span class="p">},</span>
-<span class="ln">27</span>    <span class="nt">&#34;ModuleName&#34;</span> <span class="p">:</span> <span class="p">{</span>
-<span class="ln">28</span>      <span class="nt">&#34;type&#34;</span> <span class="p">:</span> <span class="s2">&#34;String&#34;</span><span class="p">,</span>
-<span class="ln">29</span>      <span class="nt">&#34;metadata&#34;</span> <span class="p">:</span> <span class="p">{</span>
-<span class="ln">30</span>        <span class="nt">&#34;description&#34;</span> <span class="p">:</span> <span class="s2">&#34;Name of the module being imported into the Azure Automation account.&#34;</span>
-<span class="ln">31</span>      <span class="p">}</span>
-<span class="ln">32</span>    <span class="p">},</span>
-<span class="ln">33</span>    <span class="nt">&#34;ModuleUri&#34;</span> <span class="p">:</span> <span class="p">{</span>
-<span class="ln">34</span>      <span class="nt">&#34;type&#34;</span> <span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
-<span class="ln">35</span>      <span class="nt">&#34;metadata&#34;</span> <span class="p">:</span> <span class="p">{</span>
-<span class="ln">36</span>          <span class="nt">&#34;description&#34;</span> <span class="p">:</span> <span class="s2">&#34;URI for the AA module zip archive. This must be accessible from automation account.&#34;</span>
-<span class="ln">37</span>      <span class="p">}</span>
-<span class="ln">38</span>    <span class="p">}</span>
-<span class="ln">39</span>  <span class="p">},</span>
-<span class="ln">40</span>  <span class="nt">&#34;variables&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="ln">41</span>    <span class="nt">&#34;templatelink&#34;</span><span class="p">:</span> <span class="s2">&#34;[concat(&#39;https://raw.githubusercontent.com/rchaganti/armseries/master/&#39;, parameters(&#39;New or Existing Automation account&#39;), &#39;AccountTemplate.json&#39;)]&#34;</span>
-<span class="ln">42</span>  <span class="p">},</span>
-<span class="ln">43</span>  <span class="nt">&#34;resources&#34;</span><span class="p">:</span> <span class="p">[</span>
-<span class="ln">44</span>    <span class="p">{</span>
-<span class="ln">45</span>      <span class="nt">&#34;apiVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;2015-01-01&#34;</span><span class="p">,</span>
-<span class="ln">46</span>      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;nestedTemplate&#34;</span><span class="p">,</span>
-<span class="ln">47</span>      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;Microsoft.Resources/deployments&#34;</span><span class="p">,</span>
-<span class="ln">48</span>      <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="ln">49</span>        <span class="nt">&#34;mode&#34;</span><span class="p">:</span> <span class="s2">&#34;incremental&#34;</span><span class="p">,</span>
-<span class="ln">50</span>        <span class="nt">&#34;templateLink&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="ln">51</span>          <span class="nt">&#34;uri&#34;</span><span class="p">:</span> <span class="s2">&#34;[variables(&#39;templatelink&#39;)]&#34;</span><span class="p">,</span>
-<span class="ln">52</span>          <span class="nt">&#34;contentVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0&#34;</span>
-<span class="ln">53</span>        <span class="p">},</span>
-<span class="ln">54</span>        <span class="nt">&#34;parameters&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="ln">55</span>          <span class="nt">&#34;accountName&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="ln">56</span>            <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;[parameters(&#39;Automation Account Name&#39;)]&#34;</span>
-<span class="ln">57</span>          <span class="p">},</span>
-<span class="ln">58</span>          <span class="nt">&#34;accountLocation&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="ln">59</span>            <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;[parameters(&#39;Automation Account Location&#39;)]&#34;</span>
-<span class="ln">60</span>          <span class="p">},</span>
-<span class="ln">61</span>          <span class="nt">&#34;ModuleName&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="ln">62</span>            <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;[parameters(&#39;ModuleName&#39;)]&#34;</span>
-<span class="ln">63</span>          <span class="p">},</span>
-<span class="ln">64</span>          <span class="nt">&#34;ModuleUri&#34;</span><span class="p">:</span> <span class="p">{</span>
-<span class="ln">65</span>            <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;[parameters(&#39;ModuleUri&#39;)]&#34;</span>
-<span class="ln">66</span>          <span class="p">}</span>
-<span class="ln">67</span>        <span class="p">}</span>
-<span class="ln">68</span>      <span class="p">}</span>
-<span class="ln">69</span>    <span class="p">}</span>
-<span class="ln">70</span>  <span class="p">],</span>
-<span class="ln">71</span>  <span class="nt">&#34;outputs&#34;</span><span class="p">:</span> <span class="p">{}</span>
-<span class="ln">72</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;$schema&#34;</span><span class="p">:</span> <span class="s2">&#34;http://schemas.microsoft.org/azure/deploymentTemplate?api-version=2015-01-01#&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;contentVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;parameters&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;New or existing Automation account&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;allowedValues&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&#34;New&#34;</span><span class="p">,</span>
+        <span class="s2">&#34;Existing&#34;</span>
+      <span class="p">],</span>
+      <span class="nt">&#34;metadata&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;Select whether you want to create a new Automation account or use an existing account. WARNING: if you select NEW but use an Automation account name that already exists in your subscription, you will not be notified that your account is being updated. The pricing tier for the account will be set to free and any tags on the account will be erased.&#34;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;Automation Account Name&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;metadata&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;The module will be imported to this Automation account. If you want to import your module to an existing account, make sure the resource group matches and you have entered the correct name. The account name must be between 6 to 50 characters, and can contain only letters, numbers, and hyphens.&#34;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;Automation Account Location&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;metadata&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;The location to deploy the Automation account in. If you select an existing account, the location field will not be used.&#34;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;ModuleName&#34;</span> <span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;type&#34;</span> <span class="p">:</span> <span class="s2">&#34;String&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;metadata&#34;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;description&#34;</span> <span class="p">:</span> <span class="s2">&#34;Name of the module being imported into the Azure Automation account.&#34;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;ModuleUri&#34;</span> <span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;type&#34;</span> <span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;metadata&#34;</span> <span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&#34;description&#34;</span> <span class="p">:</span> <span class="s2">&#34;URI for the AA module zip archive. This must be accessible from automation account.&#34;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;variables&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;templatelink&#34;</span><span class="p">:</span> <span class="s2">&#34;[concat(&#39;https://raw.githubusercontent.com/rchaganti/armseries/master/&#39;, parameters(&#39;New or Existing Automation account&#39;), &#39;AccountTemplate.json&#39;)]&#34;</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;resources&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;apiVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;2015-01-01&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;nestedTemplate&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;Microsoft.Resources/deployments&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;mode&#34;</span><span class="p">:</span> <span class="s2">&#34;incremental&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;templateLink&#34;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&#34;uri&#34;</span><span class="p">:</span> <span class="s2">&#34;[variables(&#39;templatelink&#39;)]&#34;</span><span class="p">,</span>
+          <span class="nt">&#34;contentVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0&#34;</span>
+        <span class="p">},</span>
+        <span class="nt">&#34;parameters&#34;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&#34;accountName&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;[parameters(&#39;Automation Account Name&#39;)]&#34;</span>
+          <span class="p">},</span>
+          <span class="nt">&#34;accountLocation&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;[parameters(&#39;Automation Account Location&#39;)]&#34;</span>
+          <span class="p">},</span>
+          <span class="nt">&#34;ModuleName&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;[parameters(&#39;ModuleName&#39;)]&#34;</span>
+          <span class="p">},</span>
+          <span class="nt">&#34;ModuleUri&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;[parameters(&#39;ModuleUri&#39;)]&#34;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&#34;outputs&#34;</span><span class="p">:</span> <span class="p">{}</span>
+<span class="p">}</span>
 </code></pre></div><p>Within this ARM template, we use parameters for collecting information about the Automation account. If the provided Automation account name is a new one, we will create it first; if it’s the existing one, we can simply publish the integration module. ModuleUri can be any location where the integration module zip file is stored. This location should be accessible to the service deploying the integration module.</p>
 <p>If you notice, we are using a <a href="https://azure.microsoft.com/en-us/documentation/articles/resource-group-linked-templates/">linked template deployment</a>. Using linked template deployments, we can decompose the ARM template into multiple small chunks that are purpose-specific templates. In the template above, I specified the linked template link in line number 23. This is a template hosted by Microsoft and the JSON template file name changes based on the automation account type we select during deployment.</p>
 <p>Let us see how this works! I will use the cmdlets in Azure PowerShell module to deploy this template. First authenticate to Azure using the <em>Login-AzureRmAccount</em> cmdlet.</p>
 <p>We will now validate the above template and ensure everything is fine before we deploy it. For running the following command, you will need an existing resource group.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$parameters</span> <span class="p">=</span> <span class="p">@{</span>
-<span class="ln">2</span>    <span class="s1">&#39;moduleName&#39;</span> <span class="p">=</span> <span class="s1">&#39;myModule&#39;</span>
-<span class="ln">3</span>    <span class="s1">&#39;moduleUri&#39;</span> <span class="p">=</span> <span class="s1">&#39;https://github.com/rchaganti/armseries/raw/master/MyModule.zip&#39;</span>
-<span class="ln">4</span>    <span class="s1">&#39;Automation Account Name&#39;</span> <span class="p">=</span> <span class="s1">&#39;fuarmdemo&#39;</span>
-<span class="ln">5</span>    <span class="s1">&#39;Automation Account Type&#39;</span> <span class="p">=</span> <span class="s1">&#39;Existing&#39;</span>
-<span class="ln">6</span>    <span class="s1">&#39;Automation Account Location&#39;</span> <span class="p">=</span> <span class="s1">&#39;eastus2&#39;</span>
-<span class="ln">7</span>    <span class="s1">&#39;TemplateFile&#39;</span> <span class="p">=</span> <span class="s1">&#39;C:\Temp\DeployModule.json&#39;</span>
-<span class="ln">8</span><span class="p">}</span>
-<span class="ln">9</span><span class="nb">Test-AzureRmResourceGroupDeployment</span> <span class="nv">@parameters</span> <span class="n">-Verbose</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$parameters</span> <span class="p">=</span> <span class="p">@{</span>
+    <span class="s1">&#39;moduleName&#39;</span> <span class="p">=</span> <span class="s1">&#39;myModule&#39;</span>
+    <span class="s1">&#39;moduleUri&#39;</span> <span class="p">=</span> <span class="s1">&#39;https://github.com/rchaganti/armseries/raw/master/MyModule.zip&#39;</span>
+    <span class="s1">&#39;Automation Account Name&#39;</span> <span class="p">=</span> <span class="s1">&#39;fuarmdemo&#39;</span>
+    <span class="s1">&#39;Automation Account Type&#39;</span> <span class="p">=</span> <span class="s1">&#39;Existing&#39;</span>
+    <span class="s1">&#39;Automation Account Location&#39;</span> <span class="p">=</span> <span class="s1">&#39;eastus2&#39;</span>
+    <span class="s1">&#39;TemplateFile&#39;</span> <span class="p">=</span> <span class="s1">&#39;C:\Temp\DeployModule.json&#39;</span>
+<span class="p">}</span>
+<span class="nb">Test-AzureRmResourceGroupDeployment</span> <span class="nv">@parameters</span> <span class="n">-Verbose</span>
 </code></pre></div><p>Once we see that the template is valid, we can go ahead and deploy it using the <em>New-AzureRmResourceGroupDeployment</em> cmdlet.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">New-AzureRmResourceGroupDeployment</span> <span class="nv">@parameters</span> <span class="n">-Verbose</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">New-AzureRmResourceGroupDeployment</span> <span class="nv">@parameters</span> <span class="n">-Verbose</span>
 </code></pre></div><p>Once this deployment is complete, you will see output similar to this.</p>
 <p><img src="/images/aadeploy2.png" alt=""></p>
 <p>You can navigate to the Automation account on the Azure preview portal and see that the module is indeed present in the Assets blade.</p>

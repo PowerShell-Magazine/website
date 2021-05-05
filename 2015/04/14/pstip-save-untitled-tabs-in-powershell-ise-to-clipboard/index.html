@@ -233,11 +233,11 @@ if (!doNotTrack) {
           </ul>
           <div class="content"><p>When working with the PowerShell ISE it can occur that there are a lot of untitled scripts left at the end of a busy day of scripting. Occasionally something interesting or useful could be left in those tabs. The following function can be used to copy the content from the untitled tabs to the clipboard.</p>
 <p>The function uses the $_.IsUntitled property of each open file in the ISE to detect if the tab is untitled. The contents of all tabs are piped into clip.exe:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="k">Function</span> <span class="nb">Send-UntitledToClip</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nv">$psISE</span><span class="p">.</span><span class="n">PowerShellTabs</span><span class="p">.</span><span class="n">Files</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">IsUntitled</span><span class="p">}</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span>
-<span class="ln">3</span>        <span class="nv">$_</span><span class="p">.</span><span class="n">Editor</span><span class="p">.</span><span class="n">Text</span>
-<span class="ln">4</span>    <span class="p">}</span> <span class="p">|</span> <span class="n">clip</span><span class="p">.</span><span class="n">exe</span>
-<span class="ln">5</span><span class="p">}</span> 
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">Function</span> <span class="nb">Send-UntitledToClip</span> <span class="p">{</span>
+    <span class="nv">$psISE</span><span class="p">.</span><span class="n">PowerShellTabs</span><span class="p">.</span><span class="n">Files</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">IsUntitled</span><span class="p">}</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span>
+        <span class="nv">$_</span><span class="p">.</span><span class="n">Editor</span><span class="p">.</span><span class="n">Text</span>
+    <span class="p">}</span> <span class="p">|</span> <span class="n">clip</span><span class="p">.</span><span class="n">exe</span>
+<span class="p">}</span> 
 </code></pre></div></div>
         </article>
         

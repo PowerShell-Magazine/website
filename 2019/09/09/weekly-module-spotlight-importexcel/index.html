@@ -241,68 +241,68 @@ if (!doNotTrack) {
 <p>ImportExcel allows you to read and write Excel files without installing Microsoft Excel on your system. With this module, there is no need to bother with the cumbersome Excel COM-object. With ImportExcel, creating Tables, Pivot Tables, Charts and much more has becomes a lot easier.</p>
 <p>Before you try any of the following examples, install ImportExcel module from the <a href="https://www.powershellgallery.com/packages/ImportExcel">PowerShell Gallery</a></p>
 <p>Here is the simple first example for you!</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Get-Process</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">Company</span><span class="p">,</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Handles</span> <span class="p">|</span> <span class="nb">Export-Excel</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-Process</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">Company</span><span class="p">,</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Handles</span> <span class="p">|</span> <span class="nb">Export-Excel</span>
 </code></pre></div><p>This a command exports the values of selected properties from the process object and opens an Excel spreadsheet automatically.</p>
 <p>Here is another example from <a href="https://github.com/dfinke/ImportExcel/blob/master/Examples/Charts/ChartAndTrendlines.ps1">ImportExcel GitHub repository</a> that generates charts.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nv">$xlfile</span> <span class="p">=</span> <span class="s2">&#34;$env:TEMP\trendLine.xlsx&#34;</span>
-<span class="ln"> 2</span><span class="nb">Remove-Item</span> <span class="nv">$xlfile</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
-<span class="ln"> 3</span>
-<span class="ln"> 4</span><span class="nv">$data</span> <span class="p">=</span> <span class="nb">ConvertFrom-Csv</span> <span class="sh">@&#34;
-</span><span class="ln"> 5</span><span class="sh">Region,Item,TotalSold
-</span><span class="ln"> 6</span><span class="sh">West,screws,60
-</span><span class="ln"> 7</span><span class="sh">South,lemon,48
-</span><span class="ln"> 8</span><span class="sh">South,apple,71
-</span><span class="ln"> 9</span><span class="sh">East,screwdriver,70
-</span><span class="ln">10</span><span class="sh">East,kiwi,32
-</span><span class="ln">11</span><span class="sh">West,screwdriver,1
-</span><span class="ln">12</span><span class="sh">South,melon,21
-</span><span class="ln">13</span><span class="sh">East,apple,79
-</span><span class="ln">14</span><span class="sh">South,apple,68
-</span><span class="ln">15</span><span class="sh">South,avocado,73
-</span><span class="ln">16</span><span class="sh">&#34;@</span>
-<span class="ln">17</span>
-<span class="ln">18</span><span class="nv">$cd</span> <span class="p">=</span> <span class="nb">New-ExcelChartDefinition</span> <span class="n">-XRange</span> <span class="n">Region</span> <span class="n">-YRange</span> <span class="n">TotalSold</span> <span class="n">-ChartType</span> <span class="n">ColumnClustered</span> <span class="n">-ChartTrendLine</span> <span class="n">Linear</span>
-<span class="ln">19</span><span class="nv">$data</span> <span class="p">|</span> <span class="nb">Export-Excel</span> <span class="nv">$xlfile</span> <span class="n">-ExcelChartDefinition</span> <span class="nv">$cd</span> <span class="n">-AutoNameRange</span> <span class="n">-Show</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$xlfile</span> <span class="p">=</span> <span class="s2">&#34;$env:TEMP\trendLine.xlsx&#34;</span>
+<span class="nb">Remove-Item</span> <span class="nv">$xlfile</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
+
+<span class="nv">$data</span> <span class="p">=</span> <span class="nb">ConvertFrom-Csv</span> <span class="sh">@&#34;
+</span><span class="sh">Region,Item,TotalSold
+</span><span class="sh">West,screws,60
+</span><span class="sh">South,lemon,48
+</span><span class="sh">South,apple,71
+</span><span class="sh">East,screwdriver,70
+</span><span class="sh">East,kiwi,32
+</span><span class="sh">West,screwdriver,1
+</span><span class="sh">South,melon,21
+</span><span class="sh">East,apple,79
+</span><span class="sh">South,apple,68
+</span><span class="sh">South,avocado,73
+</span><span class="sh">&#34;@</span>
+
+<span class="nv">$cd</span> <span class="p">=</span> <span class="nb">New-ExcelChartDefinition</span> <span class="n">-XRange</span> <span class="n">Region</span> <span class="n">-YRange</span> <span class="n">TotalSold</span> <span class="n">-ChartType</span> <span class="n">ColumnClustered</span> <span class="n">-ChartTrendLine</span> <span class="n">Linear</span>
+<span class="nv">$data</span> <span class="p">|</span> <span class="nb">Export-Excel</span> <span class="nv">$xlfile</span> <span class="n">-ExcelChartDefinition</span> <span class="nv">$cd</span> <span class="n">-AutoNameRange</span> <span class="n">-Show</span>
 </code></pre></div><p>Finally, here is something I showed at the PowerShell Conference Europe 2019. This uses the speaker and session data JSON and generates a spreadsheet.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="p">(</span><span class="nb">Get-Module</span> <span class="n">-ListAvailable</span> <span class="n">-Name</span> <span class="n">ImportExcel</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span><span class="p">))</span>
-<span class="ln"> 2</span><span class="p">{</span>
-<span class="ln"> 3</span>    <span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">ImportExcel</span> <span class="n">-Force</span>
-<span class="ln"> 4</span><span class="p">}</span>
-<span class="ln"> 5</span>
-<span class="ln"> 6</span><span class="nv">$speakersJson</span> <span class="p">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/psconfeu/2019/master/data/speakers.json&#39;</span>
-<span class="ln"> 7</span><span class="nv">$sessionsJson</span> <span class="p">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/psconfeu/2019/master/sessions.json&#39;</span>
-<span class="ln"> 8</span>
-<span class="ln"> 9</span><span class="nv">$speakers</span> <span class="p">=</span> <span class="nb">ConvertFrom-Json</span> <span class="p">(</span><span class="nb">Invoke-WebRequest</span> <span class="n">-UseBasicParsing</span> <span class="n">-Uri</span> <span class="nv">$speakersJson</span><span class="p">).</span><span class="n">content</span>
-<span class="ln">10</span><span class="nv">$sessions</span> <span class="p">=</span> <span class="nb">ConvertFrom-Json</span> <span class="p">(</span><span class="nb">Invoke-WebRequest</span> <span class="n">-UseBasicParsing</span> <span class="n">-Uri</span> <span class="nv">$sessionsJson</span><span class="p">).</span><span class="n">content</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="p">(</span><span class="nb">Get-Module</span> <span class="n">-ListAvailable</span> <span class="n">-Name</span> <span class="n">ImportExcel</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">ImportExcel</span> <span class="n">-Force</span>
+<span class="p">}</span>
+
+<span class="nv">$speakersJson</span> <span class="p">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/psconfeu/2019/master/data/speakers.json&#39;</span>
+<span class="nv">$sessionsJson</span> <span class="p">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/psconfeu/2019/master/sessions.json&#39;</span>
+
+<span class="nv">$speakers</span> <span class="p">=</span> <span class="nb">ConvertFrom-Json</span> <span class="p">(</span><span class="nb">Invoke-WebRequest</span> <span class="n">-UseBasicParsing</span> <span class="n">-Uri</span> <span class="nv">$speakersJson</span><span class="p">).</span><span class="n">content</span>
+<span class="nv">$sessions</span> <span class="p">=</span> <span class="nb">ConvertFrom-Json</span> <span class="p">(</span><span class="nb">Invoke-WebRequest</span> <span class="n">-UseBasicParsing</span> <span class="n">-Uri</span> <span class="nv">$sessionsJson</span><span class="p">).</span><span class="n">content</span>
 </code></pre></div><h3 id="all-sessions-sheet">All Sessions Sheet</h3>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$sessions</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Starts</span><span class="p">,</span> <span class="n">Ends</span><span class="p">,</span> <span class="n">Track</span><span class="p">,</span> <span class="n">Speaker</span> <span class="p">|</span> 
-<span class="ln">2</span>            <span class="nb">Export-Excel</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">psconfeu2019</span><span class="p">.</span><span class="n">xlsx</span> <span class="n">-WorksheetName</span> <span class="s1">&#39;All Tracks&#39;</span> <span class="p">`</span>
-<span class="ln">3</span>            <span class="n">-Title</span> <span class="s1">&#39;PowerShell Conference EU 2019 - Sessions&#39;</span> <span class="p">`</span>
-<span class="ln">4</span>            <span class="n">-TitleBold</span> <span class="n">-TitleFillPattern</span> <span class="n">DarkDown</span> <span class="n">-TitleSize</span> <span class="n">20</span> <span class="p">`</span>
-<span class="ln">5</span>            <span class="n">-TableStyle</span> <span class="n">Medium6</span> <span class="n">-BoldTopRow</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$sessions</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Starts</span><span class="p">,</span> <span class="n">Ends</span><span class="p">,</span> <span class="n">Track</span><span class="p">,</span> <span class="n">Speaker</span> <span class="p">|</span> 
+            <span class="nb">Export-Excel</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">psconfeu2019</span><span class="p">.</span><span class="n">xlsx</span> <span class="n">-WorksheetName</span> <span class="s1">&#39;All Tracks&#39;</span> <span class="p">`</span>
+            <span class="n">-Title</span> <span class="s1">&#39;PowerShell Conference EU 2019 - Sessions&#39;</span> <span class="p">`</span>
+            <span class="n">-TitleBold</span> <span class="n">-TitleFillPattern</span> <span class="n">DarkDown</span> <span class="n">-TitleSize</span> <span class="n">20</span> <span class="p">`</span>
+            <span class="n">-TableStyle</span> <span class="n">Medium6</span> <span class="n">-BoldTopRow</span>
 </code></pre></div><h3 id="track-sheets">Track sheets</h3>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="k">foreach</span> <span class="p">(</span><span class="nv">$i</span> <span class="k">in</span> <span class="n">1</span><span class="p">..</span><span class="n">3</span><span class="p">)</span>
-<span class="ln">2</span><span class="p">{</span>
-<span class="ln">3</span>    <span class="nv">$trackSessions</span> <span class="p">=</span> <span class="nv">$sessions</span><span class="p">.</span><span class="n">Where</span><span class="p">({</span><span class="nv">$_</span><span class="p">.</span><span class="n">Track</span> <span class="o">-eq</span> <span class="s2">&#34;Track $i&#34;</span><span class="p">})</span>
-<span class="ln">4</span>    <span class="nv">$trackSessions</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Starts</span><span class="p">,</span> <span class="n">Ends</span><span class="p">,</span> <span class="n">Speaker</span> <span class="p">|</span>
-<span class="ln">5</span>        <span class="nb">Export-Excel</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">psconfeu2019</span><span class="p">.</span><span class="n">xlsx</span> <span class="n">-WorksheetName</span> <span class="s2">&#34;Track $i&#34;</span> <span class="p">`</span>
-<span class="ln">6</span>        <span class="n">-Title</span> <span class="s1">&#39;PowerShell Conference EU 2019 - Track $i&#39;</span> <span class="p">`</span>
-<span class="ln">7</span>        <span class="n">-TitleBold</span> <span class="n">-TitleFillPattern</span> <span class="n">DarkDown</span> <span class="n">-TitleSize</span> <span class="n">20</span> <span class="p">`</span>
-<span class="ln">8</span>        <span class="n">-TableStyle</span> <span class="n">Medium6</span> <span class="n">-BoldTopRow</span>        
-<span class="ln">9</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">foreach</span> <span class="p">(</span><span class="nv">$i</span> <span class="k">in</span> <span class="n">1</span><span class="p">..</span><span class="n">3</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$trackSessions</span> <span class="p">=</span> <span class="nv">$sessions</span><span class="p">.</span><span class="n">Where</span><span class="p">({</span><span class="nv">$_</span><span class="p">.</span><span class="n">Track</span> <span class="o">-eq</span> <span class="s2">&#34;Track $i&#34;</span><span class="p">})</span>
+    <span class="nv">$trackSessions</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Starts</span><span class="p">,</span> <span class="n">Ends</span><span class="p">,</span> <span class="n">Speaker</span> <span class="p">|</span>
+        <span class="nb">Export-Excel</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">psconfeu2019</span><span class="p">.</span><span class="n">xlsx</span> <span class="n">-WorksheetName</span> <span class="s2">&#34;Track $i&#34;</span> <span class="p">`</span>
+        <span class="n">-Title</span> <span class="s1">&#39;PowerShell Conference EU 2019 - Track $i&#39;</span> <span class="p">`</span>
+        <span class="n">-TitleBold</span> <span class="n">-TitleFillPattern</span> <span class="n">DarkDown</span> <span class="n">-TitleSize</span> <span class="n">20</span> <span class="p">`</span>
+        <span class="n">-TableStyle</span> <span class="n">Medium6</span> <span class="n">-BoldTopRow</span>        
+<span class="p">}</span>
 </code></pre></div><h3 id="add-speakers-sheet">Add Speakers sheet</h3>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$speakers</span> <span class="p">|</span> <span class="nb">Export-Excel</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">psconfeu2019</span><span class="p">.</span><span class="n">xlsx</span> <span class="n">-WorksheetName</span> <span class="s1">&#39;Speakers&#39;</span> <span class="p">`</span>
-<span class="ln">2</span>    <span class="n">-Title</span> <span class="s1">&#39;PowerShell Conference EU 2019 - Speakers&#39;</span> <span class="p">`</span>
-<span class="ln">3</span>    <span class="n">-TitleBold</span> <span class="n">-TitleFillPattern</span> <span class="n">DarkDown</span> <span class="n">-TitleSize</span> <span class="n">20</span> <span class="p">`</span>
-<span class="ln">4</span>    <span class="n">-TableStyle</span> <span class="n">Medium6</span> <span class="n">-BoldTopRow</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$speakers</span> <span class="p">|</span> <span class="nb">Export-Excel</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">psconfeu2019</span><span class="p">.</span><span class="n">xlsx</span> <span class="n">-WorksheetName</span> <span class="s1">&#39;Speakers&#39;</span> <span class="p">`</span>
+    <span class="n">-Title</span> <span class="s1">&#39;PowerShell Conference EU 2019 - Speakers&#39;</span> <span class="p">`</span>
+    <span class="n">-TitleBold</span> <span class="n">-TitleFillPattern</span> <span class="n">DarkDown</span> <span class="n">-TitleSize</span> <span class="n">20</span> <span class="p">`</span>
+    <span class="n">-TableStyle</span> <span class="n">Medium6</span> <span class="n">-BoldTopRow</span>
 </code></pre></div><h3 id="add-chart-for-speaker-country-number">Add chart for speaker country number</h3>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$chartDef</span> <span class="p">=</span> <span class="nb">New-ExcelChart</span> <span class="n">-Title</span> <span class="s1">&#39;PowerShell Conference EU 2019 - Speakers&#39;</span> <span class="p">`</span>
-<span class="ln">2</span>                    <span class="n">-ChartType</span> <span class="n">ColumnClustered</span> <span class="p">`</span>
-<span class="ln">3</span>                    <span class="n">-XRange</span> <span class="n">Name</span> <span class="n">-YRange</span> <span class="n">Count</span> <span class="p">`</span>
-<span class="ln">4</span>                    <span class="n">-Width</span> <span class="n">800</span> <span class="n">-NoLegend</span> <span class="n">-Column</span> <span class="n">3</span> 
-<span class="ln">5</span>
-<span class="ln">6</span><span class="nv">$speakers</span> <span class="p">|</span> <span class="nb">Group-Object</span> <span class="n">-Property</span> <span class="n">Country</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Count</span> <span class="p">|</span>  <span class="nb">Sort-Object</span> <span class="n">-Property</span> <span class="n">Count</span> <span class="n">-Descending</span> <span class="p">|</span>
-<span class="ln">7</span>    <span class="nb">Export-Excel</span> <span class="n">-path</span> <span class="p">.\</span><span class="n">psconfeu2019</span><span class="p">.</span><span class="n">xlsx</span> <span class="n">-AutoSize</span> <span class="n">-AutoNameRange</span> <span class="n">-ExcelChartDefinition</span> <span class="nv">$chartDef</span> <span class="n">-WorksheetName</span> <span class="n">SpeakerCountryChart</span> <span class="n">-Show</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$chartDef</span> <span class="p">=</span> <span class="nb">New-ExcelChart</span> <span class="n">-Title</span> <span class="s1">&#39;PowerShell Conference EU 2019 - Speakers&#39;</span> <span class="p">`</span>
+                    <span class="n">-ChartType</span> <span class="n">ColumnClustered</span> <span class="p">`</span>
+                    <span class="n">-XRange</span> <span class="n">Name</span> <span class="n">-YRange</span> <span class="n">Count</span> <span class="p">`</span>
+                    <span class="n">-Width</span> <span class="n">800</span> <span class="n">-NoLegend</span> <span class="n">-Column</span> <span class="n">3</span> 
+
+<span class="nv">$speakers</span> <span class="p">|</span> <span class="nb">Group-Object</span> <span class="n">-Property</span> <span class="n">Country</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Count</span> <span class="p">|</span>  <span class="nb">Sort-Object</span> <span class="n">-Property</span> <span class="n">Count</span> <span class="n">-Descending</span> <span class="p">|</span>
+    <span class="nb">Export-Excel</span> <span class="n">-path</span> <span class="p">.\</span><span class="n">psconfeu2019</span><span class="p">.</span><span class="n">xlsx</span> <span class="n">-AutoSize</span> <span class="n">-AutoNameRange</span> <span class="n">-ExcelChartDefinition</span> <span class="nv">$chartDef</span> <span class="n">-WorksheetName</span> <span class="n">SpeakerCountryChart</span> <span class="n">-Show</span>
 </code></pre></div><p>There are many other ways you can use this module in creating report dashboards. The <a href="https://github.com/dfinke/ImportExcel/tree/master/Examples">GitHub repository contains several examples</a> that you can use as a starting point.</p>
 </div>
         </article>

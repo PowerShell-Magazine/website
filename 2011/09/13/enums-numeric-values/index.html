@@ -237,8 +237,8 @@ if (!doNotTrack) {
           <div class="content"><h3 id="problem">Problem</h3>
 <p>Without any loop statements or pipelines, get the numeric values of an Enum (such as IO.FileAttributes) in 1 statement.</p>
 <h3 id="solution">Solution</h3>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="no">[Enum]</span><span class="p">::</span><span class="n">GetValues</span><span class="p">(</span><span class="s1">&#39;IO.FileAttributes&#39;</span><span class="p">)</span>
-<span class="ln">2</span><span class="no">[Enum]</span><span class="p">::</span><span class="n">GetValues</span><span class="p">(</span><span class="s1">&#39;IO.FileAttributes&#39;</span><span class="p">)</span> <span class="o">-as</span> <span class="s1">&#39;Long[]&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[Enum]</span><span class="p">::</span><span class="n">GetValues</span><span class="p">(</span><span class="s1">&#39;IO.FileAttributes&#39;</span><span class="p">)</span>
+<span class="no">[Enum]</span><span class="p">::</span><span class="n">GetValues</span><span class="p">(</span><span class="s1">&#39;IO.FileAttributes&#39;</span><span class="p">)</span> <span class="o">-as</span> <span class="s1">&#39;Long[]&#39;</span>
 </code></pre></div><p>Even though the numeric values of most Enum are of Int32, or Int (PowerShell&rsquo;s Int32 Type Accelerator), casting the output of Enum’s GetValues method as an Array of Int32, or Int, does not return the numeric -or integer- values. But, if the cast is to another compatible Numeric Type we get the expected output.</p>
 <p id="psmagWinner0" style="background: #B2FEE1; text-align: center;">
   Winner: James Brundage

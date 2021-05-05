@@ -238,12 +238,12 @@ if (!doNotTrack) {
 <h3 id="problem">Problem</h3>
 <p>Attain the value of a private variable declared in a child scope from that scope’s own child scope.</p>
 <h3 id="solution">Solution</h3>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="p">&amp;</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="nv">$Private:var</span> <span class="p">=</span> <span class="n">7</span>
-<span class="ln">3</span>    <span class="p">&amp;</span> <span class="p">{</span>
-<span class="ln">4</span>        <span class="nb">Get-Variable</span> <span class="n">var</span> <span class="n">-Scope</span> <span class="n">1</span> <span class="n">-ValueOnly</span>
-<span class="ln">5</span>    <span class="p">}</span>
-<span class="ln">6</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">&amp;</span> <span class="p">{</span>
+    <span class="nv">$Private:var</span> <span class="p">=</span> <span class="n">7</span>
+    <span class="p">&amp;</span> <span class="p">{</span>
+        <span class="nb">Get-Variable</span> <span class="n">var</span> <span class="n">-Scope</span> <span class="n">1</span> <span class="n">-ValueOnly</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>Declare the private variable var in a ScritBlock&rsquo;s scope (let’s call it “Scope A”). Next, from the scope of an inner ScriptBlock (we&rsquo;ll call this one “Scope B”), call the Get-Variable Cmdlet with the appropriate arguments to retrieve only the value of the private variable that is visible only in the parent&rsquo;s scope (Scope “A”).</p>
 <hr style="color: #d8d8d8; height: 1px;" />
 <p id="psmagWinner0" style="background: #B2FEE1; text-align: center;">

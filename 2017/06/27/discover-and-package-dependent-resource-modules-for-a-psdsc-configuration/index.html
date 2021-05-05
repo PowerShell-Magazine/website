@@ -216,7 +216,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>6 Min To Read
+              <i class="far fa-clock"></i>5 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>27 Jun, 2017
@@ -235,285 +235,285 @@ if (!doNotTrack) {
             </li>
           </ul>
           <div class="content"><p>If you have ever used the <a href="https://docs.microsoft.com/en-us/powershell/module/azurerm.compute/publish-azurermvmdscconfiguration?view=azurermps-4.0.0" target="_blank" rel="noopener noreferrer">Publish-AzureRmVMDscConfiguration</a> cmdlet in the Azure PowerShell tools, you may know already that this command discovers module dependencies for a configuration and packages all dependencies along with the configuration as a zip archive.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Publish-AzureRmVMDscConfiguration</span> <span class="s2">&#34;.\MyConfiguration.ps1&#34;</span> <span class="n">-OutputArchivePath</span> <span class="s2">&#34;.\MyConfiguration.ps1.zip&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Publish-AzureRmVMDscConfiguration</span> <span class="s2">&#34;.\MyConfiguration.ps1&#34;</span> <span class="n">-OutputArchivePath</span> <span class="s2">&#34;.\MyConfiguration.ps1.zip&#34;</span>
 </code></pre></div><p>When I first used this cmdlet, I felt this was really a good idea for on-premise build processes and immediately tried to find out how they discover module dependencies. I was almost certain that it was not just text parsing but may be a little bit more than that. This exploration lead me to the source code for this cmdlet and I certainly saw lot of traces towards <a href="https://msdn.microsoft.com/en-us/library/system.management.automation.language.ast(v=vs.85).aspx" target="_blank" rel="noopener noreferrer">AST</a> being used.</p>
 <p>The second instance that I came across the usage of AST in finding resource module dependencies was in the Configuration function in the PSDesiredStateConfiguration module. This function, starting from WMF 5.0, has a runtime parameter called ResourceModulesTuplesToImport. </p>
 <p><img src="/images/depend1.png" alt=""></p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">PS </span><span class="n">C:</span><span class="p">\&gt;</span> <span class="p">(</span><span class="nb">Get-Command</span> <span class="n">Configuration</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-ExpandProperty</span> <span class="n">Parameters</span><span class="p">).</span><span class="n">ResourceModuleTuplesToImport</span>
-<span class="ln">2</span>
-<span class="ln">3</span><span class="n">Name</span>            <span class="err">:</span> <span class="n">ResourceModuleTuplesToImport</span>
-<span class="ln">4</span><span class="n">ParameterType</span>   <span class="err">:</span> <span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">Generic</span><span class="p">.</span><span class="n">List</span><span class="p">`</span><span class="n">1</span><span class="no">[System.Tuple`3[System.String[],Microsoft.PowerShell.Commands.ModuleSpecification[],System.Version]]</span>
-<span class="ln">5</span><span class="n">ParameterSets</span>   <span class="err">:</span> <span class="p">{</span><span class="no">[__AllParameterSets, System.Management.Automation.ParameterSetMetadata]</span><span class="p">}</span>
-<span class="ln">6</span><span class="n">IsDynamic</span>       <span class="err">:</span> <span class="n">False</span>
-<span class="ln">7</span><span class="n">Aliases</span>         <span class="err">:</span> <span class="p">{}</span>
-<span class="ln">8</span><span class="n">Attributes</span>      <span class="err">:</span> <span class="p">{</span><span class="n">__AllParameterSets</span><span class="p">,</span> <span class="n">System</span><span class="p">.</span><span class="n">Management</span><span class="p">.</span><span class="n">Automation</span><span class="p">.</span><span class="n">ArgumentTypeConverterAttribute</span><span class="p">}</span>
-<span class="ln">9</span><span class="n">SwitchParameter</span> <span class="err">:</span> <span class="n">False</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="n">C:</span><span class="p">\&gt;</span> <span class="p">(</span><span class="nb">Get-Command</span> <span class="n">Configuration</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-ExpandProperty</span> <span class="n">Parameters</span><span class="p">).</span><span class="n">ResourceModuleTuplesToImport</span>
+
+<span class="n">Name</span>            <span class="err">:</span> <span class="n">ResourceModuleTuplesToImport</span>
+<span class="n">ParameterType</span>   <span class="err">:</span> <span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">Generic</span><span class="p">.</span><span class="n">List</span><span class="p">`</span><span class="n">1</span><span class="no">[System.Tuple`3[System.String[],Microsoft.PowerShell.Commands.ModuleSpecification[],System.Version]]</span>
+<span class="n">ParameterSets</span>   <span class="err">:</span> <span class="p">{</span><span class="no">[__AllParameterSets, System.Management.Automation.ParameterSetMetadata]</span><span class="p">}</span>
+<span class="n">IsDynamic</span>       <span class="err">:</span> <span class="n">False</span>
+<span class="n">Aliases</span>         <span class="err">:</span> <span class="p">{}</span>
+<span class="n">Attributes</span>      <span class="err">:</span> <span class="p">{</span><span class="n">__AllParameterSets</span><span class="p">,</span> <span class="n">System</span><span class="p">.</span><span class="n">Management</span><span class="p">.</span><span class="n">Automation</span><span class="p">.</span><span class="n">ArgumentTypeConverterAttribute</span><span class="p">}</span>
+<span class="n">SwitchParameter</span> <span class="err">:</span> <span class="n">False</span>
 </code></pre></div><p>The argument for the ResourceModulesTuplesToImport gets populated at runtime — when a Configuration gets loaded for the first time. To be specific, when you create a configuration document and load it into the memory, AST gets triggered and populates the argument to this parameter. You can trace this back to <a href="https://github.com/PowerShell/PowerShell/blob/master/src/System.Management.Automation/engine/parser/ast.cs">ast.cs</a>. Here is a part of that.</p>
-<div class="highlight"><pre class="chroma"><code class="language-c#" data-lang="c#"><span class="ln">1</span><span class="c1">///////////////////////////
-</span><span class="ln">2</span><span class="c1">// get import parameters
-</span><span class="ln">3</span><span class="c1"></span><span class="kt">var</span> <span class="n">bodyStatements</span> <span class="p">=</span> <span class="n">Body</span><span class="p">.</span><span class="n">ScriptBlock</span><span class="p">.</span><span class="n">EndBlock</span><span class="p">.</span><span class="n">Statements</span><span class="p">;</span>
-<span class="ln">4</span><span class="kt">var</span> <span class="n">resourceModulePairsToImport</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Tuple</span><span class="p">&gt;</span><span class="kt">string</span><span class="p">[],</span> <span class="n">ModuleSpecification</span><span class="p">[],</span> <span class="n">Version</span><span class="p">();</span>
-<span class="ln">5</span><span class="kt">var</span> <span class="n">resourceBody</span> <span class="p">=</span> <span class="p">(</span><span class="k">from</span> <span class="n">stm</span> <span class="k">in</span> <span class="n">bodyStatements</span> <span class="k">where</span> <span class="p">!</span><span class="n">IsImportCommand</span><span class="p">(</span><span class="n">stm</span><span class="p">,</span> <span class="n">resourceModulePairsToImport</span><span class="p">)</span> <span class="k">select</span> <span class="p">(</span><span class="n">StatementAst</span><span class="p">)</span><span class="n">stm</span><span class="p">.</span><span class="n">Copy</span><span class="p">()).</span><span class="n">ToList</span><span class="p">();</span>
+<div class="highlight"><pre class="chroma"><code class="language-c#" data-lang="c#"><span class="c1">///////////////////////////
+</span><span class="c1">// get import parameters
+</span><span class="c1"></span><span class="kt">var</span> <span class="n">bodyStatements</span> <span class="p">=</span> <span class="n">Body</span><span class="p">.</span><span class="n">ScriptBlock</span><span class="p">.</span><span class="n">EndBlock</span><span class="p">.</span><span class="n">Statements</span><span class="p">;</span>
+<span class="kt">var</span> <span class="n">resourceModulePairsToImport</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Tuple</span><span class="p">&gt;</span><span class="kt">string</span><span class="p">[],</span> <span class="n">ModuleSpecification</span><span class="p">[],</span> <span class="n">Version</span><span class="p">();</span>
+<span class="kt">var</span> <span class="n">resourceBody</span> <span class="p">=</span> <span class="p">(</span><span class="k">from</span> <span class="n">stm</span> <span class="k">in</span> <span class="n">bodyStatements</span> <span class="k">where</span> <span class="p">!</span><span class="n">IsImportCommand</span><span class="p">(</span><span class="n">stm</span><span class="p">,</span> <span class="n">resourceModulePairsToImport</span><span class="p">)</span> <span class="k">select</span> <span class="p">(</span><span class="n">StatementAst</span><span class="p">)</span><span class="n">stm</span><span class="p">.</span><span class="n">Copy</span><span class="p">()).</span><span class="n">ToList</span><span class="p">();</span>
 </code></pre></div><p>So, the whole magic of deriving the dependent modules is happening in the IsImportCommand method. Once I reviewed the code there, it wasn’t tough to reverse engineer that into PowerShell.</p>
 <p>I published my scripts to <a href="https://github.com/rchaganti/PSDSCUtils">https://github.com/rchaganti/PSDSCUtils</a>. Let’s take a look at the script now.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">  1</span><span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
-<span class="ln">  2</span><span class="k">param</span> <span class="p">(</span>
-<span class="ln">  3</span>    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
-<span class="ln">  4</span>    <span class="no">[String]</span> <span class="nv">$ConfigurationScript</span><span class="p">,</span>
-<span class="ln">  5</span>
-<span class="ln">  6</span>    <span class="p">[</span><span class="k">Parameter</span><span class="p">()]</span>
-<span class="ln">  7</span>    <span class="no">[Switch]</span> <span class="nv">$Package</span><span class="p">,</span>
-<span class="ln">  8</span>
-<span class="ln">  9</span>    <span class="p">[</span><span class="k">Parameter</span><span class="p">()]</span>
-<span class="ln"> 10</span>    <span class="no">[String]</span> <span class="nv">$PackagePath</span>
-<span class="ln"> 11</span><span class="p">)</span>
-<span class="ln"> 12</span>
-<span class="ln"> 13</span><span class="nv">$ConfigurationScriptContent</span> <span class="p">=</span> <span class="nb">Get-Content</span> <span class="n">-Path</span> <span class="nv">$ConfigurationScript</span> <span class="n">-Raw</span>
-<span class="ln"> 14</span><span class="nv">$ast</span> <span class="p">=</span> <span class="no">[System.Management.Automation.Language.Parser]</span><span class="p">::</span><span class="n">ParseInput</span><span class="p">(</span><span class="nv">$ConfigurationScriptContent</span><span class="p">,</span> <span class="no">[ref]</span><span class="nv">$null</span><span class="p">,</span> <span class="no">[ref]</span><span class="nv">$null</span><span class="p">)</span>
-<span class="ln"> 15</span><span class="nv">$configAst</span> <span class="p">=</span> <span class="nv">$ast</span><span class="p">.</span><span class="n">FindAll</span><span class="p">({</span> <span class="nv">$args</span><span class="p">[</span><span class="n">0</span><span class="p">]</span> <span class="o">-is</span> <span class="no">[System.Management.Automation.Language.ConfigurationDefinitionAst]</span><span class="p">},</span> <span class="nv">$true</span><span class="p">)</span>
-<span class="ln"> 16</span><span class="nv">$moduleSpecifcation</span> <span class="p">=</span> <span class="p">@()</span>
-<span class="ln"> 17</span><span class="k">foreach</span> <span class="p">(</span><span class="nv">$config</span> <span class="k">in</span> <span class="nv">$configAst</span><span class="p">)</span>
-<span class="ln"> 18</span><span class="p">{</span>
-<span class="ln"> 19</span>    <span class="nv">$dksAst</span> <span class="p">=</span> <span class="nv">$config</span><span class="p">.</span><span class="n">FindAll</span><span class="p">({</span> <span class="nv">$args</span><span class="p">[</span><span class="n">0</span><span class="p">]</span> <span class="o">-is</span> <span class="no">[System.Management.Automation.Language.DynamicKeywordStatementAst]</span><span class="p">},</span> <span class="nv">$true</span><span class="p">)</span>
-<span class="ln"> 20</span>
-<span class="ln"> 21</span>    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$dynKeyword</span> <span class="k">in</span> <span class="nv">$dksAst</span><span class="p">)</span>
-<span class="ln"> 22</span>    <span class="p">{</span>
-<span class="ln"> 23</span>        <span class="no">[System.Management.Automation.Language.CommandElementAst[]]</span> <span class="nv">$cea</span> <span class="p">=</span> <span class="nv">$dynKeyword</span><span class="p">.</span><span class="n">CommandElements</span><span class="p">.</span><span class="n">Copy</span><span class="p">()</span>
-<span class="ln"> 24</span>        <span class="nv">$allCommands</span> <span class="p">=</span> <span class="no">[System.Management.Automation.Language.CommandAst]</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="nv">$dynKeyword</span><span class="p">.</span><span class="n">Extent</span><span class="p">,</span> <span class="nv">$cea</span><span class="p">,</span> <span class="no">[System.Management.Automation.Language.TokenKind]</span><span class="p">::</span><span class="n">Unknown</span><span class="p">,</span> <span class="nv">$null</span><span class="p">)</span>
-<span class="ln"> 25</span>        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$importCommand</span> <span class="k">in</span> <span class="nv">$allCommands</span><span class="p">)</span>
-<span class="ln"> 26</span>        <span class="p">{</span>
-<span class="ln"> 27</span>            <span class="k">if</span> <span class="p">(</span><span class="nv">$importCommand</span><span class="p">.</span><span class="n">CommandElements</span><span class="p">[</span><span class="n">0</span><span class="p">].</span><span class="n">Value</span> <span class="o">-eq</span> <span class="s1">&#39;Import-DscResource&#39;</span><span class="p">)</span>
-<span class="ln"> 28</span>            <span class="p">{</span>
-<span class="ln"> 29</span>                <span class="no">[System.Management.Automation.Language.StaticBindingResult]</span><span class="nv">$spBinder</span> <span class="p">=</span> <span class="no">[System.Management.Automation.Language.StaticParameterBinder]</span><span class="p">::</span><span class="n">BindCommand</span><span class="p">(</span><span class="nv">$importCommand</span><span class="p">,</span> <span class="nv">$false</span><span class="p">)</span>
-<span class="ln"> 30</span>            
-<span class="ln"> 31</span>                <span class="nv">$moduleNames</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span>
-<span class="ln"> 32</span>                <span class="nv">$resourceNames</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span>
-<span class="ln"> 33</span>                <span class="nv">$moduleVersion</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span>
-<span class="ln"> 34</span>                <span class="k">foreach</span> <span class="p">(</span><span class="nv">$item</span> <span class="k">in</span> <span class="nv">$spBinder</span><span class="p">.</span><span class="n">BoundParameters</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">())</span>
-<span class="ln"> 35</span>                <span class="p">{</span> 
-<span class="ln"> 36</span>                    <span class="nv">$parameterName</span> <span class="p">=</span> <span class="nv">$item</span><span class="p">.</span><span class="n">key</span>
-<span class="ln"> 37</span>                    <span class="nv">$argument</span> <span class="p">=</span> <span class="nv">$item</span><span class="p">.</span><span class="n">Value</span><span class="p">.</span><span class="n">Value</span><span class="p">.</span><span class="n">Extent</span><span class="p">.</span><span class="n">Text</span>
-<span class="ln"> 38</span>
-<span class="ln"> 39</span>                    <span class="c">#Check if the parametername is Name</span>
-<span class="ln"> 40</span>                    <span class="nv">$parameterToCheck</span> <span class="p">=</span> <span class="s1">&#39;Name&#39;</span>
-<span class="ln"> 41</span>                    <span class="nv">$parameterToCheckLength</span> <span class="p">=</span> <span class="nv">$parameterToCheck</span><span class="p">.</span><span class="n">Length</span>
-<span class="ln"> 42</span>                    <span class="nv">$parameterNameLength</span> <span class="p">=</span> <span class="nv">$parameterName</span><span class="p">.</span><span class="n">Length</span>
-<span class="ln"> 43</span>
-<span class="ln"> 44</span>                    <span class="k">if</span> <span class="p">((</span><span class="nv">$parameterNameLength</span> <span class="o">-le</span> <span class="nv">$parameterToCheckLength</span><span class="p">)</span> <span class="o">-and</span> <span class="p">(</span><span class="nv">$parameterName</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="nv">$parameterToCheck</span><span class="p">.</span><span class="n">Substring</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="nv">$parameterNameLength</span><span class="p">))))</span>
-<span class="ln"> 45</span>                    <span class="p">{</span>
-<span class="ln"> 46</span>                        <span class="nv">$resourceNames</span> <span class="p">=</span> <span class="nv">$argument</span><span class="p">.</span><span class="n">Split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-<span class="ln"> 47</span>                    <span class="p">}</span>
-<span class="ln"> 48</span>
-<span class="ln"> 49</span>                    <span class="c">#Check if the parametername is ModuleName</span>
-<span class="ln"> 50</span>                    <span class="nv">$parameterToCheck</span> <span class="p">=</span> <span class="s1">&#39;ModuleName&#39;</span>
-<span class="ln"> 51</span>                    <span class="nv">$parameterToCheckLength</span> <span class="p">=</span> <span class="nv">$parameterToCheck</span><span class="p">.</span><span class="n">Length</span>
-<span class="ln"> 52</span>                    <span class="nv">$parameterNameLength</span> <span class="p">=</span> <span class="nv">$parameterName</span><span class="p">.</span><span class="n">Length</span>
-<span class="ln"> 53</span>                    <span class="k">if</span> <span class="p">((</span><span class="nv">$parameterNameLength</span> <span class="o">-le</span> <span class="nv">$parameterToCheckLength</span><span class="p">)</span> <span class="o">-and</span> <span class="p">(</span><span class="nv">$parameterName</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="nv">$parameterToCheck</span><span class="p">.</span><span class="n">Substring</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="nv">$parameterNameLength</span><span class="p">))))</span>
-<span class="ln"> 54</span>                    <span class="p">{</span>
-<span class="ln"> 55</span>                        <span class="nv">$moduleNames</span> <span class="p">=</span> <span class="nv">$argument</span><span class="p">.</span><span class="n">Split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-<span class="ln"> 56</span>                    <span class="p">}</span>
-<span class="ln"> 57</span>
-<span class="ln"> 58</span>                    <span class="c">#Check if the parametername is ModuleVersion</span>
-<span class="ln"> 59</span>                    <span class="nv">$parameterToCheck</span> <span class="p">=</span> <span class="s1">&#39;ModuleVersion&#39;</span>
-<span class="ln"> 60</span>                    <span class="nv">$parameterToCheckLength</span> <span class="p">=</span> <span class="nv">$parameterToCheck</span><span class="p">.</span><span class="n">Length</span>
-<span class="ln"> 61</span>                    <span class="nv">$parameterNameLength</span> <span class="p">=</span> <span class="nv">$parameterName</span><span class="p">.</span><span class="n">Length</span>
-<span class="ln"> 62</span>                    <span class="k">if</span> <span class="p">((</span><span class="nv">$parameterNameLength</span> <span class="o">-le</span> <span class="nv">$parameterToCheckLength</span><span class="p">)</span> <span class="o">-and</span> <span class="p">(</span><span class="nv">$parameterName</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="nv">$parameterToCheck</span><span class="p">.</span><span class="n">Substring</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="nv">$parameterNameLength</span><span class="p">))))</span>
-<span class="ln"> 63</span>                    <span class="p">{</span>
-<span class="ln"> 64</span>                        <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="p">(</span><span class="nv">$moduleVersion</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)))</span>
-<span class="ln"> 65</span>                        <span class="p">{</span>
-<span class="ln"> 66</span>                            <span class="nv">$moduleVersion</span> <span class="p">=</span> <span class="nv">$argument</span>
-<span class="ln"> 67</span>                        <span class="p">}</span>
-<span class="ln"> 68</span>                        <span class="k">else</span>
-<span class="ln"> 69</span>                        <span class="p">{</span>
-<span class="ln"> 70</span>                            <span class="k">throw</span> <span class="s1">&#39;Cannot specify more than one moduleversion&#39;</span> 
-<span class="ln"> 71</span>                        <span class="p">}</span>
-<span class="ln"> 72</span>                    <span class="p">}</span>
-<span class="ln"> 73</span>                <span class="p">}</span>
-<span class="ln"> 74</span>
-<span class="ln"> 75</span>                <span class="c">#Get the module details</span>
-<span class="ln"> 76</span>                <span class="c">#&#34;Module Names: &#34; + $moduleNames</span>
-<span class="ln"> 77</span>                <span class="c">#&#34;Resource Name: &#34; + $resourceNames</span>
-<span class="ln"> 78</span>                <span class="c">#&#34;Module Version: &#34; + $moduleVersion </span>
-<span class="ln"> 79</span>
-<span class="ln"> 80</span>                <span class="k">if</span><span class="p">(</span><span class="nv">$moduleVersion</span><span class="p">)</span>
-<span class="ln"> 81</span>                <span class="p">{</span>
-<span class="ln"> 82</span>                    <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="nv">$moduleNames</span><span class="p">)</span>
-<span class="ln"> 83</span>                    <span class="p">{</span>
-<span class="ln"> 84</span>                        <span class="k">throw</span> <span class="s1">&#39;-ModuleName is required when -ModuleVersion is used&#39;</span>
-<span class="ln"> 85</span>                    <span class="p">}</span>
-<span class="ln"> 86</span>
-<span class="ln"> 87</span>                    <span class="k">if</span> <span class="p">(</span><span class="nv">$moduleNames</span><span class="p">.</span><span class="n">Count</span> <span class="o">-gt</span> <span class="n">1</span><span class="p">)</span>
-<span class="ln"> 88</span>                    <span class="p">{</span>
-<span class="ln"> 89</span>                        <span class="k">throw</span> <span class="s1">&#39;Cannot specify more than one module when ModuleVersion parameter is used&#39;</span>
-<span class="ln"> 90</span>                    <span class="p">}</span>
-<span class="ln"> 91</span>                <span class="p">}</span>
-<span class="ln"> 92</span>
-<span class="ln"> 93</span>                <span class="k">if</span> <span class="p">(</span><span class="nv">$resourceNames</span><span class="p">)</span>
-<span class="ln"> 94</span>                <span class="p">{</span>
-<span class="ln"> 95</span>                    <span class="k">if</span> <span class="p">(</span><span class="nv">$moduleNames</span><span class="p">.</span><span class="n">Count</span> <span class="o">-gt</span> <span class="n">1</span><span class="p">)</span>
-<span class="ln"> 96</span>                    <span class="p">{</span>
-<span class="ln"> 97</span>                        <span class="k">throw</span> <span class="s1">&#39;Cannot specify more than one module when the Name parameter is used&#39;</span>
-<span class="ln"> 98</span>                    <span class="p">}</span>
-<span class="ln"> 99</span>                <span class="p">}</span>
-<span class="ln">100</span>            
-<span class="ln">101</span>                <span class="c">#We have multiple combinations of parameters possible</span>
-<span class="ln">102</span>                <span class="c">#Case 1: All three are provided: ModuleName,ModuleVerison, and Name</span>
-<span class="ln">103</span>                <span class="c">#Case 2: ModuleName and ModuleVersion are provided</span>
-<span class="ln">104</span>                <span class="c">#Case 3: Only Name is provided</span>
-<span class="ln">105</span>                <span class="c">#Case 4: Only ModuleName is provided</span>
-<span class="ln">106</span>                
-<span class="ln">107</span>                <span class="c">#Case 1, 2, and 3</span>
-<span class="ln">108</span>                <span class="c">#At the moment, there is no error check on the resource names supplied as argument to -Name</span>
-<span class="ln">109</span>                <span class="k">if</span> <span class="p">(</span><span class="nv">$moduleNames</span><span class="p">)</span>
-<span class="ln">110</span>                <span class="p">{</span>
-<span class="ln">111</span>                    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$module</span> <span class="k">in</span> <span class="nv">$moduleNames</span><span class="p">)</span>
-<span class="ln">112</span>                    <span class="p">{</span>
-<span class="ln">113</span>                        <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="p">(</span><span class="nv">$module</span> <span class="o">-eq</span> <span class="s1">&#39;PSDesiredStateConfiguration&#39;</span><span class="p">))</span>
-<span class="ln">114</span>                        <span class="p">{</span>
-<span class="ln">115</span>                            <span class="nv">$moduleHash</span> <span class="p">=</span> <span class="p">@{</span>
-<span class="ln">116</span>                                <span class="n">ModuleName</span> <span class="p">=</span> <span class="nv">$module</span>
-<span class="ln">117</span>                            <span class="p">}</span>
-<span class="ln">118</span>
-<span class="ln">119</span>                            <span class="k">if</span> <span class="p">(</span><span class="nv">$moduleVersion</span><span class="p">)</span>
-<span class="ln">120</span>                            <span class="p">{</span>
-<span class="ln">121</span>                                <span class="nv">$moduleHash</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;ModuleVersion&#39;</span><span class="p">,</span><span class="nv">$moduleVersion</span><span class="p">)</span>
-<span class="ln">122</span>                            <span class="p">}</span>
-<span class="ln">123</span>                            <span class="k">else</span>
-<span class="ln">124</span>                            <span class="p">{</span>
-<span class="ln">125</span>                                <span class="nv">$availableModuleVersion</span> <span class="p">=</span> <span class="nb">Get-RecentModuleVersion</span> <span class="n">-ModuleName</span> <span class="nv">$module</span>
-<span class="ln">126</span>                                <span class="nv">$moduleHash</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;ModuleVersion&#39;</span><span class="p">,</span><span class="nv">$availableModuleVersion</span><span class="p">)</span>
-<span class="ln">127</span>                            <span class="p">}</span>
-<span class="ln">128</span>
-<span class="ln">129</span>                            <span class="nv">$moduleInfo</span> <span class="p">=</span> <span class="nb">Get-Module</span> <span class="n">-ListAvailable</span> <span class="n">-FullyQualifiedName</span> <span class="nv">$moduleHash</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
-<span class="ln">130</span>                            <span class="k">if</span> <span class="p">(</span><span class="nv">$moduleInfo</span><span class="p">)</span>
-<span class="ln">131</span>                            <span class="p">{</span>
-<span class="ln">132</span>                                <span class="c">#TODO: Check if listed resources are equal or subset of what module exports</span>
-<span class="ln">133</span>                                <span class="nv">$moduleSpecifcation</span> <span class="p">+=</span> <span class="nv">$moduleInfo</span>
-<span class="ln">134</span>                            <span class="p">}</span>
-<span class="ln">135</span>                            <span class="k">else</span>
-<span class="ln">136</span>                            <span class="p">{</span>
-<span class="ln">137</span>                                <span class="k">throw</span> <span class="s2">&#34;No module exists with name ${module}&#34;</span>
-<span class="ln">138</span>                            <span class="p">}</span>
-<span class="ln">139</span>                        <span class="p">}</span>
-<span class="ln">140</span>                    <span class="p">}</span>    
-<span class="ln">141</span>                <span class="p">}</span>
-<span class="ln">142</span>
-<span class="ln">143</span>                <span class="c">#Case 2</span>
-<span class="ln">144</span>                <span class="c">#Foreach resource, we need to find a module</span>
-<span class="ln">145</span>                <span class="k">if</span> <span class="p">((</span><span class="o">-not</span> <span class="nv">$moduleNames</span><span class="p">)</span> <span class="o">-and</span> <span class="nv">$resourceNames</span><span class="p">)</span>
-<span class="ln">146</span>                <span class="p">{</span>
-<span class="ln">147</span>                    <span class="nv">$moduleHash</span> <span class="p">=</span> <span class="nb">Get-DscModulesFromResourceName</span> <span class="n">-ResourceNames</span> <span class="nv">$resourceNames</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span>
-<span class="ln">148</span>                    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$module</span> <span class="k">in</span> <span class="nv">$moduleHash</span><span class="p">)</span>
-<span class="ln">149</span>                    <span class="p">{</span>
-<span class="ln">150</span>                        <span class="nv">$moduleInfo</span> <span class="p">=</span> <span class="nb">Get-Module</span> <span class="n">-ListAvailable</span> <span class="n">-FullyQualifiedName</span> <span class="nv">$module</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span>   
-<span class="ln">151</span>                        <span class="nv">$moduleSpecifcation</span> <span class="p">+=</span> <span class="nv">$moduleInfo</span> 
-<span class="ln">152</span>                    <span class="p">}</span>
-<span class="ln">153</span>                <span class="p">}</span>
-<span class="ln">154</span>            <span class="p">}</span>
-<span class="ln">155</span>        <span class="p">}</span>
-<span class="ln">156</span>    <span class="p">}</span>
-<span class="ln">157</span><span class="p">}</span>
-<span class="ln">158</span>
-<span class="ln">159</span><span class="k">if</span> <span class="p">(</span><span class="nv">$Package</span><span class="p">)</span>
-<span class="ln">160</span><span class="p">{</span>
-<span class="ln">161</span>    <span class="c">#Create a temp folder</span>
-<span class="ln">162</span>    <span class="nv">$null</span> <span class="p">=</span> <span class="n">mkdir</span> <span class="s2">&#34;${env:temp}\modules&#34;</span> <span class="n">-Force</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span>
-<span class="ln">163</span>
-<span class="ln">164</span>    <span class="c">#Copy all module folders to a temp folder</span>
-<span class="ln">165</span>    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$module</span> <span class="k">in</span> <span class="nv">$moduleSpecifcation</span><span class="p">)</span>
-<span class="ln">166</span>    <span class="p">{</span>
-<span class="ln">167</span>        <span class="nv">$null</span> <span class="p">=</span> <span class="n">mkdir</span> <span class="s2">&#34;${env:temp}\modules\</span><span class="p">$(</span><span class="nv">$module</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span><span class="s2">&#34;</span>
-<span class="ln">168</span>        <span class="nb">Copy-Item</span> <span class="n">-Path</span> <span class="nv">$module</span><span class="p">.</span><span class="n">ModuleBase</span> <span class="n">-Destination</span> <span class="s2">&#34;${env:temp}\modules\</span><span class="p">$(</span><span class="nv">$module</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span><span class="s2">&#34;</span> <span class="n">-Container</span> <span class="n">-Recurse</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span>
-<span class="ln">169</span>    <span class="p">}</span>
-<span class="ln">170</span>
-<span class="ln">171</span>    <span class="c">#Create an archive with all needed modules</span>
-<span class="ln">172</span>    <span class="nb">Compress-Archive</span> <span class="n">-Path</span> <span class="s2">&#34;${env:temp}\modules&#34;</span> <span class="n">-DestinationPath</span> <span class="nv">$PackagePath</span> <span class="n">-Force</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span>
-<span class="ln">173</span>
-<span class="ln">174</span>    <span class="c">#Remove the folder</span>
-<span class="ln">175</span>    <span class="nb">Remove-Item</span> <span class="n">-Path</span> <span class="s2">&#34;${env:temp}\modules&#34;</span> <span class="n">-Recurse</span> <span class="n">-Force</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span>
-<span class="ln">176</span><span class="p">}</span>
-<span class="ln">177</span><span class="k">else</span>
-<span class="ln">178</span><span class="p">{</span>
-<span class="ln">179</span>    <span class="k">return</span> <span class="nv">$moduleSpecifcation</span>
-<span class="ln">180</span><span class="p">}</span>
-<span class="ln">181</span>
-<span class="ln">182</span><span class="k">function</span> <span class="nb">Get-DscModulesFromResourceName</span>
-<span class="ln">183</span><span class="p">{</span>
-<span class="ln">184</span>    <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
-<span class="ln">185</span>    <span class="k">param</span> <span class="p">(</span>
-<span class="ln">186</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
-<span class="ln">187</span>        <span class="no">[string[]]</span> <span class="nv">$ResourceNames</span>
-<span class="ln">188</span>    <span class="p">)</span>
-<span class="ln">189</span>
-<span class="ln">190</span>    <span class="k">process</span>
-<span class="ln">191</span>    <span class="p">{</span>
-<span class="ln">192</span>        <span class="nv">$moduleInfo</span> <span class="p">=</span> <span class="nb">Get-DscResource</span> <span class="n">-Name</span> <span class="nv">$ResourceNames</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">-Expand</span> <span class="n">ModuleName</span> <span class="n">-Unique</span>
-<span class="ln">193</span>        <span class="nv">$moduleHash</span> <span class="p">=</span> <span class="p">@()</span>
-<span class="ln">194</span>        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$module</span> <span class="k">in</span> <span class="nv">$moduleInfo</span><span class="p">)</span>
-<span class="ln">195</span>        <span class="p">{</span>
-<span class="ln">196</span>            <span class="nv">$moduleHash</span> <span class="p">+=</span> <span class="p">@{</span>
-<span class="ln">197</span>                 <span class="n">ModuleName</span> <span class="p">=</span> <span class="nv">$module</span>
-<span class="ln">198</span>                 <span class="n">ModuleVersion</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Get-RecentModuleVersion</span> <span class="n">-ModuleName</span> <span class="nv">$module</span><span class="p">)</span>
-<span class="ln">199</span>            <span class="p">}</span>
-<span class="ln">200</span>        <span class="p">}</span>
-<span class="ln">201</span>
-<span class="ln">202</span>        <span class="k">return</span> <span class="nv">$moduleHash</span>
-<span class="ln">203</span>    <span class="p">}</span>
-<span class="ln">204</span><span class="p">}</span>
-<span class="ln">205</span>
-<span class="ln">206</span><span class="k">function</span> <span class="nb">Get-DscResourcesFromModule</span>
-<span class="ln">207</span><span class="p">{</span>
-<span class="ln">208</span>    <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
-<span class="ln">209</span>    <span class="k">param</span> <span class="p">(</span>
-<span class="ln">210</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
-<span class="ln">211</span>        <span class="no">[String]</span> <span class="nv">$ModuleName</span><span class="p">,</span>
-<span class="ln">212</span>
-<span class="ln">213</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">()]</span>
-<span class="ln">214</span>        <span class="no">[Version]</span> <span class="nv">$ModuleVersion</span>
-<span class="ln">215</span>    <span class="p">)</span>
-<span class="ln">216</span>
-<span class="ln">217</span>    <span class="k">process</span>
-<span class="ln">218</span>    <span class="p">{</span>
-<span class="ln">219</span>        <span class="nv">$resourceInfo</span> <span class="p">=</span> <span class="nb">Get-DscResource</span> <span class="n">-Module</span> <span class="nv">$ModuleName</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span>
-<span class="ln">220</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$resourceInfo</span><span class="p">)</span>
-<span class="ln">221</span>        <span class="p">{</span>
-<span class="ln">222</span>            <span class="k">if</span> <span class="p">(</span><span class="nv">$ModuleVersion</span><span class="p">)</span>
-<span class="ln">223</span>            <span class="p">{</span>
-<span class="ln">224</span>                <span class="nv">$resources</span> <span class="p">=</span> <span class="nv">$resourceInfo</span><span class="p">.</span><span class="n">Where</span><span class="p">({</span><span class="nv">$_</span><span class="p">.</span><span class="n">Module</span><span class="p">.</span><span class="n">Version</span> <span class="o">-eq</span> <span class="nv">$ModuleVersion</span><span class="p">})</span>
-<span class="ln">225</span>                <span class="k">return</span> <span class="nv">$resources</span><span class="p">.</span><span class="n">Name</span>
-<span class="ln">226</span>            <span class="p">}</span>
-<span class="ln">227</span>            <span class="k">else</span>
-<span class="ln">228</span>            <span class="p">{</span>
-<span class="ln">229</span>                <span class="c">#check if there are multiple versions of the modules; if so, return the most recent one</span>
-<span class="ln">230</span>                <span class="nv">$mostRecentVersion</span> <span class="p">=</span> <span class="nb">Get-RecentModuleVersion</span> <span class="n">-ModuleName</span> <span class="nv">$ModuleName</span>
-<span class="ln">231</span>                <span class="nb">Get-DscResourcesFromModule</span> <span class="n">-ModuleName</span> <span class="nv">$ModuleName</span> <span class="n">-ModuleVersion</span> <span class="nv">$mostRecentVersion</span>
-<span class="ln">232</span>            <span class="p">}</span>
-<span class="ln">233</span>        <span class="p">}</span>
-<span class="ln">234</span>    <span class="p">}</span>
-<span class="ln">235</span><span class="p">}</span>
-<span class="ln">236</span>
-<span class="ln">237</span><span class="k">function</span> <span class="nb">Get-RecentModuleVersion</span>
-<span class="ln">238</span><span class="p">{</span>
-<span class="ln">239</span>    <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
-<span class="ln">240</span>    <span class="k">param</span> <span class="p">(</span>
-<span class="ln">241</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
-<span class="ln">242</span>        <span class="no">[String]</span> <span class="nv">$ModuleName</span>
-<span class="ln">243</span>    <span class="p">)</span>
-<span class="ln">244</span>
-<span class="ln">245</span>    <span class="k">process</span>
-<span class="ln">246</span>    <span class="p">{</span>
-<span class="ln">247</span>        <span class="nv">$moduleInfo</span> <span class="p">=</span> <span class="nb">Get-Module</span> <span class="n">-ListAvailable</span> <span class="n">-Name</span> <span class="nv">$ModuleName</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span> <span class="p">|</span> <span class="nb">Sort </span><span class="n">-Property</span> <span class="n">Version</span>
-<span class="ln">248</span>        <span class="k">if</span> <span class="p">(</span><span class="nv">$moduleInfo</span><span class="p">)</span>
-<span class="ln">249</span>        <span class="p">{</span>
-<span class="ln">250</span>            <span class="k">return</span> <span class="p">(</span><span class="nv">$moduleInfo</span><span class="p">[-</span><span class="n">1</span><span class="p">].</span><span class="n">Version</span><span class="p">).</span><span class="n">ToString</span><span class="p">()</span>
-<span class="ln">251</span>        <span class="p">}</span>
-<span class="ln">252</span>    <span class="p">}</span>
-<span class="ln">253</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
+<span class="k">param</span> <span class="p">(</span>
+    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+    <span class="no">[String]</span> <span class="nv">$ConfigurationScript</span><span class="p">,</span>
+
+    <span class="p">[</span><span class="k">Parameter</span><span class="p">()]</span>
+    <span class="no">[Switch]</span> <span class="nv">$Package</span><span class="p">,</span>
+
+    <span class="p">[</span><span class="k">Parameter</span><span class="p">()]</span>
+    <span class="no">[String]</span> <span class="nv">$PackagePath</span>
+<span class="p">)</span>
+
+<span class="nv">$ConfigurationScriptContent</span> <span class="p">=</span> <span class="nb">Get-Content</span> <span class="n">-Path</span> <span class="nv">$ConfigurationScript</span> <span class="n">-Raw</span>
+<span class="nv">$ast</span> <span class="p">=</span> <span class="no">[System.Management.Automation.Language.Parser]</span><span class="p">::</span><span class="n">ParseInput</span><span class="p">(</span><span class="nv">$ConfigurationScriptContent</span><span class="p">,</span> <span class="no">[ref]</span><span class="nv">$null</span><span class="p">,</span> <span class="no">[ref]</span><span class="nv">$null</span><span class="p">)</span>
+<span class="nv">$configAst</span> <span class="p">=</span> <span class="nv">$ast</span><span class="p">.</span><span class="n">FindAll</span><span class="p">({</span> <span class="nv">$args</span><span class="p">[</span><span class="n">0</span><span class="p">]</span> <span class="o">-is</span> <span class="no">[System.Management.Automation.Language.ConfigurationDefinitionAst]</span><span class="p">},</span> <span class="nv">$true</span><span class="p">)</span>
+<span class="nv">$moduleSpecifcation</span> <span class="p">=</span> <span class="p">@()</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$config</span> <span class="k">in</span> <span class="nv">$configAst</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$dksAst</span> <span class="p">=</span> <span class="nv">$config</span><span class="p">.</span><span class="n">FindAll</span><span class="p">({</span> <span class="nv">$args</span><span class="p">[</span><span class="n">0</span><span class="p">]</span> <span class="o">-is</span> <span class="no">[System.Management.Automation.Language.DynamicKeywordStatementAst]</span><span class="p">},</span> <span class="nv">$true</span><span class="p">)</span>
+
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$dynKeyword</span> <span class="k">in</span> <span class="nv">$dksAst</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="no">[System.Management.Automation.Language.CommandElementAst[]]</span> <span class="nv">$cea</span> <span class="p">=</span> <span class="nv">$dynKeyword</span><span class="p">.</span><span class="n">CommandElements</span><span class="p">.</span><span class="n">Copy</span><span class="p">()</span>
+        <span class="nv">$allCommands</span> <span class="p">=</span> <span class="no">[System.Management.Automation.Language.CommandAst]</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="nv">$dynKeyword</span><span class="p">.</span><span class="n">Extent</span><span class="p">,</span> <span class="nv">$cea</span><span class="p">,</span> <span class="no">[System.Management.Automation.Language.TokenKind]</span><span class="p">::</span><span class="n">Unknown</span><span class="p">,</span> <span class="nv">$null</span><span class="p">)</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$importCommand</span> <span class="k">in</span> <span class="nv">$allCommands</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$importCommand</span><span class="p">.</span><span class="n">CommandElements</span><span class="p">[</span><span class="n">0</span><span class="p">].</span><span class="n">Value</span> <span class="o">-eq</span> <span class="s1">&#39;Import-DscResource&#39;</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="no">[System.Management.Automation.Language.StaticBindingResult]</span><span class="nv">$spBinder</span> <span class="p">=</span> <span class="no">[System.Management.Automation.Language.StaticParameterBinder]</span><span class="p">::</span><span class="n">BindCommand</span><span class="p">(</span><span class="nv">$importCommand</span><span class="p">,</span> <span class="nv">$false</span><span class="p">)</span>
+            
+                <span class="nv">$moduleNames</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span>
+                <span class="nv">$resourceNames</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span>
+                <span class="nv">$moduleVersion</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span>
+                <span class="k">foreach</span> <span class="p">(</span><span class="nv">$item</span> <span class="k">in</span> <span class="nv">$spBinder</span><span class="p">.</span><span class="n">BoundParameters</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">())</span>
+                <span class="p">{</span> 
+                    <span class="nv">$parameterName</span> <span class="p">=</span> <span class="nv">$item</span><span class="p">.</span><span class="n">key</span>
+                    <span class="nv">$argument</span> <span class="p">=</span> <span class="nv">$item</span><span class="p">.</span><span class="n">Value</span><span class="p">.</span><span class="n">Value</span><span class="p">.</span><span class="n">Extent</span><span class="p">.</span><span class="n">Text</span>
+
+                    <span class="c">#Check if the parametername is Name</span>
+                    <span class="nv">$parameterToCheck</span> <span class="p">=</span> <span class="s1">&#39;Name&#39;</span>
+                    <span class="nv">$parameterToCheckLength</span> <span class="p">=</span> <span class="nv">$parameterToCheck</span><span class="p">.</span><span class="n">Length</span>
+                    <span class="nv">$parameterNameLength</span> <span class="p">=</span> <span class="nv">$parameterName</span><span class="p">.</span><span class="n">Length</span>
+
+                    <span class="k">if</span> <span class="p">((</span><span class="nv">$parameterNameLength</span> <span class="o">-le</span> <span class="nv">$parameterToCheckLength</span><span class="p">)</span> <span class="o">-and</span> <span class="p">(</span><span class="nv">$parameterName</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="nv">$parameterToCheck</span><span class="p">.</span><span class="n">Substring</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="nv">$parameterNameLength</span><span class="p">))))</span>
+                    <span class="p">{</span>
+                        <span class="nv">$resourceNames</span> <span class="p">=</span> <span class="nv">$argument</span><span class="p">.</span><span class="n">Split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+                    <span class="p">}</span>
+
+                    <span class="c">#Check if the parametername is ModuleName</span>
+                    <span class="nv">$parameterToCheck</span> <span class="p">=</span> <span class="s1">&#39;ModuleName&#39;</span>
+                    <span class="nv">$parameterToCheckLength</span> <span class="p">=</span> <span class="nv">$parameterToCheck</span><span class="p">.</span><span class="n">Length</span>
+                    <span class="nv">$parameterNameLength</span> <span class="p">=</span> <span class="nv">$parameterName</span><span class="p">.</span><span class="n">Length</span>
+                    <span class="k">if</span> <span class="p">((</span><span class="nv">$parameterNameLength</span> <span class="o">-le</span> <span class="nv">$parameterToCheckLength</span><span class="p">)</span> <span class="o">-and</span> <span class="p">(</span><span class="nv">$parameterName</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="nv">$parameterToCheck</span><span class="p">.</span><span class="n">Substring</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="nv">$parameterNameLength</span><span class="p">))))</span>
+                    <span class="p">{</span>
+                        <span class="nv">$moduleNames</span> <span class="p">=</span> <span class="nv">$argument</span><span class="p">.</span><span class="n">Split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+                    <span class="p">}</span>
+
+                    <span class="c">#Check if the parametername is ModuleVersion</span>
+                    <span class="nv">$parameterToCheck</span> <span class="p">=</span> <span class="s1">&#39;ModuleVersion&#39;</span>
+                    <span class="nv">$parameterToCheckLength</span> <span class="p">=</span> <span class="nv">$parameterToCheck</span><span class="p">.</span><span class="n">Length</span>
+                    <span class="nv">$parameterNameLength</span> <span class="p">=</span> <span class="nv">$parameterName</span><span class="p">.</span><span class="n">Length</span>
+                    <span class="k">if</span> <span class="p">((</span><span class="nv">$parameterNameLength</span> <span class="o">-le</span> <span class="nv">$parameterToCheckLength</span><span class="p">)</span> <span class="o">-and</span> <span class="p">(</span><span class="nv">$parameterName</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="nv">$parameterToCheck</span><span class="p">.</span><span class="n">Substring</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="nv">$parameterNameLength</span><span class="p">))))</span>
+                    <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="p">(</span><span class="nv">$moduleVersion</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)))</span>
+                        <span class="p">{</span>
+                            <span class="nv">$moduleVersion</span> <span class="p">=</span> <span class="nv">$argument</span>
+                        <span class="p">}</span>
+                        <span class="k">else</span>
+                        <span class="p">{</span>
+                            <span class="k">throw</span> <span class="s1">&#39;Cannot specify more than one moduleversion&#39;</span> 
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+
+                <span class="c">#Get the module details</span>
+                <span class="c">#&#34;Module Names: &#34; + $moduleNames</span>
+                <span class="c">#&#34;Resource Name: &#34; + $resourceNames</span>
+                <span class="c">#&#34;Module Version: &#34; + $moduleVersion </span>
+
+                <span class="k">if</span><span class="p">(</span><span class="nv">$moduleVersion</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="nv">$moduleNames</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="k">throw</span> <span class="s1">&#39;-ModuleName is required when -ModuleVersion is used&#39;</span>
+                    <span class="p">}</span>
+
+                    <span class="k">if</span> <span class="p">(</span><span class="nv">$moduleNames</span><span class="p">.</span><span class="n">Count</span> <span class="o">-gt</span> <span class="n">1</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="k">throw</span> <span class="s1">&#39;Cannot specify more than one module when ModuleVersion parameter is used&#39;</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nv">$resourceNames</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nv">$moduleNames</span><span class="p">.</span><span class="n">Count</span> <span class="o">-gt</span> <span class="n">1</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="k">throw</span> <span class="s1">&#39;Cannot specify more than one module when the Name parameter is used&#39;</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            
+                <span class="c">#We have multiple combinations of parameters possible</span>
+                <span class="c">#Case 1: All three are provided: ModuleName,ModuleVerison, and Name</span>
+                <span class="c">#Case 2: ModuleName and ModuleVersion are provided</span>
+                <span class="c">#Case 3: Only Name is provided</span>
+                <span class="c">#Case 4: Only ModuleName is provided</span>
+                
+                <span class="c">#Case 1, 2, and 3</span>
+                <span class="c">#At the moment, there is no error check on the resource names supplied as argument to -Name</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nv">$moduleNames</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$module</span> <span class="k">in</span> <span class="nv">$moduleNames</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="p">(</span><span class="nv">$module</span> <span class="o">-eq</span> <span class="s1">&#39;PSDesiredStateConfiguration&#39;</span><span class="p">))</span>
+                        <span class="p">{</span>
+                            <span class="nv">$moduleHash</span> <span class="p">=</span> <span class="p">@{</span>
+                                <span class="n">ModuleName</span> <span class="p">=</span> <span class="nv">$module</span>
+                            <span class="p">}</span>
+
+                            <span class="k">if</span> <span class="p">(</span><span class="nv">$moduleVersion</span><span class="p">)</span>
+                            <span class="p">{</span>
+                                <span class="nv">$moduleHash</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;ModuleVersion&#39;</span><span class="p">,</span><span class="nv">$moduleVersion</span><span class="p">)</span>
+                            <span class="p">}</span>
+                            <span class="k">else</span>
+                            <span class="p">{</span>
+                                <span class="nv">$availableModuleVersion</span> <span class="p">=</span> <span class="nb">Get-RecentModuleVersion</span> <span class="n">-ModuleName</span> <span class="nv">$module</span>
+                                <span class="nv">$moduleHash</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;ModuleVersion&#39;</span><span class="p">,</span><span class="nv">$availableModuleVersion</span><span class="p">)</span>
+                            <span class="p">}</span>
+
+                            <span class="nv">$moduleInfo</span> <span class="p">=</span> <span class="nb">Get-Module</span> <span class="n">-ListAvailable</span> <span class="n">-FullyQualifiedName</span> <span class="nv">$moduleHash</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
+                            <span class="k">if</span> <span class="p">(</span><span class="nv">$moduleInfo</span><span class="p">)</span>
+                            <span class="p">{</span>
+                                <span class="c">#TODO: Check if listed resources are equal or subset of what module exports</span>
+                                <span class="nv">$moduleSpecifcation</span> <span class="p">+=</span> <span class="nv">$moduleInfo</span>
+                            <span class="p">}</span>
+                            <span class="k">else</span>
+                            <span class="p">{</span>
+                                <span class="k">throw</span> <span class="s2">&#34;No module exists with name ${module}&#34;</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>    
+                <span class="p">}</span>
+
+                <span class="c">#Case 2</span>
+                <span class="c">#Foreach resource, we need to find a module</span>
+                <span class="k">if</span> <span class="p">((</span><span class="o">-not</span> <span class="nv">$moduleNames</span><span class="p">)</span> <span class="o">-and</span> <span class="nv">$resourceNames</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="nv">$moduleHash</span> <span class="p">=</span> <span class="nb">Get-DscModulesFromResourceName</span> <span class="n">-ResourceNames</span> <span class="nv">$resourceNames</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span>
+                    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$module</span> <span class="k">in</span> <span class="nv">$moduleHash</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="nv">$moduleInfo</span> <span class="p">=</span> <span class="nb">Get-Module</span> <span class="n">-ListAvailable</span> <span class="n">-FullyQualifiedName</span> <span class="nv">$module</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span>   
+                        <span class="nv">$moduleSpecifcation</span> <span class="p">+=</span> <span class="nv">$moduleInfo</span> 
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$Package</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c">#Create a temp folder</span>
+    <span class="nv">$null</span> <span class="p">=</span> <span class="n">mkdir</span> <span class="s2">&#34;${env:temp}\modules&#34;</span> <span class="n">-Force</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span>
+
+    <span class="c">#Copy all module folders to a temp folder</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$module</span> <span class="k">in</span> <span class="nv">$moduleSpecifcation</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$null</span> <span class="p">=</span> <span class="n">mkdir</span> <span class="s2">&#34;${env:temp}\modules\</span><span class="p">$(</span><span class="nv">$module</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span><span class="s2">&#34;</span>
+        <span class="nb">Copy-Item</span> <span class="n">-Path</span> <span class="nv">$module</span><span class="p">.</span><span class="n">ModuleBase</span> <span class="n">-Destination</span> <span class="s2">&#34;${env:temp}\modules\</span><span class="p">$(</span><span class="nv">$module</span><span class="p">.</span><span class="n">Name</span><span class="p">)</span><span class="s2">&#34;</span> <span class="n">-Container</span> <span class="n">-Recurse</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span>
+    <span class="p">}</span>
+
+    <span class="c">#Create an archive with all needed modules</span>
+    <span class="nb">Compress-Archive</span> <span class="n">-Path</span> <span class="s2">&#34;${env:temp}\modules&#34;</span> <span class="n">-DestinationPath</span> <span class="nv">$PackagePath</span> <span class="n">-Force</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span>
+
+    <span class="c">#Remove the folder</span>
+    <span class="nb">Remove-Item</span> <span class="n">-Path</span> <span class="s2">&#34;${env:temp}\modules&#34;</span> <span class="n">-Recurse</span> <span class="n">-Force</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$moduleSpecifcation</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nb">Get-DscModulesFromResourceName</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
+    <span class="k">param</span> <span class="p">(</span>
+        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+        <span class="no">[string[]]</span> <span class="nv">$ResourceNames</span>
+    <span class="p">)</span>
+
+    <span class="k">process</span>
+    <span class="p">{</span>
+        <span class="nv">$moduleInfo</span> <span class="p">=</span> <span class="nb">Get-DscResource</span> <span class="n">-Name</span> <span class="nv">$ResourceNames</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">-Expand</span> <span class="n">ModuleName</span> <span class="n">-Unique</span>
+        <span class="nv">$moduleHash</span> <span class="p">=</span> <span class="p">@()</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$module</span> <span class="k">in</span> <span class="nv">$moduleInfo</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nv">$moduleHash</span> <span class="p">+=</span> <span class="p">@{</span>
+                 <span class="n">ModuleName</span> <span class="p">=</span> <span class="nv">$module</span>
+                 <span class="n">ModuleVersion</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Get-RecentModuleVersion</span> <span class="n">-ModuleName</span> <span class="nv">$module</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$moduleHash</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nb">Get-DscResourcesFromModule</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
+    <span class="k">param</span> <span class="p">(</span>
+        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+        <span class="no">[String]</span> <span class="nv">$ModuleName</span><span class="p">,</span>
+
+        <span class="p">[</span><span class="k">Parameter</span><span class="p">()]</span>
+        <span class="no">[Version]</span> <span class="nv">$ModuleVersion</span>
+    <span class="p">)</span>
+
+    <span class="k">process</span>
+    <span class="p">{</span>
+        <span class="nv">$resourceInfo</span> <span class="p">=</span> <span class="nb">Get-DscResource</span> <span class="n">-Module</span> <span class="nv">$ModuleName</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$resourceInfo</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$ModuleVersion</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="nv">$resources</span> <span class="p">=</span> <span class="nv">$resourceInfo</span><span class="p">.</span><span class="n">Where</span><span class="p">({</span><span class="nv">$_</span><span class="p">.</span><span class="n">Module</span><span class="p">.</span><span class="n">Version</span> <span class="o">-eq</span> <span class="nv">$ModuleVersion</span><span class="p">})</span>
+                <span class="k">return</span> <span class="nv">$resources</span><span class="p">.</span><span class="n">Name</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="c">#check if there are multiple versions of the modules; if so, return the most recent one</span>
+                <span class="nv">$mostRecentVersion</span> <span class="p">=</span> <span class="nb">Get-RecentModuleVersion</span> <span class="n">-ModuleName</span> <span class="nv">$ModuleName</span>
+                <span class="nb">Get-DscResourcesFromModule</span> <span class="n">-ModuleName</span> <span class="nv">$ModuleName</span> <span class="n">-ModuleVersion</span> <span class="nv">$mostRecentVersion</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nb">Get-RecentModuleVersion</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
+    <span class="k">param</span> <span class="p">(</span>
+        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+        <span class="no">[String]</span> <span class="nv">$ModuleName</span>
+    <span class="p">)</span>
+
+    <span class="k">process</span>
+    <span class="p">{</span>
+        <span class="nv">$moduleInfo</span> <span class="p">=</span> <span class="nb">Get-Module</span> <span class="n">-ListAvailable</span> <span class="n">-Name</span> <span class="nv">$ModuleName</span> <span class="n">-Verbose</span><span class="err">:</span><span class="nv">$false</span> <span class="p">|</span> <span class="nb">Sort </span><span class="n">-Property</span> <span class="n">Version</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$moduleInfo</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="p">(</span><span class="nv">$moduleInfo</span><span class="p">[-</span><span class="n">1</span><span class="p">].</span><span class="n">Version</span><span class="p">).</span><span class="n">ToString</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>Here is how you used this script:</p>
 <p>With just the -ConfigurationScript parameter, this script emits a ModuleInfo object that contains a list of modules that are being imported in the configuration script.</p>
 <p><img src="/images/depend2.png" alt=""></p>
 <p>In case you need to package the modules into a zip archive, you can use the -Package and -PackagePath parameters.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="p">.\</span><span class="nb">Get-DSCResourceModulesFromConfiguration</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-ConfigurationScript</span> <span class="n">C:</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">VMDscDemo</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Package</span> <span class="n">-PackagePath</span> <span class="n">C:</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">modules</span><span class="p">.</span><span class="n">zip</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">.\</span><span class="nb">Get-DSCResourceModulesFromConfiguration</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-ConfigurationScript</span> <span class="n">C:</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">VMDscDemo</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Package</span> <span class="n">-PackagePath</span> <span class="n">C:</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">modules</span><span class="p">.</span><span class="n">zip</span>
 </code></pre></div><p>There are many uses cases for this. I use this extensively in my Hyper-V lab configurations. What are your use cases?</p>
 </div>
         </article>

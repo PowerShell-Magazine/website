@@ -242,30 +242,30 @@ if (!doNotTrack) {
 <p><em>Role-based access control (RBAC) enables access management for Azure resources. Using RBAC, you can segregate duties within your team and grant only the amount of access to users, groups, and applications that they need to perform their jobs.</em></p>
 <p>During the past year, the ability to <a href="https://docs.microsoft.com/en-us/azure/automation/automation-role-based-access-control#configure-rbac-for-runbooks">configure RBAC for runbooks</a> was added to the service.</p>
 <p>When I initially tested this feature, I granted 1 single test user permissions to an existing user.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nb">Connect-AzureRmAccount</span>
-<span class="ln"> 2</span><span class="nb">Connect-AzureAD</span>
-<span class="ln"> 3</span>
-<span class="ln"> 4</span><span class="c">#Resource Group name for the Automation Account</span>
-<span class="ln"> 5</span><span class="nv">$rgName</span> <span class="p">=</span> <span class="s2">&#34;AutomationWestEurope-Rg&#34;</span>
-<span class="ln"> 6</span>
-<span class="ln"> 7</span><span class="c">#Name of the Automation Account</span>
-<span class="ln"> 8</span><span class="nv">$automationAccountName</span> <span class="p">=</span><span class="s2">&#34;AutomationWestEurope&#34;</span>
-<span class="ln"> 9</span>
-<span class="ln">10</span><span class="c">#Name of the runbook</span>
-<span class="ln">11</span><span class="nv">$rbName</span> <span class="p">=</span> <span class="s2">&#34;Invoke-RobocopyBackup&#34;</span>
-<span class="ln">12</span><span class="nv">$userId</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Get-AzureADUser</span> <span class="n">-ObjectId</span> <span class="s1">&#39;demo.user@powershell.no&#39;</span><span class="p">).</span><span class="n">ObjectId</span> 
-<span class="ln">13</span>
-<span class="ln">14</span><span class="c">#Gets the Automation Account resource</span>
-<span class="ln">15</span><span class="nv">$aa</span> <span class="p">=</span> <span class="nb">Get-AzureRmResource</span> <span class="n">-ResourceGroupName</span> <span class="nv">$rgName</span> <span class="n">-ResourceType</span> <span class="s2">&#34;Microsoft.Automation/automationAccounts&#34;</span> <span class="n">-ResourceName</span> <span class="nv">$automationAccountName</span>
-<span class="ln">16</span>
-<span class="ln">17</span><span class="c">#Get the runbook resource</span>
-<span class="ln">18</span><span class="nv">$rb</span> <span class="p">=</span> <span class="nb">Get-AzureRmResource</span> <span class="n">-ResourceGroupName</span> <span class="nv">$rgName</span> <span class="n">-ResourceType</span> <span class="s2">&#34;Microsoft.Automation/automationAccounts/runbooks&#34;</span> <span class="n">-ResourceName</span> <span class="s2">&#34;$automationAccountName/$rbName&#34;</span>
-<span class="ln">19</span>
-<span class="ln">20</span><span class="c">#The Automation Job Operator role only needs to be run once per user</span>
-<span class="ln">21</span><span class="nb">New-AzureRmRoleAssignment</span> <span class="n">-ObjectId</span> <span class="nv">$userId</span> <span class="n">-RoleDefinitionName</span> <span class="s2">&#34;Automation Job Operator&#34;</span> <span class="n">-Scope</span> <span class="nv">$aa</span><span class="p">.</span><span class="n">ResourceId</span>
-<span class="ln">22</span>
-<span class="ln">23</span><span class="c">#Adds the user to the Automation Runbook Operator role to the runbook scope</span>
-<span class="ln">24</span><span class="nb">New-AzureRmRoleAssignment</span> <span class="n">-ObjectId</span> <span class="nv">$userId</span> <span class="n">-RoleDefinitionName</span> <span class="s2">&#34;Automation Runbook Operator&#34;</span> <span class="n">-Scope</span> <span class="nv">$rb</span><span class="p">.</span><span class="n">ResourceId</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Connect-AzureRmAccount</span>
+<span class="nb">Connect-AzureAD</span>
+
+<span class="c">#Resource Group name for the Automation Account</span>
+<span class="nv">$rgName</span> <span class="p">=</span> <span class="s2">&#34;AutomationWestEurope-Rg&#34;</span>
+
+<span class="c">#Name of the Automation Account</span>
+<span class="nv">$automationAccountName</span> <span class="p">=</span><span class="s2">&#34;AutomationWestEurope&#34;</span>
+
+<span class="c">#Name of the runbook</span>
+<span class="nv">$rbName</span> <span class="p">=</span> <span class="s2">&#34;Invoke-RobocopyBackup&#34;</span>
+<span class="nv">$userId</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Get-AzureADUser</span> <span class="n">-ObjectId</span> <span class="s1">&#39;demo.user@powershell.no&#39;</span><span class="p">).</span><span class="n">ObjectId</span> 
+
+<span class="c">#Gets the Automation Account resource</span>
+<span class="nv">$aa</span> <span class="p">=</span> <span class="nb">Get-AzureRmResource</span> <span class="n">-ResourceGroupName</span> <span class="nv">$rgName</span> <span class="n">-ResourceType</span> <span class="s2">&#34;Microsoft.Automation/automationAccounts&#34;</span> <span class="n">-ResourceName</span> <span class="nv">$automationAccountName</span>
+
+<span class="c">#Get the runbook resource</span>
+<span class="nv">$rb</span> <span class="p">=</span> <span class="nb">Get-AzureRmResource</span> <span class="n">-ResourceGroupName</span> <span class="nv">$rgName</span> <span class="n">-ResourceType</span> <span class="s2">&#34;Microsoft.Automation/automationAccounts/runbooks&#34;</span> <span class="n">-ResourceName</span> <span class="s2">&#34;$automationAccountName/$rbName&#34;</span>
+
+<span class="c">#The Automation Job Operator role only needs to be run once per user</span>
+<span class="nb">New-AzureRmRoleAssignment</span> <span class="n">-ObjectId</span> <span class="nv">$userId</span> <span class="n">-RoleDefinitionName</span> <span class="s2">&#34;Automation Job Operator&#34;</span> <span class="n">-Scope</span> <span class="nv">$aa</span><span class="p">.</span><span class="n">ResourceId</span>
+
+<span class="c">#Adds the user to the Automation Runbook Operator role to the runbook scope</span>
+<span class="nb">New-AzureRmRoleAssignment</span> <span class="n">-ObjectId</span> <span class="nv">$userId</span> <span class="n">-RoleDefinitionName</span> <span class="s2">&#34;Automation Runbook Operator&#34;</span> <span class="n">-Scope</span> <span class="nv">$rb</span><span class="p">.</span><span class="n">ResourceId</span>
 </code></pre></div><p>I then logged into the Azure subscription using that user. As expected, the only resource the user has access to is the single runbook where permissions are assigned:</p>
 <p><img src="/images/aa1.png" alt=""></p>
 <p>This means the user is unable to see the whole Automation account, including resources such as global variables, credentials and other shared resources.</p>

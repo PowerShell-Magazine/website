@@ -286,40 +286,40 @@ resource sa 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   }
 }
 </code></pre><p>You can build an ARM template from this Bicep file using the bicep command line.</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>bicep build main.bicep
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">bicep build main.bicep
 </code></pre></div><p>But since Bicep is a language meant only for ARM template generation, there may not be a way to interact with other parts of the system. For example, what if you had certain configuration artifacts stored in a CMDB and you want to pull that data and use in a Bicep program. This won&rsquo;t be possible. At least for now. You will be restricted to what language constructs are available within Bicep.</p>
 <h3 id="psarm">PSArm</h3>
 <p>PSArm on the other hand is an embedded DSL module. If you are already familiar with PowerShell language, it will be quite natural to choose a DSL that works in PowerShell. There is no need to learn another language. With PowerShell, you get access to a wide-range of APIs other than what PSArm may provide. This helps in creating complex and dynamic ARM templates with just what PowerShell can do. You get use all aspects of PowerShell language and the underlying infrastructure.</p>
 <p>Here is how a PSArm script looks like. Again, this is for simple storage account creation.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">param</span><span class="p">(</span>
-<span class="ln"> 2</span>    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
-<span class="ln"> 3</span>    <span class="no">[string]</span>
-<span class="ln"> 4</span>    <span class="nv">$StorageAccountName</span><span class="p">,</span>
-<span class="ln"> 5</span>
-<span class="ln"> 6</span>    <span class="p">[</span><span class="k">Parameter</span><span class="p">()]</span>
-<span class="ln"> 7</span>    <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;WestUS2&#39;</span><span class="p">,</span> <span class="s1">&#39;CentralUS&#39;</span><span class="p">)]</span>
-<span class="ln"> 8</span>    <span class="no">[string]</span>
-<span class="ln"> 9</span>    <span class="nv">$Location</span> <span class="p">=</span> <span class="s1">&#39;WestUS2&#39;</span><span class="p">,</span>
-<span class="ln">10</span>
-<span class="ln">11</span>    <span class="p">[</span><span class="k">Parameter</span><span class="p">()]</span>
-<span class="ln">12</span>    <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;Hot&#39;</span><span class="p">,</span> <span class="s1">&#39;Cool&#39;</span><span class="p">,</span> <span class="s1">&#39;Archive&#39;</span><span class="p">)]</span>
-<span class="ln">13</span>    <span class="no">[string]</span>
-<span class="ln">14</span>    <span class="nv">$AccessTier</span> <span class="p">=</span> <span class="s1">&#39;Hot&#39;</span>
-<span class="ln">15</span><span class="p">)</span>
-<span class="ln">16</span>
-<span class="ln">17</span><span class="n">Arm</span> <span class="p">{</span>
-<span class="ln">18</span>    <span class="n">Resource</span> <span class="nv">$StorageAccountName</span> <span class="n">-Namespace</span> <span class="s1">&#39;Microsoft.Storage&#39;</span> <span class="n">-Type</span> <span class="s1">&#39;storageAccounts&#39;</span> <span class="n">-apiVersion</span> <span class="s1">&#39;2019-06-01&#39;</span> <span class="n">-Location</span> <span class="nv">$Location</span> <span class="p">{</span>
-<span class="ln">19</span>        <span class="n">ArmSku</span> <span class="s1">&#39;Standard_LRS&#39;</span>
-<span class="ln">20</span>        <span class="n">Properties</span> <span class="p">{</span>
-<span class="ln">21</span>            <span class="n">accessTier</span> <span class="nv">$AccessTier</span>
-<span class="ln">22</span>        <span class="p">}</span>
-<span class="ln">23</span>    <span class="p">}</span>
-<span class="ln">24</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">param</span><span class="p">(</span>
+    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+    <span class="no">[string]</span>
+    <span class="nv">$StorageAccountName</span><span class="p">,</span>
+
+    <span class="p">[</span><span class="k">Parameter</span><span class="p">()]</span>
+    <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;WestUS2&#39;</span><span class="p">,</span> <span class="s1">&#39;CentralUS&#39;</span><span class="p">)]</span>
+    <span class="no">[string]</span>
+    <span class="nv">$Location</span> <span class="p">=</span> <span class="s1">&#39;WestUS2&#39;</span><span class="p">,</span>
+
+    <span class="p">[</span><span class="k">Parameter</span><span class="p">()]</span>
+    <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;Hot&#39;</span><span class="p">,</span> <span class="s1">&#39;Cool&#39;</span><span class="p">,</span> <span class="s1">&#39;Archive&#39;</span><span class="p">)]</span>
+    <span class="no">[string]</span>
+    <span class="nv">$AccessTier</span> <span class="p">=</span> <span class="s1">&#39;Hot&#39;</span>
+<span class="p">)</span>
+
+<span class="n">Arm</span> <span class="p">{</span>
+    <span class="n">Resource</span> <span class="nv">$StorageAccountName</span> <span class="n">-Namespace</span> <span class="s1">&#39;Microsoft.Storage&#39;</span> <span class="n">-Type</span> <span class="s1">&#39;storageAccounts&#39;</span> <span class="n">-apiVersion</span> <span class="s1">&#39;2019-06-01&#39;</span> <span class="n">-Location</span> <span class="nv">$Location</span> <span class="p">{</span>
+        <span class="n">ArmSku</span> <span class="s1">&#39;Standard_LRS&#39;</span>
+        <span class="n">Properties</span> <span class="p">{</span>
+            <span class="n">accessTier</span> <span class="nv">$AccessTier</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>Here is how you can compile the above PSArm file into an ARM template.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Publish-PSArmTemplate</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">newStorageAccount</span><span class="p">.</span><span class="n">psarm</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Parameters</span> <span class="p">@{</span>
-<span class="ln">2</span>    <span class="n">storageAccountName</span> <span class="p">=</span> <span class="s1">&#39;storageName&#39;</span>
-<span class="ln">3</span>    <span class="n">location</span> <span class="p">=</span> <span class="s1">&#39;location&#39;</span>
-<span class="ln">4</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Publish-PSArmTemplate</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">newStorageAccount</span><span class="p">.</span><span class="n">psarm</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Parameters</span> <span class="p">@{</span>
+    <span class="n">storageAccountName</span> <span class="p">=</span> <span class="s1">&#39;storageName&#39;</span>
+    <span class="n">location</span> <span class="p">=</span> <span class="s1">&#39;location&#39;</span>
+<span class="p">}</span>
 </code></pre></div><p>You can see that both Bicep and PSArm files more or less have the same number of lines. PowerShell is a little more verbose given the nature of how PowerShell commands are built.</p>
 <p>At this point in time, I don&rsquo;t see this as a Bicep vs PSArm. It is about whether you want to learn a new language or use your existing skills. This is just a quick introduction to PSArm. Next in this <a href="/tags/psarm">series of articles on PSArm</a>, you will learn more about using PSArm.</p>
 </div>

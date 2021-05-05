@@ -209,7 +209,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>10 Min To Read
+              <i class="far fa-clock"></i>9 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>02 Jun, 2015
@@ -230,24 +230,24 @@ if (!doNotTrack) {
           <div class="content"><p>Today I will show how to defensively script against enums and how to test invalid enum values.</p>
 <h3 id="what-is-an-enum">What is an enum?</h3>
 <p>An enum is a list of identifiers that map to values of a primitive type, usually System.Int32 which is the default in C#. An example of a simple enum is the [System.ConsoleColor] enum, listing the colors you can use in PowerShell console:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="no">[enum]</span><span class="p">::</span><span class="n">GetNames</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">ConsoleColor</span><span class="p">)</span>
-<span class="ln"> 2</span>
-<span class="ln"> 3</span><span class="n">Black</span>
-<span class="ln"> 4</span><span class="n">DarkBlue</span>
-<span class="ln"> 5</span><span class="n">DarkGreen</span>
-<span class="ln"> 6</span><span class="n">DarkCyan</span>
-<span class="ln"> 7</span><span class="n">DarkRed</span>
-<span class="ln"> 8</span><span class="n">DarkMagenta</span>
-<span class="ln"> 9</span><span class="n">DarkYellow</span>
-<span class="ln">10</span><span class="n">Gray</span>
-<span class="ln">11</span><span class="n">DarkGray</span>
-<span class="ln">12</span><span class="n">Blue</span>
-<span class="ln">13</span><span class="n">Green</span>
-<span class="ln">14</span><span class="n">Cyan</span>
-<span class="ln">15</span><span class="n">Red</span>
-<span class="ln">16</span><span class="n">Magenta</span>
-<span class="ln">17</span><span class="n">Yellow</span>
-<span class="ln">18</span><span class="n">White</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[enum]</span><span class="p">::</span><span class="n">GetNames</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">ConsoleColor</span><span class="p">)</span>
+
+<span class="n">Black</span>
+<span class="n">DarkBlue</span>
+<span class="n">DarkGreen</span>
+<span class="n">DarkCyan</span>
+<span class="n">DarkRed</span>
+<span class="n">DarkMagenta</span>
+<span class="n">DarkYellow</span>
+<span class="n">Gray</span>
+<span class="n">DarkGray</span>
+<span class="n">Blue</span>
+<span class="n">Green</span>
+<span class="n">Cyan</span>
+<span class="n">Red</span>
+<span class="n">Magenta</span>
+<span class="n">Yellow</span>
+<span class="n">White</span>
 </code></pre></div><h3 id="can-it-change">Can it change?</h3>
 <p>Even though we usually see the enums as such, the values they contain are not definitive and might change in future version of the type. This is also marketed as one of the upsides of using enum over the boolean type, when you anticipate more than two values in the future, because you can easily add third state to true/false, on/off, up/downand so on.</p>
 <p>This flexibility is great for the framework developer, who can ship his API with a newer version of his enum without forcing the consumers of the API to change their code.</p>
@@ -255,41 +255,41 @@ if (!doNotTrack) {
 <h3 id="example">Example</h3>
 <p>Let’s imagine we wrote a function that converts values “On” and “Off” of a SystemStatus enum to “Online” and “Offline” respectively. The resulting value will become part of a report that also reports status of servers and other systems, hence the Online/Offline statuses.</p>
 <p>The enum and our function are implemented and tested like this; I‘ll put both the production and test code in one file for brevity:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nb">Add-Type</span> <span class="n">-TypeDefinition</span> <span class="s1">&#39;
-</span><span class="ln"> 2</span><span class="s1">    namespace Nohwnd.Samples.TestingEnums
-</span><span class="ln"> 3</span><span class="s1">    {
-</span><span class="ln"> 4</span><span class="s1">        public enum SystemStatus
-</span><span class="ln"> 5</span><span class="s1">        {
-</span><span class="ln"> 6</span><span class="s1">            Off,
-</span><span class="ln"> 7</span><span class="s1">            On
-</span><span class="ln"> 8</span><span class="s1">        }
-</span><span class="ln"> 9</span><span class="s1">    }
-</span><span class="ln">10</span><span class="s1">&#39;</span>
-<span class="ln">11</span>
-<span class="ln">12</span><span class="k">function</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="p">{</span>
-<span class="ln">13</span>    <span class="k">param</span><span class="p">(</span>
-<span class="ln">14</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
-<span class="ln">15</span>        <span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span>
-<span class="ln">16</span>        <span class="nv">$Status</span>
-<span class="ln">17</span>    <span class="p">)</span>
-<span class="ln">18</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$Status</span> <span class="o">-eq</span> <span class="s1">&#39;Off&#39;</span><span class="p">)</span>
-<span class="ln">19</span>    <span class="p">{</span>
-<span class="ln">20</span>        <span class="s1">&#39;Offline&#39;</span>
-<span class="ln">21</span>    <span class="p">}</span>
-<span class="ln">22</span>    <span class="k">else</span>
-<span class="ln">23</span>    <span class="p">{</span>
-<span class="ln">24</span>        <span class="s1">&#39;Online&#39;</span>
-<span class="ln">25</span>    <span class="p">}</span>
-<span class="ln">26</span><span class="p">}</span>
-<span class="ln">27</span>
-<span class="ln">28</span><span class="n">Describe</span> <span class="s1">&#39;Get-UnifiedSystemStatus&#39;</span> <span class="p">{</span>
-<span class="ln">29</span>    <span class="n">It</span> <span class="s1">&#39;Reports Offline when Off&#39;</span> <span class="p">{</span>
-<span class="ln">30</span>        <span class="nb">Get-UnifiedSystemStatus</span> <span class="n">Off</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;Offline&#39;</span>
-<span class="ln">31</span>    <span class="p">}</span>
-<span class="ln">32</span>    <span class="n">It</span> <span class="s1">&#39;Reports Online when On&#39;</span> <span class="p">{</span>
-<span class="ln">33</span>        <span class="nb">Get-UnifiedSystemStatus</span> <span class="n">On</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;Online&#39;</span>
-<span class="ln">34</span>    <span class="p">}</span>
-<span class="ln">35</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Add-Type</span> <span class="n">-TypeDefinition</span> <span class="s1">&#39;
+</span><span class="s1">    namespace Nohwnd.Samples.TestingEnums
+</span><span class="s1">    {
+</span><span class="s1">        public enum SystemStatus
+</span><span class="s1">        {
+</span><span class="s1">            Off,
+</span><span class="s1">            On
+</span><span class="s1">        }
+</span><span class="s1">    }
+</span><span class="s1">&#39;</span>
+
+<span class="k">function</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="p">{</span>
+    <span class="k">param</span><span class="p">(</span>
+        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
+        <span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span>
+        <span class="nv">$Status</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$Status</span> <span class="o">-eq</span> <span class="s1">&#39;Off&#39;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Offline&#39;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Online&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">Describe</span> <span class="s1">&#39;Get-UnifiedSystemStatus&#39;</span> <span class="p">{</span>
+    <span class="n">It</span> <span class="s1">&#39;Reports Offline when Off&#39;</span> <span class="p">{</span>
+        <span class="nb">Get-UnifiedSystemStatus</span> <span class="n">Off</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;Offline&#39;</span>
+    <span class="p">}</span>
+    <span class="n">It</span> <span class="s1">&#39;Reports Online when On&#39;</span> <span class="p">{</span>
+        <span class="nb">Get-UnifiedSystemStatus</span> <span class="n">On</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;Online&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>The code first defines the SystemStatus with possible values “Off” and “On”. Then it defines a function that will translate the input value into values appropriate for our report.</p>
 <p>The Get-UnifiedSystemStatus function requires its $Status parameter to be specified and to be of type [Nohwnd.Samples.TestingEnums.SystemStatus] which has only two possible values. For that reason we decided to use the if condition to translate the values.</p>
 <p>We also have tests in place that both pass, so everything should be working correctly.</p>
@@ -298,39 +298,39 @@ if (!doNotTrack) {
 <p>You update to the new version 1.2 and everything seems to work fine. You run you automated tests and they are still passing. Everything is good.</p>
 <p>After few days the users of the system start noticing something strange: Sometimes they can’t connect to the printer remotely, even though it shows that it is online.</p>
 <p>You suspect there was something wrong with the update so you investigate and with some luck you find out that the SystemStatus enum was updated as such:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nb">Add-Type</span> <span class="n">-TypeDefinition</span> <span class="s1">&#39;
-</span><span class="ln"> 2</span><span class="s1">    namespace Nohwnd.Samples.TestingEnums
-</span><span class="ln"> 3</span><span class="s1">    {
-</span><span class="ln"> 4</span><span class="s1">        public enum SystemStatus
-</span><span class="ln"> 5</span><span class="s1">        {
-</span><span class="ln"> 6</span><span class="s1">            Off,
-</span><span class="ln"> 7</span><span class="s1">            On,
-</span><span class="ln"> 8</span><span class="s1">            //Added new values in version 1.2 of the library
-</span><span class="ln"> 9</span><span class="s1">            Starting,
-</span><span class="ln">10</span><span class="s1">            Stopping,
-</span><span class="ln">11</span><span class="s1">            Busy
-</span><span class="ln">12</span><span class="s1">        }
-</span><span class="ln">13</span><span class="s1">    }
-</span><span class="ln">14</span><span class="s1">&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Add-Type</span> <span class="n">-TypeDefinition</span> <span class="s1">&#39;
+</span><span class="s1">    namespace Nohwnd.Samples.TestingEnums
+</span><span class="s1">    {
+</span><span class="s1">        public enum SystemStatus
+</span><span class="s1">        {
+</span><span class="s1">            Off,
+</span><span class="s1">            On,
+</span><span class="s1">            //Added new values in version 1.2 of the library
+</span><span class="s1">            Starting,
+</span><span class="s1">            Stopping,
+</span><span class="s1">            Busy
+</span><span class="s1">        }
+</span><span class="s1">    }
+</span><span class="s1">&#39;</span>
 </code></pre></div><p>The intention was to let you see not only if the printer is on or off, but also if it’s starting, stopping or busy. This is great new functionality, but unfortunately it also means that any of the new statuses report Online in our report.</p>
 <p>This also explains the user complains. When our hypothetical printers are starting (or stopping) they do not accept remote management requests, but the report shows them as Online. And online printers should not reject remote management requests.</p>
 <h3 id="preventing-the-issue">Preventing the issue</h3>
 <p>So let’s go back to our original code and see what is wrong with it, and how to write it better next time.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="k">param</span><span class="p">(</span>
-<span class="ln"> 3</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
-<span class="ln"> 4</span>        <span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span>
-<span class="ln"> 5</span>        <span class="nv">$Status</span>
-<span class="ln"> 6</span>    <span class="p">)</span>
-<span class="ln"> 7</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$Status</span> <span class="o">-eq</span> <span class="s1">&#39;Off&#39;</span><span class="p">)</span>
-<span class="ln"> 8</span>    <span class="p">{</span>
-<span class="ln"> 9</span>        <span class="s1">&#39;Offline&#39;</span>
-<span class="ln">10</span>    <span class="p">}</span>
-<span class="ln">11</span>    <span class="k">else</span>
-<span class="ln">12</span>    <span class="p">{</span>
-<span class="ln">13</span>        <span class="s1">&#39;Online&#39;</span>
-<span class="ln">14</span>    <span class="p">}</span>
-<span class="ln">15</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="p">{</span>
+    <span class="k">param</span><span class="p">(</span>
+        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
+        <span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span>
+        <span class="nv">$Status</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$Status</span> <span class="o">-eq</span> <span class="s1">&#39;Off&#39;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Offline&#39;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Online&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>The function builds on two assumptions:</p>
 <ul>
 <li>The enum has only two possible values, so only two states are possible</li>
@@ -343,177 +343,177 @@ if (!doNotTrack) {
 <p>In simple words, you can get value 999 that will have type [Nohwnd.Samples.TestingEnums.SystemStatus], and successfully pass it to our function.</p>
 <p>In our code this will make the if condition return “Online” for the value 999. This is something that our code did not expect, and hence it should fail rather than return incorrect value.</p>
 <p>Let’s bake the expected values in our code and add appropriate test:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="k">param</span><span class="p">(</span>
-<span class="ln"> 3</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
-<span class="ln"> 4</span>        <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;On&#39;</span><span class="p">,</span><span class="s1">&#39;Off&#39;</span><span class="p">)]</span>
-<span class="ln"> 5</span>        <span class="c">#The version 0.1 of SystemStatus enum is anticipated here, if this throws an incorrect value was </span>
-<span class="ln"> 6</span>        <span class="c">#specified. Possible causes of this are that the enum was updated with more values, or parsed value </span>
-<span class="ln"> 7</span>        <span class="c">#of the enum was provided.</span>
-<span class="ln"> 8</span>        <span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span>
-<span class="ln"> 9</span>        <span class="nv">$Status</span>
-<span class="ln">10</span>    <span class="p">)</span>
-<span class="ln">11</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$Status</span> <span class="o">-eq</span> <span class="s1">&#39;Off&#39;</span><span class="p">)</span>
-<span class="ln">12</span>    <span class="p">{</span>
-<span class="ln">13</span>        <span class="s1">&#39;Offline&#39;</span>
-<span class="ln">14</span>    <span class="p">}</span>
-<span class="ln">15</span>    <span class="k">else</span>
-<span class="ln">16</span>    <span class="p">{</span>
-<span class="ln">17</span>        <span class="s1">&#39;Online&#39;</span>
-<span class="ln">18</span>    <span class="p">}</span>
-<span class="ln">19</span><span class="p">}</span>
-<span class="ln">20</span>
-<span class="ln">21</span><span class="n">Describe</span> <span class="s1">&#39;Get-UnifiedSystemStatus&#39;</span> <span class="p">{</span>
-<span class="ln">22</span>    <span class="n">It</span> <span class="s1">&#39;Reports Offline when Off&#39;</span> <span class="p">{</span>
-<span class="ln">23</span>        <span class="nb">Get-UnifiedSystemStatus</span> <span class="n">Off</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;Offline&#39;</span>
-<span class="ln">24</span>    <span class="p">}</span>
-<span class="ln">25</span>    <span class="n">It</span> <span class="s1">&#39;Reports Online when On&#39;</span> <span class="p">{</span>
-<span class="ln">26</span>        <span class="nb">Get-UnifiedSystemStatus</span> <span class="n">On</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;Online&#39;</span>
-<span class="ln">27</span>    <span class="p">}</span>
-<span class="ln">28</span>    <span class="n">It</span> <span class="s1">&#39;Throws when invalid value is provided&#39;</span> <span class="p">{</span>
-<span class="ln">29</span>
-<span class="ln">30</span>        <span class="c"># -- Arrange</span>
-<span class="ln">31</span>
-<span class="ln">32</span>        <span class="nv">$invalidValue</span> <span class="p">=</span> <span class="no">[int]</span><span class="p">::</span><span class="n">MaxValue</span><span class="nv">$enum</span>
-<span class="ln">33</span>        <span class="nv">$enumType</span> <span class="p">=</span> <span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span>        
-<span class="ln">34</span>        <span class="no">[Enum]</span><span class="p">::</span><span class="n">IsDefined</span><span class="p">(</span><span class="nv">$enumType</span><span class="p">,</span> <span class="nv">$invalidValue</span><span class="p">)</span> <span class="p">|</span> 
-<span class="ln">35</span>            <span class="n">Should</span> <span class="n">Be</span> <span class="nv">$false</span> <span class="c"># making sure the invalid value is not defined in this enum</span>
-<span class="ln">36</span>        <span class="nv">$invalidEnumValue</span> <span class="p">=</span> <span class="no">[Enum]</span><span class="p">::</span><span class="n">Parse</span><span class="p">(</span><span class="nv">$enumType</span><span class="p">,</span> <span class="nv">$invalidValue</span><span class="p">)</span>
-<span class="ln">37</span>
-<span class="ln">38</span>        <span class="c"># -- Act &amp; Assert</span>
-<span class="ln">39</span>
-<span class="ln">40</span>        <span class="p">{</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="nv">$invalidEnumValue</span> <span class="p">}</span> <span class="p">|</span> 
-<span class="ln">41</span>            <span class="n">Should</span> <span class="k">Throw</span> <span class="p">(</span><span class="s1">&#39;Cannot validate argument on parameter &#39;&#39;Status&#39;&#39;. &#39;</span><span class="p">+</span>
-<span class="ln">42</span>                          <span class="s1">&#39;The argument &#34;2147483647&#34; does not belong to the set &#34;On,Off&#34; &#39;</span><span class="p">+</span>
-<span class="ln">43</span>                          <span class="s1">&#39;specified by the ValidateSet attribute. Supply an argument &#39;</span><span class="p">+</span>
-<span class="ln">44</span>                          <span class="s1">&#39;that is in the set and then try the command again.&#39;</span><span class="p">)</span>
-<span class="ln">45</span>    <span class="p">}</span>
-<span class="ln">46</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="p">{</span>
+    <span class="k">param</span><span class="p">(</span>
+        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
+        <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;On&#39;</span><span class="p">,</span><span class="s1">&#39;Off&#39;</span><span class="p">)]</span>
+        <span class="c">#The version 0.1 of SystemStatus enum is anticipated here, if this throws an incorrect value was </span>
+        <span class="c">#specified. Possible causes of this are that the enum was updated with more values, or parsed value </span>
+        <span class="c">#of the enum was provided.</span>
+        <span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span>
+        <span class="nv">$Status</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$Status</span> <span class="o">-eq</span> <span class="s1">&#39;Off&#39;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Offline&#39;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Online&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">Describe</span> <span class="s1">&#39;Get-UnifiedSystemStatus&#39;</span> <span class="p">{</span>
+    <span class="n">It</span> <span class="s1">&#39;Reports Offline when Off&#39;</span> <span class="p">{</span>
+        <span class="nb">Get-UnifiedSystemStatus</span> <span class="n">Off</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;Offline&#39;</span>
+    <span class="p">}</span>
+    <span class="n">It</span> <span class="s1">&#39;Reports Online when On&#39;</span> <span class="p">{</span>
+        <span class="nb">Get-UnifiedSystemStatus</span> <span class="n">On</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;Online&#39;</span>
+    <span class="p">}</span>
+    <span class="n">It</span> <span class="s1">&#39;Throws when invalid value is provided&#39;</span> <span class="p">{</span>
+
+        <span class="c"># -- Arrange</span>
+
+        <span class="nv">$invalidValue</span> <span class="p">=</span> <span class="no">[int]</span><span class="p">::</span><span class="n">MaxValue</span><span class="nv">$enum</span>
+        <span class="nv">$enumType</span> <span class="p">=</span> <span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span>        
+        <span class="no">[Enum]</span><span class="p">::</span><span class="n">IsDefined</span><span class="p">(</span><span class="nv">$enumType</span><span class="p">,</span> <span class="nv">$invalidValue</span><span class="p">)</span> <span class="p">|</span> 
+            <span class="n">Should</span> <span class="n">Be</span> <span class="nv">$false</span> <span class="c"># making sure the invalid value is not defined in this enum</span>
+        <span class="nv">$invalidEnumValue</span> <span class="p">=</span> <span class="no">[Enum]</span><span class="p">::</span><span class="n">Parse</span><span class="p">(</span><span class="nv">$enumType</span><span class="p">,</span> <span class="nv">$invalidValue</span><span class="p">)</span>
+
+        <span class="c"># -- Act &amp; Assert</span>
+
+        <span class="p">{</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="nv">$invalidEnumValue</span> <span class="p">}</span> <span class="p">|</span> 
+            <span class="n">Should</span> <span class="k">Throw</span> <span class="p">(</span><span class="s1">&#39;Cannot validate argument on parameter &#39;&#39;Status&#39;&#39;. &#39;</span><span class="p">+</span>
+                          <span class="s1">&#39;The argument &#34;2147483647&#34; does not belong to the set &#34;On,Off&#34; &#39;</span><span class="p">+</span>
+                          <span class="s1">&#39;specified by the ValidateSet attribute. Supply an argument &#39;</span><span class="p">+</span>
+                          <span class="s1">&#39;that is in the set and then try the command again.&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>This version adds the ValidateSet parameter constraint that checks for the values that were contained in the original version of the enum and throws an exception if a different value is provided. Also notice that a comment is used to explain why the constraint is there. Without it, it would likely look like somebody just forgot to add all the values to the constraint.</p>
 <p>Another way to implement this would be to manually validate if the input value belongs to the set and throw [System.ArgumentOutOfRangeException] if it does not. This has the benefit of showing the possible causes of the exception directly to the developer.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">function</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="k">param</span><span class="p">(</span>
-<span class="ln"> 3</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
-<span class="ln"> 4</span>        <span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span>
-<span class="ln"> 5</span>        <span class="nv">$Status</span>
-<span class="ln"> 6</span>    <span class="p">)</span>
-<span class="ln"> 7</span>    <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;Off&#39;</span><span class="p">,</span><span class="s1">&#39;On&#39;</span> <span class="o">-notcontains</span> <span class="nv">$Status</span><span class="p">)</span>
-<span class="ln"> 8</span>    <span class="p">{</span>
-<span class="ln"> 9</span>        <span class="k">throw</span> <span class="no">[ArgumentOutOfRangeException]</span><span class="p">(</span><span class="s1">&#39;The provided value is not one of the expected values. &#39;</span> <span class="p">+</span>
-<span class="ln">10</span>        <span class="s1">&#39;Possible causes of this exception are parsing the enum value or using a newer version of &#39;</span> <span class="p">+</span>
-<span class="ln">11</span>        <span class="s1">&#39;the enum which contains more values than expected.&#39;</span><span class="p">)</span>
-<span class="ln">12</span>    <span class="p">}</span>
-<span class="ln">13</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$Status</span> <span class="o">-eq</span> <span class="s1">&#39;Off&#39;</span><span class="p">)</span>
-<span class="ln">14</span>    <span class="p">{</span>
-<span class="ln">15</span>        <span class="s1">&#39;Offline&#39;</span>
-<span class="ln">16</span>    <span class="p">}</span>
-<span class="ln">17</span>    <span class="k">else</span>
-<span class="ln">18</span>    <span class="p">{</span>
-<span class="ln">19</span>        <span class="s1">&#39;Online&#39;</span>
-<span class="ln">20</span>    <span class="p">}</span>
-<span class="ln">21</span><span class="p">}</span>
-<span class="ln">22</span>
-<span class="ln">23</span>
-<span class="ln">24</span><span class="n">Describe</span> <span class="s1">&#39;Get-UnifiedSystemStatus&#39;</span> <span class="p">{</span>
-<span class="ln">25</span>    <span class="n">It</span> <span class="s1">&#39;Reports Offline when Off&#39;</span> <span class="p">{</span>
-<span class="ln">26</span>        <span class="nb">Get-UnifiedSystemStatus</span> <span class="n">Off</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;Offline&#39;</span>
-<span class="ln">27</span>    <span class="p">}</span>
-<span class="ln">28</span>    <span class="n">It</span> <span class="s1">&#39;Reports Online when On&#39;</span> <span class="p">{</span>
-<span class="ln">29</span>        <span class="nb">Get-UnifiedSystemStatus</span> <span class="n">On</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;Online&#39;</span>
-<span class="ln">30</span>    <span class="p">}</span>
-<span class="ln">31</span>    <span class="n">It</span> <span class="s1">&#39;Throws when invalid value is provided&#39;</span> <span class="p">{</span>
-<span class="ln">32</span>
-<span class="ln">33</span>        <span class="c"># -- Arrange</span>
-<span class="ln">34</span>
-<span class="ln">35</span>        <span class="nv">$invalidValue</span> <span class="p">=</span> <span class="no">[int]</span><span class="p">::</span><span class="n">MaxValue</span>
-<span class="ln">36</span>        <span class="nv">$enumType</span> <span class="p">=</span> <span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span>
-<span class="ln">37</span>        <span class="no">[Enum]</span><span class="p">::</span><span class="n">IsDefined</span><span class="p">(</span><span class="nv">$enumType</span><span class="p">,</span> <span class="nv">$invalidValue</span> <span class="p">)</span> <span class="p">|</span> 
-<span class="ln">38</span>            <span class="n">Should</span> <span class="n">Be</span> <span class="nv">$false</span> <span class="c"># making sure the invalid value is not defined in this enum</span>
-<span class="ln">39</span>        <span class="nv">$invalidEnumValue</span> <span class="p">=</span> <span class="no">[Enum]</span><span class="p">::</span><span class="n">Parse</span><span class="p">(</span><span class="nv">$enumType</span><span class="p">,</span> <span class="nv">$invalidValue</span><span class="p">)</span>
-<span class="ln">40</span>
-<span class="ln">41</span>        <span class="c"># -- Act &amp; Assert</span>
-<span class="ln">42</span>
-<span class="ln">43</span>        <span class="p">{</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="nv">$invalidEnumValue</span> <span class="p">}</span> <span class="p">|</span> 
-<span class="ln">44</span>            <span class="n">Should</span> <span class="k">Throw</span> <span class="p">(</span><span class="s1">&#39;The provided value is not one of the expected values. &#39;</span> <span class="p">+</span>
-<span class="ln">45</span>                          <span class="s1">&#39;Possible causes of this exception are parsing the enum value &#39;</span> <span class="p">+</span>
-<span class="ln">46</span>                          <span class="s1">&#39;or using a newer version of the enum which contains more values than expected.&#39;</span><span class="p">)</span>
-<span class="ln">47</span>    <span class="p">}</span>
-<span class="ln">48</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="p">{</span>
+    <span class="k">param</span><span class="p">(</span>
+        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
+        <span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span>
+        <span class="nv">$Status</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;Off&#39;</span><span class="p">,</span><span class="s1">&#39;On&#39;</span> <span class="o">-notcontains</span> <span class="nv">$Status</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">throw</span> <span class="no">[ArgumentOutOfRangeException]</span><span class="p">(</span><span class="s1">&#39;The provided value is not one of the expected values. &#39;</span> <span class="p">+</span>
+        <span class="s1">&#39;Possible causes of this exception are parsing the enum value or using a newer version of &#39;</span> <span class="p">+</span>
+        <span class="s1">&#39;the enum which contains more values than expected.&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$Status</span> <span class="o">-eq</span> <span class="s1">&#39;Off&#39;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Offline&#39;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Online&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="n">Describe</span> <span class="s1">&#39;Get-UnifiedSystemStatus&#39;</span> <span class="p">{</span>
+    <span class="n">It</span> <span class="s1">&#39;Reports Offline when Off&#39;</span> <span class="p">{</span>
+        <span class="nb">Get-UnifiedSystemStatus</span> <span class="n">Off</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;Offline&#39;</span>
+    <span class="p">}</span>
+    <span class="n">It</span> <span class="s1">&#39;Reports Online when On&#39;</span> <span class="p">{</span>
+        <span class="nb">Get-UnifiedSystemStatus</span> <span class="n">On</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;Online&#39;</span>
+    <span class="p">}</span>
+    <span class="n">It</span> <span class="s1">&#39;Throws when invalid value is provided&#39;</span> <span class="p">{</span>
+
+        <span class="c"># -- Arrange</span>
+
+        <span class="nv">$invalidValue</span> <span class="p">=</span> <span class="no">[int]</span><span class="p">::</span><span class="n">MaxValue</span>
+        <span class="nv">$enumType</span> <span class="p">=</span> <span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span>
+        <span class="no">[Enum]</span><span class="p">::</span><span class="n">IsDefined</span><span class="p">(</span><span class="nv">$enumType</span><span class="p">,</span> <span class="nv">$invalidValue</span> <span class="p">)</span> <span class="p">|</span> 
+            <span class="n">Should</span> <span class="n">Be</span> <span class="nv">$false</span> <span class="c"># making sure the invalid value is not defined in this enum</span>
+        <span class="nv">$invalidEnumValue</span> <span class="p">=</span> <span class="no">[Enum]</span><span class="p">::</span><span class="n">Parse</span><span class="p">(</span><span class="nv">$enumType</span><span class="p">,</span> <span class="nv">$invalidValue</span><span class="p">)</span>
+
+        <span class="c"># -- Act &amp; Assert</span>
+
+        <span class="p">{</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="nv">$invalidEnumValue</span> <span class="p">}</span> <span class="p">|</span> 
+            <span class="n">Should</span> <span class="k">Throw</span> <span class="p">(</span><span class="s1">&#39;The provided value is not one of the expected values. &#39;</span> <span class="p">+</span>
+                          <span class="s1">&#39;Possible causes of this exception are parsing the enum value &#39;</span> <span class="p">+</span>
+                          <span class="s1">&#39;or using a newer version of the enum which contains more values than expected.&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>In both cases an assertion that would simply check the type of the thrown exception would be very useful:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="n">Should</span> <span class="k">Throw</span> <span class="no">[SomeExceptionType]</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Should</span> <span class="k">Throw</span> <span class="no">[SomeExceptionType]</span>
 </code></pre></div><p>But unfortunately no such assertion is present in the Pester framework at the moment.</p>
 <h3 id="reviewing-the-changes">Reviewing the changes</h3>
 <p>Let’s look at the updated code again, and imagine what would happen if we updated the enum now. To our surprise we find out that the tests would still pass. But running the report would fail, if there was at least one device in the new status that is. Failing the application on run time might be good enough, and with a bit of luck the report would fail right after the update.</p>
 <p>Could we make it better? We can list all the values in the enum and make the test run for all of them.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nb">Add-Type</span> <span class="n">-TypeDefinition</span> <span class="s1">&#39;
-</span><span class="ln"> 2</span><span class="s1">    namespace Nohwnd.Samples.TestingEnums
-</span><span class="ln"> 3</span><span class="s1">    {
-</span><span class="ln"> 4</span><span class="s1">        public enum SystemStatus
-</span><span class="ln"> 5</span><span class="s1">        {
-</span><span class="ln"> 6</span><span class="s1">            Off,
-</span><span class="ln"> 7</span><span class="s1">            On,
-</span><span class="ln"> 8</span><span class="s1">            //Added new values in version 0.2 of the library
-</span><span class="ln"> 9</span><span class="s1">            Starting,
-</span><span class="ln">10</span><span class="s1">            Stopping,
-</span><span class="ln">11</span><span class="s1">            Busy
-</span><span class="ln">12</span><span class="s1">        }
-</span><span class="ln">13</span><span class="s1">    }
-</span><span class="ln">14</span><span class="s1">&#39;</span>
-<span class="ln">15</span>
-<span class="ln">16</span><span class="k">function</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="p">{</span>
-<span class="ln">17</span>    <span class="k">param</span><span class="p">(</span>
-<span class="ln">18</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
-<span class="ln">19</span>        <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;On&#39;</span><span class="p">,</span><span class="s1">&#39;Off&#39;</span><span class="p">)]</span>
-<span class="ln">20</span>        <span class="c">#The version 0.1 of SystemStatus enum is anticipated here, if this throws an incorrect value was </span>
-<span class="ln">21</span>        <span class="c">#specified. Possible causes of this are that the enum was updated with more values, or parsed value </span>
-<span class="ln">22</span>        <span class="c">#of the enum was provided.</span>
-<span class="ln">23</span>        <span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span>
-<span class="ln">24</span>        <span class="nv">$Status</span>
-<span class="ln">25</span>    <span class="p">)</span>
-<span class="ln">26</span>
-<span class="ln">27</span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$Status</span> <span class="o">-eq</span> <span class="s1">&#39;Off&#39;</span><span class="p">)</span>
-<span class="ln">28</span>    <span class="p">{</span>
-<span class="ln">29</span>        <span class="s1">&#39;Offline&#39;</span>
-<span class="ln">30</span>    <span class="p">}</span>
-<span class="ln">31</span>    <span class="k">else</span>
-<span class="ln">32</span>    <span class="p">{</span>
-<span class="ln">33</span>        <span class="s1">&#39;Online&#39;</span>
-<span class="ln">34</span>    <span class="p">}</span>
-<span class="ln">35</span><span class="p">}</span>
-<span class="ln">36</span>
-<span class="ln">37</span><span class="n">Describe</span> <span class="s1">&#39;Get-UnifiedSystemStatus&#39;</span> <span class="p">{</span>
-<span class="ln">38</span>    <span class="n">It</span> <span class="s1">&#39;Reports Offline when Off&#39;</span> <span class="p">{</span>
-<span class="ln">39</span>        <span class="nb">Get-UnifiedSystemStatus</span> <span class="n">Off</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;Offline&#39;</span>
-<span class="ln">40</span>    <span class="p">}</span>
-<span class="ln">41</span>    <span class="n">It</span> <span class="s1">&#39;Reports Online when On&#39;</span> <span class="p">{</span>
-<span class="ln">42</span>        <span class="nb">Get-UnifiedSystemStatus</span> <span class="n">On</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;Online&#39;</span>
-<span class="ln">43</span>    <span class="p">}</span>
-<span class="ln">44</span>    <span class="n">It</span> <span class="s1">&#39;Throws when invalid value is provided&#39;</span> <span class="p">{</span>
-<span class="ln">45</span>
-<span class="ln">46</span>        <span class="c"># -- Arrange</span>
-<span class="ln">47</span>
-<span class="ln">48</span>        <span class="nv">$invalidValue</span> <span class="p">=</span> <span class="no">[int]</span><span class="p">::</span><span class="n">MaxValue</span>
-<span class="ln">49</span>        <span class="nv">$enumType</span> <span class="p">=</span> <span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span>        
-<span class="ln">50</span>        <span class="no">[Enum]</span><span class="p">::</span><span class="n">IsDefined</span><span class="p">(</span><span class="nv">$enumType</span><span class="p">,</span> <span class="nv">$invalidValue</span><span class="p">)</span> <span class="p">|</span> 
-<span class="ln">51</span>            <span class="n">Should</span> <span class="n">Be</span> <span class="nv">$false</span> <span class="c"># making sure the invalid value is not defined in this enum</span>
-<span class="ln">52</span>        <span class="nv">$invalidEnumValue</span> <span class="p">=</span> <span class="no">[Enum]</span><span class="p">::</span><span class="n">Parse</span><span class="p">(</span><span class="nv">$enumType</span><span class="p">,</span> <span class="nv">$invalidValue</span><span class="p">)</span>
-<span class="ln">53</span>
-<span class="ln">54</span>        <span class="c"># -- Act &amp; Assert</span>
-<span class="ln">55</span>
-<span class="ln">56</span>        <span class="p">{</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="nv">$invalidEnumValue</span> <span class="p">}</span> <span class="p">|</span> 
-<span class="ln">57</span>            <span class="n">Should</span> <span class="k">Throw</span> <span class="p">(</span><span class="s1">&#39;Cannot validate argument on parameter &#39;&#39;Status&#39;&#39;. &#39;</span><span class="p">+</span>
-<span class="ln">58</span>                          <span class="s1">&#39;The argument &#34;2147483647&#34; does not belong to the set &#34;On,Off&#34; &#39;</span><span class="p">+</span>
-<span class="ln">59</span>                          <span class="s1">&#39;specified by the ValidateSet attribute. Supply an argument &#39;</span><span class="p">+</span>
-<span class="ln">60</span>                          <span class="s1">&#39;that is in the set and then try the command again.&#39;</span><span class="p">)</span>
-<span class="ln">61</span>    <span class="p">}</span>
-<span class="ln">62</span>
-<span class="ln">63</span>    <span class="n">It</span> <span class="s1">&#39;Can handle all defined enum values&#39;</span> <span class="p">{</span>
-<span class="ln">64</span>        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$name</span> <span class="k">in</span> <span class="no">[enum]</span><span class="p">::</span><span class="n">GetNames</span><span class="p">(</span><span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span><span class="p">))</span>
-<span class="ln">65</span>        <span class="p">{</span>
-<span class="ln">66</span>            <span class="p">{</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="nv">$name</span> <span class="p">}</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Not</span> <span class="k">Throw</span>
-<span class="ln">67</span>        <span class="p">}</span>
-<span class="ln">68</span>    <span class="p">}</span>
-<span class="ln">69</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Add-Type</span> <span class="n">-TypeDefinition</span> <span class="s1">&#39;
+</span><span class="s1">    namespace Nohwnd.Samples.TestingEnums
+</span><span class="s1">    {
+</span><span class="s1">        public enum SystemStatus
+</span><span class="s1">        {
+</span><span class="s1">            Off,
+</span><span class="s1">            On,
+</span><span class="s1">            //Added new values in version 0.2 of the library
+</span><span class="s1">            Starting,
+</span><span class="s1">            Stopping,
+</span><span class="s1">            Busy
+</span><span class="s1">        }
+</span><span class="s1">    }
+</span><span class="s1">&#39;</span>
+
+<span class="k">function</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="p">{</span>
+    <span class="k">param</span><span class="p">(</span>
+        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
+        <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;On&#39;</span><span class="p">,</span><span class="s1">&#39;Off&#39;</span><span class="p">)]</span>
+        <span class="c">#The version 0.1 of SystemStatus enum is anticipated here, if this throws an incorrect value was </span>
+        <span class="c">#specified. Possible causes of this are that the enum was updated with more values, or parsed value </span>
+        <span class="c">#of the enum was provided.</span>
+        <span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span>
+        <span class="nv">$Status</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$Status</span> <span class="o">-eq</span> <span class="s1">&#39;Off&#39;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Offline&#39;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Online&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">Describe</span> <span class="s1">&#39;Get-UnifiedSystemStatus&#39;</span> <span class="p">{</span>
+    <span class="n">It</span> <span class="s1">&#39;Reports Offline when Off&#39;</span> <span class="p">{</span>
+        <span class="nb">Get-UnifiedSystemStatus</span> <span class="n">Off</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;Offline&#39;</span>
+    <span class="p">}</span>
+    <span class="n">It</span> <span class="s1">&#39;Reports Online when On&#39;</span> <span class="p">{</span>
+        <span class="nb">Get-UnifiedSystemStatus</span> <span class="n">On</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;Online&#39;</span>
+    <span class="p">}</span>
+    <span class="n">It</span> <span class="s1">&#39;Throws when invalid value is provided&#39;</span> <span class="p">{</span>
+
+        <span class="c"># -- Arrange</span>
+
+        <span class="nv">$invalidValue</span> <span class="p">=</span> <span class="no">[int]</span><span class="p">::</span><span class="n">MaxValue</span>
+        <span class="nv">$enumType</span> <span class="p">=</span> <span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span>        
+        <span class="no">[Enum]</span><span class="p">::</span><span class="n">IsDefined</span><span class="p">(</span><span class="nv">$enumType</span><span class="p">,</span> <span class="nv">$invalidValue</span><span class="p">)</span> <span class="p">|</span> 
+            <span class="n">Should</span> <span class="n">Be</span> <span class="nv">$false</span> <span class="c"># making sure the invalid value is not defined in this enum</span>
+        <span class="nv">$invalidEnumValue</span> <span class="p">=</span> <span class="no">[Enum]</span><span class="p">::</span><span class="n">Parse</span><span class="p">(</span><span class="nv">$enumType</span><span class="p">,</span> <span class="nv">$invalidValue</span><span class="p">)</span>
+
+        <span class="c"># -- Act &amp; Assert</span>
+
+        <span class="p">{</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="nv">$invalidEnumValue</span> <span class="p">}</span> <span class="p">|</span> 
+            <span class="n">Should</span> <span class="k">Throw</span> <span class="p">(</span><span class="s1">&#39;Cannot validate argument on parameter &#39;&#39;Status&#39;&#39;. &#39;</span><span class="p">+</span>
+                          <span class="s1">&#39;The argument &#34;2147483647&#34; does not belong to the set &#34;On,Off&#34; &#39;</span><span class="p">+</span>
+                          <span class="s1">&#39;specified by the ValidateSet attribute. Supply an argument &#39;</span><span class="p">+</span>
+                          <span class="s1">&#39;that is in the set and then try the command again.&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="n">It</span> <span class="s1">&#39;Can handle all defined enum values&#39;</span> <span class="p">{</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$name</span> <span class="k">in</span> <span class="no">[enum]</span><span class="p">::</span><span class="n">GetNames</span><span class="p">(</span><span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="p">{</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="nv">$name</span> <span class="p">}</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Not</span> <span class="k">Throw</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>The new test gets all the values from the enum and runs them from our function. If any of the values does not belong to the set of ‘On’,’Off’ it will fail the test.</p>
 <h3 id="summary">Summary</h3>
 <p>Enums do not guarantee that their values will not change. This is something to be aware of.</p>

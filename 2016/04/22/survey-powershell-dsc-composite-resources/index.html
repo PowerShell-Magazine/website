@@ -239,102 +239,102 @@ if (!doNotTrack) {
 <p>In the following example, I am using the <em>ServiceSet</em> composite resource that comes with Windows Server 2016 TP4.</p>
 <p><img src="/images/sur1.png" alt=""></p>
 <p>Instead of specifying multiple instances of Service resource, we can use the <em>ServiceSet</em> to configure multiple services that need to be configured in a similar way. Here is an example of the configuration that uses <em>ServiceSet</em> composite resource.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Configuration</span> <span class="n">DemoComposite</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">PSDesiredStateConfiguration</span>
-<span class="ln"> 3</span>    <span class="n">ServiceSet</span> <span class="n">ServiceSetComposite</span> <span class="p">{</span>
-<span class="ln"> 4</span>        <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;audiosrv&#39;</span><span class="p">,</span><span class="s1">&#39;winmgmt&#39;</span>
-<span class="ln"> 5</span>        <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
-<span class="ln"> 6</span>    <span class="p">}</span>
-<span class="ln"> 7</span><span class="p">}</span>
-<span class="ln"> 8</span>
-<span class="ln"> 9</span><span class="n">DemoComposite</span> <span class="n">-OutputPath</span> <span class="n">C:</span><span class="p">\</span><span class="n">DemoComposite</span>
-<span class="ln">10</span>
-<span class="ln">11</span><span class="nb">Start-DscConfiguration</span> <span class="n">-Path</span> <span class="n">C:</span><span class="p">\</span><span class="n">DemoComposite</span> <span class="n">-Force</span> <span class="n">-Wait</span> <span class="n">-Verbose</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Configuration</span> <span class="n">DemoComposite</span> <span class="p">{</span>
+    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">PSDesiredStateConfiguration</span>
+    <span class="n">ServiceSet</span> <span class="n">ServiceSetComposite</span> <span class="p">{</span>
+        <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;audiosrv&#39;</span><span class="p">,</span><span class="s1">&#39;winmgmt&#39;</span>
+        <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">DemoComposite</span> <span class="n">-OutputPath</span> <span class="n">C:</span><span class="p">\</span><span class="n">DemoComposite</span>
+
+<span class="nb">Start-DscConfiguration</span> <span class="n">-Path</span> <span class="n">C:</span><span class="p">\</span><span class="n">DemoComposite</span> <span class="n">-Force</span> <span class="n">-Wait</span> <span class="n">-Verbose</span>
 </code></pre></div><p>Once you enact this configuration and use the Get-DscConfiguration cmdlet, you will see that the <em>ServiceSet</em> resource gets expanded into the two <em>Service</em> resource instances defined in the configuration.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nb">PS </span><span class="n">C:</span><span class="p">\&gt;</span> <span class="nb">Get-DscConfiguration</span>
-<span class="ln"> 2</span>
-<span class="ln"> 3</span><span class="n">ConfigurationName</span>    <span class="err">:</span> <span class="n">DemoComposite</span>
-<span class="ln"> 4</span><span class="n">DependsOn</span>            <span class="err">:</span> 
-<span class="ln"> 5</span><span class="n">ModuleName</span>           <span class="err">:</span> <span class="n">PSDesiredStateConfiguration</span>
-<span class="ln"> 6</span><span class="n">ModuleVersion</span>        <span class="err">:</span> <span class="n">1</span><span class="p">.</span><span class="n">1</span>
-<span class="ln"> 7</span><span class="n">PsDscRunAsCredential</span> <span class="err">:</span> 
-<span class="ln"> 8</span><span class="n">ResourceId</span>           <span class="err">:</span> <span class="no">[Service]</span><span class="n">Resource0</span><span class="p">::</span><span class="no">[ServiceSet]</span><span class="n">ServiceSetComposite</span>
-<span class="ln"> 9</span><span class="n">SourceInfo</span>           <span class="err">:</span> 
-<span class="ln">10</span><span class="n">BuiltInAccount</span>       <span class="err">:</span> <span class="n">LocalService</span>
-<span class="ln">11</span><span class="n">Credential</span>           <span class="err">:</span> 
-<span class="ln">12</span><span class="n">Dependencies</span>         <span class="err">:</span> <span class="p">{</span><span class="n">AudioEndpointBuilder</span><span class="p">,</span> <span class="n">RpcSs</span><span class="p">}</span>
-<span class="ln">13</span><span class="n">Description</span>          <span class="err">:</span> <span class="n">Manages</span> <span class="n">audio</span> <span class="k">for</span> <span class="n">Windows-based</span> <span class="n">programs</span><span class="p">.</span>  <span class="k">If</span> <span class="n">this</span> <span class="n">service</span> <span class="n">is</span> <span class="n">stopped</span><span class="p">,</span> <span class="n">audio</span> <span class="n">devices</span> <span class="n">and</span> <span class="n">effects</span> <span class="n">will</span> <span class="n">not</span> <span class="k">function</span> <span class="n">properly</span><span class="p">.</span>  <span class="k">If</span> <span class="n">this</span> <span class="n">service</span> <span class="n">is</span> 
-<span class="ln">14</span>                       <span class="n">disabled</span><span class="p">,</span> <span class="n">any</span> <span class="n">services</span> <span class="n">that</span> <span class="n">explicitly</span> <span class="n">depend</span> <span class="n">on</span> <span class="n">it</span> <span class="n">will</span> <span class="n">fail</span> <span class="n">to</span> <span class="nb">start
-</span><span class="ln">15</span><span class="nb"></span><span class="n">DisplayName</span>          <span class="err">:</span> <span class="n">Windows</span> <span class="n">Audio</span>
-<span class="ln">16</span><span class="n">Ensure</span>               <span class="err">:</span> 
-<span class="ln">17</span><span class="n">Name</span>                 <span class="err">:</span> <span class="n">audiosrv</span>
-<span class="ln">18</span><span class="n">Path</span>                 <span class="err">:</span> <span class="n">C:</span><span class="p">\</span><span class="n">Windows</span><span class="p">\</span><span class="n">System32</span><span class="p">\</span><span class="n">svchost</span><span class="p">.</span><span class="n">exe</span> <span class="n">-k</span> <span class="n">LocalServiceNetworkRestricted</span>
-<span class="ln">19</span><span class="n">StartupType</span>          <span class="err">:</span> <span class="n">Manual</span>
-<span class="ln">20</span><span class="n">State</span>                <span class="err">:</span> <span class="n">Running</span>
-<span class="ln">21</span><span class="n">Status</span>               <span class="err">:</span> 
-<span class="ln">22</span><span class="n">PSComputerName</span>       <span class="err">:</span> 
-<span class="ln">23</span><span class="n">CimClassName</span>         <span class="err">:</span> <span class="n">MSFT_ServiceResource</span>
-<span class="ln">24</span>
-<span class="ln">25</span><span class="n">ConfigurationName</span>    <span class="err">:</span> <span class="n">DemoComposite</span>
-<span class="ln">26</span><span class="n">DependsOn</span>            <span class="err">:</span> 
-<span class="ln">27</span><span class="n">ModuleName</span>           <span class="err">:</span> <span class="n">PSDesiredStateConfiguration</span>
-<span class="ln">28</span><span class="n">ModuleVersion</span>        <span class="err">:</span> <span class="n">1</span><span class="p">.</span><span class="n">1</span>
-<span class="ln">29</span><span class="n">PsDscRunAsCredential</span> <span class="err">:</span> 
-<span class="ln">30</span><span class="n">ResourceId</span>           <span class="err">:</span> <span class="no">[Service]</span><span class="n">Resource1</span><span class="p">::</span><span class="no">[ServiceSet]</span><span class="n">ServiceSetComposite</span>
-<span class="ln">31</span><span class="n">SourceInfo</span>           <span class="err">:</span> 
-<span class="ln">32</span><span class="n">BuiltInAccount</span>       <span class="err">:</span> <span class="n">LocalSystem</span>
-<span class="ln">33</span><span class="n">Credential</span>           <span class="err">:</span> 
-<span class="ln">34</span><span class="n">Dependencies</span>         <span class="err">:</span> <span class="p">{</span><span class="n">RPCSS</span><span class="p">}</span>
-<span class="ln">35</span><span class="n">Description</span>          <span class="err">:</span> <span class="n">Provides</span> <span class="n">a</span> <span class="n">common</span> <span class="n">interface</span> <span class="n">and</span> <span class="n">object</span> <span class="n">model</span> <span class="n">to</span> <span class="n">access</span> <span class="n">management</span> <span class="n">information</span> <span class="n">about</span> <span class="n">operating</span> <span class="n">system</span><span class="p">,</span> <span class="n">devices</span><span class="p">,</span> <span class="n">applications</span> <span class="n">and</span> <span class="n">services</span><span class="p">.</span> <span class="k">If</span> <span class="n">this</span> 
-<span class="ln">36</span>                       <span class="n">service</span> <span class="n">is</span> <span class="n">stopped</span><span class="p">,</span> <span class="n">most</span> <span class="n">Windows-based</span> <span class="n">software</span> <span class="n">will</span> <span class="n">not</span> <span class="k">function</span> <span class="n">properly</span><span class="p">.</span> <span class="k">If</span> <span class="n">this</span> <span class="n">service</span> <span class="n">is</span> <span class="n">disabled</span><span class="p">,</span> <span class="n">any</span> <span class="n">services</span> <span class="n">that</span> <span class="n">explicitly</span> <span class="n">depend</span> <span class="n">on</span> <span class="n">it</span> <span class="n">will</span> 
-<span class="ln">37</span>                       <span class="n">fail</span> <span class="n">to</span> <span class="n">start</span><span class="p">.</span>
-<span class="ln">38</span><span class="n">DisplayName</span>          <span class="err">:</span> <span class="n">Windows</span> <span class="n">Management</span> <span class="n">Instrumentation</span>
-<span class="ln">39</span><span class="n">Ensure</span>               <span class="err">:</span> 
-<span class="ln">40</span><span class="n">Name</span>                 <span class="err">:</span> <span class="n">winmgmt</span>
-<span class="ln">41</span><span class="n">Path</span>                 <span class="err">:</span> <span class="n">C:</span><span class="p">\</span><span class="n">Windows</span><span class="p">\</span><span class="n">system32</span><span class="p">\</span><span class="n">svchost</span><span class="p">.</span><span class="n">exe</span> <span class="n">-k</span> <span class="n">netsvcs</span>
-<span class="ln">42</span><span class="n">StartupType</span>          <span class="err">:</span> <span class="n">Automatic</span>
-<span class="ln">43</span><span class="n">State</span>                <span class="err">:</span> <span class="n">Running</span>
-<span class="ln">44</span><span class="n">Status</span>               <span class="err">:</span> 
-<span class="ln">45</span><span class="n">PSComputerName</span>       <span class="err">:</span> 
-<span class="ln">46</span><span class="n">CimClassName</span>         <span class="err">:</span> <span class="n">MSFT_ServiceResource</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="n">C:</span><span class="p">\&gt;</span> <span class="nb">Get-DscConfiguration</span>
+
+<span class="n">ConfigurationName</span>    <span class="err">:</span> <span class="n">DemoComposite</span>
+<span class="n">DependsOn</span>            <span class="err">:</span> 
+<span class="n">ModuleName</span>           <span class="err">:</span> <span class="n">PSDesiredStateConfiguration</span>
+<span class="n">ModuleVersion</span>        <span class="err">:</span> <span class="n">1</span><span class="p">.</span><span class="n">1</span>
+<span class="n">PsDscRunAsCredential</span> <span class="err">:</span> 
+<span class="n">ResourceId</span>           <span class="err">:</span> <span class="no">[Service]</span><span class="n">Resource0</span><span class="p">::</span><span class="no">[ServiceSet]</span><span class="n">ServiceSetComposite</span>
+<span class="n">SourceInfo</span>           <span class="err">:</span> 
+<span class="n">BuiltInAccount</span>       <span class="err">:</span> <span class="n">LocalService</span>
+<span class="n">Credential</span>           <span class="err">:</span> 
+<span class="n">Dependencies</span>         <span class="err">:</span> <span class="p">{</span><span class="n">AudioEndpointBuilder</span><span class="p">,</span> <span class="n">RpcSs</span><span class="p">}</span>
+<span class="n">Description</span>          <span class="err">:</span> <span class="n">Manages</span> <span class="n">audio</span> <span class="k">for</span> <span class="n">Windows-based</span> <span class="n">programs</span><span class="p">.</span>  <span class="k">If</span> <span class="n">this</span> <span class="n">service</span> <span class="n">is</span> <span class="n">stopped</span><span class="p">,</span> <span class="n">audio</span> <span class="n">devices</span> <span class="n">and</span> <span class="n">effects</span> <span class="n">will</span> <span class="n">not</span> <span class="k">function</span> <span class="n">properly</span><span class="p">.</span>  <span class="k">If</span> <span class="n">this</span> <span class="n">service</span> <span class="n">is</span> 
+                       <span class="n">disabled</span><span class="p">,</span> <span class="n">any</span> <span class="n">services</span> <span class="n">that</span> <span class="n">explicitly</span> <span class="n">depend</span> <span class="n">on</span> <span class="n">it</span> <span class="n">will</span> <span class="n">fail</span> <span class="n">to</span> <span class="nb">start
+</span><span class="nb"></span><span class="n">DisplayName</span>          <span class="err">:</span> <span class="n">Windows</span> <span class="n">Audio</span>
+<span class="n">Ensure</span>               <span class="err">:</span> 
+<span class="n">Name</span>                 <span class="err">:</span> <span class="n">audiosrv</span>
+<span class="n">Path</span>                 <span class="err">:</span> <span class="n">C:</span><span class="p">\</span><span class="n">Windows</span><span class="p">\</span><span class="n">System32</span><span class="p">\</span><span class="n">svchost</span><span class="p">.</span><span class="n">exe</span> <span class="n">-k</span> <span class="n">LocalServiceNetworkRestricted</span>
+<span class="n">StartupType</span>          <span class="err">:</span> <span class="n">Manual</span>
+<span class="n">State</span>                <span class="err">:</span> <span class="n">Running</span>
+<span class="n">Status</span>               <span class="err">:</span> 
+<span class="n">PSComputerName</span>       <span class="err">:</span> 
+<span class="n">CimClassName</span>         <span class="err">:</span> <span class="n">MSFT_ServiceResource</span>
+
+<span class="n">ConfigurationName</span>    <span class="err">:</span> <span class="n">DemoComposite</span>
+<span class="n">DependsOn</span>            <span class="err">:</span> 
+<span class="n">ModuleName</span>           <span class="err">:</span> <span class="n">PSDesiredStateConfiguration</span>
+<span class="n">ModuleVersion</span>        <span class="err">:</span> <span class="n">1</span><span class="p">.</span><span class="n">1</span>
+<span class="n">PsDscRunAsCredential</span> <span class="err">:</span> 
+<span class="n">ResourceId</span>           <span class="err">:</span> <span class="no">[Service]</span><span class="n">Resource1</span><span class="p">::</span><span class="no">[ServiceSet]</span><span class="n">ServiceSetComposite</span>
+<span class="n">SourceInfo</span>           <span class="err">:</span> 
+<span class="n">BuiltInAccount</span>       <span class="err">:</span> <span class="n">LocalSystem</span>
+<span class="n">Credential</span>           <span class="err">:</span> 
+<span class="n">Dependencies</span>         <span class="err">:</span> <span class="p">{</span><span class="n">RPCSS</span><span class="p">}</span>
+<span class="n">Description</span>          <span class="err">:</span> <span class="n">Provides</span> <span class="n">a</span> <span class="n">common</span> <span class="n">interface</span> <span class="n">and</span> <span class="n">object</span> <span class="n">model</span> <span class="n">to</span> <span class="n">access</span> <span class="n">management</span> <span class="n">information</span> <span class="n">about</span> <span class="n">operating</span> <span class="n">system</span><span class="p">,</span> <span class="n">devices</span><span class="p">,</span> <span class="n">applications</span> <span class="n">and</span> <span class="n">services</span><span class="p">.</span> <span class="k">If</span> <span class="n">this</span> 
+                       <span class="n">service</span> <span class="n">is</span> <span class="n">stopped</span><span class="p">,</span> <span class="n">most</span> <span class="n">Windows-based</span> <span class="n">software</span> <span class="n">will</span> <span class="n">not</span> <span class="k">function</span> <span class="n">properly</span><span class="p">.</span> <span class="k">If</span> <span class="n">this</span> <span class="n">service</span> <span class="n">is</span> <span class="n">disabled</span><span class="p">,</span> <span class="n">any</span> <span class="n">services</span> <span class="n">that</span> <span class="n">explicitly</span> <span class="n">depend</span> <span class="n">on</span> <span class="n">it</span> <span class="n">will</span> 
+                       <span class="n">fail</span> <span class="n">to</span> <span class="n">start</span><span class="p">.</span>
+<span class="n">DisplayName</span>          <span class="err">:</span> <span class="n">Windows</span> <span class="n">Management</span> <span class="n">Instrumentation</span>
+<span class="n">Ensure</span>               <span class="err">:</span> 
+<span class="n">Name</span>                 <span class="err">:</span> <span class="n">winmgmt</span>
+<span class="n">Path</span>                 <span class="err">:</span> <span class="n">C:</span><span class="p">\</span><span class="n">Windows</span><span class="p">\</span><span class="n">system32</span><span class="p">\</span><span class="n">svchost</span><span class="p">.</span><span class="n">exe</span> <span class="n">-k</span> <span class="n">netsvcs</span>
+<span class="n">StartupType</span>          <span class="err">:</span> <span class="n">Automatic</span>
+<span class="n">State</span>                <span class="err">:</span> <span class="n">Running</span>
+<span class="n">Status</span>               <span class="err">:</span> 
+<span class="n">PSComputerName</span>       <span class="err">:</span> 
+<span class="n">CimClassName</span>         <span class="err">:</span> <span class="n">MSFT_ServiceResource</span>
 </code></pre></div><p>Now, for some people, this may not make sense. In the configuration script, we have only one resource but in the <em>Get-DscConfiguration</em> output, we have two service instances. This can be confusing at times. The same applies to the <em>Test-DscConfiguration</em> cmdlet as well.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="nb">PS </span><span class="n">C:</span><span class="p">\&gt;</span> <span class="nb">Test-DscConfiguration</span> <span class="n">-Detailed</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">-ExpandProperty</span> <span class="n">ResourcesInDesiredState</span>
-<span class="ln"> 2</span>
-<span class="ln"> 3</span><span class="n">ConfigurationName</span>    <span class="err">:</span> <span class="n">DemoComposite</span>
-<span class="ln"> 4</span><span class="n">DependsOn</span>            <span class="err">:</span> 
-<span class="ln"> 5</span><span class="n">ModuleName</span>           <span class="err">:</span> <span class="n">PSDesiredStateConfiguration</span>
-<span class="ln"> 6</span><span class="n">ModuleVersion</span>        <span class="err">:</span> <span class="n">1</span><span class="p">.</span><span class="n">1</span>
-<span class="ln"> 7</span><span class="n">PsDscRunAsCredential</span> <span class="err">:</span> 
-<span class="ln"> 8</span><span class="n">ResourceId</span>           <span class="err">:</span> <span class="no">[Service]</span><span class="n">Resource0</span><span class="p">::</span><span class="no">[ServiceSet]</span><span class="n">ServiceSetComposite</span>
-<span class="ln"> 9</span><span class="n">SourceInfo</span>           <span class="err">:</span> <span class="p">::</span><span class="n">2</span><span class="p">::</span><span class="n">1</span><span class="p">::</span><span class="n">Service</span>
-<span class="ln">10</span><span class="n">DurationInSeconds</span>    <span class="err">:</span> <span class="n">0</span>
-<span class="ln">11</span><span class="n">Error</span>                <span class="err">:</span> 
-<span class="ln">12</span><span class="n">FinalState</span>           <span class="err">:</span> 
-<span class="ln">13</span><span class="n">InDesiredState</span>       <span class="err">:</span> <span class="n">True</span>
-<span class="ln">14</span><span class="n">InitialState</span>         <span class="err">:</span> 
-<span class="ln">15</span><span class="n">InstanceName</span>         <span class="err">:</span> <span class="n">Resource0</span><span class="p">::</span><span class="no">[ServiceSet]</span><span class="n">ServiceSetComposite</span>
-<span class="ln">16</span><span class="n">RebootRequested</span>      <span class="err">:</span> <span class="n">False</span>
-<span class="ln">17</span><span class="n">ResourceName</span>         <span class="err">:</span> <span class="n">Service</span>
-<span class="ln">18</span><span class="n">StartDate</span>            <span class="err">:</span> <span class="n">4</span><span class="p">/</span><span class="n">22</span><span class="p">/</span><span class="n">2016</span> <span class="n">6</span><span class="err">:</span><span class="n">50</span><span class="err">:</span><span class="n">41</span> <span class="n">PM</span>
-<span class="ln">19</span><span class="n">PSComputerName</span>       <span class="err">:</span> <span class="n">localhost</span>
-<span class="ln">20</span>
-<span class="ln">21</span><span class="n">ConfigurationName</span>    <span class="err">:</span> <span class="n">DemoComposite</span>
-<span class="ln">22</span><span class="n">DependsOn</span>            <span class="err">:</span> 
-<span class="ln">23</span><span class="n">ModuleName</span>           <span class="err">:</span> <span class="n">PSDesiredStateConfiguration</span>
-<span class="ln">24</span><span class="n">ModuleVersion</span>        <span class="err">:</span> <span class="n">1</span><span class="p">.</span><span class="n">1</span>
-<span class="ln">25</span><span class="n">PsDscRunAsCredential</span> <span class="err">:</span> 
-<span class="ln">26</span><span class="n">ResourceId</span>           <span class="err">:</span> <span class="no">[Service]</span><span class="n">Resource1</span><span class="p">::</span><span class="no">[ServiceSet]</span><span class="n">ServiceSetComposite</span>
-<span class="ln">27</span><span class="n">SourceInfo</span>           <span class="err">:</span> <span class="p">::</span><span class="n">8</span><span class="p">::</span><span class="n">1</span><span class="p">::</span><span class="n">Service</span>
-<span class="ln">28</span><span class="n">DurationInSeconds</span>    <span class="err">:</span> <span class="n">0</span><span class="p">.</span><span class="n">015</span>
-<span class="ln">29</span><span class="n">Error</span>                <span class="err">:</span> 
-<span class="ln">30</span><span class="n">FinalState</span>           <span class="err">:</span> 
-<span class="ln">31</span><span class="n">InDesiredState</span>       <span class="err">:</span> <span class="n">True</span>
-<span class="ln">32</span><span class="n">InitialState</span>         <span class="err">:</span> 
-<span class="ln">33</span><span class="n">InstanceName</span>         <span class="err">:</span> <span class="n">Resource1</span><span class="p">::</span><span class="no">[ServiceSet]</span><span class="n">ServiceSetComposite</span>
-<span class="ln">34</span><span class="n">RebootRequested</span>      <span class="err">:</span> <span class="n">False</span>
-<span class="ln">35</span><span class="n">ResourceName</span>         <span class="err">:</span> <span class="n">Service</span>
-<span class="ln">36</span><span class="n">StartDate</span>            <span class="err">:</span> <span class="n">4</span><span class="p">/</span><span class="n">22</span><span class="p">/</span><span class="n">2016</span> <span class="n">6</span><span class="err">:</span><span class="n">50</span><span class="err">:</span><span class="n">41</span> <span class="n">PM</span>
-<span class="ln">37</span><span class="n">PSComputerName</span>       <span class="err">:</span> <span class="n">localhost</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="n">C:</span><span class="p">\&gt;</span> <span class="nb">Test-DscConfiguration</span> <span class="n">-Detailed</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">-ExpandProperty</span> <span class="n">ResourcesInDesiredState</span>
+
+<span class="n">ConfigurationName</span>    <span class="err">:</span> <span class="n">DemoComposite</span>
+<span class="n">DependsOn</span>            <span class="err">:</span> 
+<span class="n">ModuleName</span>           <span class="err">:</span> <span class="n">PSDesiredStateConfiguration</span>
+<span class="n">ModuleVersion</span>        <span class="err">:</span> <span class="n">1</span><span class="p">.</span><span class="n">1</span>
+<span class="n">PsDscRunAsCredential</span> <span class="err">:</span> 
+<span class="n">ResourceId</span>           <span class="err">:</span> <span class="no">[Service]</span><span class="n">Resource0</span><span class="p">::</span><span class="no">[ServiceSet]</span><span class="n">ServiceSetComposite</span>
+<span class="n">SourceInfo</span>           <span class="err">:</span> <span class="p">::</span><span class="n">2</span><span class="p">::</span><span class="n">1</span><span class="p">::</span><span class="n">Service</span>
+<span class="n">DurationInSeconds</span>    <span class="err">:</span> <span class="n">0</span>
+<span class="n">Error</span>                <span class="err">:</span> 
+<span class="n">FinalState</span>           <span class="err">:</span> 
+<span class="n">InDesiredState</span>       <span class="err">:</span> <span class="n">True</span>
+<span class="n">InitialState</span>         <span class="err">:</span> 
+<span class="n">InstanceName</span>         <span class="err">:</span> <span class="n">Resource0</span><span class="p">::</span><span class="no">[ServiceSet]</span><span class="n">ServiceSetComposite</span>
+<span class="n">RebootRequested</span>      <span class="err">:</span> <span class="n">False</span>
+<span class="n">ResourceName</span>         <span class="err">:</span> <span class="n">Service</span>
+<span class="n">StartDate</span>            <span class="err">:</span> <span class="n">4</span><span class="p">/</span><span class="n">22</span><span class="p">/</span><span class="n">2016</span> <span class="n">6</span><span class="err">:</span><span class="n">50</span><span class="err">:</span><span class="n">41</span> <span class="n">PM</span>
+<span class="n">PSComputerName</span>       <span class="err">:</span> <span class="n">localhost</span>
+
+<span class="n">ConfigurationName</span>    <span class="err">:</span> <span class="n">DemoComposite</span>
+<span class="n">DependsOn</span>            <span class="err">:</span> 
+<span class="n">ModuleName</span>           <span class="err">:</span> <span class="n">PSDesiredStateConfiguration</span>
+<span class="n">ModuleVersion</span>        <span class="err">:</span> <span class="n">1</span><span class="p">.</span><span class="n">1</span>
+<span class="n">PsDscRunAsCredential</span> <span class="err">:</span> 
+<span class="n">ResourceId</span>           <span class="err">:</span> <span class="no">[Service]</span><span class="n">Resource1</span><span class="p">::</span><span class="no">[ServiceSet]</span><span class="n">ServiceSetComposite</span>
+<span class="n">SourceInfo</span>           <span class="err">:</span> <span class="p">::</span><span class="n">8</span><span class="p">::</span><span class="n">1</span><span class="p">::</span><span class="n">Service</span>
+<span class="n">DurationInSeconds</span>    <span class="err">:</span> <span class="n">0</span><span class="p">.</span><span class="n">015</span>
+<span class="n">Error</span>                <span class="err">:</span> 
+<span class="n">FinalState</span>           <span class="err">:</span> 
+<span class="n">InDesiredState</span>       <span class="err">:</span> <span class="n">True</span>
+<span class="n">InitialState</span>         <span class="err">:</span> 
+<span class="n">InstanceName</span>         <span class="err">:</span> <span class="n">Resource1</span><span class="p">::</span><span class="no">[ServiceSet]</span><span class="n">ServiceSetComposite</span>
+<span class="n">RebootRequested</span>      <span class="err">:</span> <span class="n">False</span>
+<span class="n">ResourceName</span>         <span class="err">:</span> <span class="n">Service</span>
+<span class="n">StartDate</span>            <span class="err">:</span> <span class="n">4</span><span class="p">/</span><span class="n">22</span><span class="p">/</span><span class="n">2016</span> <span class="n">6</span><span class="err">:</span><span class="n">50</span><span class="err">:</span><span class="n">41</span> <span class="n">PM</span>
+<span class="n">PSComputerName</span>       <span class="err">:</span> <span class="n">localhost</span>
 </code></pre></div><p>You can identify the resource instances that belong to the composite resource configuration using the <em>InstanceName</em> property. However, it is not always desired.</p>
 <p>Instead of this expansion, it will be helpful if the <em>Get</em> and <em>Test</em> methods roll-up the status of the resource instances from the composite resource configuration into a single instance.</p>
 <p>So, here is a <a href="https://www.surveymonkey.com/r/6K6FGTR">survey for you</a>. Vote it up and let the team know what your preference is.</p>

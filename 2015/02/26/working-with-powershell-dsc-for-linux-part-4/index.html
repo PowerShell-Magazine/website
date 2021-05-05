@@ -252,172 +252,172 @@ if (!doNotTrack) {
 <pre class="brush: bash; title: ; notranslate" title="">#!/usr/bin/env perl
 </pre>
 <p>Important thing to remember: shebang has to be the first line of our file. To prove that extensions are not important, we will define two simple scripts that use Python syntax (<em>print</em>). One with extension that suggests shell script (.sh) and Python shebang, and one with extension that suggests Python script (.py) and without shebang:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="c1"># ./fake.sh</span>
-<span class="ln">2</span>I<span class="err">&#39;</span>m a python script, see?
-<span class="ln">3</span><span class="c1"># ./relly.py</span>
-<span class="ln">4</span>./relly.py: line 1: print: <span class="nb">command</span> not found
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># ./fake.sh</span>
+I<span class="err">&#39;</span>m a python script, see?
+<span class="c1"># ./relly.py</span>
+./relly.py: line 1: print: <span class="nb">command</span> not found
 </code></pre></div><p>Why is that important? First of all it means that as long as we can depend on the interpreter being present on the Linux system that we configure, we can use any scripting language we want. Even though script we send over the wire is saved with sh extension we don’t have to think about it, we just need to format shebang properly. But it also means that if resource is not taking shebang into account, our scripts have to be formatted appropriately: with shebang in the very first line. If we use a herestring, then it should not be an issue. But if we define *Script properties using script block syntax, we are doomed to fail. Example configuration:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">configuration</span> <span class="n">scriptBlock</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="k">param</span> <span class="p">(</span>
-<span class="ln"> 3</span>        <span class="no">[String]</span><span class="nv">$ComputerName</span>
-<span class="ln"> 4</span>    <span class="p">)</span>
-<span class="ln"> 5</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">nx</span>
-<span class="ln"> 6</span>
-<span class="ln"> 7</span>	<span class="n">node</span> <span class="nv">$ComputerName</span> <span class="p">{</span>
-<span class="ln"> 8</span>    	<span class="n">nxScript</span> <span class="n">mix</span> <span class="p">{</span>
-<span class="ln"> 9</span>        	<span class="n">GetScript</span> <span class="p">=</span> <span class="p">{</span>
-<span class="ln">10</span>				<span class="c">#!/usr/bin/python</span>
-<span class="ln">11</span>				<span class="n">print</span> <span class="s2">&#34;Worked!&#34;</span>
-<span class="ln">12</span>            <span class="p">}</span>
-<span class="ln">13</span>            <span class="n">TestScript</span> <span class="p">=</span> <span class="p">{</span>
-<span class="ln">14</span>                <span class="c">#!/bin/bash</span>
-<span class="ln">15</span>                <span class="n">exit</span> <span class="n">1</span>
-<span class="ln">16</span>            <span class="p">}</span>
-<span class="ln">17</span>            <span class="n">SetScript</span> <span class="p">=</span> <span class="p">{</span>
-<span class="ln">18</span>                <span class="c">#!/bin/perl</span>
-<span class="ln">19</span>                <span class="n">print</span> <span class="s2">&#34;Mixing different langs&#34;</span>
-<span class="ln">20</span>            <span class="p">}</span>
-<span class="ln">21</span>        <span class="p">}</span>
-<span class="ln">22</span>    <span class="p">}</span>
-<span class="ln">23</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">configuration</span> <span class="n">scriptBlock</span> <span class="p">{</span>
+    <span class="k">param</span> <span class="p">(</span>
+        <span class="no">[String]</span><span class="nv">$ComputerName</span>
+    <span class="p">)</span>
+    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">nx</span>
+
+	<span class="n">node</span> <span class="nv">$ComputerName</span> <span class="p">{</span>
+    	<span class="n">nxScript</span> <span class="n">mix</span> <span class="p">{</span>
+        	<span class="n">GetScript</span> <span class="p">=</span> <span class="p">{</span>
+				<span class="c">#!/usr/bin/python</span>
+				<span class="n">print</span> <span class="s2">&#34;Worked!&#34;</span>
+            <span class="p">}</span>
+            <span class="n">TestScript</span> <span class="p">=</span> <span class="p">{</span>
+                <span class="c">#!/bin/bash</span>
+                <span class="n">exit</span> <span class="n">1</span>
+            <span class="p">}</span>
+            <span class="n">SetScript</span> <span class="p">=</span> <span class="p">{</span>
+                <span class="c">#!/bin/perl</span>
+                <span class="n">print</span> <span class="s2">&#34;Mixing different langs&#34;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>Even though it looks like we got our code right, it is incorrect. Anything after the brace is already considered a part of our script. If we look at actual scripts created on Linux (if script fails DSC will leave it in <em>/tmp/*/temp_script.sh</em>), they all have extra blank line:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln"> 1</span><span class="c1"># for file in /tmp/*/temp_script.sh; do  cat -n $file; echo EOF; done</span>
-<span class="ln"> 2</span>
-<span class="ln"> 3</span> <span class="m">1</span>
-<span class="ln"> 4</span> <span class="m">2</span>  <span class="c1">#!/bin/bash</span>
-<span class="ln"> 5</span> <span class="m">3</span>  <span class="nb">exit</span> <span class="m">1</span>
-<span class="ln"> 6</span> <span class="m">4</span>              EOF
-<span class="ln"> 7</span> <span class="m">1</span>
-<span class="ln"> 8</span> <span class="m">2</span>  <span class="c1">#!/bin/perl</span>
-<span class="ln"> 9</span> <span class="m">3</span>  print <span class="s2">&#34;Mixing different langs&#34;</span>
-<span class="ln">10</span> <span class="m">4</span>              EOF
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># for file in /tmp/*/temp_script.sh; do  cat -n $file; echo EOF; done</span>
+
+ <span class="m">1</span>
+ <span class="m">2</span>  <span class="c1">#!/bin/bash</span>
+ <span class="m">3</span>  <span class="nb">exit</span> <span class="m">1</span>
+ <span class="m">4</span>              EOF
+ <span class="m">1</span>
+ <span class="m">2</span>  <span class="c1">#!/bin/perl</span>
+ <span class="m">3</span>  print <span class="s2">&#34;Mixing different langs&#34;</span>
+ <span class="m">4</span>              EOF
 </code></pre></div><p>To fix this issue and keep script block syntax, we would have to move the first line immediately after the curly brackets. In my opinion, it shouldn’t be necessary: resource should be smart enough to remove unnecessary white spaces and leave just the part that can be used. To get that behavior I modified <em>nxScript</em> a bit. You can find these changes in my <a href="https://github.com/bielawb/WPSDSCLinux/commit/379be9179af34288595268cbf1e10e1c6bdfc785" target="_blank">fork of Linux DSC</a>. Regardless of your decision – use official version or my fork – I would suggest using herestrings for script’s definition. Even if we don’t have to be careful with white spaces at the beginning of a file, it’s a bit easier to keep it clean. On top of that: using string syntax prevents us from thinking that any variable expansion is being done on the client side before configuration is sent to remote node. We can easily verify that using two simple configuration items that are really just “get” scripts (test will always return “True”):</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">configuration</span> <span class="n">getOnly</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="k">param</span> <span class="p">(</span>
-<span class="ln"> 3</span>        <span class="no">[String]</span><span class="nv">$ComputerName</span><span class="p">,</span>
-<span class="ln"> 4</span>        <span class="no">[String]</span><span class="nv">$Message</span>
-<span class="ln"> 5</span>    <span class="p">)</span>
-<span class="ln"> 6</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">nx</span>
-<span class="ln"> 7</span>    <span class="n">node</span> <span class="nv">$ComputerName</span> <span class="p">{</span>
-<span class="ln"> 8</span>        <span class="n">nxScript</span> <span class="n">fail</span> <span class="p">{</span>
-<span class="ln"> 9</span>            <span class="n">SetScript</span> <span class="p">=</span> <span class="p">{}</span>
-<span class="ln">10</span>            <span class="n">TestScript</span> <span class="p">=</span> <span class="p">{</span><span class="c">#!/bin/bash</span>
-<span class="ln">11</span>                <span class="n">exit</span> <span class="n">0</span>
-<span class="ln">12</span>            <span class="p">}</span>
-<span class="ln">13</span>            <span class="n">GetScript</span> <span class="p">=</span> <span class="p">{</span><span class="c">#!/bin/bash</span>
-<span class="ln">14</span>                <span class="nb">echo </span><span class="n">Got</span> <span class="nv">$Message</span> <span class="n">with</span> <span class="n">ScriptBlock</span>
-<span class="ln">15</span>            <span class="p">}</span>
-<span class="ln">16</span>        <span class="p">}</span>
-<span class="ln">17</span>        <span class="n">nxScript</span> <span class="n">work</span> <span class="p">{</span>
-<span class="ln">18</span>            <span class="n">SetScript</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span>
-<span class="ln">19</span>            <span class="n">TestScript</span> <span class="p">=</span> <span class="sh">@&#34;
-</span><span class="ln">20</span><span class="sh">#!/bin/bash
-</span><span class="ln">21</span><span class="sh">exit 0
-</span><span class="ln">22</span><span class="sh">&#34;@</span>
-<span class="ln">23</span>            <span class="n">GetScript</span> <span class="p">=</span> <span class="sh">@&#34;
-</span><span class="ln">24</span><span class="sh">#!/bin/bash
-</span><span class="ln">25</span><span class="sh">echo Got $Message with HereString
-</span><span class="ln">26</span><span class="sh">&#34;@</span>
-<span class="ln">27</span>        <span class="p">}</span>
-<span class="ln">28</span>    <span class="p">}</span>
-<span class="ln">29</span><span class="p">}</span>
-<span class="ln">30</span>
-<span class="ln">31</span><span class="nv">$get</span> <span class="p">=</span> <span class="n">getOnly</span> <span class="n">-ComputerName</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">200</span><span class="p">.</span><span class="n">104</span> <span class="n">-Message</span> <span class="n">Foo</span>
-<span class="ln">32</span><span class="nb">Update-MofDocument</span> <span class="n">-Path</span> <span class="nv">$get</span><span class="p">.</span><span class="n">FullName</span>
-<span class="ln">33</span><span class="nb">Start-DscConfiguration</span> <span class="n">-CimSession</span> <span class="nv">$linTest</span> <span class="n">-Wait</span> <span class="n">-Path</span> <span class="nv">$get</span><span class="p">.</span><span class="n">DirectoryName</span>
-<span class="ln">34</span><span class="nb">Get-DscConfiguration</span> <span class="n">-CimSession</span> <span class="nv">$linTest</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="n">Result</span>
-<span class="ln">35</span>
-<span class="ln">36</span><span class="n">Got</span> <span class="n">with</span> <span class="n">ScriptBlock</span>
-<span class="ln">37</span><span class="n">Got</span> <span class="n">Foo</span> <span class="n">with</span> <span class="n">HereString</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">configuration</span> <span class="n">getOnly</span> <span class="p">{</span>
+    <span class="k">param</span> <span class="p">(</span>
+        <span class="no">[String]</span><span class="nv">$ComputerName</span><span class="p">,</span>
+        <span class="no">[String]</span><span class="nv">$Message</span>
+    <span class="p">)</span>
+    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">nx</span>
+    <span class="n">node</span> <span class="nv">$ComputerName</span> <span class="p">{</span>
+        <span class="n">nxScript</span> <span class="n">fail</span> <span class="p">{</span>
+            <span class="n">SetScript</span> <span class="p">=</span> <span class="p">{}</span>
+            <span class="n">TestScript</span> <span class="p">=</span> <span class="p">{</span><span class="c">#!/bin/bash</span>
+                <span class="n">exit</span> <span class="n">0</span>
+            <span class="p">}</span>
+            <span class="n">GetScript</span> <span class="p">=</span> <span class="p">{</span><span class="c">#!/bin/bash</span>
+                <span class="nb">echo </span><span class="n">Got</span> <span class="nv">$Message</span> <span class="n">with</span> <span class="n">ScriptBlock</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">nxScript</span> <span class="n">work</span> <span class="p">{</span>
+            <span class="n">SetScript</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="n">TestScript</span> <span class="p">=</span> <span class="sh">@&#34;
+</span><span class="sh">#!/bin/bash
+</span><span class="sh">exit 0
+</span><span class="sh">&#34;@</span>
+            <span class="n">GetScript</span> <span class="p">=</span> <span class="sh">@&#34;
+</span><span class="sh">#!/bin/bash
+</span><span class="sh">echo Got $Message with HereString
+</span><span class="sh">&#34;@</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$get</span> <span class="p">=</span> <span class="n">getOnly</span> <span class="n">-ComputerName</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">200</span><span class="p">.</span><span class="n">104</span> <span class="n">-Message</span> <span class="n">Foo</span>
+<span class="nb">Update-MofDocument</span> <span class="n">-Path</span> <span class="nv">$get</span><span class="p">.</span><span class="n">FullName</span>
+<span class="nb">Start-DscConfiguration</span> <span class="n">-CimSession</span> <span class="nv">$linTest</span> <span class="n">-Wait</span> <span class="n">-Path</span> <span class="nv">$get</span><span class="p">.</span><span class="n">DirectoryName</span>
+<span class="nb">Get-DscConfiguration</span> <span class="n">-CimSession</span> <span class="nv">$linTest</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="n">Result</span>
+
+<span class="n">Got</span> <span class="n">with</span> <span class="n">ScriptBlock</span>
+<span class="n">Got</span> <span class="n">Foo</span> <span class="n">with</span> <span class="n">HereString</span>
 </code></pre></div><p>If we use string everything is done as expected: variables are expanded in double-quoted string, not expanded in single-quoted string. Using string syntax allows us to easily use format operator and be sure that certain placeholders are being replaced by parameters provided by the user. Using this syntax we can build composite resource for adding or removing packages from Linux box. This is just a sketch – it assumes we use <em>yum</em> as a package manager and that makes it useful only for certain Linux distributions:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">configuration</span> <span class="n">nxPackage</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="k">param</span> <span class="p">(</span>
-<span class="ln"> 3</span>        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
-<span class="ln"> 4</span>        <span class="no">[String]</span><span class="nv">$Name</span><span class="p">,</span>
-<span class="ln"> 5</span>        <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;Present&#39;</span><span class="p">,</span><span class="s1">&#39;Absent&#39;</span><span class="p">)]</span>
-<span class="ln"> 6</span>        <span class="no">[String]</span><span class="nv">$Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
-<span class="ln"> 7</span>    <span class="p">)</span>
-<span class="ln"> 8</span>    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">nx</span>
-<span class="ln"> 9</span>    <span class="n">nxScript</span> <span class="s2">&#34;Package-$Name&#34;</span> <span class="p">{</span>
-<span class="ln">10</span>        <span class="n">GetScript</span> <span class="p">=</span> <span class="sh">@&#39;
-</span><span class="ln">11</span><span class="sh">#!/bin/bash
-</span><span class="ln">12</span><span class="sh">yum info {0}
-</span><span class="ln">13</span><span class="sh">&#39;@</span> <span class="o">-f</span> <span class="nv">$Name</span>
-<span class="ln">14</span>        <span class="n">TestScript</span> <span class="p">=</span> <span class="sh">@&#39;
-</span><span class="ln">15</span><span class="sh">#!/bin/bash
-</span><span class="ln">16</span><span class="sh">case {1} in
-</span><span class="ln">17</span><span class="sh">    Present)
-</span><span class="ln">18</span><span class="sh">        yum list installed {0} &amp;gt; /dev/null 2&amp;gt;&amp;1 || exit 1 &amp;&amp; exit 0;;
-</span><span class="ln">19</span><span class="sh">    Absent)
-</span><span class="ln">20</span><span class="sh">        yum list installed {0} &amp;gt; /dev/null 2&amp;gt;&amp;1 || exit 0 &amp;&amp; exit 1;;
-</span><span class="ln">21</span><span class="sh">esac
-</span><span class="ln">22</span><span class="sh">&#39;@</span> <span class="o">-f</span> <span class="nv">$Name</span><span class="p">,</span> <span class="nv">$Ensure</span>
-<span class="ln">23</span>        <span class="n">SetScript</span> <span class="p">=</span> <span class="sh">@&#39;
-</span><span class="ln">24</span><span class="sh">#!/bin/bash
-</span><span class="ln">25</span><span class="sh">case {1} in
-</span><span class="ln">26</span><span class="sh">    Present)
-</span><span class="ln">27</span><span class="sh">        yum -y install {0};;
-</span><span class="ln">28</span><span class="sh">    Absent)
-</span><span class="ln">29</span><span class="sh">        yum -y erase {0};;
-</span><span class="ln">30</span><span class="sh">esac
-</span><span class="ln">31</span><span class="sh">&#39;@</span> <span class="o">-f</span> <span class="nv">$Name</span><span class="p">,</span> <span class="nv">$Ensure</span>
-<span class="ln">32</span>    <span class="p">}</span>
-<span class="ln">33</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">configuration</span> <span class="n">nxPackage</span> <span class="p">{</span>
+    <span class="k">param</span> <span class="p">(</span>
+        <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">)]</span>
+        <span class="no">[String]</span><span class="nv">$Name</span><span class="p">,</span>
+        <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;Present&#39;</span><span class="p">,</span><span class="s1">&#39;Absent&#39;</span><span class="p">)]</span>
+        <span class="no">[String]</span><span class="nv">$Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
+    <span class="p">)</span>
+    <span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">nx</span>
+    <span class="n">nxScript</span> <span class="s2">&#34;Package-$Name&#34;</span> <span class="p">{</span>
+        <span class="n">GetScript</span> <span class="p">=</span> <span class="sh">@&#39;
+</span><span class="sh">#!/bin/bash
+</span><span class="sh">yum info {0}
+</span><span class="sh">&#39;@</span> <span class="o">-f</span> <span class="nv">$Name</span>
+        <span class="n">TestScript</span> <span class="p">=</span> <span class="sh">@&#39;
+</span><span class="sh">#!/bin/bash
+</span><span class="sh">case {1} in
+</span><span class="sh">    Present)
+</span><span class="sh">        yum list installed {0} &amp;gt; /dev/null 2&amp;gt;&amp;1 || exit 1 &amp;&amp; exit 0;;
+</span><span class="sh">    Absent)
+</span><span class="sh">        yum list installed {0} &amp;gt; /dev/null 2&amp;gt;&amp;1 || exit 0 &amp;&amp; exit 1;;
+</span><span class="sh">esac
+</span><span class="sh">&#39;@</span> <span class="o">-f</span> <span class="nv">$Name</span><span class="p">,</span> <span class="nv">$Ensure</span>
+        <span class="n">SetScript</span> <span class="p">=</span> <span class="sh">@&#39;
+</span><span class="sh">#!/bin/bash
+</span><span class="sh">case {1} in
+</span><span class="sh">    Present)
+</span><span class="sh">        yum -y install {0};;
+</span><span class="sh">    Absent)
+</span><span class="sh">        yum -y erase {0};;
+</span><span class="sh">esac
+</span><span class="sh">&#39;@</span> <span class="o">-f</span> <span class="nv">$Name</span><span class="p">,</span> <span class="nv">$Ensure</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>Once we have this resource defined we can create configuration using it, for example, if we want to install <em>nano</em> and <em>Apache</em> on a server that uses yum as a package manager:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">configuration</span> <span class="n">PackageList</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="k">param</span> <span class="p">(</span>
-<span class="ln"> 3</span>        <span class="no">[String]</span><span class="nv">$ComputerName</span>
-<span class="ln"> 4</span>    <span class="p">)</span>
-<span class="ln"> 5</span>    <span class="n">node</span> <span class="nv">$ComputerName</span> <span class="p">{</span>
-<span class="ln"> 6</span>        <span class="n">nxPackage</span> <span class="n">nano</span> <span class="p">{</span>
-<span class="ln"> 7</span>            <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;nano&#39;</span>
-<span class="ln"> 8</span>        <span class="p">}</span>
-<span class="ln"> 9</span>        <span class="n">nxPackage</span> <span class="n">httpd</span> <span class="p">{</span>
-<span class="ln">10</span>            <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;httpd&#39;</span>
-<span class="ln">11</span>        <span class="p">}</span>
-<span class="ln">12</span>    <span class="p">}</span>
-<span class="ln">13</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">configuration</span> <span class="n">PackageList</span> <span class="p">{</span>
+    <span class="k">param</span> <span class="p">(</span>
+        <span class="no">[String]</span><span class="nv">$ComputerName</span>
+    <span class="p">)</span>
+    <span class="n">node</span> <span class="nv">$ComputerName</span> <span class="p">{</span>
+        <span class="n">nxPackage</span> <span class="n">nano</span> <span class="p">{</span>
+            <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;nano&#39;</span>
+        <span class="p">}</span>
+        <span class="n">nxPackage</span> <span class="n">httpd</span> <span class="p">{</span>
+            <span class="n">Name</span> <span class="p">=</span> <span class="s1">&#39;httpd&#39;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>If we move this composite resource to nx (or any other) module than we need to import that module first in our configuration. Similar to Windows composite resource, to make nxPackage “proper” resource we need to create manifest that points to schema.psm1 file with configuration definition. Once it is done we can use it as if it was any other resource. The main difference is visible when we call Get-DscConfiguration. As composite resource we have created is present only on Windows it will be translated to <em>nxScript</em> resources locally and delivered to Linux and we will see <em>nxScript</em> resources results, not nxPackage results.</p>
 <p>Another example of action that seems like a perfect fit for script resource is firewall configuration. This is pretty straightforward if iptables is used to manage firewall settings:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">nxScript</span> <span class="n">AddFirewallRule</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="n">SetScript</span> <span class="p">=</span> <span class="sh">@&#39;
-</span><span class="ln"> 3</span><span class="sh">#!/bin/bash
-</span><span class="ln"> 4</span><span class="sh">iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport http -j ACCEPT
-</span><span class="ln"> 5</span><span class="sh">/etc/init.d/iptables save
-</span><span class="ln"> 6</span><span class="sh">&#39;@</span>
-<span class="ln"> 7</span>    <span class="n">TestScript</span> <span class="p">=</span> <span class="sh">@&#39;
-</span><span class="ln"> 8</span><span class="sh">#!/bin/bash
-</span><span class="ln"> 9</span><span class="sh">iptables -L | grep ^ACCEPT | grep &#34;dpt:http &#34;
-</span><span class="ln">10</span><span class="sh">exit $?
-</span><span class="ln">11</span><span class="sh">&#39;@</span>
-<span class="ln">12</span>    <span class="n">GetScript</span> <span class="p">=</span> <span class="sh">@&#39;
-</span><span class="ln">13</span><span class="sh">#!/bin/bash
-</span><span class="ln">14</span><span class="sh">iptables -L | grep ^ACCEPT | grep &#34;dpt:http &#34;
-</span><span class="ln">15</span><span class="sh">&#39;@</span>
-<span class="ln">16</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">nxScript</span> <span class="n">AddFirewallRule</span> <span class="p">{</span>
+    <span class="n">SetScript</span> <span class="p">=</span> <span class="sh">@&#39;
+</span><span class="sh">#!/bin/bash
+</span><span class="sh">iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport http -j ACCEPT
+</span><span class="sh">/etc/init.d/iptables save
+</span><span class="sh">&#39;@</span>
+    <span class="n">TestScript</span> <span class="p">=</span> <span class="sh">@&#39;
+</span><span class="sh">#!/bin/bash
+</span><span class="sh">iptables -L | grep ^ACCEPT | grep &#34;dpt:http &#34;
+</span><span class="sh">exit $?
+</span><span class="sh">&#39;@</span>
+    <span class="n">GetScript</span> <span class="p">=</span> <span class="sh">@&#39;
+</span><span class="sh">#!/bin/bash
+</span><span class="sh">iptables -L | grep ^ACCEPT | grep &#34;dpt:http &#34;
+</span><span class="sh">&#39;@</span>
+<span class="p">}</span>
 </code></pre></div><p>This configuration works fine (some error handling though would be more than welcome). But not all distributions are using iptables (at least – not directly). If we look at CentOS 7 we will noticed that different method (firewalld) is used. We can control firewall configuration using <em>firewall-cmd</em> command, but this command have problems with being called from non-interactive session. Configuration will literally freeze until we kill the process that is running firewall command line utility. It means that following configuration, even though it looks legit, won’t work in normal circumstances:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">nxScript</span> <span class="n">AddFirewallRuleFirewalld</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="n">SetScript</span> <span class="p">=</span> <span class="sh">@&#39;
-</span><span class="ln"> 3</span><span class="sh">#!/bin/bash
-</span><span class="ln"> 4</span><span class="sh">firewall-cmd --permanent --add-service http
-</span><span class="ln"> 5</span><span class="sh">firewall-cmd --reload
-</span><span class="ln"> 6</span><span class="sh">&#39;@</span>
-<span class="ln"> 7</span>
-<span class="ln"> 8</span>	<span class="n">TestScript</span> <span class="p">=</span> <span class="sh">@&#39;
-</span><span class="ln"> 9</span><span class="sh">#!/bin/bash
-</span><span class="ln">10</span><span class="sh">firewall-cmd --list-service | grep &#39;\bhttp\b&#39;
-</span><span class="ln">11</span><span class="sh">&#39;@</span>
-<span class="ln">12</span>
-<span class="ln">13</span>	<span class="n">GetScript</span> <span class="p">=</span> <span class="sh">@&#39;
-</span><span class="ln">14</span><span class="sh">#!/bin/bash
-</span><span class="ln">15</span><span class="sh">firewall-cmd --list-service
-</span><span class="ln">16</span><span class="sh">&#39;@</span>
-<span class="ln">17</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">nxScript</span> <span class="n">AddFirewallRuleFirewalld</span> <span class="p">{</span>
+    <span class="n">SetScript</span> <span class="p">=</span> <span class="sh">@&#39;
+</span><span class="sh">#!/bin/bash
+</span><span class="sh">firewall-cmd --permanent --add-service http
+</span><span class="sh">firewall-cmd --reload
+</span><span class="sh">&#39;@</span>
+
+	<span class="n">TestScript</span> <span class="p">=</span> <span class="sh">@&#39;
+</span><span class="sh">#!/bin/bash
+</span><span class="sh">firewall-cmd --list-service | grep &#39;\bhttp\b&#39;
+</span><span class="sh">&#39;@</span>
+
+	<span class="n">GetScript</span> <span class="p">=</span> <span class="sh">@&#39;
+</span><span class="sh">#!/bin/bash
+</span><span class="sh">firewall-cmd --list-service
+</span><span class="sh">&#39;@</span>
+<span class="p">}</span>
 </code></pre></div><p>The problem is related to SELinux policies and rights that <em>firewall-cmd</em> has. Two workarounds that worked for me: disable SELinux or run omiserver interactively. There is also a solution though.</p>
 <p>First we need to reproduce problems, and then find the related error messages in audit.log, and finally create policy based on that “pattern”. Once we have policy file we can apply the change to our system:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>ps aux <span class="p">|</span> grep <span class="o">[</span>f<span class="o">]</span>irewall-cmd <span class="p">|</span> awk <span class="s1">&#39;{print &#34;pid=&#34; $2 &#34; /var/log/audit/audit.log&#34; }&#39;</span> <span class="p">|</span>
-<span class="ln">2</span>    xargs grep <span class="p">|</span> audit2allow -M firewall
-<span class="ln">3</span>semodule -i firewall.pp
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">ps aux <span class="p">|</span> grep <span class="o">[</span>f<span class="o">]</span>irewall-cmd <span class="p">|</span> awk <span class="s1">&#39;{print &#34;pid=&#34; $2 &#34; /var/log/audit/audit.log&#34; }&#39;</span> <span class="p">|</span>
+    xargs grep <span class="p">|</span> audit2allow -M firewall
+semodule -i firewall.pp
 </code></pre></div><p>With this change implemented we can use <em>firewall-cmd</em> in our configuration without freezing behavior.</p>
 <p>Note: Both tools (semodule and audit2allow) are part of separate packages: <em>policycoreutils</em> and <em>policycoreutils-python</em>, respectively. If either command doesn’t work make sure you have installed these packages. It’s enough to install latter as former is one of its dependencies and will be installed anyway.</p>
 <p>And that’s it in this part of the series. In next one we will cover <em>nxUser</em> and <em>nxGroup</em>.</p>

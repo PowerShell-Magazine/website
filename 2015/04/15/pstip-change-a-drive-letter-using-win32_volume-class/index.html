@@ -235,11 +235,11 @@ if (!doNotTrack) {
             </li>
           </ul>
           <div class="content"><p>Changing a drive letter of a removable drive or DVD drive is an easy task with Windows PowerShell. Using the Win32_Volume class and the Set-CimInstance cmdlet a drive letter can be reassigned. The following code will change the drive letter for the F: drive and change the drive letter to Z:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nv">$DvdDrive</span> <span class="p">=</span> <span class="nb">Get-CimInstance</span> <span class="n">-Class</span> <span class="n">Win32_Volume</span> <span class="n">-Filter</span> <span class="s2">&#34;driveletter=&#39;F:&#39;&#34;</span>
-<span class="ln">2</span><span class="nb">Set-CimInstance</span> <span class="n">-InputObject</span> <span class="nv">$DvdDrive</span> <span class="n">-Arguments</span> <span class="p">@{</span><span class="n">DriveLetter</span><span class="p">=</span><span class="s2">&#34;Z:&#34;</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$DvdDrive</span> <span class="p">=</span> <span class="nb">Get-CimInstance</span> <span class="n">-Class</span> <span class="n">Win32_Volume</span> <span class="n">-Filter</span> <span class="s2">&#34;driveletter=&#39;F:&#39;&#34;</span>
+<span class="nb">Set-CimInstance</span> <span class="n">-InputObject</span> <span class="nv">$DvdDrive</span> <span class="n">-Arguments</span> <span class="p">@{</span><span class="n">DriveLetter</span><span class="p">=</span><span class="s2">&#34;Z:&#34;</span><span class="p">}</span>
 </code></pre></div><p>Alternatively this can also be executed in a single line of code by using the pipeline:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Get-CimInstance</span> <span class="n">-Query</span> <span class="s2">&#34;SELECT * FROM Win32_Volume WHERE driveletter=&#39;F:&#39;&#34;</span> <span class="p">|</span> 
-<span class="ln">2</span><span class="nb">Set-CimInstance</span> <span class="n">-Arguments</span> <span class="p">@{</span><span class="n">DriveLetter</span><span class="p">=</span><span class="s2">&#34;Z:&#34;</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-CimInstance</span> <span class="n">-Query</span> <span class="s2">&#34;SELECT * FROM Win32_Volume WHERE driveletter=&#39;F:&#39;&#34;</span> <span class="p">|</span> 
+<span class="nb">Set-CimInstance</span> <span class="n">-Arguments</span> <span class="p">@{</span><span class="n">DriveLetter</span><span class="p">=</span><span class="s2">&#34;Z:&#34;</span><span class="p">}</span>
 </code></pre></div><p>For more information about the Win32_Volume class have a look at the MSDN entry here:</p>
 <p><a href="https://msdn.microsoft.com/en-us/library/aa394515(v=vs.85).aspx">Win32_Volume Class</a></p>
 </div>

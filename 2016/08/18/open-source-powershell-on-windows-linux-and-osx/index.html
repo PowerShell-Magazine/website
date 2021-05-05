@@ -235,13 +235,13 @@ if (!doNotTrack) {
 <p>Almost two years ago in November 2014 when it was announced that .NET Core will become open source project available for multiple platforms including Linux. Many of the PowerShell enthusiasts started to ask the question: when will the same happen to the Windows PowerShell. <a href="https://blogs.msdn.microsoft.com/powershell/2016/08/18/powershell-on-linux-and-open-source-2/">Finally, the day has come–August 18, at 11:14 EST!</a> The time picked for that announcement may look odd at first, but it’s not a coincidence. It’s a way to celebrate anniversary of the public release of Windows PowerShell version 1, on 14 November, 2006. PowerShell is not only open source now, it’s also available for multiple platforms, including several Linux distributions. You can clone <a href="https://github.com/powershell/powershell">repository</a> and build it on your own, you can fork it and change it and last but certainly not least – you can fix it yourself! Pull requests will be accepted, with details on how to contribute to this project described directly in documentation provided on project’s GitHub page.</p>
 <h3 id="powershell-on-linux">PowerShell on Linux</h3>
 <p>As you can see this announcement is huge – not only you can freely read and change the code of the PowerShell itself, you can build it and run it almost anywhere. If you want to do just that, you have several packages prepared for different operating systems, including Windows, Linux, and OS X. Packages come with instructions, but these are relatively simple. It all boils down to installing dependencies and the PowerShell package, or just the package itself (if it contains information about dependencies). Installation of CentOS 7.1 requires running single command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>sudo yum install powershell-6.0.0_alpha.9-1.el7.centos.x86_64.rpm
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo yum install powershell-6.0.0_alpha.9-1.el7.centos.x86_64.rpm
 </code></pre></div><p>This package has two dependencies (important to know if you want to install PowerShell on the machine that can’t download packages from the external repositories):</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>PS /home/bielawb<span class="p">&amp;</span>gt<span class="p">;</span> rpm -qR powershell
-<span class="ln">2</span>libunwind
-<span class="ln">3</span>libicu
-<span class="ln">4</span>rpmlib<span class="o">(</span>PayloadFilesHavePrefix<span class="o">)</span> &lt;<span class="o">=</span> 4.0-1
-<span class="ln">5</span>rpmlib<span class="o">(</span>CompressedFileNames<span class="o">)</span> &lt;<span class="o">=</span> 3.0.4-1
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">PS /home/bielawb<span class="p">&amp;</span>gt<span class="p">;</span> rpm -qR powershell
+libunwind
+libicu
+rpmlib<span class="o">(</span>PayloadFilesHavePrefix<span class="o">)</span> &lt;<span class="o">=</span> 4.0-1
+rpmlib<span class="o">(</span>CompressedFileNames<span class="o">)</span> &lt;<span class="o">=</span> 3.0.4-1
 </code></pre></div><p>Once the PowerShell is installed, you should be able to call it, and start exploring it.</p>
 <p><img src="/images/psl1.png" alt=""></p>
 <h3 id="what-works-and-what-doesnt-work">What works and what doesn’t work</h3>
@@ -254,40 +254,40 @@ if (!doNotTrack) {
 <p>And of course Linux file systems are case sensitive which PowerShell respects:</p>
 <p><img src="/images/psl5.png" alt=""></p>
 <p>Another surprise is a result of presence of PSReadLine module. On Linux, iPSReadLine is using emacs mode by default (so certain key bindings are different than the one used on Windows, others have more Linux-like behavior). Both aliases and PSReadLine configuration can be adjusted using familiar technique – creating PowerShell profile:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">PS </span><span class="p">/</span><span class="n">home</span><span class="p">/</span><span class="n">bielawb</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="nv">$PROFILE</span>
-<span class="ln">2</span><span class="p">/</span><span class="n">home</span><span class="p">/</span><span class="n">bielawb</span><span class="p">/.</span><span class="n">config</span><span class="p">/</span><span class="n">powershell</span><span class="p">/</span><span class="n">Microsoft</span><span class="p">.</span><span class="n">PowerShell_profile</span><span class="p">.</span><span class="n">ps1</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="p">/</span><span class="n">home</span><span class="p">/</span><span class="n">bielawb</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="nv">$PROFILE</span>
+<span class="p">/</span><span class="n">home</span><span class="p">/</span><span class="n">bielawb</span><span class="p">/.</span><span class="n">config</span><span class="p">/</span><span class="n">powershell</span><span class="p">/</span><span class="n">Microsoft</span><span class="p">.</span><span class="n">PowerShell_profile</span><span class="p">.</span><span class="n">ps1</span>
 </code></pre></div><p>PowerShell on Linux still have some missing pieces. First of all, most of the cmdlets that depend strongly on the Windows APIs or full version of .NET Framework are not available. For obvious reasons most of the providers do not exist in PowerShell on Linux. Perfect example of that is registry. Another thing that is not working at the time of writing this article is PowerShell jobs. Also CIM cmdlets are absent at this point in time.</p>
 <h3 id="powershell-in-action">PowerShell in action</h3>
 <p>There are probably a lot of scenarios where PowerShell (even in the current, not fully-baked state) can be useful on Linux. Let me name a few of them.</p>
 <p>First of all, there are at least two types of objects on Linux that will behave in a way similar to their behavior on Windows: objects in the file system and processes running on our node. The only difference is a result of differences between systems: existing properties, case in the names of files and folders in the file system and more. But that doesn’t change the fact that reading both disk and list of the processes we will get objects back: objects that we can easily sort, group, filter, or format. For example, to display list of processes that use the most CPU, we can use the same line that would give us that information on Windows:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Get-Process</span> <span class="p">|</span>
-<span class="ln">2</span><span class="p">&gt;&gt;</span> <span class="nb">Sort-Object</span> <span class="n">-Property</span> <span class="n">CPU</span> <span class="n">-Descending</span> <span class="p">|</span>
-<span class="ln">3</span><span class="p">&gt;&gt;</span> <span class="nb">Select-Object</span> <span class="n">-First</span> <span class="n">5</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-Process</span> <span class="p">|</span>
+<span class="p">&gt;&gt;</span> <span class="nb">Sort-Object</span> <span class="n">-Property</span> <span class="n">CPU</span> <span class="n">-Descending</span> <span class="p">|</span>
+<span class="p">&gt;&gt;</span> <span class="nb">Select-Object</span> <span class="n">-First</span> <span class="n">5</span>
 </code></pre></div><p>It’s important to remember that “sort” exists as a Linux command, so we need to use a full name of the cmdlet rather that its alias. Another example, related to the file system: we can get a list of the files in the current directory and pick the one that were changed most recently:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">PS </span><span class="p">/</span><span class="n">home</span><span class="p">/</span><span class="n">bielawb</span><span class="p">&gt;</span> <span class="nb">Get-ChildItem</span> <span class="p">|</span>                     
-<span class="ln">2</span><span class="p">&gt;&gt;</span> <span class="nb">Sort-Object</span> <span class="n">-Property</span> <span class="n">LastWriteTime</span> <span class="p">|</span>              
-<span class="ln">3</span><span class="p">&gt;&gt;</span> <span class="nb">Select-Object</span> <span class="n">-Last</span> <span class="n">1</span> <span class="n">-Property</span> <span class="n">Name</span><span class="p">,</span> <span class="n">LastWriteTime</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="p">/</span><span class="n">home</span><span class="p">/</span><span class="n">bielawb</span><span class="p">&gt;</span> <span class="nb">Get-ChildItem</span> <span class="p">|</span>                     
+<span class="p">&gt;&gt;</span> <span class="nb">Sort-Object</span> <span class="n">-Property</span> <span class="n">LastWriteTime</span> <span class="p">|</span>              
+<span class="p">&gt;&gt;</span> <span class="nb">Select-Object</span> <span class="n">-Last</span> <span class="n">1</span> <span class="n">-Property</span> <span class="n">Name</span><span class="p">,</span> <span class="n">LastWriteTime</span>
 </code></pre></div><p>We can also turn Linux configuration files into complex objects. Perfect example: grouping existing users based on their shell:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>ipcsv /etc/passwd -Delimiter <span class="s1">&#39;:&#39;</span> -Header Name, Pwd, UID, GUID, Info, Home, Shell <span class="p">|</span>
-<span class="ln">2</span>&gt;&gt; Group-Object Shell
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">ipcsv /etc/passwd -Delimiter <span class="s1">&#39;:&#39;</span> -Header Name, Pwd, UID, GUID, Info, Home, Shell <span class="p">|</span>
+&gt;&gt; Group-Object Shell
 </code></pre></div><p><img src="/images/psl6.png" alt=""></p>
 <p>As you can see – files don’t have to be in any known format, as long as we can pretend they are or structure them in a way that PowerShell understands.</p>
 <p>Here is an example of poor-man’s ISE: tmux with vim running in upper pane, and PowerShell running in the lower pane.</p>
 <p><img src="/images/psl7.png" alt=""></p>
 <h3 id="build-your-own-powershell">Build your own PowerShell</h3>
 <p>If you want to start building PowerShell on your own you have two options: install PowerShell from package first and then use tools provided by PowerShell Team in the GitHub repository, or follow the step-by-step instructions and build PowerShell from bash. If you select former method all you have to do is to clone the repository, set your location to newly created folder, import module designed to aid you in the build process and run two commands: one to prepare prerequisites and one to start actual build process:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>git clone --recursive https://github.com/PowerShell/PowerShell.git
-<span class="ln">2</span><span class="nb">cd</span> PowerShell
-<span class="ln">3</span>Import-Module ./build.psm1
-<span class="ln">4</span>Start-PSBootstrap
-<span class="ln">5</span>Start-PSBuild
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">git clone --recursive https://github.com/PowerShell/PowerShell.git
+<span class="nb">cd</span> PowerShell
+Import-Module ./build.psm1
+Start-PSBootstrap
+Start-PSBuild
 </code></pre></div><p>Once the build process is finished, you can launch newly created executable – PowerShell will inform you about location of the finished version.</p>
 <p>Manual process is not complicated either (assuming you have prerequisites installed). First, you have to compile libpsl-native Library:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="nb">pushd</span> src/libpsl-native
-<span class="ln">2</span>cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Debug .
-<span class="ln">3</span>make -j
-<span class="ln">4</span>make <span class="nb">test</span>
-<span class="ln">5</span><span class="nb">popd</span>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">pushd</span> src/libpsl-native
+cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Debug .
+make -j
+make <span class="nb">test</span>
+<span class="nb">popd</span>
 </code></pre></div><p>And then, you just need to run “dotnet restore” in the root folder of repository and “dotnet build –configuration Linux” in the src/powershell-unix folder. But if you just want to use PowerShell on Linux – packages are your best choice. They have very few dependencies and can run on very limited version of Linux.</p>
 <h3 id="powershell-remoting-over-ssh">PowerShell Remoting over SSH</h3>
 <p>Another exciting capability I’ve been waiting for is PowerShell remoting over SSH! With PowerShell 6.0.0-alpha.9, all core requirements to make this possible have been introduced.</p>
@@ -306,7 +306,7 @@ if (!doNotTrack) {
 </li>
 </ul>
 <p>Then restart the SSH Daemon by typing:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>systemctl restart sshd
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">systemctl restart sshd
 </code></pre></div><p>We can now remote over SSH. Let’s try it by setting up a remoting session to the localhost first.&gt;</p>
 <p>You can use New-PSSession with the -HostName and -UserName parameters. Optionally you could make use of a key file for authentication using the -KeyPath parameter and specifying the path to the key file (this would save you from typing your password interactively). Currently there is no support for PSCredential authentication but this will be added later.</p>
 <p><img src="/images/psl9.png" alt=""></p>

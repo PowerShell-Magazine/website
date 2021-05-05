@@ -272,58 +272,58 @@ if (!doNotTrack) {
 <p><img src="/images/azdevops8.png" alt=""></p>
 <p>What we would typically do is customize the YAML file to define jobs, steps, tasks and other configuration items that are used to drive our <em>CI process</em>. We can customize this file directly in this editor or do it later by changing it in the repository.</p>
 <p>For the <em>CI Process</em> to build and test my <a href="https://github.com/PlagueHO/CosmosDB/blob/dev/azure-pipelines.yml">Cosmos DB PowerShell module</a> I used the following:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="ln"> 1</span><span class="k">jobs</span><span class="p">:</span><span class="w">
-</span><span class="ln"> 2</span><span class="w">  </span>- <span class="k">job</span><span class="p">:</span><span class="w"> </span>Build_PS_Win2016<span class="w">
-</span><span class="ln"> 3</span><span class="w">    </span><span class="k">pool</span><span class="p">:</span><span class="w">
-</span><span class="ln"> 4</span><span class="w">      </span><span class="k">vmImage</span><span class="p">:</span><span class="w"> </span>vs2017-win2016<span class="w">
-</span><span class="ln"> 5</span><span class="w">    </span><span class="k">steps</span><span class="p">:</span><span class="w">
-</span><span class="ln"> 6</span><span class="w">    </span>- <span class="k">powershell</span><span class="p">:</span><span class="w"> </span><span class="sd">|
-</span><span class="ln"> 7</span><span class="sd">      .\build.ps1 -Verbose</span><span class="w">
-</span><span class="ln"> 8</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Build and Test&#39;</span><span class="w">
-</span><span class="ln"> 9</span><span class="w">    </span>- <span class="k">task</span><span class="p">:</span><span class="w"> </span>PublishTestResults@<span class="m">2</span><span class="w">
-</span><span class="ln">10</span><span class="w">      </span><span class="k">inputs</span><span class="p">:</span><span class="w">
-</span><span class="ln">11</span><span class="w">        </span><span class="k">testRunner</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;NUnit&#39;</span><span class="w">
-</span><span class="ln">12</span><span class="w">        </span><span class="k">testResultsFiles</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;**/TestResults.xml&#39;</span><span class="w">
-</span><span class="ln">13</span><span class="w">        </span><span class="k">testRunTitle</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;PS_Win2016&#39;</span><span class="w">
-</span><span class="ln">14</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Publish Test Results&#39;</span><span class="w">
-</span><span class="ln">15</span><span class="w">
-</span><span class="ln">16</span><span class="w">  </span>- <span class="k">job</span><span class="p">:</span><span class="w"> </span>Build_PSCore_Ubuntu1604<span class="w">
-</span><span class="ln">17</span><span class="w">    </span><span class="k">pool</span><span class="p">:</span><span class="w">
-</span><span class="ln">18</span><span class="w">      </span><span class="k">vmImage</span><span class="p">:</span><span class="w"> </span>ubuntu<span class="m">-16.04</span><span class="w">
-</span><span class="ln">19</span><span class="w">    </span><span class="k">steps</span><span class="p">:</span><span class="w">
-</span><span class="ln">20</span><span class="w">    </span>- <span class="k">script</span><span class="p">:</span><span class="w"> </span><span class="sd">|
-</span><span class="ln">21</span><span class="sd">      curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -</span><span class="w">
-</span><span class="ln">22</span><span class="w">      </span>curl<span class="w"> </span>https<span class="p">:</span>//packages.microsoft.com/config/ubuntu/<span class="m">16.04</span>/prod.list<span class="w"> </span>|<span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/microsoft.list<span class="w">
-</span><span class="ln">23</span><span class="w">      </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w">
-</span><span class="ln">24</span><span class="w">      </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>powershell<span class="w">
-</span><span class="ln">25</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Install PowerShell Core&#39;</span><span class="w">
-</span><span class="ln">26</span><span class="w">    </span>- <span class="k">script</span><span class="p">:</span><span class="w"> </span><span class="sd">|
-</span><span class="ln">27</span><span class="sd">      pwsh -c &#39;.\build.ps1&#39;</span><span class="w">
-</span><span class="ln">28</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Build and Test&#39;</span><span class="w">
-</span><span class="ln">29</span><span class="w">    </span>- <span class="k">task</span><span class="p">:</span><span class="w"> </span>PublishTestResults@<span class="m">2</span><span class="w">
-</span><span class="ln">30</span><span class="w">      </span><span class="k">inputs</span><span class="p">:</span><span class="w">
-</span><span class="ln">31</span><span class="w">        </span><span class="k">testRunner</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;NUnit&#39;</span><span class="w">
-</span><span class="ln">32</span><span class="w">        </span><span class="k">testResultsFiles</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;**/TestResults.xml&#39;</span><span class="w">
-</span><span class="ln">33</span><span class="w">        </span><span class="k">testRunTitle</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;PSCore_Ubuntu1604&#39;</span><span class="w">
-</span><span class="ln">34</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Publish Test Results&#39;</span><span class="w">
-</span><span class="ln">35</span><span class="w">  </span>- <span class="k">job</span><span class="p">:</span><span class="w"> </span>Build_PSCore_MacOS1013<span class="w">
-</span><span class="ln">36</span><span class="w">    </span><span class="k">pool</span><span class="p">:</span><span class="w">
-</span><span class="ln">37</span><span class="w">      </span><span class="k">vmImage</span><span class="p">:</span><span class="w"> </span>xcode9-macos10<span class="m">.13</span><span class="w">
-</span><span class="ln">38</span><span class="w">    </span><span class="k">steps</span><span class="p">:</span><span class="w">
-</span><span class="ln">39</span><span class="w">    </span>- <span class="k">script</span><span class="p">:</span><span class="w"> </span><span class="sd">|
-</span><span class="ln">40</span><span class="sd">      brew update</span><span class="w">
-</span><span class="ln">41</span><span class="w">      </span>brew<span class="w"> </span>tap<span class="w"> </span>caskroom/cask<span class="w">
-</span><span class="ln">42</span><span class="w">      </span>brew<span class="w"> </span>cask<span class="w"> </span>install<span class="w"> </span>powershell<span class="w">
-</span><span class="ln">43</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Install PowerShell Core&#39;</span><span class="w">
-</span><span class="ln">44</span><span class="w">    </span>- <span class="k">script</span><span class="p">:</span><span class="w"> </span><span class="sd">|
-</span><span class="ln">45</span><span class="sd">      pwsh -c &#39;.\build.ps1&#39;</span><span class="w">
-</span><span class="ln">46</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Build and Test&#39;</span><span class="w">
-</span><span class="ln">47</span><span class="w">    </span>- <span class="k">task</span><span class="p">:</span><span class="w"> </span>PublishTestResults@<span class="m">2</span><span class="w">
-</span><span class="ln">48</span><span class="w">      </span><span class="k">inputs</span><span class="p">:</span><span class="w">
-</span><span class="ln">49</span><span class="w">        </span><span class="k">testRunner</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;NUnit&#39;</span><span class="w">
-</span><span class="ln">50</span><span class="w">        </span><span class="k">testResultsFiles</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;**/TestResults.xml&#39;</span><span class="w">
-</span><span class="ln">51</span><span class="w">        </span><span class="k">testRunTitle</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;PSCore_MacOS1013&#39;</span><span class="w">
-</span><span class="ln">52</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Publish Test Results&#39;</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">jobs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">job</span><span class="p">:</span><span class="w"> </span>Build_PS_Win2016<span class="w">
+</span><span class="w">    </span><span class="k">pool</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">vmImage</span><span class="p">:</span><span class="w"> </span>vs2017-win2016<span class="w">
+</span><span class="w">    </span><span class="k">steps</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">powershell</span><span class="p">:</span><span class="w"> </span><span class="sd">|
+</span><span class="sd">      .\build.ps1 -Verbose</span><span class="w">
+</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Build and Test&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="k">task</span><span class="p">:</span><span class="w"> </span>PublishTestResults@<span class="m">2</span><span class="w">
+</span><span class="w">      </span><span class="k">inputs</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">testRunner</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;NUnit&#39;</span><span class="w">
+</span><span class="w">        </span><span class="k">testResultsFiles</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;**/TestResults.xml&#39;</span><span class="w">
+</span><span class="w">        </span><span class="k">testRunTitle</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;PS_Win2016&#39;</span><span class="w">
+</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Publish Test Results&#39;</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span>- <span class="k">job</span><span class="p">:</span><span class="w"> </span>Build_PSCore_Ubuntu1604<span class="w">
+</span><span class="w">    </span><span class="k">pool</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">vmImage</span><span class="p">:</span><span class="w"> </span>ubuntu<span class="m">-16.04</span><span class="w">
+</span><span class="w">    </span><span class="k">steps</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">script</span><span class="p">:</span><span class="w"> </span><span class="sd">|
+</span><span class="sd">      curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -</span><span class="w">
+</span><span class="w">      </span>curl<span class="w"> </span>https<span class="p">:</span>//packages.microsoft.com/config/ubuntu/<span class="m">16.04</span>/prod.list<span class="w"> </span>|<span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/microsoft.list<span class="w">
+</span><span class="w">      </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w">
+</span><span class="w">      </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>powershell<span class="w">
+</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Install PowerShell Core&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="k">script</span><span class="p">:</span><span class="w"> </span><span class="sd">|
+</span><span class="sd">      pwsh -c &#39;.\build.ps1&#39;</span><span class="w">
+</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Build and Test&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="k">task</span><span class="p">:</span><span class="w"> </span>PublishTestResults@<span class="m">2</span><span class="w">
+</span><span class="w">      </span><span class="k">inputs</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">testRunner</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;NUnit&#39;</span><span class="w">
+</span><span class="w">        </span><span class="k">testResultsFiles</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;**/TestResults.xml&#39;</span><span class="w">
+</span><span class="w">        </span><span class="k">testRunTitle</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;PSCore_Ubuntu1604&#39;</span><span class="w">
+</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Publish Test Results&#39;</span><span class="w">
+</span><span class="w">  </span>- <span class="k">job</span><span class="p">:</span><span class="w"> </span>Build_PSCore_MacOS1013<span class="w">
+</span><span class="w">    </span><span class="k">pool</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">vmImage</span><span class="p">:</span><span class="w"> </span>xcode9-macos10<span class="m">.13</span><span class="w">
+</span><span class="w">    </span><span class="k">steps</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">script</span><span class="p">:</span><span class="w"> </span><span class="sd">|
+</span><span class="sd">      brew update</span><span class="w">
+</span><span class="w">      </span>brew<span class="w"> </span>tap<span class="w"> </span>caskroom/cask<span class="w">
+</span><span class="w">      </span>brew<span class="w"> </span>cask<span class="w"> </span>install<span class="w"> </span>powershell<span class="w">
+</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Install PowerShell Core&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="k">script</span><span class="p">:</span><span class="w"> </span><span class="sd">|
+</span><span class="sd">      pwsh -c &#39;.\build.ps1&#39;</span><span class="w">
+</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Build and Test&#39;</span><span class="w">
+</span><span class="w">    </span>- <span class="k">task</span><span class="p">:</span><span class="w"> </span>PublishTestResults@<span class="m">2</span><span class="w">
+</span><span class="w">      </span><span class="k">inputs</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">testRunner</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;NUnit&#39;</span><span class="w">
+</span><span class="w">        </span><span class="k">testResultsFiles</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;**/TestResults.xml&#39;</span><span class="w">
+</span><span class="w">        </span><span class="k">testRunTitle</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;PSCore_MacOS1013&#39;</span><span class="w">
+</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Publish Test Results&#39;</span><span class="w">
 </span></code></pre></div><p>I’ll cover the content of this file further down. But for now, click <strong>Save and Run</strong>.</p>
 <p>This gives you the option of <strong>committing directly to dev branch</strong> (or whatever the default branch of your repository is set to) or <strong>creating a new branch for this commit and start a pull request</strong>:</p>
 <p><img src="/images/azdevops9.png" alt=""></p>
@@ -363,21 +363,21 @@ if (!doNotTrack) {
 <ol>
 <li>Build and test the module on an agent running Windows Server 2016 using PowerShell.</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="ln">1</span>- <span class="k">job</span><span class="p">:</span><span class="w"> </span>Build_PS_Win2016<span class="w">
-</span><span class="ln">2</span><span class="w">    </span><span class="k">pool</span><span class="p">:</span><span class="w">
-</span><span class="ln">3</span><span class="w">      </span><span class="k">vmImage</span><span class="p">:</span><span class="w"> </span>vs2017-win2016<span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">- <span class="k">job</span><span class="p">:</span><span class="w"> </span>Build_PS_Win2016<span class="w">
+</span><span class="w">    </span><span class="k">pool</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">vmImage</span><span class="p">:</span><span class="w"> </span>vs2017-win2016<span class="w">
 </span></code></pre></div><ol start="2">
 <li>Build and test the module on an agent running Ubuntu 16.04 using PowerShell Core.</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="ln">1</span>- <span class="k">job</span><span class="p">:</span><span class="w"> </span>Build_PSCore_Ubuntu1604<span class="w">
-</span><span class="ln">2</span><span class="w">    </span><span class="k">pool</span><span class="p">:</span><span class="w">
-</span><span class="ln">3</span><span class="w">      </span><span class="k">vmImage</span><span class="p">:</span><span class="w"> </span>ubuntu<span class="m">-16.04</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">- <span class="k">job</span><span class="p">:</span><span class="w"> </span>Build_PSCore_Ubuntu1604<span class="w">
+</span><span class="w">    </span><span class="k">pool</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">vmImage</span><span class="p">:</span><span class="w"> </span>ubuntu<span class="m">-16.04</span><span class="w">
 </span></code></pre></div><ol start="3">
 <li>Build and test the module on an agent running MacOS 10.13 using PowerShell Core.</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="ln">1</span>- <span class="k">job</span><span class="p">:</span><span class="w"> </span>Build_PSCore_MacOS1013<span class="w">
-</span><span class="ln">2</span><span class="w">    </span><span class="k">pool</span><span class="p">:</span><span class="w">
-</span><span class="ln">3</span><span class="w">      </span><span class="k">vmImage</span><span class="p">:</span><span class="w"> </span>xcode9-macos10<span class="m">.13</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">- <span class="k">job</span><span class="p">:</span><span class="w"> </span>Build_PSCore_MacOS1013<span class="w">
+</span><span class="w">    </span><span class="k">pool</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">vmImage</span><span class="p">:</span><span class="w"> </span>xcode9-macos10<span class="m">.13</span><span class="w">
 </span></code></pre></div><p>The <strong>jobs</strong> run in series each time the build triggers and runs on an agent in an <strong>Agent Pool</strong> using the <strong>vmImage</strong> specified. The available Agent Pools and the exact software installed onto them can be found in the <strong>Project Settings</strong>:</p>
 <p><img src="/images/azdevops19.png" alt="image"></p>
 <h4 id="steps--tasks">Steps &amp; Tasks</h4>
@@ -386,69 +386,69 @@ if (!doNotTrack) {
 <ol>
 <li>Run the PowerShell script <strong>ps1</strong> in the repository (with <strong>-Verbose</strong> output enabled). The <strong>build.ps1</strong> just runs the tests (using <a href="https://github.com/Pester/Pester">Pester</a>), build the PowerShell help (using <a href="https://github.com/PowerShell/platyPS">PlatyPS</a>) and prepares the module for publishing. It does this by using <a href="https://github.com/Psake/PSake">PSake</a> to run tasks defined in the <strong>psakefile.ps1</strong>:</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="ln">1</span>- <span class="k">powershell</span><span class="p">:</span><span class="w"> </span><span class="sd">|
-</span><span class="ln">2</span><span class="sd">        .\build.ps1 -Verbose</span><span class="w">
-</span><span class="ln">3</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Build and Test&#39;</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">- <span class="k">powershell</span><span class="p">:</span><span class="w"> </span><span class="sd">|
+</span><span class="sd">        .\build.ps1 -Verbose</span><span class="w">
+</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Build and Test&#39;</span><span class="w">
 </span></code></pre></div><ol>
 <li>Publish the result of the Pester tests to back to the build so that they are available in the report:</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="ln">1</span>- <span class="k">task</span><span class="p">:</span><span class="w"> </span>PublishTestResults@<span class="m">2</span><span class="w">
-</span><span class="ln">2</span><span class="w">      </span><span class="k">inputs</span><span class="p">:</span><span class="w">
-</span><span class="ln">3</span><span class="w">        </span><span class="k">testRunner</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;NUnit&#39;</span><span class="w">
-</span><span class="ln">4</span><span class="w">        </span><span class="k">testResultsFiles</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;**/TestResults.xml&#39;</span><span class="w">
-</span><span class="ln">5</span><span class="w">        </span><span class="k">testRunTitle</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;PS_Win2016&#39;</span><span class="w">
-</span><span class="ln">6</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Publish Test Results&#39;</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">- <span class="k">task</span><span class="p">:</span><span class="w"> </span>PublishTestResults@<span class="m">2</span><span class="w">
+</span><span class="w">      </span><span class="k">inputs</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">testRunner</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;NUnit&#39;</span><span class="w">
+</span><span class="w">        </span><span class="k">testResultsFiles</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;**/TestResults.xml&#39;</span><span class="w">
+</span><span class="w">        </span><span class="k">testRunTitle</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;PS_Win2016&#39;</span><span class="w">
+</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Publish Test Results&#39;</span><span class="w">
 </span></code></pre></div><p>For the <strong>Build_PSCore_Ubuntu1604</strong> job, I needed to perform similar tasks as the Windows one, but I also needed to add an additional <strong>task</strong>:</p>
 <ol>
 <li>Install <strong>PowerShell Core</strong>:</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="ln">1</span>- <span class="k">script</span><span class="p">:</span><span class="w"> </span><span class="sd">|
-</span><span class="ln">2</span><span class="sd">        curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -</span><span class="w">
-</span><span class="ln">3</span><span class="w">        </span>curl<span class="w"> </span>https<span class="p">:</span>//packages.microsoft.com/config/ubuntu/<span class="m">16.04</span>/prod.list<span class="w"> </span>|<span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/microsoft.list<span class="w">
-</span><span class="ln">4</span><span class="w">        </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w">
-</span><span class="ln">5</span><span class="w">        </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>powershell<span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">- <span class="k">script</span><span class="p">:</span><span class="w"> </span><span class="sd">|
+</span><span class="sd">        curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -</span><span class="w">
+</span><span class="w">        </span>curl<span class="w"> </span>https<span class="p">:</span>//packages.microsoft.com/config/ubuntu/<span class="m">16.04</span>/prod.list<span class="w"> </span>|<span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/microsoft.list<span class="w">
+</span><span class="w">        </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w">
+</span><span class="w">        </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>powershell<span class="w">
 </span></code></pre></div><ol>
 <li>Run the PowerShell script <strong>ps1</strong> in the repository (with <strong>-Verbose</strong> output enabled). The <strong>build.ps1</strong> just runs the tests (using <a href="https://github.com/Pester/Pester">Pester</a>), build the PowerShell help (using <a href="https://github.com/PowerShell/platyPS">Platyps</a>) and prepares the module for publishing. It does this by using <a href="https://github.com/Psake/PSake">PSake</a> to run tasks defined in the <strong>psakefile.ps1</strong>:</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="ln">1</span>- <span class="k">script</span><span class="p">:</span><span class="w"> </span><span class="sd">|
-</span><span class="ln">2</span><span class="sd">        pwsh -c &#39;.\build.ps1&#39;</span><span class="w">
-</span><span class="ln">3</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Build and Test&#39;</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">- <span class="k">script</span><span class="p">:</span><span class="w"> </span><span class="sd">|
+</span><span class="sd">        pwsh -c &#39;.\build.ps1&#39;</span><span class="w">
+</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Build and Test&#39;</span><span class="w">
 </span></code></pre></div><p><em>Note: This is slightly different to the Windows task as I can’t use the PowerShell task type, I instead use the <strong>script</strong> task type, executing <strong>pwsh</strong> (PowerShell Core) and passing in the name of the script to run</em></p>
 <ol>
 <li>Publish the result of the Pester tests to back to the build so that they are available in the report:</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="ln">1</span>- <span class="k">task</span><span class="p">:</span><span class="w"> </span>PublishTestResults@<span class="m">2</span><span class="w">
-</span><span class="ln">2</span><span class="w">      </span><span class="k">inputs</span><span class="p">:</span><span class="w">
-</span><span class="ln">3</span><span class="w">        </span><span class="k">testRunner</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;NUnit&#39;</span><span class="w">
-</span><span class="ln">4</span><span class="w">        </span><span class="k">testResultsFiles</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;**/TestResults.xml&#39;</span><span class="w">
-</span><span class="ln">5</span><span class="w">        </span><span class="k">testRunTitle</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;PSCore_Ubuntu1604&#39;</span><span class="w">
-</span><span class="ln">6</span><span class="w">        </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Publish Test Results&#39;</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">- <span class="k">task</span><span class="p">:</span><span class="w"> </span>PublishTestResults@<span class="m">2</span><span class="w">
+</span><span class="w">      </span><span class="k">inputs</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">testRunner</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;NUnit&#39;</span><span class="w">
+</span><span class="w">        </span><span class="k">testResultsFiles</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;**/TestResults.xml&#39;</span><span class="w">
+</span><span class="w">        </span><span class="k">testRunTitle</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;PSCore_Ubuntu1604&#39;</span><span class="w">
+</span><span class="w">        </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Publish Test Results&#39;</span><span class="w">
 </span></code></pre></div><p><em>Note: the testRunTitle attribute allows the tests to be grouped by the different agents. If this is omitted, all the tests for each agent get bundled together which makes it nearly impossible to tell which agent the tests failed on.</em></p>
 <p>_ _Finally, for the <strong>Build_PSCore_MacOS1013</strong> job, I needed to perform similar tasks as the Windows one, but I also needed to add an additional <strong>task</strong>:</p>
 <ol>
 <li>Install <strong>PowerShell Core</strong>:</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="ln">1</span>- <span class="k">script</span><span class="p">:</span><span class="w"> </span><span class="sd">|
-</span><span class="ln">2</span><span class="sd">        brew update</span><span class="w">
-</span><span class="ln">3</span><span class="w">        </span>brew<span class="w"> </span>tap<span class="w"> </span>caskroom/cask<span class="w">
-</span><span class="ln">4</span><span class="w">        </span>brew<span class="w"> </span>cask<span class="w"> </span>install<span class="w"> </span>powershell<span class="w">
-</span><span class="ln">5</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Install PowerShell Core&#39;</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">- <span class="k">script</span><span class="p">:</span><span class="w"> </span><span class="sd">|
+</span><span class="sd">        brew update</span><span class="w">
+</span><span class="w">        </span>brew<span class="w"> </span>tap<span class="w"> </span>caskroom/cask<span class="w">
+</span><span class="w">        </span>brew<span class="w"> </span>cask<span class="w"> </span>install<span class="w"> </span>powershell<span class="w">
+</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Install PowerShell Core&#39;</span><span class="w">
 </span></code></pre></div><ol>
 <li>Run the PowerShell script <strong>ps1</strong> in the repository (with <strong>-Verbose</strong> output enabled). The <strong>build.ps1</strong> just runs the tests (using <a href="https://github.com/Pester/Pester">Pester</a>), build the PowerShell help (using <a href="https://github.com/PowerShell/platyPS">Platyps</a>) and prepares the module for publishing. It does this by using <a href="https://github.com/Psake/PSake">PSake</a> to run tasks defined in the <strong>psakefile.ps1</strong>:</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="ln">1</span>- <span class="k">script</span><span class="p">:</span><span class="w"> </span><span class="sd">|
-</span><span class="ln">2</span><span class="sd">        pwsh -c &#39;.\build.ps1&#39;</span><span class="w">
-</span><span class="ln">3</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Build and Test&#39;</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">- <span class="k">script</span><span class="p">:</span><span class="w"> </span><span class="sd">|
+</span><span class="sd">        pwsh -c &#39;.\build.ps1&#39;</span><span class="w">
+</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Build and Test&#39;</span><span class="w">
 </span></code></pre></div><blockquote>
 <p>Note: This is slightly different to the Windows task as I can’t use the PowerShell task type, I instead use the <strong>script</strong> task type, executing <strong>pwsh</strong> (PowerShell Core) and passing in the name of the script to run.</p>
 </blockquote>
 <p>Publish the result of the Pester tests to back to the build so that they are available in the report:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="ln">1</span>- <span class="k">task</span><span class="p">:</span><span class="w"> </span>PublishTestResults@<span class="m">2</span><span class="w">
-</span><span class="ln">2</span><span class="w">      </span><span class="k">inputs</span><span class="p">:</span><span class="w">
-</span><span class="ln">3</span><span class="w">        </span><span class="k">testRunner</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;NUnit&#39;</span><span class="w">
-</span><span class="ln">4</span><span class="w">        </span><span class="k">testResultsFiles</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;**/TestResults.xml&#39;</span><span class="w">
-</span><span class="ln">5</span><span class="w">        </span><span class="k">testRunTitle</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;PSCore_MacOS1013&#39;</span><span class="w">
-</span><span class="ln">6</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Publish Test Results&#39;</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">- <span class="k">task</span><span class="p">:</span><span class="w"> </span>PublishTestResults@<span class="m">2</span><span class="w">
+</span><span class="w">      </span><span class="k">inputs</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">testRunner</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;NUnit&#39;</span><span class="w">
+</span><span class="w">        </span><span class="k">testResultsFiles</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;**/TestResults.xml&#39;</span><span class="w">
+</span><span class="w">        </span><span class="k">testRunTitle</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;PSCore_MacOS1013&#39;</span><span class="w">
+</span><span class="w">      </span><span class="k">displayName</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Publish Test Results&#39;</span><span class="w">
 </span></code></pre></div><blockquote>
 <p>Note: the testRunTitle attribute allows the tests to be grouped by the different agents. If this is omitted, all the tests for each agent get bundled together which makes it nearly impossible to tell which agent the tests failed on.</p>
 </blockquote>

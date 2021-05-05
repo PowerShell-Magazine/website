@@ -246,7 +246,7 @@ if (!doNotTrack) {
 <p>Are you on PowerShell v5? Cool, use PowerShell to install the PowerShell Testing Framework “Pester” onto your machine.</p>
 <p>Or, if you’re not on PowerShell 5 yet, go get the module from <a href="https://github.com/pester/Pester">here</a>, or check the module out on the Gallery itself <a href="https://www.powershellgallery.com/packages/Pester/">here</a>.</p>
 <p><img src="/images/advtools21.png" alt=""></p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln">1</span><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">Pester</span> <span class="n">-Repository</span> <span class="n">PSGallery</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="err">–</span><span class="n">Verbose</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">Pester</span> <span class="n">-Repository</span> <span class="n">PSGallery</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="err">–</span><span class="n">Verbose</span>
 </code></pre></div><p>This command will get the PowerShell module “Pester” from the PSGallery (<a href="http://www.powershellgallery.com)">http://www.powershellgallery.com)</a> and installs it into your current user’s profile. If you want to check, have a look at “C:\Users$env:USERNAME\Documents\WindowsPowerShell\Modules”.</p>
 <p>Pester is, most of the times, advertised for testing your PowerShell functions, modules or DSC resources. People also mention TDD or Test Driven Development in those cases. I have never been able to get my brain to work “TDD style”, so I won’t get any further into this here than just saying “you first write your tests, initially they all fail, because there’s no actual code, and then you write your code and make your tests pass”. My brain works the other way round.</p>
 <h3 id="pester-environment-verification">Pester environment verification</h3>
@@ -255,36 +255,36 @@ if (!doNotTrack) {
 <p>It is easy to set up the skeleton for these tests. With just a couple of lines (on a system with Pester on it) we can create a test skeleton in Pester and fill it with tests like this:</p>
 <p>Some very common things to test for are for example “access”; “can I access a remote system?”, “does it listen on specific ports?” or “is there enough free disk space.</p>
 <p>Luckily these are all things that are easily written in PowerShell.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="k">param</span> <span class="p">(</span>
-<span class="ln"> 2</span>   <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">mandatory</span><span class="p">=</span><span class="nv">$false</span><span class="p">)]</span>
-<span class="ln"> 3</span>   <span class="no">[string]</span><span class="nv">$server</span> <span class="p">=</span> <span class="s1">&#39;localhost&#39;</span>
-<span class="ln"> 4</span><span class="p">)</span>
-<span class="ln"> 5</span><span class="n">Describe</span> <span class="s2">&#34;environment_verification&#34;</span> <span class="p">{</span>
-<span class="ln"> 6</span>   <span class="n">It</span> <span class="s2">&#34;Tests Port 80&#34;</span> <span class="p">{</span>
-<span class="ln"> 7</span>      <span class="p">(</span><span class="nb">Test-NetConnection</span> <span class="n">-ComputerName</span> <span class="nv">$server</span> <span class="n">-Port</span> <span class="n">80</span><span class="p">).</span><span class="n">TcpTestSucceeded</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;True&#39;</span>
-<span class="ln"> 8</span>   <span class="p">}</span>
-<span class="ln"> 9</span>   <span class="n">It</span> <span class="s2">&#34;Tests Port 5986&#34;</span> <span class="p">{</span>
-<span class="ln">10</span>      <span class="p">(</span><span class="nb">Test-NetConnection</span> <span class="n">-ComputerName</span> <span class="nv">$server</span> <span class="n">-Port</span> <span class="n">5986</span><span class="p">).</span><span class="n">TcpTestSucceeded</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;True&#39;</span>
-<span class="ln">11</span>   <span class="p">}</span>
-<span class="ln">12</span>   <span class="n">It</span> <span class="s2">&#34;Server&#39;s C:\ partition should have minimum 5GB of free disk space&#34;</span> <span class="p">{</span>
-<span class="ln">13</span>      <span class="p">(</span><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">win32_logicaldisk</span> <span class="n">-ComputerName</span> <span class="nv">$server</span> <span class="n">-Filter</span> <span class="s2">&#34;DeviceID = &#39;C:&#39;&#34;</span><span class="p">).</span><span class="n">FreeSpace</span><span class="p">/</span><span class="n">1GB</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">BeGreaterThan</span> <span class="n">5</span>
-<span class="ln">14</span>   <span class="p">}</span>
-<span class="ln">15</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">param</span> <span class="p">(</span>
+   <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">mandatory</span><span class="p">=</span><span class="nv">$false</span><span class="p">)]</span>
+   <span class="no">[string]</span><span class="nv">$server</span> <span class="p">=</span> <span class="s1">&#39;localhost&#39;</span>
+<span class="p">)</span>
+<span class="n">Describe</span> <span class="s2">&#34;environment_verification&#34;</span> <span class="p">{</span>
+   <span class="n">It</span> <span class="s2">&#34;Tests Port 80&#34;</span> <span class="p">{</span>
+      <span class="p">(</span><span class="nb">Test-NetConnection</span> <span class="n">-ComputerName</span> <span class="nv">$server</span> <span class="n">-Port</span> <span class="n">80</span><span class="p">).</span><span class="n">TcpTestSucceeded</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;True&#39;</span>
+   <span class="p">}</span>
+   <span class="n">It</span> <span class="s2">&#34;Tests Port 5986&#34;</span> <span class="p">{</span>
+      <span class="p">(</span><span class="nb">Test-NetConnection</span> <span class="n">-ComputerName</span> <span class="nv">$server</span> <span class="n">-Port</span> <span class="n">5986</span><span class="p">).</span><span class="n">TcpTestSucceeded</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;True&#39;</span>
+   <span class="p">}</span>
+   <span class="n">It</span> <span class="s2">&#34;Server&#39;s C:\ partition should have minimum 5GB of free disk space&#34;</span> <span class="p">{</span>
+      <span class="p">(</span><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">win32_logicaldisk</span> <span class="n">-ComputerName</span> <span class="nv">$server</span> <span class="n">-Filter</span> <span class="s2">&#34;DeviceID = &#39;C:&#39;&#34;</span><span class="p">).</span><span class="n">FreeSpace</span><span class="p">/</span><span class="n">1GB</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">BeGreaterThan</span> <span class="n">5</span>
+   <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><h3 id="pester-tvt">Pester TVT</h3>
 <p>Technical verification tests (TVT) are usually whatever you want them to be. In my opinion they make sense for things you developed yourself or for processes you don’t really trust. I don’t necessarily go and test if a Windows Feature is really successfully installed if I have used PowerShell DSC to install it, because I trust that its own internal checks are enough.</p>
 <p>However, I might want to check custom code that might got used to configure a remote service and where I know that this doesn’t always work (for whatever reason). I hope this makes sense.</p>
 <p>In this example I am going to check the IIS configuration that has been given to me from a third party and that I have to work on.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="n">Describe</span> <span class="s2">&#34;TVT&#34;</span> <span class="p">{</span>
-<span class="ln"> 2</span>   <span class="n">It</span> <span class="s2">&#34;checks if IIS is up and running&#34;</span> <span class="p">{</span>
-<span class="ln"> 3</span>      <span class="p">(</span><span class="nb">Get-Service</span> <span class="n">-Name</span> <span class="n">W3SVC</span><span class="p">).</span><span class="n">Status</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s2">&#34;Running&#34;</span>
-<span class="ln"> 4</span>   <span class="p">}</span>
-<span class="ln"> 5</span>   <span class="n">It</span> <span class="s2">&#34;checks if IIS anonymous authentication is disabled on Default Web Site&#34;</span> <span class="p">{</span>
-<span class="ln"> 6</span>      <span class="p">(</span><span class="nb">Get-WebConfigurationProperty</span> <span class="n">-Filter</span> <span class="s1">&#39;/system.webServer/security/authentication/anonymousAuthentication&#39;</span> <span class="n">-Name</span> <span class="n">Enabled</span> <span class="n">-PSPath</span> <span class="s1">&#39;IIS:\\&#39;</span> <span class="n">-Location</span> <span class="s1">&#39;Default Web Site&#39;</span><span class="p">).</span><span class="n">Value</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s2">&#34;false&#34;</span>
-<span class="ln"> 7</span>   <span class="p">}</span>
-<span class="ln"> 8</span>   <span class="n">It</span> <span class="s2">&#34;checks if IIS Windows authentication is enabled on Default Web Site&#34;</span> <span class="p">{</span>
-<span class="ln"> 9</span>      <span class="p">(</span><span class="nb">Get-WebConfigurationProperty</span> <span class="n">-Filter</span> <span class="s1">&#39;/system.webServer/security/authentication/WindowsAuthentication&#39;</span> <span class="n">-Name</span> <span class="n">Enabled</span> <span class="n">-PSPath</span> <span class="s1">&#39;IIS:\\&#39;</span> <span class="n">-Location</span> <span class="s1">&#39;Default Web Site&#39;</span><span class="p">).</span><span class="n">Value</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s2">&#34;true&#34;</span>
-<span class="ln">10</span>   <span class="p">}</span>
-<span class="ln">11</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Describe</span> <span class="s2">&#34;TVT&#34;</span> <span class="p">{</span>
+   <span class="n">It</span> <span class="s2">&#34;checks if IIS is up and running&#34;</span> <span class="p">{</span>
+      <span class="p">(</span><span class="nb">Get-Service</span> <span class="n">-Name</span> <span class="n">W3SVC</span><span class="p">).</span><span class="n">Status</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s2">&#34;Running&#34;</span>
+   <span class="p">}</span>
+   <span class="n">It</span> <span class="s2">&#34;checks if IIS anonymous authentication is disabled on Default Web Site&#34;</span> <span class="p">{</span>
+      <span class="p">(</span><span class="nb">Get-WebConfigurationProperty</span> <span class="n">-Filter</span> <span class="s1">&#39;/system.webServer/security/authentication/anonymousAuthentication&#39;</span> <span class="n">-Name</span> <span class="n">Enabled</span> <span class="n">-PSPath</span> <span class="s1">&#39;IIS:\\&#39;</span> <span class="n">-Location</span> <span class="s1">&#39;Default Web Site&#39;</span><span class="p">).</span><span class="n">Value</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s2">&#34;false&#34;</span>
+   <span class="p">}</span>
+   <span class="n">It</span> <span class="s2">&#34;checks if IIS Windows authentication is enabled on Default Web Site&#34;</span> <span class="p">{</span>
+      <span class="p">(</span><span class="nb">Get-WebConfigurationProperty</span> <span class="n">-Filter</span> <span class="s1">&#39;/system.webServer/security/authentication/WindowsAuthentication&#39;</span> <span class="n">-Name</span> <span class="n">Enabled</span> <span class="n">-PSPath</span> <span class="s1">&#39;IIS:\\&#39;</span> <span class="n">-Location</span> <span class="s1">&#39;Default Web Site&#39;</span><span class="p">).</span><span class="n">Value</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s2">&#34;true&#34;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><p>That’s all nice, but how are we going to run all this?</p>
 <h3 id="pester-integration-into-a-cd-pipeline">Pester integration into a CD pipeline</h3>
 <p>Obviously it isn’t the greatest idea to run these tests manually, we want these tests to run before and after every deployment and get the test results. Continuous Integration servers like TeamCity can help with this.</p>
@@ -307,34 +307,34 @@ if (!doNotTrack) {
 <p>For the sake of this article I will only do a high level introduction to get you started with serverspec.</p>
 <p>I am running serverspec during development from my MacBook against Windows environments. Serverspec uses WinRM to communicate to Windows, more specifically it uses the <a href="https://github.com/WinRb/WinRM">ruby WinRM module</a>. It can easily use SSL secure communication for this.</p>
 <p>My spec_helper.rb file, which configures serverspec, has the following content:</p>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="ln"> 1</span><span class="nb">require</span> <span class="s1">&#39;serverspec&#39;</span>
-<span class="ln"> 2</span><span class="nb">require</span> <span class="s1">&#39;winrm&#39;</span>
-<span class="ln"> 3</span>
-<span class="ln"> 4</span><span class="n">set</span> <span class="ss">:backend</span><span class="p">,</span> <span class="ss">:winrm</span>
-<span class="ln"> 5</span><span class="n">user</span> <span class="o">=</span> <span class="err">‘</span><span class="n">user</span><span class="err">’</span>
-<span class="ln"> 6</span><span class="n">pass</span> <span class="o">=</span> <span class="err">‘</span><span class="n">password</span><span class="err">’</span>
-<span class="ln"> 7</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&#34;https://</span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;TARGET_HOST&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2">:5986/wsman&#34;</span>
-<span class="ln"> 8</span><span class="n">winrm</span> <span class="o">=</span> <span class="o">::</span><span class="no">WinRM</span><span class="o">::</span><span class="no">WinRMWebService</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="ss">:ssl</span><span class="p">,</span> <span class="ss">:user</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">user</span><span class="p">,</span> <span class="ss">:pass</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">pass</span><span class="p">,</span> <span class="ss">:basic_auth_only</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:no_ssl_peer_verification</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="kp">true</span><span class="p">)</span>
-<span class="ln"> 9</span><span class="n">winrm</span><span class="o">.</span><span class="n">set_timeout</span> <span class="mi">300</span> <span class="c1"># 5 minutes max timeout for any operation</span>
-<span class="ln">10</span><span class="no">Specinfra</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">winrm</span> <span class="o">=</span> <span class="n">winrm</span>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;serverspec&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;winrm&#39;</span>
+
+<span class="n">set</span> <span class="ss">:backend</span><span class="p">,</span> <span class="ss">:winrm</span>
+<span class="n">user</span> <span class="o">=</span> <span class="err">‘</span><span class="n">user</span><span class="err">’</span>
+<span class="n">pass</span> <span class="o">=</span> <span class="err">‘</span><span class="n">password</span><span class="err">’</span>
+<span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&#34;https://</span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;TARGET_HOST&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2">:5986/wsman&#34;</span>
+<span class="n">winrm</span> <span class="o">=</span> <span class="o">::</span><span class="no">WinRM</span><span class="o">::</span><span class="no">WinRMWebService</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="ss">:ssl</span><span class="p">,</span> <span class="ss">:user</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">user</span><span class="p">,</span> <span class="ss">:pass</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">pass</span><span class="p">,</span> <span class="ss">:basic_auth_only</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:no_ssl_peer_verification</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="kp">true</span><span class="p">)</span>
+<span class="n">winrm</span><span class="o">.</span><span class="n">set_timeout</span> <span class="mi">300</span> <span class="c1"># 5 minutes max timeout for any operation</span>
+<span class="no">Specinfra</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">winrm</span> <span class="o">=</span> <span class="n">winrm</span>
 </code></pre></div><p>Please note that I am disabling the SSL certificate verification in my test environment.</p>
 <p>A typical serverspec file could look like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="ln"> 1</span><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
-<span class="ln"> 2</span><span class="n">describe</span> <span class="n">port</span><span class="p">(</span><span class="mi">5985</span><span class="p">)</span> <span class="k">do</span>
-<span class="ln"> 3</span><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_listening</span> <span class="p">}</span>
-<span class="ln"> 4</span><span class="k">end</span>
-<span class="ln"> 5</span><span class="n">describe</span> <span class="n">command</span><span class="p">(</span><span class="s1">&#39;(Get-Process -Name explorer).ProcessName&#39;</span><span class="p">)</span> <span class="k">do</span>
-<span class="ln"> 6</span><span class="n">its</span><span class="p">(</span><span class="ss">:stdout</span><span class="p">)</span> <span class="p">{</span> <span class="n">should</span> <span class="n">match</span> <span class="s2">&#34;explorer&#34;</span> <span class="p">}</span>
-<span class="ln"> 7</span><span class="k">end</span>
-<span class="ln"> 8</span>
-<span class="ln"> 9</span><span class="n">describe</span> <span class="n">group</span><span class="p">(</span><span class="s2">&#34;Administrators&#34;</span><span class="p">)</span> <span class="k">do</span>
-<span class="ln">10</span><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_exist</span> <span class="p">}</span>
-<span class="ln">11</span><span class="k">end</span>
-<span class="ln">12</span>
-<span class="ln">13</span><span class="n">describe</span> <span class="n">service</span><span class="p">(</span><span class="s2">&#34;WinRM&#34;</span><span class="p">)</span> <span class="k">do</span>
-<span class="ln">14</span><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_enabled</span> <span class="p">}</span>
-<span class="ln">15</span><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_running</span> <span class="p">}</span>
-<span class="ln">16</span><span class="k">end</span>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+<span class="n">describe</span> <span class="n">port</span><span class="p">(</span><span class="mi">5985</span><span class="p">)</span> <span class="k">do</span>
+<span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_listening</span> <span class="p">}</span>
+<span class="k">end</span>
+<span class="n">describe</span> <span class="n">command</span><span class="p">(</span><span class="s1">&#39;(Get-Process -Name explorer).ProcessName&#39;</span><span class="p">)</span> <span class="k">do</span>
+<span class="n">its</span><span class="p">(</span><span class="ss">:stdout</span><span class="p">)</span> <span class="p">{</span> <span class="n">should</span> <span class="n">match</span> <span class="s2">&#34;explorer&#34;</span> <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="n">describe</span> <span class="n">group</span><span class="p">(</span><span class="s2">&#34;Administrators&#34;</span><span class="p">)</span> <span class="k">do</span>
+<span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_exist</span> <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="n">describe</span> <span class="n">service</span><span class="p">(</span><span class="s2">&#34;WinRM&#34;</span><span class="p">)</span> <span class="k">do</span>
+<span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_enabled</span> <span class="p">}</span>
+<span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_running</span> <span class="p">}</span>
+<span class="k">end</span>
 </code></pre></div><p>The output of it looks similar to Pester’s and can of course also easily be re-used in a CI server.</p>
 <p><img src="/images/advtools25.png" alt=""></p>
 <h3 id="conclusion">Conclusion</h3>
