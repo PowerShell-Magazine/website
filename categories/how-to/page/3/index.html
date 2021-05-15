@@ -18,6 +18,7 @@
 <meta property="og:updated_time" content="2017-11-20T17:00:50+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -28,6 +29,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -91,6 +93,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -191,10 +199,90 @@ if (!doNotTrack) {
   <div class="row">
     
     
+    <aside class="col-lg-4 order-2 order-lg-1 sidebar-inner"><!-- Social -->
+<div class="widget">
+  <h4 class="widget-title"><span>Social Links</span></h4>
+  <ul class="list-inline widget-social">
+    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
+    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
+    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
+    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
+  </ul>
+</div><!-- Search -->
+
+<div class="widget">
+  <h4 class="widget-title"><span>Search</span></h4>
+  <form action="/search" class="widget-search">
+    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
+    <i class="ti-search"></i>
+    <button type="submit" class="btn btn-primary btn-block">Search</button>
+  </form>
+</div>
+<!-- recent post -->
+<div class="widget">
+  <h4 class="widget-title">Recent Post</h4>
+  <!-- post-item -->
+  
+  <article class="widget-card">
+    <div class="d-flex">
+      
+      
+      
+      <img src="https://powershellmagazine.com/images/yaml.png" class="card-img-sm" loading="lazy" alt="post-thumb">
+      
+      
+      
+      <div class="ml-3">
+        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/15/a-yaml-primer-for-administrators/">A YAML primer for administrators</a></h5>
+        <ul class="card-meta list-inline mb-0">
+          <li class="list-inline-item mb-0">
+            <i class="far fa-calendar-alt"></i>15 May, 2021
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+  
+  <article class="widget-card">
+    <div class="d-flex">
+      
+      
+      
+      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
+      
+      
+      
+      <div class="ml-3">
+        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
+        <ul class="card-meta list-inline mb-0">
+          <li class="list-inline-item mb-0">
+            <i class="far fa-calendar-alt"></i>04 May, 2021
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+  
+  <article class="widget-card">
+    <div class="d-flex">
+      
+      <div class="ml-3">
+        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
+        <ul class="card-meta list-inline mb-0">
+          <li class="list-inline-item mb-0">
+            <i class="far fa-calendar-alt"></i>03 May, 2021
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+  
+</div></aside>
+    
     
 
     <div
-      class="col-lg-8  mb-5 mb-lg-0">
+      class="col-lg-8 order-1 order-lg-2 mb-5 mb-lg-0">
 
       
       
@@ -204,309 +292,341 @@ if (!doNotTrack) {
 
       
       
-      <div class="row">
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2015/04/08/user-account-control-and-admin-approval-mode-the-impact-on-powershell/">User Account Control and Admin Approval Mode – The impact on PowerShell</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/jaap-brasser/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/jaap-brasser.jpg" alt="Jaap Brasser" class="img-fluid">
-                    
-                    
-                    <span>Jaap Brasser</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>4 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>08 Apr, 2015
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/how-to">How to</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>In modern days Windows operating systems, User Account Control (UAC) is enabled …</p>
-              <a href="https://powershellmagazine.com/2015/04/08/user-account-control-and-admin-approval-mode-the-impact-on-powershell/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2015/04/08/user-account-control-and-admin-approval-mode-the-impact-on-powershell/">User Account Control and Admin Approval Mode – The impact on PowerShell</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/jaap-brasser/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/jaap-brasser.jpg" alt="Jaap Brasser" class="img-fluid">
+                  
+                  
+                  <span>Jaap Brasser</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>4 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>08 Apr, 2015
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/how-to">How to</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              In modern days Windows operating systems, User Account Control (UAC) is enabled by default. There are some considerations when using PowerShell and running a script in elevated or non-elevated context.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2015/04/08/user-account-control-and-admin-approval-mode-the-impact-on-powershell/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2015/03/10/how-powershell-saved-the-day-jan-egil-ring/">How PowerShell saved the day – Jan Egil Ring</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/jan-egil-ring/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/jan-egil-ring.jpg" alt="Jan Egil Ring" class="img-fluid">
-                    
-                    
-                    <span>Jan Egil Ring</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>3 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>10 Mar, 2015
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/how-to">How to</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>We’re now kicking off a new series on PowerShell Magazine called “How PowerShell …</p>
-              <a href="https://powershellmagazine.com/2015/03/10/how-powershell-saved-the-day-jan-egil-ring/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2015/03/10/how-powershell-saved-the-day-jan-egil-ring/">How PowerShell saved the day – Jan Egil Ring</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/jan-egil-ring/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/jan-egil-ring.jpg" alt="Jan Egil Ring" class="img-fluid">
+                  
+                  
+                  <span>Jan Egil Ring</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>3 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>10 Mar, 2015
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/how-to">How to</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              We’re now kicking off a new series on PowerShell Magazine called “How PowerShell saved the day”, where the intent is to share success stories where PowerShell was a major factor when solving a problem.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2015/03/10/how-powershell-saved-the-day-jan-egil-ring/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/12/01/a-json-primer-for-administrators/">A JSON primer for administrators</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/ravikanth-c/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
-                    
-                    
-                    <span>Ravikanth C</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>6 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>01 Dec, 2014
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/how-to">How to</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/json">J s o n</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>JavaScript Object Notation ([JSON][1]) is quickly becoming the most used …</p>
-              <a href="https://powershellmagazine.com/2014/12/01/a-json-primer-for-administrators/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/12/01/a-json-primer-for-administrators/">A JSON primer for administrators</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/ravikanth-c/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
+                  
+                  
+                  <span>Ravikanth C</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>6 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>01 Dec, 2014
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/how-to">How to</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/json">J s o n</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              JavaScript Object Notation (JSON) is quickly becoming the most used data-interchange format. XML enjoyed the top spot for a long time but slowly people have been moving towards JSON.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2014/12/01/a-json-primer-for-administrators/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/10/22/foreach-and-where-magic-methods/">ForEach and Where magic methods</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/kirk-munro/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/kirk-munro.jpg" alt="Kirk Munro" class="img-fluid">
-                    
-                    
-                    <span>Kirk Munro</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>22 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>22 Oct, 2014
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/how-to">How to</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/language">Language</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>ForEach and Where are two frequently used concepts that have been available in …</p>
-              <a href="https://powershellmagazine.com/2014/10/22/foreach-and-where-magic-methods/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/10/22/foreach-and-where-magic-methods/">ForEach and Where magic methods</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/kirk-munro/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/kirk-munro.jpg" alt="Kirk Munro" class="img-fluid">
+                  
+                  
+                  <span>Kirk Munro</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>22 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>22 Oct, 2014
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/how-to">How to</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/language">Language</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              ForEach and Where are two frequently used concepts that have been available in PowerShell since version 1 came out in 2006.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2014/10/22/foreach-and-where-magic-methods/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/10/03/building-netcat-with-powershell/"></a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/jason-stangroome/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/jason-stangroome.jpg" alt="Jason Stangroome" class="img-fluid">
-                    
-                    
-                    <span>Jason Stangroome</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>6 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>03 Oct, 2014
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/how-to">How to</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>I have been a long time Windows user and a PowerShell fan since it was …</p>
-              <a href="https://powershellmagazine.com/2014/10/03/building-netcat-with-powershell/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/10/03/building-netcat-with-powershell/"></a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/jason-stangroome/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/jason-stangroome.jpg" alt="Jason Stangroome" class="img-fluid">
+                  
+                  
+                  <span>Jason Stangroome</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>6 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>03 Oct, 2014
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/how-to">How to</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              I have been a long time Windows user and a PowerShell fan since it was introduced. I have always been aware of the range of useful tools regularly available to Unix/Linux users, but recently I started a new job where everything is built on Linux and …
+              
+            </p>
+            <a href="https://powershellmagazine.com/2014/10/03/building-netcat-with-powershell/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/09/25/easily-defining-enums-structs-and-win32-functions-in-memory/">Easily Defining Enums, Structs, and Win32 Functions in Memory</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/matt-graeber/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/matt-graeber.jpg" alt="Matt Graeber" class="img-fluid">
-                    
-                    
-                    <span>Matt Graeber</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>8 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>25 Sep, 2014
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/how-to">How to</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/security">Security</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/infosec">Info sec</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>In the past, I’ve spoken extensively on how to use reflection to define enums, …</p>
-              <a href="https://powershellmagazine.com/2014/09/25/easily-defining-enums-structs-and-win32-functions-in-memory/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/09/25/easily-defining-enums-structs-and-win32-functions-in-memory/">Easily Defining Enums, Structs, and Win32 Functions in Memory</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/matt-graeber/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/matt-graeber.jpg" alt="Matt Graeber" class="img-fluid">
+                  
+                  
+                  <span>Matt Graeber</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>8 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>25 Sep, 2014
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/how-to">How to</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/security">Security</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/infosec">Info sec</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              In the past, I’ve spoken extensively on how to use reflection to define enums, structs, and Win32 functions in PowerShell and the merits of doing so.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2014/09/25/easily-defining-enums-structs-and-win32-functions-in-memory/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-      </div>
+      </article>
+      
       
 
       
@@ -780,86 +900,6 @@ if (!doNotTrack) {
     </div>
 
     
-    
-    <aside class="col-lg-4 sidebar-inner"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
     
     
   </div>

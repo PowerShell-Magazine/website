@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2015-02-20T19:00:42+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -216,7 +224,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>5 Min To Read
+              <i class="far fa-clock"></i>6 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>20 Feb, 2015
@@ -234,7 +242,8 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>Partial configurations in DSC <a href="/2014/10/02/partial-dsc-configurations-in-windows-management-framework-wmf-5-0/">allow department-level delegation of target system</a> configuration. This is an important step in enabling collaboration in the enterprise configuration management context. When <a href="/2014/10/02/partial-dsc-configurations-in-windows-management-framework-wmf-5-0/">partial configurations feature was introduced</a> in WMF 5.0 Preview November 2014, the only supported configuration delivery mode was Pull mode.</p>
+          <div class="content">
+            <p>Partial configurations in DSC <a href="/2014/10/02/partial-dsc-configurations-in-windows-management-framework-wmf-5-0/">allow department-level delegation of target system</a> configuration. This is an important step in enabling collaboration in the enterprise configuration management context. When <a href="/2014/10/02/partial-dsc-configurations-in-windows-management-framework-wmf-5-0/">partial configurations feature was introduced</a> in WMF 5.0 Preview November 2014, the only supported configuration delivery mode was Pull mode.</p>
 <p><img src="/images/Depart.png" alt=""></p>
 <p>With the WMF 5.0 Preview February 2015, mixing refresh modes or configuration delivery modes is now supported. This means a subset of partial configurations can be pushed using the <em>Start-DscConfiguration</em> cmdlet while the remaining partial configurations are pulled from a pull service or SMB file share.</p>
 <p><img src="/images/72.png" alt=""></p>
@@ -248,7 +257,32 @@ if (!doNotTrack) {
 <p>Going back to the scenario illustrated in the diagram, I want the target node to get the OS configuration from using push while the SQL configuration fragment will be pulled and it depends on the OS configuration fragment.</p>
 <p>The following scripts demonstrate the partial configuration fragments &ndash; OSConfig and SQLConfig. To try the following configuration scripts as-is, you will need the resources from the <a href="https://gallery.technet.microsoft.com/scriptcenter/DSC-Resource-Kit-All-c449312d">DSC Resource Kit</a>.</p>
 <h3 id="os-configuration">OS Configuration</h3>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$ConfigData</span> <span class="p">=</span> <span class="p">@{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$ConfigData</span> <span class="p">=</span> <span class="p">@{</span>
    <span class="n">AllNodes</span> <span class="p">=</span> <span class="p">@(</span>
       <span class="p">@{</span> <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;*&#39;</span><span class="p">;</span> <span class="n">PsDscAllowPlainTextPassword</span> <span class="p">=</span> <span class="nv">$true</span> <span class="p">},</span>
       <span class="p">@{</span> <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;a5f86baf-f17f-4778-8944-9cc99ec9f992&#39;</span> <span class="p">}</span>
@@ -269,9 +303,43 @@ if (!doNotTrack) {
 <span class="p">}</span>
 <span class="n">OSConfig</span> <span class="n">-ConfigurationData</span> <span class="nv">$ConfigData</span> <span class="n">-Credential</span> <span class="p">(</span><span class="nb">Get-Credential</span><span class="p">)</span> <span class="n">-OutputPath</span> <span class="s1">&#39;C:\SMBPull&#39;</span>
 <span class="nb">New-DSCCheckSum</span> <span class="n">-ConfigurationPath</span> <span class="s1">&#39;C:\SMBPull&#39;</span> <span class="n">-OutPath</span> <span class="s1">&#39;C:\SMBPull&#39;</span>
-</code></pre></div><p>In this configuration fragment, I am using the hostname as the nodename. So, the generated MOF will be named as <hostname>.mof. Since this fragment is being pushed the target system, we don’t have to use the <GUID>.mof format here or need MOF checksum.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>In this configuration fragment, I am using the hostname as the nodename. So, the generated MOF will be named as <hostname>.mof. Since this fragment is being pushed the target system, we don’t have to use the <GUID>.mof format here or need MOF checksum.</p>
 <h3 id="sql-configuration">SQL Configuration</h3>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$ConfigData</span> <span class="p">=</span> <span class="p">@{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$ConfigData</span> <span class="p">=</span> <span class="p">@{</span>
    <span class="n">AllNodes</span> <span class="p">=</span> <span class="p">@(</span>
        <span class="p">@{</span> <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;*&#39;</span><span class="p">;</span> <span class="n">PsDscAllowPlainTextPassword</span> <span class="p">=</span> <span class="nv">$true</span> <span class="p">},</span>
        <span class="p">@{</span> <span class="n">NodeName</span> <span class="p">=</span> <span class="s1">&#39;WMF5-2&#39;</span> <span class="p">}</span>
@@ -299,9 +367,46 @@ if (!doNotTrack) {
 <span class="p">}</span>
 <span class="n">SQLConfig</span> <span class="n">-ConfigurationData</span> <span class="nv">$ConfigData</span> <span class="n">-Credential</span> <span class="p">(</span><span class="nb">Get-Credential</span><span class="p">)</span> <span class="n">-OutputPath</span> <span class="s1">&#39;C:\SMBPull&#39;</span>
 <span class="nb">New-DSCCheckSum</span> <span class="n">-ConfigurationPath</span> <span class="s1">&#39;C:\SMBPull&#39;</span> <span class="n">-OutPath</span> <span class="s1">&#39;C:\SMBPull&#39;</span>
-</code></pre></div><p>In the case of SQL configuration, we are using the GUID as the node name. The same GUID will be later configured as the ConfigurationID within the LCM settings. This configuration script assumes that you have OS setup files available at D: and SQL setup files at E:.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>In the case of SQL configuration, we are using the GUID as the node name. The same GUID will be later configured as the ConfigurationID within the LCM settings. This configuration script assumes that you have OS setup files available at D: and SQL setup files at E:.</p>
 <p>Here is how the LCM meta-configuration of the target system looks for this scenario.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">[</span><span class="n">DSCLocalConfigurationManager</span><span class="p">()]</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">[</span><span class="n">DSCLocalConfigurationManager</span><span class="p">()]</span>
 <span class="n">configuration</span> <span class="n">PartialConfigDemo</span>
 <span class="p">{</span>
     <span class="n">Node</span> <span class="n">WMF5</span><span class="p">-</span><span class="n">2</span>
@@ -332,16 +437,70 @@ if (!doNotTrack) {
     <span class="p">}</span>
 <span class="p">}</span>
 <span class="n">PartialConfigDemo</span>
-</code></pre></div><p>As you see in this meta-configuration document, I have set the LCM RefreshMode to Pull. This is the global setting for LCM in general. For each partial configuration I have a RefreshMode setting again. For the OSConfig partial configuration, it is set to <em>Push</em> and <em>Pull</em> for the SQLConfig fragment. Remember that the ConfigurationSource setting within the partial configuration is mandatory if the RefreshMode for that partial configuration is set to Pull. Otherwise, you don’t need ConfigurationSource setting.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>As you see in this meta-configuration document, I have set the LCM RefreshMode to Pull. This is the global setting for LCM in general. For each partial configuration I have a RefreshMode setting again. For the OSConfig partial configuration, it is set to <em>Push</em> and <em>Pull</em> for the SQLConfig fragment. Remember that the ConfigurationSource setting within the partial configuration is mandatory if the RefreshMode for that partial configuration is set to Pull. Otherwise, you don’t need ConfigurationSource setting.</p>
 <h3 id="enacting-configuration-with-mixed-refresh-modes">Enacting configuration with mixed refresh modes</h3>
 <p>When all partial configurations are set to <em>Pull</em> refresh mode, the configuration gets enacted during a consistency check or by calling the Update-DscConfiguration cmdlet. However, this process is a bit different when using mixed refresh modes. In our scenario, when we the consistency check kicks in or the Update-DscConfiguration is called, LCM finds that SQL configuration can be pulled over but it depends on OS configuration fragment that is set to push. The SQL configuration fragment cannot be enacted unless the OS configuration is complete. If we try to push the OS configuration fragment using the Start-DscConfiguration cmdlet, you will see an error that partial configurations cannot be pushed this way. Instead, you have to first publish the OS configuration fragment to the partial configuration store using the Publish-DscConfiguration cmdlet.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Publish-DscConfiguration</span> <span class="n">-ComputerName</span> <span class="n">WMF5</span><span class="p">-</span><span class="n">2</span> <span class="n">-Path</span> <span class="n">C:</span><span class="p">\</span><span class="n">SMBPull</span> <span class="n">-Verbose</span> <span class="n">-Force</span>
-</code></pre></div><p><img src="/images/8.png" alt=""></p>
-<p>When this step is complete, the published configuration can be enacted by specifying the <em>-UseExisting</em> switch parameter with the <em>Start-DscConfiguration</em> cmdlet.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Start-DscConfiguration</span> <span class="n">-ComputerName</span> <span class="n">WMF5</span><span class="p">-</span><span class="n">2</span> <span class="n">-Verbose</span> <span class="n">-Wait</span> <span class="n">-UseExisting</span>
-</code></pre></div><p><img src="/images/9.png" alt=""></p>
-<p>The above screenshot shows the output of the enact process. If you observe closely, DSC tries to get the remaining partial fragments from the Pull server. Since an updated fragment already exists on my system, it is not pulled again.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Publish-DscConfiguration</span> <span class="n">-ComputerName</span> <span class="n">WMF5</span><span class="p">-</span><span class="n">2</span> <span class="n">-Path</span> <span class="n">C:</span><span class="p">\</span><span class="n">SMBPull</span> <span class="n">-Verbose</span> <span class="n">-Force</span>
+</code></pre></td></tr></table>
 </div>
+</div><p><img src="/images/8.png" alt=""></p>
+<p>When this step is complete, the published configuration can be enacted by specifying the <em>-UseExisting</em> switch parameter with the <em>Start-DscConfiguration</em> cmdlet.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Start-DscConfiguration</span> <span class="n">-ComputerName</span> <span class="n">WMF5</span><span class="p">-</span><span class="n">2</span> <span class="n">-Verbose</span> <span class="n">-Wait</span> <span class="n">-UseExisting</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/9.png" alt=""></p>
+<p>The above screenshot shows the output of the enact process. If you observe closely, DSC tries to get the remaining partial fragments from the Pull server. Since an updated fragment already exists on my system, it is not pulled again.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2015\/02\/20\/mixed-refresh-mode-support-for-dsc-partial-configurations\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2015\/02\/20\/mixed-refresh-mode-support-for-dsc-partial-configurations\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2015\/02\/20\/mixed-refresh-mode-support-for-dsc-partial-configurations\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2015\/02\/20\/mixed-refresh-mode-support-for-dsc-partial-configurations\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
+</div>
+          </div>
         </article>
         
         
@@ -371,86 +530,6 @@ if (!doNotTrack) {
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

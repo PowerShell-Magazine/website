@@ -18,6 +18,7 @@
 <meta property="og:updated_time" content="2018-01-05T17:00:00+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -28,6 +29,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -91,6 +93,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -191,10 +199,90 @@ if (!doNotTrack) {
   <div class="row">
     
     
+    <aside class="col-lg-4 order-2 order-lg-1 sidebar-inner"><!-- Social -->
+<div class="widget">
+  <h4 class="widget-title"><span>Social Links</span></h4>
+  <ul class="list-inline widget-social">
+    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
+    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
+    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
+    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
+  </ul>
+</div><!-- Search -->
+
+<div class="widget">
+  <h4 class="widget-title"><span>Search</span></h4>
+  <form action="/search" class="widget-search">
+    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
+    <i class="ti-search"></i>
+    <button type="submit" class="btn btn-primary btn-block">Search</button>
+  </form>
+</div>
+<!-- recent post -->
+<div class="widget">
+  <h4 class="widget-title">Recent Post</h4>
+  <!-- post-item -->
+  
+  <article class="widget-card">
+    <div class="d-flex">
+      
+      
+      
+      <img src="https://powershellmagazine.com/images/yaml.png" class="card-img-sm" loading="lazy" alt="post-thumb">
+      
+      
+      
+      <div class="ml-3">
+        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/15/a-yaml-primer-for-administrators/">A YAML primer for administrators</a></h5>
+        <ul class="card-meta list-inline mb-0">
+          <li class="list-inline-item mb-0">
+            <i class="far fa-calendar-alt"></i>15 May, 2021
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+  
+  <article class="widget-card">
+    <div class="d-flex">
+      
+      
+      
+      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
+      
+      
+      
+      <div class="ml-3">
+        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
+        <ul class="card-meta list-inline mb-0">
+          <li class="list-inline-item mb-0">
+            <i class="far fa-calendar-alt"></i>04 May, 2021
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+  
+  <article class="widget-card">
+    <div class="d-flex">
+      
+      <div class="ml-3">
+        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
+        <ul class="card-meta list-inline mb-0">
+          <li class="list-inline-item mb-0">
+            <i class="far fa-calendar-alt"></i>03 May, 2021
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+  
+</div></aside>
+    
     
 
     <div
-      class="col-lg-8  mb-5 mb-lg-0">
+      class="col-lg-8 order-1 order-lg-2 mb-5 mb-lg-0">
 
       
       
@@ -204,320 +292,353 @@ if (!doNotTrack) {
 
       
       
-      <div class="row">
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/08/05/understanding-azure-vm-dsc-extension/">Understanding Azure VM DSC Extension</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/ravikanth-c/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
-                    
-                    
-                    <span>Ravikanth C</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>6 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>05 Aug, 2014
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/azure">Azure</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/powershell-dsc">Power shell d s c</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>The Azure team released the Azure PowerShell Tools version 0.8.6 that includes …</p>
-              <a href="https://powershellmagazine.com/2014/08/05/understanding-azure-vm-dsc-extension/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/08/05/understanding-azure-vm-dsc-extension/">Understanding Azure VM DSC Extension</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/ravikanth-c/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
+                  
+                  
+                  <span>Ravikanth C</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>6 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>05 Aug, 2014
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/azure">Azure</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/powershell-dsc">Power shell d s c</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              The Azure team released the Azure PowerShell Tools version 0.8.6 that includes cmdlets for working with a new Azure VM extension called DSC extension.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2014/08/05/understanding-azure-vm-dsc-extension/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/07/30/cross-domain-configuration-management-with-dsc/">Cross-domain configuration management with DSC</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/ravikanth-c/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
-                    
-                    
-                    <span>Ravikanth C</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>3 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>30 Jul, 2014
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/powershell-dsc">Power shell d s c</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>Most of the DSC examples we have seen so far here or elsewhere focused on single …</p>
-              <a href="https://powershellmagazine.com/2014/07/30/cross-domain-configuration-management-with-dsc/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/07/30/cross-domain-configuration-management-with-dsc/">Cross-domain configuration management with DSC</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/ravikanth-c/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
+                  
+                  
+                  <span>Ravikanth C</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>3 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>30 Jul, 2014
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/powershell-dsc">Power shell d s c</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              Most of the DSC examples we have seen so far here or elsewhere focused on single domain scenarios. However, in a real-world deployment, we have mixed domains and even a few systems that are probably in a workgroup configuration.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2014/07/30/cross-domain-configuration-management-with-dsc/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/07/29/bootstrapping-lcm-meta-configuration-in-a-azure-vm/">Bootstrapping LCM meta-configuration in a Azure VM</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/ravikanth-c/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
-                    
-                    
-                    <span>Ravikanth C</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>5 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>29 Jul, 2014
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/azure">Azure</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/powershell-dsc">Power shell d s c</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>I have been a very active user of DSC both in the lab and on all my Azure VMs. …</p>
-              <a href="https://powershellmagazine.com/2014/07/29/bootstrapping-lcm-meta-configuration-in-a-azure-vm/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/07/29/bootstrapping-lcm-meta-configuration-in-a-azure-vm/">Bootstrapping LCM meta-configuration in a Azure VM</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/ravikanth-c/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
+                  
+                  
+                  <span>Ravikanth C</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>5 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>29 Jul, 2014
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/azure">Azure</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/powershell-dsc">Power shell d s c</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              I have been a very active user of DSC both in the lab and on all my Azure VMs. One of the things I always do is to configure my Azure VMs to get configuration from a pull service hosted in my Azure subscription.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2014/07/29/bootstrapping-lcm-meta-configuration-in-a-azure-vm/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/07/18/dsc-resource-kit-wave-5-is-available/">DSC Resource Kit Wave 5 is available</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/ravikanth-c/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
-                    
-                    
-                    <span>Ravikanth C</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>2 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>18 Jul, 2014
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/powershell-dsc">Power shell d s c</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/news">News</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>Windows PowerShell team released DSC Resource Kit Wave 5.
-This wave has added …</p>
-              <a href="https://powershellmagazine.com/2014/07/18/dsc-resource-kit-wave-5-is-available/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/07/18/dsc-resource-kit-wave-5-is-available/">DSC Resource Kit Wave 5 is available</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/ravikanth-c/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
+                  
+                  
+                  <span>Ravikanth C</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>2 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>18 Jul, 2014
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/powershell-dsc">Power shell d s c</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/news">News</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              Windows PowerShell team released DSC Resource Kit Wave 5.
+This wave has added the following
+ xWordPress: This module contains two resources, xIISWordPressSite and xWordPressSite, as well as example configurations under Samples, which show end-to-end …
+              
+            </p>
+            <a href="https://powershellmagazine.com/2014/07/18/dsc-resource-kit-wave-5-is-available/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/05/21/installing-and-configuring-dsc-for-linux/">Installing and configuring DSC for Linux</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/ravikanth-c/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
-                    
-                    
-                    <span>Ravikanth C</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>7 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>21 May, 2014
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/azure">Azure</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/powershell-dsc">Power shell d s c</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/linux">Linux</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>[Update 1: 5/23/2014] Added pre-requisite install commands for Oracle Linux
-I am …</p>
-              <a href="https://powershellmagazine.com/2014/05/21/installing-and-configuring-dsc-for-linux/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/05/21/installing-and-configuring-dsc-for-linux/">Installing and configuring DSC for Linux</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/ravikanth-c/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
+                  
+                  
+                  <span>Ravikanth C</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>7 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>21 May, 2014
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/azure">Azure</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/powershell-dsc">Power shell d s c</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/linux">Linux</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              [Update 1: 5/23/2014] Added pre-requisite install commands for Oracle Linux
+I am sure you are aware of the Microsoft’s announcement of the CTP release of DSC for Linux.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2014/05/21/installing-and-configuring-dsc-for-linux/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/05/19/microsoft-announced-the-ctp-release-of-windows-powershell-desired-state-configuration-for-linux/">Microsoft announced the CTP release of Windows PowerShell Desired State Configuration for Linux</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/ravikanth-c/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
-                    
-                    
-                    <span>Ravikanth C</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>2 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>20 May, 2014
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/news">News</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/powershell-dsc">Power shell d s c</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/linux">Linux</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>When I was speaking at DevOpsDays India and demonstrating Windows PowerShel DSC …</p>
-              <a href="https://powershellmagazine.com/2014/05/19/microsoft-announced-the-ctp-release-of-windows-powershell-desired-state-configuration-for-linux/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2014/05/19/microsoft-announced-the-ctp-release-of-windows-powershell-desired-state-configuration-for-linux/">Microsoft announced the CTP release of Windows PowerShell Desired State Configuration for Linux</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/ravikanth-c/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
+                  
+                  
+                  <span>Ravikanth C</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>2 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>20 May, 2014
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/news">News</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/powershell-dsc">Power shell d s c</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/linux">Linux</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              When I was speaking at DevOpsDays India and demonstrating Windows PowerShel DSC (6 months ago), several people in the room had a laugh as I’d mentioned Microsoft and OpenSource.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2014/05/19/microsoft-announced-the-ctp-release-of-windows-powershell-desired-state-configuration-for-linux/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-      </div>
+      </article>
+      
       
 
       
@@ -794,86 +915,6 @@ I am …</p>
     </div>
 
     
-    
-    <aside class="col-lg-4 sidebar-inner"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
     
     
   </div>

@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2012-04-25T18:00:41+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -237,7 +245,8 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>I’ve blogged a lot of quick demos with <a href="http://show-ui.com/">ShowUI</a> (and its predecessors) in the last few years, but as things ramp up with ShowUI and it starts getting more attention at the enterprise level, a lot of the questions that we’ve been getting on the <a href="http://showui.codeplex.com/discussions">ShowUI forums</a> focus on the professional touches that make a user interface feel like an application, and the challenges of pulling together different controls into a single user interface in a reusable way.</p>
+          <div class="content">
+            <p>I’ve blogged a lot of quick demos with <a href="http://show-ui.com/">ShowUI</a> (and its predecessors) in the last few years, but as things ramp up with ShowUI and it starts getting more attention at the enterprise level, a lot of the questions that we’ve been getting on the <a href="http://showui.codeplex.com/discussions">ShowUI forums</a> focus on the professional touches that make a user interface feel like an application, and the challenges of pulling together different controls into a single user interface in a reusable way.</p>
 <p>In this article we’ll walk through the process of building a reusable solution with ShowUI, demonstrating how to create re-useable control functions and how to pull them together into a single interface.  The challenge for today will be a script to manage displaying a collection of data… with a rich interface for sorting and filtering.</p>
 <p>In the interests of showing off some of the data-binding and templating features of WPF 3.5 and the built-in capabilities of PowerShell and ShowUI, we’re going to use a <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.listview">ListView</a> with a <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.gridviewcolumnheader">GridView</a> rather than a <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.datagrid">DataGrid</a> (which is available in .Net 4, or in the <a href="http://wpf.codeplex.com/releases/view/40535">WPFToolkit</a> for .Net 3.5).</p>
 <p>To get started with our display we need a ListView with a GridView which can sort and filter. We’ll create a reusable control for this, since it’s obviously something we’ll have a lot of use for.  There’s been some guidance from the ShowUI team on how to create these reusable controls, but here are the basics:</p>
@@ -254,10 +263,19 @@ if (!doNotTrack) {
 </ul>
 <p><a href="/images/ShowUI.zip">Listing 1</a> shows the code for Show-GridView.  As you can see, I’ve written a control which accepts one or more InputObjects (including from the pipeline) and displays them in a GridView, given a list of properties, and outputs the selected items when the window is closed. It also supports sorting the GridView when a column header is clicked.  The code for that sorting is somewhat complex, but it’s just a translation into PowerShell of the MSDN article <a href="http://msdn.microsoft.com/en-us/library/ms745786.aspx">How to: Sort a GridView Column When a Header Is Clicked</a>, so I’m not going to explain again it here, that article is a good resource, and the logic applies to all <a href="http://msdn.microsoft.com/en-us/library/system.windows.data.collectionview">CollectionView</a> controls. Note that Show-GridView requires ShowUI 1.3 or later because of the syntax of the Add-EventHandler call, which doesn’t handle bubble-up events in ShowUI 1.1.</p>
 <p>Already we can use our control and pipe the output from it to additional commands. Anything selected in the GridView will be output when the window is closed (but if nothing is selected, everything will be output, so be careful, there’s no “cancel”). However, it doesn’t sort yet, and it also doesn’t have a way to filter the controls. Here’s an example:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-ChildItem</span> <span class="p">|</span> <span class="nb">Show-GridView</span> <span class="n">-Property</span> <span class="n">Mode</span><span class="p">,</span> <span class="n">Length</span><span class="p">,</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-ChildItem</span> <span class="p">|</span> <span class="nb">Show-GridView</span> <span class="n">-Property</span> <span class="n">Mode</span><span class="p">,</span> <span class="n">Length</span><span class="p">,</span>
 
 <span class="n">LastWriteTime</span><span class="p">,</span> <span class="n">Name</span> <span class="err">–</span><span class="n">Show</span> <span class="n">-Name</span> <span class="p">(</span><span class="nb">split-path</span> <span class="nv">$Pwd</span> <span class="n">-leaf</span><span class="p">)</span>
-</code></pre></div><p><img src="/images/ShowUI_Lisiting1.png" alt=""></p>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/ShowUI_Lisiting1.png" alt=""></p>
 <p>You do have to specify the properties that you want displayed, because we haven’t included anything to get them from PowerShell format files or through reflection, and you have to be careful: although PowerShell isn’t case sensitive, WPF is – so the data-binding which happens with the columns is case sensitive.  This means that you have to put (for example) “LastWriteTime” rather than “lastwritetime” or you won’t get any values in the column.</p>
 <p>To handle sorting we need to use Add-EventHandler, because the event we want to use to change the sorting isn’t an event of the ListView, it’s the Click event of the <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.gridviewcolumnheader">GridViewColumnHeader</a>(s) which get added to the ListView automatically.  To call Add-EventHandler we can just add code to the top of the On_Loaded event handler we already have … and we can handle the sort one of two ways:</p>
 <p><a href="/images/ShowUI.zip">Listing 2</a> shows a way to perform the sort using the native WPF sorting features.  This method is by far the fastest and smoothest. The problem with it is that in PowerShell, we sometimes display data that’s not all the same. For instance, when we displayed Get-ChildItem above, we’ll probably have a mix of files and folders, which will mean that the “Length” column will be empty sometimes, which will break sorting by that column (try it yourself, you’ll see the errors in the console and the sort won’t work).</p>
@@ -265,12 +283,23 @@ if (!doNotTrack) {
 <p>To handle filtering, we want to add a <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.textbox">TextBox</a> where you can type text, and then filter the list based on that text. Once again, we can filter in two ways.  Hopefully you know how to use Where-Object to filter in PowerShell, so I’m going to skip over that and leave it as an exercise for you. One warning: when filtering, you’ll need to store a copy of the original list in the “Resources” of the control, because otherwise each filter will be permanent and cumulative!</p>
 <p>I’ve written <a href="/images/ShowUI.zip">Listing 4</a> as a generic control which takes any <a href="http://msdn.microsoft.com/en-us/library/system.windows.controls.itemscontrol">ItemsControl</a> (or derived control) which has an Items or ItemsSource property and a <a href="http://msdn.microsoft.com/en-us/library/system.windows.data.collectionview">CollectionView</a>, and can filter it (so it will work with our Show-GridView, but also with any similar control). Since I don’t know the name of the ItemsControl, there’s a lot of extra code in both the Filter ScriptBlock (starting on line 42), and the Border Loaded event handler (starting on line 90), which serves primarily to find the control and its CollectionView. It’s somewhat convoluted, but it makes the Show-FilteredItemsControl more reuseable.</p>
 <p>With the code from Listing 1 (with either Listing 2 or 3 in its “On_Loaded” handler) and Listing 4 together, we can now create sortable, filterable lists like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Show-FilteredItemsControl</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Show-FilteredItemsControl</span> <span class="p">{</span>
 
 <span class="nb">Get-ChildItem</span> <span class="p">|</span> <span class="nb">Show-GridView</span> <span class="n">-Property</span> <span class="n">Mode</span><span class="p">,</span> <span class="n">Length</span><span class="p">,</span>
 <span class="n">LastWriteTime</span><span class="p">,</span> <span class="n">Name</span>
 <span class="p">}</span> <span class="err">–</span><span class="n">Show</span>
-</code></pre></div><p>And use them to stop processes:</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>And use them to stop processes:</p>
 <pre>PS&gt; Show-FilteredItemsControl {
 &gt;&gt; Get-Process | Show-GridView -Property Handles, VM, CPU,
 &gt;&gt; Id, ProcessName
@@ -279,7 +308,45 @@ if (!doNotTrack) {
 <p><img src="/images/ShowUI2.png" alt=""></p>
 <p>It’s a bit complicated, but it is possible to automatically determine which columns should be used (based on the PowerShell formatting rules), and to provide the ability to specify custom labels for the columns. Additionally, we could add UI for creating new items into the collection and removing items, so that this code could be used for editing lists of any sort of objects … but I’ll leave that as future topic.</p>
 <p>As always, if you have questions, feel free to ask them on <a href="http://showui.codeplex.com/discussions">the ShowUI forums</a>.  <a href="/images/ShowUI.zip">Download</a> the scripts for this article.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2012\/04\/25\/building-advanced-user-interfaces-with-showui\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2012\/04\/25\/building-advanced-user-interfaces-with-showui\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2012\/04\/25\/building-advanced-user-interfaces-with-showui\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2012\/04\/25\/building-advanced-user-interfaces-with-showui\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
 </div>
+          </div>
         </article>
         
         
@@ -309,86 +376,6 @@ if (!doNotTrack) {
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

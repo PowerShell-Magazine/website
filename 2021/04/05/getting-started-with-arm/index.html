@@ -20,6 +20,7 @@
 <meta property="article:modified_time" content="2021-04-05T00:00:00+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -30,6 +31,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -93,6 +95,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -193,7 +201,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -225,7 +233,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>6 Min To Read
+              <i class="far fa-clock"></i>7 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>05 Apr, 2021
@@ -252,13 +260,132 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>In the first part of this <a href="/tags/psarm">series</a>, you learned about <a href="https://github.com/powershell/psarm">PSArm</a> &ndash; a PowerShell embedded DSL &ndash; that you can use to declaratively define your Azure infrastructure and generate an ARM template. PSArm, being a PowerShell DSL, supports PowerShell language constructs and builds the object model for ARM templates on top of PowerShell. So, if you are already familiar with PowerShell, writing ARM templates now will be as simple as writing another PowerShell script. So, how do you get started?</p>
+          <div class="content">
+            <p>In the first part of this <a href="/tags/psarm">series</a>, you learned about <a href="https://github.com/powershell/psarm">PSArm</a> &ndash; a PowerShell embedded DSL &ndash; that you can use to declaratively define your Azure infrastructure and generate an ARM template. PSArm, being a PowerShell DSL, supports PowerShell language constructs and builds the object model for ARM templates on top of PowerShell. So, if you are already familiar with PowerShell, writing ARM templates now will be as simple as writing another PowerShell script. So, how do you get started?</p>
 <h3 id="installing-psarm">Installing PSArm</h3>
 <p>You can get PSArm module from the <a href="https://www.powershellgallery.com/packages/PSArm">PowerShell gallery</a>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">PSArm</span> <span class="n">-AllowPrerelease</span>
-</code></pre></div><p>You can also build module from the <a href="https://github.com/powershell/psarm">source code available on GitHub</a>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">PSArm</span> <span class="n">-AllowPrerelease</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>You can also build module from the <a href="https://github.com/powershell/psarm">source code available on GitHub</a>.</p>
 <p>This module, when loaded, exports a bunch of functions and cmdlets.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="n">C:</span><span class="p">\</span><span class="n">sandbox</span><span class="p">\</span><span class="n">psarm</span><span class="p">&gt;</span> <span class="nb">Get-Command</span> <span class="n">-Module</span> <span class="n">PSArm</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="n">C:</span><span class="p">\</span><span class="n">sandbox</span><span class="p">\</span><span class="n">psarm</span><span class="p">&gt;</span> <span class="nb">Get-Command</span> <span class="n">-Module</span> <span class="n">PSArm</span>
 <span class="n">CommandType</span>     <span class="n">Name</span>                                               <span class="n">Version</span>    <span class="n">Source</span>
 <span class="p">-----------</span>     <span class="p">----</span>                                               <span class="p">-------</span>    <span class="p">------</span>                 
 <span class="k">Function</span>        <span class="n">add</span>                                                <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>             
@@ -365,10 +492,25 @@ if (!doNotTrack) {
 <span class="n">Cmdlet</span>          <span class="nb">New-PSArmSku</span>                                       <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
 <span class="n">Cmdlet</span>          <span class="nb">New-PSArmTemplate</span>                                  <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
 <span class="n">Cmdlet</span>          <span class="nb">Publish-PSArmTemplate</span>                              <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span> 
-</code></pre></div><p>You can see that the exported functions are similar to what ARM template language offers.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>You can see that the exported functions are similar to what ARM template language offers.</p>
 <h3 id="psarm-syntax-basics">PSArm Syntax Basics</h3>
 <p>A typical PSArm script for ARM template starts with the <code>Arm</code> keyword. Within the <code>Arm</code> body, you define each Azure resource using the <code>Resource</code> keyword.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Arm</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Arm</span> <span class="p">{</span>
     <span class="n">Resource</span> <span class="s2">&#34;identifier&#34;</span> <span class="n">-Namespace</span> <span class="s2">&#34;Microsoft.resource&#34;</span> <span class="n">-ApiVersion</span> <span class="s2">&#34;resourceApiVersion&#34;</span> <span class="n">-Type</span> <span class="s2">&#34;resourceType&#34;</span> <span class="p">{</span>
         <span class="n">properties</span> <span class="p">{</span>
             <span class="s2">&#34;propertyName&#34;</span> <span class="s2">&#34;value&#34;</span>
@@ -377,8 +519,26 @@ if (!doNotTrack) {
 
     <span class="n">output</span> <span class="s2">&#34;Output from deployment&#34;</span>
 <span class="p">}</span>
-</code></pre></div><p>The <code>Arm</code>, <code>Resource</code>, and <code>output</code> keywords are aliases defined in the module.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="n">C:</span><span class="p">\</span><span class="n">sandbox</span><span class="p">\</span><span class="n">psarm</span><span class="p">&gt;</span> <span class="p">(</span><span class="nb">Get-Alias</span><span class="p">).</span><span class="n">Where</span><span class="p">({</span><span class="nv">$_</span><span class="p">.</span><span class="n">Source</span> <span class="o">-eq</span> <span class="s1">&#39;PSArm&#39;</span><span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The <code>Arm</code>, <code>Resource</code>, and <code>output</code> keywords are aliases defined in the module.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="n">C:</span><span class="p">\</span><span class="n">sandbox</span><span class="p">\</span><span class="n">psarm</span><span class="p">&gt;</span> <span class="p">(</span><span class="nb">Get-Alias</span><span class="p">).</span><span class="n">Where</span><span class="p">({</span><span class="nv">$_</span><span class="p">.</span><span class="n">Source</span> <span class="o">-eq</span> <span class="s1">&#39;PSArm&#39;</span><span class="p">})</span>
 <span class="n">CommandType</span>     <span class="n">Name</span>                                               <span class="n">Version</span>    <span class="n">Source</span>    
 <span class="p">-----------</span>     <span class="p">----</span>                                               <span class="p">-------</span>    <span class="p">------</span>                 
 <span class="k">Alias</span>           <span class="n">Arm</span> <span class="p">-&gt;</span> <span class="nb">New-PSArmTemplate</span>                           <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
@@ -390,7 +550,9 @@ if (!doNotTrack) {
 <span class="k">Alias</span>           <span class="n">RawCall</span> <span class="p">-&gt;</span> <span class="nb">New-PSArmFunctionCall</span>                   <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
 <span class="k">Alias</span>           <span class="n">RawEntry</span> <span class="p">-&gt;</span> <span class="nb">New-PSArmEntry</span>                         <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
 <span class="k">Alias</span>           <span class="n">Resource</span> <span class="p">-&gt;</span> <span class="nb">New-PSArmResource</span>                      <span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>      <span class="n">PSArm</span>
-</code></pre></div><p>With <code>Arm</code> keyword, you can specify an optional <code>Name</code> parameter which will be used as a name of the deployment within the template. For the resource definition, you use the <code>Resource</code> keyword. You must specify a <code>Name</code> to be used for the resource you want to provision, <code>Namespace</code> of the resource, <code>ApiVersion</code>, and <code>Type</code>.  As you enter arguments for these four parameters, you will see that PowerShell dynamically adds some more parameters based on the type of resource you intend to provision.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>With <code>Arm</code> keyword, you can specify an optional <code>Name</code> parameter which will be used as a name of the deployment within the template. For the resource definition, you use the <code>Resource</code> keyword. You must specify a <code>Name</code> to be used for the resource you want to provision, <code>Namespace</code> of the resource, <code>ApiVersion</code>, and <code>Type</code>.  As you enter arguments for these four parameters, you will see that PowerShell dynamically adds some more parameters based on the type of resource you intend to provision.</p>
 <p>
 <link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
 <div class="box" >
@@ -477,7 +639,26 @@ if (!doNotTrack) {
 <p>Finally, the <code>output</code> keyword can be used to retrieve properties required from the deployed resource objects. This keyword takes <code>Name</code>, <code>Type</code>, and <code>Value</code> as parameters.</p>
 <h3 id="first-psarm-script">First PSArm Script</h3>
 <p>Here is a complete PSArm script for provisioning a simple storage account.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Arm</span> <span class="n">-Name</span> <span class="n">myFirstTemplate</span> <span class="n">-Body</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Arm</span> <span class="n">-Name</span> <span class="n">myFirstTemplate</span> <span class="n">-Body</span> <span class="p">{</span>
     <span class="n">Resource</span> <span class="s1">&#39;mypsarmsaccount&#39;</span> <span class="p">`</span>
              <span class="n">-Namespace</span> <span class="s1">&#39;Microsoft.Storage&#39;</span> <span class="p">`</span>
              <span class="n">-Type</span> <span class="s1">&#39;storageAccounts&#39;</span> <span class="p">`</span>
@@ -492,11 +673,75 @@ if (!doNotTrack) {
 
 	<span class="n">Output</span> <span class="s1">&#39;storageResourceId&#39;</span> <span class="n">-Type</span> <span class="s1">&#39;string&#39;</span> <span class="n">-Value</span> <span class="p">(</span><span class="n">ResourceId</span> <span class="s1">&#39;Microsoft.Storage/storageAccounts&#39;</span> <span class="p">(</span><span class="n">Concat</span> <span class="s1">&#39;myPsArmSaccount&#39;</span><span class="p">))</span>
 <span class="p">}</span>
-</code></pre></div><p>Make a note of the <code>ResourceId</code> and <code>Concat</code> functions used along with the <code>output</code> keyword. PSArm has public function parity with what is offered in ARM template language. You can save this script with a <code>.psarm.ps1</code> extension and generate the ARM template JSON using the <code>Publish-PSArmTemplate</code> cmdlet that PSArm module provides.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Publish-PSArmTemplate</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">firstTemplate</span><span class="p">.</span><span class="n">psarm</span><span class="p">.</span><span class="n">ps1</span> <span class="p">`</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Make a note of the <code>ResourceId</code> and <code>Concat</code> functions used along with the <code>output</code> keyword. PSArm has public function parity with what is offered in ARM template language. You can save this script with a <code>.psarm.ps1</code> extension and generate the ARM template JSON using the <code>Publish-PSArmTemplate</code> cmdlet that PSArm module provides.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Publish-PSArmTemplate</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">firstTemplate</span><span class="p">.</span><span class="n">psarm</span><span class="p">.</span><span class="n">ps1</span> <span class="p">`</span>
                       <span class="n">-OutFile</span> <span class="p">.\</span><span class="n">firstTemplate</span><span class="p">.</span><span class="n">json</span> <span class="n">-Force</span>
-</code></pre></div><p>Here is the generated ARM template JSON for the PSArm script that you just built.</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Here is the generated ARM template JSON for the PSArm script that you just built.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;$schema&#34;</span><span class="p">:</span> <span class="s2">&#34;https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#&#34;</span><span class="p">,</span>
   <span class="nt">&#34;contentVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0.0.0&#34;</span><span class="p">,</span>
   <span class="nt">&#34;metadata&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -546,13 +791,67 @@ if (!doNotTrack) {
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
-</code></pre></div><p>This ARM template can be deployed using your favorite command line tool or using template deployment in Azure Portal.</p>
-<p>When using Azure CLI,</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">az deployment group create --resource-group psarm --template-file .<span class="se">\f</span>irstTemplate.json
-</code></pre></div><p>When using Azure PowerShell,</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">New-AzResourceGroupDeployment</span> <span class="n">-ResourceGroupName</span> <span class="n">psarm</span> <span class="n">-TemplateFile</span> <span class="p">.\</span><span class="n">firstTemplate</span><span class="p">.</span><span class="n">json</span>
-</code></pre></div><p>This is it. Congratulations. You just used PowerShell based DSL to generate and deploy an ARM template. In the next part of this series, you will learn more parameterizing PSArm scripts.</p>
+</code></pre></td></tr></table>
 </div>
+</div><p>This ARM template can be deployed using your favorite command line tool or using template deployment in Azure Portal.</p>
+<p>When using Azure CLI,</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">az deployment group create --resource-group psarm --template-file .<span class="se">\f</span>irstTemplate.json
+</code></pre></td></tr></table>
+</div>
+</div><p>When using Azure PowerShell,</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">New-AzResourceGroupDeployment</span> <span class="n">-ResourceGroupName</span> <span class="n">psarm</span> <span class="n">-TemplateFile</span> <span class="p">.\</span><span class="n">firstTemplate</span><span class="p">.</span><span class="n">json</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This is it. Congratulations. You just used PowerShell based DSL to generate and deploy an ARM template. In the next part of this series, you will learn more parameterizing PSArm scripts.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2021\/04\/05\/getting-started-with-arm\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2021\/04\/05\/getting-started-with-arm\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2021\/04\/05\/getting-started-with-arm\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2021\/04\/05\/getting-started-with-arm\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
+</div>
+          </div>
         </article>
         
         
@@ -582,86 +881,6 @@ if (!doNotTrack) {
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

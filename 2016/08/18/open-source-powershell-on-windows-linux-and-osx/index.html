@@ -20,6 +20,7 @@ Windows PowerShell is a powerful tool, but it always had one very serious limita
 <meta property="article:modified_time" content="2016-08-18T15:25:48+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -30,6 +31,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -93,6 +95,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -193,7 +201,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -230,19 +238,38 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p><em>This article was co-authored by <a href="https://twitter.com/bielawb">Bartek Bielawski</a> and <a href="https://twitter.com/bgelens">Ben Gelens</a>.</em></p>
+          <div class="content">
+            <p><em>This article was co-authored by <a href="https://twitter.com/bielawb">Bartek Bielawski</a> and <a href="https://twitter.com/bgelens">Ben Gelens</a>.</em></p>
 <p>Windows PowerShell is a powerful tool, but it always had one very serious limitation: it was possible to run it only on Windows. There had been several attempts to change that, including projects like Pash. However, without support from PowerShell Team these projects had very little chance of catching up with a platform that was growing with each release of PowerShell on Windows.</p>
 <p>Almost two years ago in November 2014 when it was announced that .NET Core will become open source project available for multiple platforms including Linux. Many of the PowerShell enthusiasts started to ask the question: when will the same happen to the Windows PowerShell. <a href="https://blogs.msdn.microsoft.com/powershell/2016/08/18/powershell-on-linux-and-open-source-2/">Finally, the day has come–August 18, at 11:14 EST!</a> The time picked for that announcement may look odd at first, but it’s not a coincidence. It’s a way to celebrate anniversary of the public release of Windows PowerShell version 1, on 14 November, 2006. PowerShell is not only open source now, it’s also available for multiple platforms, including several Linux distributions. You can clone <a href="https://github.com/powershell/powershell">repository</a> and build it on your own, you can fork it and change it and last but certainly not least – you can fix it yourself! Pull requests will be accepted, with details on how to contribute to this project described directly in documentation provided on project’s GitHub page.</p>
 <h3 id="powershell-on-linux">PowerShell on Linux</h3>
 <p>As you can see this announcement is huge – not only you can freely read and change the code of the PowerShell itself, you can build it and run it almost anywhere. If you want to do just that, you have several packages prepared for different operating systems, including Windows, Linux, and OS X. Packages come with instructions, but these are relatively simple. It all boils down to installing dependencies and the PowerShell package, or just the package itself (if it contains information about dependencies). Installation of CentOS 7.1 requires running single command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo yum install powershell-6.0.0_alpha.9-1.el7.centos.x86_64.rpm
-</code></pre></div><p>This package has two dependencies (important to know if you want to install PowerShell on the machine that can’t download packages from the external repositories):</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">PS /home/bielawb<span class="p">&amp;</span>gt<span class="p">;</span> rpm -qR powershell
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">sudo yum install powershell-6.0.0_alpha.9-1.el7.centos.x86_64.rpm
+</code></pre></td></tr></table>
+</div>
+</div><p>This package has two dependencies (important to know if you want to install PowerShell on the machine that can’t download packages from the external repositories):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">PS /home/bielawb<span class="p">&amp;</span>gt<span class="p">;</span> rpm -qR powershell
 libunwind
 libicu
 rpmlib<span class="o">(</span>PayloadFilesHavePrefix<span class="o">)</span> &lt;<span class="o">=</span> 4.0-1
 rpmlib<span class="o">(</span>CompressedFileNames<span class="o">)</span> &lt;<span class="o">=</span> 3.0.4-1
-</code></pre></div><p>Once the PowerShell is installed, you should be able to call it, and start exploring it.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Once the PowerShell is installed, you should be able to call it, and start exploring it.</p>
 <p><img src="/images/psl1.png" alt=""></p>
 <h3 id="what-works-and-what-doesnt-work">What works and what doesn’t work</h3>
 <p>What can you expect in Alpha release of PowerShell on Linux? Anything that is related to the core PowerShell functionality works as expected. We have whole group of the object-related commands, we have commands to import, export, and convert multiple file formats. Modules are available and we can create our own modules using PowerShell syntax.</p>
@@ -254,41 +281,97 @@ rpmlib<span class="o">(</span>CompressedFileNames<span class="o">)</span> &lt;<s
 <p>And of course Linux file systems are case sensitive which PowerShell respects:</p>
 <p><img src="/images/psl5.png" alt=""></p>
 <p>Another surprise is a result of presence of PSReadLine module. On Linux, iPSReadLine is using emacs mode by default (so certain key bindings are different than the one used on Windows, others have more Linux-like behavior). Both aliases and PSReadLine configuration can be adjusted using familiar technique – creating PowerShell profile:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="p">/</span><span class="n">home</span><span class="p">/</span><span class="n">bielawb</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="nv">$PROFILE</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="p">/</span><span class="n">home</span><span class="p">/</span><span class="n">bielawb</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="nv">$PROFILE</span>
 <span class="p">/</span><span class="n">home</span><span class="p">/</span><span class="n">bielawb</span><span class="p">/.</span><span class="n">config</span><span class="p">/</span><span class="n">powershell</span><span class="p">/</span><span class="n">Microsoft</span><span class="p">.</span><span class="n">PowerShell_profile</span><span class="p">.</span><span class="n">ps1</span>
-</code></pre></div><p>PowerShell on Linux still have some missing pieces. First of all, most of the cmdlets that depend strongly on the Windows APIs or full version of .NET Framework are not available. For obvious reasons most of the providers do not exist in PowerShell on Linux. Perfect example of that is registry. Another thing that is not working at the time of writing this article is PowerShell jobs. Also CIM cmdlets are absent at this point in time.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>PowerShell on Linux still have some missing pieces. First of all, most of the cmdlets that depend strongly on the Windows APIs or full version of .NET Framework are not available. For obvious reasons most of the providers do not exist in PowerShell on Linux. Perfect example of that is registry. Another thing that is not working at the time of writing this article is PowerShell jobs. Also CIM cmdlets are absent at this point in time.</p>
 <h3 id="powershell-in-action">PowerShell in action</h3>
 <p>There are probably a lot of scenarios where PowerShell (even in the current, not fully-baked state) can be useful on Linux. Let me name a few of them.</p>
 <p>First of all, there are at least two types of objects on Linux that will behave in a way similar to their behavior on Windows: objects in the file system and processes running on our node. The only difference is a result of differences between systems: existing properties, case in the names of files and folders in the file system and more. But that doesn’t change the fact that reading both disk and list of the processes we will get objects back: objects that we can easily sort, group, filter, or format. For example, to display list of processes that use the most CPU, we can use the same line that would give us that information on Windows:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-Process</span> <span class="p">|</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-Process</span> <span class="p">|</span>
 <span class="p">&gt;&gt;</span> <span class="nb">Sort-Object</span> <span class="n">-Property</span> <span class="n">CPU</span> <span class="n">-Descending</span> <span class="p">|</span>
 <span class="p">&gt;&gt;</span> <span class="nb">Select-Object</span> <span class="n">-First</span> <span class="n">5</span>
-</code></pre></div><p>It’s important to remember that “sort” exists as a Linux command, so we need to use a full name of the cmdlet rather that its alias. Another example, related to the file system: we can get a list of the files in the current directory and pick the one that were changed most recently:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="p">/</span><span class="n">home</span><span class="p">/</span><span class="n">bielawb</span><span class="p">&gt;</span> <span class="nb">Get-ChildItem</span> <span class="p">|</span>                     
+</code></pre></td></tr></table>
+</div>
+</div><p>It’s important to remember that “sort” exists as a Linux command, so we need to use a full name of the cmdlet rather that its alias. Another example, related to the file system: we can get a list of the files in the current directory and pick the one that were changed most recently:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="p">/</span><span class="n">home</span><span class="p">/</span><span class="n">bielawb</span><span class="p">&gt;</span> <span class="nb">Get-ChildItem</span> <span class="p">|</span>                     
 <span class="p">&gt;&gt;</span> <span class="nb">Sort-Object</span> <span class="n">-Property</span> <span class="n">LastWriteTime</span> <span class="p">|</span>              
 <span class="p">&gt;&gt;</span> <span class="nb">Select-Object</span> <span class="n">-Last</span> <span class="n">1</span> <span class="n">-Property</span> <span class="n">Name</span><span class="p">,</span> <span class="n">LastWriteTime</span>
-</code></pre></div><p>We can also turn Linux configuration files into complex objects. Perfect example: grouping existing users based on their shell:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">ipcsv /etc/passwd -Delimiter <span class="s1">&#39;:&#39;</span> -Header Name, Pwd, UID, GUID, Info, Home, Shell <span class="p">|</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>We can also turn Linux configuration files into complex objects. Perfect example: grouping existing users based on their shell:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">ipcsv /etc/passwd -Delimiter <span class="s1">&#39;:&#39;</span> -Header Name, Pwd, UID, GUID, Info, Home, Shell <span class="p">|</span>
 &gt;&gt; Group-Object Shell
-</code></pre></div><p><img src="/images/psl6.png" alt=""></p>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/psl6.png" alt=""></p>
 <p>As you can see – files don’t have to be in any known format, as long as we can pretend they are or structure them in a way that PowerShell understands.</p>
 <p>Here is an example of poor-man’s ISE: tmux with vim running in upper pane, and PowerShell running in the lower pane.</p>
 <p><img src="/images/psl7.png" alt=""></p>
 <h3 id="build-your-own-powershell">Build your own PowerShell</h3>
 <p>If you want to start building PowerShell on your own you have two options: install PowerShell from package first and then use tools provided by PowerShell Team in the GitHub repository, or follow the step-by-step instructions and build PowerShell from bash. If you select former method all you have to do is to clone the repository, set your location to newly created folder, import module designed to aid you in the build process and run two commands: one to prepare prerequisites and one to start actual build process:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">git clone --recursive https://github.com/PowerShell/PowerShell.git
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">git clone --recursive https://github.com/PowerShell/PowerShell.git
 <span class="nb">cd</span> PowerShell
 Import-Module ./build.psm1
 Start-PSBootstrap
 Start-PSBuild
-</code></pre></div><p>Once the build process is finished, you can launch newly created executable – PowerShell will inform you about location of the finished version.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Once the build process is finished, you can launch newly created executable – PowerShell will inform you about location of the finished version.</p>
 <p>Manual process is not complicated either (assuming you have prerequisites installed). First, you have to compile libpsl-native Library:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">pushd</span> src/libpsl-native
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">pushd</span> src/libpsl-native
 cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Debug .
 make -j
 make <span class="nb">test</span>
 <span class="nb">popd</span>
-</code></pre></div><p>And then, you just need to run “dotnet restore” in the root folder of repository and “dotnet build –configuration Linux” in the src/powershell-unix folder. But if you just want to use PowerShell on Linux – packages are your best choice. They have very few dependencies and can run on very limited version of Linux.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>And then, you just need to run “dotnet restore” in the root folder of repository and “dotnet build –configuration Linux” in the src/powershell-unix folder. But if you just want to use PowerShell on Linux – packages are your best choice. They have very few dependencies and can run on very limited version of Linux.</p>
 <h3 id="powershell-remoting-over-ssh">PowerShell Remoting over SSH</h3>
 <p>Another exciting capability I’ve been waiting for is PowerShell remoting over SSH! With PowerShell 6.0.0-alpha.9, all core requirements to make this possible have been introduced.</p>
 <p>For Linux end we just need to be sure to install the SSH server Daemon (yum install -y openssh-server if not already installed) and client (yum install -y openssh-client. We should edit the /etc/ssh/sshd_config file to include PowerShell as a subsystem using your favorite text editing tool (e.g. vi, nano).</p>
@@ -306,8 +389,15 @@ make <span class="nb">test</span>
 </li>
 </ul>
 <p>Then restart the SSH Daemon by typing:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">systemctl restart sshd
-</code></pre></div><p>We can now remote over SSH. Let’s try it by setting up a remoting session to the localhost first.&gt;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">systemctl restart sshd
+</code></pre></td></tr></table>
+</div>
+</div><p>We can now remote over SSH. Let’s try it by setting up a remoting session to the localhost first.&gt;</p>
 <p>You can use New-PSSession with the -HostName and -UserName parameters. Optionally you could make use of a key file for authentication using the -KeyPath parameter and specifying the path to the key file (this would save you from typing your password interactively). Currently there is no support for PSCredential authentication but this will be added later.</p>
 <p><img src="/images/psl9.png" alt=""></p>
 <p>As you can see in the screenshot, you will be prompted to give your consent for connecting to this unknown computer. This will happen only once. Next we have the session available and we can use Invoke-Command with it:</p>
@@ -325,7 +415,45 @@ make <span class="nb">test</span>
 <p><img src="/images/psl14.jpg" alt=""></p>
 <h3 id="summary">Summary</h3>
 <p>was waiting for this day for a very long time. No words can describe how excited I am about the news. I probably won’t be able to fix bugs, or improve documentation (but I’m sure many of you will be). However, I can do many other–previously impossible or hard to achieve, tasks. I can configure my Linux account to use PowerShell as a primary shell. I can use familiar tools when managing Linux. I can analyze files on the Linux box and make their content behave like a real object. And last but certainly not least: We have finally gotten PowerShell as an OS-agnostic, cross-platform (Windows, Linux, and OS X) automation and configuration tool/framework!</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2016\/08\/18\/open-source-powershell-on-windows-linux-and-osx\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2016\/08\/18\/open-source-powershell-on-windows-linux-and-osx\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2016\/08\/18\/open-source-powershell-on-windows-linux-and-osx\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2016\/08\/18\/open-source-powershell-on-windows-linux-and-osx\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
 </div>
+          </div>
         </article>
         
         
@@ -355,86 +483,6 @@ make <span class="nb">test</span>
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

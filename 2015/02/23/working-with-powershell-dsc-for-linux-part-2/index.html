@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2015-02-23T17:00:34+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -240,32 +248,96 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>PowerShell DSC for Linux caught my attention immediately after it was announced. Being able to control configuration of Linux box with pure PowerShell code is huge for anybody who is interested in cross-platform solutions build in PowerShell. PowerShell DSC depends on OMI and that makes it even more interesting. I fell in love with WMI at first sight and OMI is open source implementation of WMI for (almost) any device/operating system.</p>
+          <div class="content">
+            <p>PowerShell DSC for Linux caught my attention immediately after it was announced. Being able to control configuration of Linux box with pure PowerShell code is huge for anybody who is interested in cross-platform solutions build in PowerShell. PowerShell DSC depends on OMI and that makes it even more interesting. I fell in love with WMI at first sight and OMI is open source implementation of WMI for (almost) any device/operating system.</p>
 <p>If you are also interested in this subject you’ve probably read Ravi’s article on <a href="/2014/05/21/installing-and-configuring-dsc-for-linux/" target="_blank">Installing and configuring DSC for Linux</a>. I’ve also read it and use it almost every time I was installing DSC for Linux. I would either check prerequisites, or read details about DSC installation procedure. But if you thought that DSC operates the way it should once it is installed, you should think again.</p>
 <p>This series of articles will describe all the things that I discovered while playing with Linux DSC — issues I had to address, problems I had to solve. This should be a nice supplement to the modified version of <a href="https://github.com/bielawb/WPSDSCLinux" target="_blank">Linux DSC CTP</a> that you can find under my GitHub account. Problems I’ve had identified didn’t surprise me. Issues are expected side effects of working with CTP version of any product.</p>
 <h3 id="consistency-not-invoked">Consistency not invoked</h3>
 <p>If you continue to use the machine that you’ve installed DSC on and you occasionally change the context to the root account you will soon notice that the number of mails sent to this user is growing:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="m">2</span> <span class="o">(</span>Cron Daemon<span class="o">)</span>         Mon Jan <span class="m">19</span> 09:00  27/989   <span class="s2">&#34;Cron &lt;root@ITPro&gt; /opt/omi-1.0.8/bin/ConsistencyInvoker&#34;</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="m">2</span> <span class="o">(</span>Cron Daemon<span class="o">)</span>         Mon Jan <span class="m">19</span> 09:00  27/989   <span class="s2">&#34;Cron &lt;root@ITPro&gt; /opt/omi-1.0.8/bin/ConsistencyInvoker&#34;</span>
     <span class="m">3</span> <span class="o">(</span>Cron Daemon<span class="o">)</span>         Mon Jan <span class="m">19</span> 09:30  27/989   <span class="s2">&#34;Cron &lt;root@ITPro&gt; /opt/omi-1.0.8/bin/ConsistencyInvoker&#34;</span>
  U  <span class="m">4</span> <span class="o">(</span>Cron Daemon<span class="o">)</span>         Mon Jan <span class="m">19</span> 10:00  27/988   <span class="s2">&#34;Cron &lt;root@ITPro&gt; /opt/omi-1.0.8/bin/ConsistencyInvoker&#34;</span>
-</code></pre></div><p>It’s your cron daemon begging for mercy. Yes, you did push your DSC configuration. You either configured it to fix itself or not – that is not important so much as the fact that once configuration is pushed you will get following entry in <em>crontab</em>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># cat /etc/crontab | grep omi</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>It’s your cron daemon begging for mercy. Yes, you did push your DSC configuration. You either configured it to fix itself or not – that is not important so much as the fact that once configuration is pushed you will get following entry in <em>crontab</em>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># cat /etc/crontab | grep omi</span>
 */30 * * * * root /opt/omi-1.0.8/bin/ConsistencyInvoker
-</code></pre></div><p>It reflects LCM configuration, so if you increase time interval between refreshes, <em>crontab</em> configuration will follow. But <em>crontab</em> complains this file is missing, and quick look reveals that this complaint is justified:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># cat /etc/crontab | grep omi | awk &#39;{print $NF }&#39; | xargs ls -l</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>It reflects LCM configuration, so if you increase time interval between refreshes, <em>crontab</em> configuration will follow. But <em>crontab</em> complains this file is missing, and quick look reveals that this complaint is justified:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># cat /etc/crontab | grep omi | awk &#39;{print $NF }&#39; | xargs ls -l</span>
 ls: cannot access /opt/omi-1.0.8/bin/ConsistencyInvoker: No such file or directory
-</code></pre></div><p>My initial thought was that probably executable exists on my disk but was simply overlooked in installation process. But <em>find</em> revealed only few folders. One of them looked promising though:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># find / -name ConsistencyInvoker -print</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>My initial thought was that probably executable exists on my disk but was simply overlooked in installation process. But <em>find</em> revealed only few folders. One of them looked promising though:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># find / -name ConsistencyInvoker -print</span>
 /root/build/WPSDSCLinux/dsc/LCM/dsc/engine/ConsistencyInvoker
 ...
 <span class="c1"># ls -l /root/build/WPSDSCLinux/dsc/LCM/dsc/engine/ConsistencyInvoker</span>
 total <span class="m">8</span>
 -rw-r--r--. <span class="m">1</span> root root <span class="m">3751</span> Jan <span class="m">20</span> 20:57 ConsistencyInvoker.c
 -rw-r--r--. <span class="m">1</span> root root  <span class="m">297</span> Jan <span class="m">20</span> 20:57 GNUmakefile
-</code></pre></div><p>We have C code and compiler instructions so we can check where the executable file did go. It appears that name of created executable matches the one referenced in <em>crontab</em>, but it’s all lower case. Compiled program is also not copied to the final location. But copying the file to the correct location is just a partial solution. It will prevent <em>crontab</em> from sending you messages, but system state will remain untouched.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>We have C code and compiler instructions so we can check where the executable file did go. It appears that name of created executable matches the one referenced in <em>crontab</em>, but it’s all lower case. Compiled program is also not copied to the final location. But copying the file to the correct location is just a partial solution. It will prevent <em>crontab</em> from sending you messages, but system state will remain untouched.</p>
 <h3 id="it-works-except-it-doesnt">It works! Except it doesn&rsquo;t</h3>
 <p>The problem with consistency program is that even though executable is compiled without any errors it doesn&rsquo;t address configuration drift. Initially with my limited C/C++ skills I walked around the problem by using remote CIM calls. I even created function that would simplify invoking required CIM method:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Invoke-DscOperation</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Invoke-DscOperation</span> <span class="p">{</span>
 	<span class="k">param</span> <span class="p">(</span>
         <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span>
             <span class="k">Mandatory</span>
@@ -286,26 +358,99 @@ total <span class="m">8</span>
 
 	<span class="nb">Invoke-CimMethod</span> <span class="nv">@methodParam</span>
 <span class="p">}</span>
-</code></pre></div><p>Recently I decided to give it a shot and try to fix the problem on the Linux side. I have used “debugging” method that is typical for people without proper skills: “printf debugging”. And because program is written in C it was not a concept, it was literally <em>printf</em> that revealed what the problem is and gave me a hint on how to fix it. My first step was simpler though. I just wanted to clarify if <em>ConsinstencyInvoker</em> results in an error and doesn’t report it, or it works fine but fails to do its job. To confirm that I’ve used construct that I miss in PowerShell occasionally:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># consistencyinvoker || echo failed!</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Recently I decided to give it a shot and try to fix the problem on the Linux side. I have used “debugging” method that is typical for people without proper skills: “printf debugging”. And because program is written in C it was not a concept, it was literally <em>printf</em> that revealed what the problem is and gave me a hint on how to fix it. My first step was simpler though. I just wanted to clarify if <em>ConsinstencyInvoker</em> results in an error and doesn’t report it, or it works fine but fails to do its job. To confirm that I’ve used construct that I miss in PowerShell occasionally:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># consistencyinvoker || echo failed!</span>
 <span class="n">failed</span><span class="p">!</span>
-</code></pre></div><p>If you never used this construct: it will run second command only if the first one have non-zero return code. Output assured me that running <em>ConsinstencyInvoker</em> results in the silent error, so I modified the code a bit to figure out what went wrong. First of all I had to add reference to <em>stdio.h</em> so that I could use <em>prinft</em> function. The only other change I made was located in the last method call. I printed the error message to the console, and that already gave me a good hint where the problem is:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># consistencyinvoker</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>If you never used this construct: it will run second command only if the first one have non-zero return code. Output assured me that running <em>ConsinstencyInvoker</em> results in the silent error, so I modified the code a bit to figure out what went wrong. First of all I had to add reference to <em>stdio.h</em> so that I could use <em>prinft</em> function. The only other change I made was located in the last method call. I printed the error message to the console, and that already gave me a good hint where the problem is:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># consistencyinvoker</span>
 Error: The target namespace does not exist.
-</code></pre></div><p>Now I just needed to figure out which namespace this application is trying to use. Walking “back” in the code from the method call lead me to variable with the name that didn’t leave any room for doubt: <em>DSCENGINE_NAMESPACE</em>. One more <em>printf</em> and I was no longer surprised that <em>ConsinstencyInvoker</em> doesn’t work:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># consistencyinvoker</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Now I just needed to figure out which namespace this application is trying to use. Walking “back” in the code from the method call lead me to variable with the name that didn’t leave any room for doubt: <em>DSCENGINE_NAMESPACE</em>. One more <em>printf</em> and I was no longer surprised that <em>ConsinstencyInvoker</em> doesn’t work:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># consistencyinvoker</span>
 Error: The target namespace does not exist.
 Namespace: /dsc
-</code></pre></div><p>In the end I just had to modify one line to get proper namespace: <em>#define</em> instruction responsible for value of <em>DSCENGINE_NAMESPACE</em> constant. You can find actual change in above mentioned <a href="https://github.com/bielawb/WPSDSCLinux/commit/3e94c0149cc4f3e1bde7b84b14d9eb3c385e69a4" target="_blank">GitHub repository</a></p>
+</code></pre></td></tr></table>
+</div>
+</div><p>In the end I just had to modify one line to get proper namespace: <em>#define</em> instruction responsible for value of <em>DSCENGINE_NAMESPACE</em> constant. You can find actual change in above mentioned <a href="https://github.com/bielawb/WPSDSCLinux/commit/3e94c0149cc4f3e1bde7b84b14d9eb3c385e69a4" target="_blank">GitHub repository</a></p>
 <p>Once that was fixed I got executable that was working correctly. And with Local Configuration Manager (LCM) set to <em>ApplyAndAutocorrect</em>, I could easily test if configuration drift is being fixed automatically.</p>
 <h3 id="install-that-just-works">Install that just works</h3>
 <p>After I’ve fixed <em>ConsinstencyInvoker</em> there was just one element remaining. Compiled executable was not copied/moved to the location where <em>crontab</em> was expecting to find it. As you probably remember from Ravi’s post, installation of DSC contains two steps: <em>make</em> and <em>make reg</em>.</p>
 <p>As registration of DSC providers requires similar rights to the one required to copy programs to system-wide path it makes perfect sense to add appropriate <em>cp</em> command to one of the make files. Analyzing make files starting from main located in root of source quickly revealed location that was perfect for command that was overlooked in original installation. The file in question contains several copy commands. Target for this part of make file (deploydsc) matches exactly our intent.</p>
 <p>But we can’t hardcode source and destination path. After analyzing variables defined in various rules files I have identified two that should point to correct source and destination:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># cat LCM/GNUmakefile | grep consistencyinvoker</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># cat LCM/GNUmakefile | grep consistencyinvoker</span>
         cp  <span class="k">$(</span>BINDIR<span class="k">)</span>/consistencyinvoker <span class="k">$(</span>CONFIG_BINDIR<span class="k">)</span>/ConsistencyInvoker
-</code></pre></div><p>Again, you can find committed change in my <a href="https://github.com/bielawb/WPSDSCLinux/commit/f382a959604d0831366e0c0d707a6df23f1414fe" target="_blank">GitHub repository</a>. After applying both changes installation of the package and providers was pretty straight forward. With both changes in place we are ready to install Linux DSC without problems I had identified. But installation/configuration problems of the core DSC engine are not the only problems I have observed (and fixed). After all: DSC is only as good as the providers it offers. In the next part of the series we will look into the problems that may show up when we work with nxService provider.</p>
+</code></pre></td></tr></table>
 </div>
+</div><p>Again, you can find committed change in my <a href="https://github.com/bielawb/WPSDSCLinux/commit/f382a959604d0831366e0c0d707a6df23f1414fe" target="_blank">GitHub repository</a>. After applying both changes installation of the package and providers was pretty straight forward. With both changes in place we are ready to install Linux DSC without problems I had identified. But installation/configuration problems of the core DSC engine are not the only problems I have observed (and fixed). After all: DSC is only as good as the providers it offers. In the next part of the series we will look into the problems that may show up when we work with nxService provider.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2015\/02\/23\/working-with-powershell-dsc-for-linux-part-2\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2015\/02\/23\/working-with-powershell-dsc-for-linux-part-2\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2015\/02\/23\/working-with-powershell-dsc-for-linux-part-2\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2015\/02\/23\/working-with-powershell-dsc-for-linux-part-2\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
+</div>
+          </div>
         </article>
         
         
@@ -335,86 +480,6 @@ Namespace: /dsc
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

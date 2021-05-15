@@ -2763,7 +2763,7 @@ When working with WMI and PowerShell, I often find it necessary to quickly gener
       
       <guid>https://powershellmagazine.com/2012/11/07/pstip-grouping-objects/</guid>
       <description>The Group-Object cmdlet lets you group objects based on the value of a specified property. For example:
-PS&amp;gt; Get-Service | Group-Object -Property Status Count Name Group ----- ---- ----- 93 Stopped {AeLookupSvc, AllUserInstallAgent, AppIDSvc, AppMgmt.</description>
+1 2 3 4 5  PS&amp;gt; Get-Service | Group-Object -Property Status Count Name Group ----- ---- ----- 93 Stopped {AeLookupSvc, AllUserInstallAgent, AppIDSvc, AppMgmt.</description>
     </item>
     
     <item>

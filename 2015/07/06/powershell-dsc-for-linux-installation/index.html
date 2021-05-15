@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2015-07-06T16:00:44+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -237,32 +245,84 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>First version of PowerShell DSC for Linux is released. We <a href="/2015/05/14/powershell-dsc-for-linux-released/" target="_blank">announced that</a> and promised to come back to that subject. It’s time to fulfil that promise. In this article, first part of update series, we will focus on new features and bug fixes related to installation.</p>
+          <div class="content">
+            <p>First version of PowerShell DSC for Linux is released. We <a href="/2015/05/14/powershell-dsc-for-linux-released/" target="_blank">announced that</a> and promised to come back to that subject. It’s time to fulfil that promise. In this article, first part of update series, we will focus on new features and bug fixes related to installation.</p>
 <p>The first good news is that now both OMI and PowerShell DSC for Linux can be installed on the systems that use <em>deb</em> or <em>rpm</em> packages. This removes requirement of installing development packages previously necessary to compile both products on every node that we want deploy DSC to. Package for OMI can be found at the <a href="https://collaboration.opengroup.org/omi/documents.php?action=show&#038;dcat=&#038;gdid=32721" target="_blank">Open Group page</a> and packages for DSC are distributed in <a href="http://www.microsoft.com/en-us/download/details.aspx?id=46919" target="_blank">MSI file available on Microsoft Download Center</a>. If we do not own any local package repository, we can install these packages using command for local installation, after we manually download the packages to the Linux box.</p>
 <p>Here is an example for distributions that are using <em>yum</em> as a package manager:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">yum -y localinstall packages/omiserver-1.0.8.ssl_100.x64.rpm
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">yum -y localinstall packages/omiserver-1.0.8.ssl_100.x64.rpm
 yum -y localinstall package/dsc-1.0.0-320.ssl_100.x64.rpm
-</code></pre></div><p>The only change we have to perform is to open ports on firewall to allow inbound WS-Man traffic. For example, when using CentOS 7 with firewalld we would need to call <em>firewall-cmd</em>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">firewall-cmd --add-port<span class="o">=</span>5986/tcp --permanent
+</code></pre></td></tr></table>
+</div>
+</div><p>The only change we have to perform is to open ports on firewall to allow inbound WS-Man traffic. For example, when using CentOS 7 with firewalld we would need to call <em>firewall-cmd</em>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">firewall-cmd --add-port<span class="o">=</span>5986/tcp --permanent
 firewall-cmd --reload
-</code></pre></div><p>We have to also enable the OMI server service; even though it is started after installation, it won’t run automatically after reboot:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@PSMag ~<span class="o">]</span><span class="c1"># systemctl status omiserver</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>We have to also enable the OMI server service; even though it is started after installation, it won’t run automatically after reboot:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>root@PSMag ~<span class="o">]</span><span class="c1"># systemctl status omiserver</span>
 omiserver.service - OMI CIM Server
    Loaded: loaded <span class="o">(</span>/usr/lib/systemd/system/omiserver.service<span class="p">;</span> disabled<span class="o">)</span>
    Active: inactive <span class="o">(</span>dead<span class="o">)</span>
-</code></pre></div><p>The method used to enable the service also depends on distribution/service’s controller. In case of systemd used by CentOS 7, we would have to use systemctl enable/start commands to get OMI server up and running:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">systemctl <span class="nb">enable</span> omiserver
+</code></pre></td></tr></table>
+</div>
+</div><p>The method used to enable the service also depends on distribution/service’s controller. In case of systemd used by CentOS 7, we would have to use systemctl enable/start commands to get OMI server up and running:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">systemctl <span class="nb">enable</span> omiserver
 systemctl start omiservers
-</code></pre></div><p>I would also suggest to get proper certificate for SSL connections. More details on how to achieve that can be found in one of the <a href="/2015/03/23/omi-with-wsman-over-https-done-right/" target="_blank">previous OMI articles</a> in the PowerShell Magazine.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>I would also suggest to get proper certificate for SSL connections. More details on how to achieve that can be found in one of the <a href="/2015/03/23/omi-with-wsman-over-https-done-right/" target="_blank">previous OMI articles</a> in the PowerShell Magazine.</p>
 <p>The difference between installing OMI/DSC using packages is that the path to OMI is different than the one we got by default when we installed OMI from the sources. In the current version of the package <em>OMI_HOME</em> points to <em>/opt/omi</em>.</p>
 <p>Installing OMI from sources is still an option. Unfortunately, installation process in this scenario hasn’t improved much. We still have to make sure that we have sources for both OMI and DSC structured in a fashion that <em>make</em> scripts from DSC expect. There is also one extra requirement for DSC–curl libraries. For example, if we would like to install DSC on a system running CentOS, we would have to request libcurl-devel package:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">yum -y install libcurl-devel
-</code></pre></div><p>Another thing added in this version is the configuration script for DSC. We need to make sure it has proper rights before we can call it (we will use <em>chmod</em> for that). The list of parameters available for configure is limited, but we need to run it first before we can install DSC:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">chmod <span class="m">755</span> configure
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">yum -y install libcurl-devel
+</code></pre></td></tr></table>
+</div>
+</div><p>Another thing added in this version is the configuration script for DSC. We need to make sure it has proper rights before we can call it (we will use <em>chmod</em> for that). The list of parameters available for configure is limited, but we need to run it first before we can install DSC:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">chmod <span class="m">755</span> configure
 ./configure
 make
 make reg
-</code></pre></div><p>In either case, the major problem we observed around installation in CTP version was fixed in this release–ConsistencyInvoker is not only copied to the right location during <em>make reg</em> (you can read about the problem <a href="/2015/02/23/working-with-powershell-dsc-for-linux-part-1/" target="_blank">here</a>), it also works as expected and will fix configuration drift if we decide to do so in Local Configuration Manager setting.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>In either case, the major problem we observed around installation in CTP version was fixed in this release–ConsistencyInvoker is not only copied to the right location during <em>make reg</em> (you can read about the problem <a href="/2015/02/23/working-with-powershell-dsc-for-linux-part-1/" target="_blank">here</a>), it also works as expected and will fix configuration drift if we decide to do so in Local Configuration Manager setting.</p>
 <p>There are a few important changes in the way DSC providers are structured in version 1.0. Previously all Python scripts used by providers were not designed for any specific Python version. That has changed and if we want to make sure any update to Python script works for any version of Python installed on the box, we have to modify 3 scripts per resource. There are three options present:</p>
 <ul>
 <li>Python 2.4-2.5</li>
@@ -270,7 +330,45 @@ make reg
 <li>Python 3</li>
 </ul>
 <p>Design is also more modular: a lot of code was moved to the scripts shared between the resources. I believe that is the first step to make it possible to build custom resources with only Get/Test/Set implemented in Python, without a need to implement part of the code that translates MOF document to the actual parameters of the resources. For now, we are limited to resources delivered by the team. Another good news is that the number of resources doubled. We will look at new resources offered in this release in the second part of this series.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2015\/07\/06\/powershell-dsc-for-linux-installation\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2015\/07\/06\/powershell-dsc-for-linux-installation\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2015\/07\/06\/powershell-dsc-for-linux-installation\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2015\/07\/06\/powershell-dsc-for-linux-installation\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
 </div>
+          </div>
         </article>
         
         
@@ -300,86 +398,6 @@ make reg
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

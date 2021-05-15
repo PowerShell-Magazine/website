@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2015-11-02T17:00:35+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -232,7 +240,8 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><h3 id="posts-in-this-series">Posts in this series</h3>
+          <div class="content">
+            <h3 id="posts-in-this-series">Posts in this series</h3>
 <ol>
 <li><a href="/2015/10/12/powershell-tools-for-the-advanced-use-cases-part-1/" title="PowerShell Tools for the Advanced Use Cases, part 1">PowerShell Tools for the Advanced Use Cases, part 1</a></li>
 <li>PowerShell tools for the advanced use cases – part 2 (this article)</li>
@@ -246,8 +255,15 @@ if (!doNotTrack) {
 <p>Are you on PowerShell v5? Cool, use PowerShell to install the PowerShell Testing Framework “Pester” onto your machine.</p>
 <p>Or, if you’re not on PowerShell 5 yet, go get the module from <a href="https://github.com/pester/Pester">here</a>, or check the module out on the Gallery itself <a href="https://www.powershellgallery.com/packages/Pester/">here</a>.</p>
 <p><img src="/images/advtools21.png" alt=""></p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">Pester</span> <span class="n">-Repository</span> <span class="n">PSGallery</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="err">–</span><span class="n">Verbose</span>
-</code></pre></div><p>This command will get the PowerShell module “Pester” from the PSGallery (<a href="http://www.powershellgallery.com)">http://www.powershellgallery.com)</a> and installs it into your current user’s profile. If you want to check, have a look at “C:\Users$env:USERNAME\Documents\WindowsPowerShell\Modules”.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">Pester</span> <span class="n">-Repository</span> <span class="n">PSGallery</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="err">–</span><span class="n">Verbose</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This command will get the PowerShell module “Pester” from the PSGallery (<a href="http://www.powershellgallery.com)">http://www.powershellgallery.com)</a> and installs it into your current user’s profile. If you want to check, have a look at “C:\Users$env:USERNAME\Documents\WindowsPowerShell\Modules”.</p>
 <p>Pester is, most of the times, advertised for testing your PowerShell functions, modules or DSC resources. People also mention TDD or Test Driven Development in those cases. I have never been able to get my brain to work “TDD style”, so I won’t get any further into this here than just saying “you first write your tests, initially they all fail, because there’s no actual code, and then you write your code and make your tests pass”. My brain works the other way round.</p>
 <h3 id="pester-environment-verification">Pester environment verification</h3>
 <p>Environment verification tests are for example run as the first step in a deployment pipeline from a CI/CD server (like Jenkins, Teamcity, Go.CD or maybe even nested Azure Automation runbooks) and check if the environment is ready to be deployed in to before we even start deploying anything. This makes a lot of sense, because you might know what requirements you have for your deployment, but while progressing through environments (Dev, System Test (ST), SIT (System Integration Test), PreProd, Prod) you might not know in which state an environment is in or if a recent change might has broken some of your requirements. So making sure that from a pure deployment perspective you’re good to go is quite valuable.</p>
@@ -255,7 +271,26 @@ if (!doNotTrack) {
 <p>It is easy to set up the skeleton for these tests. With just a couple of lines (on a system with Pester on it) we can create a test skeleton in Pester and fill it with tests like this:</p>
 <p>Some very common things to test for are for example “access”; “can I access a remote system?”, “does it listen on specific ports?” or “is there enough free disk space.</p>
 <p>Luckily these are all things that are easily written in PowerShell.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">param</span> <span class="p">(</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">param</span> <span class="p">(</span>
    <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">mandatory</span><span class="p">=</span><span class="nv">$false</span><span class="p">)]</span>
    <span class="no">[string]</span><span class="nv">$server</span> <span class="p">=</span> <span class="s1">&#39;localhost&#39;</span>
 <span class="p">)</span>
@@ -270,11 +305,28 @@ if (!doNotTrack) {
       <span class="p">(</span><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">win32_logicaldisk</span> <span class="n">-ComputerName</span> <span class="nv">$server</span> <span class="n">-Filter</span> <span class="s2">&#34;DeviceID = &#39;C:&#39;&#34;</span><span class="p">).</span><span class="n">FreeSpace</span><span class="p">/</span><span class="n">1GB</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">BeGreaterThan</span> <span class="n">5</span>
    <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><h3 id="pester-tvt">Pester TVT</h3>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="pester-tvt">Pester TVT</h3>
 <p>Technical verification tests (TVT) are usually whatever you want them to be. In my opinion they make sense for things you developed yourself or for processes you don’t really trust. I don’t necessarily go and test if a Windows Feature is really successfully installed if I have used PowerShell DSC to install it, because I trust that its own internal checks are enough.</p>
 <p>However, I might want to check custom code that might got used to configure a remote service and where I know that this doesn’t always work (for whatever reason). I hope this makes sense.</p>
 <p>In this example I am going to check the IIS configuration that has been given to me from a third party and that I have to work on.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Describe</span> <span class="s2">&#34;TVT&#34;</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Describe</span> <span class="s2">&#34;TVT&#34;</span> <span class="p">{</span>
    <span class="n">It</span> <span class="s2">&#34;checks if IIS is up and running&#34;</span> <span class="p">{</span>
       <span class="p">(</span><span class="nb">Get-Service</span> <span class="n">-Name</span> <span class="n">W3SVC</span><span class="p">).</span><span class="n">Status</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s2">&#34;Running&#34;</span>
    <span class="p">}</span>
@@ -285,7 +337,9 @@ if (!doNotTrack) {
       <span class="p">(</span><span class="nb">Get-WebConfigurationProperty</span> <span class="n">-Filter</span> <span class="s1">&#39;/system.webServer/security/authentication/WindowsAuthentication&#39;</span> <span class="n">-Name</span> <span class="n">Enabled</span> <span class="n">-PSPath</span> <span class="s1">&#39;IIS:\\&#39;</span> <span class="n">-Location</span> <span class="s1">&#39;Default Web Site&#39;</span><span class="p">).</span><span class="n">Value</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s2">&#34;true&#34;</span>
    <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>That’s all nice, but how are we going to run all this?</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>That’s all nice, but how are we going to run all this?</p>
 <h3 id="pester-integration-into-a-cd-pipeline">Pester integration into a CD pipeline</h3>
 <p>Obviously it isn’t the greatest idea to run these tests manually, we want these tests to run before and after every deployment and get the test results. Continuous Integration servers like TeamCity can help with this.</p>
 <p>Integrating Pester into a CI pipeline is as straight forward as it gets. The Pester <a href="https://github.com/pester/Pester/wiki/Showing-Test-Results-in-TeamCity">Github repository</a> even explains how it’s done.</p>
@@ -307,7 +361,21 @@ if (!doNotTrack) {
 <p>For the sake of this article I will only do a high level introduction to get you started with serverspec.</p>
 <p>I am running serverspec during development from my MacBook against Windows environments. Serverspec uses WinRM to communicate to Windows, more specifically it uses the <a href="https://github.com/WinRb/WinRM">ruby WinRM module</a>. It can easily use SSL secure communication for this.</p>
 <p>My spec_helper.rb file, which configures serverspec, has the following content:</p>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;serverspec&#39;</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;serverspec&#39;</span>
 <span class="nb">require</span> <span class="s1">&#39;winrm&#39;</span>
 
 <span class="n">set</span> <span class="ss">:backend</span><span class="p">,</span> <span class="ss">:winrm</span>
@@ -317,9 +385,31 @@ if (!doNotTrack) {
 <span class="n">winrm</span> <span class="o">=</span> <span class="o">::</span><span class="no">WinRM</span><span class="o">::</span><span class="no">WinRMWebService</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="ss">:ssl</span><span class="p">,</span> <span class="ss">:user</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">user</span><span class="p">,</span> <span class="ss">:pass</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">pass</span><span class="p">,</span> <span class="ss">:basic_auth_only</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">:no_ssl_peer_verification</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="kp">true</span><span class="p">)</span>
 <span class="n">winrm</span><span class="o">.</span><span class="n">set_timeout</span> <span class="mi">300</span> <span class="c1"># 5 minutes max timeout for any operation</span>
 <span class="no">Specinfra</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">winrm</span> <span class="o">=</span> <span class="n">winrm</span>
-</code></pre></div><p>Please note that I am disabling the SSL certificate verification in my test environment.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Please note that I am disabling the SSL certificate verification in my test environment.</p>
 <p>A typical serverspec file could look like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 <span class="n">describe</span> <span class="n">port</span><span class="p">(</span><span class="mi">5985</span><span class="p">)</span> <span class="k">do</span>
 <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_listening</span> <span class="p">}</span>
 <span class="k">end</span>
@@ -335,12 +425,52 @@ if (!doNotTrack) {
 <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_enabled</span> <span class="p">}</span>
 <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_running</span> <span class="p">}</span>
 <span class="k">end</span>
-</code></pre></div><p>The output of it looks similar to Pester’s and can of course also easily be re-used in a CI server.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>The output of it looks similar to Pester’s and can of course also easily be re-used in a CI server.</p>
 <p><img src="/images/advtools25.png" alt=""></p>
 <h3 id="conclusion">Conclusion</h3>
 <p>This introduction to infrastructure testing has hopefully shown you the value of investing time in writing these tests.</p>
 <p>To conclude, it makes sense testing your assumptions about an environment before deploying into it in order to find issues before even changing anything, i.e. installing software or making changes. They can also be used to check if your Ansible playbooks, Puppet Manifests or Chef cookbooks properly apply the changes, if you don’t trust them in the first place.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2015\/11\/02\/powershell-tools-for-the-advanced-use-cases-part-2\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2015\/11\/02\/powershell-tools-for-the-advanced-use-cases-part-2\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2015\/11\/02\/powershell-tools-for-the-advanced-use-cases-part-2\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2015\/11\/02\/powershell-tools-for-the-advanced-use-cases-part-2\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
 </div>
+          </div>
         </article>
         
         
@@ -370,86 +500,6 @@ if (!doNotTrack) {
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

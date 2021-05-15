@@ -20,6 +20,7 @@ OMS extends System Center IT management to the cloud, enabling greater control, 
 <meta property="article:modified_time" content="2016-07-11T16:00:53+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -30,6 +31,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -93,6 +95,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -193,7 +201,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -238,7 +246,8 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>Microsoft Operations Management Suite (OMS) is an IT management solution for the era of the cloud.</p>
+          <div class="content">
+            <p>Microsoft Operations Management Suite (OMS) is an IT management solution for the era of the cloud.</p>
 <p>OMS extends System Center IT management to the cloud, enabling greater control, visibility and security across your hybrid cloud.</p>
 <p>That is Microsoft’s <a href="https://www.microsoft.com/en/server-cloud/operations-management-suite/why-oms.aspx">own description</a> of what OMS is and why you should use it.</p>
 <p>In this article we are going to look at a feature in OMS which makes it possible to automatically trigger Azure Automation runbooks based on alerts.</p>
@@ -253,8 +262,15 @@ if (!doNotTrack) {
 <p>The results can be viewed in different ways, such as a list and a table. In this example we can also see a customized view for updates. Similarly, there are other customized views based on the data type. For example, performance data have its own customized views.</p>
 <p>There is a number of options on the top meny above the results, such as the option to export results and save queries. The feature we are going to focus on and demonstrate in this article is the Alerts feature in OMS Log Analytics.</p>
 <p>Before we click on the Alert button, we are going to change the search query to a custom search:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">Type</span><span class="o">=</span><span class="n">Perf</span> <span class="p">(</span><span class="n">ObjectName</span><span class="p">:</span><span class="n">LogicalDisk</span> <span class="k">AND</span> <span class="n">CounterName</span><span class="p">:</span><span class="s2">&#34;% Free Space&#34;</span> <span class="k">AND</span> <span class="n">InstanceName</span><span class="o">=</span><span class="s2">&#34;C:&#34;</span> <span class="k">AND</span> <span class="n">CounterValue</span><span class="o">&lt;</span><span class="mi">15</span> <span class="k">AND</span> <span class="n">TimeGenerated</span><span class="o">&gt;</span><span class="n">NOW</span><span class="o">-</span><span class="mi">1</span><span class="n">HOUR</span><span class="p">)</span>
-</code></pre></div><p>As you probably can guess based on the query, the scenario we want to enable an alert for is C: volumes with less than 15% of free space.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">Type</span><span class="o">=</span><span class="n">Perf</span> <span class="p">(</span><span class="n">ObjectName</span><span class="p">:</span><span class="n">LogicalDisk</span> <span class="k">AND</span> <span class="n">CounterName</span><span class="p">:</span><span class="s2">&#34;% Free Space&#34;</span> <span class="k">AND</span> <span class="n">InstanceName</span><span class="o">=</span><span class="s2">&#34;C:&#34;</span> <span class="k">AND</span> <span class="n">CounterValue</span><span class="o">&lt;</span><span class="mi">15</span> <span class="k">AND</span> <span class="n">TimeGenerated</span><span class="o">&gt;</span><span class="n">NOW</span><span class="o">-</span><span class="mi">1</span><span class="n">HOUR</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>As you probably can guess based on the query, the scenario we want to enable an alert for is C: volumes with less than 15% of free space.</p>
 <p>You can read more about how Alerts in Log Analytics works in the <a href="https://azure.microsoft.com/en-us/documentation/articles/log-analytics-alerts/">documentation</a>, but in a nutshell it makes it possible to set up a log search which will trigger an alert based on your own criteria:</p>
 <p><img src="/images/aaoms4.png" alt=""></p>
 <p><em>Image credit: <a href="https://azure.microsoft.com/en-us/documentation/articles/log-analytics-alerts/">Microsoft</a></em></p>
@@ -289,16 +305,37 @@ if (!doNotTrack) {
 <p>The RequestBody properties contains data in JSON format, which we can convert to PowerShell objects and store in a variable:</p>
 <pre class="lang:ps decode:true">$RequestBody = ConvertFrom-JSON -InputObject $WebhookData.RequestBody</pre>
 <p><strong>Tip:</strong> <em>During development of a new runbook for use with OMS Alerts it might be useful to inspect this object interactively. You can temporarily add a line in the runbook to export the object to Clixml:</em></p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$RequestBody</span> <span class="p">|</span> <span class="nb">Export-Clixml</span> <span class="n">-Path</span> <span class="n">C:</span><span class="p">\</span><span class="n">Temp</span><span class="p">\</span><span class="nb">Invoke-OMSAlertDiskCleanup_RequestBody</span><span class="p">.</span><span class="n">xml</span>
-</code></pre></div><p>After the alert has triggered at least once, you should be able to get the XML file from the Hybrid Runbook worker and import it in an interactive PowerShell session for inspection:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$RequestBody</span> <span class="p">|</span> <span class="nb">Export-Clixml</span> <span class="n">-Path</span> <span class="n">C:</span><span class="p">\</span><span class="n">Temp</span><span class="p">\</span><span class="nb">Invoke-OMSAlertDiskCleanup_RequestBody</span><span class="p">.</span><span class="n">xml</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>After the alert has triggered at least once, you should be able to get the XML file from the Hybrid Runbook worker and import it in an interactive PowerShell session for inspection:</p>
 <p><img src="/images/aaoms9.png" alt=""></p>
 <p>In the scenario we are working with (OMS Alerts) the RequestBody property will contain a property called SearchResults, where we can find the values from the OMS search that triggered the alarm as we can see above.</p>
 <p>For our demo runbook where we are interested in doing actions against the computers with less than 15% of free space on the C: drive, we first need to get the computer names. The same computer can occur multiple times, thus we need to extract the unique names:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$Computers</span> <span class="p">=</span> <span class="nv">$RequestBody</span><span class="p">.</span><span class="n">SearchResults</span><span class="p">.</span><span class="n">value</span> <span class="p">|</span> <span class="nb">Sort-Object</span> <span class="n">-Property</span> <span class="n">Computer</span> <span class="n">-Unique</span>
-</code></pre></div><p>Now that we have the names of the computers, we are ready to take an action to try to remediate the problem (low disk space).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$Computers</span> <span class="p">=</span> <span class="nv">$RequestBody</span><span class="p">.</span><span class="n">SearchResults</span><span class="p">.</span><span class="n">value</span> <span class="p">|</span> <span class="nb">Sort-Object</span> <span class="n">-Property</span> <span class="n">Computer</span> <span class="n">-Unique</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Now that we have the names of the computers, we are ready to take an action to try to remediate the problem (low disk space).</p>
 <p>In this demo we will only perform a single action in a foreach loop–Invoke the Deployment Image Servicing and Management (DISM.exe) command-line tool on the computers via PowerShell remoting to try to clean up installed updates:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$Cleanup</span> <span class="p">=</span> <span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="nv">$Computer</span> <span class="n">-ScriptBlock</span> <span class="p">{</span><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="n">Cleanup-Image</span> <span class="p">/</span><span class="n">StartComponentCleanup</span><span class="p">}</span> <span class="n">-Credential</span> <span class="nv">$Credential</span>
-</code></pre></div><p>Hopefully, this can free up some disk space and potentially resolve the problem.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$Cleanup</span> <span class="p">=</span> <span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="nv">$Computer</span> <span class="n">-ScriptBlock</span> <span class="p">{</span><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="n">Cleanup-Image</span> <span class="p">/</span><span class="n">StartComponentCleanup</span><span class="p">}</span> <span class="n">-Credential</span> <span class="nv">$Credential</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Hopefully, this can free up some disk space and potentially resolve the problem.</p>
 <p>There is a number of additional steps I would consider if doing this in a production environment:</p>
 <ul>
 <li>Add more actions, such as invoking Disk Cleanup (cleanmgr.exe). This might require different logic based on the operating system version, so I did not spend time implementing it in this demo.</li>
@@ -308,7 +345,45 @@ if (!doNotTrack) {
 </ul>
 <p>The demonstration scenario is only one of an unlimited number of possible scenarios for automated actions based on a search criterion in OMS. Another scenario can be: “If updates are missing on a computer, trigger the Windows Update client to download and install updates”.</p>
 <p>Hopefully this demonstrated how you can leverage the Alerts feature in Microsoft OMS to automatically trigger runbooks in Azure Automation in order to remediate issues in your environment.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2016\/07\/11\/triggering-azure-automation-runbooks-from-microsoft-oms-alerts\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2016\/07\/11\/triggering-azure-automation-runbooks-from-microsoft-oms-alerts\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2016\/07\/11\/triggering-azure-automation-runbooks-from-microsoft-oms-alerts\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2016\/07\/11\/triggering-azure-automation-runbooks-from-microsoft-oms-alerts\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
 </div>
+          </div>
         </article>
         
         
@@ -338,86 +413,6 @@ if (!doNotTrack) {
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

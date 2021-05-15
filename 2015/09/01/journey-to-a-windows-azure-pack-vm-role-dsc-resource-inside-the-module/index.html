@@ -21,6 +21,7 @@ Part 2 – Journey to a Windows Azure Pack VM Role DSC Resource: PowerShell modu
 <meta property="article:modified_time" content="2015-09-01T16:00:58+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -31,6 +32,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -94,6 +96,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -194,7 +202,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -218,7 +226,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>17 Min To Read
+              <i class="far fa-clock"></i>19 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>01 Sep, 2015
@@ -239,7 +247,8 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>In this series,</p>
+          <div class="content">
+            <p>In this series,</p>
 <p><a href="/2015/07/28/journey-to-a-windows-azure-pack-vm-role-dsc-resource/">Part 1 – Journey to a Windows Azure Pack VM Role DSC Resource: Introduction</a></p>
 <p><a href="/2015/08/07/journey-to-a-windows-azure-pack-vm-role-dsc-resource-powershell-module-usage/">Part 2 – Journey to a Windows Azure Pack VM Role DSC Resource: PowerShell module usage</a></p>
 <p>Part 3 – Journey to a Windows Azure Pack VM Role DSC Resource: Inside the module (this article)</p>
@@ -257,28 +266,89 @@ if (!doNotTrack) {
 }
 </code></pre><p>The Accept part of the header tells the Azure Pack API to return response data as JSON. We want this as the API returns a lot more data when JSON is used. In PowerShell 3.0 this accept header causes an error to be thrown which has been logged on Connect as a bug: <a href="https://connect.microsoft.com/PowerShell/feedback/details/757249/invoke-restmethod-accept-header" target="_blank">Invoke-RestMethod Accept header</a>. Therefore, I decided to require PowerShell 4.0 as the bug was fixed in that release. I could have gone the long route around the issue and create the functionality myself but I figured as the intent is to have a DSC resource, 4.0 would be required anyway.</p>
 <p>To force the PowerShell 4.0 requirement, I added a requires statement in the psm1 file (in case someone decides to load the module directly from this file)</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c">#requires -version 4</span>
-</code></pre></div><p>and defined the minimal PowerShellVersion in the module’s manifest (psd1) file.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># Minimum version of the Windows PowerShell engine required by this module</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c">#requires -version 4</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>and defined the minimal PowerShellVersion in the module’s manifest (psd1) file.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># Minimum version of the Windows PowerShell engine required by this module</span>
 <span class="n">PowerShellVersion</span> <span class="p">=</span> <span class="s1">&#39;4.0&#39;</span>
-</code></pre></div><h3 id="get-waptoken">Get-WAPToken</h3>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="get-waptoken">Get-WAPToken</h3>
 <p>For Windows Azure Pack there can be 2 providers for the tokens. Either you have the inbox authentication site which generates the JWT tokens if successfully authenticated against the ASP.net membership provider or you have ADFS generating them from an external identity source like Active Directory or Azure Active Directory.  Luckily the Azure Pack team made this one really simple for me. When you install the Azure Pack PowerShell API (a component of Windows Azure Pack installation) a folder will be created “C:\Program Files\Management Service\MgmtSvc-PowerShellAPI\Samples\Authentication” which contain some PowerShell example scripts to get a token from different providers. I took these example scripts and combined them into the Get-WAPToken function.</p>
 <p>The scripts relies on the <a href="https://msdn.microsoft.com/en-us/library/system.servicemodel(v=vs.110).aspx" target="_blank">System.ServiceModel</a> and <a href="https://msdn.microsoft.com/en-us/library/gg145031(v=vs.110).aspx" target="_blank">System.IdentityModel</a> assemblies to be loaded. As I created a function I did not want these assemblies to be loaded every time the function was called so I decided to load these as part of the module being imported.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Add-Type</span> <span class="n">-AssemblyName</span> <span class="s1">&#39;System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&#39;</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Add-Type</span> <span class="n">-AssemblyName</span> <span class="s1">&#39;System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&#39;</span>
 <span class="nb">Add-Type</span> <span class="n">-AssemblyName</span> <span class="s1">&#39;System.IdentityModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&#39;</span>
-</code></pre></div><p>The function will set the Token and Header variables in the “parent” scope. This makes them available for subsequent functions to consume directly instead of the need to pass the data as parameter values.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Set-Variable</span> <span class="n">-Name</span> <span class="n">Headers</span> <span class="n">-Scope</span> <span class="n">1</span> <span class="n">-Value</span> <span class="p">@{</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The function will set the Token and Header variables in the “parent” scope. This makes them available for subsequent functions to consume directly instead of the need to pass the data as parameter values.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Set-Variable</span> <span class="n">-Name</span> <span class="n">Headers</span> <span class="n">-Scope</span> <span class="n">1</span> <span class="n">-Value</span> <span class="p">@{</span>
 <span class="n">Authorization</span> <span class="p">=</span> <span class="s2">&#34;Bearer $Token&#34;</span>
 <span class="s1">&#39;x-ms-principal-id&#39;</span> <span class="p">=</span> <span class="nv">$Credential</span><span class="p">.</span><span class="n">UserName</span>
 <span class="n">Accept</span> <span class="p">=</span> <span class="s1">&#39;application/json&#39;</span>
 <span class="p">}</span>
 <span class="nb">Set-Variable</span> <span class="n">-Name</span> <span class="n">Token</span> <span class="n">-Value</span> <span class="nv">$token</span> <span class="n">-Scope</span> <span class="n">1</span>
-</code></pre></div><p>I chose this method because almost all subsequent functions need this data. At first I took an alternative route and enriched the output object of functions with this data so I could pipe into the next function without re-specifying the values. In the end this proved to become really messy so I decided to divert from the approach.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>I chose this method because almost all subsequent functions need this data. At first I took an alternative route and enriched the output object of functions with this data so I could pipe into the next function without re-specifying the values. In the end this proved to become really messy so I decided to divert from the approach.</p>
 <p>On a side note: <a href="http://hindenes.com/trondsworking/" target="_blank">Trond Hindenes</a> suggested using variables instead of enriched objects through a GitHub <a href="https://github.com/bgelens/WAPTenantPublicAPI/issues/1" target="_blank">issue</a> on my project. How cool is that! Making the move to Git and GitHub is proving to be really valuable so I encourage you, if you are not already doing so, to start looking into source control.</p>
 <h3 id="connect-wapapi">Connect-WAPAPI</h3>
 <p>This function is only used to set variables in the parent scope. We don’t actually connect to Azure Pack but try to see if we get results on a URL. If results are returned, the variables will be set. If an error is thrown instead, the variables will be nulled.</p>
 <p>When the IgnoreSSL switch is set, the variable IgnoreSSL in the parent scope is set to true which means all subsequent functions will ignore certificate errors.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">if</span> <span class="p">(</span><span class="nv">$IgnoreSSL</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">if</span> <span class="p">(</span><span class="nv">$IgnoreSSL</span><span class="p">)</span> <span class="p">{</span>
     <span class="nb">Write-Warning</span> <span class="n">-Message</span> <span class="s1">&#39;IgnoreSSL switch defined. Certificate errors will be ignored!&#39;</span>
     <span class="c">#Change Certificate Policy to ignore</span>
     <span class="n">IgnoreSSL</span>  
@@ -300,9 +370,45 @@ if (!doNotTrack) {
     <span class="nb">Set-Variable</span> <span class="n">-Name</span> <span class="n">Port</span> <span class="n">-Value</span> <span class="nv">$null</span> <span class="n">-Scope</span> <span class="n">1</span>
     <span class="k">throw</span> <span class="nv">$ErrCon</span>
 <span class="p">}</span>
-</code></pre></div><h3 id="preflight-helper-function">PreFlight (helper function)</h3>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="preflight-helper-function">PreFlight (helper function)</h3>
 <p>You might have seen PreFlight in the previous function code. PreFlight is a private function which means it is not exported to the user when the module is loaded. The module exports functions based on the presence of the WAP prefix (<verb><dash><strong>WAP</strong><Noun>), everything else is considered private.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">PreFlight</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">PreFlight</span> <span class="p">{</span>
     <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
     <span class="k">param</span> <span class="p">(</span>
         <span class="no">[Switch]</span> <span class="nv">$IncludeConnection</span><span class="p">,</span>
@@ -332,11 +438,58 @@ if (!doNotTrack) {
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>Because this helper function exists, it saves me from writing a lot of redundant code in other functions as almost all functions need to deal with these checks. These functions now just call this helper function and dependent on their functionality, provide additional switches to it so additional checks are done.</span>The functions job is to check if variables have been assigned data. It throws errors if these are still null. Also, if a token has been acquired, another helper function is called to check if the token is still valid.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Because this helper function exists, it saves me from writing a lot of redundant code in other functions as almost all functions need to deal with these checks. These functions now just call this helper function and dependent on their functionality, provide additional switches to it so additional checks are done.</span>The functions job is to check if variables have been assigned data. It throws errors if these are still null. Also, if a token has been acquired, another helper function is called to check if the token is still valid.</p>
 <p>Connect-WAPAPI provides no switches, so only the presence of the Token and Headers variables are checked and the Token is checked for expiration. When a function relies on Connect-WAPAPI to have already ran successfully, it will add the –IncludeConnection switch. And when a function relies on a subscription to be selected as current, it will add the –IncludeSubscription switch.</p>
 <h3 id="testjwtclaimnotexpired-check-token-expiration-helper-function">TestJWTClaimNotExpired (Check token Expiration helper function)</h3>
 <p>This helper function is actually nice to see entirely so I can give some details of what we do here.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">TestJWTClaimNotExpired</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">TestJWTClaimNotExpired</span> <span class="p">{</span>
     <span class="k">param</span> <span class="p">(</span>
         <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span><span class="p">,</span>
                    <span class="k">ValueFromPipeline</span><span class="p">,</span>
@@ -377,7 +530,9 @@ if (!doNotTrack) {
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>As you can see, I made a remark I borrowed some code from <a href="https://gallery.technet.microsoft.com/JWT-Token-Decode-637cf001" target="_blank">Shriram</a> who actually created a set of functions to convert a JWT token into a PSCustomObject so it can be analyzed. I modified it to the module’s needs and created a helper function from it. This helper function is called for every API interacting function (PreFlight) to check up front if the JWT token is not expired. This way it is prevented that the API itself throws any error related to the token’s lifetime and we can handle these errors in a uniform way.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>As you can see, I made a remark I borrowed some code from <a href="https://gallery.technet.microsoft.com/JWT-Token-Decode-637cf001" target="_blank">Shriram</a> who actually created a set of functions to convert a JWT token into a PSCustomObject so it can be analyzed. I modified it to the module’s needs and created a helper function from it. This helper function is called for every API interacting function (PreFlight) to check up front if the JWT token is not expired. This way it is prevented that the API itself throws any error related to the token’s lifetime and we can handle these errors in a uniform way.</p>
 <p>A token looks like this:</p>
 <p><img src="/images/wapmod1.png" alt=""></p>
 <p>Basically the JWT token exists out of 3 parts separated by a dot (.).</p>
@@ -388,16 +543,41 @@ if (!doNotTrack) {
 <p><img src="/images/wapmod3.png" alt=""></p>
 <p>As you can see my UPN claim is in there as well as a number defining my expiration time (exp).</p>
 <p>JWT token validity is checked by calculating the amount of seconds which have passed from exactly the moment it became the first of January 1970 UTC time. So I set this as the reference time.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$Ref</span> <span class="p">=</span> <span class="no">[datetime]</span><span class="p">::</span><span class="n">SpecifyKind</span><span class="p">((</span><span class="nb">New-Object</span> <span class="n">-TypeName</span> <span class="n">datetime</span> <span class="n">-ArgumentList</span> <span class="p">(</span><span class="s1">&#39;1970&#39;</span><span class="p">,</span><span class="n">1</span><span class="p">,</span><span class="n">1</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">)),</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
-</code></pre></div><p>Next we need to calculate the amount of seconds which have passed since then.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$CheckSeconds</span> <span class="p">=</span> <span class="no">[System.Math]</span><span class="p">::</span><span class="n">Round</span><span class="p">((</span><span class="no">[datetime]</span><span class="p">::</span><span class="n">UtcNow</span> <span class="p">-</span> <span class="nv">$Ref</span><span class="p">).</span><span class="n">totalseconds</span><span class="p">)</span>
-</code></pre></div><p>Now we know the amount of seconds passed, all that needs to be done is to check if the exp value of the claim is greater than the amount that passed since 1970. If this is the case, the token is still valid and we return a Boolean of true or else a Boolean of false.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">if</span> <span class="p">(</span><span class="nv">$TokenData</span><span class="p">.</span><span class="n">exp</span> <span class="o">-gt</span> <span class="nv">$CheckSeconds</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$Ref</span> <span class="p">=</span> <span class="no">[datetime]</span><span class="p">::</span><span class="n">SpecifyKind</span><span class="p">((</span><span class="nb">New-Object</span> <span class="n">-TypeName</span> <span class="n">datetime</span> <span class="n">-ArgumentList</span> <span class="p">(</span><span class="s1">&#39;1970&#39;</span><span class="p">,</span><span class="n">1</span><span class="p">,</span><span class="n">1</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">)),</span><span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Next we need to calculate the amount of seconds which have passed since then.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$CheckSeconds</span> <span class="p">=</span> <span class="no">[System.Math]</span><span class="p">::</span><span class="n">Round</span><span class="p">((</span><span class="no">[datetime]</span><span class="p">::</span><span class="n">UtcNow</span> <span class="p">-</span> <span class="nv">$Ref</span><span class="p">).</span><span class="n">totalseconds</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Now we know the amount of seconds passed, all that needs to be done is to check if the exp value of the claim is greater than the amount that passed since 1970. If this is the case, the token is still valid and we return a Boolean of true or else a Boolean of false.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">if</span> <span class="p">(</span><span class="nv">$TokenData</span><span class="p">.</span><span class="n">exp</span> <span class="o">-gt</span> <span class="nv">$CheckSeconds</span><span class="p">)</span> <span class="p">{</span>
     <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="nv">$true</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="nv">$false</span>
 <span class="p">}</span>
-</code></pre></div><h3 id="get-wapsubscription-and-select-wapsubscription">Get-WAPSubscription and Select-WAPSubscription</h3>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="get-wapsubscription-and-select-wapsubscription">Get-WAPSubscription and Select-WAPSubscription</h3>
 <p>When we look at the URL constructions of other functions you will see that the subscription id is in every one of them:</p>
 <table>
 <thead>
@@ -430,7 +610,27 @@ if (!doNotTrack) {
 </tbody>
 </table>
 <p>This makes sense as the subscription governs everything what has been made available to the user by its association with a plan and potential add-ons.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$URL</span> <span class="p">=</span> <span class="s1">&#39;{0}:{1}/subscriptions/&#39;</span> <span class="o">-f</span> <span class="nv">$PublicTenantAPIUrl</span><span class="p">,</span><span class="nv">$Port</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$URL</span> <span class="p">=</span> <span class="s1">&#39;{0}:{1}/subscriptions/&#39;</span> <span class="o">-f</span> <span class="nv">$PublicTenantAPIUrl</span><span class="p">,</span><span class="nv">$Port</span>
 <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Constructed Subscription URL: $URL&#34;</span>
 <span class="nv">$Subscriptions</span> <span class="p">=</span> <span class="nb">Invoke-RestMethod</span> <span class="n">-Uri</span> <span class="nv">$URL</span> <span class="n">-Headers</span> <span class="nv">$Headers</span> <span class="n">-Method</span> <span class="n">Get</span>
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$S</span> <span class="k">in</span> <span class="nv">$Subscriptions</span><span class="p">)</span> <span class="p">{</span>
@@ -446,9 +646,25 @@ if (!doNotTrack) {
     <span class="nv">$S</span><span class="p">.</span><span class="n">PSObject</span><span class="p">.</span><span class="n">TypeNames</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="s1">&#39;WAP.Subscription&#39;</span><span class="p">)</span>
     <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="nv">$S</span>
 <span class="p">}</span>
-</code></pre></div><p>When you look at the code of Get-WAPSubscription you see the basis for almost all of the other functions. It first constructs the URL to target, then it runs Invoke-RestMethod with the Get method, capturing the results. By default, most functions have a DefaultParameterSetName of ‘List’. The List parameter set is actually not implemented but this makes it really clear to the coder wat is the intention when no parameters have been provided by the end user. As you can see, filtering on the output is done based on the parameter set in use. When the parameter set in use is the List parameter set, nothing is filtered and everything is returned to the pipeline. When the parameter set is Name on the other hand, only subscriptions which have the correct name will be passed on the pipeline, skipping everything else (the continue keyword moves to the next object in the foreach loop effectively stopping execution on the current object).</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>When you look at the code of Get-WAPSubscription you see the basis for almost all of the other functions. It first constructs the URL to target, then it runs Invoke-RestMethod with the Get method, capturing the results. By default, most functions have a DefaultParameterSetName of ‘List’. The List parameter set is actually not implemented but this makes it really clear to the coder wat is the intention when no parameters have been provided by the end user. As you can see, filtering on the output is done based on the parameter set in use. When the parameter set in use is the List parameter set, nothing is filtered and everything is returned to the pipeline. When the parameter set is Name on the other hand, only subscriptions which have the correct name will be passed on the pipeline, skipping everything else (the continue keyword moves to the next object in the foreach loop effectively stopping execution on the current object).</p>
 <p>Once the desired subscription is found, we need to provide the other functions with its subscription Id by default. Like with the Headers, Token, API URL and other data, the subscription object is captured in a parent level variable. This is done by Select-WAPSubscription function.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">if</span> <span class="p">(</span><span class="nv">$input</span><span class="p">.</span><span class="n">count</span> <span class="o">-gt</span> <span class="n">1</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">if</span> <span class="p">(</span><span class="nv">$input</span><span class="p">.</span><span class="n">count</span> <span class="o">-gt</span> <span class="n">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="s1">&#39;Only 1 subscription can be selected. If passed from Get-WAPSubscription, make sure only 1 subscription object is passed on the pipeline&#39;</span>
 <span class="p">}</span>
 
@@ -458,10 +674,42 @@ if (!doNotTrack) {
 
 <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Setting current subscription to </span><span class="p">$(</span><span class="nv">$Subscription</span> <span class="p">|</span> <span class="nb">Out-String</span><span class="p">)</span><span class="s2">&#34;</span>
 <span class="nb">Set-Variable</span> <span class="n">-Name</span> <span class="n">Subscription</span> <span class="n">-Value</span> <span class="nv">$Subscription</span> <span class="n">-Scope</span> <span class="n">1</span>
-</code></pre></div><p>Select-WAPSubscription does support pipeline input but does not have a process block. This is done so we are certain the user is absolutely sure which subscription gets selected. The default available input variable is checked for its count and if it’s greater than 1, an error is thrown notifying the user to be more explicit.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Select-WAPSubscription does support pipeline input but does not have a process block. This is done so we are certain the user is absolutely sure which subscription gets selected. The default available input variable is checked for its count and if it’s greater than 1, an error is thrown notifying the user to be more explicit.</p>
 <p>When a usr wants to see which subscription is set, Get-WAPSubscription can be used with the –Current switch. This will output the content of the subscription variable.</p>
 <h3 id="get-wapgalleryvmrole">Get-WAPGalleryVMRole</h3>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$URI</span> <span class="p">=</span> <span class="s1">&#39;{0}:{1}/{2}/Gallery/GalleryItems/$/MicrosoftCompute.VMRoleGalleryItem?api-version=2013-03&#39;</span> <span class="o">-f</span> <span class="nv">$PublicTenantAPIUrl</span><span class="p">,</span><span class="nv">$Port</span><span class="p">,</span><span class="nv">$Subscription</span><span class="p">.</span><span class="n">SubscriptionId</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$URI</span> <span class="p">=</span> <span class="s1">&#39;{0}:{1}/{2}/Gallery/GalleryItems/$/MicrosoftCompute.VMRoleGalleryItem?api-version=2013-03&#39;</span> <span class="o">-f</span> <span class="nv">$PublicTenantAPIUrl</span><span class="p">,</span><span class="nv">$Port</span><span class="p">,</span><span class="nv">$Subscription</span><span class="p">.</span><span class="n">SubscriptionId</span>
 <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Constructed Gallery Item URI: $URI&#34;</span>
 <span class="nv">$GalleryItems</span> <span class="p">=</span> <span class="nb">Invoke-RestMethod</span> <span class="n">-Uri</span> <span class="nv">$URI</span> <span class="n">-Headers</span> <span class="nv">$Headers</span> <span class="n">-Method</span> <span class="n">Get</span>
 
@@ -487,7 +735,9 @@ if (!doNotTrack) {
     <span class="nv">$G</span><span class="p">.</span><span class="n">PSObject</span><span class="p">.</span><span class="n">TypeNames</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="nv">$G</span><span class="p">.</span><span class="s1">&#39;odata.type&#39;</span><span class="p">)</span>
     <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="nv">$G</span>
 <span class="p">}</span>
-</code></pre></div><p>When looking at the code for Get-WAPGalleryVMRole you can see how we ended up with all the information we needed to construct our ResDef JSON with.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>When looking at the code for Get-WAPGalleryVMRole you can see how we ended up with all the information we needed to construct our ResDef JSON with.</p>
 <p>At first the URL is constructed to acquire the GalleryItems. Every item which is returned has a ResourceDefinitionUrl and ViewDefinitionUrl property. The API effectively told us where to find the info we need to deploy the VM Role with. Thankfully making use of the information, two other URLs are constructed and called. The information which is returned is added to the output object by making use of the Add-Member cmdlet before outputting the object on the pipeline. Now other functions, like Get-WAPVMRoleOSDisk and New-WAPVMRoleParameterObject, can make use of the all this data.</p>
 <p><img src="/images/wapmod4.png" alt=""></p>
 <p><img src="/images/wapmod5.png" alt=""></p>
@@ -497,7 +747,114 @@ if (!doNotTrack) {
 <p>First the View Definition parameters are captured in a variable. Then each parameter is going through a foreach loop. If the -Interactive switch is enabled by the user, he will be prompted to provide values depending on the property to be of the “Option” or “Credential” type and for everything that will be left blank after not matching any of the elseif clauses. When it is not run in “interactive mode”, everything missing will have null as a value.</p>
 <h3 id="new-wapvmroledeployment">New-WAPVMRoleDeployment</h3>
 <p>I want to close this post with the function that handles the most important task, the deployment.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">New-WAPVMRoleDeployment</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">New-WAPVMRoleDeployment</span> <span class="p">{</span>
     <span class="cm">&lt;# </span><span class="sd">.SYNOPSIS</span><span class="cm"> Deploys VM Role to a Cloudservice using Azure Pack TenantPublic or Tenant API. </span><span class="sd">.PARAMETER</span><span class="cm"> CloudServiceName The name of the cloud service to provision to. If it does not exist, it will be created. // Removed the rest to shorten code in blog post #&gt;</span>
     <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">(</span><span class="n">SupportsShouldProcess</span><span class="p">=</span><span class="nv">$true</span><span class="p">)]</span>
     <span class="p">[</span><span class="n">OutputType</span><span class="p">(</span><span class="no">[PSCustomObject]</span><span class="p">)]</span>
@@ -600,7 +957,9 @@ if (!doNotTrack) {
     <span class="p">}</span>
 <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>The input objects are checked if they contain the correct type information. I added type information to a lot of objects so I could do exactly this. A side benefit I also utilize is that I can use format.ps1xml because of this as well. Many objects returned by the API exist out of a lot of properties which are not directly valuable for the user so I defined custom list views in the format.ps1xml file.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>The input objects are checked if they contain the correct type information. I added type information to a lot of objects so I could do exactly this. A side benefit I also utilize is that I can use format.ps1xml because of this as well. Many objects returned by the API exist out of a lot of properties which are not directly valuable for the user so I defined custom list views in the format.ps1xml file.</p>
 <p><img src="/images/wapmod7.png" alt=""></p>
 <p>This results in the following view:</p>
 <p><img src="/images/wapmod8.png" alt=""></p>
@@ -608,7 +967,29 @@ if (!doNotTrack) {
 <p><img src="/images/wapmod9.png" alt=""></p>
 <p>Because the module emulates portal behavior, the subscriptions is checked if a cloud service already exists with the name specified by the user. If this is the case, the cloud service is checked to contain a VM Role deployment and an error is thrown when this is the case. An empty cloud service is fine to continue. When no cloud service exists with the provided name, it is created on the spot.</p>
 <p>Next the body of the API call is created.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c">#Add ResDefConfig JSON to Dictionary</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c">#Add ResDefConfig JSON to Dictionary</span>
 <span class="nv">$ResDefConfig</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">-TypeName</span> <span class="s1">&#39;System.Collections.Generic.Dictionary[String,Object]&#39;</span>
 <span class="nv">$ResDefConfig</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;Version&#39;</span><span class="p">,</span><span class="nv">$VMRole</span><span class="p">.</span><span class="n">version</span><span class="p">)</span>
 <span class="nv">$ResDefConfig</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s1">&#39;ParameterValues&#39;</span><span class="p">,(</span><span class="nv">$ParameterObject</span> <span class="p">|</span> <span class="nb">ConvertTo-Json</span><span class="p">))</span>
@@ -626,16 +1007,65 @@ if (!doNotTrack) {
 
 <span class="c"># Convert Gallery Item Payload Info To JSON</span>
 <span class="nv">$GIPayloadJSON</span> <span class="p">=</span> <span class="nb">ConvertTo-Json</span> <span class="n">-InputObject</span> <span class="nv">$GIPayload</span> <span class="n">-Depth</span> <span class="n">10</span>
-</code></pre></div><p>Then a hash table is constructed which will form the actual body. It contains the justly created dictionary object, original resource definition and the cloud service name provided by the user. Finally, the hash table is converted into JSON (this would be the resdef needed by the Azure New-WAPackVMRole cmdlet).First a dictionary object is created and both the Gallery Item (VMRole) version and the generated parameter object is added to its properties respectively.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Then a hash table is constructed which will form the actual body. It contains the justly created dictionary object, original resource definition and the cloud service name provided by the user. Finally, the hash table is converted into JSON (this would be the resdef needed by the Azure New-WAPackVMRole cmdlet).First a dictionary object is created and both the Gallery Item (VMRole) version and the generated parameter object is added to its properties respectively.</p>
 <p>Finally, the VM Role deployment is started and a resulting object is put on the pipeline.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$Deploy</span> <span class="p">=</span> <span class="nb">Invoke-RestMethod</span> <span class="n">-Uri</span> <span class="nv">$URI</span> <span class="n">-Headers</span> <span class="nv">$Headers</span> <span class="n">-Method</span> <span class="n">Post</span> <span class="n">-Body</span> <span class="nv">$GIPayloadJSON</span> <span class="n">-ContentType</span> <span class="s1">&#39;application/json&#39;</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$Deploy</span> <span class="p">=</span> <span class="nb">Invoke-RestMethod</span> <span class="n">-Uri</span> <span class="nv">$URI</span> <span class="n">-Headers</span> <span class="nv">$Headers</span> <span class="n">-Method</span> <span class="n">Post</span> <span class="n">-Body</span> <span class="nv">$GIPayloadJSON</span> <span class="n">-ContentType</span> <span class="s1">&#39;application/json&#39;</span>
 <span class="nv">$Deploy</span><span class="p">.</span><span class="n">PSObject</span><span class="p">.</span><span class="n">TypeNames</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="s1">&#39;WAP.VMRole&#39;</span><span class="p">)</span>
 <span class="nb">Write-Output</span> <span class="n">-InputObject</span> <span class="nv">$Deploy</span>
-</code></pre></div><p>You might have noticed that these are not all the functions available in the module. I think the most important ones are described here that might give you an idea of what investment was needed to create all this.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>You might have noticed that these are not all the functions available in the module. I think the most important ones are described here that might give you an idea of what investment was needed to create all this.</p>
 <p>Besides this, the reason for this series is to show you how easy it is to create a DSC resource on top of an already developed module and to hopefully make you aware where your investments should be.</p>
 <p>I could have created a DSC resource containing all the code now embodied into this module but then this code would only be usable when a VM Role would be deployed through DSC. Now, because I developed the code as a normal PowerShell module first, the code can not only be used by the DSC resource, but by many other applications as well (e.g. PowerShell session, SMA, etc).</p>
 <p>In the next (and final) post, I’ll show you how I’ve developed a DSC resource on top of the PowerShell module.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2015\/09\/01\/journey-to-a-windows-azure-pack-vm-role-dsc-resource-inside-the-module\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2015\/09\/01\/journey-to-a-windows-azure-pack-vm-role-dsc-resource-inside-the-module\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2015\/09\/01\/journey-to-a-windows-azure-pack-vm-role-dsc-resource-inside-the-module\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2015\/09\/01\/journey-to-a-windows-azure-pack-vm-role-dsc-resource-inside-the-module\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
 </div>
+          </div>
         </article>
         
         
@@ -665,86 +1095,6 @@ if (!doNotTrack) {
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

@@ -20,6 +20,7 @@ What is an enum?" />
 <meta property="article:modified_time" content="2015-06-02T16:00:54+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -30,6 +31,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -93,6 +95,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -193,7 +201,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -209,7 +217,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>9 Min To Read
+              <i class="far fa-clock"></i>10 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>02 Jun, 2015
@@ -227,10 +235,33 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>Today I will show how to defensively script against enums and how to test invalid enum values.</p>
+          <div class="content">
+            <p>Today I will show how to defensively script against enums and how to test invalid enum values.</p>
 <h3 id="what-is-an-enum">What is an enum?</h3>
 <p>An enum is a list of identifiers that map to values of a primitive type, usually System.Int32 which is the default in C#. An example of a simple enum is the [System.ConsoleColor] enum, listing the colors you can use in PowerShell console:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[enum]</span><span class="p">::</span><span class="n">GetNames</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">ConsoleColor</span><span class="p">)</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[enum]</span><span class="p">::</span><span class="n">GetNames</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">ConsoleColor</span><span class="p">)</span>
 
 <span class="n">Black</span>
 <span class="n">DarkBlue</span>
@@ -248,14 +279,55 @@ if (!doNotTrack) {
 <span class="n">Magenta</span>
 <span class="n">Yellow</span>
 <span class="n">White</span>
-</code></pre></div><h3 id="can-it-change">Can it change?</h3>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="can-it-change">Can it change?</h3>
 <p>Even though we usually see the enums as such, the values they contain are not definitive and might change in future version of the type. This is also marketed as one of the upsides of using enum over the boolean type, when you anticipate more than two values in the future, because you can easily add third state to true/false, on/off, up/downand so on.</p>
 <p>This flexibility is great for the framework developer, who can ship his API with a newer version of his enum without forcing the consumers of the API to change their code.</p>
 <p>But there is one caveat: The consumers have to be prepared for the enum to change. Let’s see an example.</p>
 <h3 id="example">Example</h3>
 <p>Let’s imagine we wrote a function that converts values “On” and “Off” of a SystemStatus enum to “Online” and “Offline” respectively. The resulting value will become part of a report that also reports status of servers and other systems, hence the Online/Offline statuses.</p>
 <p>The enum and our function are implemented and tested like this; I‘ll put both the production and test code in one file for brevity:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Add-Type</span> <span class="n">-TypeDefinition</span> <span class="s1">&#39;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Add-Type</span> <span class="n">-TypeDefinition</span> <span class="s1">&#39;
 </span><span class="s1">    namespace Nohwnd.Samples.TestingEnums
 </span><span class="s1">    {
 </span><span class="s1">        public enum SystemStatus
@@ -290,7 +362,9 @@ if (!doNotTrack) {
         <span class="nb">Get-UnifiedSystemStatus</span> <span class="n">On</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">Be</span> <span class="s1">&#39;Online&#39;</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>The code first defines the SystemStatus with possible values “Off” and “On”. Then it defines a function that will translate the input value into values appropriate for our report.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>The code first defines the SystemStatus with possible values “Off” and “On”. Then it defines a function that will translate the input value into values appropriate for our report.</p>
 <p>The Get-UnifiedSystemStatus function requires its $Status parameter to be specified and to be of type [Nohwnd.Samples.TestingEnums.SystemStatus] which has only two possible values. For that reason we decided to use the if condition to translate the values.</p>
 <p>We also have tests in place that both pass, so everything should be working correctly.</p>
 <h3 id="updating-to-a-newer-version">Updating to a newer version</h3>
@@ -298,7 +372,25 @@ if (!doNotTrack) {
 <p>You update to the new version 1.2 and everything seems to work fine. You run you automated tests and they are still passing. Everything is good.</p>
 <p>After few days the users of the system start noticing something strange: Sometimes they can’t connect to the printer remotely, even though it shows that it is online.</p>
 <p>You suspect there was something wrong with the update so you investigate and with some luck you find out that the SystemStatus enum was updated as such:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Add-Type</span> <span class="n">-TypeDefinition</span> <span class="s1">&#39;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Add-Type</span> <span class="n">-TypeDefinition</span> <span class="s1">&#39;
 </span><span class="s1">    namespace Nohwnd.Samples.TestingEnums
 </span><span class="s1">    {
 </span><span class="s1">        public enum SystemStatus
@@ -312,11 +404,32 @@ if (!doNotTrack) {
 </span><span class="s1">        }
 </span><span class="s1">    }
 </span><span class="s1">&#39;</span>
-</code></pre></div><p>The intention was to let you see not only if the printer is on or off, but also if it’s starting, stopping or busy. This is great new functionality, but unfortunately it also means that any of the new statuses report Online in our report.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>The intention was to let you see not only if the printer is on or off, but also if it’s starting, stopping or busy. This is great new functionality, but unfortunately it also means that any of the new statuses report Online in our report.</p>
 <p>This also explains the user complains. When our hypothetical printers are starting (or stopping) they do not accept remote management requests, but the report shows them as Online. And online printers should not reject remote management requests.</p>
 <h3 id="preventing-the-issue">Preventing the issue</h3>
 <p>So let’s go back to our original code and see what is wrong with it, and how to write it better next time.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="p">{</span>
     <span class="k">param</span><span class="p">(</span>
         <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
         <span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span>
@@ -331,7 +444,9 @@ if (!doNotTrack) {
         <span class="s1">&#39;Online&#39;</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>The function builds on two assumptions:</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>The function builds on two assumptions:</p>
 <ul>
 <li>The enum has only two possible values, so only two states are possible</li>
 <li>The enum will not change in the future</li>
@@ -343,7 +458,57 @@ if (!doNotTrack) {
 <p>In simple words, you can get value 999 that will have type [Nohwnd.Samples.TestingEnums.SystemStatus], and successfully pass it to our function.</p>
 <p>In our code this will make the if condition return “Online” for the value 999. This is something that our code did not expect, and hence it should fail rather than return incorrect value.</p>
 <p>Let’s bake the expected values in our code and add appropriate test:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="p">{</span>
     <span class="k">param</span><span class="p">(</span>
         <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
         <span class="p">[</span><span class="k">ValidateSet</span><span class="p">(</span><span class="s1">&#39;On&#39;</span><span class="p">,</span><span class="s1">&#39;Off&#39;</span><span class="p">)]</span>
@@ -389,9 +554,63 @@ if (!doNotTrack) {
                           <span class="s1">&#39;that is in the set and then try the command again.&#39;</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>This version adds the ValidateSet parameter constraint that checks for the values that were contained in the original version of the enum and throws an exception if a different value is provided. Also notice that a comment is used to explain why the constraint is there. Without it, it would likely look like somebody just forgot to add all the values to the constraint.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>This version adds the ValidateSet parameter constraint that checks for the values that were contained in the original version of the enum and throws an exception if a different value is provided. Also notice that a comment is used to explain why the constraint is there. Without it, it would likely look like somebody just forgot to add all the values to the constraint.</p>
 <p>Another way to implement this would be to manually validate if the input value belongs to the set and throw [System.ArgumentOutOfRangeException] if it does not. This has the benefit of showing the possible causes of the exception directly to the developer.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Get-UnifiedSystemStatus</span> <span class="p">{</span>
     <span class="k">param</span><span class="p">(</span>
         <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$true</span><span class="p">)]</span>
         <span class="no">[Nohwnd.Samples.TestingEnums.SystemStatus]</span>
@@ -439,13 +658,95 @@ if (!doNotTrack) {
                           <span class="s1">&#39;or using a newer version of the enum which contains more values than expected.&#39;</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>In both cases an assertion that would simply check the type of the thrown exception would be very useful:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Should</span> <span class="k">Throw</span> <span class="no">[SomeExceptionType]</span>
-</code></pre></div><p>But unfortunately no such assertion is present in the Pester framework at the moment.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>In both cases an assertion that would simply check the type of the thrown exception would be very useful:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Should</span> <span class="k">Throw</span> <span class="no">[SomeExceptionType]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>But unfortunately no such assertion is present in the Pester framework at the moment.</p>
 <h3 id="reviewing-the-changes">Reviewing the changes</h3>
 <p>Let’s look at the updated code again, and imagine what would happen if we updated the enum now. To our surprise we find out that the tests would still pass. But running the report would fail, if there was at least one device in the new status that is. Failing the application on run time might be good enough, and with a bit of luck the report would fail right after the update.</p>
 <p>Could we make it better? We can list all the values in the enum and make the test run for all of them.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Add-Type</span> <span class="n">-TypeDefinition</span> <span class="s1">&#39;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Add-Type</span> <span class="n">-TypeDefinition</span> <span class="s1">&#39;
 </span><span class="s1">    namespace Nohwnd.Samples.TestingEnums
 </span><span class="s1">    {
 </span><span class="s1">        public enum SystemStatus
@@ -514,11 +815,51 @@ if (!doNotTrack) {
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>The new test gets all the values from the enum and runs them from our function. If any of the values does not belong to the set of ‘On’,’Off’ it will fail the test.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>The new test gets all the values from the enum and runs them from our function. If any of the values does not belong to the set of ‘On’,’Off’ it will fail the test.</p>
 <h3 id="summary">Summary</h3>
 <p>Enums do not guarantee that their values will not change. This is something to be aware of.</p>
 <p>To future proof your code you should provide incorrect enum values to your code and test it’s reaction. This is especially important for code which uses a switch statement to take an action based on value of an enum. Such switch statement often defines a default case which often remains untested until a new version of the enum is provided.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2015\/06\/02\/coding-defensively-against-enums\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2015\/06\/02\/coding-defensively-against-enums\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2015\/06\/02\/coding-defensively-against-enums\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2015\/06\/02\/coding-defensively-against-enums\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
 </div>
+          </div>
         </article>
         
         
@@ -548,86 +889,6 @@ if (!doNotTrack) {
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

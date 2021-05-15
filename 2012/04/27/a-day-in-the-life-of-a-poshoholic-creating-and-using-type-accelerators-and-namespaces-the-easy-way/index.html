@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2012-04-27T18:00:20+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -234,35 +242,71 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>You never know where you’re going to find inspiration.  As a PowerShell MVP and a confessed Poshoholic, I tend to travel to conferences a fair bit.  I go out of my way to attend those conferences and participate in discussions with other attendees so that I can hear what they have to say about PowerShell.  PowerShell is great, but it’s far from perfect, and these conversations help me identify ways I can contribute to helping make the overall experience better.  As much as these intentional interactions are great, it’s often even more useful to have the opportunity to be a fly on the wall, listening to (ok, eavesdropping on) discussions about PowerShell that are taking place in unexpected places, looking for seeds of inspiration that can grow into something that makes PowerShell even better.</p>
+          <div class="content">
+            <p>You never know where you’re going to find inspiration.  As a PowerShell MVP and a confessed Poshoholic, I tend to travel to conferences a fair bit.  I go out of my way to attend those conferences and participate in discussions with other attendees so that I can hear what they have to say about PowerShell.  PowerShell is great, but it’s far from perfect, and these conversations help me identify ways I can contribute to helping make the overall experience better.  As much as these intentional interactions are great, it’s often even more useful to have the opportunity to be a fly on the wall, listening to (ok, eavesdropping on) discussions about PowerShell that are taking place in unexpected places, looking for seeds of inspiration that can grow into something that makes PowerShell even better.</p>
 <p>At TechEd North America 2011 I had one such opportunity present itself. While I was working in the speakers lounge on my own presentation materials, I overheard a couple of C# developers talking and one of them was saying that they hate PowerShell.  My interest was piqued, so I focused less on my own work and more on what they were saying.  If I heard correctly (it can be difficult to catch what’s being said when you’re trying to inconspicuously eavesdrop on a conversation), the developer who was complaining had two major issues.  I’ll touch on the first issue in this article, and save the other one for a follow-up article.</p>
 <h3 id="powershell-does-not-have-a-using-keyword">PowerShell does not have a using keyword</h3>
 <p>The first issue they pointed out was that they didn’t like having to type in so many full .NET type names when they typecast or when they create strongly typed objects.  In C#, developers can work with shorter type names by invoking the using statement, allowing them to control exactly how much of a type name is required in order for the compiler to be able to recognize the type.  For example, in C# if you were to write some code to work with a bunch of Windows Forms objects, you could do this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">System.Windows.Forms</span><span class="p">;</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">System.Windows.Forms</span><span class="p">;</span>
 
 <span class="n">DialogResult</span> <span class="n">result</span> <span class="p">=</span> <span class="n">MessageBox</span><span class="p">.</span><span class="n">Show</span><span class="p">(</span><span class="err">…</span><span class="p">);</span>
-</code></pre></div><p>In this code snippet, both DialogResult and MessageBox can be used in the program without having to qualify them with their namespace because the using statement indicates that the namespace is automatically identified for objects that are defined within it.  This is quite convenient and it can save a lot of typing in the long run.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>In this code snippet, both DialogResult and MessageBox can be used in the program without having to qualify them with their namespace because the using statement indicates that the namespace is automatically identified for objects that are defined within it.  This is quite convenient and it can save a lot of typing in the long run.</p>
 <p>PowerShell doesn’t have a using statement however, at least not in PowerShell 2.0.  The using keyword is reserved in PowerShell 2.0, but there is no statement or command in place that defines what that keyword will do.  Using PowerShell 2.0 out of the box, if you wanted to create a script similar to the C# code that is shown above, you would have to do this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[System.Windows.Forms.DialogResult]</span><span class="nv">$result</span> <span class="p">=</span>
-</code></pre></div><p>Since there is no using statement support, with long type names like these your PowerShell scripts may quickly require a lot more typing if you are interacting with .NET object types directly in those scripts.  As someone who used to write C# code, this can definitely be disappointing.  Fortunately though, it doesn’t have to be this way.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[System.Windows.Forms.DialogResult]</span><span class="nv">$result</span> <span class="p">=</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Since there is no using statement support, with long type names like these your PowerShell scripts may quickly require a lot more typing if you are interacting with .NET object types directly in those scripts.  As someone who used to write C# code, this can definitely be disappointing.  Fortunately though, it doesn’t have to be this way.</p>
 <h3 id="type-accelerators">Type Accelerators</h3>
 <p>Windows PowerShell 2.0 comes with built-in support for 31 type accelerators.  Type accelerators are simply mappings between shorthand type names and the full object types that they represent.  They exist to allow you to use a shorthand type name instead of a full type name.  For example, you can create a switch parameter in a function by simply using the [switch] type name.  Behind the scenes, PowerShell knows that [switch] is really [System.Management.Automation.SwitchParameter], but [switch] is much, much easier to type and use.</p>
 <p>Retrieving a list of type accelerators that exist in PowerShell is not easy.  There are no cmdlets and no published interface that allows you to do this out of the box.  Fortunately though there are some examples on various blog posts that identify a hidden, private type that can be used to get this list.  That type is System.Management.Automation.TypeAccelerators, and it can be accessed in PowerShell like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[System.Type]</span><span class="nv">$typeAcceleratorsType</span> <span class="p">=</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="no">[System.Type]</span><span class="nv">$typeAcceleratorsType</span> <span class="p">=</span>
 <span class="no">[System.Management.Automation.PSObject]</span><span class="p">.</span><span class="n">Assembly</span><span class="p">.</span><span class="n">GetType</span><span class="p">(</span>
 <span class="s1">&#39;System.Management.Automation.TypeAccelerators&#39;</span><span class="p">,</span>
 <span class="nv">$true</span><span class="p">,</span>
 <span class="nv">$true</span>
 <span class="p">)</span>
-</code></pre></div><p>It is possible to call GetType without passing in the second and third Boolean parameters, however if you do that you must make sure the type name you use has the proper case.  The second parameter indicates you want the method to throw an exception if there is an error, and the third parameter indicates you want to perform a case insensitive lookup.  Since PowerShell itself is case insensitive, I tend to use all three parameters here so that I don’t have to worry about case sensitivity.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>It is possible to call GetType without passing in the second and third Boolean parameters, however if you do that you must make sure the type name you use has the proper case.  The second parameter indicates you want the method to throw an exception if there is an error, and the third parameter indicates you want to perform a case insensitive lookup.  Since PowerShell itself is case insensitive, I tend to use all three parameters here so that I don’t have to worry about case sensitivity.</p>
 <p>Once you have access to that type, management of type accelerators is pretty straightforward and is done by using three static methods of that type.  You can see the current list of accelerators by invoking $typeAcceleratorsType::Get.  You can add your own type accelerator by invoking $typeAcceleratorsType::Add and passing in the string you want to use as an accelerator ad the type that you want it to be associated with (note: in PowerShell 3.0 CTP 1, this method has been renamed as AddReplace and in that release you can replace existing accelerators without first removing them).  You can remove a type accelerator by invoking $typeAcceleratorsType::Remove and passing in the accelerator string you want to remove.</p>
 <p>This is a great start, because now we can customize our type accelerators, but I doubt anyone that is looking for using keyword functionality in PowerShell would feel that this was a good solution because it’s missing all of the glue that would allow you to get fast access to all types within a namespace.</p>
 <h3 id="enumerating-namespaces">Enumerating Namespaces</h3>
 <p>Now that we’re armed with the knowledge required to manage type accelerators, let’s figure out how we can enumerate types inside namespaces so that we can get the most out of this capability.  The first step in this enumeration process is the retrieval of the assembly containing the namespace we are interested in.</p>
 <p>The System.Reflection.Assembly type has three very useful static methods that allow you to get assembly objects: Load, LoadWithPartialName, and LoadFrom.  If you have the full name of the assembly whose namespace you want to enumerate, you can invoke the Load static method and pass in the full assembly name.  If you only have a partial assembly name (i.e. none of the Public Key token stuff that is included in a full assembly name), you can invoke the LoadWithPartialName static method and pass in the partial name (note: don’t forget to include the System qualifier for namespaces that are part of the System namespace; otherwise they simply will not load).  If you are working with an assembly that is not loaded in the Global Assembly Cache (GAC), you can use the LoadFrom static method and pass in the full path to the file containing the assembly you want to load.</p>
 <p>For this example, I’m going to use the System.Windows.Forms namespace that I referred to earlier in this article.  This namespace contains a lot of useful functionality that enables PowerShell scripters to include some user interface capabilities in their scripts, and it’s used very often in PowerShell scripts today.  Following the description of the System.Reflection.Assembly LoadWithPartialName static method, you can load the assembly containing the System.Windows.Forms namespace by invoking this command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$assembly</span> <span class="p">=</span> <span class="no">[Reflection.Assembly]</span><span class="p">::</span><span class="n">LoadWithPartialName</span><span class="p">(</span><span class="s1">&#39;System.Windows.Forms&#39;</span><span class="p">)</span>
-</code></pre></div><p>With the assembly loaded, we need to enumerate the public types that belong to the System.Windows.Forms namespace.  Fortunately, this can be done with a single pipeline, as follows:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$assembly</span> <span class="p">=</span> <span class="no">[Reflection.Assembly]</span><span class="p">::</span><span class="n">LoadWithPartialName</span><span class="p">(</span><span class="s1">&#39;System.Windows.Forms&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>With the assembly loaded, we need to enumerate the public types that belong to the System.Windows.Forms namespace.  Fortunately, this can be done with a single pipeline, as follows:</p>
 <pre>$assembly.GetExportedTypes() | `
 Where-Object { `
 ($_.IsPublic -or $_.IsNestedPublic) -and `
@@ -282,7 +326,27 @@ Where-Object { `
 <p>Use-Namespace (alias use)</p>
 <p>This command allows you to emulate the C# using command in PowerShell.  You can specify the namespace(s) you want to start using by Namespace name or by path (LiteralPath or Path) and Namespace name.  You can make the namespace usage temporary by passing in a ScriptBlock, in which case the namespace will only be used inside of that script block.  You can associate a shortcut to a namespace by giving it an Alias.  This command will overwrite accelerators with the same name by default, however you can prevent that from happening by specifying NoClobber.</p>
 <p>Usage of these commands in the context of our example is as easy as a single PowerShell command.  Here are some examples showing how you can use this module in your own scripts:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># Enumerate all accelerators</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># Enumerate all accelerators</span>
 <span class="nb">Get-TypeAccelerator</span>
 
 <span class="c"># Enumerate type accelerators in the System.Management.Automation namespace</span>
@@ -298,9 +362,49 @@ Where-Object { `
 <span class="nb">Use-Namespace</span> <span class="n">-Namespace</span> <span class="n">Windows</span><span class="p">.</span><span class="n">Forms</span> <span class="n">-ScriptBlock</span> <span class="p">{</span>
    <span class="no">[DialogResult]</span><span class="nv">$result</span> <span class="p">=</span> <span class="no">[MessageBox]</span><span class="p">::</span><span class="n">Show</span><span class="p">(</span><span class="err">‘</span><span class="n">Test</span><span class="err">’</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div><p>With this module in your tool belt, you should be able to avoid a lot of unnecessary typing of type names in your PowerShell scripts.  There are also some extremely useful things you can do with this module when defining custom types…I’ll talk more about that in a future article.</p>
-<p>That’s it from me for this time.  I hope you find this <a href="/images/TypeAccelerator.zip">TypeAccelerator module</a> as useful as I do.  Feel free to distribute it however you wish.</p>
+</code></pre></td></tr></table>
 </div>
+</div><p>With this module in your tool belt, you should be able to avoid a lot of unnecessary typing of type names in your PowerShell scripts.  There are also some extremely useful things you can do with this module when defining custom types…I’ll talk more about that in a future article.</p>
+<p>That’s it from me for this time.  I hope you find this <a href="/images/TypeAccelerator.zip">TypeAccelerator module</a> as useful as I do.  Feel free to distribute it however you wish.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2012\/04\/27\/a-day-in-the-life-of-a-poshoholic-creating-and-using-type-accelerators-and-namespaces-the-easy-way\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2012\/04\/27\/a-day-in-the-life-of-a-poshoholic-creating-and-using-type-accelerators-and-namespaces-the-easy-way\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2012\/04\/27\/a-day-in-the-life-of-a-poshoholic-creating-and-using-type-accelerators-and-namespaces-the-easy-way\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2012\/04\/27\/a-day-in-the-life-of-a-poshoholic-creating-and-using-type-accelerators-and-namespaces-the-easy-way\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
+</div>
+          </div>
         </article>
         
         
@@ -330,86 +434,6 @@ Where-Object { `
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

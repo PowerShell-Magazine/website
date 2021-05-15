@@ -20,6 +20,7 @@ Last time we looked at the theory of assertions and what mechanisms they use to 
 <meta property="article:modified_time" content="2015-12-02T17:00:32+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -30,6 +31,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -93,6 +95,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -193,7 +201,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -230,21 +238,43 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>This article is a part of a larger series on <a href="/tags/pester">Pester</a>.</p>
+          <div class="content">
+            <p>This article is a part of a larger series on <a href="/tags/pester">Pester</a>.</p>
 <p>Last time we looked at the theory of assertions and what mechanisms they use to fail our tests. We’ve also written two assertions of our own to become a part of our own test framework. In this article we won’t be continuing on out own framework though. Instead we will look more closely on the actual implementation of Pester assertions and walk through the process of failing a test in Pester.</p>
 <p>In this article we will be looking just at the Should Be family of assertions, but keep in mind that the rest of the assertions work the same way. A condition is evaluated (be it some value comparison, if a file exists, or if an exception was thrown) and if the condition is not satisfied (False) an exception is thrown.</p>
 <h3 id="digging-in">Digging in</h3>
 <p>When you look inside of the sources of Pester you will find a whole folder dedicated to assertions. This folder is, unsurprisingly, called “Assertions” and resides inside of the “Function” folder. Similarly as the assertion keywords are split in two words, Should and Be, the assertion implementation is also split in two kinds of files. The Should.ps1 that defines the shared logic of all Pester assertions and Be.ps1, Throw.ps1, Exist.ps1 etc. which contain logic specific to the respective assertions.</p>
 <h3 id="beps1">Be.ps1</h3>
 <p>Looking inside of <a href="https://github.com/pester/Pester/blob/master/Functions/Assertions/Be.ps1#L3">Be.ps1</a>, on the top of the file there is the function that we’ve been looking at in the previous article, the equality condition that determines the result of the test:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">PesterBe</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="nv">$expected</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">PesterBe</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="nv">$expected</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">(</span><span class="nv">$expected</span> <span class="o">-eq</span> <span class="nv">$value</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div><p>It uses the standard equality (-eq) operator of PowerShell, and returns a Boolean (true or false) result. Throwing the exception is done elsewhere.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>It uses the standard equality (-eq) operator of PowerShell, and returns a Boolean (true or false) result. Throwing the exception is done elsewhere.</p>
 <p>You might also notice that the function is called “PesterBe” rather than “Be”, this naming convention was chosen in the early versions of Pester to avoid conflicts with user defined code. This need was eliminated by putting the whole Pester runtime in different scope (in version 3), effectively hiding the internals of Pester from user code. The details of how that is done will be described in one of the future articles.</p>
 <p>Further down the file you may also notice an implementation of another, but very similar, assertion named <a href="https://github.com/pester/Pester/blob/master/Functions/Assertions/Be.ps1#L26">PesterBeExactly</a>. This case sensitive version of the Be assertion uses the case sensitive equality operator (-ceq), and so the different behavior only applies to strings.</p>
 <p>Both the assertion condition implementations are accompanied with multiple function that produce various failure messages. The ones with Exactly in name are used when the BeExactly assertion is used, and the ones with Not in name are used when a negative version the assertion (e.g. Should Not Be) is called. The functions are also type aware so a message pointing at first different character will be produced when comparing strings.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">PesterBeFailureMessage</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="nv">$expected</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">PesterBeFailureMessage</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="nv">$expected</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">-not</span> <span class="p">((</span><span class="nv">$expected</span> <span class="o">-is</span> <span class="no">[string]</span><span class="p">)</span> <span class="o">-and</span> <span class="p">(</span><span class="nv">$value</span> <span class="o">-is</span> <span class="no">[string]</span><span class="p">)))</span>
     <span class="p">{</span>
         <span class="k">return</span> <span class="s2">&#34;Expected: {$expected}</span><span class="se">`n</span><span class="s2">But was:  {$value}&#34;</span>
@@ -252,31 +282,87 @@ if (!doNotTrack) {
     <span class="p">...</span>
     <span class="p">(</span> <span class="nb">Get-CompareStringMessage</span> <span class="n">-Expected</span> <span class="nv">$expected</span> <span class="n">-Actual</span> <span class="nv">$value</span> <span class="p">)</span> <span class="n">-join</span> <span class="s2">&#34;</span><span class="se">`n</span><span class="s2">&#34;</span>
 <span class="p">}</span>
-</code></pre></div><p>The assertion condition (the PesterBe function) remains the same for the negative and non-negative call of the assertion though, the result is simply negated when a negative assertion is used.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>The assertion condition (the PesterBe function) remains the same for the negative and non-negative call of the assertion though, the result is simply negated when a negative assertion is used.</p>
 <h3 id="shouldps1">Should.ps1</h3>
 <p>The <a href="https://github.com/pester/Pester/blob/master/Functions/Assertions/Should.ps1#L72">Should.ps1</a> file holds the shared logic for the assertions. When calling an assertion you are in fact invoking a function named Should that takes pipeline input and an indeterminate amount of arguments (notice the $args variable and no param block).</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">Should</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">Should</span> <span class="p">{</span>
     <span class="k">begin</span> <span class="p">{</span>
         <span class="nb">Assert-DescribeInProgress</span> <span class="n">-CommandName</span> <span class="n">Should</span>
         <span class="nv">$parsedArgs</span> <span class="p">=</span> <span class="n">Parse-ShouldArgs</span> <span class="nv">$args</span>
     <span class="p">}</span>
        <span class="p">...</span>   
 <span class="p">}</span>
-</code></pre></div><p>This, in theory would mean that you can have a very rich API for assertions, but in reality parsing a vast amount of different inputs correctly, while keeping intuitive syntax is difficult to do, and so the parsing logic is kept very simple. In general the expected input is assumed to be this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">&lt;</span><span class="n">Expected</span><span class="p">&gt;</span> <span class="p">|</span> <span class="n">Should</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span><span class="n">Not</span> <span class="p">&lt;</span><span class="n">AssertionName</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="n">Value</span><span class="p">&gt;</span>
-</code></pre></div><p>Any additional arguments are simply ignored.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>This, in theory would mean that you can have a very rich API for assertions, but in reality parsing a vast amount of different inputs correctly, while keeping intuitive syntax is difficult to do, and so the parsing logic is kept very simple. In general the expected input is assumed to be this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">&lt;</span><span class="n">Expected</span><span class="p">&gt;</span> <span class="p">|</span> <span class="n">Should</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span><span class="n">Not</span> <span class="p">&lt;</span><span class="n">AssertionName</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="n">Value</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Any additional arguments are simply ignored.</p>
 <p>The processing of the input is done in the <a href="https://github.com/pester/Pester/blob/master/Functions/Assertions/Should.ps1#L1">Parse-ShouldArgs</a> where the captured input is processed. Let’s see how a “1 | Should Not Be 10” would be processed:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Parse-ShouldArgs</span> <span class="n">Not</span><span class="p">,</span><span class="n">Be</span><span class="p">,</span><span class="n">10</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Parse-ShouldArgs</span> <span class="n">Not</span><span class="p">,</span><span class="n">Be</span><span class="p">,</span><span class="n">10</span>
 <span class="c">#output</span>
 <span class="n">Name</span>                           <span class="n">Value</span>      
 <span class="p">----</span>                           <span class="p">-----</span>
 <span class="n">PositiveAssertion</span>              <span class="n">False</span>      
 <span class="n">ExpectedValue</span>                  <span class="n">10</span>         
 <span class="n">AssertionMethod</span>                <span class="n">PesterBe</span>
-</code></pre></div><p>The “Be” assertion method is translated to “PesterBe”, referring to the function we saw earlier in the Be.ps1 file. The “Not” is captured as “PositiveAssertion:$False”, and the expected value obviously became the “ExpectedValue”.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>The “Be” assertion method is translated to “PesterBe”, referring to the function we saw earlier in the Be.ps1 file. The “Not” is captured as “PositiveAssertion:$False”, and the expected value obviously became the “ExpectedValue”.</p>
 <p>Notice that the actual value is not captured in the output. That is because the call to Parse-ShouldArgs is placed in the begin block of the function where the pipeline output is not available. The actual value will be captured later.</p>
 <p><em>Note: This approach to calling functions is totally incoherent with the rest of PowerShell cmdlets. In your functions you should follow the correct approach of defining named parameters that take single argument value, or in special cases define ValueFromRemainingArguments attribute (see Write-Host). Avoid using the $args for anything else than getting an indeterminate amount of data. The way the $args is used in Pester is the legacy of the early versions of Pester where at first a fluent API like syntax was used, which was later migrated to the current approach in attempt to closely follow the language of RSpec testing framework. We are aware that the current syntax could be improved greatly, but unfortunately it’s so widely used that it is unlikely that it will go away any time soon.</em></p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">Should</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">Should</span> <span class="p">{</span>
     <span class="k">begin</span> <span class="p">{</span>
         <span class="nb">Assert-DescribeInProgress</span> <span class="n">-CommandName</span> <span class="n">Should</span>
         <span class="nv">$parsedArgs</span> <span class="p">=</span> <span class="n">Parse-ShouldArgs</span> <span class="nv">$args</span>
@@ -293,9 +379,30 @@ if (!doNotTrack) {
         <span class="p">}</span> <span class="k">until</span> <span class="p">(</span><span class="nv">$input</span><span class="p">.</span><span class="n">MoveNext</span><span class="p">()</span> <span class="o">-eq</span> <span class="nv">$false</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>When the arguments are parsed by the Parse-ShouldArgs and saved in the $parsedArgs, the Should command enters the end block. In this end block the actual value provided through the pipeline (in our case number 1) becomes available. The Should then continues to stepping through its pipeline input, invoking Get-TestResult on each of them.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>When the arguments are parsed by the Parse-ShouldArgs and saved in the $parsedArgs, the Should command enters the end block. In this end block the actual value provided through the pipeline (in our case number 1) becomes available. The Should then continues to stepping through its pipeline input, invoking Get-TestResult on each of them.</p>
 <p>The <a href="https://github.com/pester/Pester/blob/master/Functions/Assertions/Should.ps1#L35">Get-TestResult</a> function, residing in the Should.ps1 file, is rather simple. It takes the parsed should arguments (including the expected value) and the actual value and returns a boolean result. To determine the result it invokes the assertion condition (the PesterBe function) on the expected and actual values.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Get-TestResult</span><span class="p">(</span><span class="nv">$shouldArgs</span><span class="p">,</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Get-TestResult</span><span class="p">(</span><span class="nv">$shouldArgs</span><span class="p">,</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$assertionMethod</span> <span class="p">=</span> <span class="nv">$shouldArgs</span><span class="p">.</span><span class="n">AssertionMethod</span>
     <span class="nv">$command</span> <span class="p">=</span> <span class="nb">Get-Command</span> <span class="nv">$assertionMethod</span> <span class="n">-ErrorAction</span> <span class="nv">$script:IgnoreErrorPreference</span>
     <span class="p">...</span><span class="k">throw</span> <span class="n">on</span> <span class="n">incorrect</span> <span class="n">assertion</span> <span class="n">name</span>
@@ -310,9 +417,33 @@ if (!doNotTrack) {
     <span class="p">}</span>
     <span class="k">return</span> <span class="nv">$testResult</span>
 <span class="p">}</span>
-</code></pre></div><p>The invocation of the assertion condition function is done via the ‘&amp;’ invocation operator. This works because of the aforementioned naming convention for those functions: Pester + <AssertionName> (e.g. Pester + Be).</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>The invocation of the assertion condition function is done via the ‘&amp;’ invocation operator. This works because of the aforementioned naming convention for those functions: Pester + <AssertionName> (e.g. Pester + Be).</p>
 <p>At this point we know whether the assertion passed of failed, but we only have a True/False result, no exception was thrown yet. And that is the last thing that happens in the <a href="https://github.com/pester/Pester/blob/master/Functions/Assertions/Should.ps1#L92">Should</a> function.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">Should</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">Should</span> <span class="p">{</span>
     <span class="k">begin</span> <span class="p">{</span>
        <span class="p">...</span>
     <span class="p">}</span>
@@ -330,20 +461,53 @@ if (!doNotTrack) {
         <span class="p">}</span> <span class="k">until</span> <span class="p">(</span><span class="nv">$input</span><span class="p">.</span><span class="n">MoveNext</span><span class="p">()</span> <span class="o">-eq</span> <span class="nv">$false</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>The result of the call to Get-TestResult function is inspected, and if it is False a failure message is obtained. Then a Pester specific exception is thrown. This exception will stop the test from executing and will fail it. Exactly as described in the previous article.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>The result of the call to Get-TestResult function is inspected, and if it is False a failure message is obtained. Then a Pester specific exception is thrown. This exception will stop the test from executing and will fail it. Exactly as described in the previous article.</p>
 <blockquote>
 <p>Note: The failure message is obtained, by a pretty much the same process as getting the result of the test. But instead of invoking the assertion condition function (PesterBe), an assertion message function is called (<a href="https://github.com/pester/Pester/blob/master/Functions/Assertions/Be.ps1#L21">NotPesterBeFailureMessage</a>), producing the appropriate message.</p>
 </blockquote>
 <h3 id="comparing-the-implementations">Comparing the implementations</h3>
 <p>In the previous article we created a simple implementation of an assertion that did not take into account any parsing issues, nor different types of input objects as well as pipeline input. This left us with an extremely simple implementation, consisting only of a single “if” and “throw”:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Assert-Equal</span> <span class="p">(</span><span class="nv">$Expected</span><span class="p">,</span> <span class="nv">$Actual</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Assert-Equal</span> <span class="p">(</span><span class="nv">$Expected</span><span class="p">,</span> <span class="nv">$Actual</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nv">$Actual</span> <span class="o">-ne</span> <span class="nv">$Expected</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">throw</span> <span class="s2">&#34;Value &#39;$Expected&#39; was expected, but was &#39;$Actual&#39;&#34;</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>Getting rid of all the clutter in the Should function, we can see the same basic pattern emerge:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">Should</span> <span class="p">{</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Getting rid of all the clutter in the Should function, we can see the same basic pattern emerge:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">Should</span> <span class="p">{</span>
     <span class="k">begin</span> <span class="p">{</span>
         <span class="p">...</span>
     <span class="p">}</span>
@@ -358,11 +522,51 @@ if (!doNotTrack) {
         <span class="p">}</span> <span class="k">until</span> <span class="p">(</span><span class="nv">$input</span><span class="p">.</span><span class="n">MoveNext</span><span class="p">()</span> <span class="o">-eq</span> <span class="nv">$false</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>Which confirms that the theory that we learned the last time is applied in the actual code of Pester.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Which confirms that the theory that we learned the last time is applied in the actual code of Pester.</p>
 <h3 id="summary">Summary</h3>
 <p>In this article we looked closely at the implementation of the Should command in Pester. Described the process needed to fail an unsuccessful test and compared the theory that we learned with the actual implementation.</p>
 <p>Next time we will look at the It and Describe blocks, how the tests are actually executed, and how the suite prevents failing on every failed test.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2015\/12\/02\/pester-explained-should\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2015\/12\/02\/pester-explained-should\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2015\/12\/02\/pester-explained-should\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2015\/12\/02\/pester-explained-should\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
 </div>
+          </div>
         </article>
         
         
@@ -392,86 +596,6 @@ if (!doNotTrack) {
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

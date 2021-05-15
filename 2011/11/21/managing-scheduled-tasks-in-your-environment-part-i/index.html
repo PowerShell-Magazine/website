@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2011-11-21T10:01:27+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -237,13 +245,85 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>In Part 1 of the series, I will look at getting information on the scheduled tasks running in your environment. One of the things I see a lot in our company is that a lot of scheduled tasks get created on different servers, for one reason or another, but very often these tasks are quickly forgotten.</p>
+          <div class="content">
+            <p>In Part 1 of the series, I will look at getting information on the scheduled tasks running in your environment. One of the things I see a lot in our company is that a lot of scheduled tasks get created on different servers, for one reason or another, but very often these tasks are quickly forgotten.</p>
 <p>We kept seeing files show up in a directory they were not supposed to be in, and when we deleted them, they magically reappear after some time.  That led me to believe that it was a scheduled task that was the culprit. So I thought, it was time to get an overview of what scheduled tasks were running in our environment. I had to figure out how to query all the servers in our environment and enumerate enabled scheduled tasks.</p>
 <p>I looked at several different ways of getting this information, but in the end I settled on using the built-in schtasks.exe utility and wrapping it in PowerShell function for automation. I started looking at the command line switches for schtasks.exe.  I experimented with the different output formats until I noticed that there was an option to output in CSV format, and as you may already know PowerShell has built-in cmdlets  for working with CSV files. So, I ended up doing:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="n">schtasks</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">query</span> <span class="p">/</span><span class="n">V</span> <span class="p">/</span><span class="n">FO</span> <span class="n">CSV</span> <span class="p">|</span> <span class="nb">ConvertFrom-Csv</span>
-</code></pre></div><p>This returned a collection of PSCustomObjects that contained information about all the scheduled tasks on my local system. This is all for a single system, but we have 200+ servers, so some more automation was required. The schtasks.exe also supports getting information from remote machines using the /s switch, so that made it rather easy to create a loop that goes through a list of servers. The schtasks.exe works against down-level operating systems back to Windows 2000.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="n">schtasks</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">query</span> <span class="p">/</span><span class="n">V</span> <span class="p">/</span><span class="n">FO</span> <span class="n">CSV</span> <span class="p">|</span> <span class="nb">ConvertFrom-Csv</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This returned a collection of PSCustomObjects that contained information about all the scheduled tasks on my local system. This is all for a single system, but we have 200+ servers, so some more automation was required. The schtasks.exe also supports getting information from remote machines using the /s switch, so that made it rather easy to create a loop that goes through a list of servers. The schtasks.exe works against down-level operating systems back to Windows 2000.</p>
 <p>Another thing I had to consider was how to design my script and what data I should return. Should I return all the information schtasks.exe /query /V /FO CSV gave me, or just a subset of it? I decided to return all 28 properties of each scheduled task.  With 28 properties, I quickly decided not to manually create a PSObject, and use Add-Member to populate its properties, but to use a new feature native to PowerShell v2 —the option to supply a hash table of properties to the New-Object cmdlet. To simplify the example, I assume that a list containing server names are available and is named servers.txt.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Get-ScheduledTask</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Get-ScheduledTask</span>
 <span class="p">{</span>
     <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
     <span class="k">param</span>
@@ -303,22 +383,104 @@ if (!doNotTrack) {
         <span class="nv">$Script:Tasks</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>The script accepts pipeline input, so you can do something like:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Content</span> <span class="n">c:</span><span class="p">\</span><span class="n">servers</span><span class="p">.</span><span class="n">txt</span> <span class="p">|</span> <span class="nb">Get-ScheduledTask</span> <span class="p">|</span> <span class="nb">Out-GridView</span>
-</code></pre></div><p>If you want  to get only scheduled tasks that are run under the Administrator account you could do something like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Content</span> <span class="n">c:</span><span class="p">\</span><span class="n">servers</span><span class="p">.</span><span class="n">txt</span> <span class="p">|</span> <span class="nb">Get-ScheduledTask</span> <span class="err">–</span><span class="n">RunAsUser</span> <span class="n">administrator</span> <span class="p">|</span> <span class="nb">Out-GridView</span>
-</code></pre></div><p>The above example will list all scheduled tasks running under an account containing the word “Administrator”.  If you want to get only scheduled tasks where the task name contains “FileXfer”:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Content</span> <span class="n">c:</span><span class="p">\</span><span class="n">servers</span><span class="p">.</span><span class="n">txt</span> <span class="p">|</span> <span class="nb">Get-ScheduledTask</span> <span class="err">–</span><span class="n">TaskName</span> <span class="n">FileXfer</span> <span class="p">|</span> <span class="nb">Out-GridView</span>
-</code></pre></div><p>You can of course also combine the two:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Content</span> <span class="n">c:</span><span class="p">\</span><span class="n">servers</span><span class="p">.</span><span class="n">txt</span> <span class="p">|</span> <span class="nb">Get-ScheduledTask</span> <span class="err">–</span><span class="n">TaskName</span> <span class="n">FileXfer</span> <span class="err">–</span><span class="n">RunAsUser</span> <span class="n">administrator</span>
-</code></pre></div><p>A few things to notice though is that since the properties that are returned are generated “on-the-fly” using the names used by schtasks.exe, some of them contain spaces.  Property names should almost never contain spaces, so by default I remove all spaces in the properties, before I create the hash table. A property returned from schtasks.exe called “Run As User” ends up being RunAsUser instead. I have added an option to keep the spaces by supplying the parameter -WithSpace, it will make your output easier to read, if you for instance pipe it to Out-GridView</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Content</span> <span class="n">c:</span><span class="p">\</span><span class="n">servers</span><span class="p">.</span><span class="n">txt</span> <span class="p">|</span> <span class="nb">Get-ScheduledTask</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">TaskName</span> <span class="s2">&#34;RunAsUser&#34;</span>
-</code></pre></div><p>In the above examples the –RunAsUser parameter looks at the property called “RunAsUser”. But it is only called that in the English versions of the operating system.  So, if you are not running this on a machine running English version of the operating system, you will need to manually modify the script to your local locale.</p>
-<p>Last but not least, both the -RunAsUser and -TaskName parameters use regular expressions to match a user and a task name, so, for instance, if you are looking for a scheduled tasks called like CopyJob1, CopyJob2 you can do:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-ScheduledTask</span> <span class="err">–</span><span class="n">TaskName</span> <span class="n">CopyJob</span><span class="p">\</span><span class="n">d</span>  <span class="c">#\d is regex for a single digit</span>
-</code></pre></div><p>Regular expressions are a whole book for themselves, so I will not go into details on it here.  Now we have seen how to collect information about scheduled tasks in your environment, but what if you want to change something on existing scheduled tasks? As I mentioned earlier, we tend to see quite a few scheduled tasks in our environment, and sometimes they get created to run under admin accounts (The quick and dirty way of getting things done).</p>
-<p>Our company policy states that admin accounts have to have their passwords changed every 3 months. So we looked for a way to automate those changes as well.</p>
+</code></pre></td></tr></table>
 </div>
+</div><p>The script accepts pipeline input, so you can do something like:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Content</span> <span class="n">c:</span><span class="p">\</span><span class="n">servers</span><span class="p">.</span><span class="n">txt</span> <span class="p">|</span> <span class="nb">Get-ScheduledTask</span> <span class="p">|</span> <span class="nb">Out-GridView</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>If you want  to get only scheduled tasks that are run under the Administrator account you could do something like this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Content</span> <span class="n">c:</span><span class="p">\</span><span class="n">servers</span><span class="p">.</span><span class="n">txt</span> <span class="p">|</span> <span class="nb">Get-ScheduledTask</span> <span class="err">–</span><span class="n">RunAsUser</span> <span class="n">administrator</span> <span class="p">|</span> <span class="nb">Out-GridView</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The above example will list all scheduled tasks running under an account containing the word “Administrator”.  If you want to get only scheduled tasks where the task name contains “FileXfer”:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Content</span> <span class="n">c:</span><span class="p">\</span><span class="n">servers</span><span class="p">.</span><span class="n">txt</span> <span class="p">|</span> <span class="nb">Get-ScheduledTask</span> <span class="err">–</span><span class="n">TaskName</span> <span class="n">FileXfer</span> <span class="p">|</span> <span class="nb">Out-GridView</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>You can of course also combine the two:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Content</span> <span class="n">c:</span><span class="p">\</span><span class="n">servers</span><span class="p">.</span><span class="n">txt</span> <span class="p">|</span> <span class="nb">Get-ScheduledTask</span> <span class="err">–</span><span class="n">TaskName</span> <span class="n">FileXfer</span> <span class="err">–</span><span class="n">RunAsUser</span> <span class="n">administrator</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>A few things to notice though is that since the properties that are returned are generated “on-the-fly” using the names used by schtasks.exe, some of them contain spaces.  Property names should almost never contain spaces, so by default I remove all spaces in the properties, before I create the hash table. A property returned from schtasks.exe called “Run As User” ends up being RunAsUser instead. I have added an option to keep the spaces by supplying the parameter -WithSpace, it will make your output easier to read, if you for instance pipe it to Out-GridView</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Content</span> <span class="n">c:</span><span class="p">\</span><span class="n">servers</span><span class="p">.</span><span class="n">txt</span> <span class="p">|</span> <span class="nb">Get-ScheduledTask</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">TaskName</span> <span class="s2">&#34;RunAsUser&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>In the above examples the –RunAsUser parameter looks at the property called “RunAsUser”. But it is only called that in the English versions of the operating system.  So, if you are not running this on a machine running English version of the operating system, you will need to manually modify the script to your local locale.</p>
+<p>Last but not least, both the -RunAsUser and -TaskName parameters use regular expressions to match a user and a task name, so, for instance, if you are looking for a scheduled tasks called like CopyJob1, CopyJob2 you can do:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-ScheduledTask</span> <span class="err">–</span><span class="n">TaskName</span> <span class="n">CopyJob</span><span class="p">\</span><span class="n">d</span>  <span class="c">#\d is regex for a single digit</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Regular expressions are a whole book for themselves, so I will not go into details on it here.  Now we have seen how to collect information about scheduled tasks in your environment, but what if you want to change something on existing scheduled tasks? As I mentioned earlier, we tend to see quite a few scheduled tasks in our environment, and sometimes they get created to run under admin accounts (The quick and dirty way of getting things done).</p>
+<p>Our company policy states that admin accounts have to have their passwords changed every 3 months. So we looked for a way to automate those changes as well.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2011\/11\/21\/managing-scheduled-tasks-in-your-environment-part-i\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2011\/11\/21\/managing-scheduled-tasks-in-your-environment-part-i\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2011\/11\/21\/managing-scheduled-tasks-in-your-environment-part-i\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2011\/11\/21\/managing-scheduled-tasks-in-your-environment-part-i\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
+</div>
+          </div>
         </article>
         
         
@@ -348,86 +510,6 @@ if (!doNotTrack) {
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

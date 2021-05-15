@@ -20,6 +20,7 @@ Creating DSC resource is, by many, considered an advanced topic in PowerShell." 
 <meta property="article:modified_time" content="2015-07-02T17:19:33+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -30,6 +31,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -93,6 +95,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -193,7 +201,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -217,7 +225,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>12 Min To Read
+              <i class="far fa-clock"></i>13 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>02 Jul, 2015
@@ -235,7 +243,8 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>In this article, we will look at how to get started creating a very simple DSC resource.</p>
+          <div class="content">
+            <p>In this article, we will look at how to get started creating a very simple DSC resource.</p>
 <p>Creating DSC resource is, by many, considered an advanced topic in PowerShell. While that, of course, is true for more complex resources, the purpose of this article is to show that it also can be done relatively easy.</p>
 <h3 id="background--what-are-we-trying-to-accomplish">Background – what are we trying to accomplish?</h3>
 <p>The purpose of the new resource we will create in this article is to manage Data Collector Sets in Performance Monitor. Data Collector Sets is a collection of performance counters that can be scheduled to run on a regular basis, or started manually.</p>
@@ -271,23 +280,67 @@ if (!doNotTrack) {
 <p>-XmlTemplatePath – The path (either a central UNC path or a local path) to the template exported from Performance Monitor</p>
 <p>-Ensure – This is not required, but I’ve chosen to include it in order to be able to remove obsolete Data Collector Sets</p>
 <p>This means that our goal is to create a DSC resource which we can use like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Logman</span> <span class="n">Hyper-V</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Logman</span> <span class="n">Hyper-V</span> <span class="p">{</span>
     <span class="n">DataCollectorSetName</span> <span class="p">=</span> <span class="s1">&#39;Hyper-V&#39;</span>
     <span class="n">Ensure</span> <span class="p">=</span> <span class="s1">&#39;Present&#39;</span>
     <span class="n">XmlTemplatePath</span> <span class="p">=</span> <span class="s1">&#39;C:\PerfLogs\Templates\HyperV.xml&#39;</span>
 <span class="p">}</span> 
-</code></pre></div><p>Instead of creating everything by hand, we are going to leverage the DSC Resource Designer Tool created by the PowerShell team. If you are running WMF 5.0, you can leverage PowerShellGet to download and install the xDSCResourceDesigner module from the PowerShell Gallery:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Find-Module</span> <span class="n">-Name</span> <span class="n">xDSCResourceDesigner</span> <span class="p">|</span> <span class="nb">Install-Module</span> <span class="n">-Force</span>
-</code></pre></div><p>If you are running PowerShell 4.0, which is the minimum version required for authoring DSC configurations and resources), you can download the latest version from the <a href="https://github.com/PowerShell/xDSCResourceDesigner">xDSCResourceDesigner repository</a> on GitHub.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Instead of creating everything by hand, we are going to leverage the DSC Resource Designer Tool created by the PowerShell team. If you are running WMF 5.0, you can leverage PowerShellGet to download and install the xDSCResourceDesigner module from the PowerShell Gallery:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Find-Module</span> <span class="n">-Name</span> <span class="n">xDSCResourceDesigner</span> <span class="p">|</span> <span class="nb">Install-Module</span> <span class="n">-Force</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>If you are running PowerShell 4.0, which is the minimum version required for authoring DSC configurations and resources), you can download the latest version from the <a href="https://github.com/PowerShell/xDSCResourceDesigner">xDSCResourceDesigner repository</a> on GitHub.</p>
 <p>When the module is installed, we can list the available commands using Get-Command:</p>
 <p><img src="/images/dscrescreate12.png" alt=""></p>
 <p>In our scenario, we will use New-xDscResourceProperty to define the properties we need (DataCollectorSetName, Ensure, and  XmlTemplatePath). And then, we will use New-xDscResource to create the resource.</p>
 <p>Before we do that we will need to create a PowerShell module to create the new resource into.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">New-Item</span> <span class="n">-Path</span> <span class="s2">&#34;$env:ProgramFiles\WindowsPowerShell\Modules&#34;</span> <span class="n">-Name</span> <span class="n">PSCommunityDSCResources</span> <span class="n">-ItemType</span> <span class="n">Directory</span>
-</code></pre></div><p>The minimum requirement for the new module is having a module manifest, as the version number specified in the manifest also will be the version of the DSC resource.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">New-ModuleManifest</span> <span class="n">-Path</span> <span class="s2">&#34;$env:ProgramFiles\WindowsPowerShell\Modules\PSCommunityDSCResources\PSCommunityDSCResources.psd1&#34;</span> <span class="n">-Guid</span> <span class="p">((</span><span class="no">[guid]</span><span class="p">::</span><span class="n">NewGuid</span><span class="p">()).</span><span class="n">Guid</span><span class="p">)</span> <span class="n">-Author</span> <span class="s1">&#39;Jan Egil Ring&#39;</span> <span class="n">-CompanyName</span> <span class="n">PSCommunity</span> <span class="n">-ModuleVersion</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">-Description</span> <span class="s1">&#39;Example DSC Resource Module for PSCommunity&#39;</span> <span class="n">-PowerShellVersion</span> <span class="n">4</span><span class="p">.</span><span class="n">0</span> <span class="n">-FunctionsToExport</span> <span class="s1">&#39;*.TargetResource&#39;</span>
-</code></pre></div><p>Next, we can go ahead and create the DSC resource by using the two mentioned commands from the xDSCResourceDesigner module:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># Define DSC resource properties </span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">New-Item</span> <span class="n">-Path</span> <span class="s2">&#34;$env:ProgramFiles\WindowsPowerShell\Modules&#34;</span> <span class="n">-Name</span> <span class="n">PSCommunityDSCResources</span> <span class="n">-ItemType</span> <span class="n">Directory</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The minimum requirement for the new module is having a module manifest, as the version number specified in the manifest also will be the version of the DSC resource.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">New-ModuleManifest</span> <span class="n">-Path</span> <span class="s2">&#34;$env:ProgramFiles\WindowsPowerShell\Modules\PSCommunityDSCResources\PSCommunityDSCResources.psd1&#34;</span> <span class="n">-Guid</span> <span class="p">((</span><span class="no">[guid]</span><span class="p">::</span><span class="n">NewGuid</span><span class="p">()).</span><span class="n">Guid</span><span class="p">)</span> <span class="n">-Author</span> <span class="s1">&#39;Jan Egil Ring&#39;</span> <span class="n">-CompanyName</span> <span class="n">PSCommunity</span> <span class="n">-ModuleVersion</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">-Description</span> <span class="s1">&#39;Example DSC Resource Module for PSCommunity&#39;</span> <span class="n">-PowerShellVersion</span> <span class="n">4</span><span class="p">.</span><span class="n">0</span> <span class="n">-FunctionsToExport</span> <span class="s1">&#39;*.TargetResource&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Next, we can go ahead and create the DSC resource by using the two mentioned commands from the xDSCResourceDesigner module:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># Define DSC resource properties </span>
 
 <span class="nv">$DataCollectorSetName</span> <span class="p">=</span> <span class="nb">New-xDscResourceProperty</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Name</span> <span class="n">DataCollectorSetName</span> <span class="n">-Attribute</span> <span class="n">Key</span>
 <span class="nv">$Ensure</span> <span class="p">=</span> <span class="nb">New-xDscResourceProperty</span> <span class="n">-Name</span> <span class="n">Ensure</span> <span class="n">-Type</span> <span class="n">String</span> <span class="n">-Attribute</span> <span class="nb">Write </span><span class="n">-ValidateSet</span> <span class="s2">&#34;Present&#34;</span><span class="p">,</span> <span class="s2">&#34;Absent&#34;</span>
@@ -295,14 +348,36 @@ if (!doNotTrack) {
 
 <span class="c"># Create the DSC resource </span>
 <span class="nb">New-xDscResource</span> <span class="n">-Name</span> <span class="n">Logman</span> <span class="n">-Property</span> <span class="nv">$DataCollectorSet</span><span class="p">,</span><span class="nv">$Ensure</span><span class="p">,</span><span class="nv">$XmlTemplatePath</span> <span class="n">-Path</span> <span class="s2">&#34;$env:ProgramFiles\WindowsPowerShell\Modules\PSCommunityDSCResources&#34;</span> <span class="n">-ClassVersion</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">-FriendlyName</span> <span class="n">Logman</span> <span class="err">–</span><span class="n">Force</span>
-</code></pre></div><p>We should now have the following file and folder structure in the module folder:</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>We should now have the following file and folder structure in the module folder:</p>
 <p><img src="/images/dscrescreate13.png" alt=""></p>
 <p>The Logman.schema.mof file defines the 3 parameters we defined when creating the resource, and no further changes to this file is required.</p>
 <p>The Logman.psm1 file contains a ready-to-use template for the 3 required PowerShell functions Get-, Set-, and Test-TargetResource.</p>
 <p>You can see the complete template file in the middle of <a href="http://blogs.msdn.com/b/powershell/archive/2013/11/19/resource-designer-tool-a-walkthrough-writing-a-dsc-resource.aspx">this article</a> on the PowerShell Team blog, where you also can find other details about using the xDSCResourceDesigner module.</p>
 <p>Our task is now to edit the three functions in the Logman.psm1 file so they perform the required tasks.</p>
 <p>Let us start with Get-TargetResource, which should return a hash table containing the three properties for our resource. Since logman is a text-based command-line tool, we will need to parse the information we are interested in. In this scenario we want the name of all Data Collector Sets, and this use Select-String and the –replace operator to extract this information. If the query contains the value of the $DataCollectorSetName variable, we will set the value of $Ensure to $true. We then create a hash table containing the 3 properties, which is then returned as output from the function:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$logmanquery</span> <span class="p">=</span> <span class="p">(</span><span class="n">logman</span><span class="p">.</span><span class="n">exe</span> <span class="n">query</span> <span class="nv">$DataCollectorSetName</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="n">-Pattern</span> <span class="n">Name</span><span class="p">)</span> <span class="o">-replace</span> <span class="s1">&#39;Name:                 &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$logmanquery</span> <span class="p">=</span> <span class="p">(</span><span class="n">logman</span><span class="p">.</span><span class="n">exe</span> <span class="n">query</span> <span class="nv">$DataCollectorSetName</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="n">-Pattern</span> <span class="n">Name</span><span class="p">)</span> <span class="o">-replace</span> <span class="s1">&#39;Name:                 &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
 <span class="k">if</span> <span class="p">(</span><span class="nv">$logmanquery</span> <span class="o">-contains</span> <span class="nv">$DataCollectorSetName</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="nv">$Ensure</span> <span class="p">=</span> <span class="nv">$true</span>
@@ -318,9 +393,33 @@ if (!doNotTrack) {
 <span class="n">XmlTemplatePath</span>      <span class="p">=</span> <span class="nv">$XmlTemplatePath</span>
 <span class="p">}</span>
 <span class="nv">$returnValue</span>
-</code></pre></div><p>Note that we do not calculate or gather the value of $XmlTemplatePath, we simply use the value which is specified by the DSC configuration author.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Note that we do not calculate or gather the value of $XmlTemplatePath, we simply use the value which is specified by the DSC configuration author.</p>
 <p>Next is Set-TargetResource; this function should contain the necessary logic to put the target resource (in our case a Data Collector Set) into the desired state. It should not return any output, but Debug and/or Verbose messages is recommended in order to make it easier to see what is happening during a consistency check. Since we decided to implement the Ensure property, we will also need to create the necessary logic based on whether the value of Ensure is Present or Absent:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">if</span><span class="p">(</span> <span class="nv">$Ensure</span> <span class="o">-eq</span> <span class="s1">&#39;Present&#39;</span> <span class="p">)</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">if</span><span class="p">(</span> <span class="nv">$Ensure</span> <span class="o">-eq</span> <span class="s1">&#39;Present&#39;</span> <span class="p">)</span>
   <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nb">Test-Path</span> <span class="n">-Path</span> <span class="nv">$XmlTemplatePath</span><span class="p">)</span>
     <span class="p">{</span>
@@ -338,8 +437,43 @@ if (!doNotTrack) {
     <span class="nb">Write-Verbose</span> <span class="n">-Message</span> <span class="s2">&#34;Removing logman Data Collector Set $DataCollectorSetName&#34;</span>
     <span class="nv">$null</span> <span class="p">=</span> <span class="n">logman</span><span class="p">.</span><span class="n">exe</span> <span class="n">delete</span> <span class="nv">$DataCollectorSetName</span>
   <span class="p">}</span>
-</code></pre></div><p>Last is Test-TargetResource which should return a Boolean $true or $false. We reuse the same logman query as used in Get-TargetResource and returns the appropriate the Boolean based on the value of $Ensure and whether the Data Collector Set exists or not:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$logmanquery</span> <span class="p">=</span> <span class="p">(</span><span class="n">logman</span><span class="p">.</span><span class="n">exe</span> <span class="n">query</span> <span class="nv">$DataCollectorSetName</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="n">-Pattern</span> <span class="n">Name</span><span class="p">)</span> <span class="o">-replace</span> <span class="s1">&#39;Name:                 &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Last is Test-TargetResource which should return a Boolean $true or $false. We reuse the same logman query as used in Get-TargetResource and returns the appropriate the Boolean based on the value of $Ensure and whether the Data Collector Set exists or not:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$logmanquery</span> <span class="p">=</span> <span class="p">(</span><span class="n">logman</span><span class="p">.</span><span class="n">exe</span> <span class="n">query</span> <span class="nv">$DataCollectorSetName</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="n">-Pattern</span> <span class="n">Name</span><span class="p">)</span> <span class="o">-replace</span> <span class="s1">&#39;Name:                 &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$logmanquery</span> <span class="o">-contains</span> <span class="nv">$DataCollectorSetName</span><span class="p">)</span>
   <span class="p">{</span>
@@ -368,7 +502,9 @@ if (!doNotTrack) {
       <span class="k">return</span> <span class="nv">$true</span>
     <span class="p">}</span>
   <span class="p">}</span>
-</code></pre></div><p>Due to the implementation of Ensure, the code might be a bit more complicated than necessary. However, this shouldn`t be too hard if you have some experience with scripting constructs in PowerShell.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Due to the implementation of Ensure, the code might be a bit more complicated than necessary. However, this shouldn`t be too hard if you have some experience with scripting constructs in PowerShell.</p>
 <p>At this point, we are ready to test our new resource. By running Get-DscResource we can see whether it is registered properly as a valid resource. Highlighted in the following screenshot, it looks fine:</p>
 <p><img src="/images/dscrescreate14.png" alt=""></p>
 <p>Let’s start by creating a new configuration. Since this is a custom DSC resource, we need to use Import-DscResource to import it in order for the DSC engine to see it.</p>
@@ -376,7 +512,24 @@ if (!doNotTrack) {
 <p><img src="/images/dscrescreate15.png" alt=""></p>
 <p>In the above example, Ctrl+Space is used to get IntelliSense for valid properties. Note that the PsDscRunAsCredential property is only available in PowerShell 5.0 and later.</p>
 <p>Here is a complete example of using the new resource:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Configuration</span> <span class="n">LogmanHyperV</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Configuration</span> <span class="n">LogmanHyperV</span> <span class="p">{</span>
 	<span class="nb">Import-DscResource</span> <span class="n">-ModuleName</span> <span class="n">PSCommunityDSCResources</span>
     <span class="n">node</span> <span class="n">localhost</span> <span class="p">{</span>
         <span class="n">Logman</span> <span class="n">Hyper-V</span> <span class="p">{</span>
@@ -389,7 +542,9 @@ if (!doNotTrack) {
 
 <span class="n">LogmanHyperV</span> <span class="n">-OutputPath</span> <span class="n">c:</span><span class="p">\</span><span class="n">temp</span> 
 <span class="nb">Start-DscConfiguration</span> <span class="n">-ComputerName</span> <span class="n">localhost</span> <span class="n">-Path</span> <span class="n">C:</span><span class="p">\</span><span class="n">temp</span> <span class="n">-Wait</span> <span class="n">-Verbose</span>
-</code></pre></div><p>After compiling it to a MOF-file and pushing it to the target node using Start-DscConfiguration, we can see the Verbose messages we added to the resource:</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>After compiling it to a MOF-file and pushing it to the target node using Start-DscConfiguration, we can see the Verbose messages we added to the resource:</p>
 <p><img src="/images/dscrescreatefinal9.png" alt=""></p>
 <p>We could open Performance Monitor to see if the Data Collector Set is present, but it’s also possible to simply run logman to verify:</p>
 <p><img src="/images/dscrescreatefinal8.png" alt=""></p>
@@ -411,12 +566,23 @@ if (!doNotTrack) {
 <h3 id="creating-the-logman-dsc-resource-as-a-class-based-resource">Creating the Logman DSC resource as a class-based resource</h3>
 <p>In PowerShell 5.0, the process of creating custom DSC resources is drastically simplified due to the use of classes. This means that we no longer need to create a .schema.mof file. The folder structure is also simplified.</p>
 <p>Now we can create the PowerShell module for the new DSC resource in 3 lines:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">New-Item</span> <span class="n">-Path</span> <span class="s2">&#34;$env:ProgramFiles\WindowsPowerShell\Modules&#34;</span> <span class="n">-Name</span> <span class="n">PSCommunityDSCClassBasedResources</span> <span class="n">-ItemType</span> <span class="n">Directory</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">New-Item</span> <span class="n">-Path</span> <span class="s2">&#34;$env:ProgramFiles\WindowsPowerShell\Modules&#34;</span> <span class="n">-Name</span> <span class="n">PSCommunityDSCClassBasedResources</span> <span class="n">-ItemType</span> <span class="n">Directory</span>
 
 <span class="nb">New-ModuleManifest</span> <span class="n">-Path</span> <span class="s2">&#34;$env:ProgramFiles\WindowsPowerShell\Modules\PSCommunityDSCClassBasedResources\PSCommunityDSCClassBasedResources.psd1&#34;</span> <span class="n">-Guid</span> <span class="p">(</span><span class="nb">New-Guid</span><span class="p">).</span><span class="n">Guid</span> <span class="n">-Author</span> <span class="s1">&#39;Jan Egil Ring&#39;</span> <span class="n">-CompanyName</span> <span class="n">PSCommunity</span> <span class="n">-ModuleVersion</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">-Description</span> <span class="s1">&#39;Example class based DSC Resource module for PSCommunity&#39;</span> <span class="n">-PowerShellVersion</span> <span class="n">5</span><span class="p">.</span><span class="n">0</span> <span class="n">-DscResourcesToExport</span> <span class="p">*</span> <span class="n">-RootModule</span> <span class="n">PSCommunityDSCClassBasedResources</span><span class="p">.</span><span class="n">psm1</span>
 
 <span class="nb">New-Item</span> <span class="n">-Path</span> <span class="s2">&#34;$env:ProgramFiles\WindowsPowerShell\Modules\PSCommunityDSCClassBasedResources&#34;</span> <span class="n">-Name</span> <span class="n">PSCommunityDSCClassBasedResources</span><span class="p">.</span><span class="n">psm1</span> <span class="n">-ItemType</span> <span class="n">File</span>
-</code></pre></div><p>This gives us the following file and folder structure:</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>This gives us the following file and folder structure:</p>
 <p><img src="/images/dscrescreatefinal2.png" alt=""></p>
 <p>In the .psm1 file we define a new class using the class keyword and DscResource declaration introduced in PowerShell 5.0. We then define the properties we previously had to declare in a separate schema.mof file directly inside the new class. Get/Set/Test-TargetResource is replaced by class methods:</p>
 <p><img src="/images/dscrescreatefinal1.png" alt=""></p>
@@ -424,14 +590,59 @@ if (!doNotTrack) {
 <p>In class-based resources, we refer to the current instance of a class by using the $this variable. If we need to reference a parameter supplied to the Get/Set/Test methods, we will need to reference them using $this.variablename, not just $variablename. That is the most important thing to edit when copying code from legacy DSC resources. Here is an example where for example $Ensure is changed to $this.Ensure:</p>
 <p><img src="/images/dscrescreatefinal.png" alt=""></p>
 <p>The rewritten class-based version of the Logman DSC resource is available in <a href="https://github.com/janegilring/PSCommunity/blob/master/DSC/PSCommunityDSCClassBasedResources/PSCommunityDSCClassBasedResources.psm1">this repository</a> on GitHub, as well as on the <a href="https://www.powershellgallery.com/packages/Logman/">PowerShell Gallery</a>. To install the module from the PowerShell Gallery, use Install-Module:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">Logman</span>
-</code></pre></div><p>You can find more details about class based resources in the article <a href="https://technet.microsoft.com/en-us/library/dn948461.aspx">Writing a custom DSC resource with PowerShell classes</a> on Microsoft TechNet.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">Logman</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>You can find more details about class based resources in the article <a href="https://technet.microsoft.com/en-us/library/dn948461.aspx">Writing a custom DSC resource with PowerShell classes</a> on Microsoft TechNet.</p>
 <h3 id="summary">Summary</h3>
 <p>By leveraging the new resource we have created, it should be an easy task to establish baselines for collecting performance data.</p>
 <p>Actions in the Data Collector Set’s Data Manager makes it possible to automatically purge and upload log files to a central UNC path.</p>
 <p>It is also possible to automate analysis of the centrally uploaded log files by using the PAL (Performance Analysis of Logs) tool. This tool also provides many templates for monitoring specific server roles and products such as Hyper-V and VMware.</p>
 <p>This concludes our walkthrough on how to create a simple DSC resource. We have looked at how to accomplish the task using both the legacy method in PowerShell 4.0, as well as the new and simplified class-based method introduced in PowerShell 5.0.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2015\/07\/02\/creating-a-simple-dsc-resource\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2015\/07\/02\/creating-a-simple-dsc-resource\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2015\/07\/02\/creating-a-simple-dsc-resource\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2015\/07\/02\/creating-a-simple-dsc-resource\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
 </div>
+          </div>
         </article>
         
         
@@ -461,86 +672,6 @@ if (!doNotTrack) {
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

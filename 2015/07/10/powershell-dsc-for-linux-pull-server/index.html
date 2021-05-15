@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2015-07-10T16:00:17+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -237,9 +245,33 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>Initial release of PowerShell DSC for Linux had one big gap: it supported only pushing the configuration to the node. And even though this mode is good enough for demos or basic proof of concept, it doesn’t seem like a proper solution for production environment. The first official version of PowerShell DSC for Linux supports both modes of configuration delivery–Push and Pull. In this part of the series, we will take a look at setting up Linux to pull configuration from single and multiple pull servers.</p>
+          <div class="content">
+            <p>Initial release of PowerShell DSC for Linux had one big gap: it supported only pushing the configuration to the node. And even though this mode is good enough for demos or basic proof of concept, it doesn’t seem like a proper solution for production environment. The first official version of PowerShell DSC for Linux supports both modes of configuration delivery–Push and Pull. In this part of the series, we will take a look at setting up Linux to pull configuration from single and multiple pull servers.</p>
 <p>When we author DSC configuration for Linux, we can use both WMF4 and WMF5. Same applies to meta-configurations used to set up Local Configuration Manager (LCM) settings. In both versions we have to set LCM <em>RefreshMode</em> to <em>Pull</em> and define/list download managers. First, we will take a look at configuration for LCM defined using WMF4 syntax:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Configuration</span> <span class="n">LinuxPull</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Configuration</span> <span class="n">LinuxPull</span> <span class="p">{</span>
     <span class="k">param</span> <span class="p">(</span>
         <span class="no">[String]</span><span class="nv">$ComputerName</span><span class="p">,</span>
         <span class="no">[guid]</span><span class="nv">$Id</span>
@@ -258,8 +290,31 @@ if (!doNotTrack) {
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>Configuration using WMF5 (based on <a href="http://blogs.msdn.com/b/powershell/archive/2015/04/29/windows-management-framework-5-0-preview-april-2015-is-now-available.aspx" target="_blank">April 2015 preview</a>) is slightly different mainly because of separation of global settings and configuration for download managers and attribute that we need to apply to the configuration in order to distinguish it from “normal” configuration:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">[</span><span class="n">DSCLocalConfigurationManager</span><span class="p">()]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Configuration using WMF5 (based on <a href="http://blogs.msdn.com/b/powershell/archive/2015/04/29/windows-management-framework-5-0-preview-april-2015-is-now-available.aspx" target="_blank">April 2015 preview</a>) is slightly different mainly because of separation of global settings and configuration for download managers and attribute that we need to apply to the configuration in order to distinguish it from “normal” configuration:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">[</span><span class="n">DSCLocalConfigurationManager</span><span class="p">()]</span>
 <span class="n">configuration</span> <span class="n">LinuxPullv5</span> <span class="p">{</span>
     <span class="k">param</span> <span class="p">(</span>
         <span class="no">[String]</span><span class="nv">$ComputerName</span><span class="p">,</span>
@@ -276,8 +331,32 @@ if (!doNotTrack) {
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>As a next step, we have to generate MOF document for our node and save it to the correct location together with matching checksum file. For testing purposes we will use <em>hello world</em> configuration to avoid any kind of issues with configuration itself:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Configuration</span> <span class="n">TestPull</span> <span class="p">{</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>As a next step, we have to generate MOF document for our node and save it to the correct location together with matching checksum file. For testing purposes we will use <em>hello world</em> configuration to avoid any kind of issues with configuration itself:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Configuration</span> <span class="n">TestPull</span> <span class="p">{</span>
     <span class="k">param</span> <span class="p">(</span>
         <span class="no">[String]</span><span class="nv">$ComputerName</span>
     <span class="p">)</span>
@@ -295,8 +374,27 @@ if (!doNotTrack) {
 <span class="nb">Set-DscLocalConfigurationManager</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">LinuxPullv5</span> <span class="n">-CimSession</span> <span class="nv">$linuxCim</span> <span class="n">-Verbose</span>
 <span class="nb">Update-DscConfiguration</span> <span class="n">-CimSession</span> <span class="nv">$linuxCim</span> <span class="n">-Wait</span>
 <span class="nb">cURL </span><span class="n">failed</span> <span class="n">to</span> <span class="n">perform</span> <span class="n">on</span> <span class="n">this</span> <span class="n">base</span> <span class="n">url</span><span class="err">:</span> <span class="n">pull</span><span class="p">.</span><span class="n">monad</span><span class="p">.</span><span class="n">net</span> <span class="n">with</span> <span class="n">this</span> <span class="n">error</span> <span class="n">message</span><span class="err">:</span> <span class="n">Peer</span> <span class="n">certificate</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">authenticated</span> <span class="n">with</span> <span class="n">given</span> <span class="n">CA</span> <span class="n">certificates</span><span class="p">.</span>
-</code></pre></div><p>The result we get should not be too surprising for anybody who worked with Pull servers. We told our Linux node to talk to Pull server using HTTPS. The problem is that we didn’t do anything to make sure that Linux trusts the certificate on our Pull server. If nodes are only Windows and domain-joined that can be handled easily with group policies. Release notes for PowerShell DSC for Linux suggest to walk around this problem by forcing cURL to trust our certificate. What I would recommend instead is to configure Linux to trust our Enterprise CA (I’m making assumption that you already use it for certificates on Pull servers). It gives us extra advantage that if we ever decide to change the Pull server, or use more than one, we don’t have to repeat all the steps necessary to convince cURL to trust it. I suspect procedure may differ between distributions; the one I followed is for CentOS (assuming <em>monad-ca-ca.cer</em> is locally saved certificate file for our enterprise CA):</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$certFile</span> <span class="p">=</span> <span class="p">@{</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The result we get should not be too surprising for anybody who worked with Pull servers. We told our Linux node to talk to Pull server using HTTPS. The problem is that we didn’t do anything to make sure that Linux trusts the certificate on our Pull server. If nodes are only Windows and domain-joined that can be handled easily with group policies. Release notes for PowerShell DSC for Linux suggest to walk around this problem by forcing cURL to trust our certificate. What I would recommend instead is to configure Linux to trust our Enterprise CA (I’m making assumption that you already use it for certificates on Pull servers). It gives us extra advantage that if we ever decide to change the Pull server, or use more than one, we don’t have to repeat all the steps necessary to convince cURL to trust it. I suspect procedure may differ between distributions; the one I followed is for CentOS (assuming <em>monad-ca-ca.cer</em> is locally saved certificate file for our enterprise CA):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$certFile</span> <span class="p">=</span> <span class="p">@{</span>
     <span class="n">LocalFile</span> <span class="p">=</span> <span class="s1">&#39;.\monad-ca-ca.cer&#39;</span> 
     <span class="n">RemotePath</span> <span class="p">=</span> <span class="s1">&#39;/etc/pki/ca-trust/source/anchors/&#39;</span> 
     <span class="n">Credential</span> <span class="p">=</span> <span class="nv">$root</span> 
@@ -309,13 +407,46 @@ if (!doNotTrack) {
 <span class="nb">Invoke-SSHCommand</span> <span class="n">-Command</span> <span class="s1">&#39;update-ca-trust extract&#39;</span>
 <span class="nb">Invoke-SSHCommand</span> <span class="n">-Command</span> <span class="s1">&#39;/opt/omi/bin/ConsistencyInvoker&#39;</span>
 <span class="nb">Invoke-SSHCommand</span> <span class="n">-Command</span> <span class="s1">&#39;cat /tmp/pull&#39;</span>
-</code></pre></div><p><strong>Note</strong>: I have used <a href="https://github.com/darkoperator/Posh-SSH" target="_blank">Posh-SSH</a> module to copy files/invoke commands, you can read more about it <a href="/2014/07/03/posh-ssh-open-source-ssh-powershell-module/" target="_blank">here</a>.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Note</strong>: I have used <a href="https://github.com/darkoperator/Posh-SSH" target="_blank">Posh-SSH</a> module to copy files/invoke commands, you can read more about it <a href="/2014/07/03/posh-ssh-open-source-ssh-powershell-module/" target="_blank">here</a>.</p>
 <p>If our certificate was added to ca-trust we should be able to see content of our <em>hello world</em> file. If that didn’t help reading logs and observing behavior of omiserver run interactively may give us clues why it still fails.</p>
 <p>I’ve mentioned using more than one Pull server few times already. There is very good reason for that: PowerShell DSC for Linux not only supports Pull server, it also supports partial configurations. You can read more about partial configurations in one of the previous <a href="/2014/10/02/partial-dsc-configurations-in-windows-management-framework-wmf-5-0/" target="_blank">articles written by Ravi</a>. Long story short: partial configurations enable scenarios where separation of roles and taking pieces of configuration from different Pull servers (potentially owned by different teams) is necessary. The way partial configuration work evolves: when I tried to apply patterns from Ravi’s post with current version it failed. The procedure I had to follow:</p>
 <ul>
 <li>create configuration that contains two Pull servers and two partial configurations</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">[</span><span class="n">DSCLocalConfigurationManager</span><span class="p">()]</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">[</span><span class="n">DSCLocalConfigurationManager</span><span class="p">()]</span>
 <span class="n">configuration</span> <span class="n">PartialConfiguration</span> <span class="p">{</span>
     <span class="k">param</span> <span class="p">(</span>
         <span class="no">[String]</span><span class="nv">$ComputerName</span><span class="p">,</span>
@@ -342,11 +473,46 @@ if (!doNotTrack) {
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><ul>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>create two configurations with the names matching LCM partial configurations and drop generated MOFs to Pull servers (I didn’t change file’s’ names)</li>
 <li>generate checksums for both files</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Configuration</span> <span class="n">base</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Configuration</span> <span class="n">base</span> <span class="p">{</span>
     <span class="k">param</span> <span class="p">(</span>
         <span class="no">[String]</span><span class="nv">$ComputerName</span>
     <span class="p">)</span>
@@ -375,11 +541,36 @@ if (!doNotTrack) {
 <span class="p">}</span>
 <span class="n">details</span> <span class="n">-ComputerName</span> <span class="nv">$id</span><span class="p">.</span><span class="n">Guid</span> <span class="n">-OutputPath</span> <span class="nv">$partialConfig</span> 
 <span class="nb">New-DscChecksum</span> <span class="n">-Path</span> <span class="nv">$partialConfig</span> <span class="n">-Force</span>
-</code></pre></div><ul>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>configure LCM with previously created meta MOF document</li>
 </ul>
 <p>I was using April preview of WMF5, so before doing last step I had to modify generated MOF. My client was saving partial configurations as an array, LCM was expecting singleton. Here is simple function I’ve used to clean up MOF and code I’ve used to generate, update and implement it:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Update-MetaDocument</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Update-MetaDocument</span> <span class="p">{</span>
     <span class="k">param</span> <span class="p">(</span>
         <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span>
             <span class="k">ValueFromPipeline</span><span class="p">,</span>
@@ -398,15 +589,66 @@ if (!doNotTrack) {
 <span class="p">}</span>
 <span class="n">PartialConfiguration</span> <span class="n">-ComputerName</span> <span class="n">PSMag</span><span class="p">.</span><span class="n">monad</span><span class="p">.</span><span class="n">net</span> <span class="n">-Id</span> <span class="nv">$Id</span> <span class="p">|</span> <span class="nb">Update-MetaDocument</span>
 <span class="nb">Set-DscLocalConfigurationManager</span> <span class="n">-CimSession</span> <span class="nv">$linuxCim</span> <span class="n">-Path</span> <span class="p">.\</span><span class="n">PartialConfiguration</span>
-</code></pre></div><p>Note: if you are using February preview of WMF5 cleaning up MOF document shouldn’t be necessary. Schema for meta-configuration of LCM changed between these two versions and PowerShell DSC for Linux was is currently based on earlier version.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Note: if you are using February preview of WMF5 cleaning up MOF document shouldn’t be necessary. Schema for meta-configuration of LCM changed between these two versions and PowerShell DSC for Linux was is currently based on earlier version.</p>
 <p>After completing these steps and updating configuration on the Linux node I could see both files on the disk with expected content:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">[</span><span class="n">root</span><span class="nv">@PSMag</span> <span class="p">~]</span><span class="c"># ConsistencyInvoker</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">[</span><span class="n">root</span><span class="nv">@PSMag</span> <span class="p">~]</span><span class="c"># ConsistencyInvoker</span>
 <span class="p">[</span><span class="n">root</span><span class="nv">@PSMag</span> <span class="p">~]</span><span class="c"># cat /tmp/pull</span>
 <span class="n">I</span><span class="s1">&#39;m from Pull server!
 </span><span class="s1">[root@PSMag ~]# cat /tmp/partial
 </span><span class="s1">I&#39;</span><span class="n">m</span> <span class="n">just</span> <span class="n">partial</span><span class="p">!</span>
-</code></pre></div><p>As you can see PowerShell DSC for Linux matured a lot since its initial release. I must also say that team is more responsive at the moment. I reported an <a href="https://github.com/MSFTOSSMgmt/WPSDSCLinux/issues/18" target="_blank">issue</a> with the current version (related to Polish characters in the MOF document and using UTF8-encoded MOF) and I was able to apply a patch that fixes this problem few days later. You can find this patch in a <a href="" target="_blank">separate branch</a> on GitHub repo for PowerShell DSC for Linux. For me that change is as important as all the features added in the current release: being able to report problems and receive fixes for them between releases is very important for any early adopter. I would love to be able to contribute to the project and there is opportunity for that too: for now it’s just resources written in native code (you can read about it in <a href="https://github.com/MSFTOSSMgmt/WPSDSCLinux/tree/Fix-UnicodeStrings" target="_blank">Linux DSC announcement on PowerShell team blog</a>), but I hope it will extend to Python-based resources and the core product soon. Keeping all that in mind I’m more confident than before that PowerShell DSC for Linux is something we should start to consider as a solution for managing Linux systems.</p>
+</code></pre></td></tr></table>
 </div>
+</div><p>As you can see PowerShell DSC for Linux matured a lot since its initial release. I must also say that team is more responsive at the moment. I reported an <a href="https://github.com/MSFTOSSMgmt/WPSDSCLinux/issues/18" target="_blank">issue</a> with the current version (related to Polish characters in the MOF document and using UTF8-encoded MOF) and I was able to apply a patch that fixes this problem few days later. You can find this patch in a <a href="" target="_blank">separate branch</a> on GitHub repo for PowerShell DSC for Linux. For me that change is as important as all the features added in the current release: being able to report problems and receive fixes for them between releases is very important for any early adopter. I would love to be able to contribute to the project and there is opportunity for that too: for now it’s just resources written in native code (you can read about it in <a href="https://github.com/MSFTOSSMgmt/WPSDSCLinux/tree/Fix-UnicodeStrings" target="_blank">Linux DSC announcement on PowerShell team blog</a>), but I hope it will extend to Python-based resources and the core product soon. Keeping all that in mind I’m more confident than before that PowerShell DSC for Linux is something we should start to consider as a solution for managing Linux systems.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2015\/07\/10\/powershell-dsc-for-linux-pull-server\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2015\/07\/10\/powershell-dsc-for-linux-pull-server\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2015\/07\/10\/powershell-dsc-for-linux-pull-server\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2015\/07\/10\/powershell-dsc-for-linux-pull-server\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
+</div>
+          </div>
         </article>
         
         
@@ -436,86 +678,6 @@ if (!doNotTrack) {
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

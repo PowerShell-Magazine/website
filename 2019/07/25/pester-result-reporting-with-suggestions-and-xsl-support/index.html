@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2019-07-25T16:00:07+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -216,7 +224,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>5 Min To Read
+              <i class="far fa-clock"></i>6 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>25 Jul, 2019
@@ -237,11 +245,70 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>I believe there is no introduction required for pester in PowerShell community. If you have never heard of Pester, <a href="https://github.com/pester/pester/wiki">this</a> is the place to go first.</p>
+          <div class="content">
+            <p>I believe there is no introduction required for pester in PowerShell community. If you have never heard of Pester, <a href="https://github.com/pester/pester/wiki">this</a> is the place to go first.</p>
 <p>This article uses a custom version of Pester which is not an official version yet. This custom version of Pester with these changes is currently available <a href="https://github.com/kvprasoon/Pester/tree/remark">here</a>.</p>
 <p>Pester is used both as an unit testing framework as well as an operational validation tool. In both the use cases, output report plays an important role in presenting the test results. This article is about the output report with and added capability.</p>
 <p>Below is a Pester test script with few tests.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">param</span><span class="p">(</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">param</span><span class="p">(</span>
     <span class="p">[</span><span class="k">Parameter</span><span class="p">(</span><span class="k">Mandatory</span> <span class="p">=</span> <span class="nv">$True</span><span class="p">)]</span>
     <span class="no">[string]</span><span class="nv">$ConfigPath</span>
 <span class="p">)</span>
@@ -295,8 +362,67 @@ if (!doNotTrack) {
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>Data for above test script is shown below.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">{</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Data for above test script is shown below.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">{</span>
     <span class="s2">&#34;service&#34;</span><span class="err">:</span> <span class="p">{</span>
         <span class="s2">&#34;suggestion&#34;</span><span class="err">:</span> <span class="p">{</span>
             <span class="s2">&#34;startmode&#34;</span><span class="err">:</span> <span class="s2">&#34;Open PowerShell as administrator and run &#39;Set-Service -Name {0} -StartType {1}&#39;&#34;</span><span class="p">,</span>
@@ -349,10 +475,19 @@ if (!doNotTrack) {
         <span class="p">]</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>In a nutshell, the above pester test script will test Service status, file system permissions, and firewall rules by reading the data from the JSON configuration file.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>In a nutshell, the above pester test script will test Service status, file system permissions, and firewall rules by reading the data from the JSON configuration file.</p>
 <p>You can execute the test as shown below.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Invoke-Pester</span> <span class="n">-Script</span> <span class="p">@{</span><span class="n">Path</span> <span class="p">=</span> <span class="s1">&#39;C:\temp\OpsValidation.tests.ps1&#39;</span> <span class="p">;</span> <span class="n">Parameters</span> <span class="p">=</span> <span class="p">@{</span><span class="n">ConfigPath</span> <span class="p">=</span> <span class="s1">&#39;c:\temp\OpsValidationConfig.json&#39;</span><span class="p">}}</span>
-</code></pre></div><p>This will show the test result in the console with summary.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Invoke-Pester</span> <span class="n">-Script</span> <span class="p">@{</span><span class="n">Path</span> <span class="p">=</span> <span class="s1">&#39;C:\temp\OpsValidation.tests.ps1&#39;</span> <span class="p">;</span> <span class="n">Parameters</span> <span class="p">=</span> <span class="p">@{</span><span class="n">ConfigPath</span> <span class="p">=</span> <span class="s1">&#39;c:\temp\OpsValidationConfig.json&#39;</span><span class="p">}}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This will show the test result in the console with summary.</p>
 <p>
 <link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
 <div class="box" >
@@ -425,22 +560,45 @@ if (!doNotTrack) {
 </div>
 </p>
 <p>When comes to the reporting side, Invoke-Pester has parameters which will create a [nunit][1] based XML test result file. Nunit XML reports are mostly rendered using a report reader or by converting it to html format. There are many tools in the market that convert Nunit XML to nice UI reports. [Reportunit][2] (now [extent-reports][3]) is my favorite. But this tool uses jquery and CSS which are referenced online, hence made me to think about adding this capability to Pester. Since the report is in XML format, my choice was to go with [XSLT][4]. In short, <em>XSL is a steroid for XML</em>. This article doesn’t cover anything on how it transforms XML to HTML. [Here][5] is a simple example for creating an XSL targeting an XML. Now we know that XSL can transform an XML to HTML but how to add this in the Nunit report generated by Pester. This is done by adding a new parameter to accept the XSL path and putting it as a stylesheet reference in XML generated by pester. I’ve named the parameter as <strong>–XSLPath.</strong> Below is an example execution with the XSL path.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Invoke-Pester</span> <span class="n">-Script</span> <span class="p">@{</span><span class="n">Path</span> <span class="p">=</span> <span class="s1">&#39;C:\temp\OpsValidation.tests.ps1&#39;</span> <span class="p">;</span> <span class="n">Parameters</span> <span class="p">=</span> <span class="p">@{</span><span class="n">ConfigPath</span> <span class="p">=</span> <span class="s1">&#39;c:\temp\OpsValidationConfig.json&#39;</span><span class="p">}}</span> <span class="n">-OutputFile</span> <span class="n">c:</span><span class="p">\</span><span class="n">temp</span><span class="p">\</span><span class="n">OpsValidation</span><span class="p">.</span><span class="n">xml</span> <span class="n">-OutputFormat</span> <span class="n">NUnitXml</span> <span class="n">-XSLPath</span> <span class="n">c:</span><span class="p">\</span><span class="n">temp</span><span class="p">\</span><span class="n">OpsValidation</span><span class="p">.</span><span class="n">xsl</span>
-</code></pre></div><p>Once executed, open the XML report using a web browser to see the magic !</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Invoke-Pester</span> <span class="n">-Script</span> <span class="p">@{</span><span class="n">Path</span> <span class="p">=</span> <span class="s1">&#39;C:\temp\OpsValidation.tests.ps1&#39;</span> <span class="p">;</span> <span class="n">Parameters</span> <span class="p">=</span> <span class="p">@{</span><span class="n">ConfigPath</span> <span class="p">=</span> <span class="s1">&#39;c:\temp\OpsValidationConfig.json&#39;</span><span class="p">}}</span> <span class="n">-OutputFile</span> <span class="n">c:</span><span class="p">\</span><span class="n">temp</span><span class="p">\</span><span class="n">OpsValidation</span><span class="p">.</span><span class="n">xml</span> <span class="n">-OutputFormat</span> <span class="n">NUnitXml</span> <span class="n">-XSLPath</span> <span class="n">c:</span><span class="p">\</span><span class="n">temp</span><span class="p">\</span><span class="n">OpsValidation</span><span class="p">.</span><span class="n">xsl</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Once executed, open the XML report using a web browser to see the magic !</p>
 <p>So far so good! But here comes the interesting part of this article.</p>
 <p>We are now able to have a report in html, hence it is easy to see the test failures (human beings are interested in analyzing failures than success !) in a web browser. How about adding some suggestions/remarks for the end user/support engineers to fix the issue and make the test pass?</p>
 <p>Well then that has to be done for each testcase. Yes for each test cases. This is done by adding a new parameter to the <strong>it</strong> function in Pester.</p>
 <p>Below is an example with the suggestion feature.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">it</span> <span class="s2">&#34;Service BITS status should be Running&#34;</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">it</span> <span class="s2">&#34;Service BITS status should be Running&#34;</span> <span class="p">{</span>
      <span class="nv">$Service</span><span class="p">.</span><span class="n">Status</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">-Be</span> <span class="s2">&#34;Running&#34;</span>
  <span class="p">}</span> <span class="n">-Remark</span> <span class="s2">&#34;Open services.msc and start BITS service&#34;</span>
-</code></pre></div><p>But there is a caveat, we can add a parameter to the It function, but how to add this remark in the report XML. The report XML is in nunit format and it has predefined layout. The test result layout has to be followed in the report and therefore any Nunit report readers can parse the result.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>But there is a caveat, we can add a parameter to the It function, but how to add this remark in the report XML. The report XML is in nunit format and it has predefined layout. The test result layout has to be followed in the report and therefore any Nunit report readers can parse the result.</p>
 <p>Well, Pester report doesn’t use all the attributes of the nunit test result layout and I found the <strong>Label</strong> attribute as a candidate for adding remarks. So with the remark support for testcases, below is the final pester test script.</p>
 <p>Script: <a href="https://gist.github.com/kvprasoon/bec40fa50d6975fcdafa6536b61cf1aa">https://gist.github.com/kvprasoon/bec40fa50d6975fcdafa6536b61cf1aa</a></p>
 <p>Test Configuration: <a href="https://gist.github.com/kvprasoon/2dd5fc64eec0653e4bdde6a18da526ff">https://gist.github.com/kvprasoon/2dd5fc64eec0653e4bdde6a18da526ff</a></p>
 <p>Lets execute and see the report with suggestions.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Invoke-Pester</span> <span class="n">-Script</span> <span class="p">@{</span><span class="n">Path</span> <span class="p">=</span> <span class="s1">&#39;C:\temp\OpsValidation.tests.ps1&#39;</span> <span class="p">;</span> <span class="n">Parameters</span> <span class="p">=</span> <span class="p">@{</span><span class="n">ConfigPath</span> <span class="p">=</span> <span class="s1">&#39;c:\temp\OpsValidationConfig.json&#39;</span><span class="p">}}</span> <span class="n">-OutputFile</span> <span class="n">c:</span><span class="p">\</span><span class="n">temp</span><span class="p">\</span><span class="n">OpsValidation</span><span class="p">.</span><span class="n">xml</span> <span class="n">-OutputFormat</span> <span class="n">NUnitXml</span> <span class="n">-XSLPath</span> <span class="n">c:</span><span class="p">\</span><span class="n">temp</span><span class="p">\</span><span class="n">OpsValidation</span><span class="p">.</span><span class="n">xsl</span>
-</code></pre></div><p>After opening the generated report in a web browser.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Invoke-Pester</span> <span class="n">-Script</span> <span class="p">@{</span><span class="n">Path</span> <span class="p">=</span> <span class="s1">&#39;C:\temp\OpsValidation.tests.ps1&#39;</span> <span class="p">;</span> <span class="n">Parameters</span> <span class="p">=</span> <span class="p">@{</span><span class="n">ConfigPath</span> <span class="p">=</span> <span class="s1">&#39;c:\temp\OpsValidationConfig.json&#39;</span><span class="p">}}</span> <span class="n">-OutputFile</span> <span class="n">c:</span><span class="p">\</span><span class="n">temp</span><span class="p">\</span><span class="n">OpsValidation</span><span class="p">.</span><span class="n">xml</span> <span class="n">-OutputFormat</span> <span class="n">NUnitXml</span> <span class="n">-XSLPath</span> <span class="n">c:</span><span class="p">\</span><span class="n">temp</span><span class="p">\</span><span class="n">OpsValidation</span><span class="p">.</span><span class="n">xsl</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>After opening the generated report in a web browser.</p>
 
 
 <div class="box" >
@@ -453,7 +611,45 @@ if (!doNotTrack) {
 </div>
 
 <p>If you want to explore and see the code changes, Pester with these changes is currently available <a href="https://github.com/kvprasoon/Pester/tree/remark">here</a>.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2019\/07\/25\/pester-result-reporting-with-suggestions-and-xsl-support\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2019\/07\/25\/pester-result-reporting-with-suggestions-and-xsl-support\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2019\/07\/25\/pester-result-reporting-with-suggestions-and-xsl-support\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2019\/07\/25\/pester-result-reporting-with-suggestions-and-xsl-support\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
 </div>
+          </div>
         </article>
         
         
@@ -483,86 +679,6 @@ if (!doNotTrack) {
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

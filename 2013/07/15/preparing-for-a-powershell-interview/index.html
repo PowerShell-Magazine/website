@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2013-07-15T16:00:29+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -234,36 +242,78 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>Recently, I was interviewing candidates for a couple of PowerShell automation vacancies. Being a PowerShell enthusiast, I, naturally, focused on understanding how well these candidates understand PowerShell and how well they can solve some problems on the fly. The idea I had in mind when I started these interviews was to select a couple of them with at least beginner level knowledge of PowerShell.</p>
+          <div class="content">
+            <p>Recently, I was interviewing candidates for a couple of PowerShell automation vacancies. Being a PowerShell enthusiast, I, naturally, focused on understanding how well these candidates understand PowerShell and how well they can solve some problems on the fly. The idea I had in mind when I started these interviews was to select a couple of them with at least beginner level knowledge of PowerShell.</p>
 <p>This post is a compilation of notes I made during these interviews and some more thoughts on how the candidates or aspirants can prepare themselves better to face a PowerShell interview. This is certainly not a post about the questions you can expect in a PowerShell interview and the answers. If you are a PowerShell novice, you may find this post useful in getting started with PowerShell.</p>
 <p>Here is what I had in my notes.</p>
 <h3 id="understand-what-windows-powershell-is"><strong>Understand what Windows PowerShell is!</strong></h3>
 <p>My first question was always <strong>“Tell me, what is Windows PowerShell?”</strong></p>
 <p>PowerShell is not just any other shell. PowerShell is an object-based distributed automation engine, scripting language, and command line shell. I don’t expect a beginner to understand every aspect of what I just mentioned but at the least, I expect a candidate to describe the object-based nature of PowerShell. Saying that “PowerShell is object-based because it uses .NET Framework under the covers” is not a very accurate statement. PowerShell is object-based because it deals with objects and not text. Let me show you an example.</p>
 <p>Here is how I get the size of a folder (including its sub-folders and so on) in a DOS batch script:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">@echo off
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">@echo off
 For /F <span class="s2">&#34;tokens=*&#34;</span> %%a IN <span class="o">(</span><span class="s1">&#39;&#34;dir /s /-c /a | find &#34;bytes&#34; | find /v &#34;free&#34;&#34;&#39;</span><span class="o">)</span> <span class="k">do</span> Set <span class="nv">xsummary</span><span class="o">=</span>%%a
 For /f <span class="s2">&#34;tokens=1,2 delims=)&#34;</span> %%a in <span class="o">(</span><span class="s2">&#34;%xsummary%&#34;</span><span class="o">)</span> <span class="k">do</span> <span class="nb">set</span> <span class="nv">xfiles</span><span class="o">=</span>%%a<span class="p">&amp;</span><span class="nb">set</span> <span class="nv">xsize</span><span class="o">=</span>%%b
 Set <span class="nv">xsize</span><span class="o">=</span>%xsize:bytes<span class="o">=</span>%
 Set <span class="nv">xsize</span><span class="o">=</span>%xsize: <span class="o">=</span>%
 Echo Size is: %xsize% Bytes
-</code></pre></div><p>Do you see the pain? How many of you understand what exactly the batch script is doing?</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Do you see the pain? How many of you understand what exactly the batch script is doing?</p>
 <p>Well, let us see how we do that in PowerShell.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-ChildItem</span> <span class="err">–</span><span class="n">Recurse</span> <span class="p">|</span> <span class="nb">Measure-Object</span> <span class="n">-Property</span> <span class="n">Length</span> <span class="n">-Sum</span>
-</code></pre></div><p>Simple? At least, it looks simple on the surface. This is made possible because PowerShell deals with objects–the self-describing entities. These objects have properties and one such property on a file object is <em>Length</em> that describes the size of the file in bytes. So, when we add up the size of all files in a folder, we get the size of the folder. If you compare this to the DOS batch example, we are not dealing with any temporary variables or text parsing. We are simply piping the output of <em>Get-ChildItem</em> cmdlet to <em>Measure-Object</em> and summing the value of <em>Length</em> property of each object that passes through the pipeline.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-ChildItem</span> <span class="err">–</span><span class="n">Recurse</span> <span class="p">|</span> <span class="nb">Measure-Object</span> <span class="n">-Property</span> <span class="n">Length</span> <span class="n">-Sum</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Simple? At least, it looks simple on the surface. This is made possible because PowerShell deals with objects–the self-describing entities. These objects have properties and one such property on a file object is <em>Length</em> that describes the size of the file in bytes. So, when we add up the size of all files in a folder, we get the size of the folder. If you compare this to the DOS batch example, we are not dealing with any temporary variables or text parsing. We are simply piping the output of <em>Get-ChildItem</em> cmdlet to <em>Measure-Object</em> and summing the value of <em>Length</em> property of each object that passes through the pipeline.</p>
 <p>Now, that is a very simplified version of explaining object-based nature of PowerShell. You can give more such examples as you start using PowerShell.</p>
 <p>Another observation from these interviews was how the candidates answered questions on properties and methods available on objects. The question was like “<strong>get me the value of CPU affinity (without giving the actual property name) of a process</strong>“. How do you do that?</p>
 <p>I have seen quite a few doing the following:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$process</span> <span class="p">=</span> <span class="nb">Get-Process</span> <span class="n">-Name</span> <span class="n">notepad</span>
-</code></pre></div><p>So far so good. And, then, they start doing:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$process</span> <span class="p">=</span> <span class="nb">Get-Process</span> <span class="n">-Name</span> <span class="n">notepad</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>So far so good. And, then, they start doing:</p>
 <p><em>$process.<Tab> <Tab> <Tab> … <Tab></em> until they reach the required property.</p>
 <p>Well, this certainly gets you the property but what if the property is the 99th one in a set of 100 properties? Not scalable, right? This is where knowing how to use the shell helps you. There is a better way to do that in the shell.</p>
 <p>If you know the exact property name:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-Process</span> <span class="n">-Name</span> <span class="n">Notepad</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">ProcessorAffinity</span>
-</code></pre></div><p>Or</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$process</span> <span class="p">=</span> <span class="nb">Get-Process</span> <span class="n">-Name</span> <span class="n">Notepad</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-Process</span> <span class="n">-Name</span> <span class="n">Notepad</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">ProcessorAffinity</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Or</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$process</span> <span class="p">=</span> <span class="nb">Get-Process</span> <span class="n">-Name</span> <span class="n">Notepad</span>
 <span class="nv">$process</span><span class="p">.</span><span class="n">ProcessorAffinity</span>
-</code></pre></div><p>If you don’t know the exact property name, don’t keep using Tab! Instead, discover PowerShell. That is the next thing I want to discuss.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>If you don’t know the exact property name, don’t keep using Tab! Instead, discover PowerShell. That is the next thing I want to discuss.</p>
 <h3 id="learn-to-discover-powershell">Learn to discover PowerShell</h3>
 <p>One of the most important things for a beginner is to understand how to use the following cmdlets:</p>
 <ul>
@@ -273,7 +323,19 @@ Echo Size is: %xsize% Bytes
 </ul>
 <h4 id="get-command">Get-Command</h4>
 <p><em>Get-Command</em> gives a list of all commands available in a PowerShell session. One common observation I made during these interviews was the candidates try a non-existent or incorrect cmdlet name and then keep wondering why that was not working. If we know how to discover PowerShell, we can use the <em>Get-Command</em> cmdlet to test if the command we are trying exists or not. For example:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="n">C:</span><span class="p">\&gt;</span> <span class="nb">Get-Command</span> <span class="n">-Name</span> <span class="nb">Get-ComputerName</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="n">C:</span><span class="p">\&gt;</span> <span class="nb">Get-Command</span> <span class="n">-Name</span> <span class="nb">Get-ComputerName</span>
 <span class="nb">Get-Command</span> <span class="err">:</span> <span class="n">The</span> <span class="n">term</span> <span class="s1">&#39;Get-ComputerName&#39;</span> <span class="n">is</span> <span class="n">not</span> <span class="n">recognized</span> <span class="n">as</span> <span class="n">the</span> <span class="n">name</span> <span class="n">of</span> <span class="n">a</span> <span class="n">cmdlet</span><span class="p">,</span> <span class="k">function</span><span class="p">,</span> <span class="n">script</span> <span class="n">file</span><span class="p">,</span> <span class="n">or</span> <span class="n">operable</span> <span class="n">program</span><span class="p">.</span> <span class="n">Check</span>
 <span class="n">the</span> <span class="n">spelling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">name</span><span class="p">,</span> <span class="n">or</span> <span class="k">if</span> <span class="n">a</span> <span class="n">path</span> <span class="n">was</span> <span class="n">included</span><span class="p">,</span> <span class="n">verify</span> <span class="n">that</span> <span class="n">the</span> <span class="n">path</span> <span class="n">is</span> <span class="n">correct</span> <span class="n">and</span> <span class="k">try</span> <span class="n">again</span><span class="p">.</span>
 <span class="n">At</span> <span class="n">line</span><span class="err">:</span><span class="n">1</span> <span class="n">char</span><span class="err">:</span><span class="n">1</span>
@@ -281,60 +343,162 @@ Echo Size is: %xsize% Bytes
 <span class="p">+</span> <span class="p">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
 <span class="p">+</span> <span class="n">CategoryInfo</span> <span class="err">:</span> <span class="n">ObjectNotFound</span><span class="err">:</span> <span class="p">(</span><span class="nb">Get-ComputerName</span><span class="err">:</span><span class="n">String</span><span class="p">)</span> <span class="p">[</span><span class="nb">Get-Command</span><span class="p">],</span> <span class="n">CommandNotFoundException</span>
 <span class="p">+</span> <span class="n">FullyQualifiedErrorId</span> <span class="err">:</span> <span class="n">CommandNotFoundException</span><span class="p">,</span><span class="n">Microsoft</span><span class="p">.</span><span class="n">PowerShell</span><span class="p">.</span><span class="n">Commands</span><span class="p">.</span><span class="n">GetCommandCommand</span>
-</code></pre></div><p>See that? You can also use <em>Get-Command</em> to get commands with a specific noun or verb or even use wildcards to filter.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-Command</span> <span class="n">-Noun</span> <span class="n">Host</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>See that? You can also use <em>Get-Command</em> to get commands with a specific noun or verb or even use wildcards to filter.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-Command</span> <span class="n">-Noun</span> <span class="n">Host</span>
 <span class="nb">Get-Command</span> <span class="n">-Verb</span> <span class="nb">Write
 </span><span class="nb">Get-Command</span> <span class="n">N</span><span class="p">*</span>
-</code></pre></div><h4 id="get-member">Get-Member</h4>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="get-member">Get-Member</h4>
 <p>In an earlier paragraph, on using the shell, we saw an example on getting specific properties of an object. But, you can do so only if you know the exact property name. How do we discover what properties and methods are available on an object? <em>Get-Member</em> helps here.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-Process</span> <span class="p">|</span> <span class="nb">Get-Member</span>
-</code></pre></div><p>The above command gives all properties, methods, and events of a particular object type. You can filter it further to see the type of member you are interested in.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-Process</span> <span class="p">|</span> <span class="nb">Get-Member</span> <span class="n">-MemberType</span> <span class="n">Method</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-Process</span> <span class="p">|</span> <span class="nb">Get-Member</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The above command gives all properties, methods, and events of a particular object type. You can filter it further to see the type of member you are interested in.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-Process</span> <span class="p">|</span> <span class="nb">Get-Member</span> <span class="n">-MemberType</span> <span class="n">Method</span>
 <span class="nb">Get-Process</span> <span class="p">|</span> <span class="nb">Get-Member</span> <span class="n">-MemberType</span> <span class="n">Property</span>
 <span class="nb">Get-Process</span> <span class="p">|</span> <span class="nb">Get-Member</span> <span class="n">-MemberType</span> <span class="n">Event</span>
-</code></pre></div><h4 id="get-help">Get-Help</h4>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="get-help">Get-Help</h4>
 <p>Another common mistake across the board was the lack of knowledge in using the built-in help. PowerShell built-in cmdlets come with lot of help around how to use the cmdlet. Of course, with PowerShell 3.0 and above, you have to first update this help content using <em>Update-Help</em> cmdlet. When you don’t know the exact syntax of a PowerShell cmdlet, you can always use <em>Get-Help</em> cmdlet. This gives you information about cmdlet parameters, how to use each of those parameters, and provides some examples. When in doubt, you should first check the local help system.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-Help</span> <span class="nb">Get-Command</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-Help</span> <span class="nb">Get-Command</span>
 <span class="nb">Get-Help</span> <span class="nb">Get-Member</span> <span class="n">-Detailed</span>
 <span class="nb">Get-Help</span> <span class="nb">Get-Process</span> <span class="err">–</span><span class="n">Examples</span>
 <span class="nb">Get-Help</span> <span class="nb">Get-Service</span> <span class="err">–</span><span class="k">Parameter</span> <span class="n">InputObject</span>
-</code></pre></div><h3 id="use-the-shell">Use the shell</h3>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="use-the-shell">Use the shell</h3>
 <p>I don’t expect a beginner to have the knowledge of writing scripts and modules. I look for people who know how to use PowerShell as a shell. For this, you must have really used the built-in cmdlets. This includes simple things like listing the services, processes, files, and folders. If you don’t know how to use <em>Get-ChildItem</em> to perform a recursive search for files, I am sure you wouldn’t have even touched the surface of PowerShell. IMHO, you are not even a beginner.</p>
 <p>When learning PowerShell, you should always start at the shell. More or less everything that runs at the PowerShell command prompt, runs as a script too. Start automating simple tasks at the shell using the built-in cmdlets and the PowerShell language. Eventually, you will learn to write scripts. This is one of the most important aspects of getting started with PowerShell.</p>
 <p>I have also heard candidates saying that they know only product-specific PowerShell cmdlets and they can use only those cmdlets. Now, tell me how you would automate a task in PowerShell that configures a product using only product-specific cmdlets without ever using any of the built-in cmdlets or pipeline or PowerShell language. This is not possible. When someone says so, I know that they don’t understand the basics or never used the shell.</p>
 <h4 id="know-the-pipeline">Know the pipeline</h4>
 <p>For working with PowerShell and to make efficient use of it, you need to understand what pipeline is and how you can combine multiple commands using a pipeline. I showed examples using the pipeline in the above paragraph but did not really explain what it is. Running simple commands is not a difficult task. You will realize the real benefit of PowerShell command line only if you can use the pipeline to combine multiple commands to achieve a bigger task. A complete discussion on pipeline will easily be a 50 – 75 pages of book. Let us keep it simple for the purpose of this article.</p>
 <p>Think of PowerShell pipeline as an assembly line in a manufacturing unit. In a manufacturing unit, components move from one station to another and the final output gets built along the way. The end of the pipeline is where we see the completed product. Similar to this analogy, when we combine multiple PowerShell cmdlets using pipeline, the output of one command becomes an input to the next command in the pipeline. For example:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-Process</span> <span class="n">-Name</span> <span class="n">s</span><span class="p">*</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">HandleCount</span> <span class="o">-lt</span> <span class="n">100</span> <span class="p">}</span>
-</code></pre></div><p>In the above command, one or more process objects from <em>Get-Process</em> cmdlet is given as an input to the <em>Where-Object</em> cmdlet. The <em>Where-Object</em> cmdlet then filters the object array for the objects with <em>HandleCount</em> property less than 100. You can certainly write something like this without a pipeline too. Let us see how that is done.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$process</span> <span class="p">=</span> <span class="nb">Get-Process</span> <span class="n">-name</span> <span class="n">s</span><span class="p">*</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-Process</span> <span class="n">-Name</span> <span class="n">s</span><span class="p">*</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">HandleCount</span> <span class="o">-lt</span> <span class="n">100</span> <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>In the above command, one or more process objects from <em>Get-Process</em> cmdlet is given as an input to the <em>Where-Object</em> cmdlet. The <em>Where-Object</em> cmdlet then filters the object array for the objects with <em>HandleCount</em> property less than 100. You can certainly write something like this without a pipeline too. Let us see how that is done.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$process</span> <span class="p">=</span> <span class="nb">Get-Process</span> <span class="n">-name</span> <span class="n">s</span><span class="p">*</span>
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$proc</span> <span class="k">in</span> <span class="nv">$process</span><span class="p">)</span> <span class="p">{</span>
    <span class="k">if</span> <span class="p">(</span><span class="nv">$proc</span><span class="p">.</span><span class="n">HandleCount</span> <span class="o">-lt</span> <span class="n">100</span><span class="p">)</span> <span class="p">{</span>
        <span class="nv">$proc</span>
    <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>As you see, there is more code. While that is not a big deal, you will see a difference in how the output is generated. Related to this, many candidates mentioned that the first command completes execution and all objects move from first command to second. This is not accurate. In case of a pipeline, the objects stream from the first command to the second command as soon they are available.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>As you see, there is more code. While that is not a big deal, you will see a difference in how the output is generated. Related to this, many candidates mentioned that the first command completes execution and all objects move from first command to second. This is not accurate. In case of a pipeline, the objects stream from the first command to the second command as soon they are available.</p>
 <p>This previous example combines only two commands which may look very trivial. But, think of something like the below example:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-ChildItem</span> <span class="n">-Recurse</span> <span class="n">-Force</span> <span class="p">|</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-ChildItem</span> <span class="n">-Recurse</span> <span class="n">-Force</span> <span class="p">|</span>
 <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">Length</span> <span class="o">-gt</span> <span class="n">10MB</span><span class="p">}</span> <span class="p">|</span>
 <span class="nb">Sort-Object</span> <span class="n">-Property</span> <span class="n">Length</span> <span class="n">-Descending</span> <span class="p">|</span>
 <span class="nb">Select-Object</span> <span class="n">Name</span><span class="p">,</span> <span class="p">@{</span><span class="n">name</span><span class="p">=</span><span class="s1">&#39;Size (MB)&#39;</span><span class="p">;</span> <span class="n">expression</span><span class="p">={</span><span class="nv">$_</span><span class="p">.</span><span class="n">Length</span><span class="p">/</span><span class="n">1MB</span><span class="p">}},</span> <span class="n">Extension</span> <span class="p">|</span>
 <span class="nb">Group-Object</span> <span class="n">-Property</span> <span class="n">extension</span>
-</code></pre></div><p>If you are beginner, I don’t expect you to understand this or write something like this. But, this shows the usefulness of pipeline. The above command (or pipeline of commands) grabs all files that are bigger than 10MB, sorts them by file size in descending order, and groups them by the file extension. Can you try converting this code snippet to achieve the same task without using the pipeline?</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>If you are beginner, I don’t expect you to understand this or write something like this. But, this shows the usefulness of pipeline. The above command (or pipeline of commands) grabs all files that are bigger than 10MB, sorts them by file size in descending order, and groups them by the file extension. Can you try converting this code snippet to achieve the same task without using the pipeline?</p>
 <h3 id="don8217t-over-engineer">Don’t over-engineer</h3>
 <p>PowerShell, by its very nature, provides more than one way to do things. Of course, not all of these approaches are the same. There are efficient and inefficient ways. There are simple and complicated ways.</p>
 <p>So, when I ask “<strong>get me the name of the computer</strong>“, I don’t expect you to write a WMI query.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">Win32_ComputerSystem</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-Property</span> <span class="n">Name</span>
-</code></pre></div><p>or</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">Win32_OperatingSystem</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-Property</span> <span class="n">CSName</span>
-</code></pre></div><p>You bet, these commands get you the local computer name. But, understand that there is an easy and better way to do that.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$env:ComputerName</span>
-</code></pre></div><p>Oh, I got the classic <em>hostname</em> command as an answer as well. Nothing wrong. I use it many times. But, it is a PowerShell interview. Right?</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">Win32_ComputerSystem</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-Property</span> <span class="n">Name</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>or</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">Win32_OperatingSystem</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-Property</span> <span class="n">CSName</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>You bet, these commands get you the local computer name. But, understand that there is an easy and better way to do that.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$env:ComputerName</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Oh, I got the classic <em>hostname</em> command as an answer as well. Nothing wrong. I use it many times. But, it is a PowerShell interview. Right?</p>
 <h3 id="write-scripts">Write scripts</h3>
 <p>This has been another constant disappointment. You may know how to run scripts others have written. But, would that make you a scripter? No way. Reading scripts written by others will certainly help you understand the best and worst practices. But, it won’t help you learn if you are a beginner. You learn only when you start writing scripts on your own.</p>
 <p>Also, don’t tell an interviewer that you wrote advanced functions unless you know how to describe common parameters, parameter types, cmdletbinding, and how Begin, Process, and End blocks work and why they are required. If you don’t understand these concepts, I don’t consider that you have ever written an advanced function in PowerShell. The advanced functions are different from the regular functions we write in PowerShell. When you add <em>CmdletBinding()</em> attribute to a function definition, the basic behavior of a function changes. Why not see an example?</p>
 <p>Here is a regular function that accepts two numbers as an input and returns the sum as output.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">sum</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">sum</span> <span class="p">{</span>
     <span class="k">param</span> <span class="p">(</span>
        <span class="nv">$number1</span><span class="p">,</span>
        <span class="nv">$number2</span>
@@ -344,11 +508,33 @@ Echo Size is: %xsize% Bytes
 
 <span class="nb">PS </span><span class="n">C:</span><span class="p">\&gt;</span> <span class="n">sum</span> <span class="n">10</span> <span class="n">30</span>
 <span class="n">40</span>
-</code></pre></div><p>Now, call this function with different number of parameters.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="n">C:</span><span class="p">\&gt;</span> <span class="n">sum</span> <span class="n">10</span> <span class="n">30</span> <span class="n">40</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Now, call this function with different number of parameters.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="n">C:</span><span class="p">\&gt;</span> <span class="n">sum</span> <span class="n">10</span> <span class="n">30</span> <span class="n">40</span>
 <span class="n">40</span>
-</code></pre></div><p>See that? Although we have only two parameters in the function definition, it accepts three arguments and simply ignores the third argument. Now, add the <em>CmdletBinding()</em> attribute and see how the behavior changes.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">sum</span> <span class="p">{</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>See that? Although we have only two parameters in the function definition, it accepts three arguments and simply ignores the third argument. Now, add the <em>CmdletBinding()</em> attribute and see how the behavior changes.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="n">sum</span> <span class="p">{</span>
    <span class="p">[</span><span class="k">CmdletBinding</span><span class="p">()]</span>
    <span class="k">param</span> <span class="p">(</span>
       <span class="nv">$number1</span><span class="p">,</span>
@@ -356,8 +542,23 @@ Echo Size is: %xsize% Bytes
    <span class="p">)</span>
    <span class="nv">$number1</span> <span class="p">+</span> <span class="nv">$number2</span>
 <span class="p">}</span>
-</code></pre></div><p>Do the test again with same set of arguments as earlier!</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="n">C:</span><span class="p">\&gt;</span> <span class="n">sum</span> <span class="n">10</span> <span class="n">30</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Do the test again with same set of arguments as earlier!</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span><span class="n">C:</span><span class="p">\&gt;</span> <span class="n">sum</span> <span class="n">10</span> <span class="n">30</span>
 <span class="n">40</span>
 
 <span class="nb">PS </span><span class="n">C:</span><span class="p">\&gt;</span> <span class="n">sum</span> <span class="n">10</span> <span class="n">30</span> <span class="n">40</span>
@@ -366,11 +567,51 @@ Echo Size is: %xsize% Bytes
 <span class="p">+</span> <span class="n">sum</span> <span class="n">10</span> <span class="n">30</span> <span class="n">40</span>
 <span class="p">+</span> <span class="n">CategoryInfo</span> <span class="err">:</span> <span class="n">InvalidArgument</span><span class="err">:</span> <span class="p">(</span><span class="err">:</span><span class="p">)</span> <span class="no">[sum]</span><span class="p">,</span> <span class="n">ParameterBindingException</span>
 <span class="p">+</span> <span class="n">FullyQualifiedErrorId</span> <span class="err">:</span> <span class="n">PositionalParameterNotFound</span><span class="p">,</span><span class="n">sum</span>
-</code></pre></div><p>Got it? The basic behavior of handling input parameters got changed after we added the <em>CmdletBinding()</em> attribute. This is an advanced PowerShell function. But, this is just the beginning. I won’t go into the details of advanced functions here but as an interviewer, I’d expect you to know more if you ever tell me that you wrote advanced functions.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Got it? The basic behavior of handling input parameters got changed after we added the <em>CmdletBinding()</em> attribute. This is an advanced PowerShell function. But, this is just the beginning. I won’t go into the details of advanced functions here but as an interviewer, I’d expect you to know more if you ever tell me that you wrote advanced functions.</p>
 <h3 id="don8217t-depend-on-search-engines">Don’t depend on search engines</h3>
 <p>One thing I heard from many candidates is that they depend on Google when they want to write a script. They just use a search engine, take the ready-made solution for the problem and use it. This has been a common response before they give up after a few minutes into writing a script or completing a task. I use search engines when I am completely stuck and cannot move forward with what I am doing. Or when I know that someone already had written a script and I don’t want to re-invent the wheel. But, I won’t use this method when my goal is to learn PowerShell. A search engine is the easiest way to find a solution but, you won’t learn anything but how to use search engine. Especially, when you are a beginner, using the ready-made scripts won’t take you anywhere in your learning. And, of course, this is when I generally end the interview! 🙂</p>
 <p>Good luck!</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2013\/07\/15\/preparing-for-a-powershell-interview\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2013\/07\/15\/preparing-for-a-powershell-interview\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2013\/07\/15\/preparing-for-a-powershell-interview\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2013\/07\/15\/preparing-for-a-powershell-interview\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
 </div>
+          </div>
         </article>
         
         
@@ -400,86 +641,6 @@ Echo Size is: %xsize% Bytes
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

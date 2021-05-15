@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2015-02-27T17:00:20+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -240,9 +248,45 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>Managing Linux can become a challenge if you don’t have some way of distributing credentials. There are several options: joining Active Directory domain and using shared credentials for both Linux and Windows, using other LDAP implementation to authenticate or distribute users/groups using Configuration Management tools. In the final part of Linux DSC series we will take a look at last two resources – <em>nxUser</em> and <em>nxGroup</em> – that should help us manage user and groups on Linux systems. We will also take a look at few debugging techniques that should help you identify a reason why given configuration fails.</p>
+          <div class="content">
+            <p>Managing Linux can become a challenge if you don’t have some way of distributing credentials. There are several options: joining Active Directory domain and using shared credentials for both Linux and Windows, using other LDAP implementation to authenticate or distribute users/groups using Configuration Management tools. In the final part of Linux DSC series we will take a look at last two resources – <em>nxUser</em> and <em>nxGroup</em> – that should help us manage user and groups on Linux systems. We will also take a look at few debugging techniques that should help you identify a reason why given configuration fails.</p>
 <p>Adding a user on a Linux with <em>nxUser</em> resource is relatively simple task. It’s usually enough to specify username, password, and a home folder. The password is a tricky part: we have to provide it in salted hash form. I couldn’t find any reasonable solution for Windows to create such hashes, so I ended up creating a simple script on the Linux box that would generate the salted hash of selected password for me:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/python</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/python</span>
 <span class="kn">from</span> <span class="nn">crypt</span> <span class="kn">import</span> <span class="n">crypt</span>
 <span class="kn">from</span> <span class="nn">optparse</span> <span class="kn">import</span> <span class="n">OptionParser</span>
 
@@ -273,14 +317,48 @@ if (!doNotTrack) {
     <span class="n">options</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
     <span class="s2">&#34;$6$</span><span class="si">%s</span><span class="s2">$&#34;</span> <span class="o">%</span> <span class="n">options</span><span class="o">.</span><span class="n">salt</span>
 <span class="p">)</span>
-</code></pre></div><p>There are at least few methods to copy this file over to Linux box: scp, sftp, or even nxFile resource. Once the script is there, we can call it. Again: there are few options available. I decided to use Posh-Ssh module <a href="/2014/07/03/posh-ssh-open-source-ssh-powershell-module/" target="_blank">described in PowerShell Magazine a while ago</a>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$linuxSession</span> <span class="p">=</span> <span class="nb">New-SSHSession</span> <span class="n">-ComputerName</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">200</span><span class="p">.</span><span class="n">104</span> <span class="n">-Credential</span> <span class="nv">$bielawbCred</span> <span class="n">-AcceptKey</span> <span class="nv">$true</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>There are at least few methods to copy this file over to Linux box: scp, sftp, or even nxFile resource. Once the script is there, we can call it. Again: there are few options available. I decided to use Posh-Ssh module <a href="/2014/07/03/posh-ssh-open-source-ssh-powershell-module/" target="_blank">described in PowerShell Magazine a while ago</a>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$linuxSession</span> <span class="p">=</span> <span class="nb">New-SSHSession</span> <span class="n">-ComputerName</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">200</span><span class="p">.</span><span class="n">104</span> <span class="n">-Credential</span> <span class="nv">$bielawbCred</span> <span class="n">-AcceptKey</span> <span class="nv">$true</span>
 
 <span class="nv">$salt</span> <span class="p">=</span> <span class="nb">Invoke-SSHCommand</span> <span class="n">-SSHSession</span> <span class="nv">$linuxSession</span> <span class="n">-Command</span> <span class="s1">&#39;bin/passgen.py -p P@ssw0rd&#39;</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span>
     <span class="nv">$_</span><span class="p">.</span><span class="n">Output</span> <span class="o">-replace</span> <span class="s2">&#34;</span><span class="se">`n</span><span class="s2">&#34;</span>
 <span class="p">}</span>
-</code></pre></div><p>Our configuration should take at least two parameters: name of the computer and a salted hash, which we will generate at runtime. Of course, we would have to change salt or we will get the same salted hash every time. Configuration that would create Web Admin account on target node:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">configuration</span> <span class="n">LinuxUser</span> <span class="p">{</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Our configuration should take at least two parameters: name of the computer and a salted hash, which we will generate at runtime. Of course, we would have to change salt or we will get the same salted hash every time. Configuration that would create Web Admin account on target node:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">configuration</span> <span class="n">LinuxUser</span> <span class="p">{</span>
     <span class="k">param</span> <span class="p">(</span>
         <span class="no">[String]</span><span class="nv">$ComputerName</span><span class="p">,</span>
         <span class="no">[String]</span><span class="nv">$PasswordSalt</span>
@@ -297,13 +375,44 @@ if (!doNotTrack) {
     	<span class="p">}</span>
 	<span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>In this case we have used <em>nxUser</em> to create a user, but nothing prevents us from updating users using the same resource. For example, we may want to update password for a user using content of <em>/etc/shadow</em> on the reference machine. First we need to run SSH command as the root to read hash for a given user:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$rootSession</span> <span class="p">=</span> <span class="nb">New-SSHSession</span> <span class="n">-ComputerName</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">200</span><span class="p">.</span><span class="n">104</span> <span class="n">-Credential</span> <span class="nv">$root</span> <span class="n">-AcceptKey</span> <span class="nv">$true</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>In this case we have used <em>nxUser</em> to create a user, but nothing prevents us from updating users using the same resource. For example, we may want to update password for a user using content of <em>/etc/shadow</em> on the reference machine. First we need to run SSH command as the root to read hash for a given user:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$rootSession</span> <span class="p">=</span> <span class="nb">New-SSHSession</span> <span class="n">-ComputerName</span> <span class="n">192</span><span class="p">.</span><span class="n">168</span><span class="p">.</span><span class="n">200</span><span class="p">.</span><span class="n">104</span> <span class="n">-Credential</span> <span class="nv">$root</span> <span class="n">-AcceptKey</span> <span class="nv">$true</span>
 <span class="nv">$salt</span> <span class="p">=</span> <span class="nb">Invoke-SSHCommand</span> <span class="n">-SSHSession</span> <span class="nv">$rootSession</span> <span class="n">-Command</span> <span class="s1">&#39;grep bielawb /etc/shadow | cut -d: -f2&#39;</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span>
     <span class="nv">$_</span><span class="p">.</span><span class="n">Output</span> <span class="o">-replace</span> <span class="s2">&#34;</span><span class="se">`n</span><span class="s2">&#34;</span>
 <span class="p">}</span>
-</code></pre></div><p>Next, we add <em>nxUser</em> to our configuration script. In this case we need a few parameters: name of the node, name of the user, and user’s password:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">configuration</span> <span class="n">UpdatePassword</span> <span class="p">{</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Next, we add <em>nxUser</em> to our configuration script. In this case we need a few parameters: name of the node, name of the user, and user’s password:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">configuration</span> <span class="n">UpdatePassword</span> <span class="p">{</span>
 <span class="k">param</span> <span class="p">(</span>
     <span class="no">[String]</span><span class="nv">$ComputerName</span><span class="p">,</span>
     <span class="no">[String]</span><span class="nv">$UserName</span><span class="p">,</span>
@@ -318,9 +427,50 @@ if (!doNotTrack) {
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>As a final step we have to apply the configuration to selected nodes. After this is done we can use the same password on all nodes where this configuration was applied.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>As a final step we have to apply the configuration to selected nodes. After this is done we can use the same password on all nodes where this configuration was applied.</p>
 <p>Creating a user is only part of the picture. The group membership is usually more important as it is used to grant users certain rights on the Linux box. With <em>nxGroup</em> resource we can create groups, specify group members, request preferred group ID, and select users that should be added or removed from a given group. Example configuration that creates group <em>web</em> with <em>bielawb</em> and <em>webadmin</em> as a members and makes sure that <em>bielawb</em> is a member of the group <em>wheel</em> but not group <em>apache</em> and at the same time <em>webadmin</em> is a member of the group <em>apache</em> but not a member of the group <em>wheel</em>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">configuration</span> <span class="n">LinuxGroup</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">configuration</span> <span class="n">LinuxGroup</span> <span class="p">{</span>
     <span class="k">param</span> <span class="p">(</span>
         <span class="no">[String]</span><span class="nv">$ComputerName</span>
     <span class="p">)</span>
@@ -355,10 +505,27 @@ if (!doNotTrack) {
 		<span class="p">}</span>
 	<span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>We covered basics and all of the resources, it’s time for a few hints that may save you from hours of banging your head against the desk.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>We covered basics and all of the resources, it’s time for a few hints that may save you from hours of banging your head against the desk.</p>
 <p>First of all: you can skip the <em>Verbose</em> parameter on <em>Start-DscConfiguration</em>. Based on my experience it doesn’t provide any useful information. You have to look for hints on the other side of the wire, on the Linux box that you are talking to. First of all – you can read logs. There are two logs that may give you some ideas in case your configuration doesn’t work as expected. Both can be find in <em>$OMI_HOME/var/log</em>. There is a log for omiserver (<em>omiserver.log</em>) and separate one for dsc (<em>dsc.log</em>). If amount of information in the omiserver log is not sufficient, we can increase the logging level (<em>–loglevel</em>, default is 2, max value is 5) or log also http traffic (<em>–httptrace</em>).</p>
 <p>DSC depends on OMI. OMI usually runs in the background as a service. I strongly recommend to run it interactively while debugging: most of the Python code used in the resources doesn’t have any error handling. When we run omiserver interactively, we can see errors/exceptions that bubble up and based on these errors find out what failed:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">Set
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">Set
 Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
   File <span class="s2">&#34;/opt/omi-1.0.8/lib/Scripts/nxFile.py&#34;</span>, line 33, in Set_Marshall
     <span class="nv">retval</span> <span class="o">=</span> Set<span class="o">(</span>DestinationPath, SourcePath, Ensure, Type, Force, Contents, Checksum, Recurse, Links, Owner, Group, Mode<span class="o">)</span>
@@ -369,9 +536,49 @@ Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
   File <span class="s2">&#34;/usr/lib64/python2.6/shutil.py&#34;</span>, line 50, in copyfile
     with open<span class="o">(</span>src, <span class="s1">&#39;rb&#39;</span><span class="o">)</span> as fsrc:
 IOError: <span class="o">[</span>Errno 2<span class="o">]</span> No such file or directory: u<span class="s1">&#39;/not/there&#39;</span>
-</code></pre></div><p>With this extra information spotting the problem should be easier.</p>
-<p>Linux DSC was announced last year and published as a CTP. As any other CTP, it’s not perfect. However, it would help to see how it changes in the same location that it was initially published, on GitHub. Without this it may seem that the project was dropped. Lack of the official fixes leaves anybody who identifies a problem with two options. First options is to fix the problem. Second options is to use unofficial version of the product. I chose the first one. I hope this series convinced you that my attempt was good enough, and encourage you to give Linux DSC a try. And that concludes this series about Linux DSC “in action”.</p>
+</code></pre></td></tr></table>
 </div>
+</div><p>With this extra information spotting the problem should be easier.</p>
+<p>Linux DSC was announced last year and published as a CTP. As any other CTP, it’s not perfect. However, it would help to see how it changes in the same location that it was initially published, on GitHub. Without this it may seem that the project was dropped. Lack of the official fixes leaves anybody who identifies a problem with two options. First options is to fix the problem. Second options is to use unofficial version of the product. I chose the first one. I hope this series convinced you that my attempt was good enough, and encourage you to give Linux DSC a try. And that concludes this series about Linux DSC “in action”.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2015\/02\/27\/working-with-powershell-dsc-for-linux-part-5\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2015\/02\/27\/working-with-powershell-dsc-for-linux-part-5\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2015\/02\/27\/working-with-powershell-dsc-for-linux-part-5\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2015\/02\/27\/working-with-powershell-dsc-for-linux-part-5\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
+</div>
+          </div>
         </article>
         
         
@@ -401,86 +608,6 @@ IOError: <span class="o">[</span>Errno 2<span class="o">]</span> No such file or
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

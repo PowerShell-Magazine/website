@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2017-06-29T16:00:00+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -240,7 +248,8 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><h3 id="introduction">Introduction</h3>
+          <div class="content">
+            <h3 id="introduction">Introduction</h3>
 <p>After setting up the <a href="http://www.powershellmagazine.com/2017/04/07/psremotely-framework-to-enable-remote-operations-validation/">context in the previous post</a>, it is time to look at how the authoring workflow looks like when using Pester for writing operations validation tests, to begin with, and then leveraging PSRemotely DSL to target it to the remote nodes.</p>
 <p>This workflow consists of below stages:</p>
 <ol>
@@ -272,7 +281,27 @@ if (!doNotTrack) {
 <p>This stage consists of authoring tests using Pester/PoshSpec for operations validations.</p>
 <p>Let us start by translating the above gathered configurations in Pester Describe blocks independently, to begin with.</p>
 <p>Below is a very crude way that can be used to determine that Windows Server 2016 is installed on the node. There are two Pester assertions –. First one asserts that OS type is a server and the OS SKU is either datacenter edition with GUI or server core.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># Ensure that Server 2016 OS installation is done.</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># Ensure that Server 2016 OS installation is done.</span>
 <span class="n">Describe</span> <span class="s2">&#34;Operating system installed validation&#34;</span> <span class="p">{</span>
     <span class="nv">$OS</span> <span class="p">=</span> <span class="nb">Get-CimInstance</span> <span class="n">-Class</span> <span class="n">Win32_OperatingSystem</span>
 
@@ -288,19 +317,59 @@ if (!doNotTrack) {
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>Here is another independent test for validating that the domain account is a member of the local administrators group on a node.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># Validate that the domain account is part of the local administrators group on a node.</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Here is another independent test for validating that the domain account is a member of the local administrators group on a node.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># Validate that the domain account is part of the local administrators group on a node.</span>
 <span class="n">Describe</span> <span class="s2">&#34;Domain account is local administrator validation&#34;</span> <span class="p">{</span>
     <span class="nv">$LocalGroupMember</span> <span class="p">=</span> <span class="nb">Get-LocalGroupMember</span> <span class="n">-Group</span> <span class="n">Administrators</span> <span class="n">-Member</span> <span class="s2">&#34;S2DClusterAdmin&#34;</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
     <span class="n">It</span> <span class="s2">&#34;Should be member of local admins group&#34;</span> <span class="p">{</span>
         <span class="nv">$LocalGroupMember</span> <span class="p">|</span> <span class="n">Should</span> <span class="n">NOT</span> <span class="n">BeNullOrEmpty</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><h3 id="stage-2--prepare-node-configuration-data">Stage 2 – Prepare node configuration data</h3>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="stage-2--prepare-node-configuration-data">Stage 2 – Prepare node configuration data</h3>
 <p>If you look at the authored Pester describe blocks to validate the configuration on the nodes, it might use environment specific data hard coded into the tests e.g. domain username in above example.</p>
 <p>So we need to now collect all this data which is environment specific and decouple it from our tests.</p>
 <p>Start with the below empty configuration data (place it in the EnvironmentConfigData.psd1 file) and start populating it (it follows the DSC style configuration data syntax).</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">@{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">@{</span>
     <span class="n">AllNodes</span> <span class="p">=</span> <span class="p">@(</span>
         <span class="p">@{</span>
             <span class="c"># common node information hashtable</span>
@@ -321,9 +390,37 @@ if (!doNotTrack) {
         <span class="p">}</span>
     <span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div><p>Start by placing them inside the node configuration data with a general thumb rule of mapping common data to common node information hashtable and node specific details to node configuration hashtable.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Start by placing them inside the node configuration data with a general thumb rule of mapping common data to common node information hashtable and node specific details to node configuration hashtable.</p>
 <p>Now in the previous tests, the only input is the domain user name. So we can add that to common node information hashtable, since the domain user is a member of the local administrators group needs to be validated on all the nodes in the solution. So now the configuration data looks like below:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">@{</span>    
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">@{</span>    
     <span class="n">AllNodes</span> <span class="p">=</span> <span class="p">@(</span>
         <span class="p">@{</span>
             <span class="c"># common node information hashtable</span>
@@ -345,7 +442,9 @@ if (!doNotTrack) {
         <span class="p">}</span>
     <span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div><h3 id="stage-3-8211-using-psremotely-for-remote-ops-validation">Stage 3 – Using PSRemotely for remote ops validation</h3>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="stage-3-8211-using-psremotely-for-remote-ops-validation">Stage 3 – Using PSRemotely for remote ops validation</h3>
 <p>At this stage in the authoring workflow, we have our tests ready along with the environment configuration data in hand. Before using PSRemotely to target all the nodes for deployment readiness we have to ask this question, How do we connect over PSRemoting to these nodes?</p>
 <ul>
 <li>Are the nodes domain joined?</li>
@@ -366,7 +465,38 @@ if (!doNotTrack) {
 <blockquote>
 <p>Take note of how the hard coded value for domain username (S2DClusterAdmin) from the standalone Pester tests is replaced with node specific configuration data e.g. $Node.DomainUser.</p>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># Use the PSRemotely DSL to wrap the existing Pester tests and target remote nodes</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># Use the PSRemotely DSL to wrap the existing Pester tests and target remote nodes</span>
 <span class="n">PSRemotely</span> <span class="n">-Path</span> <span class="s2">&#34;$PSScriptRoot\EnvironmentConfigData.psd1&#34;</span> <span class="p">{</span>
     <span class="c"># All the nodes in the solution are to be targeted</span>
     <span class="n">Node</span> <span class="nv">$AllNodes</span><span class="p">.</span><span class="n">NodeName</span> <span class="p">{</span>
@@ -393,7 +523,9 @@ if (!doNotTrack) {
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>We are all set and have two files in the directory e.g. EnvironmentConfigData.psd1 and S2DValidation.PSRemotely.ps1, it is finally time to <a href="http://psremotely.readthedocs.io/en/latest/Invoke-PSRemotely/">invoke PSRemotely</a> and give remote operations validation a go.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>We are all set and have two files in the directory e.g. EnvironmentConfigData.psd1 and S2DValidation.PSRemotely.ps1, it is finally time to <a href="http://psremotely.readthedocs.io/en/latest/Invoke-PSRemotely/">invoke PSRemotely</a> and give remote operations validation a go.</p>
 <p>We can use Invoke-PSRemotely in the current directory to run all the operations validation housed inside it or specify a path to a file ending with *.PSRemotely.ps1 extension.</p>
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
@@ -407,7 +539,45 @@ if (!doNotTrack) {
 <p>For the failed node, we can quickly verify that out of the two validations targeted at the remote node only one is failing.</p>
 <p><img src="/images/remotely3.png" alt=""></p>
 <p>Now there could be a lot many reasons on why the operation validations tests on the remote node are failing. In the next post, we will take a look at how to connect to the underlying PSSession being used by PSRemotely to debug these failures.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2017\/06\/29\/psremotely-authoring-workflow-part-1\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2017\/06\/29\/psremotely-authoring-workflow-part-1\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2017\/06\/29\/psremotely-authoring-workflow-part-1\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2017\/06\/29\/psremotely-authoring-workflow-part-1\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
 </div>
+          </div>
         </article>
         
         
@@ -437,86 +607,6 @@ if (!doNotTrack) {
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

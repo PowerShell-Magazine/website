@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2014-10-22T16:00:38+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -237,7 +245,8 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p><em>ForEach</em> and <em>Where</em> are two frequently used concepts that have been available in PowerShell since version 1 came out in 2006.  <em>ForEach</em> has been available as both a statement and a cmdlet (<em>ForEach-Object</em>), allowing you to iterate through a collection of objects and take some action once for each object in that collection.  <em>Where</em> has been available as a cmdlet (<em>Where-Object</em>), allowing you to filter out items in a collection that don’t pass some condition, a condition which may be evaluated using either the properties on objects in the collection or the objects themselves that belong to the collection.  The ForEach ability to take action on items in a collection and the Where ability to filter a collection are features that are highly useful and are included in one form or another in the logic behind many PowerShell scripts, commands and modules, regardless of what version of PowerShell is being used.  In fact, they are so heavily used that they have been a focus area for improvement of performance, functionality and syntax in PowerShell versions 3.0 and 4.0.</p>
+          <div class="content">
+            <p><em>ForEach</em> and <em>Where</em> are two frequently used concepts that have been available in PowerShell since version 1 came out in 2006.  <em>ForEach</em> has been available as both a statement and a cmdlet (<em>ForEach-Object</em>), allowing you to iterate through a collection of objects and take some action once for each object in that collection.  <em>Where</em> has been available as a cmdlet (<em>Where-Object</em>), allowing you to filter out items in a collection that don’t pass some condition, a condition which may be evaluated using either the properties on objects in the collection or the objects themselves that belong to the collection.  The ForEach ability to take action on items in a collection and the Where ability to filter a collection are features that are highly useful and are included in one form or another in the logic behind many PowerShell scripts, commands and modules, regardless of what version of PowerShell is being used.  In fact, they are so heavily used that they have been a focus area for improvement of performance, functionality and syntax in PowerShell versions 3.0 and 4.0.</p>
 <p>With the release of Windows PowerShell 4.0, two new “magic” methods were introduced for collection types that provide a new syntax for accessing <em>ForEach</em> and <em>Where</em> capabilities in Windows PowerShell.  These methods are aptly named <em>ForEach</em> and <em>Where</em>. I call these methods “magic” because they are quite magical in how they work in PowerShell.  They don’t show up in <em>Get-Member</em> output, even if you apply -Force and request <em>-MemberType All</em>.  If you roll up your sleeves and dig in with reflection, you can find them; however, it requires a broad search because they are private extension methods implemented on a private class.  Yet even though they are not discoverable without peeking under the covers, they are there when you need them, they are faster than their older counterparts, and they include functionality that was not available in their older counterparts, hence the “magic” feeling they leave you with when you use them in PowerShell.  Unfortunately, these methods remain undocumented even today, almost a year since they were publicly released, so many people don’t realize the power that is available in these methods.  This article will try to correct that by explaining where they can be used and how they work so that you can leverage this magic when you use PowerShell.</p>
 <h3 id="a-note-about-powershell-30">A note about PowerShell 3.0</h3>
 <p>Before I get into explaining how the <em>ForEach</em> and <em>Where</em> methods work, I need to mention something with respect to these two methods and PowerShell 3.0.  While it is true that the <em>ForEach</em> and <em>Where</em> methods were only made available in PowerShell 4.0 and later versions, PowerShell 3.0 is still very widely used in many environments, and unless you’re using PowerShell in an environment that has standardized on PowerShell 4.0 and later, you may find yourself wishing you could take advantage of the syntax provided by the new methods when using PowerShell 3.0.  I felt this was a limitation worth addressing, so as part of the <a href="https://github.com/KirkMunro/TypePx">TypePx module that I recently published on GitHub</a> and in the <a href="https://msconfiggallery.cloudapp.net/packages/TypePx/">PowerShell Resource Gallery</a> (aka the <em>PowerShellGet</em> public repository, currently in limited preview), I included <em>ForEach</em> and <em>Where</em> script methods that are functionally equivalent to the methods introduced in PowerShell 4.0 so that you can leverage the new syntax and functionality even if you’re using PowerShell 3.0.  There are a few shortcomings in this implementation, which I will highlight later in this article.</p>
@@ -443,7 +452,45 @@ $others
 <p>I mentioned in the examples above that I was able to invoke a method with a single literal script block parameter without wrapping that literal script block in additional brackets.  That capability exists only in PowerShell 4.0 or later due to improvements that were made to the parser in that release.  In PowerShell 3.0, the parser does not support this, so brackets are always required in order for the <em>ForEach</em> and <em>Where</em> script methods to work with a single literal script block parameter in that version.</p>
 <h3 id="conclusion">Conclusion</h3>
 <p>When I started trying to mimic the behaviour of the <em>ForEach</em> and Where magic methods in PowerShell 3.0, I didn’t quite realize how much functionality they provided.  Digging into the technical details behind these methods so that I could create the extensions I wanted in <em>TypePx</em> helped uncover all of the hidden features in these very powerful methods, and I am very happy to share those with you in this article.  I hope this information helps you leverage this wonderful new set of features in your PowerShell work, even if you’re still using PowerShell 3.0.  Happy scripting!</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2014\/10\/22\/foreach-and-where-magic-methods\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2014\/10\/22\/foreach-and-where-magic-methods\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2014\/10\/22\/foreach-and-where-magic-methods\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2014\/10\/22\/foreach-and-where-magic-methods\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
 </div>
+          </div>
         </article>
         
         
@@ -473,86 +520,6 @@ $others
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

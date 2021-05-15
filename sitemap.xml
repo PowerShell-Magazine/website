@@ -3,13 +3,38 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://powershellmagazine.com/2021/05/15/a-yaml-primer-for-administrators/</loc>
+    <lastmod>2021-05-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://powershellmagazine.com/post/</loc>
-    <lastmod>2021-05-04T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://powershellmagazine.com/categories/</loc>
-    <lastmod>2021-05-04T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/</loc>
+    <lastmod>2021-05-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/tags/</loc>
+    <lastmod>2021-05-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/tags/yaml/</loc>
+    <lastmod>2021-05-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/categories/yaml/</loc>
+    <lastmod>2021-05-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -38,22 +63,12 @@
   </url>
   
   <url>
-    <loc>https://powershellmagazine.com/</loc>
-    <lastmod>2021-05-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://powershellmagazine.com/tags/profiler/</loc>
     <lastmod>2021-05-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://powershellmagazine.com/categories/profiler/</loc>
-    <lastmod>2021-05-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://powershellmagazine.com/tags/</loc>
     <lastmod>2021-05-04T00:00:00+00:00</lastmod>
   </url>
   

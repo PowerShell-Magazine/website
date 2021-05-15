@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2018-01-05T17:00:00+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -237,14 +245,48 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>When we talk about applications or software deployed in the infrastructure, we simply <strong>refer to the version of the application</strong> <strong>or software</strong> running in the infrastructure. At any point in time, we can look at the installed service or software and understand what version of that is currently running on the system, we need to remember that <a href="https://www.salesforce.com/blog/2013/07/selling-service-not-sales.html">selling is service</a> not sales . How about your node configurations? Does your node tell you what version of the configuration it is currently using?</p>
+          <div class="content">
+            <p>When we talk about applications or software deployed in the infrastructure, we simply <strong>refer to the version of the application</strong> <strong>or software</strong> running in the infrastructure. At any point in time, we can look at the installed service or software and understand what version of that is currently running on the system, we need to remember that <a href="https://www.salesforce.com/blog/2013/07/selling-service-not-sales.html">selling is service</a> not sales . How about your node configurations? Does your node tell you what version of the configuration it is currently using?</p>
 <p>For example, consider that you have a set of web server nodes and each configured using PowerShell DSC. As a part of the initial configuration, you deployed a set of web applications on the node. And, at some point in time later, you made multiple changes to the node configuration in terms of adding or removing web applications and updating application configurations. If multiple such source controlled configurations are deployed on each of these nodes, how exactly do you figure out what version of the node configuration is being used on each of the nodes? This can probably be achieved by a complete suite of tools but is there a way, today, you can do this by querying the node itself? The answer is no. At least, in the PowerShell DSC world.</p>
 <p>One of the core concepts of Infrastructure as Code (IaC) is to version/source control your infrastructure configurations so that it becomes easy to track what version of the configuration a target node has and rollback to last known working configuration when needed. But, the compiled DSC MOF files do not carry this information today nor they are aware of any source / version control systems. They need not be aware as well.</p>
 <p>At this point in time, I track my node configuration version by adding a DSC resource that caches the node configuration version information. As a part of the build process, I can update the version of the configuration using this DSC resource. When I need to know what version of configuration a node is using, I simply invoke the <em>Get-DscConfiguration</em> cmdlets. to verify that.</p>
 <p>I packaged this DSC resource into a module of its own and published in my Github account.</p>
 <h3 id="configurationdsc-resource-module">ConfigurationDSC resource module</h3>
 <p>Through the <a href="https://github.com/rchaganti/ConfigurationDsc">ConfigurationDSC</a> resource module, I plan to combine various resources that help in managing DSC based configurations in deployment pipeline. At this point in time, there is only one resource, <a href="https://github.com/rchaganti/ConfigurationDsc/tree/master/DscResources/ConfigurationVersion">ConfigurationVersion</a>, which helps in tracking the version of the configuration document. Here is an example of a configuration document with the <em>ConfigurationVersion</em> DSC resource.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Configuration</span> <span class="n">VersionedConfiguration</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Configuration</span> <span class="n">VersionedConfiguration</span>
 <span class="p">{</span>
     <span class="k">param</span>
     <span class="p">(</span>
@@ -273,10 +315,33 @@ if (!doNotTrack) {
 <span class="p">}</span>
 
 <span class="n">VersionedConfiguration</span> <span class="n">-ConfigurationName</span> <span class="s1">&#39;WebServerConfig&#39;</span> <span class="n">-ConfigurationVersion</span> <span class="s1">&#39;1.0.0.0&#39;</span>
-</code></pre></div><p>Once this configuration is enacted, I can use the <code>Get-DscConfiguration</code> cmdlet to find the version of the node configuration.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-DscConfiguration</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">CimClassName</span> <span class="o">-eq</span> <span class="s1">&#39;ConfigurationVersion&#39;</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">-ExpandProperty</span> <span class="n">Version</span>
-</code></pre></div><p>What I have shown here is only a workaround. This approach has both pros and cons. I rather want this added into the existing DSC feature set. If you see a compiled MOF, it has a few configuration meta properties. For example, from the above example, the compiled MOF has the following instance of the <code>MSFT_ConfigurationDocument</code> class in the MOF.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">instance</span> <span class="n">of</span> <span class="n">OMI_ConfigurationDocument</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Once this configuration is enacted, I can use the <code>Get-DscConfiguration</code> cmdlet to find the version of the node configuration.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-DscConfiguration</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">CimClassName</span> <span class="o">-eq</span> <span class="s1">&#39;ConfigurationVersion&#39;</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">-ExpandProperty</span> <span class="n">Version</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>What I have shown here is only a workaround. This approach has both pros and cons. I rather want this added into the existing DSC feature set. If you see a compiled MOF, it has a few configuration meta properties. For example, from the above example, the compiled MOF has the following instance of the <code>MSFT_ConfigurationDocument</code> class in the MOF.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">instance</span> <span class="n">of</span> <span class="n">OMI_ConfigurationDocument</span>
 <span class="p">{</span>
     <span class="n">Version</span><span class="p">=</span><span class="s2">&#34;2.0.0&#34;</span><span class="p">;</span>
     <span class="n">MinimumCompatibleVersion</span> <span class="p">=</span> <span class="s2">&#34;1.0.0&#34;</span><span class="p">;</span>
@@ -286,9 +351,49 @@ if (!doNotTrack) {
     <span class="n">GenerationHost</span><span class="p">=</span><span class="s2">&#34;MGMT01&#34;</span><span class="p">;</span>
     <span class="n">Name</span><span class="p">=</span><span class="s2">&#34;VersionedConfiguration&#34;</span><span class="p">;</span>
 <span class="p">};</span>
-</code></pre></div><p>It would be ideal for us to be able to add the configuration version from the source / version control system to this instance of <code>OMI_ConfigurationDocument</code>. I created an user voice item for this: <a href="https://windowsserver.uservoice.com/forums/301869-powershell/suggestions/32825272-enable-configuration-version-tracking-for-compiled">https://windowsserver.uservoice.com/forums/301869-powershell/suggestions/32825272-enable-configuration-version-tracking-for-compiled</a></p>
-<p>Go ahead and it vote it up if you think this will be useful in your infrastructure as well.</p>
+</code></pre></td></tr></table>
 </div>
+</div><p>It would be ideal for us to be able to add the configuration version from the source / version control system to this instance of <code>OMI_ConfigurationDocument</code>. I created an user voice item for this: <a href="https://windowsserver.uservoice.com/forums/301869-powershell/suggestions/32825272-enable-configuration-version-tracking-for-compiled">https://windowsserver.uservoice.com/forums/301869-powershell/suggestions/32825272-enable-configuration-version-tracking-for-compiled</a></p>
+<p>Go ahead and it vote it up if you think this will be useful in your infrastructure as well.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2018\/01\/05\/psdsc-configuration-versioning-in-a-deployment-pipeline\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2018\/01\/05\/psdsc-configuration-versioning-in-a-deployment-pipeline\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2018\/01\/05\/psdsc-configuration-versioning-in-a-deployment-pipeline\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2018\/01\/05\/psdsc-configuration-versioning-in-a-deployment-pipeline\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
+</div>
+          </div>
         </article>
         
         
@@ -318,86 +423,6 @@ if (!doNotTrack) {
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

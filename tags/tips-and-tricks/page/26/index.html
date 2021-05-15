@@ -18,6 +18,7 @@
 <meta property="og:updated_time" content="2019-06-14T05:41:49+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -28,6 +29,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -91,6 +93,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -191,10 +199,90 @@ if (!doNotTrack) {
   <div class="row">
     
     
+    <aside class="col-lg-4 order-2 order-lg-1 sidebar-inner"><!-- Social -->
+<div class="widget">
+  <h4 class="widget-title"><span>Social Links</span></h4>
+  <ul class="list-inline widget-social">
+    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
+    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
+    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
+    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
+  </ul>
+</div><!-- Search -->
+
+<div class="widget">
+  <h4 class="widget-title"><span>Search</span></h4>
+  <form action="/search" class="widget-search">
+    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
+    <i class="ti-search"></i>
+    <button type="submit" class="btn btn-primary btn-block">Search</button>
+  </form>
+</div>
+<!-- recent post -->
+<div class="widget">
+  <h4 class="widget-title">Recent Post</h4>
+  <!-- post-item -->
+  
+  <article class="widget-card">
+    <div class="d-flex">
+      
+      
+      
+      <img src="https://powershellmagazine.com/images/yaml.png" class="card-img-sm" loading="lazy" alt="post-thumb">
+      
+      
+      
+      <div class="ml-3">
+        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/15/a-yaml-primer-for-administrators/">A YAML primer for administrators</a></h5>
+        <ul class="card-meta list-inline mb-0">
+          <li class="list-inline-item mb-0">
+            <i class="far fa-calendar-alt"></i>15 May, 2021
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+  
+  <article class="widget-card">
+    <div class="d-flex">
+      
+      
+      
+      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
+      
+      
+      
+      <div class="ml-3">
+        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
+        <ul class="card-meta list-inline mb-0">
+          <li class="list-inline-item mb-0">
+            <i class="far fa-calendar-alt"></i>04 May, 2021
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+  
+  <article class="widget-card">
+    <div class="d-flex">
+      
+      <div class="ml-3">
+        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
+        <ul class="card-meta list-inline mb-0">
+          <li class="list-inline-item mb-0">
+            <i class="far fa-calendar-alt"></i>03 May, 2021
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+  
+</div></aside>
+    
     
 
     <div
-      class="col-lg-8  mb-5 mb-lg-0">
+      class="col-lg-8 order-1 order-lg-2 mb-5 mb-lg-0">
 
       
       
@@ -204,310 +292,342 @@ if (!doNotTrack) {
 
       
       
-      <div class="row">
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/06/25/pstip-how-to-start-an-elevated-powershell-from-windows-explorer/">#PSTip How to start an elevated PowerShell from Windows Explorer</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/aleksandar-nikolic/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/aleksandar-nikolic.jpg" alt="Aleksandar Nikolic" class="img-fluid">
-                    
-                    
-                    <span>Aleksandar Nikolic</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>1 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>25 Jun, 2013
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/tips-and-tricks">Tips and tricks</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>Note: This tip requires PowerShell 2.0 or above.
-The next time you are working …</p>
-              <a href="https://powershellmagazine.com/2013/06/25/pstip-how-to-start-an-elevated-powershell-from-windows-explorer/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/06/25/pstip-how-to-start-an-elevated-powershell-from-windows-explorer/">#PSTip How to start an elevated PowerShell from Windows Explorer</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/aleksandar-nikolic/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/aleksandar-nikolic.jpg" alt="Aleksandar Nikolic" class="img-fluid">
+                  
+                  
+                  <span>Aleksandar Nikolic</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>1 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>25 Jun, 2013
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/tips-and-tricks">Tips and tricks</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              Note: This tip requires PowerShell 2.0 or above.
+The next time you are working in a folder and need to open a Windows PowerShell console directly to that location, it would be nice to have ‘Open Windows PowerShell Here as Administrator’ option on a …
+              
+            </p>
+            <a href="https://powershellmagazine.com/2013/06/25/pstip-how-to-start-an-elevated-powershell-from-windows-explorer/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/06/24/pstip-change-database-recovery-model-using-smo/">#PSTip Change database recovery model using SMO</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/ravikanth-c/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
-                    
-                    
-                    <span>Ravikanth C</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>1 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>24 Jun, 2013
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/sql">S q l</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/tips-and-tricks">Tips and tricks</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>Note: This tip requires PowerShell 2.0 or above.
-Database mirroring requires …</p>
-              <a href="https://powershellmagazine.com/2013/06/24/pstip-change-database-recovery-model-using-smo/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/06/24/pstip-change-database-recovery-model-using-smo/">#PSTip Change database recovery model using SMO</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/ravikanth-c/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
+                  
+                  
+                  <span>Ravikanth C</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>1 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>24 Jun, 2013
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/sql">S q l</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/tips-and-tricks">Tips and tricks</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              Note: This tip requires PowerShell 2.0 or above.
+Database mirroring requires that the database be in Full recovery model as a prerequisite to configure mirroring.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2013/06/24/pstip-change-database-recovery-model-using-smo/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/06/19/pstip-deleting-expired-certificates-from-the-personal-certificate-store/">#PSTip Deleting expired certificates from the personal certificate store</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/josh-miller/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/josh-miller.jpg" alt="Josh Miller" class="img-fluid">
-                    
-                    
-                    <span>Josh Miller</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>2 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>19 Jun, 2013
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/tips-and-tricks">Tips and tricks</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>We use a lot of certificates for website authentication, and they expire each …</p>
-              <a href="https://powershellmagazine.com/2013/06/19/pstip-deleting-expired-certificates-from-the-personal-certificate-store/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/06/19/pstip-deleting-expired-certificates-from-the-personal-certificate-store/">#PSTip Deleting expired certificates from the personal certificate store</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/josh-miller/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/josh-miller.jpg" alt="Josh Miller" class="img-fluid">
+                  
+                  
+                  <span>Josh Miller</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>2 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>19 Jun, 2013
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/tips-and-tricks">Tips and tricks</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              We use a lot of certificates for website authentication, and they expire each year. Some people end up with a collection of expired certificates.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2013/06/19/pstip-deleting-expired-certificates-from-the-personal-certificate-store/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/06/17/pstip-use-excel-to-view-html-output/">#PSTip Use Excel to View HTML Output</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/josh-miller/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/josh-miller.jpg" alt="Josh Miller" class="img-fluid">
-                    
-                    
-                    <span>Josh Miller</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>1 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>17 Jun, 2013
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/tips-and-tricks">Tips and tricks</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>Excel can be used to view HTML. If you add some CSS styles to the result of …</p>
-              <a href="https://powershellmagazine.com/2013/06/17/pstip-use-excel-to-view-html-output/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/06/17/pstip-use-excel-to-view-html-output/">#PSTip Use Excel to View HTML Output</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/josh-miller/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/josh-miller.jpg" alt="Josh Miller" class="img-fluid">
+                  
+                  
+                  <span>Josh Miller</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>1 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>17 Jun, 2013
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/tips-and-tricks">Tips and tricks</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              Excel can be used to view HTML. If you add some CSS styles to the result of ConvertTo-HTML you can add much more rich output to Excel then you would get with a simple Export-Csv
+              
+            </p>
+            <a href="https://powershellmagazine.com/2013/06/17/pstip-use-excel-to-view-html-output/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/06/11/pstip-deleting-a-sql-mirroring-endpoint-in-smo-and-powershell/">#PSTip Deleting a SQL mirroring endpoint with SMO and PowerShell</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/ravikanth-c/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
-                    
-                    
-                    <span>Ravikanth C</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>1 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>11 Jun, 2013
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/sql">S q l</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/tips-and-tricks">Tips and tricks</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>Note: This tip requires PowerShell 2.0 or above.
-In earlier tips, we looked at …</p>
-              <a href="https://powershellmagazine.com/2013/06/11/pstip-deleting-a-sql-mirroring-endpoint-in-smo-and-powershell/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/06/11/pstip-deleting-a-sql-mirroring-endpoint-in-smo-and-powershell/">#PSTip Deleting a SQL mirroring endpoint with SMO and PowerShell</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/ravikanth-c/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
+                  
+                  
+                  <span>Ravikanth C</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>1 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>11 Jun, 2013
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/sql">S q l</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/tips-and-tricks">Tips and tricks</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              Note: This tip requires PowerShell 2.0 or above.
+In earlier tips, we looked at how we can get all SQL endpoints, check if a SQL endpoint exists or not, and creating SQL mirroring endpoints.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2013/06/11/pstip-deleting-a-sql-mirroring-endpoint-in-smo-and-powershell/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/06/10/pstip-creating-a-sql-tcp-mirroring-endpoint-in-smo-and-powershell/">#PSTip Creating a SQL TCP mirroring endpoint with SMO and PowerShell</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/ravikanth-c/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
-                    
-                    
-                    <span>Ravikanth C</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>2 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>10 Jun, 2013
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/sql">S q l</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/tips-and-tricks">Tips and tricks</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>Note: This tip requires PowerShell 2.0 or above.
-In today’s tip, we will see how …</p>
-              <a href="https://powershellmagazine.com/2013/06/10/pstip-creating-a-sql-tcp-mirroring-endpoint-in-smo-and-powershell/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/06/10/pstip-creating-a-sql-tcp-mirroring-endpoint-in-smo-and-powershell/">#PSTip Creating a SQL TCP mirroring endpoint with SMO and PowerShell</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/ravikanth-c/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
+                  
+                  
+                  <span>Ravikanth C</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>2 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>10 Jun, 2013
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/sql">S q l</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/tips-and-tricks">Tips and tricks</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              Note: This tip requires PowerShell 2.0 or above.
+In today’s tip, we will see how we can use PowerShell and SMO to create a SQL TCP mirroring endpoint.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2013/06/10/pstip-creating-a-sql-tcp-mirroring-endpoint-in-smo-and-powershell/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-      </div>
+      </article>
+      
       
 
       
@@ -1356,86 +1476,6 @@ In today’s tip, we will see how …</p>
     </div>
 
     
-    
-    <aside class="col-lg-4 sidebar-inner"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
     
     
   </div>

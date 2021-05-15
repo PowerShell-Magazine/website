@@ -6,10 +6,19 @@
     <description>Recent content in Articles on PowerShell Magazine | For the most powerful community</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 04 May 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 May 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://powershellmagazine.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A YAML primer for administrators</title>
+      <link>https://powershellmagazine.com/2021/05/15/a-yaml-primer-for-administrators/</link>
+      <pubDate>Sat, 15 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://powershellmagazine.com/2021/05/15/a-yaml-primer-for-administrators/</guid>
+      <description>In today&amp;rsquo;s cloud and agile infrastructure world, JSON and YAML play a major role in describing the infrastructure and data exchange.</description>
+    </item>
     
     <item>
       <title>Make your code faster with Profiler</title>
@@ -1601,7 +1610,7 @@ If you have ever wondered how you can edit files on a remote system using Window
       <pubDate>Mon, 01 Dec 2014 17:00:47 +0000</pubDate>
       
       <guid>https://powershellmagazine.com/2014/12/01/a-json-primer-for-administrators/</guid>
-      <description>JavaScript Object Notation ([JSON][1]) is quickly becoming the most used data-interchange format. XML enjoyed the top spot for a long time but slowly people have been moving towards JSON.</description>
+      <description>JavaScript Object Notation (JSON) is quickly becoming the most used data-interchange format. XML enjoyed the top spot for a long time but slowly people have been moving towards JSON.</description>
     </item>
     
     <item>
@@ -5851,7 +5860,7 @@ When working with WMI and PowerShell, I often find it necessary to quickly gener
       
       <guid>https://powershellmagazine.com/2012/11/07/pstip-grouping-objects/</guid>
       <description>The Group-Object cmdlet lets you group objects based on the value of a specified property. For example:
-PS&amp;gt; Get-Service | Group-Object -Property Status Count Name Group ----- ---- ----- 93 Stopped {AeLookupSvc, AllUserInstallAgent, AppIDSvc, AppMgmt.</description>
+1 2 3 4 5  PS&amp;gt; Get-Service | Group-Object -Property Status Count Name Group ----- ---- ----- 93 Stopped {AeLookupSvc, AllUserInstallAgent, AppIDSvc, AppMgmt.</description>
     </item>
     
     <item>

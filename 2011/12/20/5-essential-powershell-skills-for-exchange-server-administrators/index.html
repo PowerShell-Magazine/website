@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2011-12-20T19:00:23+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -234,11 +242,28 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>Ask an experienced Exchange administrator and they’ll tell you that learning PowerShell is important to be able to do the job well. Even though most administrative tasks can be performed using the Exchange Management Console it tends to be much slower to navigate, and is less efficient for doing bulk administration. If you’re still holding yourself back from learning PowerShell, then here are five tips to help get you started.</p>
+          <div class="content">
+            <p>Ask an experienced Exchange administrator and they’ll tell you that learning PowerShell is important to be able to do the job well. Even though most administrative tasks can be performed using the Exchange Management Console it tends to be much slower to navigate, and is less efficient for doing bulk administration. If you’re still holding yourself back from learning PowerShell, then here are five tips to help get you started.</p>
 <h3 id="discovering-commands">Discovering Commands</h3>
 <p>One of the first challenges with using PowerShell for Exchange Server management is knowing which commands to run for the task you want to perform. Fortunately you only need to remember one: <a href="http://technet.microsoft.com/en-us/library/ee176842.aspx">Get-Command</a>.</p>
 <p>Using Get-Command you can quickly search for cmdlets based on keywords. Let’s say for example you want to administer a mailbox. Using Get-Command you can discover all of the cmdlets that have the noun “mailbox” in them.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Command</span> <span class="n">-Noun</span> <span class="n">Mailbox</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Command</span> <span class="n">-Noun</span> <span class="n">Mailbox</span>
 <span class="n">CommandType</span>     <span class="n">Name</span>
 <span class="p">-----------</span>     <span class="p">----</span>
 <span class="n">Cmdlet</span>          <span class="nb">Connect-Mailbox</span>
@@ -250,10 +275,26 @@ if (!doNotTrack) {
 <span class="n">Cmdlet</span>          <span class="nb">Restore-Mailbox</span>
 <span class="n">Cmdlet</span>          <span class="nb">Search-Mailbox</span>
 <span class="n">Cmdlet</span>          <span class="nb">Set-Mailbox</span>
-</code></pre></div><p>With PowerShell’s simple “Verb-Noun” cmdlet names you can now quickly see which cmdlet to use if you want to get a list of mailboxes, set a mailbox property, or create a new mailbox.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>With PowerShell’s simple “Verb-Noun” cmdlet names you can now quickly see which cmdlet to use if you want to get a list of mailboxes, set a mailbox property, or create a new mailbox.</p>
 <h3 id="filtering-output">Filtering Output</h3>
 <p>Some PowerShell cmdlets return a lot of data. For example if you run <a href="http://technet.microsoft.com/en-us/library/bb123685.aspx">Get-Mailbox</a> it will return every mailbox in your organization. That may be hundreds or thousands of mailboxes, when all you really wanted is the mailboxes that match a certain criteria. PowerShell lets you filter the data that a cmdlet returns by using the <a href="http://technet.microsoft.com/en-us/library/ee177028.aspx">Where-Object</a> command, or simply “where” as it is often abbreviated. For example, to get the list of mailbox users in the branch office of the organization you can run the following command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Mailbox</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Office</span> <span class="o">-eq</span> <span class="s2">&#34;Branch Office&#34;</span><span class="p">}</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Mailbox</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Office</span> <span class="o">-eq</span> <span class="s2">&#34;Branch Office&#34;</span><span class="p">}</span>
 <span class="n">Name</span>             <span class="k">Alias</span>                <span class="n">ServerName</span>       <span class="n">ProhibitSendQuota</span>
 <span class="p">----</span>             <span class="p">-----</span>                <span class="p">----------</span>       <span class="p">-----------------</span>
 <span class="n">Alex</span><span class="p">.</span><span class="n">Heyne</span>       <span class="n">Alex</span><span class="p">.</span><span class="n">Heyne</span>           <span class="n">br-ex2010-mb</span>     <span class="n">unlimited</span>
@@ -263,12 +304,34 @@ if (!doNotTrack) {
 <span class="n">Olive</span><span class="p">.</span><span class="n">Weeks</span>      <span class="n">Olive</span><span class="p">.</span><span class="n">Weeks</span>          <span class="n">br-ex2010-mb</span>     <span class="n">unlimited</span>
 <span class="n">Sonia</span><span class="p">.</span><span class="n">Smith</span>      <span class="n">Sonia</span><span class="p">.</span><span class="n">Smith</span>          <span class="n">br-ex2010-mb</span>     <span class="n">unlimited</span>
 <span class="n">Wendy</span><span class="p">.</span><span class="n">Fyson</span>      <span class="n">Wendy</span><span class="p">.</span><span class="n">Fyson</span>          <span class="n">br-ex2010-mb</span>     <span class="n">unlimited</span>
-</code></pre></div><p>As you can see by filtering the output of Get-Mailbox to only those where the “Office” attribute equals “Branch Office”, you can retrieve only the data that you are interested in seeing.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>As you can see by filtering the output of Get-Mailbox to only those where the “Office” attribute equals “Branch Office”, you can retrieve only the data that you are interested in seeing.</p>
 <h3 id="using-the-pipeline">Using the Pipeline</h3>
 <p>One of the PowerShell techniques you will use regularly is the pipeline. In PowerShell the pipeline is how output from one command is passed to another. You may have noticed in the previous example the | (or pipe) character that was between the Get-Mailbox and Where-Object cmdlets. That is an example of the pipeline in action. Continuing the previous example, let’s say that the business has decided that all branch office mailbox users should have a 3Gb mailbox storage quota. You can use the same command shown above to get the branch office mailboxes, and then pipe that into the <a href="http://technet.microsoft.com/en-us/library/bb123981.aspx">Set-Mailbox</a> cmdlet to make the change to their storage quota settings.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-Mailbox</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Office</span> <span class="o">-eq</span> <span class="s2">&#34;Branch Office&#34;</span><span class="p">}</span> <span class="p">|</span> <span class="nb">Set-Mailbox</span> <span class="n">-IssueWarningQuota</span> <span class="n">2</span><span class="p">.</span><span class="n">8Gb</span> <span class="n">-ProhibitSendQuota</span> <span class="n">3Gb</span>
-</code></pre></div><p>Now when we look at the list of branch office mailboxes again we can see the change to the storage quota settings.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Name</span>             <span class="k">Alias</span>              <span class="n">ServerName</span>     <span class="n">ProhibitSendQuota</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-Mailbox</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Office</span> <span class="o">-eq</span> <span class="s2">&#34;Branch Office&#34;</span><span class="p">}</span> <span class="p">|</span> <span class="nb">Set-Mailbox</span> <span class="n">-IssueWarningQuota</span> <span class="n">2</span><span class="p">.</span><span class="n">8Gb</span> <span class="n">-ProhibitSendQuota</span> <span class="n">3Gb</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Now when we look at the list of branch office mailboxes again we can see the change to the storage quota settings.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Name</span>             <span class="k">Alias</span>              <span class="n">ServerName</span>     <span class="n">ProhibitSendQuota</span>
 <span class="p">----</span>             <span class="p">-----</span>              <span class="p">----------</span>     <span class="p">-----------------</span>
 <span class="n">Alex</span><span class="p">.</span><span class="n">Heyne</span>       <span class="n">Alex</span><span class="p">.</span><span class="n">Heyne</span>         <span class="n">br-ex2010-mb</span>   <span class="n">3</span> <span class="n">GB</span> <span class="p">(</span><span class="n">3</span><span class="p">,</span><span class="n">221</span><span class="p">,</span><span class="n">225</span><span class="p">,</span><span class="n">472</span> <span class="n">bytes</span><span class="p">)</span>
 <span class="n">John</span><span class="p">.</span><span class="n">Williams</span>    <span class="n">John</span><span class="p">.</span><span class="n">Williams</span>      <span class="n">br-ex2010-mb</span>   <span class="n">3</span> <span class="n">GB</span> <span class="p">(</span><span class="n">3</span><span class="p">,</span><span class="n">221</span><span class="p">,</span><span class="n">225</span><span class="p">,</span><span class="n">472</span> <span class="n">bytes</span><span class="p">)</span>
@@ -277,12 +340,52 @@ if (!doNotTrack) {
 <span class="n">Olive</span><span class="p">.</span><span class="n">Weeks</span>      <span class="n">Olive</span><span class="p">.</span><span class="n">Weeks</span>        <span class="n">br-ex2010-mb</span>   <span class="n">3</span> <span class="n">GB</span> <span class="p">(</span><span class="n">3</span><span class="p">,</span><span class="n">221</span><span class="p">,</span><span class="n">225</span><span class="p">,</span><span class="n">472</span> <span class="n">bytes</span><span class="p">)</span>
 <span class="n">Sonia</span><span class="p">.</span><span class="n">Smith</span>      <span class="n">Sonia</span><span class="p">.</span><span class="n">Smith</span>        <span class="n">br-ex2010-mb</span>   <span class="n">3</span> <span class="n">GB</span> <span class="p">(</span><span class="n">3</span><span class="p">,</span><span class="n">221</span><span class="p">,</span><span class="n">225</span><span class="p">,</span><span class="n">472</span> <span class="n">bytes</span><span class="p">)</span>
 <span class="n">Wendy</span><span class="p">.</span><span class="n">Fyson</span>      <span class="n">Wendy</span><span class="p">.</span><span class="n">Fyson</span>        <span class="n">br-ex2010-mb</span>   <span class="n">3</span> <span class="n">GB</span> <span class="p">(</span><span class="n">3</span><span class="p">,</span><span class="n">221</span><span class="p">,</span><span class="n">225</span><span class="p">,</span><span class="n">472</span> <span class="n">bytes</span><span class="p">)</span>
-</code></pre></div><h3 id="discovering-object-properties">Discovering Object Properties</h3>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="discovering-object-properties">Discovering Object Properties</h3>
 <p>PowerShell is an object-oriented language. If you don’t know what that means then don’t worry, I was using PowerShell for almost two years before I began to understand what it meant.</p>
 <p>An “object” is simply a collection of data. In Exchange Server 2010 an object could be a mailbox, a distribution group, a database, or one of many other things.</p>
 <p>An object has properties. In the example of a mailbox object these include properties such as the name of the database the mailbox resides on, the mailbox storage quota values, or the office location for the mailbox user. In the previous examples we looked at filtering mailboxes using the “Office” attribute, and setting the values for mailbox storage quota attributes. But how do we know which properties a mailbox object has, so that we can perform that filtering or apply changes to those settings?</p>
 <p>Again PowerShell gives us the answer thanks to the <a href="http://technet.microsoft.com/en-us/library/ee176854.aspx">Get-Member</a> cmdlet. Get-Member will list all of the properties of an object to help you learn what you can and can’t do with them. For example, to discover which properties the mailbox object has you can run the following command (note once again the use of the pipeline):</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Mailbox</span> <span class="p">|</span> <span class="nb">Get-Member</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Mailbox</span> <span class="p">|</span> <span class="nb">Get-Member</span>
 <span class="n">TypeName</span><span class="err">:</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">Exchange</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Directory</span><span class="p">.</span><span class="n">Management</span><span class="p">.</span><span class="n">Mailbox</span>
 
 <span class="n">Name</span>                                   <span class="n">MemberType</span>
@@ -316,8 +419,27 @@ if (!doNotTrack) {
 <span class="n">AuditEnabled</span>                           <span class="n">Property</span>
 <span class="n">AuditLogAgeLimit</span>                       <span class="n">Property</span>
 <span class="n">AuditOwner</span>                             <span class="n">Property</span>
-</code></pre></div><p>I’ve had to truncate the output in this example because it returns quite a long list of properties that mailbox objects have. It would be more convenient to filter the list down to just the properties I might be interested in. So let’s say that we just want to see which mailbox object properties relate to quota settings. Once again we can use the pipeline and filtering to achieve that.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Mailbox</span> <span class="p">|</span> <span class="nb">Get-Member</span> <span class="n">-Name</span> <span class="s2">&#34;*quota*&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>I’ve had to truncate the output in this example because it returns quite a long list of properties that mailbox objects have. It would be more convenient to filter the list down to just the properties I might be interested in. So let’s say that we just want to see which mailbox object properties relate to quota settings. Once again we can use the pipeline and filtering to achieve that.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-Mailbox</span> <span class="p">|</span> <span class="nb">Get-Member</span> <span class="n">-Name</span> <span class="s2">&#34;*quota*&#34;</span>
  <span class="n">TypeName</span><span class="err">:</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">Exchange</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Directory</span><span class="p">.</span><span class="n">Management</span><span class="p">.</span><span class="n">Mailbox</span>
 <span class="n">Name</span>                         <span class="n">MemberType</span>
 <span class="p">----</span>                         <span class="p">----------</span>
@@ -330,11 +452,26 @@ if (!doNotTrack) {
 <span class="n">RecoverableItemsWarningQuota</span> <span class="n">Property</span>
 <span class="n">RulesQuota</span>                   <span class="n">Property</span>
 <span class="n">UseDatabaseQuotaDefaults</span>     <span class="n">Property</span>
-</code></pre></div><p>Pretty neat isn’t it.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Pretty neat isn’t it.</p>
 <h3 id="remoting">Remoting</h3>
 <p>The last essential skill that I’ll demonstrate to you in this article is remoting, which is a feature available in PowerShell 2.0 and above. Exchange Server 2010 servers require at least PowerShell 2.0, so this technique will work for Exchange 2010 environments. Remoting is simply the technique of connecting a PowerShell session on the local computer to a remote server. This is useful if you are logged on to a workstation that has PowerShell installed, but doesn’t have the Exchange Server 2010 management tools installed, and you need to run some Exchange management tasks. By remoting from the workstation to an Exchange 2010 server you quickly get access to all of the Exchange cmdlets.</p>
 <p>To demonstrate, here is a PowerShell window on a workstation that does not have the Exchange 2010 management tools installed. Notice that the <a href="http://technet.microsoft.com/en-us/library/bb123873.aspx">Get-ExchangeServer</a> cmdlet returns an error because it doesn’t exist on that workstation.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-ExchangeServer</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-ExchangeServer</span>
 <span class="n">The</span> <span class="n">term</span> <span class="s1">&#39;Get-ExchangeServer&#39;</span> <span class="n">is</span> <span class="n">not</span> <span class="n">recognized</span> <span class="n">as</span> <span class="n">the</span> <span class="n">name</span> <span class="n">of</span> <span class="n">a</span> <span class="n">cmdlet</span><span class="p">,</span> <span class="n">functi</span>
 <span class="n">on</span><span class="p">,</span> <span class="n">script</span> <span class="n">file</span><span class="p">,</span> <span class="n">or</span> <span class="n">operable</span> <span class="n">program</span><span class="p">.</span> <span class="n">Check</span> <span class="n">the</span> <span class="n">spelling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">name</span><span class="p">,</span> <span class="n">or</span> <span class="k">if</span> <span class="n">a</span> <span class="n">p</span>
 <span class="n">ath</span> <span class="n">was</span> <span class="n">included</span><span class="p">,</span> <span class="n">verify</span> <span class="n">that</span> <span class="n">the</span> <span class="n">path</span> <span class="n">is</span> <span class="n">correct</span> <span class="n">and</span> <span class="k">try</span> <span class="n">again</span><span class="p">.</span>
@@ -343,16 +480,39 @@ if (!doNotTrack) {
     <span class="p">+</span> <span class="n">CategoryInfo</span>          <span class="err">:</span> <span class="n">ObjectNotFound</span><span class="err">:</span> <span class="p">(</span><span class="nb">Get-ExchangeServer</span><span class="err">:</span><span class="n">String</span><span class="p">)</span> <span class="p">[],</span>
    <span class="n">CommandNotFoundException</span>
     <span class="p">+</span> <span class="n">FullyQualifiedErrorId</span> <span class="err">:</span> <span class="n">CommandNotFoundException</span>
-</code></pre></div><p>Now let&rsquo;s remote to an Exchange 2010 server and try running the cmdlet again.  There are two steps for PowerShell remoting. The first is to create a new PowerShell session object using <a href="http://technet.microsoft.com/en-us/library/dd347668.aspx">New-PSSession</a>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$session</span> <span class="p">=</span> <span class="nb">New-PSSession</span> <span class="n">-ConfigurationName</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">Exchange</span> <span class="p">`</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Now let&rsquo;s remote to an Exchange 2010 server and try running the cmdlet again.  There are two steps for PowerShell remoting. The first is to create a new PowerShell session object using <a href="http://technet.microsoft.com/en-us/library/dd347668.aspx">New-PSSession</a>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$session</span> <span class="p">=</span> <span class="nb">New-PSSession</span> <span class="n">-ConfigurationName</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">Exchange</span> <span class="p">`</span>
                          <span class="n">-ConnectionUri</span> <span class="n">http</span><span class="err">:</span><span class="p">//</span><span class="n">ho-ex2010-mb1</span><span class="p">.</span><span class="n">exchangeserverpro</span><span class="p">.</span><span class="n">net</span><span class="p">/</span><span class="n">powershell</span> <span class="p">`</span> 						 <span class="n">-Authentication</span> <span class="n">Kerberos</span>
-</code></pre></div><p>Notice the URI that the session is connecting to? That is the /powershell virtual directory in IIS on the Exchange 2010 server named “ho-ex2010-mb1”. After you have created the new session object you can import it using <a href="http://technet.microsoft.com/en-us/library/dd347575.aspx">Import-PSSession</a>.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Notice the URI that the session is connecting to? That is the /powershell virtual directory in IIS on the Exchange 2010 server named “ho-ex2010-mb1”. After you have created the new session object you can import it using <a href="http://technet.microsoft.com/en-us/library/dd347575.aspx">Import-PSSession</a>.</p>
 <pre><code>PS&gt; Import-PSSession $session
 ModuleType Name                      ExportedCommands
 ---------- ----                      ----------------
 Script     tmp_c536eb19-09db-41c1... Get-ExchangeDiagnosticInfo
 </code></pre><p>Now let’s try the Get-ExchangeServer cmdlet again.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-ExchangeServer</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">PS</span><span class="p">&gt;</span> <span class="nb">Get-ExchangeServer</span>
 <span class="n">Name</span>                <span class="n">Site</span>                 <span class="n">ServerRole</span>  <span class="n">Edition</span>     <span class="n">AdminDisplayVe</span>
                                                                  <span class="n">rsion</span>
 <span class="p">----</span>                <span class="p">----</span>                 <span class="p">----------</span>  <span class="p">-------</span>     <span class="p">--------------</span>
@@ -361,9 +521,49 @@ Script     tmp_c536eb19-09db-41c1... Get-ExchangeDiagnosticInfo
 <span class="n">HO-EX2010-MB1</span>       <span class="n">exchangeserverpro</span><span class="p">...</span> <span class="n">Mailbox</span><span class="p">,...</span> <span class="n">Enterprise</span>  <span class="n">Version</span> <span class="n">14</span><span class="p">....</span>
 <span class="n">HO-EX2010-MB2</span>       <span class="n">exchangeserverpro</span><span class="p">...</span> <span class="n">Mailbox</span><span class="p">,...</span> <span class="n">Enterprise</span>  <span class="n">Version</span> <span class="n">14</span><span class="p">....</span>
 <span class="n">HO-EX2010-EDGE</span>      <span class="n">exchangeserverpro</span><span class="p">...</span> <span class="n">Edge</span>        <span class="n">Standard</span><span class="p">...</span> <span class="n">Version</span> <span class="n">14</span><span class="p">....</span>
-</code></pre></div><p>This time it works, thanks to PowerShell remoting.</p>
-<p>As you can see from this article PowerShell is not a daunting language to learn and to begin using on a daily basis once you understand a few of the fundamental skills involved. Try some of these yourself and let us know in the comments below if you have any questions.</p>
+</code></pre></td></tr></table>
 </div>
+</div><p>This time it works, thanks to PowerShell remoting.</p>
+<p>As you can see from this article PowerShell is not a daunting language to learn and to begin using on a daily basis once you understand a few of the fundamental skills involved. Try some of these yourself and let us know in the comments below if you have any questions.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2011\/12\/20\/5-essential-powershell-skills-for-exchange-server-administrators\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2011\/12\/20\/5-essential-powershell-skills-for-exchange-server-administrators\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2011\/12\/20\/5-essential-powershell-skills-for-exchange-server-administrators\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2011\/12\/20\/5-essential-powershell-skills-for-exchange-server-administrators\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
+</div>
+          </div>
         </article>
         
         
@@ -393,86 +593,6 @@ Script     tmp_c536eb19-09db-41c1... Get-ExchangeDiagnosticInfo
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>YAML on PowerShell Magazine | For the most powerful community</title>
+    <link>https://powershellmagazine.com/categories/yaml/</link>
+    <description>Recent content in YAML on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 15 May 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://powershellmagazine.com/categories/yaml/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A YAML primer for administrators</title>
+      <link>https://powershellmagazine.com/2021/05/15/a-yaml-primer-for-administrators/</link>
+      <pubDate>Sat, 15 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://powershellmagazine.com/2021/05/15/a-yaml-primer-for-administrators/</guid>
+      <description>In today&amp;rsquo;s cloud and agile infrastructure world, JSON and YAML play a major role in describing the infrastructure and data exchange.</description>
+    </item>
+    
+  </channel>
+</rss>

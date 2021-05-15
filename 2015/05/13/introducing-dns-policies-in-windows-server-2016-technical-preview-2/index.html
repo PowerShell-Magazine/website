@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2015-05-13T16:00:25+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -234,12 +242,28 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>In this article, we will have a look at DNS Policies – a new feature in the DNS Server role introduced in Windows Server 2016 Technical Preview 2 (TP2):</p>
+          <div class="content">
+            <p>In this article, we will have a look at DNS Policies – a new feature in the DNS Server role introduced in Windows Server 2016 Technical Preview 2 (TP2):</p>
 <p><em>You can configure DNS policies to specify how a DNS server responds to DNS queries. DNS responses can be based on client IP address (location), time of the day, and several other parameters. DNS policies enable location-aware DNS, traffic management, load balancing, split-brain DNS, and other scenarios.</em></p>
 <p>In the Technical Preview, DNS Policies can be managed through PowerShell only. Whether the feature will be manageable from the DNS Server MMC-console or any other GUI tools is currently unknown, but as Jeffrey Snover <a href="https://twitter.com/jsnover/status/596695949306515456">stated on Twitter</a> recently, PowerShell management is created before layering a GUI later on for most new things in Windows Server:</p>
 <p><img src="/images/dns1.png" alt=""></p>
 <p>Before we can demonstrate the new feature, we must first install the DNS Server role and create a zone on a computer running Windows Server 2016 TP2:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># Install DNS Server</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># Install DNS Server</span>
 <span class="nb">Install-WindowsFeature</span> <span class="n">-Name</span> <span class="n">DNS</span>
 
 <span class="c"># List all DNS policy cmdlets</span>
@@ -250,38 +274,107 @@ if (!doNotTrack) {
 
 <span class="c"># Create a test zone</span>
 <span class="nb">Add-DnsServerPrimaryZone</span> <span class="n">-Name</span> <span class="n">powershell</span><span class="p">.</span><span class="n">no</span> <span class="n">-ZoneFile</span> <span class="n">powershell</span><span class="p">.</span><span class="n">no</span><span class="p">.</span><span class="n">dns</span>
-</code></pre></div><p>Next we create traffic management policies:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># The first two commands create client subnets by using the Add-DnsServerClientSubnet cmdlet. The client subnets are for clients in Oslo and clients in Trondheim.</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Next we create traffic management policies:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># The first two commands create client subnets by using the Add-DnsServerClientSubnet cmdlet. The client subnets are for clients in Oslo and clients in Trondheim.</span>
 <span class="nb">Add-DnsServerClientSubnet</span> <span class="n">-Name</span> <span class="n">OsloSubnet</span> <span class="n">-IPv4Subnet</span> <span class="s2">&#34;10.0.1.0/22&#34;</span> <span class="n">-PassThru</span>
 <span class="nb">Add-DnsServerClientSubnet</span> <span class="n">-Name</span> <span class="n">TrondheimSubnet</span> <span class="n">-IPv4Subnet</span> <span class="s2">&#34;10.0.2.0/24&#34;</span> <span class="n">-PassThru</span>
-</code></pre></div><p><img src="/images/dns2.png" alt=""></p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># The next two commands create zone scopes for Oslo and Trondheim by using the Add-DnsServerZoneScope cmdlet.</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/dns2.png" alt=""></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># The next two commands create zone scopes for Oslo and Trondheim by using the Add-DnsServerZoneScope cmdlet.</span>
 
 <span class="nb">Add-DnsServerZoneScope</span> <span class="n">-ZoneName</span> <span class="n">powershell</span><span class="p">.</span><span class="n">no</span> <span class="n">-Name</span> <span class="s2">&#34;OsloZoneScope&#34;</span> <span class="n">-PassThru</span>
 <span class="nb">Add-DnsServerZoneScope</span> <span class="n">-ZoneName</span> <span class="n">powershell</span><span class="p">.</span><span class="n">no</span> <span class="n">-Name</span> <span class="s2">&#34;TrondheimZoneScope&#34;</span> <span class="n">-PassThru</span>
-</code></pre></div><p><img src="/images/dns3.png" alt=""></p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># The next two commands add resource records for the zone powershell.no by using the Add-DnsServerResourceRecord cmdlet.</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/dns3.png" alt=""></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># The next two commands add resource records for the zone powershell.no by using the Add-DnsServerResourceRecord cmdlet.</span>
 <span class="c"># The name for both records is the same, staging, but the two records point to different addresses. The records also have different scopes.</span>
 <span class="nb">Add-DnsServerResourceRecord</span> <span class="n">-ZoneName</span> <span class="n">powershell</span><span class="p">.</span><span class="n">no</span> <span class="n">-A</span> <span class="n">-Name</span> <span class="n">staging</span> <span class="n">-IPv4Address</span> <span class="s2">&#34;10.0.1.10&#34;</span> <span class="n">-ZoneScope</span> <span class="s2">&#34;OsloZoneScope&#34;</span> <span class="n">-PassThru</span>
 <span class="nb">Add-DnsServerResourceRecord</span> <span class="n">-ZoneName</span> <span class="n">powershell</span><span class="p">.</span><span class="n">no</span> <span class="n">-A</span> <span class="n">-Name</span> <span class="n">staging</span> <span class="n">-IPv4Address</span> <span class="s2">&#34;10.0.2.10&#34;</span> <span class="n">-ZoneScope</span> <span class="s2">&#34;TrondheimZoneScope&#34;</span> <span class="n">-PassThru</span>
-</code></pre></div><p><img src="/images/dns4.png" alt=""></p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># The final two commands create two policies. The policies allow queries for members of different subnets.</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/dns4.png" alt=""></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># The final two commands create two policies. The policies allow queries for members of different subnets.</span>
 <span class="c"># The policies differ in scope, so that some clients receive one response to a query, while other clients receive a different response to the same query.</span>
 <span class="nb">Add-DnsServerQueryResolutionPolicy</span> <span class="n">-Name</span> <span class="s2">&#34;OsloPolicy&#34;</span> <span class="n">-Action</span> <span class="n">ALLOW</span> <span class="n">-ClientSubnet</span> <span class="s2">&#34;eq,OsloSubnet&#34;</span> <span class="n">-ZoneScope</span> <span class="s2">&#34;OsloZoneScope,1&#34;</span> <span class="n">-ZoneName</span> <span class="n">powershell</span><span class="p">.</span><span class="n">no</span> <span class="n">-PassThru</span>
 <span class="nb">Add-DnsServerQueryResolutionPolicy</span> <span class="n">-Name</span> <span class="s2">&#34;TrondheimPolicy&#34;</span> <span class="n">-Action</span> <span class="n">ALLOW</span> <span class="n">-ClientSubnet</span> <span class="s2">&#34;eq,TrondheimSubnet&#34;</span> <span class="n">-ZoneScope</span> <span class="s2">&#34;TrondheimZoneScope,1&#34;</span> <span class="n">-ZoneName</span> <span class="n">powershell</span><span class="p">.</span><span class="n">no</span> <span class="n">-PassThru</span>
-</code></pre></div><p><img src="/images/dns5.png" alt=""></p>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/dns5.png" alt=""></p>
 <p>Now we are ready to test if the new policies work as desired. First, we must configure the computers used for testing to use the Windows Server 2016 TP2 DNS Server for DNS queries:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Set-DnsClientServerAddress</span> <span class="n">-InterfaceAlias</span> <span class="n">Ethernet</span> <span class="n">-ServerAddresses</span> <span class="n">10</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">200</span>
-</code></pre></div><p>And then, we’ll use Resolve-DnsName from a computer in the Oslo subnet (10.0.1.0):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Set-DnsClientServerAddress</span> <span class="n">-InterfaceAlias</span> <span class="n">Ethernet</span> <span class="n">-ServerAddresses</span> <span class="n">10</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">200</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>And then, we’ll use Resolve-DnsName from a computer in the Oslo subnet (10.0.1.0):</p>
 <p><img src="/images/dns6.png" alt=""></p>
 <p>Next, we`re doing the same DNS query from a computer in the Trondheim subnet (10.0.2.0):</p>
 <p><img src="/images/dns7.png" alt=""></p>
 <p>As we can see, the expected IP addresses are returned in both scenarios.</p>
 <p>Let’s also test another available scenario–Time of the day.</p>
 <p>First, we modify the OsloPolicy to apply in a restricted time:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Set-DnsServerQueryResolutionPolicy</span> <span class="n">-Name</span> <span class="s2">&#34;OsloPolicy&#34;</span> <span class="n">-ZoneName</span> <span class="n">powershell</span><span class="p">.</span><span class="n">no</span> <span class="n">-TimeOfDay</span> <span class="s2">&#34;EQ,22:10-23:00&#34;</span> <span class="n">-PassThru</span>
-</code></pre></div><p>Then we create a function for testing purposes, which will clear the DNS client cache, output the current time and perform a DNS query.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Test-DnsName</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Set-DnsServerQueryResolutionPolicy</span> <span class="n">-Name</span> <span class="s2">&#34;OsloPolicy&#34;</span> <span class="n">-ZoneName</span> <span class="n">powershell</span><span class="p">.</span><span class="n">no</span> <span class="n">-TimeOfDay</span> <span class="s2">&#34;EQ,22:10-23:00&#34;</span> <span class="n">-PassThru</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Then we create a function for testing purposes, which will clear the DNS client cache, output the current time and perform a DNS query.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Test-DnsName</span> <span class="p">{</span>
 	<span class="k">param</span><span class="p">(</span>
 		<span class="no">[string]</span><span class="nv">$Name</span>
 	<span class="p">)</span>
@@ -291,13 +384,53 @@ if (!doNotTrack) {
     <span class="nb">Resolve-DnsName</span> <span class="n">-Name</span> <span class="nv">$Name</span>
 <span class="p">}</span>
 <span class="nb">Test-DnsName</span> <span class="n">-Name</span> <span class="n">staging</span><span class="p">.</span><span class="n">powershell</span><span class="p">.</span><span class="n">no</span>
-</code></pre></div><p>When running Test-DnsName before the allowed time of day we get an error stating that the DNS name does not exist, while after the allowed time of day the query returns the desired result:</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>When running Test-DnsName before the allowed time of day we get an error stating that the DNS name does not exist, while after the allowed time of day the query returns the desired result:</p>
 <p><img src="/images/dns8.png" alt=""></p>
 <p>This concludes our introduction to DNS Policies in Windows Server 2016, a feature that will be very useful in real world scenarios when it becomes available for production use.</p>
 <p><strong>Resources</strong></p>
 <p><a href="https://technet.microsoft.com/en-us/library/dn765484.aspx">What’s New in DNS Server in Windows Server Technical Preview</a> (TechNet)</p>
 <p><a href="https://msdn.microsoft.com/en-us/library/jj649850.aspx">Domain Name System (DNS) Server Cmdlets</a> (MSDN)</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2015\/05\/13\/introducing-dns-policies-in-windows-server-2016-technical-preview-2\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2015\/05\/13\/introducing-dns-policies-in-windows-server-2016-technical-preview-2\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2015\/05\/13\/introducing-dns-policies-in-windows-server-2016-technical-preview-2\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2015\/05\/13\/introducing-dns-policies-in-windows-server-2016-technical-preview-2\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
 </div>
+          </div>
         </article>
         
         
@@ -327,86 +460,6 @@ if (!doNotTrack) {
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

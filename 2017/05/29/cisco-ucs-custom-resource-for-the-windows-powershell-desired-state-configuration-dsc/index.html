@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2017-05-29T16:00:59+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -216,7 +224,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>8 Min To Read
+              <i class="far fa-clock"></i>9 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>29 May, 2017
@@ -237,7 +245,8 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>The Cisco UCS PowerTool Suite is a set of PowerShell modules for Cisco UCS Manager, Cisco IMC (C-Series stand-alone servers) and Cisco UCS Central that helps in configuration and management of Cisco UCS domains and solutions.  The Cisco UCS PowerTool Suite 2.0.1 release added a new module <strong>Cisco.Ucs.DesiredStateConfiguration</strong> which consists of custom resources for configuring Cisco UCS Manager and Cisco IMC using the PowerShell DSC platform. You can download the latest version of the UCS PowerTool Suite from <a href="https://software.cisco.com/download/release.html?i=!y&mdfid=286305108&softwareid=284574017&release=2.0.2" target="_blank" rel="noopener noreferrer">cisco.com</a>. Refer to <a href="https://communities.cisco.com/docs/DOC-37154" target="_blank" rel="noopener noreferrer">Cisco UCS PowerTool Suite</a> page on Cisco Communities for more resources.</p>
+          <div class="content">
+            <p>The Cisco UCS PowerTool Suite is a set of PowerShell modules for Cisco UCS Manager, Cisco IMC (C-Series stand-alone servers) and Cisco UCS Central that helps in configuration and management of Cisco UCS domains and solutions.  The Cisco UCS PowerTool Suite 2.0.1 release added a new module <strong>Cisco.Ucs.DesiredStateConfiguration</strong> which consists of custom resources for configuring Cisco UCS Manager and Cisco IMC using the PowerShell DSC platform. You can download the latest version of the UCS PowerTool Suite from <a href="https://software.cisco.com/download/release.html?i=!y&mdfid=286305108&softwareid=284574017&release=2.0.2" target="_blank" rel="noopener noreferrer">cisco.com</a>. Refer to <a href="https://communities.cisco.com/docs/DOC-37154" target="_blank" rel="noopener noreferrer">Cisco UCS PowerTool Suite</a> page on Cisco Communities for more resources.</p>
 <p>PowerShell Desired State Configuration (DSC) is a management platform which enables you to configure, deploy, and manage systems. DSC provides <strong>declarative</strong>, <strong>autonomous</strong> and <strong>idempotent</strong> deployment, configuration and conformance for standards-based managed elements. For more information on DSC refer to the <a href="https://msdn.microsoft.com/en-us/powershell/dsc/overview" target="_blank" rel="noopener noreferrer">PowerShell DSC documentation</a>.</p>
 <p>Cisco UCS DSC Resource aids in achieving Configuration as Code in turn helping you to follow the DevOps model.</p>
 <p>The Cisco UCS DSC module provides six DSC custom resources which cover the majority of use cases.  You can view the custom UCS resources by running the <em>Get-DscResource</em> cmdlet as shown below.</p>
@@ -277,7 +286,49 @@ if (!doNotTrack) {
 <h3 id="ucssyncmowithreference-custom-resource">UcsSyncMoWithReference Custom Resource</h3>
 <p>If you have more than one UCS domain in your datacenter and want to maintain a baseline configuration across all the UCS domains use the UcsSyncMoWithReference resource.</p>
 <p>You can create a configuration using this resource by specifying the Distinguished Name (DN) of the Managed Object (MO) that needs to be synced.  Here is an example of how you can sync a Service Profile, Service Profile Template, and LDAP Groups.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">UcsSyncMoWithReference</span> <span class="n">SyncServiceProfile</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">UcsSyncMoWithReference</span> <span class="n">SyncServiceProfile</span>
 <span class="p">{</span>
     <span class="n">UcsCredentials</span> <span class="p">=</span> <span class="nv">$ucsCredential</span>
     <span class="n">UcsConnectionString</span> <span class="p">=</span> <span class="nv">$ucsConnString</span>
@@ -315,10 +366,27 @@ if (!doNotTrack) {
      <span class="n">Hierarchy</span><span class="p">=</span><span class="nv">$true</span>
      <span class="n">Dn</span><span class="p">=</span><span class="s2">&#34;sys/ldap-ext&#34;</span>        
  <span class="p">}</span>
-</code></pre></div><p>In the above example I have specified the DN of the SP, SP Template, and the LDAP group. By specifying Ensure=”Present” the UcsSyncMoWithReference resource ensures that the MOs are created on the UCS domain. You can also specify what action to take in case if there are additional MOs than compared to the MOs present on the reference UCS. If you want to delete the additional MOs, you need to specify DeleteNotPresent= $true as done in the LDAP sync configuration in the above example.  Refer to UCS Manager PowerTool User Guide for more details on the properties of the Resource.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>In the above example I have specified the DN of the SP, SP Template, and the LDAP group. By specifying Ensure=”Present” the UcsSyncMoWithReference resource ensures that the MOs are created on the UCS domain. You can also specify what action to take in case if there are additional MOs than compared to the MOs present on the reference UCS. If you want to delete the additional MOs, you need to specify DeleteNotPresent= $true as done in the LDAP sync configuration in the above example.  Refer to UCS Manager PowerTool User Guide for more details on the properties of the Resource.</p>
 <h3 id="ucsmanagedobject-custom-resource">UcsManagedObject Custom Resource</h3>
 <p>This is a generic resource provided to configure any MO in UCS Manager. To use this resource, you need to be familiar with the MO definitions and properties. One way to make use of this resource is by generating this configuration automatically as explained in the earlier section.  If you are writing the configuration manually refer to the <a href="http://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/sw/api/b_ucs_api_book.html">UCS Manager XML API Programmer’s Guide</a>.  Below is an example configuration of creating an Org in the UCS Manager. There are few key things to consider while creating the configuration, you need to specify the DN, XML API Class ID, and the Property Map.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">UcsManagedObject</span> <span class="n">CreateOrganisationDemo</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">UcsManagedObject</span> <span class="n">CreateOrganisationDemo</span>
 <span class="p">{</span>
     <span class="n">Ensure</span> <span class="p">=</span> <span class="s2">&#34;Present&#34;</span>
     <span class="n">ModifyPresent</span> <span class="p">=</span> <span class="nv">$true</span>
@@ -329,11 +397,26 @@ if (!doNotTrack) {
     <span class="n">UcsConnectionString</span> <span class="p">=</span> <span class="nv">$connectionString</span>
     <span class="n">Identifier</span> <span class="p">=</span> <span class="s2">&#34;2&#34;</span>
 <span class="p">}</span>
-</code></pre></div><p>You need to specify the properties of the managed object as key value pairs using the below format</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>You need to specify the properties of the managed object as key value pairs using the below format</p>
 <p><code>&lt;key1&gt;=&lt;value1&gt; &lt;key&gt;=&lt;value2&gt;</code></p>
 <h3 id="ucsscript-custom-resource">UcsScript Custom Resource</h3>
 <p>This is a generic resource provided to execute UCS Manager PowerTool cmdlets in a script. You can use this resource in cases where the configuration is complex and needs to be written as a script. You can also generate the configuration automatically for this resource as explained earlier.  Below is an example configuration of renaming a Service Profile.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">UcsScript</span> <span class="n">RenameServiceProfileDemo</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">UcsScript</span> <span class="n">RenameServiceProfileDemo</span>
 <span class="p">{</span>
     <span class="n">Ensure</span> <span class="p">=</span> <span class="s2">&#34;Present&#34;</span>
     <span class="n">Dn</span> <span class="p">=</span> <span class="s2">&#34;org-root/ls-dscdemo&#34;</span>
@@ -342,15 +425,111 @@ if (!doNotTrack) {
     <span class="n">UcsConnectionString</span> <span class="p">=</span> <span class="nv">$connectionString</span>
     <span class="n">Identifier</span> <span class="p">=</span><span class="s2">&#34;1&#34;</span>
 <span class="p">}</span>
-</code></pre></div><p>If the configuration script is complex you can specify multiple DNs in a comma separated format.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>If the configuration script is complex you can specify multiple DNs in a comma separated format.</p>
 <h3 id="configuration-example">Configuration Example</h3>
 <p>This section details how you can put together all the things in a DSC configuration document.</p>
 <p>For all the examples mentioned above you need to specify environment settings, UCS Connection details and Credentials.</p>
 <p>UCS connection string needs to be specified in the following format.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Name</span><span class="p">=&lt;</span><span class="n">ipAddress</span><span class="p">&gt;</span> <span class="p">[`</span><span class="n">nNoSsl</span><span class="p">=&lt;</span><span class="n">bool</span><span class="p">&gt;][`</span><span class="n">nPort</span><span class="p">=&lt;</span><span class="n">ushort</span><span class="p">&gt;]</span> <span class="p">[`</span><span class="n">nProxyAddress</span><span class="p">=&lt;</span><span class="n">proxyAddress</span><span class="p">&gt;]</span> <span class="p">[`</span><span class="n">nUseProxyDefaultCredentials</span><span class="p">=&lt;</span><span class="n">bool</span><span class="p">&gt;]</span>
-</code></pre></div><p>UCS Manager credentials needs to be specified as a PSCredential object. You can use certificates for encrypting the credentials to keep it secure. For information on using certificates for encryption refer to <a href="https://msdn.microsoft.com/en-us/powershell/dsc/securemof" target="_blank" rel="noopener noreferrer">Microsoft DSC documentation</a>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Name</span><span class="p">=&lt;</span><span class="n">ipAddress</span><span class="p">&gt;</span> <span class="p">[`</span><span class="n">nNoSsl</span><span class="p">=&lt;</span><span class="n">bool</span><span class="p">&gt;][`</span><span class="n">nPort</span><span class="p">=&lt;</span><span class="n">ushort</span><span class="p">&gt;]</span> <span class="p">[`</span><span class="n">nProxyAddress</span><span class="p">=&lt;</span><span class="n">proxyAddress</span><span class="p">&gt;]</span> <span class="p">[`</span><span class="n">nUseProxyDefaultCredentials</span><span class="p">=&lt;</span><span class="n">bool</span><span class="p">&gt;]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>UCS Manager credentials needs to be specified as a PSCredential object. You can use certificates for encrypting the credentials to keep it secure. For information on using certificates for encryption refer to <a href="https://msdn.microsoft.com/en-us/powershell/dsc/securemof" target="_blank" rel="noopener noreferrer">Microsoft DSC documentation</a>.</p>
 <p>Below is an example configuration which has all the details.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$ConfigData</span><span class="p">=</span>    <span class="p">@{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$ConfigData</span><span class="p">=</span>    <span class="p">@{</span>
         <span class="n">AllNodes</span> <span class="p">=</span> <span class="p">@(</span>    
                         <span class="p">@{</span> 
                             <span class="c"># The name of the node we are describing</span>
@@ -433,9 +612,56 @@ if (!doNotTrack) {
     <span class="nb">Write-Host</span> <span class="p">${</span><span class="n">Error</span><span class="p">}</span>
     <span class="n">exit</span>
 <span class="p">}</span>
-</code></pre></div><p>When you run this script PowerShell will generate the corresponding MOF files. You can deploy the configuration based on the LCM configuration mode. If it is set to Push mode, then you can enact the configuration using the below syntax.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Start-DscConfiguration</span> <span class="n">-Path</span> <span class="s2">&#34;C:\DscDemo\AutoGeneratedConfig\&#34;</span> <span class="n">-Wait</span> <span class="n">-Verbose</span> <span class="n">-force</span>
-</code></pre></div></div>
+</code></pre></td></tr></table>
+</div>
+</div><p>When you run this script PowerShell will generate the corresponding MOF files. You can deploy the configuration based on the LCM configuration mode. If it is set to Push mode, then you can enact the configuration using the below syntax.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Start-DscConfiguration</span> <span class="n">-Path</span> <span class="s2">&#34;C:\DscDemo\AutoGeneratedConfig\&#34;</span> <span class="n">-Wait</span> <span class="n">-Verbose</span> <span class="n">-force</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2017\/05\/29\/cisco-ucs-custom-resource-for-the-windows-powershell-desired-state-configuration-dsc\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2017\/05\/29\/cisco-ucs-custom-resource-for-the-windows-powershell-desired-state-configuration-dsc\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2017\/05\/29\/cisco-ucs-custom-resource-for-the-windows-powershell-desired-state-configuration-dsc\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2017\/05\/29\/cisco-ucs-custom-resource-for-the-windows-powershell-desired-state-configuration-dsc\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
+</div>
+          </div>
         </article>
         
         
@@ -465,86 +691,6 @@ if (!doNotTrack) {
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

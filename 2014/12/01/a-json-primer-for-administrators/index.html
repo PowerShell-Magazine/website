@@ -12,13 +12,14 @@
 
 
 <meta property="og:title" content="A JSON primer for administrators" />
-<meta property="og:description" content="JavaScript Object Notation ([JSON][1]) is quickly becoming the most used data-interchange format. XML enjoyed the top spot for a long time but slowly people have been moving towards JSON." />
+<meta property="og:description" content="JavaScript Object Notation (JSON) is quickly becoming the most used data-interchange format. XML enjoyed the top spot for a long time but slowly people have been moving towards JSON." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://powershellmagazine.com/2014/12/01/a-json-primer-for-administrators/" />
 <meta property="article:published_time" content="2014-12-01T17:00:47+00:00" />
 <meta property="article:modified_time" content="2014-12-01T17:00:47+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -237,136 +245,307 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>JavaScript Object Notation ([JSON][1]) is quickly becoming the most used data-interchange format. XML enjoyed the top spot for a long time but slowly people have been moving towards JSON. JSON is a first-class citizen in Windows PowerShell. With many automation frameworks and software products adopting JSON, it is important for system administrators to understand what is JSON and how to use it. This article is a JSON primer to give you an overview of this data-interchange format and how to use it.</p>
-<p>JSON facilitates structured data-interchange between programming languages. [ECMA-404 specification][2] describes the JSON data-interchange format. Although JSON carries JavaScript in its name, you don’t need to know [JavaScripting][3] to be able to learn and use JSON. Its name comes from the fact that the JSON format is derived from the JavaScript object literal syntax.</p>
-<pre class="brush: jscript; title: ; notranslate" title="">var car = {
-   type:  "Fiat",
-   model: 500,
-   color: "white"
-};
-</pre>
-<p>As you see in the above example, the JavaScript object literal is nothing but a key-value pair. The JSON data-interchange format is similar to this with a few differences. Let’s explore!</p>
+          <div class="content">
+            <p>JavaScript Object Notation (<a href="http://json.org/">JSON</a>) is quickly becoming the most used data-interchange format. XML enjoyed the top spot for a long time but slowly people have been moving towards JSON. JSON is a first-class citizen in Windows PowerShell. With many automation frameworks and software products adopting JSON, it is important for system administrators to understand what is JSON and how to use it. This article is a JSON primer to give you an overview of this data-interchange format and how to use it.</p>
+<p>JSON facilitates structured data-interchange between programming languages. <a href="http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf">ECMA-404 specification</a> describes the JSON data-interchange format. Although JSON carries JavaScript in its name, you don’t need to know <a href="http://en.wikipedia.org/wiki/JavaScript">JavaScripting</a> to be able to learn and use JSON. Its name comes from the fact that the JSON format is derived from the JavaScript object literal syntax.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">car</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="nx">type</span><span class="o">:</span>  <span class="s2">&#34;Fiat&#34;</span><span class="p">,</span>
+   <span class="nx">model</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
+   <span class="nx">color</span><span class="o">:</span> <span class="s2">&#34;white&#34;</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>As you see in the above example, the JavaScript object literal is nothing but a key-value pair. The JSON data-interchange format is similar to this with a few differences. Let’s explore!</p>
 <h3 id="introducing-json-data-interchange-format">Introducing JSON data-interchange format</h3>
-<p>If you have worked with different programming or scripting languages, each of them have their own data representation. In this era of cloud and mobile services, the services built using one programming language are generally consumed by a myriad of clients built in various languages. Take an example of services offered by Microsoft Azure. Most or all of them are written in C# and offer APIs with JSON as the output data format. We can consume these services in PowerShell, Python, and many more languages with libraries to translate the JSON data into a native data representation within those languages. This is how we have been using XML for a long time. So, this should be straightforward to understand. Then, why JSON? This topic is highly debatable. However, I like to quote just one example. You can read [rest here][4].</p>
+<p>If you have worked with different programming or scripting languages, each of them have their own data representation. In this era of cloud and mobile services, the services built using one programming language are generally consumed by a myriad of clients built in various languages. Take an example of services offered by Microsoft Azure. Most or all of them are written in C# and offer APIs with JSON as the output data format. We can consume these services in PowerShell, Python, and many more languages with libraries to translate the JSON data into a native data representation within those languages. This is how we have been using XML for a long time. So, this should be straightforward to understand. Then, why JSON? This topic is highly debatable. However, I like to quote just one example. You can read <a href="https://www.google.co.in/webhp?sourceid=chrome-instant&amp;ion=1&amp;espv=2&amp;ie=UTF-8#sourceid=chrome-psyapi2&amp;ie=UTF-8&amp;q=JSON%20vs%20XML">rest here</a>.</p>
 <p>XML is quite verbose. Just think about representing the above JavaScript object literal in XML.</p>
-<pre class="brush: xml; title: ; notranslate" title="">&lt;Car&gt;
-   &lt;Type&gt;Fiat&lt;/Type&gt;
-   &lt;Model&gt;500&lt;/Model&gt;
-   &lt;Color&gt;White&lt;/Color&gt;
-&lt;/Car&gt;
-</pre>
-<p>Now, let us see the same representation in JSON. Don’t worry about the details of the JSON representation but just see how clean it is compared to XML.</p>
-<pre class="brush: jscript; title: ; notranslate" title="">{
-"Car" : {
-   "Type"  : "Fiat"
-   "Model" : 500
-   "Color" : "White"
-   }
-}
-</pre>
-<p>What we have seen above is a very simple example. Imagine the verbosity of XML when the data that needs to be represented is huge. This is certainly one of the reasons for me to choose between XML and JSON. With this background, let us go into the details of JSON data format.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;Car&gt;</span>
+    <span class="nt">&lt;Type&gt;</span>Fiat<span class="nt">&lt;/Type&gt;</span>
+    <span class="nt">&lt;Model&gt;</span>500<span class="nt">&lt;/Model&gt;</span>
+    <span class="nt">&lt;Color&gt;</span>White<span class="nt">&lt;/Color&gt;</span>
+<span class="nt">&lt;/Car&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Now, let us see the same representation in JSON. Don’t worry about the details of the JSON representation but just see how clean it is compared to XML.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<span class="nt">&#34;Car&#34;</span> <span class="p">:</span> <span class="p">{</span>
+   <span class="nt">&#34;Type&#34;</span>  <span class="p">:</span> <span class="s2">&#34;Fiat&#34;</span>
+   <span class="s2">&#34;Model&#34;</span> <span class="p">:</span> <span class="mi">500</span>
+   <span class="s2">&#34;Color&#34;</span> <span class="p">:</span> <span class="s2">&#34;White&#34;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>What we have seen above is a very simple example. Imagine the verbosity of XML when the data that needs to be represented is huge. This is certainly one of the reasons for me to choose between XML and JSON. With this background, let us go into the details of JSON data format.</p>
 <p>To start with, the general syntax for writing JSON objects is as follows:</p>
-<pre class="brush: jscript; title: ; notranslate" title="">{
-   "Data1" : "Value1",
-   "Data2" : "Value2"
-}
-</pre>
-<p>As you see in this example, the key-value pair is enclosed within curly brackets. The keys, <em>Data1</em> and <em>Data2</em> as shown in the example, must always be enclosed within double quotes. This is one key difference from the JavaScript object literal syntax. The key and value are separated by a colon “:”. Also, observe that the key-value pairs (or members) must be separated by commas.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+   <span class="nt">&#34;Data1&#34;</span> <span class="p">:</span> <span class="s2">&#34;Value1&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;Data2&#34;</span> <span class="p">:</span> <span class="s2">&#34;Value2&#34;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>As you see in this example, the key-value pair is enclosed within curly brackets. The keys, <em>Data1</em> and <em>Data2</em> as shown in the example, must always be enclosed within double quotes. This is one key difference from the JavaScript object literal syntax. The key and value are separated by a colon “:”. Also, observe that the key-value pairs (or members) must be separated by commas.</p>
 <p>You can nest objects in JSON. Here is a generic example.</p>
-<pre class="brush: jscript; title: ; notranslate" title="">{
-   "Data1" : "Value1",
-   "Data2" : {
-        "Data21" : "Value21"
-   }
-}
-</pre>
-<p><strong>Whether we need to enclose the value within double quotes or not depends on the type of the data</strong>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+   <span class="nt">&#34;Data1&#34;</span> <span class="p">:</span> <span class="s2">&#34;Value1&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;Data2&#34;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;Data21&#34;</span> <span class="p">:</span> <span class="s2">&#34;Value21&#34;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Whether we need to enclose the value within double quotes or not depends on the type of the data</strong>.</p>
 <h3 id="data-types-in-json">Data Types in JSON</h3>
 <p>A JSON value can be  of a basic data type such as string, number, and boolean. You can create ordered list of values such as arrays. And, as shown above, you can use unordered key-value pairs within JSON. JSON also supports empty values denoted by null.</p>
 <p>Here are some examples of data types and how they are used in JSON.</p>
 <h4 id="numbers">Numbers</h4>
 <p>In JSON data format, numbers represent a sequence of digits. There is no differentiation between floats, doubles, and so on. <strong>JSON values cannot be hexadecimal or octal.</strong> Here is an example of representing numbers in JSON.</p>
-<pre class="brush: powershell; title: ; notranslate" title="">{
-   "age" : 30,
-   "speed" : 10.12,
-   "somenumber" : 1.778979793e+23,
-   "negativenumber" : -1212
-}
-</pre>
-<p>As you see in the above example, we can represent different types of numbers including exponential and negative numbers. <strong>When the value you want to store in JSON format is a number, do not enclose it within the quotes.</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+   <span class="nt">&#34;age&#34;</span> <span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+   <span class="nt">&#34;speed&#34;</span> <span class="p">:</span> <span class="mf">10.12</span><span class="p">,</span>
+   <span class="nt">&#34;somenumber&#34;</span> <span class="p">:</span> <span class="mf">1.778979793e+23</span><span class="p">,</span>
+   <span class="nt">&#34;negativenumber&#34;</span> <span class="p">:</span> <span class="mi">-1212</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>As you see in the above example, we can represent different types of numbers including exponential and negative numbers. <strong>When the value you want to store in JSON format is a number, do not enclose it within the quotes.</strong></p>
 <h4 id="strings">Strings</h4>
 <p>Like every other programming or scripting language, a string represents a sequence of characters.</p>
-<pre class="brush: jscript; title: ; notranslate" title="">{
-   "Name" : "Windows PowerShell",
-   "Tab" : "Windows\tPowerShell",
-   "NewLine" : "Windows\nPowerShell",
-   "Backspace" : "Windows\bPowerShell",
-   "CarriageReturn" : "Windows\rPowerShell",
-   "WithQuotes" : "Windows \"PowerShell\"",
-   "HexCharacters" : "Windows PowerShell \u1F44D"
-}
-</pre>
-<p>I have included several ways of representing string values in the above example. You see that all the values are enclosed within double quotes. <strong>Using single quotes is not allowed in JSON</strong>. When you need to use double quotes within the value string, you need to escape the same using the escape sequences. There are other escape sequences also shown in the above example. If you need to include special Unicode characters derived from hex representation, the same can be done using <em>\u</em> escape sequence.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+   <span class="nt">&#34;Name&#34;</span> <span class="p">:</span> <span class="s2">&#34;Windows PowerShell&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;Tab&#34;</span> <span class="p">:</span> <span class="s2">&#34;Windows\tPowerShell&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;NewLine&#34;</span> <span class="p">:</span> <span class="s2">&#34;Windows\nPowerShell&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;Backspace&#34;</span> <span class="p">:</span> <span class="s2">&#34;Windows\bPowerShell&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;CarriageReturn&#34;</span> <span class="p">:</span> <span class="s2">&#34;Windows\rPowerShell&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;WithQuotes&#34;</span> <span class="p">:</span> <span class="s2">&#34;Windows \&#34;PowerShell\&#34;&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;HexCharacters&#34;</span> <span class="p">:</span> <span class="s2">&#34;Windows PowerShell \u1F44D&#34;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>I have included several ways of representing string values in the above example. You see that all the values are enclosed within double quotes. <strong>Using single quotes is not allowed in JSON</strong>. When you need to use double quotes within the value string, you need to escape the same using the escape sequences. There are other escape sequences also shown in the above example. If you need to include special Unicode characters derived from hex representation, the same can be done using <em>\u</em> escape sequence.</p>
 <h4 id="booleans">Booleans</h4>
 <p>Boolean values can be represented in JSON using <em>true</em> or <em>false</em>.</p>
-<pre class="brush: jscript; title: ; notranslate" title="">{
-    "Test1" : true,
-    "Test2" : false
-}
-</pre>
-<p>Remember that the values representing Boolean values should be always in lower case. Using <em>True</em> and <em>False</em> is not valid.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;Test1&#34;</span> <span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&#34;Test2&#34;</span> <span class="p">:</span> <span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Remember that the values representing Boolean values should be always in lower case. Using <em>True</em> and <em>False</em> is not valid.</p>
 <h4 id="null">Null</h4>
 <p>You can also create empty values by assigning null to a key.</p>
-<pre class="brush: powershell; title: ; notranslate" title="">{
-"Name" : null
-}
-</pre>
-<p>Make a note that the value you assign must be null in lowercase. <strong>Using <em>Null</em> (uppercase) results in an error.</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+	<span class="nt">&#34;Name&#34;</span> <span class="p">:</span> <span class="kc">null</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Make a note that the value you assign must be null in lowercase. <strong>Using <em>Null</em> (uppercase) results in an error.</strong></p>
 <h4 id="arrays">Arrays</h4>
 <p>Arrays are an ordered list of values. Within the JSON data format, these values are enclosed within square brackets ([ and ]).</p>
-<pre class="brush: powershell; title: ; notranslate" title="">{
- 	"Array1" : ["PowerShell", "Python", "Perl"],
- 	"Array2" : [10, 11, 12],
- 	"Array3" : ["Ravi",10,true]
-}
-</pre>
-<p>As you see in the example, you can assign the ordered lists or arrays to JSON keys. It is possible to mix data types (see <em>Array3</em>) within the arrays. However, this is not recommended as not all programming languages support mixed data types in arrays. So, when the JSON data is passed on to another language, there may be errors. Avoid mixing data types within in arrays in JSON.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+ 	<span class="nt">&#34;Array1&#34;</span> <span class="p">:</span> <span class="p">[</span><span class="s2">&#34;PowerShell&#34;</span><span class="p">,</span> <span class="s2">&#34;Python&#34;</span><span class="p">,</span> <span class="s2">&#34;Perl&#34;</span><span class="p">],</span>
+ 	<span class="nt">&#34;Array2&#34;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+ 	<span class="nt">&#34;Array3&#34;</span> <span class="p">:</span> <span class="p">[</span><span class="s2">&#34;Ravi&#34;</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="kc">true</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>As you see in the example, you can assign the ordered lists or arrays to JSON keys. It is possible to mix data types (see <em>Array3</em>) within the arrays. However, this is not recommended as not all programming languages support mixed data types in arrays. So, when the JSON data is passed on to another language, there may be errors. Avoid mixing data types within in arrays in JSON.</p>
 <h4 id="objects">Objects</h4>
 <p>Finally, objects within JSON data are the unordered set of key-value pairs. Essentially, by using objects within JSON data, you create nested JSON data representation.</p>
-<pre class="brush: jscript; title: ; notranslate" title="">{
-   "Name" : "Windows PowerShell",
-   "Version" : "4.0.30319.18444",
-   "IsStable" : true,
-   "PreviousVersions" : [1.0,2.0,3.0],
-   "Future" : {
-      "Version" : 5.0,
-      "IsReady" : false
-   }
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+   <span class="nt">&#34;Name&#34;</span> <span class="p">:</span> <span class="s2">&#34;Windows PowerShell&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;Version&#34;</span> <span class="p">:</span> <span class="s2">&#34;4.0.30319.18444&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;IsStable&#34;</span> <span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+   <span class="nt">&#34;PreviousVersions&#34;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">],</span>
+   <span class="nt">&#34;Future&#34;</span> <span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;Version&#34;</span> <span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>
+      <span class="nt">&#34;IsReady&#34;</span> <span class="p">:</span> <span class="kc">false</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The above example is a comprehensive one. It shows all data types along with nested objects. This ends our discussion on the data types in JSON. Now, how do you validate whether your JSON format is valid or not? I simply use the <em>ConvertFrom-Json</em> cmdlet.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$json</span> <span class="p">=</span> <span class="sh">@&#39;
+</span><span class="sh">{
+</span><span class="sh">   &#34;Name&#34; : &#34;Windows PowerShell&#34;,
+</span><span class="sh">   &#34;Version&#34; : &#34;4.0.30319.18444&#34;,
+</span><span class="sh">   &#34;IsStable&#34; : true,
+</span><span class="sh">   &#34;PreviousVersions&#34; : [1.0,2.0,3.0],
+</span><span class="sh">   &#34;Future&#34; : {
+</span><span class="sh">      &#34;Version&#34; : 5.0,
+</span><span class="sh">      &#34;IsReady&#34; : false
+</span><span class="sh">   }
+</span><span class="sh">}
+</span><span class="sh">&#39;@</span>
+<span class="nv">$Object</span> <span class="p">=</span> <span class="nb">ConvertFrom-Json</span> <span class="n">-InputObject</span> <span class="nv">$json</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/json1.png" alt=""></p>
+<p>This is just a primer like I mentioned earlier. I suggest that you start looking at using JSON wherever possible. It will be an essential skill to have. I will show you why in my future posts here! 🙂</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
 }
-</pre>
-<p>The above example is a comprehensive one. It shows all data types along with nested objects. This ends our discussion on the data types in JSON. Now, how do you validate whether your JSON format is valid or not? I simply use the <em>ConvertFrom-Json</em> cmdlet.</p>
-<pre class="brush: powershell; title: ; notranslate" title="">$json = @'
-{
-   "Name" : "Windows PowerShell",
-   "Version" : "4.0.30319.18444",
-   "IsStable" : true,
-   "PreviousVersions" : [1.0,2.0,3.0],
-   "Future" : {
-      "Version" : 5.0,
-      "IsReady" : false
-   }
-}
-'@
-$Object = ConvertFrom-Json -InputObject $json
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
 
-![](/images/json1.png)
-
-This is just a primer like I mentioned earlier. I suggest that you start looking at using JSON wherever possible. It will be an essential skill to have. I will show you why in my future posts here! 🙂
-
-[1]: http://json.org/
-[2]: http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf
-[3]: http://en.wikipedia.org/wiki/JavaScript
-[4]: https://www.google.co.in/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#sourceid=chrome-psyapi2&ie=UTF-8&q=JSON%20vs%20XML</div>
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2014\/12\/01\/a-json-primer-for-administrators\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2014\/12\/01\/a-json-primer-for-administrators\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2014\/12\/01\/a-json-primer-for-administrators\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2014\/12\/01\/a-json-primer-for-administrators\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
+</div>
+          </div>
         </article>
         
         
@@ -396,86 +575,6 @@ This is just a primer like I mentioned earlier. I suggest that you start looking
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

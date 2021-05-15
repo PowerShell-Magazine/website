@@ -18,6 +18,7 @@
 <meta property="og:updated_time" content="2015-05-12T16:00:15+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -28,6 +29,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -91,6 +93,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -191,10 +199,90 @@ if (!doNotTrack) {
   <div class="row">
     
     
+    <aside class="col-lg-4 order-2 order-lg-1 sidebar-inner"><!-- Social -->
+<div class="widget">
+  <h4 class="widget-title"><span>Social Links</span></h4>
+  <ul class="list-inline widget-social">
+    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
+    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
+    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
+    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
+  </ul>
+</div><!-- Search -->
+
+<div class="widget">
+  <h4 class="widget-title"><span>Search</span></h4>
+  <form action="/search" class="widget-search">
+    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
+    <i class="ti-search"></i>
+    <button type="submit" class="btn btn-primary btn-block">Search</button>
+  </form>
+</div>
+<!-- recent post -->
+<div class="widget">
+  <h4 class="widget-title">Recent Post</h4>
+  <!-- post-item -->
+  
+  <article class="widget-card">
+    <div class="d-flex">
+      
+      
+      
+      <img src="https://powershellmagazine.com/images/yaml.png" class="card-img-sm" loading="lazy" alt="post-thumb">
+      
+      
+      
+      <div class="ml-3">
+        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/15/a-yaml-primer-for-administrators/">A YAML primer for administrators</a></h5>
+        <ul class="card-meta list-inline mb-0">
+          <li class="list-inline-item mb-0">
+            <i class="far fa-calendar-alt"></i>15 May, 2021
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+  
+  <article class="widget-card">
+    <div class="d-flex">
+      
+      
+      
+      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
+      
+      
+      
+      <div class="ml-3">
+        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
+        <ul class="card-meta list-inline mb-0">
+          <li class="list-inline-item mb-0">
+            <i class="far fa-calendar-alt"></i>04 May, 2021
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+  
+  <article class="widget-card">
+    <div class="d-flex">
+      
+      <div class="ml-3">
+        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
+        <ul class="card-meta list-inline mb-0">
+          <li class="list-inline-item mb-0">
+            <i class="far fa-calendar-alt"></i>03 May, 2021
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+  
+</div></aside>
+    
     
 
     <div
-      class="col-lg-8  mb-5 mb-lg-0">
+      class="col-lg-8 order-1 order-lg-2 mb-5 mb-lg-0">
 
       
       
@@ -204,321 +292,353 @@ if (!doNotTrack) {
 
       
       
-      <div class="row">
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/04/12/pstip-backing-up-a-sql-database-using-smo/">#PSTip Backing up a SQL database using SMO</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/ravikanth-c/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
-                    
-                    
-                    <span>Ravikanth C</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>1 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>12 Apr, 2013
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/tips-and-tricks">Tips and tricks</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/sql">S q l</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>Note: This tip requires PowerShell 2.0 or above.
-In today’s tip, we shall see …</p>
-              <a href="https://powershellmagazine.com/2013/04/12/pstip-backing-up-a-sql-database-using-smo/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/04/12/pstip-backing-up-a-sql-database-using-smo/">#PSTip Backing up a SQL database using SMO</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/ravikanth-c/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
+                  
+                  
+                  <span>Ravikanth C</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>1 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>12 Apr, 2013
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/tips-and-tricks">Tips and tricks</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/sql">S q l</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              Note: This tip requires PowerShell 2.0 or above.
+In today’s tip, we shall see how we can use SQL Management Objects (SMO) in PowerShell to perform a SQL database backup.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2013/04/12/pstip-backing-up-a-sql-database-using-smo/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/04/03/pstip-list-all-fixed-disk-drives-visible-to-sql-server-instance/">#PSTip List all fixed disk drives visible to SQL Server instance</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/ravikanth-c/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
-                    
-                    
-                    <span>Ravikanth C</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>1 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>03 Apr, 2013
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/tips-and-tricks">Tips and tricks</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/sql">S q l</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>Note: This tip requires PowerShell 2.0 or above.
-When automating SQL server …</p>
-              <a href="https://powershellmagazine.com/2013/04/03/pstip-list-all-fixed-disk-drives-visible-to-sql-server-instance/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/04/03/pstip-list-all-fixed-disk-drives-visible-to-sql-server-instance/">#PSTip List all fixed disk drives visible to SQL Server instance</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/ravikanth-c/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
+                  
+                  
+                  <span>Ravikanth C</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>1 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>03 Apr, 2013
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/tips-and-tricks">Tips and tricks</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/sql">S q l</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              Note: This tip requires PowerShell 2.0 or above.
+When automating SQL server database creation in PowerShell, we may want to give the end user an option to select from a list of available fixed disk drives and let the user select the drive that should …
+              
+            </p>
+            <a href="https://powershellmagazine.com/2013/04/03/pstip-list-all-fixed-disk-drives-visible-to-sql-server-instance/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/04/03/pstip-change-sql-server-maxservermemory-configuration-using-smo/">#PSTip Change SQL Server MaxServerMemory configuration using SMO</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/ravikanth-c/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
-                    
-                    
-                    <span>Ravikanth C</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>1 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>03 Apr, 2013
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/tips-and-tricks">Tips and tricks</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/sql">S q l</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>Note: This tip requires PowerShell 2.0 or above.
-As database administrators, we …</p>
-              <a href="https://powershellmagazine.com/2013/04/03/pstip-change-sql-server-maxservermemory-configuration-using-smo/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/04/03/pstip-change-sql-server-maxservermemory-configuration-using-smo/">#PSTip Change SQL Server MaxServerMemory configuration using SMO</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/ravikanth-c/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
+                  
+                  
+                  <span>Ravikanth C</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>1 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>03 Apr, 2013
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/tips-and-tricks">Tips and tricks</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/sql">S q l</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              Note: This tip requires PowerShell 2.0 or above.
+As database administrators, we might want to configure SQL MaxServerMemory setting to ensure the SQL service does not occupy all available physical memory.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2013/04/03/pstip-change-sql-server-maxservermemory-configuration-using-smo/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/03/28/pstip-identifying-sql-system-objects-using-smo/">#PSTip Identifying SQL system objects using SMO</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/ravikanth-c/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
-                    
-                    
-                    <span>Ravikanth C</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>1 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>28 Mar, 2013
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/tips-and-tricks">Tips and tricks</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/sql">S q l</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>Note: This tip requires PowerShell 2.0 or above.
-A SQL Server instance, by …</p>
-              <a href="https://powershellmagazine.com/2013/03/28/pstip-identifying-sql-system-objects-using-smo/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/03/28/pstip-identifying-sql-system-objects-using-smo/">#PSTip Identifying SQL system objects using SMO</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/ravikanth-c/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
+                  
+                  
+                  <span>Ravikanth C</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>1 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>28 Mar, 2013
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/tips-and-tricks">Tips and tricks</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/sql">S q l</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              Note: This tip requires PowerShell 2.0 or above.
+A SQL Server instance, by default, deploys a few system databases such as Temp DB, MSDB, Master, and Model DB.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2013/03/28/pstip-identifying-sql-system-objects-using-smo/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/03/27/pstip-generate-t-sql-script-to-clone-database-tables-using-smo/">#PSTip Generate T-SQL script to clone database tables using SMO</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/ravikanth-c/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
-                    
-                    
-                    <span>Ravikanth C</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>1 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>27 Mar, 2013
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/tips-and-tricks">Tips and tricks</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/sql">S q l</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>Note: This tip requires PowerShell 2.0 or above.
-In an earlier tip, we looked at …</p>
-              <a href="https://powershellmagazine.com/2013/03/27/pstip-generate-t-sql-script-to-clone-database-tables-using-smo/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/03/27/pstip-generate-t-sql-script-to-clone-database-tables-using-smo/">#PSTip Generate T-SQL script to clone database tables using SMO</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/ravikanth-c/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
+                  
+                  
+                  <span>Ravikanth C</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>1 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>27 Mar, 2013
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/tips-and-tricks">Tips and tricks</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/sql">S q l</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              Note: This tip requires PowerShell 2.0 or above.
+In an earlier tip, we looked at how we can use SMO in PowerShell to generate T-SQL scripts for cloning databases.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2013/03/27/pstip-generate-t-sql-script-to-clone-database-tables-using-smo/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-        <div class="col-md-6">
-          <article class="card mb-4">
-            
-            
-            
-            <div class="card-body">
-              <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/03/19/pstip-generate-t-sql-script-for-cloning-a-sql-database/">#PSTip Generate T-SQL script for cloning a SQL database</a></h3>
-              <ul class="card-meta list-inline">
-                <li class="list-inline-item">
-                  <a href="/author/ravikanth-c/" class="card-meta-author">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
-                    
-                    
-                    <span>Ravikanth C</span>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-clock"></i>1 Min To Read
-                </li>
-                <li class="list-inline-item">
-                  <i class="far fa-calendar-alt"></i>19 Mar, 2013
-                </li>
-                <li class="list-inline-item">
-                  <ul class="card-meta-tag list-inline">
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/tips-and-tricks">Tips and tricks</a></li>
-                    
-                    <li class="list-inline-item"><a
-                        href="/tags/sql">S q l</a></li>
-                    
-                    
-                  </ul>
-                </li>
-              </ul>
-              <p>Note: This tip requires PowerShell 2.0 or above.
-As database administrator, you …</p>
-              <a href="https://powershellmagazine.com/2013/03/19/pstip-generate-t-sql-script-for-cloning-a-sql-database/" class="btn btn-outline-primary">Read More</a>
-            </div>
-          </article>
+      </article>
+      
+      
+      
+      <article class="card mb-4">
+        <div class="row card-body">
+          
+          
+          
+          <div class="col-12">
+            <h3 class="h4 mb-3"><a class="post-title" href="https://powershellmagazine.com/2013/03/19/pstip-generate-t-sql-script-for-cloning-a-sql-database/">#PSTip Generate T-SQL script for cloning a SQL database</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                <a href="/author/ravikanth-c/" class="card-meta-author">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <img loading="lazy" src="https://powershellmagazine.com/images/author/ravikanth-c.jpg" alt="Ravikanth C" class="img-fluid">
+                  
+                  
+                  <span>Ravikanth C</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-clock"></i>1 Min To Read
+              </li>
+              <li class="list-inline-item">
+                <i class="far fa-calendar-alt"></i>19 Mar, 2013
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  
+                  
+                  
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/tips-and-tricks">Tips and tricks</a></li>
+                  
+                  <li class="list-inline-item"><a
+                      href="/tags/sql">S q l</a></li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+            <p>
+              
+              Note: This tip requires PowerShell 2.0 or above.
+As database administrator, you may want to create a database on development or test servers with similar settings as on the production server.
+              
+            </p>
+            <a href="https://powershellmagazine.com/2013/03/19/pstip-generate-t-sql-script-for-cloning-a-sql-database/" class="btn btn-outline-primary">Read More</a>
+          </div>
         </div>
-        
-      </div>
+      </article>
+      
       
 
       
@@ -705,86 +825,6 @@ As database administrator, you …</p>
     </div>
 
     
-    
-    <aside class="col-lg-4 sidebar-inner"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
     
     
   </div>

@@ -20,6 +20,7 @@ Last time, we looked at how assertions work in theory, and how they are implemen
 <meta property="article:modified_time" content="2015-12-03T17:00:12+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -30,6 +31,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -93,6 +95,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -193,7 +201,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -209,7 +217,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>7 Min To Read
+              <i class="far fa-clock"></i>8 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>03 Dec, 2015
@@ -230,11 +238,26 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>This article is a part of a larger series on <a href="/tags/pester">Pester</a>.</p>
+          <div class="content">
+            <p>This article is a part of a larger series on <a href="/tags/pester">Pester</a>.</p>
 <p>Last time, we looked at how assertions work in theory, and how they are implemented in Pester. This gave us the foundation to understand how tests are failed, but in order to fail a test we first need to run it. So this time we will have a closer look at It, Context, and Describe and will create our own Test runner.</p>
 <h3 id="poor-mans-test-runner">Poor man’s test runner</h3>
 <p>In the simplest case, you do not need much to run test script code. Actually, we already did it in the first article where we tested our Assert-Equal assertion.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Assert-Equal</span> <span class="p">(</span><span class="nv">$Expected</span><span class="p">,</span> <span class="nv">$Actual</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Assert-Equal</span> <span class="p">(</span><span class="nv">$Expected</span><span class="p">,</span> <span class="nv">$Actual</span><span class="p">)</span> <span class="p">{</span>
    <span class="k">if</span> <span class="p">(</span><span class="nv">$Actual</span> <span class="o">-ne</span> <span class="nv">$Expected</span><span class="p">)</span>
    <span class="p">{</span>  
       <span class="k">throw</span> <span class="s2">&#34;Value &#39;$Expected&#39; was expected, but was &#39;$Actual&#39;&#34;</span>
@@ -244,11 +267,33 @@ if (!doNotTrack) {
 <span class="nv">$expected</span> <span class="p">=</span> <span class="n">8</span>
 <span class="nv">$actual</span> <span class="p">=</span> <span class="n">4</span>
 <span class="nb">Assert-Equal</span> <span class="n">-actual</span> <span class="nv">$actual</span> <span class="n">-expected</span> <span class="nv">$expected</span>
-</code></pre></div><p>We simply take a piece of code and wait for it to fail or pass. So technically, we do not need a test runner, but it makes our lives a lot easier. It takes care of looking up all tests in a test suite, shows a nicely colored and formatted output, and enables us to organize our tests a little better.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>We simply take a piece of code and wait for it to fail or pass. So technically, we do not need a test runner, but it makes our lives a lot easier. It takes care of looking up all tests in a test suite, shows a nicely colored and formatted output, and enables us to organize our tests a little better.</p>
 <h3 id="making-our-own-test-runner">Making our own test runner</h3>
 <p>The main reason to have a test runner, though, is to be able to run all tests in the test suite even if some of them fail. To be able to do that we need to catch any exception and translate it to textual output or some other harmless type of output.</p>
 <p>In the Assert-Throw assertion, we already did something very similar. We captured an exception so the user could not see it. To do that we used a try-catch block and wrapped it in a function like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Assert-Throw</span> <span class="p">(</span><span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Assert-Throw</span> <span class="p">(</span><span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
    <span class="nv">$exceptionWasThrown</span> <span class="p">=</span> <span class="nv">$False</span>
    <span class="k">try</span>
    <span class="p">{</span>
@@ -264,8 +309,25 @@ if (!doNotTrack) {
        <span class="k">throw</span> <span class="s1">&#39;Expected an exception to be thrown but no exception was thrown.&#39;</span>
    <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>We are going to use a very similar approach for our test runner. Only this time we will output the exception that we captured, and we will output name of the current test as well:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Test-Case</span> <span class="p">(</span><span class="no">[String]</span><span class="nv">$Name</span><span class="p">,</span> <span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>We are going to use a very similar approach for our test runner. Only this time we will output the exception that we captured, and we will output name of the current test as well:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Test-Case</span> <span class="p">(</span><span class="no">[String]</span><span class="nv">$Name</span><span class="p">,</span> <span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">try</span> 
     <span class="p">{</span>
        <span class="p">&amp;</span><span class="nv">$ScriptBlock</span>
@@ -276,11 +338,48 @@ if (!doNotTrack) {
         <span class="nb">Write-Host</span> <span class="n">-ForegroundColor</span> <span class="n">Red</span> <span class="s2">&#34;${Name}: Test failed because $_&#34;</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>In the Test-Case function we are taking a piece of code wrapped in a ScriptBlock. We execute this code using the &amp; invocation operator and wait for it to either succeed or fail. By failing, we specifically mean that an exception was thrown. When an exception is thrown, for example by an assertion function, the code jumps inside of the catch block and outputs a red message to screen to notify us that the test code failed.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>In the Test-Case function we are taking a piece of code wrapped in a ScriptBlock. We execute this code using the &amp; invocation operator and wait for it to either succeed or fail. By failing, we specifically mean that an exception was thrown. When an exception is thrown, for example by an assertion function, the code jumps inside of the catch block and outputs a red message to screen to notify us that the test code failed.</p>
 <p>If no exception is thrown the code will write a green message, that lets us know that our code did not fail, which means that our test passed.</p>
 <h3 id="create-a-suite-of-tests">Create a suite of tests</h3>
 <p>Now we are ready to take what we learned so far and create a suite of two tests:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Assert-Equal</span> <span class="p">(</span><span class="nv">$Expected</span><span class="p">,</span> <span class="nv">$Actual</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Assert-Equal</span> <span class="p">(</span><span class="nv">$Expected</span><span class="p">,</span> <span class="nv">$Actual</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nv">$Actual</span> <span class="o">-ne</span> <span class="nv">$Expected</span><span class="p">)</span> 
     <span class="p">{</span>
         <span class="k">throw</span> <span class="s2">&#34;Value &#39;$Expected&#39; was expected, but was &#39;$Actual&#39;&#34;</span>
@@ -311,14 +410,47 @@ if (!doNotTrack) {
 
     <span class="nb">Assert-Equal</span> <span class="n">-actual</span> <span class="nv">$actual</span> <span class="n">-expected</span> <span class="nv">$expected</span>
 <span class="p">}</span>
-</code></pre></div><p>Which outputs:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Eight</span> <span class="n">is</span> <span class="n">four</span><span class="err">:</span> <span class="n">Test</span> <span class="n">failed</span> <span class="n">because</span> <span class="n">Value</span> <span class="s1">&#39;8&#39;</span> <span class="n">was</span> <span class="n">expected</span><span class="p">,</span> <span class="n">but</span> <span class="n">was</span> <span class="s1">&#39;4&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Which outputs:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Eight</span> <span class="n">is</span> <span class="n">four</span><span class="err">:</span> <span class="n">Test</span> <span class="n">failed</span> <span class="n">because</span> <span class="n">Value</span> <span class="s1">&#39;8&#39;</span> <span class="n">was</span> <span class="n">expected</span><span class="p">,</span> <span class="n">but</span> <span class="n">was</span> <span class="s1">&#39;4&#39;</span>
 <span class="n">Ten</span> <span class="n">is</span> <span class="n">ten</span><span class="err">:</span> <span class="n">Test</span> <span class="n">passed</span><span class="p">.</span>
-</code></pre></div><p>Pay attention to the output. You can see that both tests run even though the first test failed. We just created our own test runner!</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Pay attention to the output. You can see that both tests run even though the first test failed. We just created our own test runner!</p>
 <h3 id="it">It</h3>
 <p>The Test-Case function is roughly equivalent to the “It” function of Pester. “It” hosts a single test and prevents any failed test from failing the whole suite.</p>
 <p>The <a href="https://github.com/pester/Pester/blob/master/Functions/It.ps1">actual implementation of It</a> is riddled with input validation, testing the framework state, skipping tests, making them pending and so on, but the basic idea is still the same. Look at the implementation of <a href="https://github.com/pester/Pester/blob/master/Functions/It.ps1#L247">Invoke-Test</a> function and you will find the familiar pattern.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$errorRecord</span> <span class="p">=</span> <span class="nv">$null</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$errorRecord</span> <span class="p">=</span> <span class="nv">$null</span>
 <span class="k">try</span>
 <span class="p">{</span>
     <span class="nb">Invoke-TestCaseSetupBlocks</span>
@@ -337,7 +469,9 @@ if (!doNotTrack) {
 <span class="p">}</span>
 
 <span class="nv">$result</span> <span class="p">=</span> <span class="nb">Get-PesterResult</span> <span class="n">-ErrorRecord</span> <span class="nv">$errorRecord</span>
-</code></pre></div><h3 id="more-interesting-bits-of-it">More interesting bits of It</h3>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="more-interesting-bits-of-it">More interesting bits of It</h3>
 <p>There are few more interesting bits in Pester’s It function. Those are not important to understanding the framework as a whole, but the It function implements so much that I feel obligated to describe at least some of those.</p>
 <ul>
 <li>Any output of the ScriptBlock is <a href="https://github.com/pester/Pester/blob/master/Functions/It.ps1#L253">assigned to $null</a>, which simply means that the output is discarded.</li>
@@ -348,7 +482,27 @@ if (!doNotTrack) {
 </ul>
 <h3 id="context-and-describe">Context and Describe</h3>
 <p>The Context and Describe are mainly the so-called syntactic sugar, a language construct that helps us explain our intentions better. They also let us organize the code in per-feature and per-use-case groups. Context and Describe differ slightly in Pester, but we will disregard those minor differences and will implement both groups by a single function.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Test-Block</span> <span class="p">(</span><span class="no">[String]</span><span class="nv">$Name</span><span class="p">,</span> <span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">function</span> <span class="nb">Test-Block</span> <span class="p">(</span><span class="no">[String]</span><span class="nv">$Name</span><span class="p">,</span> <span class="no">[ScriptBlock]</span><span class="nv">$ScriptBlock</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">try</span> 
     <span class="p">{</span>
         <span class="nv">$Global:IndentationLevel</span><span class="p">++</span>
@@ -364,9 +518,102 @@ if (!doNotTrack) {
         <span class="nv">$Global:IndentationLevel</span><span class="p">--</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>The Test-Block again uses the familiar try-catch pattern. This is not by accident. Any code can be provided in the $ScriptBlock. This means that the code in Test-Block might fail, and we need to protect our test runner from that. We do not want exceptions to prevent us from running all test blocks.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>The Test-Block again uses the familiar try-catch pattern. This is not by accident. Any code can be provided in the $ScriptBlock. This means that the code in Test-Block might fail, and we need to protect our test runner from that. We do not want exceptions to prevent us from running all test blocks.</p>
 <p>Apart from that, we also thrown in some nice indentation. The indentation level is stored in a global variable and simply translated to tabulator spacing.</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$Global:IndentationLevel</span> <span class="p">=</span> <span class="n">0</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$Global:IndentationLevel</span> <span class="p">=</span> <span class="n">0</span>
 
 <span class="k">function</span> <span class="nb">Assert-Equal</span> <span class="p">(</span><span class="nv">$Expected</span><span class="p">,</span> <span class="nv">$Actual</span><span class="p">)</span> <span class="p">{</span>
    <span class="k">if</span> <span class="p">(</span><span class="nv">$Actual</span> <span class="o">-ne</span> <span class="nv">$Expected</span><span class="p">)</span>
@@ -453,11 +700,51 @@ if (!doNotTrack) {
        <span class="p">}</span>
    <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p><img src="/images/pesterit.png" alt=""></p>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/pesterit.png" alt=""></p>
 <h3 id="summary">Summary</h3>
 <p>This concludes our review of Describe, Context and It. Hopefully you saw that a test runner is very simple at its core. Both Test-Case and Test-Block use very similar code. They execute input ScriptBlock and handle every possible exception.</p>
 <p>Do not worry if the implementation of Test-Case seems too simplified in comparison to It. The It function handles more concerns than just error handling and output that we described in this article. We will look at those concerns in some of the upcoming articles.</p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2015\/12\/03\/pester-explained-describe-context-and-it-blocks\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2015\/12\/03\/pester-explained-describe-context-and-it-blocks\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2015\/12\/03\/pester-explained-describe-context-and-it-blocks\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2015\/12\/03\/pester-explained-describe-context-and-it-blocks\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
 </div>
+          </div>
         </article>
         
         
@@ -487,86 +774,6 @@ if (!doNotTrack) {
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>

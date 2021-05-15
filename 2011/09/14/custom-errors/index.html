@@ -19,6 +19,7 @@
 <meta property="article:modified_time" content="2011-09-14T07:44:49+00:00" />
 
 
+    
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -29,6 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+
 
 
 	
@@ -92,6 +94,12 @@ if (!doNotTrack) {
 
 <body>
 	
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
 	<!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -192,7 +200,7 @@ if (!doNotTrack) {
       
 
       <div
-        class=" col-lg-8   mb-5 mb-lg-0">
+        class=" col-lg-10 mx-auto   mb-5 mb-lg-0">
         <article>
           
           
@@ -216,7 +224,7 @@ if (!doNotTrack) {
               </a>
             </li>
             <li class="list-inline-item">
-              <i class="far fa-clock"></i>9 Min To Read
+              <i class="far fa-clock"></i>11 Min To Read
             </li>
             <li class="list-inline-item">
               <i class="far fa-calendar-alt"></i>14 Sep, 2011
@@ -234,7 +242,8 @@ if (!doNotTrack) {
               </ul>
             </li>
           </ul>
-          <div class="content"><p>The most common ways of reporting errors in PowerShell are through the Write-Error Cmdlet or the Throw statement. Write-Error writes non-terminating errors while the throw statement writes terminating errors which halt execution but are not very descriptive. Both methods write Management.Automation.ErrorRecord objects to the error stream. Write-Error lets you customize the ErrorRecord it reports through its parameters; this allows you to provide tailored specifics about an error, assisting the user to avoid or resolve the reason that caused the problem. In contrast, the Throw statement only lets us provide a custom message, which in some cases could be enough.</p>
+          <div class="content">
+            <p>The most common ways of reporting errors in PowerShell are through the Write-Error Cmdlet or the Throw statement. Write-Error writes non-terminating errors while the throw statement writes terminating errors which halt execution but are not very descriptive. Both methods write Management.Automation.ErrorRecord objects to the error stream. Write-Error lets you customize the ErrorRecord it reports through its parameters; this allows you to provide tailored specifics about an error, assisting the user to avoid or resolve the reason that caused the problem. In contrast, the Throw statement only lets us provide a custom message, which in some cases could be enough.</p>
 <p>Custom ErrorRecord objects are not very common, but if you ever want to provide better details about an error that is not very clear, you can create and report your own. For instance, I wrote a function that appends data to an existing CSV file; before any piped input is processed, the function will report one of three custom ErrorRecord objects as a terminating error if the destination -or target- file:</p>
 <ol>
 <li>does not exist</li>
@@ -290,7 +299,19 @@ if (!doNotTrack) {
 </ul>
 <p>Did you notice that the last argument is also a System.Exception? Some Exception objects have either customized constructors or no constructors at all; those Exception objects are the <em>exception</em>, if you know what I mean, so will stick with the regulars.</p>
 <p>This code snippet shows how you would report a terminating error in an advanced function:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$message</span> <span class="p">=</span> <span class="s2">&#34;File &#39;$Path&#39; is empty.&#34;</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$message</span> <span class="p">=</span> <span class="s2">&#34;File &#39;$Path&#39; is empty.&#34;</span>
 <span class="nv">$exception</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">InvalidOperationException</span> <span class="nv">$message</span>
 <span class="nv">$errorID</span> <span class="p">=</span> <span class="s1">&#39;FileIsEmpty&#39;</span>
 <span class="nv">$errorCategory</span> <span class="p">=</span> <span class="no">[Management.Automation.ErrorCategory]</span><span class="p">::</span><span class="n">InvalidOperation</span>
@@ -298,9 +319,205 @@ if (!doNotTrack) {
 <span class="nv">$errorRecord</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">Management</span><span class="p">.</span><span class="n">Automation</span><span class="p">.</span><span class="n">ErrorRecord</span> <span class="nv">$exception</span><span class="p">,</span> <span class="nv">$errorID</span><span class="p">,</span>
     <span class="nv">$errorCategory</span><span class="p">,</span> <span class="nv">$target</span>
 <span class="nv">$PSCmdlet</span><span class="p">.</span><span class="n">ThrowTerminatingError</span><span class="p">(</span><span class="nv">$errorRecord</span><span class="p">)</span>
-</code></pre></div><p>…first the Exception, next the ErrorRecord and finally report the ErrorRecord.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>…first the Exception, next the ErrorRecord and finally report the ErrorRecord.</p>
 <p>To make the custom ErrorRecord creation process a bit simpler, I wrote the New-ErrorRecord function…</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="cm">&lt;# 
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="cm">&lt;# 
 </span><span class="cm"></span><span class="sd">.Synopsis</span><span class="cm">
 </span><span class="cm">    Creates an custom ErrorRecord that can be used to report a terminating or non-terminating error. 
 </span><span class="cm">    
@@ -490,10 +707,68 @@ if (!doNotTrack) {
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>…takes all the arguments used to build both an ErrorRecord and an Exception, six in all. The first four are required and the last two are optional. The function guards against nonexistent Exception objects but allows the absence of the ‘<em>System</em>.’ prefix from its <em>Exception</em> argument, adhering to PowerShell’s tolerance. You can omit or include the ‘<em>System</em>.’ prefix from the full name when creating an Exception object.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>…takes all the arguments used to build both an ErrorRecord and an Exception, six in all. The first four are required and the last two are optional. The function guards against nonexistent Exception objects but allows the absence of the ‘<em>System</em>.’ prefix from its <em>Exception</em> argument, adhering to PowerShell’s tolerance. You can omit or include the ‘<em>System</em>.’ prefix from the full name when creating an Exception object.</p>
 <p>The function shields against nonexistent Exception objects by relying on a list of <em>available </em>Exception objects that is retrieved through another function, Get-AvailableExceptionsList. The <em>Exception</em> argument -which is of Type String, not Exception- is compared against the list to verify its <em>availability</em>. The other precaution in the New-ErrorRecord function is for those <em>exceptional </em>Exception objects that make the <em>available</em> list but have <em>customized</em> constructors, that is, different constructors from regular Exception objects. In either case, New-ErrorRecord reports a terminating error.</p>
 <p>The Get-AvailableExceptionsList function…</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="cm">&lt;#
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="cm">&lt;#
 </span><span class="cm"></span><span class="sd">.Synopsis</span><span class="cm">
 </span><span class="cm">    Retrieves all available Exceptions to construct ErrorRecord objects.
 </span><span class="cm">    
@@ -545,19 +820,77 @@ if (!doNotTrack) {
         <span class="p">}</span> <span class="n">2</span><span class="p">&gt;</span> <span class="nv">$null</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p>…retrieves all Type objects -from the assemblies in the current domain- whose names contain the word <em>Exception<strong> </strong></em>but also excludes those whose names match part of <em>some</em> <em>of the</em> <em>exceptional</em> Exception objects’ names. Then, if the Exception has at least one constructor, the function outputs its full name. The function can be called independently to provide a list to select the adequate Exception object name before you create a custom ErrorRecord. This function must be defined before calling the New-ErrorRecord function.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>…retrieves all Type objects -from the assemblies in the current domain- whose names contain the word <em>Exception<strong> </strong></em>but also excludes those whose names match part of <em>some</em> <em>of the</em> <em>exceptional</em> Exception objects’ names. Then, if the Exception has at least one constructor, the function outputs its full name. The function can be called independently to provide a list to select the adequate Exception object name before you create a custom ErrorRecord. This function must be defined before calling the New-ErrorRecord function.</p>
 <p>After defining both functions, the code snippet we previously used to report a terminating error in an advanced function becomes:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$errorRecord</span> <span class="p">=</span> <span class="nb">New-ErrorRecord</span> <span class="n">System</span><span class="p">.</span><span class="n">InvalidOperationException</span> <span class="n">FileIsEmpty</span> <span class="p">`</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$errorRecord</span> <span class="p">=</span> <span class="nb">New-ErrorRecord</span> <span class="n">System</span><span class="p">.</span><span class="n">InvalidOperationException</span> <span class="n">FileIsEmpty</span> <span class="p">`</span>
     <span class="n">InvalidOperation</span> <span class="nv">$Path</span> <span class="n">-Message</span> <span class="s2">&#34;File &#39;$Path&#39; is empty.&#34;</span>
 <span class="nv">$PSCmdlet</span><span class="p">.</span><span class="n">ThrowTerminatingError</span><span class="p">(</span><span class="nv">$errorRecord</span><span class="p">)</span>
-</code></pre></div><p>…a bit simpler.</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>…a bit simpler.</p>
 <p>Remember, ErrorRecord objects are not just for terminating errors. To report a customized non-terminating ErrorRecord, create it with the function New-ErrorRecord and pass it to Write-Error through its ErrorRecord parameter:</p>
-<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$errorRecord</span> <span class="p">=</span> <span class="nb">New-ErrorRecord</span> <span class="n">System</span><span class="p">.</span><span class="n">InvalidOperationException</span> <span class="n">FileIsEmpty</span> <span class="p">`</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nv">$errorRecord</span> <span class="p">=</span> <span class="nb">New-ErrorRecord</span> <span class="n">System</span><span class="p">.</span><span class="n">InvalidOperationException</span> <span class="n">FileIsEmpty</span> <span class="p">`</span>
     <span class="n">InvalidOperation</span> <span class="nv">$Path</span> <span class="n">-Message</span> <span class="s2">&#34;File &#39;$Path&#39; is empty.&#34;</span>
 <span class="nb">Write-Error</span> <span class="n">-ErrorRecord</span> <span class="nv">$errorRecord</span>
-</code></pre></div><p>This is the least you need to know about custom ErrorRecord objects, and how to report them as terminating or non-terminating errors. I know -through personal experience- this topic can be unapproachable, I threw away the ten-foot pole and explored it closer; we are good friends now, but there is still more to discover. At least I feel that this information can help you create custom ErrorRecord objects to better inform the user.</p>
-<p> </p>
+</code></pre></td></tr></table>
 </div>
+</div><p>This is the least you need to know about custom ErrorRecord objects, and how to report them as terminating or non-terminating errors. I know -through personal experience- this topic can be unapproachable, I threw away the ten-foot pole and explored it closer; we are good friends now, but there is still more to discover. At least I feel that this information can help you create custom ErrorRecord objects to better inform the user.</p>
+<p> </p>
+
+            
+            
+
+<style>
+#share-buttons {display: inline-block; vertical-align: middle; }
+#share-buttons:after {content: ""; display: block; clear: both;}
+#share-buttons > div {
+position: relative;
+text-align: left; 
+height: 36px; 
+width: 32px; 
+float: left; 
+text-align: center;
+}
+#share-buttons > div > svg {height: 16px; fill: #d5d5d5; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.pinterest:hover > svg {fill: #CB2027;}
+#share-buttons > div.gplus:hover > svg {fill: #dd4b39;}
+#share-buttons > div.mail:hover > svg {fill: #7D7D7D;}
+#share-buttons > div.instagram:hover > svg {fill: #C73B92;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.pinterest > svg {height: 20px; margin-top: 9px;}
+#share-buttons > div.gplus > svg {height: 17px; margin-top: 9px; position: relative; left: 1px;}
+#share-buttons > div.mail > svg {height: 14px; margin-top: 11px;}
+</style>
+
+<span style="color: rgb(77, 77, 95);">Share on: </span><div id="share-buttons">
+<div class="facebook" title="Share this on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https:\/\/powershellmagazine.com\/2011\/09\/14\/custom-errors\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+<div class="twitter" title="Share this on Twitter" onclick="window.open('https://twitter.com/intent/tweet?text=https:\/\/powershellmagazine.com\/2011\/09\/14\/custom-errors\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=https:\/\/powershellmagazine.com\/2011\/09\/14\/custom-errors\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="mail" title="Share this through Email" onclick="window.open('mailto:?&body=https:\/\/powershellmagazine.com\/2011\/09\/14\/custom-errors\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"/></svg></div>
+</div>
+          </div>
         </article>
         
         
@@ -587,86 +920,6 @@ if (!doNotTrack) {
       </div>
 
       
-      
-      <aside class="col-lg-4"><!-- Social -->
-<div class="widget">
-  <h4 class="widget-title"><span>Social Links</span></h4>
-  <ul class="list-inline widget-social">
-    <li class="list-inline-item"><a href="https://www.facebook.com/powershellmagazine"><i class="fab fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="https://twitter.com/powershellmag"><i class="fab fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="https://github.com/psmag"><i class="fab fa-github"></i></a></li>
-    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCfgQyaDTC-vwVEvkfYCTg1A"><i class="fab fa-youtube"></i></a></li>
-  </ul>
-</div><!-- Search -->
-
-<div class="widget">
-  <h4 class="widget-title"><span>Search</span></h4>
-  <form action="/search" class="widget-search">
-    <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-    <i class="ti-search"></i>
-    <button type="submit" class="btn btn-primary btn-block">Search</button>
-  </form>
-</div>
-<!-- recent post -->
-<div class="widget">
-  <h4 class="widget-title">Recent Post</h4>
-  <!-- post-item -->
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/performance.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/04/make-your-code-faster-with-profiler/">Make your code faster with Profiler</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>04 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/announcing-powershell-magazine-author-toolkit-v10/">Announcing PowerShell Magazine author toolkit v1.0</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-  <article class="widget-card">
-    <div class="d-flex">
-      
-      
-      
-      <img src="https://powershellmagazine.com/images/welcomehome.png" class="card-img-sm" loading="lazy" alt="post-thumb">
-      
-      
-      
-      <div class="ml-3">
-        <h5><a class="post-title" href="https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/">The all new PowerShell Magazine is here and more to come!</a></h5>
-        <ul class="card-meta list-inline mb-0">
-          <li class="list-inline-item mb-0">
-            <i class="far fa-calendar-alt"></i>03 May, 2021
-          </li>
-        </ul>
-      </div>
-    </div>
-  </article>
-  
-</div></aside>
       
       
     </div>
