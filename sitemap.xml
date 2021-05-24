@@ -3,27 +3,62 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://powershellmagazine.com/2021/05/15/a-yaml-primer-for-administrators/</loc>
-    <lastmod>2021-05-15T00:00:00+00:00</lastmod>
+    <loc>https://powershellmagazine.com/2021/05/24/a-reader-counter-using-powershell-azure-functions-and-table-storage/</loc>
+    <lastmod>2021-05-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://powershellmagazine.com/post/</loc>
-    <lastmod>2021-05-15T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/tags/azure/</loc>
+    <lastmod>2021-05-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/categories/azure/</loc>
+    <lastmod>2021-05-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/tags/azure-functions/</loc>
+    <lastmod>2021-05-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/categories/azure-functions/</loc>
+    <lastmod>2021-05-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/tags/azure-tables/</loc>
+    <lastmod>2021-05-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/categories/azure-tables/</loc>
+    <lastmod>2021-05-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://powershellmagazine.com/categories/</loc>
-    <lastmod>2021-05-15T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://powershellmagazine.com/</loc>
-    <lastmod>2021-05-15T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-24T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://powershellmagazine.com/tags/</loc>
+    <lastmod>2021-05-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/2021/05/15/a-yaml-primer-for-administrators/</loc>
     <lastmod>2021-05-15T00:00:00+00:00</lastmod>
   </url>
   
@@ -100,16 +135,6 @@
   <url>
     <loc>https://powershellmagazine.com/2021/05/03/the-all-new-powershell-magazine-is-here-and-more-to-come/</loc>
     <lastmod>2021-05-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://powershellmagazine.com/tags/azure/</loc>
-    <lastmod>2021-04-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://powershellmagazine.com/categories/azure/</loc>
-    <lastmod>2021-04-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>

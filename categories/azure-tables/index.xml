@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Azure Tables on PowerShell Magazine | For the most powerful community</title>
+    <link>https://powershellmagazine.com/categories/azure-tables/</link>
+    <description>Recent content in Azure Tables on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 24 May 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://powershellmagazine.com/categories/azure-tables/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A reader counter using PowerShell, Azure functions, and table storage</title>
+      <link>https://powershellmagazine.com/2021/05/24/a-reader-counter-using-powershell-azure-functions-and-table-storage/</link>
+      <pubDate>Mon, 24 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://powershellmagazine.com/2021/05/24/a-reader-counter-using-powershell-azure-functions-and-table-storage/</guid>
+      <description>We have recently moved PowerShell Magazine from WordPress to Hugo static pages. One downside of this move is that we miss a few features that come by default in WordPress.</description>
+    </item>
+    
+  </channel>
+</rss>
