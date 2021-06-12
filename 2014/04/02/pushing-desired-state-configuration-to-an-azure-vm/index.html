@@ -244,6 +244,11 @@ if (!doNotTrack) {
                 
               </ul>
             </li>
+            <li class="list-inline-item">
+              <i class="fas fa-comments">
+                <a href="https://powershellmagazine.com/2014/04/02/pushing-desired-state-configuration-to-an-azure-vm/#disqus_thread"> Comments</a>
+              </i>
+            </li>
           </ul>
           <div class="content">
             <p>I had described in an earlier article that <a href="/2014/04/01/desired-state-configuration-and-the-remoting-myth/">Desired State Configuration requires WinRM listeners</a> for pushing the configuration to target systems. By default, WinRM is configured to listen on ports 5985 (HTTP) and 5986 (HTTPS). When deploying Windows VMs on Azure, you will find that the default WinRM listener is SSL (HTTPS) based and has a random public port number assigned to it. We use the Cloud Service DNS name along with the random port number assigned to the WinRM HTTPS listener.</p>
@@ -375,6 +380,7 @@ text-align: center;
 </footer>
 	
 <script src="https://cdn.jsdelivr.net/gh/theprojectsomething/webfontloader@feature/google-fonts-v2/webfontloader.js"></script>
+<script id="dsq-count-scr" src="//powershellmagazine.disqus.com/count.js" async></script>
 
 
 <script>

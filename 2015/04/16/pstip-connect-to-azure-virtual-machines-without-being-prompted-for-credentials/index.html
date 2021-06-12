@@ -241,6 +241,11 @@ if (!doNotTrack) {
                 
               </ul>
             </li>
+            <li class="list-inline-item">
+              <i class="fas fa-comments">
+                <a href="https://powershellmagazine.com/2015/04/16/pstip-connect-to-azure-virtual-machines-without-being-prompted-for-credentials/#disqus_thread"> Comments</a>
+              </i>
+            </li>
           </ul>
           <div class="content">
             <p>When working with Azure it can be useful to quickly connect to a number of Azure VMs. Unfortunately this might result in having to enter your password multiple times. To circumvent this problem I wrote the Connect-Mstsc function which accepts a user name and password as parameters. The function stores the credentials in the local credential store and because of this the credentials do not have to be separately entered when connecting via RDP to the remote system. Although the Get-AzureRemoteDesktopFile is a useful cmdlet that creates an .RDP file for Remote Desktop connection, it does prompt for the credentials.</p>
@@ -396,6 +401,7 @@ text-align: center;
 </footer>
 	
 <script src="https://cdn.jsdelivr.net/gh/theprojectsomething/webfontloader@feature/google-fonts-v2/webfontloader.js"></script>
+<script id="dsq-count-scr" src="//powershellmagazine.disqus.com/count.js" async></script>
 
 
 <script>

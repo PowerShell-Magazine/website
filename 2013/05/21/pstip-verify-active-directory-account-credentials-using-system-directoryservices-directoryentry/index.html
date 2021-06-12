@@ -244,6 +244,11 @@ if (!doNotTrack) {
                 
               </ul>
             </li>
+            <li class="list-inline-item">
+              <i class="fas fa-comments">
+                <a href="https://powershellmagazine.com/2013/05/21/pstip-verify-active-directory-account-credentials-using-system-directoryservices-directoryentry/#disqus_thread"> Comments</a>
+              </i>
+            </li>
           </ul>
           <div class="content">
             <p>The <a href="http://msdn.microsoft.com/en-us/library/system.directoryservices.accountmanagement.aspx">System.DirectoryServices.AccountManagement</a> namespace provides a nice way of testing if a set of Active Directory credentials are correct (also discussed in <a href="/2013/02/15/pstip-validating-active-directory-user-credentials/">PSTip Validating Active Directory user credentials</a> ). Another method is utilizing the <a href="http://msdn.microsoft.com/en-us/library/z9cddzaa.aspx">System.DirectoryServices.DirectoryEntry</a> class to create an LDAP connection to the default domain. By default every user should be able to access this entry and therefore this can be used to verify the Active Directory credentials of a user account. The following example will show the basic workings of the class.</p>
@@ -384,6 +389,7 @@ text-align: center;
 </footer>
 	
 <script src="https://cdn.jsdelivr.net/gh/theprojectsomething/webfontloader@feature/google-fonts-v2/webfontloader.js"></script>
+<script id="dsq-count-scr" src="//powershellmagazine.disqus.com/count.js" async></script>
 
 
 <script>

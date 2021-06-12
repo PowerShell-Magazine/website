@@ -241,6 +241,11 @@ if (!doNotTrack) {
                 
               </ul>
             </li>
+            <li class="list-inline-item">
+              <i class="fas fa-comments">
+                <a href="https://powershellmagazine.com/2014/08/13/running-commands-as-another-user-using-dsc-script-resource/#disqus_thread"> Comments</a>
+              </i>
+            </li>
           </ul>
           <div class="content">
             <p>A while ago, I received an email from a reader who wanted to run a few Exchange PowerShell cmdlets using DSC. DSC runs as SYSTEM and using Exchange cmdlets will result in an access denied error because SYSTEM won’t be a part of Exchange administration security groups. So, we need to be able to pass credentials to run those cmdlets as an Exchange administrator. Given this context, the first thought would be to create a new custom resource but given the number of configuration settings Exchange has, it would be overwhelming to create such granular resources. The immediate alternative is to use the DSC script resource. Using the Script resource, we can run any ad hoc script block on the target systems. I use the Script resource as a prototyping mechanism when starting custom DSC resource development. There are a few glitches with this though.</p>
@@ -466,6 +471,7 @@ text-align: center;
 </footer>
 	
 <script src="https://cdn.jsdelivr.net/gh/theprojectsomething/webfontloader@feature/google-fonts-v2/webfontloader.js"></script>
+<script id="dsq-count-scr" src="//powershellmagazine.disqus.com/count.js" async></script>
 
 
 <script>

@@ -244,6 +244,11 @@ if (!doNotTrack) {
                 
               </ul>
             </li>
+            <li class="list-inline-item">
+              <i class="fas fa-comments">
+                <a href="https://powershellmagazine.com/2014/08/07/bootstrapping-dsc-configuration-using-azure-vm-dsc-extension/#disqus_thread"> Comments</a>
+              </i>
+            </li>
           </ul>
           <div class="content">
             <p>In one of the earlier articles, I demonstrated how we can use the <a href="/2014/07/29/bootstrapping-lcm-meta-configuration-in-a-azure-vm/">Azure VM custom script extension to bootstrap DSC LCM meta-configuration</a> after creating a new VM. In that process, we upload a .PS1 file containing the configuration to a storage container and then use the custom script extension to execute that configuration. Within the configuration script, we had to work around some of the issues pertaining to certificate subject name (when using WinRM HTTPS endpoint in Azure VM) and so on using CIM sessions. While all this is trivial, the biggest disadvantage is that there is no explicit support for finding custom DSC resources required for the configuration and pushing them to the Azure VM. This is where the new Azure VM DSC extension makes a difference.</p>
@@ -467,6 +472,7 @@ text-align: center;
 </footer>
 	
 <script src="https://cdn.jsdelivr.net/gh/theprojectsomething/webfontloader@feature/google-fonts-v2/webfontloader.js"></script>
+<script id="dsq-count-scr" src="//powershellmagazine.disqus.com/count.js" async></script>
 
 
 <script>

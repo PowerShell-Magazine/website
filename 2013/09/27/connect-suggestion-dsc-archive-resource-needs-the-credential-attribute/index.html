@@ -241,6 +241,11 @@ if (!doNotTrack) {
                 
               </ul>
             </li>
+            <li class="list-inline-item">
+              <i class="fas fa-comments">
+                <a href="https://powershellmagazine.com/2013/09/27/connect-suggestion-dsc-archive-resource-needs-the-credential-attribute/#disqus_thread"> Comments</a>
+              </i>
+            </li>
           </ul>
           <div class="content">
             <p>In an earlier article, I showed you <a href="/2013/09/02/copying-powershell-modules-and-custom-dsc-resources-using-dsc/">copying DSC resources</a> and PowerShell modules to remote computers. In that article, I showed a method to authorize remote computers to access the UNC path. For the <a href="http://technet.microsoft.com/en-us/library/dn282129.aspx">File</a> and <a href="http://technet.microsoft.com/en-us/library/dn282132.aspx">Package</a> resources, this is not necessary. These two resources support the <a href="/2013/09/26/using-the-credential-attribute-of-dsc-file-resource/"><em>Credential</em> attribute for authenticating</a> to the UNC path. However, the story is different for the Archive resource. It has no <em>Credential</em> attribute which is not only inconsistent but also painful as this forces us to change the computer account permissions for the UNC path or use workarounds such as employing File resource to perform the local copy and then extracting the files using Archive resource. Now, why do we have to perform multiple steps for just extracting files from a simple archive?</p>
@@ -371,6 +376,7 @@ text-align: center;
 </footer>
 	
 <script src="https://cdn.jsdelivr.net/gh/theprojectsomething/webfontloader@feature/google-fonts-v2/webfontloader.js"></script>
+<script id="dsq-count-scr" src="//powershellmagazine.disqus.com/count.js" async></script>
 
 
 <script>
