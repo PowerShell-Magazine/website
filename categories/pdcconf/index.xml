@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PDCconf on PowerShell Magazine | For the most powerful community</title>
+    <link>https://powershellmagazine.com/categories/pdcconf/</link>
+    <description>Recent content in PDCconf on PowerShell Magazine | For the most powerful community</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 26 Jul 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://powershellmagazine.com/categories/pdcconf/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Announcing PowerShell, DevOps, and Cloud Conference 2021</title>
+      <link>https://powershellmagazine.com/2021/07/26/announcing-powershell-devops-and-cloud-conference-2021/</link>
+      <pubDate>Mon, 26 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://powershellmagazine.com/2021/07/26/announcing-powershell-devops-and-cloud-conference-2021/</guid>
+      <description>PowerShell Conference Asia 2019 was a huge success. The attendee turnout was never like before. We had 200+ attendees and speakers worldwide spend three days in Bangalore to share their PowerShell expertise.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -3,12 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://powershellmagazine.com/2021/05/24/a-reader-counter-using-powershell-azure-functions-and-table-storage/</loc>
-    <lastmod>2021-05-24T00:00:00+00:00</lastmod>
+    <loc>https://powershellmagazine.com/2021/07/26/announcing-powershell-devops-and-cloud-conference-2021/</loc>
+    <lastmod>2021-07-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://powershellmagazine.com/post/</loc>
+    <lastmod>2021-07-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/categories/</loc>
+    <lastmod>2021-07-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/tags/conferences/</loc>
+    <lastmod>2021-07-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/categories/pdcconf/</loc>
+    <lastmod>2021-07-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/</loc>
+    <lastmod>2021-07-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/tags/</loc>
+    <lastmod>2021-07-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://powershellmagazine.com/2021/05/24/a-reader-counter-using-powershell-azure-functions-and-table-storage/</loc>
     <lastmod>2021-05-24T00:00:00+00:00</lastmod>
   </url>
   
@@ -39,21 +69,6 @@
   
   <url>
     <loc>https://powershellmagazine.com/categories/azure-tables/</loc>
-    <lastmod>2021-05-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://powershellmagazine.com/categories/</loc>
-    <lastmod>2021-05-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://powershellmagazine.com/</loc>
-    <lastmod>2021-05-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://powershellmagazine.com/tags/</loc>
     <lastmod>2021-05-24T00:00:00+00:00</lastmod>
   </url>
   
@@ -170,11 +185,6 @@
   <url>
     <loc>https://powershellmagazine.com/2020/03/23/powershell-wrapper-around-the-calendarific-api/</loc>
     <lastmod>2020-03-23T14:54:02+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://powershellmagazine.com/tags/conferences/</loc>
-    <lastmod>2020-03-12T10:43:51+00:00</lastmod>
   </url>
   
   <url>
